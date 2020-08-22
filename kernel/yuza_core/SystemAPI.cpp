@@ -3,7 +3,6 @@
 #include <stringdef.h>
 #include "SkyConsole.h"
 #include "PlatformAPI.h"
-#include <slog.h>
 #include <BootParams.h>
 #include <SkyGUISystem.h>
 #include <kmalloc.h>
