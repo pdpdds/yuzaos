@@ -1,0 +1,68 @@
+/*****************************************************************************/
+// Filename: istream.h
+/*****************************************************************************/
+// Description: This class represents an input stream class that is tied
+// to input from the CRT display
+/*****************************************************************************/
+
+
+#ifndef _istream_h
+#define _istream_h
+
+#include <ios>
+#include <string.h>
+//using std::string;
+
+//namespace eastl
+//{
+	class istream : virtual public ios
+	{
+		public:
+			istream();
+			virtual ~istream();
+
+			istream& getline(char* s, int streamsize, char delimiter = endl);
+			//istream& getline(string& s, char delimiter = endl);
+			virtual bool eof();
+
+			template <typename T> istream& operator>>(T& var);
+
+
+			//virtual operator void*();
+
+		protected:
+			virtual int InFunction(const char* format, ...);
+
+		public:
+			virtual istream& operator>>(char& c); 
+			virtual istream& operator>>(char* s);
+			virtual istream& operator>>(const char* s);
+			virtual istream& operator>>(double& d);
+			virtual istream& operator>>(float& f);
+			virtual istream& operator>>(int& i);
+			virtual istream& operator>>(long& l); 
+			virtual istream& operator>>(short& s);
+			virtual istream& operator>>(unsigned int& ui);
+			virtual istream& operator>>(unsigned long& ui);
+			virtual istream& operator>>(unsigned short& ui);
+			//virtual istream& operator>>(string& s);
+			
+			//template <typename T> istream& operator>>(istream& is, T& var);
+	};
+
+	/****************************************************************************************/
+	inline istream& getline(istream& stream, char* s, int streamsize, char delimiter = endl)
+	/****************************************************************************************/
+	{
+		return(stream.getline(s, streamsize, delimiter));
+	}
+
+	/****************************************************************************************/
+	//inline istream& getline(istream& stream, string& s, char delimiter = endl)
+		/****************************************************************************************/
+	//{
+		//return(stream.getline(s, delimiter));
+	//}
+//};
+
+#endif

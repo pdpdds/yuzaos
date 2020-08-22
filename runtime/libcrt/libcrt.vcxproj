@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="arch\atomic.c" />
+    <ClCompile Include="arch\cstd.c" />
+    <ClCompile Include="arch\ctrycatch.cpp" />
+    <ClCompile Include="arch\setjmp.c" />
+    <ClCompile Include="arch\spinlock.c" />
+    <ClCompile Include="asm\alldiv.c" />
+    <ClCompile Include="asm\allmul.c" />
+    <ClCompile Include="asm\allrem.c" />
+    <ClCompile Include="asm\allshr.c" />
+    <ClCompile Include="asm\aullshr.c" />
+    <ClCompile Include="ds\collection.c" />
+    <ClCompile Include="ds\ringbuffer.cpp" />
+    <ClCompile Include="ds\SkyList.cpp" />
+    <ClCompile Include="ds\SkyQueue.cpp" />
+    <ClCompile Include="getenv.c" />
+    <ClCompile Include="input\InputList.cpp" />
+    <ClCompile Include="input\InputQueue.cpp" />
+    <ClCompile Include="input\Keyboard.cpp" />
+    <ClCompile Include="input\Mouse.cpp" />
+    <ClCompile Include="libc\bsearch.c" />
+    <ClCompile Include="libc\byteswap.c" />
+    <ClCompile Include="libc\ctype_.c" />
+    <ClCompile Include="libc\div.c" />
+    <ClCompile Include="libc\gettimeofday.c" />
+    <ClCompile Include="libc\locale\duplocale.c" />
+    <ClCompile Include="libc\locale\freelocale.c" />
+    <ClCompile Include="libc\locale\lctype.c" />
+    <ClCompile Include="libc\locale\lmessages.c" />
+    <ClCompile Include="libc\locale\lmonetary.c" />
+    <ClCompile Include="libc\locale\lnumeric.c" />
+    <ClCompile Include="libc\locale\locale.c" />
+    <ClCompile Include="libc\locale\localeconv.c" />
+    <ClCompile Include="libc\locale\newlocale.c" />
+    <ClCompile Include="libc\locale\timelocal.c" />
+    <ClCompile Include="libc\locale\uselocale.c" />
+    <ClCompile Include="libc\strsep.c" />
+    <ClCompile Include="libc\strtof.c" />
+    <ClCompile Include="libc\strtoi64.c" />
+    <ClCompile Include="libc\threads\tls.c" />
+    <ClCompile Include="libc\time\asctime.c" />
+    <ClCompile Include="libc\time\clock.c" />
+    <ClCompile Include="libc\time\ctime.c" />
+    <ClCompile Include="libc\time\difftime.c" />
+    <ClCompile Include="libc\time\gettzinfo.c" />
+    <ClCompile Include="libc\time\gmtime.c" />
+    <ClCompile Include="libc\time\lcltime.c" />
+    <ClCompile Include="libc\time\mktime.c" />
+    <ClCompile Include="libc\time\month_lengths.c" />
+    <ClCompile Include="libc\time\strftime.c" />
+    <ClCompile Include="libc\time\strptime.c" />
+    <ClCompile Include="libc\time\time.c" />
+    <ClCompile Include="libc\time\timespec.c" />
+    <ClCompile Include="libc\time\tzcalc_limits.c" />
+    <ClCompile Include="libc\time\tzlock.c" />
+    <ClCompile Include="libc\time\tzset.c" />
+    <ClCompile Include="libc\time\tzset_r.c" />
+    <ClCompile Include="libc\time\tzvars.c" />
+    <ClCompile Include="libc\towupper.c" />
+    <ClCompile Include="libc\unistd.c" />
+    <ClCompile Include="libc\vfscanf.c" />
+    <ClCompile Include="memoryservice.cpp" />
+    <ClCompile Include="string\atob.c" />
+    <ClCompile Include="string\ctype.cpp" />
+    <ClCompile Include="string\ffmt.c" />
+    <ClCompile Include="string\logging.c" />
+    <ClCompile Include="string\memory.cpp" />
+    <ClCompile Include="string\printf.c" />
+    <ClCompile Include="string\qsort.c" />
+    <ClCompile Include="string\sprintf.cpp" />
+    <ClCompile Include="string\stdio.cpp" />
+    <ClCompile Include="string\strdup.c" />
+    <ClCompile Include="string\stricmp.cpp" />
+    <ClCompile Include="string\string.cpp" />
+    <ClCompile Include="string\strtoimax.c" />
+    <ClCompile Include="string\str_util.cpp" />
+    <ClCompile Include="string\tmpnam.c" />
+    <ClCompile Include="string\vsnprintf.c" />
+    <ClCompile Include="string\vsprintf.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\atomic.h" />
+    <ClInclude Include="..\include\stdio.h" />
+    <ClInclude Include="input\InputList.h" />
+    <ClInclude Include="input\InputQueue.h" />
+    <ClInclude Include="input\Keyboard.h" />
+    <ClInclude Include="input\Mouse.h" />
+    <ClInclude Include="libc\byteswap.h" />
+    <ClInclude Include="libc\locale\setlocale.h" />
+    <ClInclude Include="libc\strtof.h" />
+    <ClInclude Include="libc\time\local.h" />
+    <ClInclude Include="libc\time\_time.h" />
+    <ClInclude Include="libc\unistd.h" />
+    <ClInclude Include="string\CharType.h" />
+    <ClInclude Include="string\ctype.h" />
+    <ClInclude Include="string\ffmt.h" />
+    <ClInclude Include="string\printf.h" />
+    <ClInclude Include="string\sprintf.h" />
+    <ClInclude Include="string\strdup.h" />
+    <ClInclude Include="string\stricmp.h" />
+    <ClInclude Include="string\string.h" />
+    <ClInclude Include="string\str_util.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <NASM Include="asm\_ftol.s">
+      <FileType>Document</FileType>
+    </NASM>
+    <NASM Include="asm\_spinlock.s">
+      <FileType>Document</FileType>
+    </NASM>
+    <NASM Include="asm\_sqrt.s">
+      <FileType>Document</FileType>
+    </NASM>
+    <NASM Include="asm\_syscall.s">
+      <FileType>Document</FileType>
+    </NASM>
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="asm\aulldvrm.asm" />
+    <MASM Include="asm\chkstk.asm" />
+    <MASM Include="asm\lldvrm.asm" />
+    <MASM Include="asm\llshl.asm" />
+    <MASM Include="asm\ulldiv.asm" />
+    <MASM Include="asm\ullrem.asm" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{180F79AD-E266-434B-BE1B-B3F00550841C}</ProjectGuid>
+    <RootNamespace>Kernel</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>libcrt</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\nasm.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\Intermediate\$(ProjectName)\</IntDir>
+    <ExtensionsToDeleteOnClean>*.exp *.obj%3b*.ilk%3b*.tlb%3b*.tli%3b*.tlh%3b*.tmp%3b*.rsp%3b*.pgc%3b*.pgd%3b$(TargetPath)</ExtensionsToDeleteOnClean>
+    <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
+    <TargetName>$(ProjectName)</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IntDir>$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/Oy  /arch:SSE %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <AdditionalIncludeDirectories>../include;./libc/time;../../corelib/include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_X86_32;__i386__;_MSC_VER;LIBC_KERNEL;_KRNL_DLL</PreprocessorDefinitions>
+      <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
+      <StringPooling>
+      </StringPooling>
+      <ExceptionHandling>false</ExceptionHandling>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <AssemblerOutput>NoListing</AssemblerOutput>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CallingConvention>Cdecl</CallingConvention>
+      <DisableSpecificWarnings>4146;4244;4090;4838;4305;4018;4267</DisableSpecificWarnings>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <LanguageStandard>
+      </LanguageStandard>
+      <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <SDLCheck>false</SDLCheck>
+    </ClCompile>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <Link>
+      <AdditionalDependencies>dllstub.lib;filemanager.lib;systemcall.lib;yuzalib.lib;math.lib</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>../debug;../../ShareDll/Debug</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(OutDir)$(TargetName).map</MapFileName>
+      <SubSystem>Console</SubSystem>
+      <Driver>NotSet</Driver>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <FunctionOrder>@order.txt</FunctionOrder>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <NoEntryPoint>false</NoEntryPoint>
+      <BaseAddress>0x01600000</BaseAddress>
+      <FixedBaseAddress>
+      </FixedBaseAddress>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <FullProgramDatabaseFile>true</FullProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <AddModuleNamesToAssembly>
+      </AddModuleNamesToAssembly>
+      <ForceSymbolReferences>
+      </ForceSymbolReferences>
+      <AdditionalOptions>/safeseh:no /ALIGN:1024
+ /SUBSYSTEM:CONSOLE
+/NODEFAULTLIB:LIBC %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <DisableSpecificWarnings>4457</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>../../include;../include;../../kernelcore/include;../../module/include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ARCH_X86;</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\nasm.targets" />
+  </ImportGroup>
+</Project>

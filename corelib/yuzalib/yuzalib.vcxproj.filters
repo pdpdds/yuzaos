@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="util">
+      <UniqueIdentifier>{01d656dc-af66-42b2-900e-fe4c20f9f20c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="renderer">
+      <UniqueIdentifier>{7689b892-60df-41c8-8e87-87b377a7ba75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="console">
+      <UniqueIdentifier>{d4fc63ff-3452-4b27-bab3-4697a729665c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="command">
+      <UniqueIdentifier>{d8e10c22-723a-4292-bdaa-ed63d1911f64}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="util\bget.c">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="util\bitmap.c">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="util\crc32.c">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="util\font6x12.c">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="util\font8x16.c">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="util\JPEG.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="util\PNGLoader.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="util\ringbuffer.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="util\SkyList.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="util\SkyQueue.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="util\toaru_list.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="util\ZlibCompress.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\SkyRenderer.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\SkyRenderer8.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\SkyRenderer32.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\SkySheet.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\SkySheetController.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\SkySheetController8.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="command\commands.cpp">
+      <Filter>command</Filter>
+    </ClCompile>
+    <ClCompile Include="console\ConsoleManager.cpp">
+      <Filter>console</Filter>
+    </ClCompile>
+    <ClCompile Include="console\ConsoleShell.cpp">
+      <Filter>console</Filter>
+    </ClCompile>
+    <ClCompile Include="console\GUIConsole.cpp">
+      <Filter>console</Filter>
+    </ClCompile>
+    <ClCompile Include="console\GUIConsoleFramework.cpp">
+      <Filter>console</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="util\bget.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="util\crc32.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="util\JPEG.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="util\PNGLoader.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="util\ZlibCompress.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\FontData.h">
+      <Filter>renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\SkyRenderer8.h">
+      <Filter>renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\SkySheet.h">
+      <Filter>renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\SkySheetController.h">
+      <Filter>renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\SkySheetController8.h">
+      <Filter>renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="command\commandMacros.h">
+      <Filter>command</Filter>
+    </ClInclude>
+    <ClInclude Include="command\commands.h">
+      <Filter>command</Filter>
+    </ClInclude>
+    <ClInclude Include="command\commandTable.h">
+      <Filter>command</Filter>
+    </ClInclude>
+    <ClInclude Include="console\ConsoleShell.h">
+      <Filter>console</Filter>
+    </ClInclude>
+    <ClInclude Include="console\GUIConsole.h">
+      <Filter>console</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

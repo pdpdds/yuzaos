@@ -1,0 +1,42 @@
+/*****************************************************************************/
+// Filename: ostream.h
+/*****************************************************************************/
+// Description: This class represents an output stream class that is tied
+// to the CRT display
+/*****************************************************************************/
+
+#ifndef _ostream_h
+#define _ostream_h
+
+#include <ios>
+
+
+namespace std
+{
+	class ostream : virtual public ios
+	{
+		public:
+			ostream();
+			virtual ~ostream();
+			virtual ostream& operator<<(char c); 
+			virtual ostream& operator<<(char* s);
+			virtual ostream& operator<<(const char* s);
+			virtual ostream& operator<<(double d);
+			virtual ostream& operator<<(float f);
+			virtual ostream& operator<<(int i);
+			virtual ostream& operator<<(long l); 
+			virtual ostream& operator<<(short s);
+			virtual ostream& operator<<(unsigned int ui);
+			virtual ostream& operator<<(unsigned long ui);
+			virtual ostream& operator<<(unsigned short ui);
+			//virtual ostream& operator<<(string s);
+			virtual ostream& operator<<(void* var);
+			virtual ostream& operator<<(ostream& (*__pf)(ostream&));
+
+		protected:
+			virtual int OutFunction(const char* format, ...);
+
+	};
+};
+
+#endif

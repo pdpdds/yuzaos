@@ -1,0 +1,39 @@
+/*****************************************************************************/
+// Filename: istringstream.h
+/*****************************************************************************/
+// Description: This class represents an input stream tied to a C++ string
+/*****************************************************************************/
+
+#ifndef _I_STRING_STREAM_H
+#define _I_STRING_STREAM_H
+
+#include <istream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdarg.h>
+#include <string>
+using std::string;
+
+namespace std
+{
+	class istringstream : public istream
+	{
+		friend class stringstream;
+
+		public:
+			istringstream(ios::openmode mode = ios::in);
+			istringstream(string input, ios::openmode mode = ios::in);
+			virtual ~istringstream();
+			string str();
+			void str(string val);
+
+		protected:
+			int InFunction(const char* format, ...);
+
+		private:
+			string       _input;
+			unsigned int _currentPosition;
+	};
+};
+
+#endif

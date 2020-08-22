@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="modf.c" />
+    <ClCompile Include="src\s_cos.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\k_cos.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\k_rem_pio2.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\k_sin.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\k_tan.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\e_rem_pio2.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\s_fabs.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\s_scalbn.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\s_atan.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\s_cbrt.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\s_ceil.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\s_copysign.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\s_expm1.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\s_finite.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\s_ilogb.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\s_isnan.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\s_ldexp.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\s_lib_version.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\s_log1p.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\s_logb.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\s_matherr.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\s_nextafter.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\s_rint.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\s_signgam.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\s_sin.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\s_tan.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\s_tanh.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\e_acos.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\e_asin.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\e_atan2.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\e_atan2f.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\e_atanh.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\e_exp.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\e_fmod.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\e_log.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\e_log10.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\e_sqrt.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="math.c" />
+    <ClCompile Include="labs.c" />
+    <ClCompile Include="hypot.c" />
+    <ClCompile Include="src\e_cosh.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\e_sinh.c">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\fdlibm.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\runtime\include\math.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{fa33e29a-3879-4cae-b9a4-97cfaf14e8dd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

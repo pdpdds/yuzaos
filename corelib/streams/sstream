@@ -1,0 +1,39 @@
+/*****************************************************************************/
+// Filename: sstream.h
+/*****************************************************************************/
+// Description: This class represents an input/output stream tie to
+// a string
+/*****************************************************************************/
+
+
+#ifndef _STRING_STREAM_H
+#define _STRING_STREAM_H
+
+#include <iostream>
+#include <istringstream>
+#include <ostringstream>
+
+namespace std
+{
+	class stringstream : public iostream
+	{
+		public:
+			stringstream(ios::openmode mode = ios::in | ios::out);
+			stringstream(string inout, ios::openmode mode = ios::in | ios::out);
+			virtual ~stringstream();
+			string str();
+			void str(string val);
+
+		protected:
+			virtual int OutFunction(const char* format, ...);
+			virtual int InFunction(const char* format, ...);
+
+		private:
+			int           _currentPosition;
+			istringstream _input;
+			ostringstream _output;
+			string        _commonString;
+	};
+};
+
+#endif

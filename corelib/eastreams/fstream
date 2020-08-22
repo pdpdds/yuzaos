@@ -1,0 +1,20 @@
+/*****************************************************************************/
+// Filename: fstream.h
+/*****************************************************************************/
+// Description: This class represent an input/output file stream
+// Note: Class not implemented yet
+/*****************************************************************************/
+
+
+#ifndef _F_STREAM_H
+#define _F_STREAM_H
+
+#include <ifstream.>
+#include <ofstream>
+
+namespace ppcStreams
+{
+	//TODO: Implement class fstream when needed
+};
+
+#endif

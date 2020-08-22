@@ -1,0 +1,28 @@
+/*****************************************************************************/
+// Filename: iostream.h
+/*****************************************************************************/
+// Description: This class represents the base class for all dual input/output 
+// streams
+/*****************************************************************************/
+
+#ifndef _IOSTREAM_H
+#define _IOSTREAM_H
+
+#include <ostream>
+#include <istream>
+
+namespace std
+{
+	static ostream cout;
+	static istream cin;
+
+	class iostream : public ostream, public istream
+	{
+		public:
+			virtual ~iostream();
+		protected:
+			iostream();
+	};
+};
+
+#endif

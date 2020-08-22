@@ -1,0 +1,37 @@
+/*****************************************************************************/
+// Filename: ifstream.h
+/*****************************************************************************/
+// Description: This class represents an input stream from file
+/*****************************************************************************/
+
+#include <istream>
+#include <stdio.h>
+
+namespace std
+{
+	class ifstream : public istream
+	{
+		public:
+			enum {beg, cur, end};
+			ifstream();
+			ifstream(const char* filename);
+			virtual ~ifstream();
+
+			bool open(const char* filename, ios::openmode mode = ios::in);
+			bool is_open();
+			void close();
+			bool eof();
+			bool operator ==(bool val);
+			operator void *() ;
+			int read(char* buffer, int size);
+			int tellg();
+			void seekg(int pos, int whence);
+
+		protected:
+			virtual int  InFunction(const char* format, ...);
+
+
+		private:
+			FILE* _fileHandle;
+	};
+};

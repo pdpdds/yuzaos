@@ -1,0 +1,11 @@
+#pragma once
+#include <windef.h>
+#include <stdint.h>
+#include <float.h>
+#include <va_list.h>
+#include <size_t.h>
+#include <stdarg.h>
+#include <stddef.h>
+#include <time.h>
+#include <osdefs.h>
+#include <common_struct.h>

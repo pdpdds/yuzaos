@@ -1,0 +1,2 @@
+#include <windef.h>
+#include <memory.h>

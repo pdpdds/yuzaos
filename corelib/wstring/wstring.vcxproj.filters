@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="unicode.c" />
+    <ClCompile Include="wcpcpy.c" />
+    <ClCompile Include="wcpncpy.c" />
+    <ClCompile Include="wcscasecmp.c" />
+    <ClCompile Include="wcscasecmp_l.c" />
+    <ClCompile Include="wcscat.c" />
+    <ClCompile Include="wcschr.c" />
+    <ClCompile Include="wcscmp.c" />
+    <ClCompile Include="wcscoll.c" />
+    <ClCompile Include="wcscoll_l.c" />
+    <ClCompile Include="wcscpy.c" />
+    <ClCompile Include="wcscspn.c" />
+    <ClCompile Include="wcsdup.c" />
+    <ClCompile Include="wcslcat.c" />
+    <ClCompile Include="wcslcpy.c" />
+    <ClCompile Include="wcslen.c" />
+    <ClCompile Include="wcsncasecmp.c" />
+    <ClCompile Include="wcsncasecmp_l.c" />
+    <ClCompile Include="wcsncat.c" />
+    <ClCompile Include="wcsncmp.c" />
+    <ClCompile Include="wcsncpy.c" />
+    <ClCompile Include="wcsnicmp.c" />
+    <ClCompile Include="wcsnlen.c" />
+    <ClCompile Include="wcspbrk.c" />
+    <ClCompile Include="wcsrchr.c" />
+    <ClCompile Include="wcsspn.c" />
+    <ClCompile Include="wcsstr.c" />
+    <ClCompile Include="wcstok.c" />
+    <ClCompile Include="wcstombs.c" />
+    <ClCompile Include="wcswidth.c" />
+    <ClCompile Include="wcsxfrm.c" />
+    <ClCompile Include="wcsxfrm_l.c" />
+    <ClCompile Include="wcwidth.c" />
+    <ClCompile Include="wmemchr.c" />
+    <ClCompile Include="wmemcmp.c" />
+    <ClCompile Include="wmemcpy.c" />
+    <ClCompile Include="wmemmove.c" />
+    <ClCompile Include="wmemset.c" />
+    <ClCompile Include="ctype\towlower.c">
+      <Filter>ctype</Filter>
+    </ClCompile>
+    <ClCompile Include="ctype\towlower_l.c">
+      <Filter>ctype</Filter>
+    </ClCompile>
+    <ClCompile Include="ctype\iswcntrl.c">
+      <Filter>ctype</Filter>
+    </ClCompile>
+    <ClCompile Include="ctype\iswcntrl_l.c">
+      <Filter>ctype</Filter>
+    </ClCompile>
+    <ClCompile Include="ctype\iswprint.c">
+      <Filter>ctype</Filter>
+    </ClCompile>
+    <ClCompile Include="ctype\iswprint_l.c">
+      <Filter>ctype</Filter>
+    </ClCompile>
+    <ClCompile Include="wcstod.c" />
+    <ClCompile Include="wcsicmp.c" />
+    <ClCompile Include="ctype\iswspace.c">
+      <Filter>ctype</Filter>
+    </ClCompile>
+    <ClCompile Include="wcstoul.c" />
+    <ClCompile Include="wcstol.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="ctype">
+      <UniqueIdentifier>{b4ce5b19-9d57-4a66-9e59-a526495ecebf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

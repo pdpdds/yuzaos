@@ -1,0 +1,39 @@
+/*****************************************************************************/
+// Filename: ostringstream.h
+/*****************************************************************************/
+// Description: This class represents an ouput stream tied to a C++ string
+/*****************************************************************************/
+
+#ifndef _O_STRING_STREAM_H
+#define _O_STRING_STREAM_H
+
+#include <ostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdarg.h>
+#include <string>
+using std::string;
+
+namespace std
+{
+	class ostringstream : public ostream
+	{
+		friend class stringstream;
+
+		public:
+			ostringstream(ios::openmode mode = ios::out);
+			ostringstream(string output, ios::openmode mode = ios::out);
+
+			virtual ~ostringstream();
+			string str();
+			void str(string val);
+
+		protected:
+			virtual int OutFunction(const char* format, ...);
+
+		private:
+			string       _output;
+	};
+};
+
+#endif

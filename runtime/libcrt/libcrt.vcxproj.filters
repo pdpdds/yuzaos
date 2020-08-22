@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="string\atob.c">
+      <Filter>string</Filter>
+    </ClCompile>
+    <ClCompile Include="string\ctype.cpp">
+      <Filter>string</Filter>
+    </ClCompile>
+    <ClCompile Include="string\ffmt.c">
+      <Filter>string</Filter>
+    </ClCompile>
+    <ClCompile Include="string\logging.c">
+      <Filter>string</Filter>
+    </ClCompile>
+    <ClCompile Include="string\memory.cpp">
+      <Filter>string</Filter>
+    </ClCompile>
+    <ClCompile Include="string\qsort.c">
+      <Filter>string</Filter>
+    </ClCompile>
+    <ClCompile Include="string\sprintf.cpp">
+      <Filter>string</Filter>
+    </ClCompile>
+    <ClCompile Include="string\stdio.cpp">
+      <Filter>string</Filter>
+    </ClCompile>
+    <ClCompile Include="string\str_util.cpp">
+      <Filter>string</Filter>
+    </ClCompile>
+    <ClCompile Include="string\strdup.c">
+      <Filter>string</Filter>
+    </ClCompile>
+    <ClCompile Include="string\stricmp.cpp">
+      <Filter>string</Filter>
+    </ClCompile>
+    <ClCompile Include="string\string.cpp">
+      <Filter>string</Filter>
+    </ClCompile>
+    <ClCompile Include="string\strtoimax.c">
+      <Filter>string</Filter>
+    </ClCompile>
+    <ClCompile Include="string\vsnprintf.c">
+      <Filter>string</Filter>
+    </ClCompile>
+    <ClCompile Include="string\vsprintf.c">
+      <Filter>string</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\bsearch.c">
+      <Filter>libc</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\byteswap.c">
+      <Filter>libc</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\div.c">
+      <Filter>libc</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\strsep.c">
+      <Filter>libc</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\strtof.c">
+      <Filter>libc</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\strtoi64.c">
+      <Filter>libc</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\towupper.c">
+      <Filter>libc</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\unistd.c">
+      <Filter>libc</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\vfscanf.c">
+      <Filter>libc</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\time\asctime.c">
+      <Filter>libc\time</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\time\clock.c">
+      <Filter>libc\time</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\time\ctime.c">
+      <Filter>libc\time</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\time\difftime.c">
+      <Filter>libc\time</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\time\gettzinfo.c">
+      <Filter>libc\time</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\time\gmtime.c">
+      <Filter>libc\time</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\time\lcltime.c">
+      <Filter>libc\time</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\time\mktime.c">
+      <Filter>libc\time</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\time\month_lengths.c">
+      <Filter>libc\time</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\time\strftime.c">
+      <Filter>libc\time</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\time\strptime.c">
+      <Filter>libc\time</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\time\time.c">
+      <Filter>libc\time</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\time\timespec.c">
+      <Filter>libc\time</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\time\tzcalc_limits.c">
+      <Filter>libc\time</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\time\tzlock.c">
+      <Filter>libc\time</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\time\tzset.c">
+      <Filter>libc\time</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\time\tzset_r.c">
+      <Filter>libc\time</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\time\tzvars.c">
+      <Filter>libc\time</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\locale\duplocale.c">
+      <Filter>libc\locale</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\locale\freelocale.c">
+      <Filter>libc\locale</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\locale\lctype.c">
+      <Filter>libc\locale</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\locale\lmessages.c">
+      <Filter>libc\locale</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\locale\lmonetary.c">
+      <Filter>libc\locale</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\locale\lnumeric.c">
+      <Filter>libc\locale</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\locale\localeconv.c">
+      <Filter>libc\locale</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\locale\newlocale.c">
+      <Filter>libc\locale</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\locale\timelocal.c">
+      <Filter>libc\locale</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\locale\uselocale.c">
+      <Filter>libc\locale</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\locale\locale.c">
+      <Filter>libc\locale</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\ctype_.c">
+      <Filter>libc</Filter>
+    </ClCompile>
+    <ClCompile Include="input\InputList.cpp">
+      <Filter>input</Filter>
+    </ClCompile>
+    <ClCompile Include="input\InputQueue.cpp">
+      <Filter>input</Filter>
+    </ClCompile>
+    <ClCompile Include="input\Keyboard.cpp">
+      <Filter>input</Filter>
+    </ClCompile>
+    <ClCompile Include="input\Mouse.cpp">
+      <Filter>input</Filter>
+    </ClCompile>
+    <ClCompile Include="string\tmpnam.c">
+      <Filter>string</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\gettimeofday.c">
+      <Filter>libc</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\threads\tls.c">
+      <Filter>libc\threads</Filter>
+    </ClCompile>
+    <ClCompile Include="ds\ringbuffer.cpp">
+      <Filter>ds</Filter>
+    </ClCompile>
+    <ClCompile Include="ds\SkyList.cpp">
+      <Filter>ds</Filter>
+    </ClCompile>
+    <ClCompile Include="ds\SkyQueue.cpp">
+      <Filter>ds</Filter>
+    </ClCompile>
+    <ClCompile Include="ds\collection.c">
+      <Filter>ds</Filter>
+    </ClCompile>
+    <ClCompile Include="memoryservice.cpp" />
+    <ClCompile Include="getenv.c" />
+    <ClCompile Include="string\printf.c">
+      <Filter>string</Filter>
+    </ClCompile>
+    <ClCompile Include="asm\alldiv.c">
+      <Filter>asm</Filter>
+    </ClCompile>
+    <ClCompile Include="asm\allmul.c">
+      <Filter>asm</Filter>
+    </ClCompile>
+    <ClCompile Include="asm\allrem.c">
+      <Filter>asm</Filter>
+    </ClCompile>
+    <ClCompile Include="asm\allshr.c">
+      <Filter>asm</Filter>
+    </ClCompile>
+    <ClCompile Include="asm\aullshr.c">
+      <Filter>asm</Filter>
+    </ClCompile>
+    <ClCompile Include="arch\atomic.c">
+      <Filter>arch</Filter>
+    </ClCompile>
+    <ClCompile Include="arch\cstd.c">
+      <Filter>arch</Filter>
+    </ClCompile>
+    <ClCompile Include="arch\setjmp.c">
+      <Filter>arch</Filter>
+    </ClCompile>
+    <ClCompile Include="arch\spinlock.c">
+      <Filter>arch</Filter>
+    </ClCompile>
+    <ClCompile Include="arch\ctrycatch.cpp">
+      <Filter>arch</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{0fee3402-152e-496f-be9d-4773377a5e8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="string">
+      <UniqueIdentifier>{321276d3-f75f-43cb-9158-fbedf84ddabe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libc">
+      <UniqueIdentifier>{d45aed4d-0f01-4f9e-ba4a-16e0017d96f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libc\time">
+      <UniqueIdentifier>{8be58f53-d1d6-4a84-af38-4b7ef9d7fbcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libc\locale">
+      <UniqueIdentifier>{e0b907b8-4fbd-4e7e-a1d9-fe2fcb4ca912}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="input">
+      <UniqueIdentifier>{251f9178-fc29-490b-9678-e89dcaa21e31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libc\threads">
+      <UniqueIdentifier>{4b234fad-bee1-43f8-9787-5f6990d44cb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ds">
+      <UniqueIdentifier>{b24b1ad6-2870-4fe8-aed0-d0c194ccc421}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="asm">
+      <UniqueIdentifier>{43969b50-c1f6-4af0-bf37-8b094b3ecb07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="arch">
+      <UniqueIdentifier>{5a834978-19f6-4ee3-9ea1-7562e0ba4401}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\atomic.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="string\CharType.h">
+      <Filter>string</Filter>
+    </ClInclude>
+    <ClInclude Include="string\ctype.h">
+      <Filter>string</Filter>
+    </ClInclude>
+    <ClInclude Include="string\ffmt.h">
+      <Filter>string</Filter>
+    </ClInclude>
+    <ClInclude Include="string\sprintf.h">
+      <Filter>string</Filter>
+    </ClInclude>
+    <ClInclude Include="string\str_util.h">
+      <Filter>string</Filter>
+    </ClInclude>
+    <ClInclude Include="string\strdup.h">
+      <Filter>string</Filter>
+    </ClInclude>
+    <ClInclude Include="string\stricmp.h">
+      <Filter>string</Filter>
+    </ClInclude>
+    <ClInclude Include="string\string.h">
+      <Filter>string</Filter>
+    </ClInclude>
+    <ClInclude Include="libc\byteswap.h">
+      <Filter>libc</Filter>
+    </ClInclude>
+    <ClInclude Include="libc\strtof.h">
+      <Filter>libc</Filter>
+    </ClInclude>
+    <ClInclude Include="libc\unistd.h">
+      <Filter>libc</Filter>
+    </ClInclude>
+    <ClInclude Include="libc\time\_time.h">
+      <Filter>libc\time</Filter>
+    </ClInclude>
+    <ClInclude Include="libc\time\local.h">
+      <Filter>libc\time</Filter>
+    </ClInclude>
+    <ClInclude Include="libc\locale\setlocale.h">
+      <Filter>libc\locale</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\stdio.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="input\InputList.h">
+      <Filter>input</Filter>
+    </ClInclude>
+    <ClInclude Include="input\InputQueue.h">
+      <Filter>input</Filter>
+    </ClInclude>
+    <ClInclude Include="input\Keyboard.h">
+      <Filter>input</Filter>
+    </ClInclude>
+    <ClInclude Include="input\Mouse.h">
+      <Filter>input</Filter>
+    </ClInclude>
+    <ClInclude Include="string\printf.h">
+      <Filter>string</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="asm\aulldvrm.asm">
+      <Filter>asm</Filter>
+    </MASM>
+    <MASM Include="asm\chkstk.asm">
+      <Filter>asm</Filter>
+    </MASM>
+    <MASM Include="asm\lldvrm.asm">
+      <Filter>asm</Filter>
+    </MASM>
+    <MASM Include="asm\llshl.asm">
+      <Filter>asm</Filter>
+    </MASM>
+    <MASM Include="asm\ulldiv.asm">
+      <Filter>asm</Filter>
+    </MASM>
+    <MASM Include="asm\ullrem.asm">
+      <Filter>asm</Filter>
+    </MASM>
+  </ItemGroup>
+  <ItemGroup>
+    <NASM Include="asm\_syscall.s">
+      <Filter>asm</Filter>
+    </NASM>
+    <NASM Include="asm\_sqrt.s">
+      <Filter>asm</Filter>
+    </NASM>
+    <NASM Include="asm\_spinlock.s">
+      <Filter>asm</Filter>
+    </NASM>
+    <NASM Include="asm\_ftol.s">
+      <Filter>asm</Filter>
+    </NASM>
+  </ItemGroup>
+</Project>

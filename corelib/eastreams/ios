@@ -1,0 +1,30 @@
+/*****************************************************************************/
+// Filename: ios.h
+/*****************************************************************************/
+// Description: This class is the base class for ostream and istream classes
+/*****************************************************************************/
+
+#ifndef _ios_h
+#define _ios_h
+
+#include <ios_base>
+
+//namespace eastl
+//{
+	class ios : public ios_base
+	{
+		public:
+			virtual ~ios();
+			void setstate(iostate state);
+			void clear(iostate state = goodbit); //clear iostate bitmask
+			iostate rdstate();
+			virtual operator void*();
+
+		protected:
+			ios();
+
+		
+	};
+//};
+
+#endif

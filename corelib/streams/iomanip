@@ -1,0 +1,40 @@
+#ifndef _IO_MANIP_H
+#define _IO_MANIP_H
+
+#include <iostream>
+
+namespace std
+{
+	class iomanip
+	{
+	};
+	class setw : public iomanip
+	{
+		setw(int width = 0)
+		{
+			_width = width;
+		}
+		friend ostream& operator<<(ostream& stream, const setw& value);
+		friend istream& operator>>(istream& stream, setw& value);
+
+		private:
+			int _width;
+
+	};
+	class setprecision : public iomanip
+	{
+		setprecision(int precision = 10)
+		{
+			_precision = precision;
+		}
+		friend ostream& operator<<(ostream& stream, const setprecision& value);
+		friend istream& operator>>(istream& stream, setprecision& value);
+
+		private:
+			int _precision;
+
+	};
+
+};
+
+#endif

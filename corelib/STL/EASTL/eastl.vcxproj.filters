@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="source\allocator_eastl.cpp" />
+    <ClCompile Include="source\assert.cpp" />
+    <ClCompile Include="source\fixed_pool.cpp" />
+    <ClCompile Include="source\hashtable.cpp" />
+    <ClCompile Include="source\intrusive_list.cpp" />
+    <ClCompile Include="source\numeric_limits.cpp" />
+    <ClCompile Include="source\red_black_tree.cpp" />
+    <ClCompile Include="source\string.cpp" />
+    <ClCompile Include="source\thread_support.cpp" />
+  </ItemGroup>
+</Project>

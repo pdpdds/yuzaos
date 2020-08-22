@@ -1,0 +1,62 @@
+/*****************************************************************************/
+// Filename: ios_base.h
+/*****************************************************************************/
+// Description: This class represents a the highest level base class from which everything is
+// derived
+/*****************************************************************************/
+
+#ifndef _IOS_BASE_H
+#define _IOS_BASE_H
+#include <stdio.h>
+
+namespace std
+{
+	typedef int streamsize;
+	static const char endl = '\n'; //Define newline character
+	const int MAX_SIZE_STD_STRING_IN_STREAM = 2048; //Limitation of library
+	                                                //std::strings passed
+	                                                //in and out can't exceed
+	                                                //this size for single arg
+	                                                //Can't resolve the true buffer
+	                                                //space needed at run-time w/o
+	                                                //heavy modification
+	class ios_base
+	{
+		public:
+			typedef char iostate;
+			static const iostate badbit, eofbit, failbit, goodbit;
+			typedef char openmode;
+			static const openmode app, ate, binary, in, out, trunc;
+			typedef int fmtflags;
+			static const fmtflags boolalpha, dec, fixed, hex,
+				                  internal, left, right, oct,
+								  scientific, showbase, showpoint,
+								  showpos, skipws, unitbuf, 
+								  upperbuf, uppercase;
+
+
+		public:
+			virtual ~ios_base();	
+			bool bad();
+			bool good();
+			void setf(fmtflags flags);
+			streamsize precision ( ) const;
+			streamsize precision ( streamsize prec );
+			streamsize width() const;
+			streamsize width(streamsize w);
+
+		protected:
+			ios_base();	
+
+		protected:
+			iostate  _iostate;  //bitmask for iostate
+		private:
+			fmtflags _fmtflags; //bitmask for formatting
+			openmode _openmode; //bitmask for open mode
+			streamsize _precision; //precision of floating point output
+			streamsize _width;
+			
+	};
+};
+
+#endif
