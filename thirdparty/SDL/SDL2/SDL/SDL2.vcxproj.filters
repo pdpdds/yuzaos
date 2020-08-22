@@ -1,0 +1,845 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{46b1801a-bde9-4aa2-adcc-2621524189fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\dummy">
+      <UniqueIdentifier>{44f498e8-a62f-45cf-90c6-1290b387dc79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\generic">
+      <UniqueIdentifier>{a2b67938-bc1b-4520-88cf-89ca5325304c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="math">
+      <UniqueIdentifier>{f2adda75-152a-4d34-81b4-068448ca2958}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\pthreads">
+      <UniqueIdentifier>{5c1668d9-77bb-4f48-b158-589e6fb02822}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\joystick\dummy\SDL_sysjoystick.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\haptic\dummy\SDL_syshaptic.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\filesystem\dummy\SDL_sysfilesystem.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\audio\disk\SDL_diskaudio.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_blit.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_blit_0.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_blit_1.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_blit_A.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_blit_auto.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_blit_copy.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_blit_N.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_blit_slow.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_bmp.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_clipboard.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_egl.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_fillrect.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_pixels.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_rect.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_RLEaccel.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_shape.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_stretch.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_surface.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_video.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\timer\SDL_timer.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\thread\SDL_thread.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stdlib\SDL_getenv.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stdlib\SDL_iconv.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stdlib\SDL_qsort.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stdlib\SDL_stdlib.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stdlib\SDL_string.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\render\SDL_d3dmath.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\render\SDL_yuv_sw.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\power\SDL_power.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\joystick\SDL_gamecontroller.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\joystick\SDL_joystick.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\haptic\SDL_haptic.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\file\SDL_rwops.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\events\SDL_clipboardevents.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\events\SDL_dropevents.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\events\SDL_events.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\events\SDL_gesture.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\events\SDL_keyboard.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\events\SDL_mouse.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\events\SDL_quit.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\events\SDL_touch.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\events\SDL_windowevents.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpuinfo\SDL_cpuinfo.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\atomic\SDL_atomic.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\atomic\SDL_spinlock.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\audio\SDL_audio.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\audio\SDL_audiocvt.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\audio\SDL_audiodev.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\audio\SDL_audiotypecvt.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\audio\SDL_mixer.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\audio\SDL_wave.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SDL.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SDL_assert.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SDL_error.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SDL_hints.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SDL_log.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\render\software\SDL_blendfillrect.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\render\software\SDL_blendline.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\render\software\SDL_blendpoint.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\render\software\SDL_drawline.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\render\software\SDL_drawpoint.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\render\software\SDL_render_sw.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\render\software\SDL_rotate.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libm\e_atan2.c">
+      <Filter>include</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libm\e_log.c">
+      <Filter>include</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libm\e_pow.c">
+      <Filter>include</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libm\e_rem_pio2.c">
+      <Filter>include</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libm\e_sqrt.c">
+      <Filter>include</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libm\k_cos.c">
+      <Filter>include</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libm\k_rem_pio2.c">
+      <Filter>include</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libm\k_sin.c">
+      <Filter>include</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libm\k_tan.c">
+      <Filter>include</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libm\s_atan.c">
+      <Filter>include</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libm\s_copysign.c">
+      <Filter>include</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libm\s_cos.c">
+      <Filter>include</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libm\s_fabs.c">
+      <Filter>include</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libm\s_floor.c">
+      <Filter>include</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libm\s_scalbn.c">
+      <Filter>include</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libm\s_sin.c">
+      <Filter>include</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libm\s_tan.c">
+      <Filter>include</Filter>
+    </ClCompile>
+    <ClCompile Include="src\render\SDL_render.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dynapi\SDL_dynapi.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stdlib\SDL_malloc.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\dummy\SDL_nullevents.c">
+      <Filter>소스 파일\dummy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\dummy\SDL_nullframebuffer.c">
+      <Filter>소스 파일\dummy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\dummy\SDL_nullvideo.c">
+      <Filter>소스 파일\dummy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\dummy\SDL_skyoskeyboard.c">
+      <Filter>소스 파일\dummy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\skyos\SDL_skyos.c">
+      <Filter>소스 파일\dummy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\dummy\SDL_skyosmouse.c">
+      <Filter>소스 파일\dummy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\timer\dummy\SDL_systimer.c">
+      <Filter>소스 파일\dummy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\loadso\dummy\SDL_sysloadso.c">
+      <Filter>소스 파일\dummy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\dummy\SDL_dummy_main.c">
+      <Filter>소스 파일\dummy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\audio\dummy\SDL_dummyaudio.c">
+      <Filter>소스 파일\dummy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SDL_dataqueue.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_yuv.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_vulkan_utils.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\yuv2rgb\yuv_rgb.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sensor\SDL_sensor.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sensor\dummy\SDL_dummysensor.c">
+      <Filter>소스 파일\dummy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libm\e_exp.c">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libm\e_fmod.c">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libm\e_log10.c">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\thread\generic\SDL_syscond.c">
+      <Filter>소스 파일\generic</Filter>
+    </ClCompile>
+    <ClCompile Include="src\thread\generic\SDL_sysmutex.c">
+      <Filter>소스 파일\generic</Filter>
+    </ClCompile>
+    <ClCompile Include="src\thread\generic\SDL_syssem.c">
+      <Filter>소스 파일\generic</Filter>
+    </ClCompile>
+    <ClCompile Include="src\thread\generic\SDL_systhread.c">
+      <Filter>소스 파일\generic</Filter>
+    </ClCompile>
+    <ClCompile Include="src\thread\generic\SDL_systls.c">
+      <Filter>소스 파일\generic</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Include\I_LuaModule.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="luatinker.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaScriptModule.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\begin_code.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\close_code.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_assert.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_atomic.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_audio.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_bits.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_blendmode.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_clipboard.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_config.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_config_android.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_config_iphoneos.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_config_macosx.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_config_minimal.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_config_pandora.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_config_psp.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_config_windows.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_config_winrt.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_config_wiz.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_copying.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_cpuinfo.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_egl.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_endian.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_error.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_events.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_filesystem.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_gamecontroller.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_gesture.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_haptic.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_hints.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_joystick.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_keyboard.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_keycode.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_loadso.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_log.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_main.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_messagebox.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_mouse.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_mutex.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_name.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_opengl.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_opengl_glext.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_opengles.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_opengles2.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_opengles2_gl2.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_opengles2_gl2ext.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_opengles2_gl2platform.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_opengles2_khrplatform.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_pixels.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_platform.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_power.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_quit.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_rect.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_render.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_revision.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_rwops.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_scancode.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_shape.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_stdinc.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_surface.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_system.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_syswm.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_test.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_test_assert.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_test_common.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_test_compare.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_test_crc32.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_test_font.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_test_fuzzer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_test_harness.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_test_images.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_test_log.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_test_md5.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_test_random.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_thread.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_timer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_touch.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_types.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_version.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_video.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\audio\disk\SDL_diskaudio.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\SDL_blit.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\SDL_blit_auto.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\SDL_blit_copy.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\SDL_blit_slow.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\SDL_egl_c.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\SDL_pixels_c.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\SDL_rect_c.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\SDL_RLEaccel_c.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\SDL_shape_internals.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\SDL_sysvideo.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\timer\SDL_timer_c.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\thread\SDL_systhread.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\thread\SDL_thread_c.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\render\SDL_d3dmath.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\render\SDL_sysrender.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\render\SDL_yuv_sw_c.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\joystick\SDL_gamecontrollerdb.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\joystick\SDL_joystick_c.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\joystick\SDL_sysjoystick.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\haptic\SDL_haptic_c.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\haptic\SDL_syshaptic.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\events\blank_cursor.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\events\default_cursor.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\events\scancodes_darwin.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\events\scancodes_linux.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\events\scancodes_windows.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\events\scancodes_xfree86.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\events\SDL_clipboardevents_c.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\events\SDL_dropevents_c.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\events\SDL_events_c.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\events\SDL_gesture_c.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\events\SDL_keyboard_c.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\events\SDL_mouse_c.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\events\SDL_sysevents.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\events\SDL_touch_c.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\events\SDL_windowevents_c.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\audio\SDL_audio_c.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\audio\SDL_audiodev_c.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\audio\SDL_sysaudio.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\audio\SDL_wave.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SDL_assert_c.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SDL_error_c.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SDL_internal.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL_config_skyos32.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\render\software\SDL_blendfillrect.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\render\software\SDL_blendline.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\render\software\SDL_blendpoint.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\render\software\SDL_draw.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\render\software\SDL_drawline.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\render\software\SDL_drawpoint.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\render\software\SDL_render_sw_c.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\render\software\SDL_rotate.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libm\math_libm.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libm\math_private.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dynapi\SDL_dynapi.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dynapi\SDL_dynapi_overrides.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dynapi\SDL_dynapi_procs.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\dummy\SDL_nullvideo.h">
+      <Filter>소스 파일\dummy</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\dummy\SDL_nullevents_c.h">
+      <Filter>소스 파일\dummy</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\dummy\SDL_nullframebuffer_c.h">
+      <Filter>소스 파일\dummy</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\dummy\SDL_skyoskeyboard.h">
+      <Filter>소스 파일\dummy</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\skyos\SDL_skyos.h">
+      <Filter>소스 파일\dummy</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\dummy\SDL_skyosmouse.h">
+      <Filter>소스 파일\dummy</Filter>
+    </ClInclude>
+    <ClInclude Include="src\audio\dummy\SDL_dummyaudio.h">
+      <Filter>소스 파일\dummy</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SDL_dataqueue.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\yuv2rgb\yuv_rgb.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\yuv2rgb\yuv_rgb_sse_func.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\yuv2rgb\yuv_rgb_std_func.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sensor\dummy\SDL_dummysensor.h">
+      <Filter>소스 파일\dummy</Filter>
+    </ClInclude>
+    <ClInclude Include="src\thread\generic\SDL_sysmutex_c.h">
+      <Filter>소스 파일\generic</Filter>
+    </ClInclude>
+    <ClInclude Include="src\thread\generic\SDL_systhread_c.h">
+      <Filter>소스 파일\generic</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="include\SDL_config.h.cmake">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\SDL_config.h.in">
+      <Filter>include</Filter>
+    </None>
+  </ItemGroup>
+</Project>

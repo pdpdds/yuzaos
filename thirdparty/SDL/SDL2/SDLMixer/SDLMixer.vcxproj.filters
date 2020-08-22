@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{46b1801a-bde9-4aa2-adcc-2621524189fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="native_midi">
+      <UniqueIdentifier>{ddb71805-6c67-4a5c-abab-8e70840548dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="timidity">
+      <UniqueIdentifier>{161662a5-4c2e-4496-8e90-db1fbd63f7e5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="effect_position.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="effect_stereoreverse.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="effects_internal.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="load_aiff.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="load_voc.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="mixer.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="music.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="music_cmd.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="music_flac.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="music_fluidsynth.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="music_mad.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="music_mikmod.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="music_modplug.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="music_mpg123.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="music_nativemidi.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="music_ogg.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="music_opus.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="music_timidity.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="music_wav.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="native_midi\native_midi_common.c">
+      <Filter>native_midi</Filter>
+    </ClCompile>
+    <ClCompile Include="native_midi\native_midi_haiku.cpp">
+      <Filter>native_midi</Filter>
+    </ClCompile>
+    <ClCompile Include="native_midi\native_midi_mac.c">
+      <Filter>native_midi</Filter>
+    </ClCompile>
+    <ClCompile Include="native_midi\native_midi_macosx.c">
+      <Filter>native_midi</Filter>
+    </ClCompile>
+    <ClCompile Include="native_midi\native_midi_win32.c">
+      <Filter>native_midi</Filter>
+    </ClCompile>
+    <ClCompile Include="timidity\common.c">
+      <Filter>timidity</Filter>
+    </ClCompile>
+    <ClCompile Include="timidity\instrum.c">
+      <Filter>timidity</Filter>
+    </ClCompile>
+    <ClCompile Include="timidity\mix.c">
+      <Filter>timidity</Filter>
+    </ClCompile>
+    <ClCompile Include="timidity\output.c">
+      <Filter>timidity</Filter>
+    </ClCompile>
+    <ClCompile Include="timidity\playmidi.c">
+      <Filter>timidity</Filter>
+    </ClCompile>
+    <ClCompile Include="timidity\readmidi.c">
+      <Filter>timidity</Filter>
+    </ClCompile>
+    <ClCompile Include="timidity\resample.c">
+      <Filter>timidity</Filter>
+    </ClCompile>
+    <ClCompile Include="timidity\tables.c">
+      <Filter>timidity</Filter>
+    </ClCompile>
+    <ClCompile Include="timidity\timidity.c">
+      <Filter>timidity</Filter>
+    </ClCompile>
+    <ClCompile Include="native_midi_skyos.c">
+      <Filter>native_midi</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="effects_internal.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="load_aiff.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="load_voc.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="mixer.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="music.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="music_cmd.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="music_flac.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="music_fluidsynth.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="music_mad.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="music_mikmod.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="music_modplug.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="music_mpg123.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="music_nativemidi.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="music_ogg.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="music_opus.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="music_timidity.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="music_wav.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SDL_mixer.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="native_midi\native_midi.h">
+      <Filter>native_midi</Filter>
+    </ClInclude>
+    <ClInclude Include="native_midi\native_midi_common.h">
+      <Filter>native_midi</Filter>
+    </ClInclude>
+    <ClInclude Include="timidity\common.h">
+      <Filter>timidity</Filter>
+    </ClInclude>
+    <ClInclude Include="timidity\instrum.h">
+      <Filter>timidity</Filter>
+    </ClInclude>
+    <ClInclude Include="timidity\mix.h">
+      <Filter>timidity</Filter>
+    </ClInclude>
+    <ClInclude Include="timidity\options.h">
+      <Filter>timidity</Filter>
+    </ClInclude>
+    <ClInclude Include="timidity\output.h">
+      <Filter>timidity</Filter>
+    </ClInclude>
+    <ClInclude Include="timidity\playmidi.h">
+      <Filter>timidity</Filter>
+    </ClInclude>
+    <ClInclude Include="timidity\readmidi.h">
+      <Filter>timidity</Filter>
+    </ClInclude>
+    <ClInclude Include="timidity\resample.h">
+      <Filter>timidity</Filter>
+    </ClInclude>
+    <ClInclude Include="timidity\tables.h">
+      <Filter>timidity</Filter>
+    </ClInclude>
+    <ClInclude Include="timidity\timidity.h">
+      <Filter>timidity</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

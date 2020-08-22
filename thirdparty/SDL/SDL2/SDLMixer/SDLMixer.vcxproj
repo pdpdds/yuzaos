@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{8C0EFB69-366D-46DD-993E-B61996F9F378}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>SampleDll</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>SDLMixer</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>SKYOS32;SKY_DLL;MUSIC_WAV;MUSIC_MOD_MODPLUG;MODPLUG_DYNAMIC="libmodplug-1.dll";MUSIC_OGG;OGG_DYNAMIC="libvorbisfile-3.dll";MUSIC_OPUS;OPUS_DYNAMIC="libopusfile-0.dll";MUSIC_FLAC;FLAC_DYNAMIC="libFLAC-8.dll";MUSIC_MP3_MPG123;MPG123_DYNAMIC="libmpg123-0.dll";MUSIC_MID_TIMIDITY;MUSIC_MID_NATIVE</PreprocessorDefinitions>
+      <SDLCheck>false</SDLCheck>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>false</ExceptionHandling>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <AdditionalOptions>/Oy /arch:SSE %(AdditionalOptions)</AdditionalOptions>
+      <DisableSpecificWarnings>4819</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>.\timidity;.\native_midi;.\external\include;./include;../../include;./;../../../../corelib/include;../../../../runtime/include;../SDL/include</AdditionalIncludeDirectories>
+      <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
+      <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
+      <OmitFramePointers>true</OmitFramePointers>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <FullProgramDatabaseFile>true</FullProgramDatabaseFile>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(OutDir)$(TargetName).map</MapFileName>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <AdditionalDependencies>dllstub.lib;libcrt.lib;filemanager.lib;libwin32.lib;sdl.lib;math.lib;systemcall.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../../../$(Configuration);../../../../corelib/debug;../../../../runtime/debug;../Debug</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <OptimizeReferences>false</OptimizeReferences>
+      <EnableCOMDATFolding>false</EnableCOMDATFolding>
+    </Link>
+    <ProjectReference>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+    <Lib>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;SampleDll_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>false</SDLCheck>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <DisableSpecificWarnings>4819</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(OutDir)$(TargetName).map</MapFileName>
+      <BaseAddress>0x00200000</BaseAddress>
+      <FullProgramDatabaseFile>true</FullProgramDatabaseFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;SampleDll_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;SampleDll_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="effects_internal.c" />
+    <ClCompile Include="effect_position.c" />
+    <ClCompile Include="effect_stereoreverse.c" />
+    <ClCompile Include="load_aiff.c" />
+    <ClCompile Include="load_voc.c" />
+    <ClCompile Include="mixer.c" />
+    <ClCompile Include="music.c" />
+    <ClCompile Include="music_cmd.c" />
+    <ClCompile Include="music_flac.c" />
+    <ClCompile Include="music_fluidsynth.c" />
+    <ClCompile Include="music_mad.c" />
+    <ClCompile Include="music_mikmod.c" />
+    <ClCompile Include="music_modplug.c" />
+    <ClCompile Include="music_mpg123.c" />
+    <ClCompile Include="music_nativemidi.c" />
+    <ClCompile Include="music_ogg.c" />
+    <ClCompile Include="music_opus.c" />
+    <ClCompile Include="music_timidity.c" />
+    <ClCompile Include="music_wav.c" />
+    <ClCompile Include="native_midi\native_midi_common.c" />
+    <ClCompile Include="native_midi\native_midi_haiku.cpp" />
+    <ClCompile Include="native_midi\native_midi_mac.c" />
+    <ClCompile Include="native_midi\native_midi_macosx.c" />
+    <ClCompile Include="native_midi\native_midi_win32.c" />
+    <ClCompile Include="native_midi_skyos.c" />
+    <ClCompile Include="timidity\common.c" />
+    <ClCompile Include="timidity\instrum.c" />
+    <ClCompile Include="timidity\mix.c" />
+    <ClCompile Include="timidity\output.c" />
+    <ClCompile Include="timidity\playmidi.c" />
+    <ClCompile Include="timidity\readmidi.c" />
+    <ClCompile Include="timidity\resample.c" />
+    <ClCompile Include="timidity\tables.c" />
+    <ClCompile Include="timidity\timidity.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="effects_internal.h" />
+    <ClInclude Include="load_aiff.h" />
+    <ClInclude Include="load_voc.h" />
+    <ClInclude Include="mixer.h" />
+    <ClInclude Include="music.h" />
+    <ClInclude Include="music_cmd.h" />
+    <ClInclude Include="music_flac.h" />
+    <ClInclude Include="music_fluidsynth.h" />
+    <ClInclude Include="music_mad.h" />
+    <ClInclude Include="music_mikmod.h" />
+    <ClInclude Include="music_modplug.h" />
+    <ClInclude Include="music_mpg123.h" />
+    <ClInclude Include="music_nativemidi.h" />
+    <ClInclude Include="music_ogg.h" />
+    <ClInclude Include="music_opus.h" />
+    <ClInclude Include="music_timidity.h" />
+    <ClInclude Include="music_wav.h" />
+    <ClInclude Include="native_midi\native_midi.h" />
+    <ClInclude Include="native_midi\native_midi_common.h" />
+    <ClInclude Include="SDL_mixer.h" />
+    <ClInclude Include="timidity\common.h" />
+    <ClInclude Include="timidity\instrum.h" />
+    <ClInclude Include="timidity\mix.h" />
+    <ClInclude Include="timidity\options.h" />
+    <ClInclude Include="timidity\output.h" />
+    <ClInclude Include="timidity\playmidi.h" />
+    <ClInclude Include="timidity\readmidi.h" />
+    <ClInclude Include="timidity\resample.h" />
+    <ClInclude Include="timidity\tables.h" />
+    <ClInclude Include="timidity\timidity.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
