@@ -1,5 +1,0 @@
-﻿LINK : warning LNK4108: /ALIGN이(가) /DRIVER 없이 지정되었습니다. 이미지가 실행되지 않을 수도 있습니다.
-winapi.obj : warning LNK4075: '/EDITANDCONTINUE'이(가) '/OPT:ICF' 사양으로 인해 무시됩니다.
-     C:\Dev\OS\yuza\Debug\libwin32.lib 라이브러리 및 C:\Dev\OS\yuza\Debug\libwin32.exp 개체를 생성하고 있습니다.
-libcrt.lib(cstd.obj) : warning LNK4254: '.CRT'(40000040) 섹션이 다른 특성을 사용하여 '.data'(C0000040)에 병합되었습니다.
-  libwin32.vcxproj -> C:\Dev\OS\yuza\Debug\libwin32.dll
