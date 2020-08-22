@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="AddressSpace.cpp">
+      <Filter>MemorySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="HandleTable.cpp">
+      <Filter>MemorySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Page.cpp">
+      <Filter>MemorySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="PageCache.cpp">
+      <Filter>MemorySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="SwapSpace.cpp">
+      <Filter>MemorySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Team.cpp">
+      <Filter>MemorySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadContext.cpp">
+      <Filter>MemorySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>MemorySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="SkyOSCore.cpp" />
+    <ClCompile Include="HardwareTimer.cpp">
+      <Filter>MemorySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="cpu_asm.cpp">
+      <Filter>MemorySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Processor.cpp">
+      <Filter>MemorySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="SkyFacade.cpp" />
+    <ClCompile Include="CPU\PIT.cpp">
+      <Filter>CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="PlatformAPI.cpp" />
+    <ClCompile Include="KeyBoard\KeyBoard.cpp">
+      <Filter>Keyboard</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyBoard\KeyboardController.cpp">
+      <Filter>Keyboard</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadDLL.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleManager.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemCall.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="TaskTimer.cpp" />
+    <ClCompile Include="Scheduler.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Thread.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Interrupt.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SkyGUISystem.cpp" />
+    <ClCompile Include="SkyInputHandler.cpp" />
+    <ClCompile Include="SystemProfiler.cpp" />
+    <ClCompile Include="PhysicalMap.cpp" />
+    <ClCompile Include="mmap.cpp" />
+    <ClCompile Include="FileBackingStore.cpp" />
+    <ClCompile Include="CPU\IDT.cpp">
+      <Filter>CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceDriverManager.cpp" />
+    <ClCompile Include="SerialPort.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Semaphore.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Mutex.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SpinLock.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="FileSystem\FileSysAdaptor.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="FileSystem\MemoryResourceAdaptor.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Synchronization.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="PCIStruct.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="InterruptManager.cpp" />
+    <ClCompile Include="TimeFunction.cpp" />
+    <ClCompile Include="arch\x86arch.cpp">
+      <Filter>CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="TeamManager.cpp" />
+    <ClCompile Include="StackTracer.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Debugger.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemAPI.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="ACPI\acpi.cpp">
+      <Filter>ACPI</Filter>
+    </ClCompile>
+    <ClCompile Include="ACPI\ioapic.cpp">
+      <Filter>ACPI</Filter>
+    </ClCompile>
+    <ClCompile Include="ACPI\local_apic.cpp">
+      <Filter>ACPI</Filter>
+    </ClCompile>
+    <ClCompile Include="MemoryResourceFS.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="FileSystem\kfileio.cpp" />
+    <ClCompile Include="SkyGUIConsole.cpp" />
+    <ClCompile Include="FileMappingObject.cpp" />
+    <ClCompile Include="getenv.cpp" />
+    <ClCompile Include="AVLTree.cpp" />
+    <ClCompile Include="SkyConsole.cpp" />
+    <ClCompile Include="GRUBManupulation.cpp" />
+    <ClCompile Include="PEImage.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AddressSpace.h">
+      <Filter>MemorySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="APC.h">
+      <Filter>MemorySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Area.h">
+      <Filter>MemorySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="BackingStore.h">
+      <Filter>MemorySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="cpu_asm.h">
+      <Filter>MemorySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="HandleTable.h">
+      <Filter>MemorySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Page.h">
+      <Filter>MemorySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="PageCache.h">
+      <Filter>MemorySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="SwapSpace.h">
+      <Filter>MemorySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Team.h">
+      <Filter>MemorySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadContext.h">
+      <Filter>MemorySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>MemorySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Processor.h">
+      <Filter>MemorySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyFacade.h" />
+    <ClInclude Include="CPU\Hal.h">
+      <Filter>CPU</Filter>
+    </ClInclude>
+    <ClInclude Include="CPU\PIT.h">
+      <Filter>CPU</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyBoard\KeyBoard.h">
+      <Filter>Keyboard</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyBoard\KeyboardController.h">
+      <Filter>Keyboard</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyBoard\KeyBoardIO.h">
+      <Filter>Keyboard</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assert.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SystemCall_Impl.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadDLL.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleManager.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemCall.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskTimer.h" />
+    <ClInclude Include="Scheduler.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Thread.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Interrupt.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyGUISystem.h" />
+    <ClInclude Include="SkyInputHandler.h" />
+    <ClInclude Include="SystemProfiler.h" />
+    <ClInclude Include="physicalmap.h" />
+    <ClInclude Include="mmap.h" />
+    <ClInclude Include="FileBackingStore.h" />
+    <ClInclude Include="include\IDT.h">
+      <Filter>CPU</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceDriverManager.h" />
+    <ClInclude Include="SerialPort.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Semaphore.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="PEImage.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="PEFile.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Mutex.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="SpinLock.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Synchronization.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="PCIStruct.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="InterruptManager.h" />
+    <ClInclude Include="TimeFunction.h" />
+    <ClInclude Include="arch\x86arch.h">
+      <Filter>CPU</Filter>
+    </ClInclude>
+    <ClInclude Include="TeamManager.h" />
+    <ClInclude Include="StackTracer.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Debugger.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemAPI.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ACPI\acpi.h">
+      <Filter>ACPI</Filter>
+    </ClInclude>
+    <ClInclude Include="ACPI\ioapic.h">
+      <Filter>ACPI</Filter>
+    </ClInclude>
+    <ClInclude Include="ACPI\local_apic.h">
+      <Filter>ACPI</Filter>
+    </ClInclude>
+    <ClInclude Include="MemoryResourceFS.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyGUIConsole.h" />
+    <ClInclude Include="FileMappingObject.h" />
+    <ClInclude Include="GRUBManupulation.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="MemorySystem">
+      <UniqueIdentifier>{8d707c66-9555-4f7e-9c6b-4d726fc92575}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CPU">
+      <UniqueIdentifier>{7d80f73e-48d3-43f1-92c5-9eb2abf0a646}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Keyboard">
+      <UniqueIdentifier>{4c8255fe-8881-4747-b54e-bb7603ef54b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{4ccf9fda-bf20-4325-8902-e8b42e007f79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{95930064-b21a-48c8-be02-5fcbaf04d7a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ACPI">
+      <UniqueIdentifier>{a5a3a0cf-d551-43f0-a869-fa22f3738bfa}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="core_asm.asm">
+      <Filter>MemorySystem</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

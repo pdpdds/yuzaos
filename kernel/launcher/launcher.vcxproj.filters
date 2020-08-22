@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="CPU\FPU.cpp">
+      <Filter>CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="CPU\GDT.cpp">
+      <Filter>CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="CPU\IDT.cpp">
+      <Filter>CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="CPU\Pic.cpp">
+      <Filter>CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="CPU\TSS.cpp">
+      <Filter>CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory\PageDirectoryEntry.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory\PageTableEntry.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory\PhysicalMemoryManager.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory\VirtualMemoryManager.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Kernel64.cpp" />
+    <ClCompile Include="Kernel32.cpp" />
+    <ClCompile Include="elf.cpp" />
+    <ClCompile Include="elf32.cpp" />
+    <ClCompile Include="elf64.cpp" />
+    <ClCompile Include="InitCPU.cpp" />
+    <ClCompile Include="kmain.cpp" />
+    <ClCompile Include="MultbootUtil.cpp" />
+    <ClCompile Include="Page.cpp" />
+    <ClCompile Include="ProcessUtil32.cpp" />
+    <ClCompile Include="ProcessUtil64.cpp" />
+    <ClCompile Include="..\yuza_core\arch\x86arch.cpp" />
+    <ClCompile Include="SkyConsole.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CPU\FPU.h">
+      <Filter>CPU</Filter>
+    </ClInclude>
+    <ClInclude Include="CPU\GDT.h">
+      <Filter>CPU</Filter>
+    </ClInclude>
+    <ClInclude Include="CPU\Pic.h">
+      <Filter>CPU</Filter>
+    </ClInclude>
+    <ClInclude Include="CPU\TSS.h">
+      <Filter>CPU</Filter>
+    </ClInclude>
+    <ClInclude Include="Memory\PageDirectoryEntry.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Memory\PageTableEntry.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Memory\PhysicalMemoryManager.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Memory\VirtualMemoryManager.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Kernel64.h" />
+    <ClInclude Include="Kernel32.h" />
+    <ClInclude Include="elf.h" />
+    <ClInclude Include="elf32.h" />
+    <ClInclude Include="elf64.h" />
+    <ClInclude Include="InitCPU.h" />
+    <ClInclude Include="MultbootUtil.h" />
+    <ClInclude Include="Page.h" />
+    <ClInclude Include="PEImage32.h" />
+    <ClInclude Include="PEImage64.h" />
+    <ClInclude Include="ProcessUtil32.h" />
+    <ClInclude Include="ProcessUtil64.h" />
+    <ClInclude Include="..\yuza_core\arch\x86arch.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CPU">
+      <UniqueIdentifier>{cd1d2ecb-8b90-4eff-9851-7618237d5bda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Memory">
+      <UniqueIdentifier>{673b44b5-11e9-442d-bd1b-bc4c82065a02}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="ModeSwitch.asm" />
+  </ItemGroup>
+</Project>
