@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual C++ Express 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sample", "sample.vcproj", "{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		DLL_Debug|Win32 = DLL_Debug|Win32
+		DLL_Debug|x64 = DLL_Debug|x64
+		DLL_Release|Win32 = DLL_Release|Win32
+		DLL_Release|x64 = DLL_Release|x64
+		DLL_Unicode_Debug|Win32 = DLL_Unicode_Debug|Win32
+		DLL_Unicode_Debug|x64 = DLL_Unicode_Debug|x64
+		DLL_Unicode_Release|Win32 = DLL_Unicode_Release|Win32
+		DLL_Unicode_Release|x64 = DLL_Unicode_Release|x64
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+		Unicode_Debug|Win32 = Unicode_Debug|Win32
+		Unicode_Debug|x64 = Unicode_Debug|x64
+		Unicode_Release|Win32 = Unicode_Release|Win32
+		Unicode_Release|x64 = Unicode_Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.Debug|Win32.Build.0 = Debug|Win32
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.Debug|x64.ActiveCfg = Debug|x64
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.Debug|x64.Build.0 = Debug|x64
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.DLL_Debug|Win32.ActiveCfg = DLL_Debug|Win32
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.DLL_Debug|Win32.Build.0 = DLL_Debug|Win32
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.DLL_Debug|x64.ActiveCfg = DLL_Debug|x64
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.DLL_Debug|x64.Build.0 = DLL_Debug|x64
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.DLL_Release|Win32.ActiveCfg = DLL_Release|Win32
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.DLL_Release|Win32.Build.0 = DLL_Release|Win32
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.DLL_Release|x64.ActiveCfg = DLL_Release|x64
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.DLL_Release|x64.Build.0 = DLL_Release|x64
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.DLL_Unicode_Debug|Win32.ActiveCfg = DLL_Unicode_Debug|Win32
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.DLL_Unicode_Debug|Win32.Build.0 = DLL_Unicode_Debug|Win32
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.DLL_Unicode_Debug|x64.ActiveCfg = DLL_Unicode_Debug|x64
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.DLL_Unicode_Debug|x64.Build.0 = DLL_Unicode_Debug|x64
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.DLL_Unicode_Release|Win32.ActiveCfg = DLL_Unicode_Release|Win32
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.DLL_Unicode_Release|Win32.Build.0 = DLL_Unicode_Release|Win32
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.DLL_Unicode_Release|x64.ActiveCfg = DLL_Unicode_Release|x64
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.DLL_Unicode_Release|x64.Build.0 = DLL_Unicode_Release|x64
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.Release|Win32.ActiveCfg = Release|Win32
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.Release|Win32.Build.0 = Release|Win32
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.Release|x64.ActiveCfg = Release|x64
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.Release|x64.Build.0 = Release|x64
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.Unicode_Debug|Win32.ActiveCfg = Unicode_Debug|Win32
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.Unicode_Debug|Win32.Build.0 = Unicode_Debug|Win32
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.Unicode_Debug|x64.ActiveCfg = Unicode_Debug|x64
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.Unicode_Debug|x64.Build.0 = Unicode_Debug|x64
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.Unicode_Release|Win32.ActiveCfg = Unicode_Release|Win32
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.Unicode_Release|Win32.Build.0 = Unicode_Release|Win32
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.Unicode_Release|x64.ActiveCfg = Unicode_Release|x64
+		{ACA9A537-CBCE-44B8-BD52-8C432BD529C2}.Unicode_Release|x64.Build.0 = Unicode_Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

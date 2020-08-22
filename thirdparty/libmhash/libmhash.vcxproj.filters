@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="adler32.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="crc32.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="gosthash.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="haval.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="keygen.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="keygen_asis.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="keygen_hex.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="keygen_mcrypt.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="keygen_s2k.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="md2.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="md4.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="md5.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="mhash.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ripemd.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="sha1.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="sha256.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="sha256_sha224.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="sha512_sha384.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="snefru.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="stdfns.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="tiger.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="tiger_sboxes.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="whirlpool.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="keygen.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="libdefs.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="mhash.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="mhash_adler32.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="mhash_crc32.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="mhash_gost.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="mhash_haval.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="mhash_int.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="mhash_md2.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="mhash_md4.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="mhash_md5.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="mhash_ripemd.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="mhash_sha1.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="mhash_sha256.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="mhash_sha256_sha224.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="mhash_sha512_sha384.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="mhash_snefru.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="mhash_tiger.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="mhash_whirlpool.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

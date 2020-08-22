@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{ed06ca3c-a19e-48e2-b8b2-efab5e7f3ddc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="header">
+      <UniqueIdentifier>{a7a2affc-8976-4b8d-ba07-b92020e0cc19}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="popt.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="poptconfig.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="popthelp.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="poptint.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="poptparse.c">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="config.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="popt.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="poptint.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="system.h">
+      <Filter>header</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

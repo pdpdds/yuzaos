@@ -1,0 +1,1 @@
+for /d %%i in (locale\*) do move /y %%i\hello-c.mo %%i\LC_MESSAGES\hello-c.mo 

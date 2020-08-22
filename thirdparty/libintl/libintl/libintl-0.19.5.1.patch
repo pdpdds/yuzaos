@@ -1,0 +1,696 @@
+--- bindtextdom.c	Fri Jun  5 16:01:10 2015
++++ bindtextdom.c	Mon Aug  3 16:07:58 2015
+@@ -65,6 +65,10 @@
+ # define BIND_TEXTDOMAIN_CODESET libintl_bind_textdomain_codeset
+ #endif
+ 
++#if defined(_MSC_VER) && defined(_DEBUG)
++#include <debug.h>
++#endif
++
+ /* Specifies the directory name *DIRNAMEP and the output codeset *CODESETP
+    to be used for the DOMAINNAME message catalog.
+    If *DIRNAMEP or *CODESETP is NULL, the corresponding attribute is not
+@@ -334,4 +338,8 @@
+ /* Aliases for function names in GNU C Library.  */
+ weak_alias (__bindtextdomain, bindtextdomain);
+ weak_alias (__bind_textdomain_codeset, bind_textdomain_codeset);
++#endif
++
++#ifdef _MSC_VER
++#include "bindtextdom-win.h"
+ #endif
+--- dcigettext.c	Fri Jun  5 16:01:10 2015
++++ dcigettext.c	Mon Aug  3 17:26:38 2015
+@@ -144,9 +144,14 @@
+ #  if VMS
+ #   define getcwd(buf, max) (getcwd) (buf, max, 0)
+ #  else
++#    if _MSC_VER
++#include <direct.h>
++#      define getcwd _getcwd
++#    else
+ char *getcwd ();
+ #  endif
+ # endif
++# endif
+ # ifndef HAVE_STPCPY
+ static char *stpcpy (char *dest, const char *src);
+ # endif
+@@ -164,6 +169,9 @@
+ # define tfind libintl_tfind
+ # define tdelete libintl_tdelete
+ # define twalk libintl_twalk
++#ifdef _MSC_VER
++# define tdestroy libintl_tdestroy
++#endif
+ # include "tsearch.h"
+ #endif
+ 
+@@ -410,6 +418,9 @@
+ # define freea(p) free (p)
+ #endif	/* have alloca */
+ 
++#if defined(_MSC_VER) && defined(_DEBUG)
++#include <debug.h>
++#endif
+ 
+ #ifdef _LIBC
+ /* List of blocks allocated for translations.  */
+@@ -421,7 +432,10 @@
+ static struct transmem_list *transmem_list;
+ #else
+ typedef unsigned char transmem_block_t;
++#ifdef _MSC_VER
++static transmem_block_t *transmem_list = NULL;
+ #endif
++#endif
+ 
+ 
+ /* Names for the libintl functions are a problem.  They must not clash
+@@ -634,8 +648,11 @@
+ 	  for (;;)
+ 	    {
+ 	      resolved_dirname = (char *) alloca (path_max + dirname_len);
++#ifndef _MSC_VER
+ 	      ADD_BLOCK (block_list, tmp_dirname);
+-
++#else
++		  ADD_BLOCK (block_list, resolved_dirname);
++#endif
+ 	      __set_errno (0);
+ 	      ret = getcwd (resolved_dirname, path_max);
+ 	      if (ret != NULL || errno != ERANGE)
+@@ -672,9 +689,13 @@
+ 				 + domainname_len + 5);
+   ADD_BLOCK (block_list, xdomainname);
+ 
++#ifdef SKIP_LC_MESSAGES
++  stpcpy ((char *) mempcpy (xdomainname, domainname, domainname_len), ".mo");
++#else
+   stpcpy ((char *) mempcpy (stpcpy (stpcpy (xdomainname, categoryname), "/"),
+ 			    domainname, domainname_len),
+ 	  ".mo");
++#endif
+ 
+   /* Creating working area.  */
+   single_locale = (char *) alloca (strlen (categoryvalue) + 1);
+@@ -1259,18 +1280,22 @@
+ 	      const unsigned char *inbuf;
+ 	      unsigned char *outbuf;
+ 	      int malloc_count;
++#ifndef _MSC_VER
+ # ifndef _LIBC
+ 	      transmem_block_t *transmem_list;
+ # endif
++#endif
+ 
+ 	      __libc_lock_lock (lock);
+ 	    not_translated_yet:
+ 
+ 	      inbuf = (const unsigned char *) result;
+ 	      outbuf = freemem + sizeof (size_t);
++#ifndef _MSC_VER
+ # ifndef _LIBC
+ 	      transmem_list = NULL;
+ # endif
++#endif
+ 
+ 	      malloc_count = 0;
+ 	      while (1)
+@@ -1715,5 +1740,35 @@
+       transmem_list = transmem_list->next;
+       free (old);
+     }
++}
++#endif
++
++#ifdef _MSC_VER
++
++void libintl_freeres (void)
++{
++  while (_nl_domain_bindings != NULL)
++    {
++      struct binding *oldp = _nl_domain_bindings;
++      _nl_domain_bindings = _nl_domain_bindings->next;
++      if (oldp->dirname != _nl_default_dirname)
++	/* Yes, this is a pointer comparison.  */
++	free (oldp->dirname);
++      free (oldp->codeset);
++
++      free (oldp);
++    }
++
++  if (_nl_current_default_domain != _nl_default_default_domain)
++    /* Yes, again a pointer comparison.  */
++    free ((char *) _nl_current_default_domain);
++
++  /* Remove the search tree with the known translations.  */
++  tdestroy (root, free);
++  root = NULL;
++
++  libintl_finddomain_subfreeres ();
++
++  free (transmem_list);
+ }
+ #endif
+--- finddomain.c	Fri Jun  5 16:01:10 2015
++++ finddomain.c	Mon Aug  3 16:13:54 2015
+@@ -46,6 +46,10 @@
+ # include "lock.h"
+ #endif
+ 
++#if defined(_MSC_VER) && defined(_DEBUG)
++#include <debug.h>
++#endif
++
+ /* @@ end of prolog @@ */
+ /* List of already loaded domains.  */
+ static struct loaded_l10nfile *_nl_loaded_domains;
+@@ -202,6 +206,23 @@
+       struct loaded_l10nfile *here = runp;
+       if (runp->data != NULL)
+ 	_nl_unload_domain ((struct loaded_domain *) runp->data);
++      runp = runp->next;
++      free ((char *) here->filename);
++      free (here);
++    }
++}
++#endif
++
++#ifdef _MSC_VER
++void libintl_finddomain_subfreeres (void)
++{
++  struct loaded_l10nfile *runp = _nl_loaded_domains;
++
++  while (runp != NULL)
++    {
++      struct loaded_l10nfile *here = runp;
++      if (runp->data != NULL)
++	libintl_unload_domain ((struct loaded_domain *) runp->data);
+       runp = runp->next;
+       free ((char *) here->filename);
+       free (here);
+--- gettextP.h	Fri Jun  5 16:01:10 2015
++++ gettextP.h	Mon Aug  3 16:15:09 2015
+@@ -305,6 +305,14 @@
+ /* Default text domain in which entries for gettext(3) are to be found.  */
+ extern const char *_nl_current_default_domain attribute_hidden;
+ 
++/* for MSVC */
++#ifdef _MSC_VER
++/* Do you worry about a memory leak problem at program end? */
++extern void libintl_freeres (void);
++extern void libintl_finddomain_subfreeres (void);
++extern void libintl_unload_domain (struct loaded_domain *__domain);
++#endif
++    
+ /* @@ begin of epilog @@ */
+ 
+ #endif /* gettextP.h  */
+--- l10nflist.c	Fri Jun  5 16:01:10 2015
++++ l10nflist.c	Mon Aug  3 16:16:31 2015
+@@ -45,6 +45,10 @@
+ # endif
+ #endif
+ 
++#if defined(_MSC_VER) && defined(_DEBUG)
++#include <debug.h>
++#endif
++
+ /* @@ end of prolog @@ */
+ 
+ #ifdef _LIBC
+--- langprefs.c	Mon Jun 22 17:42:02 2015
++++ langprefs.c	Mon Aug  3 16:17:58 2015
+@@ -39,7 +39,14 @@
+ #ifdef WIN32_NATIVE
+ # define WIN32_LEAN_AND_MEAN
+ # include <windows.h>
++# ifdef _MSC_VER
++# include <tchar.h>
++# endif
+ 
++#if defined(_MSC_VER) && defined(_DEBUG)
++#include <debug.h>
++#endif
++
+ # ifndef MUI_LANGUAGE_NAME
+ # define MUI_LANGUAGE_NAME 8
+ # endif
+@@ -205,7 +212,7 @@
+ 
+ /* Get the system's preference.  This can be used as a fallback.  */
+ static BOOL CALLBACK
+-ret_first_language (HMODULE h, LPCSTR type, LPCSTR name, WORD lang, LONG_PTR param)
++ret_first_language (HMODULE h, LPCTSTR type, LPCTSTR name, WORD lang, LONG_PTR param)
+ {
+   *(const char **)param = _nl_locale_name_from_win32_LANGID (lang);
+   return FALSE;
+@@ -327,7 +334,7 @@
+     if (!cache_initialized && getenv ("GETTEXT_MUI") != NULL)
+       {
+         const char *languages = NULL;
+-        HMODULE kernel32 = GetModuleHandle ("kernel32");
++        HMODULE kernel32 = GetModuleHandle (_T("kernel32"));
+ 
+         if (kernel32 != NULL)
+           languages = _nl_language_preferences_win32_mui (kernel32);
+--- libintl.rc	Fri Jun  5 16:01:10 2015
++++ libintl.rc	Mon Aug  3 16:19:54 2015
+@@ -1,6 +1,7 @@
+ /* Resources for intl.dll */
+ 
+ #include <winver.h>
++#include "config.h"
+ 
+ VS_VERSION_INFO VERSIONINFO
+  FILEVERSION PACKAGE_VERSION_MAJOR,PACKAGE_VERSION_MINOR,PACKAGE_VERSION_SUBMINOR,0
+@@ -21,10 +22,10 @@
+         BEGIN
+             VALUE "Comments", "This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License. You should have received a copy of the GNU Lesser General Public License along with this library; if not, see <http://www.gnu.org/licenses/>.\0"
+             VALUE "CompanyName", "Free Software Foundation\0"
+-            VALUE "FileDescription", "LGPLed libintl for Windows NT/2000/XP/Vista/7 and Windows 95/98/ME\0"
++            VALUE "FileDescription", "LGPLed libintl for Windows XP/Vista/7/8/8.1\0"
+             VALUE "FileVersion", PACKAGE_VERSION_STRING "\0"
+             VALUE "InternalName", "intl.dll\0"
+-            VALUE "LegalCopyright", "Copyright (C) 1995-2010\0"
++            VALUE "LegalCopyright", "Copyright (C) 1995-2015 Free Software Foundation, Inc.\0"
+             VALUE "LegalTrademarks", "\0"
+             VALUE "OriginalFilename", "intl.dll\0"
+             VALUE "ProductName", "libintl: accessing NLS message catalogs\0"
+--- loadmsgcat.c	Fri Jun  5 16:01:10 2015
++++ loadmsgcat.c	Mon Aug  3 16:22:02 2015
+@@ -31,6 +31,9 @@
+ #include <fcntl.h>
+ #include <sys/types.h>
+ #include <sys/stat.h>
++#ifdef _MSC_VER
++#include <io.h>
++#endif
+ 
+ #ifdef __GNUC__
+ # undef  alloca
+@@ -40,6 +43,7 @@
+ # ifdef _MSC_VER
+ #  include <malloc.h>
+ #  define alloca _alloca
++#  define freea  _freea
+ # else
+ #  if defined HAVE_ALLOCA_H || defined _LIBC
+ #   include <alloca.h>
+@@ -104,6 +108,10 @@
+ # define PRI_MACROS_BROKEN 0
+ #endif
+ 
++#if defined(_MSC_VER) && defined(_DEBUG)
++#include <debug.h>
++#endif
++
+ /* Provide fallback values for macros that ought to be defined in <inttypes.h>.
+    Note that our fallback values need not be literal strings, because we don't
+    use them with preprocessor string concatenation.  */
+@@ -475,14 +483,19 @@
+   __mmap (addr, len, prot, flags, fd, offset)
+ # define munmap(addr, len)	__munmap (addr, len)
+ #endif
++#if (defined(WIN32) || defined(_WIN64) || defined(_WIN32_WCE) || defined(__CYGWIN__)) && (defined(UNICODE) || defined(_UNICODE))
++#include "loadmsgcat-win.h"
++#endif
+ 
+ /* For those losing systems which don't have `alloca' we have to add
+    some additional code emulating it.  */
+ #ifdef HAVE_ALLOCA
+ # define freea(p) /* nothing */
+ #else
++# ifndef _MSC_VER
+ # define alloca(n) malloc (n)
+ # define freea(p) free (p)
++# endif
+ #endif
+ 
+ /* For systems that distinguish between text and binary I/O.
+@@ -785,7 +798,7 @@
+ _nl_load_domain (struct loaded_l10nfile *domain_file,
+ 		 struct binding *domainbinding)
+ {
+-  __libc_lock_define_initialized_recursive (static, lock);
++  __libc_lock_define_initialized_recursive (static, lock)
+   int fd = -1;
+   size_t size;
+ #ifdef _LIBC
+@@ -1336,6 +1349,40 @@
+     }
+   free (domain->conversions);
+   __libc_rwlock_fini (domain->conversions_lock);
++
++  free (domain->malloced);
++
++# ifdef _POSIX_MAPPED_FILES
++  if (domain->use_mmap)
++    munmap ((caddr_t) domain->data, domain->mmap_size);
++  else
++# endif	/* _POSIX_MAPPED_FILES */
++    free ((void *) domain->data);
++
++  free (domain);
++}
++#endif
++
++#ifdef _MSC_VER
++void libintl_unload_domain(struct loaded_domain *domain)
++{
++  size_t i;
++
++  if (domain->plural != &libintl_gettext_germanic_plural)
++    libintl_gettext_free_exp ((struct expression *) domain->plural);
++
++  for (i = 0; i < domain->nconversions; i++)
++    {
++      struct converted_domain *convd = &domain->conversions[i];
++
++      free ((char *) convd->encoding);
++      if (convd->conv_tab != NULL && convd->conv_tab != (char **) -1)
++	free (convd->conv_tab);
++      if (convd->conv != (iconv_t) -1)
++	iconv_close (convd->conv);
++    }
++  free (domain->conversions);
++  gl_rwlock_destroy (domain->conversions_lock);
+ 
+   free (domain->malloced);
+ 
+--- localcharset.c	Fri Jun  5 16:01:10 2015
++++ localcharset.c	Mon Aug  3 16:23:25 2015
+@@ -105,6 +105,10 @@
+ # define getc getc_unlocked
+ #endif
+ 
++#if defined(_MSC_VER) && defined(_DEBUG)
++#include <debug.h>
++#endif
++
+ /* The following static variable is declared 'volatile' to avoid a
+    possible multithread problem in the function get_charset_aliases. If we
+    are running in a threaded environment, and if two threads initialize
+--- localealias.c	Fri Jun  5 16:01:10 2015
++++ localealias.c	Mon Aug  3 16:26:21 2015
+@@ -40,6 +40,7 @@
+ # ifdef _MSC_VER
+ #  include <malloc.h>
+ #  define alloca _alloca
++#  define freea  _freea
+ # else
+ #  if defined HAVE_ALLOCA_H || defined _LIBC
+ #   include <alloca.h>
+@@ -66,6 +67,10 @@
+ # define relocate(pathname) (pathname)
+ #endif
+ 
++#if defined(_MSC_VER) && defined(_DEBUG)
++#include <debug.h>
++#endif
++
+ /* @@ end of prolog @@ */
+ 
+ #ifdef _LIBC
+@@ -106,8 +111,10 @@
+ #ifdef HAVE_ALLOCA
+ # define freea(p) /* nothing */
+ #else
++# ifndef _MSC_VER
+ # define alloca(n) malloc (n)
+ # define freea(p) free (p)
++# endif
+ #endif
+ 
+ #if defined _LIBC_REENTRANT \
+--- localename.c	Fri Jul 10 10:36:30 2015
++++ localename.c	Mon Aug  3 16:27:37 2015
+@@ -64,6 +64,10 @@
+ # endif
+ #endif
+ 
++#if defined(_MSC_VER) && defined(_DEBUG)
++#include <debug.h>
++#endif
++
+ #if defined WINDOWS_NATIVE || defined __CYGWIN__ /* Native Windows or Cygwin */
+ # define WIN32_LEAN_AND_MEAN
+ # include <windows.h>
+@@ -2522,17 +2526,17 @@
+ 
+ /* Callback function for EnumLocales.  */
+ static BOOL CALLBACK
+-enum_locales_fn (LPTSTR locale_num_str)
++enum_locales_fn (LPCSTR locale_num_str)
+ {
+   char *endp;
+   char locval[2 * LOCALE_NAME_MAX_LENGTH + 1 + 1];
+   LCID try_lcid = strtoul (locale_num_str, &endp, 16);
+ 
+-  if (GetLocaleInfo (try_lcid, LOCALE_SENGLANGUAGE,
++  if (GetLocaleInfoA (try_lcid, LOCALE_SENGLANGUAGE,
+                     locval, LOCALE_NAME_MAX_LENGTH))
+     {
+       strcat (locval, "_");
+-      if (GetLocaleInfo (try_lcid, LOCALE_SENGCOUNTRY,
++      if (GetLocaleInfoA (try_lcid, LOCALE_SENGCOUNTRY,
+                         locval + strlen (locval), LOCALE_NAME_MAX_LENGTH))
+        {
+          size_t locval_len = strlen (locval);
+@@ -2574,7 +2578,7 @@
+   strncpy (lname, locale_name, sizeof (lname) - 1);
+   lname[sizeof (lname) - 1] = '\0';
+   found_lcid = 0;
+-  EnumSystemLocales (enum_locales_fn, LCID_SUPPORTED);
++  EnumSystemLocalesA (enum_locales_fn, LCID_SUPPORTED);
+   if (found_lcid > 0)
+     {
+       last_lcid = found_lcid;
+--- log.c	Mon Jun 22 17:42:02 2015
++++ log.c	Mon Aug  3 16:28:08 2015
+@@ -31,6 +31,10 @@
+ # include "lock.h"
+ #endif
+ 
++#if defined(_MSC_VER) && defined(_DEBUG)
++#include <debug.h>
++#endif
++
+ /* Separator between msgctxt and msgid in .mo files.  */
+ #define MSGCTXT_SEPARATOR '\004'  /* EOT */
+ 
+--- plural-exp.h	Fri Jun  5 16:01:10 2015
++++ plural-exp.h	Mon Aug  3 17:19:48 2015
+@@ -108,7 +108,11 @@
+ extern void FREE_EXPRESSION (struct expression *exp)
+      internal_function;
+ extern int PLURAL_PARSE (struct parse_args *arg);
++#ifndef _MSC_VER
+ extern const struct expression GERMANIC_PLURAL attribute_hidden;
++#else
++extern struct expression GERMANIC_PLURAL attribute_hidden;
++#endif
+ extern void EXTRACT_PLURAL_EXPRESSION (const char *nullentry,
+ 				       const struct expression **pluralp,
+ 				       unsigned long int *npluralsp)
+--- plural.c	Wed Jul 15 10:34:34 2015
++++ plural.c	Mon Aug  3 16:29:10 2015
+@@ -187,6 +187,10 @@
+ /* Copy the second part of user declarations.  */
+ #line 55 "plural.y" /* yacc.c:358  */
+ 
++#if defined(_MSC_VER) && defined(_DEBUG)
++#include <debug.h>
++#endif
++
+ /* Prototypes for local functions.  */
+ static int yylex (YYSTYPE *lval, struct parse_args *arg);
+ static void yyerror (struct parse_args *arg, const char *str);
+--- plural.y	Fri Jun  5 16:01:10 2015
++++ plural.y	Mon Aug  3 16:29:23 2015
+@@ -53,6 +53,10 @@
+ }
+ 
+ %{
++#if defined(_MSC_VER) && defined(_DEBUG)
++#include <debug.h>
++#endif
++
+ /* Prototypes for local functions.  */
+ static int yylex (YYSTYPE *lval, struct parse_args *arg);
+ static void yyerror (struct parse_args *arg, const char *str);
+--- printf-parse.c	Mon Jun 22 17:42:02 2015
++++ printf-parse.c	Mon Aug  3 16:31:09 2015
+@@ -77,6 +77,10 @@
+ # include "c-ctype.h"
+ #endif
+ 
++#if defined(_MSC_VER) && defined(_DEBUG)
++#include <debug.h>
++#endif
++
+ #ifdef STATIC
+ STATIC
+ #endif
+@@ -491,6 +495,9 @@
+                     type = TYPE_DOUBLE;
+                   break;
+                 case 'c':
++#if defined(_MSC_VER) && defined(WIDE_CHAR_VERSION)
++                  type = TYPE_WIDE_CHAR;
++#else
+                   if (flags >= 8)
+ #if HAVE_WINT_T
+                     type = TYPE_WIDE_CHAR;
+@@ -499,6 +506,7 @@
+ #endif
+                   else
+                     type = TYPE_CHAR;
++#endif
+                   break;
+ #if HAVE_WINT_T
+                 case 'C':
+@@ -507,6 +515,9 @@
+                   break;
+ #endif
+                 case 's':
++#if defined(_MSC_VER) && defined(WIDE_CHAR_VERSION)
++                  type = TYPE_WIDE_STRING;
++#else
+                   if (flags >= 8)
+ #if HAVE_WCHAR_T
+                     type = TYPE_WIDE_STRING;
+@@ -515,6 +526,7 @@
+ #endif
+                   else
+                     type = TYPE_STRING;
++#endif
+                   break;
+ #if HAVE_WCHAR_T
+                 case 'S':
+--- printf.c	Mon Jun 22 17:42:02 2015
++++ printf.c	Mon Aug  3 16:30:07 2015
+@@ -44,6 +44,10 @@
+ 
+ #include <stdio.h>
+ 
++#if defined(_MSC_VER) && defined(_DEBUG)
++#include <debug.h>
++#endif
++
+ #if !HAVE_POSIX_PRINTF
+ 
+ #include <errno.h>
+--- relocatable.c	Fri Jun  5 16:01:10 2015
++++ relocatable.c	Mon Aug  3 16:32:01 2015
+@@ -65,6 +65,10 @@
+ # include <libintl.h>
+ #endif
+ 
++#if defined(_MSC_VER) && defined(_DEBUG)
++#include <debug.h>
++#endif
++
+ /* Faked cheap 'bool'.  */
+ #undef bool
+ #undef false
+--- setlocale.c	Mon Jun 22 17:42:02 2015
++++ setlocale.c	Mon Aug  3 16:32:21 2015
+@@ -42,6 +42,10 @@
+ 
+ #include "gettextP.h"
+ 
++#if defined(_MSC_VER) && defined(_DEBUG)
++#include <debug.h>
++#endif
++
+ #if (defined __APPLE__ && defined __MACH__) || defined _WIN32 || defined __WIN32__ || defined __CYGWIN__
+ 
+ # undef setlocale
+--- textdomain.c	Fri Jun  5 16:01:10 2015
++++ textdomain.c	Mon Aug  3 16:32:38 2015
+@@ -54,6 +54,10 @@
+ # define TEXTDOMAIN libintl_textdomain
+ #endif
+ 
++#if defined(_MSC_VER) && defined(_DEBUG)
++#include <debug.h>
++#endif
++
+ /* Lock variable to protect the global data in the gettext implementation.  */
+ gl_rwlock_define (extern, _nl_state_lock attribute_hidden)
+ 
+--- tsearch.c	Mon Jun 22 17:42:02 2015
++++ tsearch.c	Mon Aug  3 16:33:13 2015
+@@ -98,14 +98,24 @@
+ 
+ typedef int (*__compar_fn_t) (const void *, const void *);
+ typedef void (*__action_fn_t) (const void *, VISIT, int);
++#ifdef _MSC_VER
++typedef void (*__free_fn_t) (void *);
++#endif
+ 
+ #ifndef weak_alias
+ # define __tsearch tsearch
+ # define __tfind tfind
+ # define __tdelete tdelete
+ # define __twalk twalk
++# ifdef _MSC_VER
++#  define __tdestroy tdestroy
++# endif
+ #endif
+ 
++#if defined(_MSC_VER) && defined(_DEBUG)
++#include <debug.h>
++#endif
++
+ #ifndef internal_function
+ /* Inside GNU libc we mark some function in a special way.  In other
+    environments simply ignore the marking.  */
+@@ -651,7 +661,7 @@
+ #endif
+ 
+ 
+-#ifdef _LIBC
++#if defined(_LIBC) || defined(_MSC_VER) 
+ 
+ /* The standardized functions miss an important functionality: the
+    tree cannot be removed easily.  We provide a function to do this.  */
+@@ -678,6 +688,9 @@
+   if (root != NULL)
+     tdestroy_recurse (root, freefct);
+ }
++#endif /* _LIBC || _MSC_VER */
++
++#ifdef _LIBC
+ weak_alias (__tdestroy, tdestroy)
+ 
+ #endif /* _LIBC */
+--- tsearch.h	Mon Jun 22 17:42:02 2015
++++ tsearch.h	Mon Aug  3 16:33:30 2015
+@@ -72,6 +72,10 @@
+ extern void twalk (const void *vroot,
+                    void (*action) (const void *, VISIT, int));
+ 
++#ifdef _MSC_VER
++extern void tdestroy (void *vroot, void (*freefct)(void *));
++#endif
++
+ #ifdef __cplusplus
+ }
+ #endif
+--- vasnprintf.c	Fri Jun  5 16:01:10 2015
++++ vasnprintf.c	Mon Aug  3 16:34:26 2015
+@@ -118,6 +118,10 @@
+ # include "fpucw.h"
+ #endif
+ 
++#if defined(_MSC_VER) && defined(_DEBUG)
++#include <debug.h>
++#endif
++
+ /* Default parameters.  */
+ #ifndef VASNPRINTF
+ # if WIDE_CHAR_VERSION

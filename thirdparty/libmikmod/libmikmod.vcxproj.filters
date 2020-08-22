@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="drivers">
+      <UniqueIdentifier>{2d4762cb-afde-41b9-990e-8e843c91c118}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mmio">
+      <UniqueIdentifier>{3560f053-a4fe-4cec-b77d-3f1ba0815caf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="loaders">
+      <UniqueIdentifier>{0f0d1e66-d27f-4d5c-bed9-ca87f3dc475d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playercode">
+      <UniqueIdentifier>{b7d189b5-d3dc-4f1e-b6c9-939eedccf77e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="depackers">
+      <UniqueIdentifier>{b82c0b26-b10a-4b58-9a39-ec335cb639fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="posix">
+      <UniqueIdentifier>{90d85bbd-14c5-4c7c-8a0b-cc97f72f5294}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="drivers\drv_AF.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_ahi.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_aiff.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_aix.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_alsa.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_dart.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_dc.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_ds.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_esd.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_gp32.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_hp.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_mac.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_n64.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_nas.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_nos.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_openal.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_os2.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_osles.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_oss.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_osx.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_pipe.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_psp.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_pulseaudio.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_raw.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_sam9407.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_sb.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_sdl.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_sgi.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_sndio.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_stdout.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_sun.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_ultra.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_wav.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_win.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_wss.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="drivers\drv_xaudio2.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="loaders\load_669.c">
+      <Filter>loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="loaders\load_amf.c">
+      <Filter>loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="loaders\load_asy.c">
+      <Filter>loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="loaders\load_dsm.c">
+      <Filter>loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="loaders\load_far.c">
+      <Filter>loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="loaders\load_gdm.c">
+      <Filter>loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="loaders\load_gt2.c">
+      <Filter>loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="loaders\load_imf.c">
+      <Filter>loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="loaders\load_it.c">
+      <Filter>loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="loaders\load_m15.c">
+      <Filter>loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="loaders\load_med.c">
+      <Filter>loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="loaders\load_mod.c">
+      <Filter>loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="loaders\load_mtm.c">
+      <Filter>loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="loaders\load_okt.c">
+      <Filter>loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="loaders\load_s3m.c">
+      <Filter>loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="loaders\load_stm.c">
+      <Filter>loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="loaders\load_stx.c">
+      <Filter>loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="loaders\load_ult.c">
+      <Filter>loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="loaders\load_umx.c">
+      <Filter>loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="loaders\load_uni.c">
+      <Filter>loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="loaders\load_xm.c">
+      <Filter>loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="mmio\mmalloc.c">
+      <Filter>mmio</Filter>
+    </ClCompile>
+    <ClCompile Include="mmio\mmerror.c">
+      <Filter>mmio</Filter>
+    </ClCompile>
+    <ClCompile Include="mmio\mmio.c">
+      <Filter>mmio</Filter>
+    </ClCompile>
+    <ClCompile Include="playercode\mdreg.c">
+      <Filter>playercode</Filter>
+    </ClCompile>
+    <ClCompile Include="playercode\mdriver.c">
+      <Filter>playercode</Filter>
+    </ClCompile>
+    <ClCompile Include="playercode\mdulaw.c">
+      <Filter>playercode</Filter>
+    </ClCompile>
+    <ClCompile Include="playercode\mloader.c">
+      <Filter>playercode</Filter>
+    </ClCompile>
+    <ClCompile Include="playercode\mlreg.c">
+      <Filter>playercode</Filter>
+    </ClCompile>
+    <ClCompile Include="playercode\mlutil.c">
+      <Filter>playercode</Filter>
+    </ClCompile>
+    <ClCompile Include="playercode\mplayer.c">
+      <Filter>playercode</Filter>
+    </ClCompile>
+    <ClCompile Include="playercode\munitrk.c">
+      <Filter>playercode</Filter>
+    </ClCompile>
+    <ClCompile Include="playercode\mwav.c">
+      <Filter>playercode</Filter>
+    </ClCompile>
+    <ClCompile Include="playercode\npertab.c">
+      <Filter>playercode</Filter>
+    </ClCompile>
+    <ClCompile Include="playercode\sloader.c">
+      <Filter>playercode</Filter>
+    </ClCompile>
+    <ClCompile Include="playercode\virtch.c">
+      <Filter>playercode</Filter>
+    </ClCompile>
+    <ClCompile Include="playercode\virtch_common.c">
+      <Filter>playercode</Filter>
+    </ClCompile>
+    <ClCompile Include="playercode\virtch2.c">
+      <Filter>playercode</Filter>
+    </ClCompile>
+    <ClCompile Include="depackers\mmcmp.c">
+      <Filter>depackers</Filter>
+    </ClCompile>
+    <ClCompile Include="depackers\pp20.c">
+      <Filter>depackers</Filter>
+    </ClCompile>
+    <ClCompile Include="depackers\s404.c">
+      <Filter>depackers</Filter>
+    </ClCompile>
+    <ClCompile Include="depackers\xpk.c">
+      <Filter>depackers</Filter>
+    </ClCompile>
+    <ClCompile Include="posix\strcasecmp.c">
+      <Filter>posix</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

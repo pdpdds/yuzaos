@@ -1,0 +1,1 @@
+for /d %%i in (locale\*) do copy /b /y %%i\hello-c.mo %%i\LC_MESSAGES\hello-c.mo 

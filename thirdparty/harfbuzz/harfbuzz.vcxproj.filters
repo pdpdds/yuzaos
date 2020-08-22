@@ -1,0 +1,514 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="harfbuzz.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{ce751632-d42a-4f9b-b55a-90aae7824f35}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="hb.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-aat.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-aat-fdsc-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-aat-layout.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-aat-layout.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-aat-layout-ankr-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-aat-layout-bsln-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-aat-layout-common.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-aat-layout-feat-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-aat-layout-just-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-aat-layout-kerx-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-aat-layout-lcar-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-aat-layout-morx-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-aat-layout-opbd-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-aat-layout-trak-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-aat-ltag-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-aat-map.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-algs.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-array.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-atomic.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-bimap.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-blob.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-blob.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-buffer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-buffer.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-buffer-deserialize-json.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-buffer-deserialize-text.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-cache.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-cff1-interp-cs.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-cff2-interp-cs.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-cff-interp-common.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-cff-interp-cs-common.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-cff-interp-dict-common.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-common.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-config.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-coretext.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-debug.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-deprecated.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-directwrite.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-dispatch.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-face.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-face.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-font.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-font.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ft.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-gdi.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-glib.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-gobject.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-gobject-structs.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-graphite2.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-icu.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-iter.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-kern.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-machinery.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-map.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-map.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-meta.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-mutex.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-null.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-number.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-number-parser.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-object.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-open-file.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-open-type.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-cff1-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-cff2-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-cff-common.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-cmap-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-color.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-color-cbdt-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-color-colr-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-color-cpal-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-color-sbix-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-color-svg-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-deprecated.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-face.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-face-table-list.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-font.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-gasp-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-glyf-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-hdmx-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-head-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-hhea-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-hmtx-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-kern-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-layout.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-layout.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-layout-base-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-layout-common.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-layout-gdef-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-layout-gpos-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-layout-gsubgpos.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-layout-gsub-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-layout-jstf-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-map.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-math.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-math-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-maxp-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-meta.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-meta-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-metrics.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-metrics.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-name.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-name-language.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-name-language-static.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-name-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-os2-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-os2-unicode-ranges.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-post-macroman.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-post-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-shape.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-shape.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-shape-complex.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-shape-complex-arabic.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-shape-complex-arabic-fallback.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-shape-complex-arabic-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-shape-complex-arabic-win1256.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-shape-complex-indic.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-shape-complex-indic-machine.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-shape-complex-khmer.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-shape-complex-khmer-machine.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-shape-complex-myanmar.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-shape-complex-myanmar-machine.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-shape-complex-use.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-shape-complex-use-machine.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-shape-complex-vowel-constraints.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-shape-fallback.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-shape-normalize.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-stat-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-tag-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-var.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-var-avar-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-var-fvar-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-var-gvar-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-var-hvar-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-var-mvar-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ot-vorg-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-pool.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-sanitize.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-serialize.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-set.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-set.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-set-digest.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-shape.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-shape-plan.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-shape-plan.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-shaper.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-shaper-impl.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-shaper-list.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-string-array.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-subset.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-subset.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-subset-cff1.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-subset-cff2.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-subset-cff-common.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-subset-input.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-subset-plan.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-ucd-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-unicode.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-unicode.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-unicode-emoji-table.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-uniscribe.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-utf.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-vector.hh">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="hb-version.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

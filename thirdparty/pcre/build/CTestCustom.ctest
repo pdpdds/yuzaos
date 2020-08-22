@@ -1,0 +1,4 @@
+# This is a generated file.
+MESSAGE("When testing is complete, review test output in the
+\"C:/Users/juhan/Downloads/pcre-master/pcre-master/build/Testing/Temporary\" folder.")
+MESSAGE(" ")

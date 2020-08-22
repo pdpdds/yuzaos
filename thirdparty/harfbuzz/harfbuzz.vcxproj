@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="harfbuzz.cc">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">HAVE_ICU;HAVE_FREETYPE;SKYOS32;_CRT_NONSTDC_NO_WARNINGS;HAVE_ROUNDF;HAVE_ISATTY;HAVE_ATEXIT;HB_NO_MT;HB_NO_SETLOCALE</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="hb-aat-fdsc-table.hh" />
+    <ClInclude Include="hb-aat-layout-ankr-table.hh" />
+    <ClInclude Include="hb-aat-layout-bsln-table.hh" />
+    <ClInclude Include="hb-aat-layout-common.hh" />
+    <ClInclude Include="hb-aat-layout-feat-table.hh" />
+    <ClInclude Include="hb-aat-layout-just-table.hh" />
+    <ClInclude Include="hb-aat-layout-kerx-table.hh" />
+    <ClInclude Include="hb-aat-layout-lcar-table.hh" />
+    <ClInclude Include="hb-aat-layout-morx-table.hh" />
+    <ClInclude Include="hb-aat-layout-opbd-table.hh" />
+    <ClInclude Include="hb-aat-layout-trak-table.hh" />
+    <ClInclude Include="hb-aat-layout.h" />
+    <ClInclude Include="hb-aat-layout.hh" />
+    <ClInclude Include="hb-aat-ltag-table.hh" />
+    <ClInclude Include="hb-aat-map.hh" />
+    <ClInclude Include="hb-aat.h" />
+    <ClInclude Include="hb-algs.hh" />
+    <ClInclude Include="hb-array.hh" />
+    <ClInclude Include="hb-atomic.hh" />
+    <ClInclude Include="hb-bimap.hh" />
+    <ClInclude Include="hb-blob.h" />
+    <ClInclude Include="hb-blob.hh" />
+    <ClInclude Include="hb-buffer-deserialize-json.hh" />
+    <ClInclude Include="hb-buffer-deserialize-text.hh" />
+    <ClInclude Include="hb-buffer.h" />
+    <ClInclude Include="hb-buffer.hh" />
+    <ClInclude Include="hb-cache.hh" />
+    <ClInclude Include="hb-cff-interp-common.hh" />
+    <ClInclude Include="hb-cff-interp-cs-common.hh" />
+    <ClInclude Include="hb-cff-interp-dict-common.hh" />
+    <ClInclude Include="hb-cff1-interp-cs.hh" />
+    <ClInclude Include="hb-cff2-interp-cs.hh" />
+    <ClInclude Include="hb-common.h" />
+    <ClInclude Include="hb-config.hh" />
+    <ClInclude Include="hb-coretext.h" />
+    <ClInclude Include="hb-debug.hh" />
+    <ClInclude Include="hb-deprecated.h" />
+    <ClInclude Include="hb-directwrite.h" />
+    <ClInclude Include="hb-dispatch.hh" />
+    <ClInclude Include="hb-face.h" />
+    <ClInclude Include="hb-face.hh" />
+    <ClInclude Include="hb-font.h" />
+    <ClInclude Include="hb-font.hh" />
+    <ClInclude Include="hb-ft.h" />
+    <ClInclude Include="hb-gdi.h" />
+    <ClInclude Include="hb-glib.h" />
+    <ClInclude Include="hb-gobject-structs.h" />
+    <ClInclude Include="hb-gobject.h" />
+    <ClInclude Include="hb-graphite2.h" />
+    <ClInclude Include="hb-icu.h" />
+    <ClInclude Include="hb-iter.hh" />
+    <ClInclude Include="hb-kern.hh" />
+    <ClInclude Include="hb-machinery.hh" />
+    <ClInclude Include="hb-map.h" />
+    <ClInclude Include="hb-map.hh" />
+    <ClInclude Include="hb-meta.hh" />
+    <ClInclude Include="hb-mutex.hh" />
+    <ClInclude Include="hb-null.hh" />
+    <ClInclude Include="hb-number-parser.hh" />
+    <ClInclude Include="hb-number.hh" />
+    <ClInclude Include="hb-object.hh" />
+    <ClInclude Include="hb-open-file.hh" />
+    <ClInclude Include="hb-open-type.hh" />
+    <ClInclude Include="hb-ot-cff-common.hh" />
+    <ClInclude Include="hb-ot-cff1-table.hh" />
+    <ClInclude Include="hb-ot-cff2-table.hh" />
+    <ClInclude Include="hb-ot-cmap-table.hh" />
+    <ClInclude Include="hb-ot-color-cbdt-table.hh" />
+    <ClInclude Include="hb-ot-color-colr-table.hh" />
+    <ClInclude Include="hb-ot-color-cpal-table.hh" />
+    <ClInclude Include="hb-ot-color-sbix-table.hh" />
+    <ClInclude Include="hb-ot-color-svg-table.hh" />
+    <ClInclude Include="hb-ot-color.h" />
+    <ClInclude Include="hb-ot-deprecated.h" />
+    <ClInclude Include="hb-ot-face-table-list.hh" />
+    <ClInclude Include="hb-ot-face.hh" />
+    <ClInclude Include="hb-ot-font.h" />
+    <ClInclude Include="hb-ot-gasp-table.hh" />
+    <ClInclude Include="hb-ot-glyf-table.hh" />
+    <ClInclude Include="hb-ot-hdmx-table.hh" />
+    <ClInclude Include="hb-ot-head-table.hh" />
+    <ClInclude Include="hb-ot-hhea-table.hh" />
+    <ClInclude Include="hb-ot-hmtx-table.hh" />
+    <ClInclude Include="hb-ot-kern-table.hh" />
+    <ClInclude Include="hb-ot-layout-base-table.hh" />
+    <ClInclude Include="hb-ot-layout-common.hh" />
+    <ClInclude Include="hb-ot-layout-gdef-table.hh" />
+    <ClInclude Include="hb-ot-layout-gpos-table.hh" />
+    <ClInclude Include="hb-ot-layout-gsub-table.hh" />
+    <ClInclude Include="hb-ot-layout-gsubgpos.hh" />
+    <ClInclude Include="hb-ot-layout-jstf-table.hh" />
+    <ClInclude Include="hb-ot-layout.h" />
+    <ClInclude Include="hb-ot-layout.hh" />
+    <ClInclude Include="hb-ot-map.hh" />
+    <ClInclude Include="hb-ot-math-table.hh" />
+    <ClInclude Include="hb-ot-math.h" />
+    <ClInclude Include="hb-ot-maxp-table.hh" />
+    <ClInclude Include="hb-ot-meta-table.hh" />
+    <ClInclude Include="hb-ot-meta.h" />
+    <ClInclude Include="hb-ot-metrics.h" />
+    <ClInclude Include="hb-ot-metrics.hh" />
+    <ClInclude Include="hb-ot-name-language-static.hh" />
+    <ClInclude Include="hb-ot-name-language.hh" />
+    <ClInclude Include="hb-ot-name-table.hh" />
+    <ClInclude Include="hb-ot-name.h" />
+    <ClInclude Include="hb-ot-os2-table.hh" />
+    <ClInclude Include="hb-ot-os2-unicode-ranges.hh" />
+    <ClInclude Include="hb-ot-post-macroman.hh" />
+    <ClInclude Include="hb-ot-post-table.hh" />
+    <ClInclude Include="hb-ot-shape-complex-arabic-fallback.hh" />
+    <ClInclude Include="hb-ot-shape-complex-arabic-table.hh" />
+    <ClInclude Include="hb-ot-shape-complex-arabic-win1256.hh" />
+    <ClInclude Include="hb-ot-shape-complex-arabic.hh" />
+    <ClInclude Include="hb-ot-shape-complex-indic-machine.hh" />
+    <ClInclude Include="hb-ot-shape-complex-indic.hh" />
+    <ClInclude Include="hb-ot-shape-complex-khmer-machine.hh" />
+    <ClInclude Include="hb-ot-shape-complex-khmer.hh" />
+    <ClInclude Include="hb-ot-shape-complex-myanmar-machine.hh" />
+    <ClInclude Include="hb-ot-shape-complex-myanmar.hh" />
+    <ClInclude Include="hb-ot-shape-complex-use-machine.hh" />
+    <ClInclude Include="hb-ot-shape-complex-use.hh" />
+    <ClInclude Include="hb-ot-shape-complex-vowel-constraints.hh" />
+    <ClInclude Include="hb-ot-shape-complex.hh" />
+    <ClInclude Include="hb-ot-shape-fallback.hh" />
+    <ClInclude Include="hb-ot-shape-normalize.hh" />
+    <ClInclude Include="hb-ot-shape.h" />
+    <ClInclude Include="hb-ot-shape.hh" />
+    <ClInclude Include="hb-ot-stat-table.hh" />
+    <ClInclude Include="hb-ot-tag-table.hh" />
+    <ClInclude Include="hb-ot-var-avar-table.hh" />
+    <ClInclude Include="hb-ot-var-fvar-table.hh" />
+    <ClInclude Include="hb-ot-var-gvar-table.hh" />
+    <ClInclude Include="hb-ot-var-hvar-table.hh" />
+    <ClInclude Include="hb-ot-var-mvar-table.hh" />
+    <ClInclude Include="hb-ot-var.h" />
+    <ClInclude Include="hb-ot-vorg-table.hh" />
+    <ClInclude Include="hb-ot.h" />
+    <ClInclude Include="hb-pool.hh" />
+    <ClInclude Include="hb-sanitize.hh" />
+    <ClInclude Include="hb-serialize.hh" />
+    <ClInclude Include="hb-set-digest.hh" />
+    <ClInclude Include="hb-set.h" />
+    <ClInclude Include="hb-set.hh" />
+    <ClInclude Include="hb-shape-plan.h" />
+    <ClInclude Include="hb-shape-plan.hh" />
+    <ClInclude Include="hb-shape.h" />
+    <ClInclude Include="hb-shaper-impl.hh" />
+    <ClInclude Include="hb-shaper-list.hh" />
+    <ClInclude Include="hb-shaper.hh" />
+    <ClInclude Include="hb-string-array.hh" />
+    <ClInclude Include="hb-subset-cff-common.hh" />
+    <ClInclude Include="hb-subset-cff1.hh" />
+    <ClInclude Include="hb-subset-cff2.hh" />
+    <ClInclude Include="hb-subset-input.hh" />
+    <ClInclude Include="hb-subset-plan.hh" />
+    <ClInclude Include="hb-subset.h" />
+    <ClInclude Include="hb-subset.hh" />
+    <ClInclude Include="hb-ucd-table.hh" />
+    <ClInclude Include="hb-unicode-emoji-table.hh" />
+    <ClInclude Include="hb-unicode.h" />
+    <ClInclude Include="hb-unicode.hh" />
+    <ClInclude Include="hb-uniscribe.h" />
+    <ClInclude Include="hb-utf.hh" />
+    <ClInclude Include="hb-vector.hh" />
+    <ClInclude Include="hb-version.h" />
+    <ClInclude Include="hb.h" />
+    <ClInclude Include="hb.hh" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7F4EECFC-2787-44E6-AE16-5AC83DB16366}</ProjectGuid>
+    <RootNamespace>Kernel</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>harfbuzz</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Intermediate\$(ProjectName)\</IntDir>
+    <ExtensionsToDeleteOnClean>*.exp *.obj%3b*.ilk%3b*.tlb%3b*.tli%3b*.tlh%3b*.tmp%3b*.rsp%3b*.pgc%3b*.pgd%3b$(TargetPath)</ExtensionsToDeleteOnClean>
+    <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
+    <TargetName>$(ProjectName)</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IntDir>$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/Oy  /arch:SSE %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <AdditionalIncludeDirectories>../include;../../runtime/include;../../corelib/include;../../thirdparty/freetype/include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>HAVE_FREETYPE;SKYOS32;_CRT_NONSTDC_NO_WARNINGS;HAVE_ROUNDF;HAVE_ISATTY;HAVE_ATEXIT;HB_NO_MT;HB_NO_SETLOCALE</PreprocessorDefinitions>
+      <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
+      <StringPooling>
+      </StringPooling>
+      <ExceptionHandling>false</ExceptionHandling>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <AssemblerOutput>NoListing</AssemblerOutput>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <CallingConvention>Cdecl</CallingConvention>
+      <DisableSpecificWarnings>4244;4267;4819;4068</DisableSpecificWarnings>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <LanguageStandard>
+      </LanguageStandard>
+      <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <SDLCheck>false</SDLCheck>
+    </ClCompile>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <Link>
+      <AdditionalDependencies>commonlib.lib</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>../Debug;../../debug</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(OutDir)$(TargetName).map</MapFileName>
+      <SubSystem>Console</SubSystem>
+      <Driver>NotSet</Driver>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <FunctionOrder>
+      </FunctionOrder>
+      <EntryPointSymbol>kmain</EntryPointSymbol>
+      <NoEntryPoint>false</NoEntryPoint>
+      <BaseAddress>0x01600000</BaseAddress>
+      <FixedBaseAddress>
+      </FixedBaseAddress>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <FullProgramDatabaseFile>true</FullProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <AddModuleNamesToAssembly>
+      </AddModuleNamesToAssembly>
+      <ForceSymbolReferences>
+      </ForceSymbolReferences>
+      <AdditionalOptions>/safeseh:no /ALIGN:1024
+ /SUBSYSTEM:CONSOLE
+/NODEFAULTLIB:LIBC %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+      <OutputFile>../debug/$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <DisableSpecificWarnings>4457</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>./;../../CommonLib;../../Include;./CPU;./Memory;./Heap;./Test;../../CommonLib/stl;../../CommonLib/jsmn;./FileSystem</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ARCH_X86;</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+  </ImportGroup>
+</Project>

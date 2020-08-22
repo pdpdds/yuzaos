@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{781B0746-F3A2-3DE3-8E05-040AAAF62EF2}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>pcre_stringpiece_unittest</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\juhan\Downloads\pcre-master\pcre-master\build\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">pcre_stringpiece_unittest.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">pcre_stringpiece_unittest</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\juhan\Downloads\pcre-master\pcre-master\build\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">pcre_stringpiece_unittest.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">pcre_stringpiece_unittest</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\juhan\Downloads\pcre-master\pcre-master\build\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">pcre_stringpiece_unittest.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">pcre_stringpiece_unittest</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\juhan\Downloads\pcre-master\pcre-master\build\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">pcre_stringpiece_unittest.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">pcre_stringpiece_unittest</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\juhan\Downloads\pcre-master\pcre-master\build;C:\Users\juhan\Downloads\pcre-master\pcre-master;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;HAVE_CONFIG_H;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;HAVE_CONFIG_H;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\juhan\Downloads\pcre-master\pcre-master\build;C:\Users\juhan\Downloads\pcre-master\pcre-master;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\juhan\Downloads\pcre-master\pcre-master\build;C:\Users\juhan\Downloads\pcre-master\pcre-master;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>Debug\pcrecppd.lib;Debug\pcred.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/juhan/Downloads/pcre-master/pcre-master/build/Debug/pcre_stringpiece_unittest.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/juhan/Downloads/pcre-master/pcre-master/build/Debug/pcre_stringpiece_unittest.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\juhan\Downloads\pcre-master\pcre-master\build;C:\Users\juhan\Downloads\pcre-master\pcre-master;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;HAVE_CONFIG_H;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;HAVE_CONFIG_H;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\juhan\Downloads\pcre-master\pcre-master\build;C:\Users\juhan\Downloads\pcre-master\pcre-master;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\juhan\Downloads\pcre-master\pcre-master\build;C:\Users\juhan\Downloads\pcre-master\pcre-master;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>Release\pcrecpp.lib;Release\pcre.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/juhan/Downloads/pcre-master/pcre-master/build/Release/pcre_stringpiece_unittest.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/juhan/Downloads/pcre-master/pcre-master/build/Release/pcre_stringpiece_unittest.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\juhan\Downloads\pcre-master\pcre-master\build;C:\Users\juhan\Downloads\pcre-master\pcre-master;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;HAVE_CONFIG_H;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;HAVE_CONFIG_H;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\juhan\Downloads\pcre-master\pcre-master\build;C:\Users\juhan\Downloads\pcre-master\pcre-master;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\juhan\Downloads\pcre-master\pcre-master\build;C:\Users\juhan\Downloads\pcre-master\pcre-master;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>MinSizeRel\pcrecpp.lib;MinSizeRel\pcre.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/juhan/Downloads/pcre-master/pcre-master/build/MinSizeRel/pcre_stringpiece_unittest.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/juhan/Downloads/pcre-master/pcre-master/build/MinSizeRel/pcre_stringpiece_unittest.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\juhan\Downloads\pcre-master\pcre-master\build;C:\Users\juhan\Downloads\pcre-master\pcre-master;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;HAVE_CONFIG_H;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;HAVE_CONFIG_H;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\juhan\Downloads\pcre-master\pcre-master\build;C:\Users\juhan\Downloads\pcre-master\pcre-master;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\juhan\Downloads\pcre-master\pcre-master\build;C:\Users\juhan\Downloads\pcre-master\pcre-master;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>RelWithDebInfo\pcrecpp.lib;RelWithDebInfo\pcre.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/juhan/Downloads/pcre-master/pcre-master/build/RelWithDebInfo/pcre_stringpiece_unittest.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/juhan/Downloads/pcre-master/pcre-master/build/RelWithDebInfo/pcre_stringpiece_unittest.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\juhan\Downloads\pcre-master\pcre-master\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule C:/Users/juhan/Downloads/pcre-master/pcre-master/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+C:\Tool\cmake-3.15.0\bin\cmake.exe -SC:/Users/juhan/Downloads/pcre-master/pcre-master -BC:/Users/juhan/Downloads/pcre-master/pcre-master/build --check-stamp-file C:/Users/juhan/Downloads/pcre-master/pcre-master/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCCompiler.cmake.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCCompilerABI.c;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCInformation.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCXXCompiler.cmake.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCXXCompilerABI.cpp;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCXXInformation.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCommonLanguageInclude.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCompilerIdDetection.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineCCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineCXXCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineCompileFeatures.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineCompilerABI.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineCompilerId.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineRCCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineSystem.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeFindBinUtils.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeGenericSystem.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeInitializeConfigs.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeLanguageInformation.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeParseImplicitIncludeInfo.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeRCCompiler.cmake.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeRCInformation.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeSystem.cmake.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeSystemSpecificInformation.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeSystemSpecificInitialize.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeTestCCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeTestCXXCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeTestCompilerCommon.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeTestRCCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckFunctionExists.c;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckFunctionExists.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckIncludeFile.c.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckIncludeFile.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckIncludeFile.cxx.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckIncludeFileCXX.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckTypeSize.c.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckTypeSize.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\ADSP-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\ARMCC-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\ARMClang-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\AppleClang-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Borland-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Clang-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Comeau-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Compaq-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Cray-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\GHS-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\GNU-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\GNU-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\HP-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\HP-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\IAR-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\IBMCPP-CXX-DetermineVersionInternal.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Intel-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\MSVC-C.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\MSVC-CXX.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\MSVC-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\PGI-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\PathScale-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\SCO-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\SunPro-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\TI-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\VisualAge-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Watcom-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\XL-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\XL-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\XLClang-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\zOS-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\zOS-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CompilerId\VS-10.vcxproj.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\FindBZip2.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\FindPackageHandleStandardArgs.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\FindPackageMessage.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\FindZLIB.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Internal\FeatureTesting.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Platform\Windows-Determine-CXX.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Platform\Windows-MSVC-C.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Platform\Windows-MSVC.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Platform\Windows.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Platform\WindowsPaths.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\SelectLibraryConfigurations.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\build\CMakeFiles\3.15.0-rc1\CMakeCCompiler.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\build\CMakeFiles\3.15.0-rc1\CMakeCXXCompiler.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\build\CMakeFiles\3.15.0-rc1\CMakeRCCompiler.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\build\CMakeFiles\3.15.0-rc1\CMakeSystem.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\build\CMakeFiles\CheckTypeSize\LONG_LONG.c;C:\Users\juhan\Downloads\pcre-master\pcre-master\build\CMakeFiles\CheckTypeSize\UNSIGNED_LONG_LONG.c;C:\Users\juhan\Downloads\pcre-master\pcre-master\cmake\FindEditline.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\cmake\FindPackageHandleStandardArgs.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\cmake\FindReadline.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\config-cmake.h.in;C:\Users\juhan\Downloads\pcre-master\pcre-master\pcre.h.in;C:\Users\juhan\Downloads\pcre-master\pcre-master\pcre_chartables.c.dist;C:\Users\juhan\Downloads\pcre-master\pcre-master\pcre_stringpiece.h.in;C:\Users\juhan\Downloads\pcre-master\pcre-master\pcrecpparg.h.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\juhan\Downloads\pcre-master\pcre-master\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule C:/Users/juhan/Downloads/pcre-master/pcre-master/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+C:\Tool\cmake-3.15.0\bin\cmake.exe -SC:/Users/juhan/Downloads/pcre-master/pcre-master -BC:/Users/juhan/Downloads/pcre-master/pcre-master/build --check-stamp-file C:/Users/juhan/Downloads/pcre-master/pcre-master/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCCompiler.cmake.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCCompilerABI.c;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCInformation.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCXXCompiler.cmake.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCXXCompilerABI.cpp;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCXXInformation.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCommonLanguageInclude.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCompilerIdDetection.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineCCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineCXXCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineCompileFeatures.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineCompilerABI.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineCompilerId.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineRCCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineSystem.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeFindBinUtils.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeGenericSystem.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeInitializeConfigs.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeLanguageInformation.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeParseImplicitIncludeInfo.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeRCCompiler.cmake.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeRCInformation.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeSystem.cmake.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeSystemSpecificInformation.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeSystemSpecificInitialize.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeTestCCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeTestCXXCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeTestCompilerCommon.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeTestRCCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckFunctionExists.c;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckFunctionExists.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckIncludeFile.c.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckIncludeFile.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckIncludeFile.cxx.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckIncludeFileCXX.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckTypeSize.c.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckTypeSize.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\ADSP-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\ARMCC-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\ARMClang-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\AppleClang-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Borland-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Clang-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Comeau-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Compaq-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Cray-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\GHS-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\GNU-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\GNU-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\HP-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\HP-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\IAR-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\IBMCPP-CXX-DetermineVersionInternal.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Intel-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\MSVC-C.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\MSVC-CXX.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\MSVC-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\PGI-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\PathScale-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\SCO-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\SunPro-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\TI-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\VisualAge-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Watcom-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\XL-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\XL-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\XLClang-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\zOS-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\zOS-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CompilerId\VS-10.vcxproj.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\FindBZip2.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\FindPackageHandleStandardArgs.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\FindPackageMessage.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\FindZLIB.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Internal\FeatureTesting.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Platform\Windows-Determine-CXX.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Platform\Windows-MSVC-C.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Platform\Windows-MSVC.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Platform\Windows.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Platform\WindowsPaths.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\SelectLibraryConfigurations.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\build\CMakeFiles\3.15.0-rc1\CMakeCCompiler.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\build\CMakeFiles\3.15.0-rc1\CMakeCXXCompiler.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\build\CMakeFiles\3.15.0-rc1\CMakeRCCompiler.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\build\CMakeFiles\3.15.0-rc1\CMakeSystem.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\build\CMakeFiles\CheckTypeSize\LONG_LONG.c;C:\Users\juhan\Downloads\pcre-master\pcre-master\build\CMakeFiles\CheckTypeSize\UNSIGNED_LONG_LONG.c;C:\Users\juhan\Downloads\pcre-master\pcre-master\cmake\FindEditline.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\cmake\FindPackageHandleStandardArgs.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\cmake\FindReadline.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\config-cmake.h.in;C:\Users\juhan\Downloads\pcre-master\pcre-master\pcre.h.in;C:\Users\juhan\Downloads\pcre-master\pcre-master\pcre_chartables.c.dist;C:\Users\juhan\Downloads\pcre-master\pcre-master\pcre_stringpiece.h.in;C:\Users\juhan\Downloads\pcre-master\pcre-master\pcrecpparg.h.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\juhan\Downloads\pcre-master\pcre-master\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule C:/Users/juhan/Downloads/pcre-master/pcre-master/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+C:\Tool\cmake-3.15.0\bin\cmake.exe -SC:/Users/juhan/Downloads/pcre-master/pcre-master -BC:/Users/juhan/Downloads/pcre-master/pcre-master/build --check-stamp-file C:/Users/juhan/Downloads/pcre-master/pcre-master/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCCompiler.cmake.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCCompilerABI.c;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCInformation.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCXXCompiler.cmake.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCXXCompilerABI.cpp;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCXXInformation.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCommonLanguageInclude.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCompilerIdDetection.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineCCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineCXXCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineCompileFeatures.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineCompilerABI.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineCompilerId.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineRCCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineSystem.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeFindBinUtils.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeGenericSystem.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeInitializeConfigs.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeLanguageInformation.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeParseImplicitIncludeInfo.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeRCCompiler.cmake.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeRCInformation.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeSystem.cmake.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeSystemSpecificInformation.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeSystemSpecificInitialize.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeTestCCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeTestCXXCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeTestCompilerCommon.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeTestRCCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckFunctionExists.c;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckFunctionExists.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckIncludeFile.c.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckIncludeFile.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckIncludeFile.cxx.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckIncludeFileCXX.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckTypeSize.c.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckTypeSize.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\ADSP-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\ARMCC-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\ARMClang-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\AppleClang-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Borland-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Clang-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Comeau-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Compaq-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Cray-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\GHS-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\GNU-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\GNU-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\HP-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\HP-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\IAR-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\IBMCPP-CXX-DetermineVersionInternal.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Intel-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\MSVC-C.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\MSVC-CXX.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\MSVC-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\PGI-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\PathScale-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\SCO-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\SunPro-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\TI-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\VisualAge-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Watcom-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\XL-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\XL-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\XLClang-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\zOS-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\zOS-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CompilerId\VS-10.vcxproj.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\FindBZip2.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\FindPackageHandleStandardArgs.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\FindPackageMessage.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\FindZLIB.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Internal\FeatureTesting.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Platform\Windows-Determine-CXX.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Platform\Windows-MSVC-C.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Platform\Windows-MSVC.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Platform\Windows.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Platform\WindowsPaths.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\SelectLibraryConfigurations.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\build\CMakeFiles\3.15.0-rc1\CMakeCCompiler.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\build\CMakeFiles\3.15.0-rc1\CMakeCXXCompiler.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\build\CMakeFiles\3.15.0-rc1\CMakeRCCompiler.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\build\CMakeFiles\3.15.0-rc1\CMakeSystem.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\build\CMakeFiles\CheckTypeSize\LONG_LONG.c;C:\Users\juhan\Downloads\pcre-master\pcre-master\build\CMakeFiles\CheckTypeSize\UNSIGNED_LONG_LONG.c;C:\Users\juhan\Downloads\pcre-master\pcre-master\cmake\FindEditline.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\cmake\FindPackageHandleStandardArgs.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\cmake\FindReadline.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\config-cmake.h.in;C:\Users\juhan\Downloads\pcre-master\pcre-master\pcre.h.in;C:\Users\juhan\Downloads\pcre-master\pcre-master\pcre_chartables.c.dist;C:\Users\juhan\Downloads\pcre-master\pcre-master\pcre_stringpiece.h.in;C:\Users\juhan\Downloads\pcre-master\pcre-master\pcrecpparg.h.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\juhan\Downloads\pcre-master\pcre-master\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule C:/Users/juhan/Downloads/pcre-master/pcre-master/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+C:\Tool\cmake-3.15.0\bin\cmake.exe -SC:/Users/juhan/Downloads/pcre-master/pcre-master -BC:/Users/juhan/Downloads/pcre-master/pcre-master/build --check-stamp-file C:/Users/juhan/Downloads/pcre-master/pcre-master/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCCompiler.cmake.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCCompilerABI.c;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCInformation.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCXXCompiler.cmake.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCXXCompilerABI.cpp;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCXXInformation.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCommonLanguageInclude.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeCompilerIdDetection.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineCCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineCXXCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineCompileFeatures.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineCompilerABI.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineCompilerId.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineRCCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeDetermineSystem.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeFindBinUtils.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeGenericSystem.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeInitializeConfigs.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeLanguageInformation.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeParseImplicitIncludeInfo.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeRCCompiler.cmake.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeRCInformation.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeSystem.cmake.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeSystemSpecificInformation.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeSystemSpecificInitialize.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeTestCCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeTestCXXCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeTestCompilerCommon.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CMakeTestRCCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckFunctionExists.c;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckFunctionExists.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckIncludeFile.c.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckIncludeFile.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckIncludeFile.cxx.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckIncludeFileCXX.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckTypeSize.c.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CheckTypeSize.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\ADSP-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\ARMCC-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\ARMClang-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\AppleClang-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Borland-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Clang-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Comeau-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Compaq-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Cray-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\GHS-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\GNU-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\GNU-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\HP-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\HP-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\IAR-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\IBMCPP-CXX-DetermineVersionInternal.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Intel-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\MSVC-C.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\MSVC-CXX.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\MSVC-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\PGI-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\PathScale-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\SCO-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\SunPro-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\TI-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\VisualAge-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\Watcom-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\XL-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\XL-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\XLClang-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\zOS-C-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Compiler\zOS-CXX-DetermineCompiler.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\CompilerId\VS-10.vcxproj.in;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\FindBZip2.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\FindPackageHandleStandardArgs.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\FindPackageMessage.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\FindZLIB.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Internal\FeatureTesting.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Platform\Windows-Determine-CXX.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Platform\Windows-MSVC-C.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Platform\Windows-MSVC.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Platform\Windows.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\Platform\WindowsPaths.cmake;C:\Tool\cmake-3.15.0\share\cmake-3.15\Modules\SelectLibraryConfigurations.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\build\CMakeFiles\3.15.0-rc1\CMakeCCompiler.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\build\CMakeFiles\3.15.0-rc1\CMakeCXXCompiler.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\build\CMakeFiles\3.15.0-rc1\CMakeRCCompiler.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\build\CMakeFiles\3.15.0-rc1\CMakeSystem.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\build\CMakeFiles\CheckTypeSize\LONG_LONG.c;C:\Users\juhan\Downloads\pcre-master\pcre-master\build\CMakeFiles\CheckTypeSize\UNSIGNED_LONG_LONG.c;C:\Users\juhan\Downloads\pcre-master\pcre-master\cmake\FindEditline.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\cmake\FindPackageHandleStandardArgs.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\cmake\FindReadline.cmake;C:\Users\juhan\Downloads\pcre-master\pcre-master\config-cmake.h.in;C:\Users\juhan\Downloads\pcre-master\pcre-master\pcre.h.in;C:\Users\juhan\Downloads\pcre-master\pcre-master\pcre_chartables.c.dist;C:\Users\juhan\Downloads\pcre-master\pcre-master\pcre_stringpiece.h.in;C:\Users\juhan\Downloads\pcre-master\pcre-master\pcrecpparg.h.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\juhan\Downloads\pcre-master\pcre-master\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\Users\juhan\Downloads\pcre-master\pcre-master\pcre_stringpiece_unittest.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\juhan\Downloads\pcre-master\pcre-master\build\ZERO_CHECK.vcxproj">
+      <Project>{9A26797E-8981-3C33-B8BE-15062A1CE158}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\juhan\Downloads\pcre-master\pcre-master\build\pcre.vcxproj">
+      <Project>{6C05C553-F965-3E9F-BE3A-A750D54C90B5}</Project>
+      <Name>pcre</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\juhan\Downloads\pcre-master\pcre-master\build\pcrecpp.vcxproj">
+      <Project>{5B21ECCB-4D77-37E9-89D6-1D8709F91906}</Project>
+      <Name>pcrecpp</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

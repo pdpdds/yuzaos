@@ -1,0 +1,28 @@
+SubDir HAIKU_TOP src libs iconv ;
+
+SetSubDirSupportedPlatformsBeOSCompatible ;
+AddSubDirSupportedPlatforms libbe_test ;
+
+UseLibraryHeaders iconv ;
+
+local architectureObject ;
+for architectureObject in [ MultiArchSubDirSetup ] {
+	on $(architectureObject) {
+		local architecture = $(TARGET_PACKAGING_ARCH) ;
+
+		# disable warnings we don't want here
+		TARGET_WARNING_CCFLAGS_$(architecture)
+			= [ FFilter $(TARGET_WARNING_CCFLAGS_$(architecture))
+				: -Wmissing-prototypes -Wsign-compare ] ;
+
+		SubDirCcFlags
+			-DLIBDIR="\\\"/boot/system/lib\\\""
+			-DICONV_CONST=""
+			;
+
+		StaticLibrary [ MultiArchDefaultGristFiles libiconv.a ] :
+			iconv.c
+			localcharset.c
+			;
+	}
+}

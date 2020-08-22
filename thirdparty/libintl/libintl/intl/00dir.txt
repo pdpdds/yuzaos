@@ -1,0 +1,1 @@
+Copy source files from gettext-runtime/intl/ on gettext archive.

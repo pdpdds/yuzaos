@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{227b293f-29c4-40fb-a4a3-229254c1e106}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{a3bb801b-da57-4823-85e4-081eee52e48e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\roxml.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\roxml_buff.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\roxml_core.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\roxml_defines.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\roxml_win32_native.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\roxml_xpath.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\roxml_types.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\roxml_tune.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\roxml_parser.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\roxml_mem.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\roxml_internal.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\roxml_file.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\roxml_utils.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\roxml_buff.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\roxml_commit.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\roxml_content.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\roxml_core.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\roxml_edit.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\roxml_file.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\roxml_mem.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\roxml_nav.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\roxml_parser.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\roxml_stub.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\roxml_xpath.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\getopt.c">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\roxml_doxy.h.in">
+      <Filter>include</Filter>
+    </None>
+  </ItemGroup>
+</Project>

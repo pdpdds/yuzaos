@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="libexif\_stdint.h" />
+    <ClInclude Include="libexif\exif.h" />
+    <ClInclude Include="libexif\exif-byte-order.h" />
+    <ClInclude Include="libexif\exif-content.h" />
+    <ClInclude Include="libexif\exif-data.h" />
+    <ClInclude Include="libexif\exif-data-type.h" />
+    <ClInclude Include="libexif\exif-entry.h" />
+    <ClInclude Include="libexif\exif-format.h" />
+    <ClInclude Include="libexif\exif-ifd.h" />
+    <ClInclude Include="libexif\exif-loader.h" />
+    <ClInclude Include="libexif\exif-log.h" />
+    <ClInclude Include="libexif\exif-mem.h" />
+    <ClInclude Include="libexif\exif-mnote-data.h" />
+    <ClInclude Include="libexif\exif-mnote-data-priv.h" />
+    <ClInclude Include="libexif\exif-system.h" />
+    <ClInclude Include="libexif\exif-tag.h" />
+    <ClInclude Include="libexif\exif-utils.h" />
+    <ClInclude Include="libexif\i18n.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="libexif\exif-byte-order.c" />
+    <ClCompile Include="libexif\exif-content.c" />
+    <ClCompile Include="libexif\exif-data.c" />
+    <ClCompile Include="libexif\exif-entry.c" />
+    <ClCompile Include="libexif\exif-format.c" />
+    <ClCompile Include="libexif\exif-ifd.c" />
+    <ClCompile Include="libexif\exif-loader.c" />
+    <ClCompile Include="libexif\exif-log.c" />
+    <ClCompile Include="libexif\exif-mem.c" />
+    <ClCompile Include="libexif\exif-mnote-data.c" />
+    <ClCompile Include="libexif\exif-tag.c" />
+    <ClCompile Include="libexif\exif-utils.c" />
+    <ClCompile Include="libexif\canon\exif-mnote-data-canon.c">
+      <Filter>canon</Filter>
+    </ClCompile>
+    <ClCompile Include="libexif\canon\mnote-canon-entry.c">
+      <Filter>canon</Filter>
+    </ClCompile>
+    <ClCompile Include="libexif\canon\mnote-canon-tag.c">
+      <Filter>canon</Filter>
+    </ClCompile>
+    <ClCompile Include="libexif\fuji\exif-mnote-data-fuji.c">
+      <Filter>fuji</Filter>
+    </ClCompile>
+    <ClCompile Include="libexif\fuji\mnote-fuji-entry.c">
+      <Filter>fuji</Filter>
+    </ClCompile>
+    <ClCompile Include="libexif\fuji\mnote-fuji-tag.c">
+      <Filter>fuji</Filter>
+    </ClCompile>
+    <ClCompile Include="libexif\olympus\exif-mnote-data-olympus.c">
+      <Filter>olmpus</Filter>
+    </ClCompile>
+    <ClCompile Include="libexif\olympus\mnote-olympus-entry.c">
+      <Filter>olmpus</Filter>
+    </ClCompile>
+    <ClCompile Include="libexif\olympus\mnote-olympus-tag.c">
+      <Filter>olmpus</Filter>
+    </ClCompile>
+    <ClCompile Include="libexif\pentax\exif-mnote-data-pentax.c">
+      <Filter>pentax</Filter>
+    </ClCompile>
+    <ClCompile Include="libexif\pentax\mnote-pentax-entry.c">
+      <Filter>pentax</Filter>
+    </ClCompile>
+    <ClCompile Include="libexif\pentax\mnote-pentax-tag.c">
+      <Filter>pentax</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="canon">
+      <UniqueIdentifier>{0ed4a12d-6533-46bb-adb1-56881663ed7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="pentax">
+      <UniqueIdentifier>{764b4fba-03d4-4ec8-93da-dc3849116b65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="fuji">
+      <UniqueIdentifier>{c041c037-65e1-464a-995d-9c8ce0d7241d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="olmpus">
+      <UniqueIdentifier>{6e44f75e-2e45-4318-8aa6-ae0813506759}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

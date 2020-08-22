@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="source files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="resource files">
+      <UniqueIdentifier>{cb62e2cd-e005-4472-83c3-d2a0c2346e2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="header files">
+      <UniqueIdentifier>{2d8a1595-5df6-479f-97bc-bec098bbba6b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="intl\bindtextdom.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="intl\dcgettext.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="intl\dcigettext.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="intl\dcngettext.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="intl\dgettext.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="intl\dngettext.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="intl\explodename.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="intl\finddomain.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="intl\gettext.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="intl\hash-string.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="intl\l10nflist.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="intl\langprefs.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="intl\loadmsgcat.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="intl\localcharset.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="intl\localealias.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="intl\localename.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="intl\lock.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="intl\log.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="intl\ngettext.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="intl\osdep.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="intl\plural.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="intl\plural-exp.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="intl\printf.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="intl\relocatable.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="intl\setlocale.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="intl\textdomain.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="intl\threadlib.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="intl\tsearch.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="intl\version.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="intl\xsize.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="msvc\dgettext-win.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="msvc\dcigettext-win.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="msvc\dcngettext-win.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="msvc\dcgettext-win.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="msvc\dngettext-win.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="msvc\gettext-win.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="msvc\ngettext-win.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="msvc\wcstombs-malloc.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="msvc\textdomain-win.c">
+      <Filter>source files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="intl\libintl.rc">
+      <Filter>resource files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="msvc\config.h">
+      <Filter>header files</Filter>
+    </ClInclude>
+    <ClInclude Include="msvc\libgnuintl.h">
+      <Filter>header files</Filter>
+    </ClInclude>
+    <ClInclude Include="msvc\bindtextdom-win.h">
+      <Filter>header files</Filter>
+    </ClInclude>
+    <ClInclude Include="msvc\loadmsgcat-win.h">
+      <Filter>header files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
