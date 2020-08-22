@@ -115,7 +115,7 @@
       <EntryPointSymbol>
       </EntryPointSymbol>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>dllstub.lib;libcrt.lib;filemanager.lib;libwin32.lib;systemcall.lib;pthread.lib</AdditionalDependencies>
+      <AdditionalDependencies>dllstub.lib;libcrt.lib;filemanager.lib;libwin32.lib;systemcall.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>../../../../$(Configuration);../../../../corelib/debug;../../../../runtime/debug;../../../../verify\Debug</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>

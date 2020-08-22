@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>lib</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\alloca.c">
+      <Filter>lib</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\closeout.c">
+      <Filter>lib</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\error.c">
+      <Filter>lib</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\exclude.c">
+      <Filter>lib</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\fnmatch.c">
+      <Filter>lib</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\getopt.c">
+      <Filter>lib</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\getopt1.c">
+      <Filter>lib</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\hard-locale.c">
+      <Filter>lib</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\isdir.c">
+      <Filter>lib</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\malloc.c">
+      <Filter>lib</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\obstack.c">
+      <Filter>lib</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\quotearg.c">
+      <Filter>lib</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\realloc.c">
+      <Filter>lib</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\regex.c">
+      <Filter>lib</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\savedir.c">
+      <Filter>lib</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\stpcpy.c">
+      <Filter>lib</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\strtoumax.c">
+      <Filter>lib</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\xmalloc.c">
+      <Filter>lib</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\xstrtoumax.c">
+      <Filter>lib</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dfa.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\grep.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\kwset.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\search.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\strtoull.c">
+      <Filter>lib</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="lib">
+      <UniqueIdentifier>{7271cec1-d7fa-493b-9078-86d1cb509efa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4f2f1487-669a-4ac9-96c3-fc93a8feb32d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
