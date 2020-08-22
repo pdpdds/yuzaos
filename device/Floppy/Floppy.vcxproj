@@ -124,7 +124,7 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>libcrt.lib;systemcall.lib;dllstub.lib;stub.lib;streams.lib</AdditionalDependencies>
+      <AdditionalDependencies>libcrt.lib;systemcall.lib;dllstub.lib;streams.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>../../$(Configuration);../../corelib/debug;../../support\Debug;../../runtime/debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>

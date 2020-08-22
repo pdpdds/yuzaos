@@ -4,11 +4,11 @@
 #define _REVISION_H_
 
 #define BUILD_DATE "22 August 2020"
-#define BUILD_TIME "22:14:32"
+#define BUILD_TIME "22:16:12"
 #define BUILD_SYSTEM "msvc"
 
 #define REVISION_MAJOR 0
 #define REVISION_MINOR 4
-#define REVISION_BUILD 8024
+#define REVISION_BUILD 8025
 
 #endif //!_REVISION_H_
