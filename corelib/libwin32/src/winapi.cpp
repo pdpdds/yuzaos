@@ -11,31 +11,31 @@
 #include <string.h>
 
 HANDLE CreateFile(LPCSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, /*LPSECURITY_ATTRIBUTES*/void* lpSecurityAttributes,
-    DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile)
+	DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile)
 {
 	if (lpFileName == NULL)
 	{
 		printf("lpFileName == NULL\n");
 		return NULL;
 	}
-	
+
 	char mode[32];
-	memset(mode , 0 , 32);	
-	if(dwDesiredAccess==GENERIC_READ&&dwCreationDisposition==OPEN_EXISTING)
-		strcpy(mode , "rb");
-	else if (dwDesiredAccess==GENERIC_WRITE&&dwCreationDisposition==CREATE_ALWAYS)
-		strcpy(mode , "wb");
-	else if ( (dwDesiredAccess== (GENERIC_WRITE|GENERIC_READ)) && (dwCreationDisposition==CREATE_ALWAYS))
-		strcpy(mode , "wb+");
-	else if ( (dwDesiredAccess==(GENERIC_WRITE|GENERIC_READ)) && (dwCreationDisposition==OPEN_EXISTING))
-		strcpy(mode , "rb+");
-	else 
+	memset(mode, 0, 32);
+	if (dwDesiredAccess == GENERIC_READ && dwCreationDisposition == OPEN_EXISTING)
+		strcpy(mode, "rb");
+	else if (dwDesiredAccess == GENERIC_WRITE && dwCreationDisposition == CREATE_ALWAYS)
+		strcpy(mode, "wb");
+	else if ((dwDesiredAccess == (GENERIC_WRITE | GENERIC_READ)) && (dwCreationDisposition == CREATE_ALWAYS))
+		strcpy(mode, "wb+");
+	else if ((dwDesiredAccess == (GENERIC_WRITE | GENERIC_READ)) && (dwCreationDisposition == OPEN_EXISTING))
+		strcpy(mode, "rb+");
+	else
 	{
 		return NULL;
 	}
 
 	FILE* fp = NULL;
-	fp=fopen(lpFileName, mode);
+	fp = fopen(lpFileName, mode);
 
 	if (fp == NULL)
 	{
@@ -52,9 +52,9 @@ BOOL WriteFile(HANDLE hFile, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite, LPDW
 	{
 		return FALSE;
 	}
-	
+
 	DWORD  nRead = fwrite(lpBuffer, 1, nNumberOfBytesToWrite, (FILE*)hFile);
-	if (nRead<=0)
+	if (nRead <= 0)
 	{
 		return FALSE;
 	}
@@ -72,21 +72,21 @@ BOOL ReadFile(HANDLE hFile, LPVOID lpBuffer, DWORD nNumberOfBytesToRead, LPDWORD
 
 	size_t nRead = fread(lpBuffer, 1, nNumberOfBytesToRead, (FILE*)hFile);
 
-	if (nRead<=0)
+	if (nRead <= 0)
 	{
 		return FALSE;
 	}
 	*lpNumberOfBytesRead = nRead;
 	return TRUE;
-}	
-	
+}
+
 DWORD SetFilePointer(HANDLE hFile, LONG lDistanceToMove, PLONG lpDistanceToMoveHigh, DWORD dwMoveMethod)
 {
 	if (hFile == NULL)
 	{
 		return -1;
 	}
-	
+
 	if (dwMoveMethod == FILE_CURRENT)
 	{
 		fseek((FILE*)hFile, lDistanceToMove, SEEK_CUR);
@@ -97,16 +97,16 @@ DWORD SetFilePointer(HANDLE hFile, LONG lDistanceToMove, PLONG lpDistanceToMoveH
 		fseek((FILE*)hFile, lDistanceToMove, SEEK_SET);
 		return ftell((FILE*)hFile);
 	}
-	
-	return -1;
-}	
 
-int MessageBox(HWND hWnd,LPCTSTR lpText, LPCTSTR lpCaption, UINT uType)
+	return -1;
+}
+
+int MessageBox(HWND hWnd, LPCTSTR lpText, LPCTSTR lpCaption, UINT uType)
 {
 	return 1;
 }
 
-BOOL apiCreateDirectory(const char* path , void* p)
+BOOL apiCreateDirectory(const char* path, void* p)
 {
 	return FALSE;
 }
@@ -143,12 +143,12 @@ BOOL WINAPI CloseFile(HANDLE hObject)
 
 HANDLE WINAPI FindFirstFile(LPCTSTR lpFileName, LPWIN32_FIND_DATA lpFindFileData)
 {
-	if (!lpFileName) 
+	if (!lpFileName)
 	{
 		Syscall_SetLastError(ERROR_INVALID_PARAMETER);
 		return (HANDLE)ERROR_INVALID_PARAMETER;
 	}
-	if( NULL == lpFindFileData ) 
+	if (NULL == lpFindFileData)
 	{
 		Syscall_SetLastError(ERROR_INVALID_PARAMETER);
 		return (HANDLE)ERROR_INVALID_PARAMETER;
@@ -159,7 +159,7 @@ HANDLE WINAPI FindFirstFile(LPCTSTR lpFileName, LPWIN32_FIND_DATA lpFindFileData
 	{
 		if (lpFindFileData)
 		{
-			FIND_FILE_HANDLE *pHandle = (FIND_FILE_HANDLE *)malloc(sizeof(FIND_FILE_HANDLE));
+			FIND_FILE_HANDLE* pHandle = (FIND_FILE_HANDLE*)malloc(sizeof(FIND_FILE_HANDLE));
 			if (pHandle)
 			{
 				memset(lpFindFileData, 0, sizeof(WIN32_FIND_DATA));
@@ -182,21 +182,21 @@ HANDLE WINAPI FindFirstFile(LPCTSTR lpFileName, LPWIN32_FIND_DATA lpFindFileData
 
 BOOL WINAPI FindNextFile(HANDLE hFindFile, LPWIN32_FIND_DATA lpFindFileData)
 {
-	FIND_FILE_HANDLE *pHandle = (FIND_FILE_HANDLE *)hFindFile;
+	FIND_FILE_HANDLE* pHandle = (FIND_FILE_HANDLE*)hFindFile;
 	if (pHandle && lpFindFileData)
 	{
-		while( TRUE ) 
+		while (TRUE)
 		{
 			struct dirent* entry = readdir((DIR*)pHandle->fp);
-			if(entry == NULL)
+			if (entry == NULL)
 			{
 				return FALSE;
 			}
 
-			if (strcmp(entry->d_name, ".") != 0 )
+			if (strcmp(entry->d_name, ".") != 0)
 			{
 				lpFindFileData->dwFileAttributes = (entry->dwAttribute == 0) ? FILE_ATTRIBUTE_DIRECTORY : FILE_ATTRIBUTE_NORMAL;
-				
+
 				DIR* dir = (DIR*)pHandle->fp;
 				strcpy(lpFindFileData->cFileName, dir->name);
 				strcat(lpFindFileData->cFileName, "\\");
@@ -212,7 +212,7 @@ BOOL WINAPI FindClose(HANDLE hFindFile)
 {
 	if (hFindFile)
 	{
-		FIND_FILE_HANDLE *p = (FIND_FILE_HANDLE *)hFindFile;
+		FIND_FILE_HANDLE* p = (FIND_FILE_HANDLE*)hFindFile;
 		closedir((DIR*)p->fp);
 		free(p);
 		return TRUE;
@@ -224,7 +224,7 @@ BOOL GetSystemTime(SYSTEMTIME* systime)
 {
 	tm timeInfo;
 	Syscall_GetSystemTime(&timeInfo);
-	 
+
 	systime->wYear = timeInfo.tm_year;
 	systime->wMonth = timeInfo.tm_mon;
 	systime->wDayOfWeek = timeInfo.tm_wday;
@@ -246,7 +246,7 @@ int WideCharToMultiByte(
 	int cbMultiByte,
 	LPCSTR lpDefaultChar,
 	BOOL* lpUsedDefaultChar
-)
+	)
 {
 	if (lpWideCharStr == NULL) return 0;
 	if (lpMultiByteStr == NULL && cbMultiByte != 0)return 0;
@@ -379,7 +379,7 @@ int MultiByteToWideChar(
 	int cbMultiByte,
 	LPWSTR lpWideCharStr,
 	int cchWideChar
-)
+	)
 {
 	if (lpMultiByteStr == NULL) return 0;
 	if (lpWideCharStr == NULL && cchWideChar != 0)return 0;
@@ -490,7 +490,7 @@ int MultiByteToWideChar(
 BOOL SystemTimeToFileTime(
 	const SYSTEMTIME* lpSystemTime,
 	LPFILETIME lpFileTime
-)
+	)
 {
 	// 	CFGregorianDate gmtDate;
 	// 	gmtDate.year = lpSystemTime->wYear;
@@ -558,7 +558,7 @@ BOOL SystemTimeToFileTime(
 BOOL LocalFileTimeToFileTime(
 	const FILETIME* lpLocalFileTime,
 	LPFILETIME lpFileTime
-)
+	)
 {
 	// 	CFTimeZoneRef tzGMT0 = CFTimeZoneCreateWithName(kCFAllocatorDefault,CFSTR("Etc/GMT"),true);//Time Zone GMT+0
 	// 	CFTimeZoneRef tzGMTSys = CFTimeZoneCopySystem();//Time zone get from system
@@ -705,7 +705,7 @@ DWORD_PTR SetThreadAffinityMask(HANDLE hThread, DWORD_PTR dwThreadAffinityMask)
 	return Syscall_SetThreadAffinityMask(hThread, dwThreadAffinityMask);
 }
 
-DWORD WINAPI GetLastError(void) 
+DWORD WINAPI GetLastError(void)
 {
 	return Syscall_GetLastError();
 }
@@ -826,7 +826,7 @@ uintptr_t _beginthreadex( // NATIVE CODE
 	void* arglist,
 	unsigned initflag,
 	unsigned* thrdaddr
-)
+	)
 {
 	return Syscall_CreateThread(start_address, "user_thread", arglist, 16);
 }
@@ -942,7 +942,7 @@ DWORD WINAPI GetFileAttributes(LPCSTR lpFileName)
 		else
 			return FILE_ATTRIBUTE_READONLY;
 	}
-	
+
 	return 0;
 }
 
