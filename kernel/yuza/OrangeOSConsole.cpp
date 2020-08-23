@@ -26,7 +26,7 @@ void OrangeOSConsole()
 	//test_timers();
 	//kCreateProcess("console.dll", nullptr, 16);
 	
-	kCreateProcess("lua54.exe", nullptr, 16);
+	kCreateProcess("helloworld.exe", nullptr, 16);
 	//kCreateThread((THREAD_START_ENTRY)SystemIdle, "Systemidle", 0, 16);
 
 	//Debugger::GetInstance()->DebugKernel();

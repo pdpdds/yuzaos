@@ -172,7 +172,8 @@
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(TargetDir)*$(TargetExt)" "$(SolutionDir)\Bin\"</Command>
+      <Command>copy "$(TargetDir)*$(TargetExt)" "$(SolutionDir)\Bin\"
+copy "$(TargetDir)*.dll" "$(SolutionDir)\Bin\"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>revision.exe build msvc</Command>
