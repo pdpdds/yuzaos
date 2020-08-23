@@ -16,8 +16,6 @@ void OrangeOSConsole()
 	//TestCode();
 
 	kCreateProcess("console.dll", nullptr, 16);
-
-
 	WatchDogProc(0);
 	
 	//not reached
@@ -65,10 +63,8 @@ void PrintInfomation()
 	kprintf("build time %s %s\n\n", BUILD_DATE, BUILD_TIME);
 }
 
-
 #include <audio/_pci.h>
 #include <audio/audio.h>
-
 void TestCode()
 {
 

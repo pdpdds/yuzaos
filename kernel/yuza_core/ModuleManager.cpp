@@ -80,7 +80,10 @@ void* ModuleManager::LoadPE(const char* fileName, bool fromMemory)
 #if SKY_EMULATOR_DLL
 	void* hwnd = (void*)g_platformAPI._processInterface.sky_LoadLibrary(fileName);
 	if (hwnd == nullptr)
-		kPanic("LoadPE Fail. PEName:  %s\n", fileName);
+	{
+		kDebugPrint("LoadPE Fail. PEName:  %s\n", fileName);
+		return nullptr;
+	}
 
 	FixIAT(hwnd);
 	InitPE(hwnd);

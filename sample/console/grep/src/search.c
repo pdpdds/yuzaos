@@ -60,8 +60,9 @@ static void
 kwsinit (void)
 {
   static char trans[NCHAR];
-  char i = 0;
-
+  //20200820
+  //char i = 0;
+  int i = 0;
   if (match_icase)
     for (i = 0; i < NCHAR; ++i)
       trans[i] = TOLOWER (i);

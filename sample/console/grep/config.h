@@ -239,7 +239,7 @@
 #define HAVE_UNISTD_H 1
 
 /* Define if you have the unsigned long long type. */
-#define HAVE_UNSIGNED_LONG_LONG 1
+#define HAVE_UNSIGNED_LONG_LONG 0
 
 /* Define to 1 if you have the `vprintf' function. */
 #define HAVE_VPRINTF 0

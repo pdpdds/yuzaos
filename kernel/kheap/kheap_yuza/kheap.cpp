@@ -97,6 +97,7 @@ size_t kmalloc_size(void * ptr)
 //메모리 크기를 재조정한다.
 void* krealloc(void * ptr, size_t size) //메모리 크기를 재조정한다.
 {
+	InterruptDisabler disabler;
 	void *_new;
 	if (!ptr) { //기존 포인터가 널이면 size 크기의 새 버퍼를 생성하고 리턴한다.
 		_new = (void *)kmalloc(size);

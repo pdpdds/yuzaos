@@ -28,6 +28,7 @@
 #if HAVE_STDLIB_H
 # include <stdlib.h>
 #endif
+# include <stdio.h>
 
 #ifndef PARAMS
 # if defined PROTOTYPES || defined __STDC__
@@ -54,9 +55,9 @@ unsigned long long strtoull PARAMS ((char const *, char **, int));
 uintmax_t
 strtoumax (char const *ptr, char **endptr, int base)
 {
-#define USE_IF_EQUIVALENT(function) \
+/*#define USE_IF_EQUIVALENT(function) \
     if (sizeof (uintmax_t) == sizeof function (ptr, endptr, base)) \
-      return function (ptr, endptr, base);
+      
 
 #if HAVE_UNSIGNED_LONG_LONG
     USE_IF_EQUIVALENT (strtoull)
@@ -64,7 +65,8 @@ strtoumax (char const *ptr, char **endptr, int base)
 
   USE_IF_EQUIVALENT (strtoul)
 
-  abort ();
+  abort ();*/
+  return strtoul(ptr, endptr, base);
 }
 
 #ifdef TESTING

@@ -140,7 +140,7 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>ddk.lib;kheap_pretty.lib;yuzalib.lib;common.lib;systemcall.lib;yuza_core.lib;filemanager.lib;libconfig++.lib;libcrt.lib;win32stub.lib;math.lib;streams.lib</AdditionalDependencies>
+      <AdditionalDependencies>ddk.lib;kheap_yuza.lib;yuzalib.lib;common.lib;systemcall.lib;yuza_core.lib;filemanager.lib;libconfig++.lib;libcrt.lib;win32stub.lib;math.lib;streams.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>../../$(Configuration)/lib;../../$(Configuration);../../corelib/debug;../../runtime/debug;../../thirdparty/debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
