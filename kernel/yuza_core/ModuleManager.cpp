@@ -75,7 +75,7 @@ bool ModuleManager::Initialize()
 
 void* ModuleManager::LoadPE(const char* fileName, bool fromMemory)
 {
-	kprintf("LoadPE %s\n", fileName);
+	kDebugPrint("LoadPE %s\n", fileName);
 
 #if SKY_EMULATOR_DLL
 	void* hwnd = (void*)g_platformAPI._processInterface.sky_LoadLibrary(fileName);
@@ -122,14 +122,14 @@ bool ModuleManager::IsSystemPE(const char* moduleName)
 
 bool ModuleManager::UnloadPE(void* handle)
 {
-	kprintf("UnloadPE\n");
+	kDebugPrint("UnloadPE\n");
 
 #if SKY_EMULATOR_DLL
 	return (void*)g_platformAPI._processInterface.sky_FreeLibrary(handle);
 
 #endif
 	LOAD_DLL_INFO* info = (LOAD_DLL_INFO*)handle;
-	kprintf("UnloadDll %s\n", info->moduleName);
+	kDebugPrint("UnloadDll %s\n", info->moduleName);
 
 	bool res = UnloadDLL(info);
 	assert(res == true);

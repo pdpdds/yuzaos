@@ -182,7 +182,7 @@
       <EntryPointSymbol>
       </EntryPointSymbol>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>systemcall.lib;DllStub.lib;libcrt.lib;math.lib;filemanager.lib;stub.lib</AdditionalDependencies>
+      <AdditionalDependencies>systemcall.lib;DllStub.lib;libcrt.lib;math.lib;filemanager.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>../../$(Configuration);../../runtime/Debug;../../corelib/Debug</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>

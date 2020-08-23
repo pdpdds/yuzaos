@@ -7,29 +7,16 @@
 void PrintInfomation();
 DWORD WINAPI WatchDogProc(LPVOID parameter);
 DWORD WINAPI SystemIdle(LPVOID parameter);
+void TestCode();
 
-#include <audio/_pci.h>
-#include <audio/audio.h>
 void OrangeOSConsole()
 {
 	SkyConsole::Clear();
 	PrintInfomation();
-#if !defined(SKY_EMULATOR)	
-	pci_scan();
-	pci_installDevices();
-	audio_test(0);
-#endif
+	//TestCode();
 
-	//avl_tests();
-	//atomic_tests();
-	//cbuf_tests();
-	//test_timers();
-	//kCreateProcess("console.dll", nullptr, 16);
-	
-	kCreateProcess("helloworld.exe", nullptr, 16);
-	//kCreateThread((THREAD_START_ENTRY)SystemIdle, "Systemidle", 0, 16);
+	kCreateProcess("console.dll", nullptr, 16);
 
-	//Debugger::GetInstance()->DebugKernel();
 
 	WatchDogProc(0);
 	
@@ -45,8 +32,7 @@ DWORD WINAPI WatchDogProc(LPVOID parameter)
 	int pos = 0;
 	char* addr = (char*)TS_WATCHDOG_CLOCK_POS, status[] = { '-', '\\', '|', '/', '-', '\\', '|', '/' };
 	int first = kGetTickCount();
-	int j = 1;
-	kprintf("j %x\n", &j);
+	
 	while (1)
 	{
 		int second = kGetTickCount();
@@ -79,3 +65,24 @@ void PrintInfomation()
 	kprintf("build time %s %s\n\n", BUILD_DATE, BUILD_TIME);
 }
 
+
+#include <audio/_pci.h>
+#include <audio/audio.h>
+
+void TestCode()
+{
+
+#if !defined(SKY_EMULATOR)	
+	pci_scan();
+	pci_installDevices();
+	audio_test(0);
+#endif
+
+	avl_tests();
+	atomic_tests();
+	cbuf_tests();
+	test_timers();
+
+	//kCreateThread((THREAD_START_ENTRY)SystemIdle, "Systemidle", 0, 16);
+	//Debugger::GetInstance()->DebugKernel();
+}

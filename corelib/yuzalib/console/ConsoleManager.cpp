@@ -133,8 +133,6 @@ long processCommandLine(const char *a_szCommand)
 		}
 	}
 
-	printf("Command not found....\n");
-
 	return result;
 }
 
@@ -159,7 +157,8 @@ bool ConsoleManager::RunCommand(const char* buf)
 		return true;	
 	}
 
-	processCommandLine(buf);
+	if(false == processCommandLine(buf))
+		printf("Command not found....\n");
 
 	return false;
 }
