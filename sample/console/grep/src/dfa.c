@@ -120,7 +120,7 @@ extern void free();
 # include <wctype.h>
 #endif
 
-#include <regex.h>
+#include "regex.h"
 #include "dfa.h"
 #include "hard-locale.h"
 
@@ -2603,8 +2603,6 @@ match_mb_charset (struct dfa *d, int s, position pos, int index)
     }
 
   /* match with a character?  */
-  if (case_fold)
-    wc = towlower (wc);
   for (i = 0; i<work_mbc->nchars; i++)
     {
       if (wc == work_mbc->chars[i])

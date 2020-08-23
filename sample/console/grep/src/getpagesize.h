@@ -61,8 +61,4 @@
 # endif
 #endif
 
-#ifndef getpagesize
-# define getpagesize() 512
-#endif /* getpagesize */
-
 #endif /* not HAVE_GETPAGESIZE */

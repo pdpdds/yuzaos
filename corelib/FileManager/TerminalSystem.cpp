@@ -134,8 +134,16 @@ int TerminalSystem::Read(PFILE file, unsigned char* buffer, unsigned int size, i
 
 size_t TerminalSystem::Write(PFILE file, unsigned char* buffer, unsigned int size, int count)
 {
-	printf((const char*)buffer);
-	return strlen((const char*)buffer);
+	if (size * count <= 0)
+		return 0;
+
+	char* buf = new char[size * count + 1];
+	memset(buf, 0, size * count);
+	memcpy(buf, buffer, size * count);
+	buf[size * count] = 0;
+	printf((const char*)buf);
+	free(buf);
+	return size * count;
 }
 
 int TerminalSystem::fputs(char const* buffer, FILE* _Stream)

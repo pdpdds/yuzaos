@@ -23,6 +23,7 @@
 #endif
 
 #include <sys/types.h>
+
 #include "mbsupport.h"
 #ifdef MBS_SUPPORT
 /* We can handle multibyte strings. */
@@ -42,9 +43,6 @@
 #ifdef HAVE_LIBPCRE
 # include <pcre.h>
 #endif
-#ifdef HAVE_LANGINFO_CODESET
-# include <langinfo.h>
-#endif
 
 #define NCHAR (UCHAR_MAX + 1)
 
@@ -60,9 +58,8 @@ static void
 kwsinit (void)
 {
   static char trans[NCHAR];
-  //20200820
-  //char i = 0;
-  int i = 0;
+  int i;
+
   if (match_icase)
     for (i = 0; i < NCHAR; ++i)
       trans[i] = TOLOWER (i);
@@ -86,15 +83,6 @@ static struct patterns
 
 struct patterns *patterns;
 size_t pcount;
-
-void
-check_utf8 (void)
-{
-#ifdef HAVE_LANGINFO_CODESET
-  if (strcmp (nl_langinfo (CODESET), "UTF-8") == 0)
-    using_utf8 = 1;
-#endif
-}
 
 void
 dfaerror (char const *mesg)
@@ -204,7 +192,7 @@ GEAcompile (char const *pattern, size_t size, reg_syntax_t syntax_bits)
   const char *sep;
   size_t total = size;
   char const *motif = pattern;
-  //20200706
+
 #if 0
   if (match_icase)
     syntax_bits |= RE_ICASE;
@@ -244,14 +232,6 @@ GEAcompile (char const *pattern, size_t size, reg_syntax_t syntax_bits)
 
       motif = sep;
     } while (sep && total != 0);
-
-  /* Strip trailing newline. */
-  if (size && pattern[size - 1] == '\n')
-    size--;
-
-  /* Strip trailing newline. */
-  if (size && pattern[size - 1] == '\n')
-    size--;
 
   /* In the match_words and match_lines cases, we use a different pattern
      for the DFA matcher that will quickly throw out cases that won't work.

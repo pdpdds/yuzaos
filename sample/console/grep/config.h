@@ -108,7 +108,7 @@
 #define HAVE_ISASCII 1
 
 /* Define to 1 if you have the `iswctype' function. */
-#define HAVE_ISWCTYPE 1
+//#define HAVE_ISWCTYPE 1
 
 /* Define if you have <langinfo.h> and nl_langinfo(CODESET). */
 /* #undef HAVE_LANGINFO_CODESET */

@@ -23,12 +23,7 @@
 # include <config.h>
 #endif
 #include <sys/types.h>
-#include <stat_def.h>
-
-# define O_RDONLY 0
-
-
-//#define stat _stati64
+//#include <sys/stat.h>
 #if defined(HAVE_MMAP)
 # include <sys/mman.h>
 #endif
@@ -38,12 +33,6 @@
 #endif
 #include "mbsupport.h"
 #ifdef MBS_SUPPORT
-# include <wchar.h>
-# include <wctype.h>
-#endif
-#if defined HAVE_WCTYPE_H && defined HAVE_WCHAR_H && defined HAVE_MBRTOWC
-/* We can handle multibyte string.  */
-# define MBS_SUPPORT
 # include <wchar.h>
 # include <wctype.h>
 #endif
@@ -58,7 +47,7 @@
 #include "error.h"
 #include "exclude.h"
 #include "closeout.h"
-
+#include <getenv.h>
 #undef MAX
 #define MAX(A,B) ((A) > (B) ? (A) : (B))
 
@@ -424,7 +413,7 @@ context_length_arg(char const* str, int* out)
 static char* buffer;		/* Base of buffer. */
 static size_t bufalloc;		/* Allocated buffer size, counting slop. */
 #define INITIAL_BUFSIZE 32768	/* Initial buffer size, not counting slop. */
-static int bufdesc;		/* File descriptor. */
+static FILE* bufdesc;		/* File descriptor. */
 static char* bufbeg;		/* Beginning of user-visible stuff. */
 static char* buflim;		/* Limit of user-visible stuff. */
 static size_t pagesize;		/* alignment of memory pages */
@@ -450,10 +439,11 @@ static off_t initial_bufoffset;	/* Initial value of bufoffset. */
 					  /* Reset the buffer for a new file, returning zero if we should skip it.
 						 Initialize on the first time through. */
 static int
-reset(int fd, char const* file, struct stats* stats)
+reset(FILE* fp, char const* file, struct stats* stats)
 {
 	if (!pagesize)
 	{
+		//20200823
 		pagesize = 4096;
 		if (pagesize == 0 || 2 * pagesize + 1 <= pagesize)
 			abort();
@@ -463,7 +453,7 @@ reset(int fd, char const* file, struct stats* stats)
 
 	bufbeg = buflim = ALIGN_TO(buffer + 1, pagesize);
 	bufbeg[-1] = eolbyte;
-	bufdesc = fd;
+	bufdesc = fp;
 
 	if (S_ISREG(stats->stat.st_mode))
 	{
@@ -471,9 +461,7 @@ reset(int fd, char const* file, struct stats* stats)
 			bufoffset = 0;
 		else
 		{
-			//20200706
-			bufoffset = fseek((FILE*)fd, 0, SEEK_CUR);
-			//bbufoffset = seek(fd, 0, SEEK_CUR);
+			bufoffset = fseek(fp, 0, SEEK_CUR);
 			if (bufoffset < 0)
 			{
 				error(0, errno, "lseek");
@@ -505,12 +493,6 @@ fillbuf(size_t save, struct stats const* stats)
 	int cc = 1;
 	char* readbuf;
 	size_t readsize;
-	const size_t max_save = 200 * 1024 * 1024;
-
-	/* Limit the amount of saved data to 200Mb so we don't fail on
-	 * large files. */
-	if (save > max_save)
-		save = max_save;
 
 	/* Offset from start of buffer to start of old stuff
 	   that we want to save.  */
@@ -607,14 +589,13 @@ fillbuf(size_t save, struct stats const* stats)
 				cc = 0;
 			}
 		}
-		fputs("\33[K", stdout);
 	}
 #endif /*HAVE_MMAP*/
 
 	if (!fillsize)
 	{
 		ssize_t bytesread;
-		while ((bytesread = fread(readbuf, readsize, 1, (FILE*)bufdesc)) < 0
+		while ((bytesread = fread(readbuf, readsize, 1, bufdesc)) < 0
 			&& errno == EINTR)
 			continue;
 		if (bytesread < 0)
@@ -1099,7 +1080,7 @@ grepbuf(char const* beg, char const* lim)
    but if the file is a directory and we search it recursively, then
    return -2 if there was a match, and -1 otherwise.  */
 static int
-grep(int fd, char const* file, struct stats* stats)
+grep(FILE* fp, char const* file, struct stats* stats)
 {
 	int nlines, i;
 	int not_text;
@@ -1109,7 +1090,7 @@ grep(int fd, char const* file, struct stats* stats)
 	char* lim;
 	char eol = eolbyte;
 
-	if (!reset(fd, file, stats))
+	if (!reset(fp, file, stats))
 		return 0;
 
 	if (file && directories == RECURSE_DIRECTORIES
@@ -1117,10 +1098,8 @@ grep(int fd, char const* file, struct stats* stats)
 	{
 		/* Close fd now, so that we don't open a lot of file descriptors
 	   when we recurse deeply.  */
-		//20200706
-		fclose((FILE*)fd);
-		/*if (close(fd) != 0)
-			error(0, errno, "%s", file);*/
+		if (fclose(fp) != 0)
+			error(0, errno, "%s", file);
 		return grepdir(file, stats) - 2;
 	}
 
@@ -1234,7 +1213,7 @@ finish_grep:
 static int
 grepfile(char const* file, struct stats* stats)
 {
-	int desc;
+	FILE* desc;
 	int count;
 	int status;
 
@@ -1253,21 +1232,15 @@ grepfile(char const* file, struct stats* stats)
 		if (directories == SKIP_DIRECTORIES && S_ISDIR(stats->stat.st_mode))
 			return 1;
 #ifndef DJGPP
-		if (devices == SKIP_DEVICES && (S_ISCHR(stats->stat.st_mode) || S_ISBLK(stats->stat.st_mode)
-#ifdef S_IFSOCK
-			|| S_ISSOCK(stats->stat.st_mode)
-#endif /* S_IFSOCK */
-			|| S_ISFIFO(stats->stat.st_mode)))
+		if (devices == SKIP_DEVICES && (S_ISCHR(stats->stat.st_mode) || S_ISBLK(stats->stat.st_mode) || S_ISSOCK(stats->stat.st_mode) || S_ISFIFO(stats->stat.st_mode)))
 #else
 		if (devices == SKIP_DEVICES && (S_ISCHR(stats->stat.st_mode) || S_ISBLK(stats->stat.st_mode)))
 #endif
 			return 1;
-		//20200706
-		//while ((desc = open(file, O_RDONLY)) < 0 && errno == EINTR)
-		while ((desc = fopen(file, "rb")) == 0)
+		while ((desc = fopen(file, "rb")) < 0 && errno == EINTR)
 			continue;
 
-		if (desc == 0)
+		if (desc < 0)
 		{
 			int e = errno;
 
@@ -1341,31 +1314,26 @@ grepfile(char const* file, struct stats* stats)
 
 		if (!file)
 		{
-			//20200706
 			off_t required_offset = outleft ? bufoffset : after_last_match;
 			if ((bufmapped || required_offset != bufoffset)
-				&& fseek((FILE*)desc, required_offset, SEEK_SET) < 0
-				&& (stats->stat.st_mode == 1))//S_ISREG(stats->stat.st_mode)) 
+				&& fseek(desc, required_offset, SEEK_SET) < 0
+				&& S_ISREG(stats->stat.st_mode))
 				error(0, errno, "%s", filename);
 		}
 		else
-		{
-			//20200706
-			fclose((FILE*)desc);
-			/*while (close(desc) != 0)
+			while (fclose(desc) != 0)
 				if (errno != EINTR)
 				{
 					error(0, errno, "%s", file);
 					break;
-				}*/
-		}
+				}
 	}
 
 	return status;
 }
 
 static int
-grepdir(const char* dir, struct stats const* stats)
+grepdir(char const* dir, struct stats const* stats)
 {
 	struct stats const* ancestor;
 	char* name_space;
@@ -2134,14 +2102,16 @@ int grep_main(int argc, char** argv)
 			}
 			else
 				color_option = 2;
-			if (color_option == 2) {
-				//20200706
-				/*if (isatty(STDOUT_FILENO) && getenv("TERM") &&
+			//20200823
+			if (color_option == 2)
+				color_option = 0;
+			/*if (color_option == 2) {
+				if (isatty(STDOUT_FILENO) && getenv("TERM") &&
 					strcmp(getenv("TERM"), "dumb"))
 					color_option = 1;
-				else*/
+				else
 					color_option = 0;
-			}
+			}*/
 			break;
 
 		case EXCLUDE_OPTION:
@@ -2242,6 +2212,9 @@ There is NO WARRANTY, to the extent permitted by law.\n"),
 			out_invert ^= 1;
 			match_lines = match_words = 0;
 		}
+		else
+			/* Strip trailing newline. */
+			--keycc;
 	}
 	else
 		if (optind < argc)
@@ -2277,7 +2250,7 @@ There is NO WARRANTY, to the extent permitted by law.\n"),
 #ifdef SET_BINARY
 	/* Output is set to binary mode because we shouldn't convert
 	   NL to CR-LF pairs, especially when grepping binary files.  */
-	if (!isatty(1) && (binary_files != TEXT_BINARY_FILES))
+	if (!isatty(1))
 		SET_BINARY(1);
 #endif
 
@@ -2306,6 +2279,8 @@ There is NO WARRANTY, to the extent permitted by law.\n"),
 	}
 	else
 		status = grepfile((char*)NULL, &stats_base);
+
+	return 0;
 
 	/* We register via atexit() to test stdout.  */
 	exit(errseen ? 2 : status);
