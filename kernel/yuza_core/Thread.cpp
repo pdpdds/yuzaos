@@ -213,7 +213,15 @@ void Thread::SetTeam(Team *team)
 
 	// Threading is ready to go... start the Grim Reaper.
 	// This is kind of a weird side effect, the function should be more explicit.
+
+#if SKY_EMULATOR
+
+	kCreateThread(GrimReaper, "Grim Reaper", this, 30);
+
+#else
 	new Thread("Grim Reaper", team, GrimReaper, this, 30);
+#endif
+
 }
 
 // This is the constructor for bootstrap thread.  There is less state to

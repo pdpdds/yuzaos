@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <SkyInputHandler.h>
 #include <systemcall_impl.h>
 #include <time.h>
 
@@ -13,8 +12,7 @@ int main(int argc, char** argv)
 	timeinfo = localtime(&rawtime);
 	printf("Current local time and date: %s", asctime(timeinfo));
 
-
-	Syscall_Sleep(3000);
+	//Syscall_Sleep(1000);
 
 	return 0;
 }

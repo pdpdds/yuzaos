@@ -86,7 +86,7 @@ void* kmalloc(size_t size)
 size_t kmalloc_size(void * ptr)
 {
 	InterruptDisabler disabler;
-	header_t *header = (header_t*)((u32int)ptr - sizeof(header_t));
+	header_t *header = (header_t*)((char*)ptr - sizeof(header_t));
 	size_t ptrSize = header->size - sizeof(header_t) - sizeof(footer_t);
 	
 	SKY_ASSERT(ptrSize > 0, "malloc_size must return more 0!!");

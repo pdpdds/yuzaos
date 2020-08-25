@@ -8,6 +8,20 @@
 #include <string.h>
 #include <GUIConsoleFramework.h>
 
+void TestGrep()
+{
+	ConsoleManager manager;
+
+	//char	commandBuffer[MAXPATH] = "grep.exe IDE driver_config.cfg";
+	char	commandBuffer[MAXPATH] = "helloworld.exe";
+
+	while (1)
+	{				
+		manager.RunCommand(commandBuffer);		
+		Syscall_Sleep(100);
+	}
+}
+
 void NativeConsole()
 {
 	ConsoleManager manager;
@@ -32,7 +46,7 @@ int main_impl(int argc, char** argv)
 {
 	printf("%s\nConsole Mode Start!!\n", (char*)argv[0]);
 	//Test();
-
+	TestGrep();
 	NativeConsole();
 
 	printf("Bye!!\n");

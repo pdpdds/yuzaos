@@ -62,8 +62,8 @@ bool ModuleManager::Initialize()
 	SKY_ASSERT(handle != nullptr, "math.dll");
 	m_systemPEList.push_back((LOAD_DLL_INFO*)handle);
 	
-	handle = LoadPE("libconfig++.dll", true);
-	SKY_ASSERT(handle != nullptr, "libconfig++.dll");
+	handle = LoadPE("libconfig.dll", true);
+	SKY_ASSERT(handle != nullptr, "libconfig.dll");
 	m_systemPEList.push_back((LOAD_DLL_INFO*)handle);
 
 	/*handle = LoadPE("libwin32.dll", true);
