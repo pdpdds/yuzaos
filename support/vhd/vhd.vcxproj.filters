@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="vhdtool.c" />
+    <ClCompile Include="getopt.c" />
+    <ClCompile Include="uuid_parse.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="getopt.h" />
+    <ClInclude Include="uuid.h" />
+    <ClInclude Include="vhd.h" />
+  </ItemGroup>
+</Project>
