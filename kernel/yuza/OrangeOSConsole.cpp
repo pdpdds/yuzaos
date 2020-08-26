@@ -15,7 +15,9 @@ void OrangeOSConsole()
 	PrintInfomation();
 	//TestCode();
 
-	kCreateProcess("console.dll", nullptr, 16);
+	HANDLE handle = kCreateProcess("console.dll", nullptr, 16);
+	//SKY_ASSERT(handle != 0, "console.dll exec fail!!\n");
+
 	WatchDogProc(0);
 	
 	//not reached

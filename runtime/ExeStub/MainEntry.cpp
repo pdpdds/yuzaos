@@ -86,7 +86,11 @@ void TrickCode()
 extern "C" int __declspec(dllexport) MainCRTStartup(void* args)
 {
 	InitializeConstructors();
+	thread_storage_t    Tls;
+	tls_create(&Tls);
 	int result = MainCRTStartupDLL(args);
+	tls_cleanup(thrd_current(), NULL, 0);
+	tls_destroy(tls_current());
 	Exit();
 	
 	return result;

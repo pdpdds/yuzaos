@@ -178,9 +178,8 @@ static int UserThreadEntry(void* parameter)
 	}
 	else
 	{
-		//thread_storage_t    Tls;
-
-		//tls_create(&Tls);
+		thread_storage_t    Tls;
+		tls_create(&Tls);
 
 		/*char* str = (char*)kmalloc(256);
 		sprintf(str, "tls test : %s\n", pParam->name);
@@ -194,8 +193,8 @@ static int UserThreadEntry(void* parameter)
 		kDebugPrint("UserThread Start %s %x %x\n", (char*)pParam->name, pParam->entryPoint, parameter);
 		int res = pParam->entryPoint(pParam->param);
 		
-		//tls_cleanup(thrd_current(), NULL, res);
-		//tls_destroy(tls_current());
+		tls_cleanup(thrd_current(), NULL, res);
+		tls_destroy(tls_current());
 	}
 
 	kExitThread(0);

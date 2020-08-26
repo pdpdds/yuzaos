@@ -149,7 +149,7 @@ void KernelThreadProc()
 	//윈도우 로더가 아니므로 DLL을 링크했다 하더라도 DLL이 로드된 것은 아니므로
 		//임포트 DLL을 분석해서 메모리에 올리고 임포트 함수의 정확한 주소를 임포트 테이블에 연결한다.
 	FixIAT((void*)g_bootParams._memoryInfo._kernelBase);
-
+	
 	//EXE를 재배치시킨다.
 #if !SKY_EMULATOR
 	RelocatePE(g_bootParams._memoryInfo._kernelBase, g_bootParams._memoryInfo._kernelSize, 0x80000000);
@@ -398,9 +398,10 @@ bool InitEnvironment()
 	/* Read the file. If there is an error, report it and exit. */
 	if (!config_read_file(&cfg, config_file))
 	{
+		kPanic("driver config file load fail : %s", config_file);
 		kDebugPrint("%s:%d - %s\n", config_file, config_error_line(&cfg), config_error_text(&cfg));
 		config_destroy(&cfg);
-		kPanic("driver config file load fail : %s", config_file);
+		
 	}
 	
 	if (!config_lookup_string(&cfg, "name", &str))
@@ -441,10 +442,11 @@ bool InitStorageSystem()
 
 	AddStorageModule(cfg, "storage.IDE", true);
 	kSetCurrentDriveId('C');
-	AddStorageModule(cfg, "storage.FLOPPY", true);
-	AddStorageModule(cfg, "storage.USB", true);
-	AddStorageModule(cfg, "storage.RAM", false);
-	kSetCurrentDriveId('C');
+	
+	//AddStorageModule(cfg, "storage.FLOPPY", true);
+	//AddStorageModule(cfg, "storage.USB", true);
+	//AddStorageModule(cfg, "storage.RAM", false);
+	//kSetCurrentDriveId('C');
 	config_destroy(&cfg);
 	
 	return true;

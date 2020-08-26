@@ -57,17 +57,20 @@ bool FileManager::MakeFullPath(char* fullpath, char* fname, int size)
 PFILE FileManager::OpenFile(const char* fname, const char *mode)
 {
 	I_FileSystem* pFileSys = GetFileSystem(0);
-
+	
 	if (pFileSys == 0 || strlen(fname) == 0)
+	{
+		printf("FileManager::OpenFile %d %d\n", pFileSys, strlen(fname));
 		return 0;
-
+	}
 	PFILE fp = 0;
 	char fullPath[MAX_PATH];
 
 	bool result = MakeFullPath(fullPath, (char*)fname, MAX_PATH);
+
 	if (result == true)
 	{
-		fp =  pFileSys->Open(fullPath, mode);
+		fp = pFileSys->Open(fullPath, mode);
 
 		if (fp)
 			return fp;
@@ -171,6 +174,8 @@ I_FileSystem* FileManager::GetFileSystem(FILE* stream)
 
 	if (pAdaptor)
 		return pAdaptor->GetFileSystem();
+
+	printf("pAdaptor is null %d\n", drive);
 
 	return NULL;
 }

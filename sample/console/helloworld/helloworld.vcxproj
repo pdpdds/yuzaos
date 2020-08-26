@@ -162,6 +162,7 @@
       <ForceSymbolReferences>
       </ForceSymbolReferences>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <AdditionalOptions>/ALIGN:1024 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>

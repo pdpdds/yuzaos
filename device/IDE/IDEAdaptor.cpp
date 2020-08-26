@@ -164,6 +164,8 @@ bool IDEAdaptor::Initialize(I_FileSystem* pFileSystem, void* arg)
 	}
 	else result = m_pFileSystem->Initialize(&g_io_interface);
 
+	printf("IDEAdaptor::Initialize %d %d \n", result, g_emulation);
+
 	if (result == false)
 		return false;
 

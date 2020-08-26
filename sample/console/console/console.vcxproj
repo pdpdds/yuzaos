@@ -145,7 +145,7 @@
       <ForceSymbolReferences>
       </ForceSymbolReferences>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalOptions>/FILEALIGN:4096 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/ALIGN:1024 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>

@@ -42,6 +42,7 @@ extern "C" bool SetCurrentDirectory(const char* lpPathName)
 //File Service Call Routine
 FILE* fopen(const char* filename, const char* mode)
 {
+	
 	FILE* fp = g_pFileManager->OpenFile(filename, mode);
 
 	//printf("FileService fopen %s %x\n", filename, fp);

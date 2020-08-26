@@ -105,8 +105,9 @@ int
 tls_destroy(
     _In_ thread_storage_t*  Tls)
 {
-	//20190708
-    /*if (Tls->transfer_buffer != NULL) {
+	
+    /*if (Tls->transfer_buffer != NULL) 
+    {
         DestroyBuffer(Tls->transfer_buffer);
     }*/
     return 0;

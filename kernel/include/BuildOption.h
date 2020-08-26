@@ -12,7 +12,7 @@
 #define KERNEL32_NAME		"yuza.exe"
 #define KERNEL64_NAME		"yuza64.exe"
 
-#define SKY_EMULATOR 1
+#define SKY_EMULATOR 0
 
 #if SKY_EMULATOR
 #define SKY_EMULATOR_DLL 1

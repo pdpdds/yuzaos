@@ -144,9 +144,7 @@
       </AddModuleNamesToAssembly>
       <ForceSymbolReferences>
       </ForceSymbolReferences>
-      <AdditionalOptions>/safeseh:no /ALIGN:1024
- /SUBSYSTEM:CONSOLE
-/NODEFAULTLIB:LIBC %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/safeseh:no /ALIGN:1024 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>
