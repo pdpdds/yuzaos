@@ -100,7 +100,9 @@ void Thread::Exit()
 {
 	kDebugPrint("ExitThread \n" );
 
+#ifndef SKY_EMULATOR 
 	ASSERT(GetRunningThread() == this);
+#endif
 
 	int fl = DisableInterrupts();
 	SetState(kThreadDead);
@@ -244,19 +246,14 @@ Thread::Thread(const char name[])
 }
 
 Thread::~Thread()
-{
-	static int j = 0;
-	if (fKernelStack)
-	{
-		printf("%d %x %x\n", j, fKernelStack->GetBaseAddress(), fKernelStack->GetSize());
-		j++;
+{	
+	if (fKernelStack)	
 		AddressSpace::GetKernelAddressSpace()->DeleteArea(fKernelStack);
-	}
-		//20190623 Critical*/
+			
 	if (fUserStack)
 		fTeam->GetAddressSpace()->DeleteArea(fUserStack);
 
-	printf("ThreadTerminated\n");
+	printf("Thread Terminated. id : %d, name : %s\n", this, GetName());
 	fTeam->ThreadTerminated(this);
 }
 

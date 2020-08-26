@@ -285,6 +285,8 @@ static DWORD RunSkyThread(void* data)
 
 	delete pThreadParms;
 	threadEntry(args);
+	pSkyThread->Exit();
+
 	return (0);
 }
 #endif
@@ -292,6 +294,21 @@ static DWORD RunSkyThread(void* data)
 ///////////////////////////////////////////////////////////////////////////////////
 //SystemAPI Implementation
 ///////////////////////////////////////////////////////////////////////////////////
+HANDLE kCreateThread_temp(THREAD_START_ENTRY entry, const char* name, void* data, int priority, Team* team)
+{
+	Thread* pSkyThread = new Thread(name, team, entry, data, priority);
+	ThreadStartParms* pStartParam = new ThreadStartParms;
+	pStartParam->threadEntry = entry;
+	strcpy(pStartParam->threadName, name);
+	pStartParam->data = data;
+	pStartParam->pSkyThread = pSkyThread;
+
+	int thread = g_platformAPI._processInterface.sky_kCreateThread(Thread::GetRunningThread()->GetCurrentThreadId(), (LPTHREAD_START_ROUTINE)RunSkyThread, pStartParam);
+	pSkyThread->m_handle = (HANDLE)thread;
+	return (HANDLE)thread;
+}
+
+
 HANDLE kCreateThread(THREAD_START_ENTRY entry, const char* name, void* data, int priority)
 {
 #if SKY_EMULATOR
@@ -449,7 +466,7 @@ HANDLE kCreateProcess(const char* execPath, void* param, int priority)
 	kDebugPrint("CreateProcess %x %s %d\n", mainFunc, path, priority);
 
 	Team* newTeam = TeamManager::GetInstance()->CreateTeam(path);
-	HANDLE hwnd = (void*)kCreateThread(mainFunc, path, args, 15);
+	HANDLE hwnd = (void*)kCreateThread_temp(mainFunc, path, args, 15, newTeam);
 
 	newTeam->m_mainThreadHandle = hwnd;
 	newTeam->m_moduleHandle = moduleHandle;
