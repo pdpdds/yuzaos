@@ -7,10 +7,12 @@
 #include <intrinsic.h>
 #include <atomic.h>
 #include <kmalloc.h>
+#include <Debugger.h>
 
-void kSysCallTest()
+void kSysCallTest(char* command)
 {
 	kprintf("System Call Test\n");
+	Debugger::GetInstance()->ExecuteCommand(command);
 }
 
 void kHaltSystem(const char* errMsg);

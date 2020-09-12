@@ -142,6 +142,7 @@
     <ClCompile Include="PEImage.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="yuza_support.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AddressSpace.h">
@@ -294,6 +295,7 @@
     <ClInclude Include="SkyGUIConsole.h" />
     <ClInclude Include="FileMappingObject.h" />
     <ClInclude Include="GRUBManupulation.h" />
+    <ClInclude Include="yuza_support.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="MemorySystem">

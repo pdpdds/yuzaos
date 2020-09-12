@@ -76,6 +76,7 @@
     <ClCompile Include="ThreadContext.cpp" />
     <ClCompile Include="TimeFunction.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="yuza_support.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ACPI\acpi.h" />
@@ -138,6 +139,7 @@
     <ClInclude Include="ThreadContext.h" />
     <ClInclude Include="TimeFunction.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="yuza_support.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="core_asm.asm">
@@ -226,7 +228,7 @@
       <StructMemberAlignment>Default</StructMemberAlignment>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
-      <AssemblerOutput>NoListing</AssemblerOutput>
+      <AssemblerOutput>All</AssemblerOutput>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <CallingConvention>Cdecl</CallingConvention>

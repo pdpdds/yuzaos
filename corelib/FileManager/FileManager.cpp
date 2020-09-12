@@ -86,7 +86,7 @@ int FileManager::ReadFile(PFILE file, unsigned char* Buffer, unsigned int size, 
 	if (file && pFileSys)
 		return pFileSys->Read(file, Buffer, size, count);
 
-	printf("fread stream is null\n");
+	printf("fread stream is null %x\n", file);
 
 	return 0;
 }

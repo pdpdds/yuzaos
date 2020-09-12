@@ -149,7 +149,7 @@ void BuildBootParam(BootParams* pBootParams, multiboot_info_t* pBootInfo, char* 
 	}
 }
 
-int GetSutableHeapSize(UINT64 memorySize)
+UINT32 GetSutableHeapSize(UINT64 memorySize)
 {
 	if (memorySize < 16 * 1024 * 1024)
 	{
@@ -194,6 +194,7 @@ bool MapHeap(BootParams* pBootParams)
 {
 	//전체 메모리 크기를 통해 적절한 힙 프레임 카운트 계산
 	pBootParams->_memoryInfo._kHeapSize = GetSutableHeapSize(pBootParams->_memoryInfo._memorySize);
+
 	VirtualMemoryManager::MapAddress(VirtualMemoryManager::GetKernelPageDirectory(), kHeapBase, pBootParams->_memoryInfo._kHeapSize / PAGE_SIZE);
 
 	pBootParams->_memoryInfo._kHeapBase = VirtualMemoryManager::GetPhysicalAddress(VirtualMemoryManager::GetKernelPageDirectory(), kHeapBase);

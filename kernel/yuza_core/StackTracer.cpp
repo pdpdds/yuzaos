@@ -199,7 +199,7 @@ void StackTracer::TraceStackWithProcessId(int processId)
 
 bool StackTracer::Init(const char* moduleName)
 {
-	m_moduleHwnd = ModuleManager::GetInstance()->LoadPE(moduleName);
+	m_moduleHwnd = ModuleManager::GetInstance()->LoadPE(moduleName, true);
 	GetDebugEngineDLLInterface = (PGetDebugEngineDLL)ModuleManager::GetInstance()->GetModuleFunction(m_moduleHwnd, "GetDebugEngineDLL");
 
 	if (!GetDebugEngineDLLInterface)

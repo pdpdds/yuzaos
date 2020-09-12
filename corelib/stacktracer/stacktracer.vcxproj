@@ -36,11 +36,11 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{57C9E365-9634-40BC-A313-3AAAF8FDD581}</ProjectGuid>
+    <ProjectGuid>{11360EA7-B919-44E7-9F7E-2AA6985058B5}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>SampleDll</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>libconfig</ProjectName>
+    <ProjectName>stacktracer</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -126,7 +126,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
-    <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DEBUG_WIN32|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -137,7 +136,6 @@
     <LinkIncremental>true</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
     <OutDir>$(SolutionDir)Debug\</OutDir>
-    <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -150,7 +148,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)Debug\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -160,7 +157,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>SKYOS32;LIBCONFIG_EXPORTS;YY_NO_UNISTD_H;YY_USE_CONST;</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SKY_DLL;SKYOS32;_CRT_SECURE_NO_WARNINGS;MAPFILEDLL_EXPORTS;_X86_;_DEBUG;_MSC_VER</PreprocessorDefinitions>
       <SDLCheck>false</SDLCheck>
       <MinimalRebuild>false</MinimalRebuild>
       <ExceptionHandling>false</ExceptionHandling>
@@ -169,18 +166,15 @@
       <StructMemberAlignment>Default</StructMemberAlignment>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <AdditionalOptions>/Oy %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4819</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>../include;../../runtime/include;../../corelib/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../include;../../runtime/include;../../corelib/stl/sgi;../../corelib\streams</AdditionalIncludeDirectories>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalOptions>/Oy  /arch:SSE %(AdditionalOptions)</AdditionalOptions>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <AssemblerOutput>All</AssemblerOutput>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <FullProgramDatabaseFile>true</FullProgramDatabaseFile>
       <GenerateMapFile>true</GenerateMapFile>
@@ -188,18 +182,20 @@
       <EntryPointSymbol>
       </EntryPointSymbol>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>systemcall.lib;DllStub.lib;libcrt.lib;filemanager.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../../runtime/Debug;../../corelib/Debug;../../debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libcrt.lib;dllstub.lib;systemcall.lib;streams.lib;filemanager.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration);../../runtime/debug;../Debug</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <DataExecutionPrevention>true</DataExecutionPrevention>
-      <AdditionalOptions>/ALIGN:1024 %(AdditionalOptions)</AdditionalOptions>
-      <OptimizeReferences>true</OptimizeReferences>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <BaseAddress>
+      </BaseAddress>
+      <OptimizeReferences>false</OptimizeReferences>
+      <EnableCOMDATFolding>false</EnableCOMDATFolding>
+      <AdditionalOptions>/safeseh:no /ALIGN:1024 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <ProjectReference>
-      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
   </ItemDefinitionGroup>
@@ -208,7 +204,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>SKY_DLL;SKYOS32;_CRT_SECURE_NO_WARNINGS ;_X86_;_DEBUG;./pixman</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SKY_DLL;SKYOS32;_CRT_SECURE_NO_WARNINGS;MAPFILEDLL_EXPORTS;_X86_;_DEBUG</PreprocessorDefinitions>
       <SDLCheck>false</SDLCheck>
       <MinimalRebuild>false</MinimalRebuild>
       <ExceptionHandling>false</ExceptionHandling>
@@ -219,7 +215,7 @@
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <AdditionalOptions>/Oy %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4819</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>../../../CommonLib/stl;../../../CommonLib;../../../include;../../../Module/Include;../../../CommonLib/CPlusPlus;../../DllStub;./libpng;./zlib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../CommonLib/stl;../../../CommonLib;../../../include;../../../Module/Include;.;../../DllStub</AdditionalIncludeDirectories>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
       <OmitFramePointers>true</OmitFramePointers>
@@ -232,12 +228,16 @@
       <MapFileName>$(OutDir)$(TargetName).map</MapFileName>
       <EntryPointSymbol>_DllMainCRTStartup</EntryPointSymbol>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>CommonLib.lib;DllStub.lib;</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../../Debug;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>CommonLib.lib;DllStub.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../Debug</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <DataExecutionPrevention>true</DataExecutionPrevention>
+      <BaseAddress>
+      </BaseAddress>
+      <OptimizeReferences>false</OptimizeReferences>
+      <EnableCOMDATFolding>false</EnableCOMDATFolding>
       <OutputFile>../../debug/$(TargetName)$(TargetExt)</OutputFile>
     </Link>
     <ProjectReference>
@@ -250,7 +250,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>SKYOS32;YY_NO_UNISTD_H;YY_USE_CONST;CRTDLL;LIBCONFIG_EXPORTS;_MSC_VER=1920</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SKY_DLL;SKYOS32;_CRT_SECURE_NO_WARNINGS;MAPFILEDLL_EXPORTS;_X86_;_DEBUG;_MSC_VER</PreprocessorDefinitions>
       <SDLCheck>false</SDLCheck>
       <MinimalRebuild>false</MinimalRebuild>
       <ExceptionHandling>false</ExceptionHandling>
@@ -259,9 +259,9 @@
       <StructMemberAlignment>1Byte</StructMemberAlignment>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
-      <AdditionalOptions>/Oy  /arch:SSE %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Oy %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4819</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>../../Module/Include;../../include;./libpng;../zlib128/zlib;../../librt/include;../../librt/dllstub;../../librt;../../librt/libstring;../../kernelcore\include;../../LIBRT/sgi_stl</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../include;../Include;../../librt/include;../../librt/sgi_stl;../../librt/libstring</AdditionalIncludeDirectories>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
       <OmitFramePointers>true</OmitFramePointers>
@@ -274,13 +274,17 @@
       <MapFileName>$(OutDir)$(TargetName).map</MapFileName>
       <EntryPointSymbol>_DllMainCRTStartup</EntryPointSymbol>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>dllstub.lib;libstring.lib;libcrt.lib;libds.lib;libc.lib;libmath.lib;</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../../librt/Debug;../../debug;../debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libcrt.lib;dllstub.lib;libds.lib;libstring.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../debug;../../librt/debug;../../debug</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <DataExecutionPrevention>true</DataExecutionPrevention>
-      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <BaseAddress>
+      </BaseAddress>
+      <OptimizeReferences>false</OptimizeReferences>
+      <EnableCOMDATFolding>false</EnableCOMDATFolding>
+      <OutputFile>../../debug/$(TargetName)$(TargetExt)</OutputFile>
     </Link>
     <ProjectReference>
       <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
@@ -390,25 +394,28 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="grammar.c" />
-    <ClCompile Include="libconfig.c" />
-    <ClCompile Include="scanctx.c" />
-    <ClCompile Include="scanner.c" />
-    <ClCompile Include="strbuf.c" />
-    <ClCompile Include="strvec.c" />
-    <ClCompile Include="util.c" />
-    <ClCompile Include="wincompat.c" />
+    <ClInclude Include="MapFile.h" />
+    <ClInclude Include="MapFileAddress.h" />
+    <ClInclude Include="MapFileExport.h" />
+    <ClInclude Include="MapFileFixup.h" />
+    <ClInclude Include="MapFileImport.h" />
+    <ClInclude Include="MapFileLineNumber.h" />
+    <ClInclude Include="MapFileLineNumberFile.h" />
+    <ClInclude Include="MapFileSection.h" />
+    <ClInclude Include="MapFileSymbol.h" />
+    <ClInclude Include="Undecorate.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="scanner.l" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="parsectx.h" />
-    <ClInclude Include="scanctx.h" />
-    <ClInclude Include="strbuf.h" />
-    <ClInclude Include="strvec.h" />
-    <ClInclude Include="util.h" />
-    <ClInclude Include="wincompat.h" />
+    <ClCompile Include="MapFile.cpp" />
+    <ClCompile Include="MapFileAddress.cpp" />
+    <ClCompile Include="MapFileExport.cpp" />
+    <ClCompile Include="MapFileFixup.cpp" />
+    <ClCompile Include="MapFileImport.cpp" />
+    <ClCompile Include="MapFileLineNumber.cpp" />
+    <ClCompile Include="MapFileLineNumberFile.cpp" />
+    <ClCompile Include="MapFileSection.cpp" />
+    <ClCompile Include="MapFileSymbol.cpp" />
+    <ClCompile Include="Undecorate.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

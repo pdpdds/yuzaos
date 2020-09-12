@@ -13,7 +13,7 @@
 typedef int object_id;
 typedef unsigned long mode_t;
 
-#define OS_NAME_LENGTH 20
+#define OS_NAME_LENGTH 30
 #define INFINITE_TIMEOUT (((int64) 0x7fffffff << 32) | (int64) 0xffffffff)
 
 #define PAGE_SIZE 0x1000

@@ -22,5 +22,6 @@ START_COMMAND_TABLE
 	CMD_ENTRY("guiconsole", false, cmdSwitchGUI, "Switch to GUI Console Mode")	
 	CMD_ENTRY("callstack", false, cmdCallStack, "Trace Callstack with Process Id")
 	CMD_ENTRY("jpeg", true, cmdJpeg, "Print jpeg")	
+	CMD_ENTRY("debug", true, cmdDebug, "query kernel state")
 END_COMMAND_TABLE
 

@@ -263,7 +263,19 @@ int MemoryResourceFS::rename(const char* path_old, const char* path_new)
 
 int MemoryResourceFS::fgetc(FILE* stream)
 {
-	return 0;
+	if (stream == 0)
+	{
+		printf("fgetc stream is null\n");
+		return EOF;
+	}
+
+	char buf[2];
+	int readCount = Read(stream, (unsigned char*)buf, 1, 1);
+
+	if (readCount == 0)
+		return EOF;
+
+	return buf[0];
 }
 
 int MemoryResourceFS::fputs(char const* _Buffer, FILE* _Stream)
@@ -283,7 +295,30 @@ int MemoryResourceFS::chdir(const char* dirname)
 
 char* MemoryResourceFS::fgets(char* dst, int max, FILE* fp)
 {
-	return 0;
+	
+	char temp;
+	int count = 0;
+	for (; count < max; count++)
+	{
+		temp = fgetc(fp);
+
+		if (temp == EOF)
+		{
+			dst[count] = 0;
+			break;
+		}
+		dst[count] = temp;
+		if (temp == '\n')
+		{
+			dst[count + 1] = 0;
+			break;
+		}
+	}
+
+	if (count == 0)
+		return 0;
+	
+	return dst;
 }
 
 /*int MemoryResourceFS::fscanf(FILE* stream, const char* format, ...)

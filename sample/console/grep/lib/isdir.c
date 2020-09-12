@@ -21,24 +21,25 @@
 
 #include <sys/types.h>
 #include <stat_def.h>
+#include <stdio.h>
+#include <unistd.h>
 //#define stat _stati64
 
 #if STAT_MACROS_BROKEN
 # undef S_ISDIR
 #endif
 
-#if !defined S_ISDIR && defined S_IFDIR
+/*#if !defined S_ISDIR && defined S_IFDIR
 # define S_ISDIR(Mode) (((Mode) & S_IFMT) == S_IFDIR)
-#endif
+#endif*/
 
 /* If PATH is an existing directory or symbolic link to a directory,
    return nonzero, else 0.  */
 
-int
-isdir (const char *path)
+int isdir(const char* path)
 {
-  struct stat stats;
+	struct stat stats = { 0, };
 
-  return fstat(path, &stats) == 0 && stats.st_mode == 0;
-  //return stat (path, &stats) == 0 && S_ISDIR (stats.st_mode);
+	return fstat(path, &stats) == 0 && S_ISDIR(stats.st_mode);
+	//return stat (path, &stats) == 0 && S_ISDIR (stats.st_mode);
 }

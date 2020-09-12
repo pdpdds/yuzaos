@@ -11,6 +11,7 @@
 #include <FileManager.h>
 #include <MemoryResourceAdaptor.h>
 #include "MemoryResourceFS.h"
+#include <StackTracer.h>
 
 ModuleManager* ModuleManager::m_pModuleManager = nullptr;
 I_FileManager* g_pFileManager = 0;

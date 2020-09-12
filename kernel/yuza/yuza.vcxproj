@@ -22,7 +22,6 @@
     <ClCompile Include="audio\wav.cpp" />
     <ClCompile Include="audio\_list.cpp" />
     <ClCompile Include="audio\_PCI.cpp" />
-    <ClCompile Include="kmain.cpp" />
     <ClCompile Include="OrangeOSConsole.cpp" />
     <ClCompile Include="OrangeOSGUI.cpp" />
     <ClCompile Include="SkyInputManager.cpp" />
@@ -88,7 +87,7 @@
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)\Intermediate\$(ProjectName)\</IntDir>
     <ExtensionsToDeleteOnClean>*.exp *.obj%3b*.ilk%3b*.tlb%3b*.tli%3b*.tlh%3b*.tmp%3b*.rsp%3b*.pgc%3b*.pgd%3b$(TargetPath)</ExtensionsToDeleteOnClean>
-    <LinkIncremental>false</LinkIncremental>
+    <LinkIncremental>true</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.exe</TargetExt>
@@ -111,7 +110,7 @@
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
-      <OmitFramePointers>false</OmitFramePointers>
+      <OmitFramePointers>true</OmitFramePointers>
       <AdditionalIncludeDirectories>./;../include;../../runtime/include;../../corelib/include;../../corelib/STL/SGI;../yuza_core;./audio;../../corelib/streams</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SKYOS32;_MSC_VER;_SKY_DEBUG;_X86_32;_AUDIO_ENABLE_</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
@@ -134,13 +133,14 @@
       <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <SDLCheck>false</SDLCheck>
+      <AdditionalOptions>/Oy %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>ddk.lib;kheap_pretty.lib;yuzalib.lib;common.lib;systemcall.lib;yuza_core.lib;filemanager.lib;libconfig.lib;libcrt.lib;win32stub.lib;math.lib;streams.lib</AdditionalDependencies>
+      <AdditionalDependencies>ddk.lib;kheap_yuza.lib;yuzalib.lib;common.lib;systemcall.lib;yuza_core.lib;filemanager.lib;libconfig.lib;libcrt.lib;win32stub.lib;math.lib;streams.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>../../$(Configuration)/lib;../../$(Configuration);../../corelib/debug;../../runtime/debug;../../thirdparty/debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
@@ -173,7 +173,8 @@
     </Link>
     <PostBuildEvent>
       <Command>copy "$(TargetDir)*$(TargetExt)" "$(SolutionDir)\Bin\"
-copy "$(TargetDir)*.dll" "$(SolutionDir)\Bin\"</Command>
+copy "$(TargetDir)*.dll" "$(SolutionDir)\Bin\"
+copy "$(TargetDir)*.map" "$(SolutionDir)\Bin\"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>revision.exe build msvc</Command>

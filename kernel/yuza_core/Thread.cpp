@@ -197,6 +197,7 @@ void Thread::EnqueueAPC(APC *apc)
 void Thread::Bootstrap()
 {
 	fRunningThread = new Thread("Init Thread");
+	
 #if SKY_EMULATOR
 	fRunningThread->m_handle = g_platformAPI._processInterface.sky_kGetCurrentThread();
 #endif
@@ -253,7 +254,7 @@ Thread::~Thread()
 	if (fUserStack)
 		fTeam->GetAddressSpace()->DeleteArea(fUserStack);
 
-	printf("Thread Terminated. id : %d, name : %s\n", this, GetName());
+	printf("Thread Terminated. id : 0x%x, name : %s\n", this, GetName());
 	fTeam->ThreadTerminated(this);
 }
 
@@ -282,7 +283,7 @@ int Thread::GrimReaper(void*)
 		{
 			victim->Signal(false);
 			victim->ReleaseRef();
-		}
+		} 
 		
 	}
 }

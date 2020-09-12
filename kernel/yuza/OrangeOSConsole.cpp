@@ -1,60 +1,28 @@
 #include "revision.h"
-#include <SystemAPI.h>
-#include <SkyConsole.h>
-#include <Debugger.h>
+#include <yuza_support.h>
 #include "test.h"
 
 void PrintInfomation();
-DWORD WINAPI WatchDogProc(LPVOID parameter);
-DWORD WINAPI SystemIdle(LPVOID parameter);
 void TestCode();
 
-void OrangeOSConsole()
+#define YUZA_DEBUGGER 0
+
+void OrangeOSConsole(char* consoleName)
 {
 	SkyConsole::Clear();
 	PrintInfomation();
+	PrintCurrentTime();
+	 
+#if YUZA_DEBUGGER
+	Debugger::GetInstance()->DebugKernel();
+#else
 	//TestCode();
-
 	HANDLE handle = kCreateProcess("console.dll", nullptr, 16);
-	//SKY_ASSERT(handle != 0, "console.dll exec fail!!\n");
-
+	SKY_ASSERT(handle != 0, "console.dll exec fail!!\n");
 	WatchDogProc(0);
+#endif
 	
 	//not reached
-}
-
-#define TS_WATCHDOG_CLOCK_POS		(0xb8000+(80-1)*2)
-#define TIMEOUT_PER_SECOND		1000
-static bool m_bShowTSWatchdogClock = true;
-
-DWORD WINAPI WatchDogProc(LPVOID parameter)
-{
-	int pos = 0;
-	char* addr = (char*)TS_WATCHDOG_CLOCK_POS, status[] = { '-', '\\', '|', '/', '-', '\\', '|', '/' };
-	int first = kGetTickCount();
-	
-	while (1)
-	{
-		int second = kGetTickCount();
-		if (second - first >= TIMEOUT_PER_SECOND)
-		{
-			if (++pos > 7)
-				pos = 0;
-
-			if (m_bShowTSWatchdogClock)
-			{
-#if !SKY_EMULATOR
-				* addr = status[pos];
-#endif // !SKY_EMULAOTR				
-			}
-
-			first = kGetTickCount();
-		}
-
-		kSleep(1000);
-	}
-
-	return 0;
 }
 
 void PrintInfomation()

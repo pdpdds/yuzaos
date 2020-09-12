@@ -292,6 +292,15 @@ bool Team::MapDLL(void* image)
 	return true;
 }
 
+static void FreeArgument(main_args* args)
+{
+	for (int i = 0; i < args->argc; i++)
+	{
+		kfree(args->argv[i]);
+	}
+	kfree(args->argv);
+	kfree(args);
+}
 
 int Team::StartMainThread(ThreadParam* pParam)
 {
@@ -320,12 +329,6 @@ int Team::StartMainThread(ThreadParam* pParam)
 	SKY_ASSERT(result == true, "MapDLL");
 	kDebugPrint("%s MapDLL Result : %d\n", pParam->name, result);
 
-	/*main_args args;
-	args.argc = 1;
-	args.argv = (char**)kcalloc(2, sizeof(char*));
-	args.argv[0] = (char*)kcalloc(256, 1);
-	strcpy(args.argv[0], (const char*)pParam->name);*/
-
 	main_args* args = (main_args *)pParam->param;
 	args->platformapi = (void*)& g_platformAPI;
 
@@ -349,9 +352,8 @@ int Team::StartMainThread(ThreadParam* pParam)
 	}*/
 	dllEntry(0, DLL_PROCESS_START, args);
 
-	kfree(args->argv[0]);
-	kfree(args->argv);
-	kfree(args);
+
+	FreeArgument(args);
 
 	return E_NO_ERROR;
 }

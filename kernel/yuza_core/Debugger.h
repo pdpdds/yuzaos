@@ -21,6 +21,7 @@ public:
 	void RemoveCommand(DebugHook hook);
 	void BinDump(const char data[], int size);
 
+	bool ExecuteCommand(char* command);
 	void DebugKernel();
 
 protected:

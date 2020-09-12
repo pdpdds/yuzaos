@@ -177,7 +177,7 @@ enum
 #define Syscall_RemoteCallWait(Port, RemoteCall, ArgumentBuffer) (int)syscall3(eRemoteCallWait, SCPARAM(Port), SCPARAM(RemoteCall), SCPARAM(ArgumentBuffer))
 #define Syscall_RemoteCallRespond(RemoteCall, Buffer, Length) (int)syscall3(eRemoteCallRespond, SCPARAM(RemoteCall), SCPARAM(Buffer), SCPARAM(Length))
 
-#define Syscall_SysCallTest() syscall0(eSysCallTest)
+#define Syscall_SysCallTest(command) (int)syscall1(eSysCallTest, SCPARAM(command))
 #define Syscall_Panic(msg) syscall1(ePanic, SCPARAM(msg))
 
 #define Syscall_Sleep(timeout) syscall1(eSleep, SCPARAM(timeout))

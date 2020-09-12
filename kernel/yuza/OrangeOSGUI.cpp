@@ -1,4 +1,5 @@
 #include "SystemAPI.h"
+#include <yuza_support.h>
 #include "SkyVirtualInput.h"
 #include <SkyGUISystem.h>
 
@@ -21,13 +22,11 @@ int GUIManagerThread(void* param)
 
 	return 0;
 }
-DWORD WINAPI SystemIdle(LPVOID parameter);
-void OrangeOSGUI()
-{
-	//kCreateThread(GUIManagerThread, "GUIManager", "GUIConsole.dll", 16);
-	kCreateThread(GUIManagerThread, "GUIManager", "desktopmgr.dll", 16);
-	//kCreateThread(GUIManagerThread, "GUIManager", "luakernel.dll", 16);
-	//kCreateThread(GUIManagerThread, "GUIManager", "imgui_mgr.dll", 16);
+
+void OrangeOSGUI(char* desktopName)
+{	
+	kCreateThread(GUIManagerThread, "GUIManager", desktopName, 16);
+
 #if SKY_EMULATOR
 	StartVirtualFramework(0);
 #else

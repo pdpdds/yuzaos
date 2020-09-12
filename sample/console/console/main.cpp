@@ -12,12 +12,19 @@ void TestGrep()
 {
 	ConsoleManager manager;
 
-	//char	commandBuffer[MAXPATH] = "grep.exe IDE driver_config.cfg";
-	char	commandBuffer[MAXPATH] = "helloworld.exe";
+	char	commandBuffer[MAXPATH] = "grep.exe IDE driver_config.cfg";
+	char	commandBuffer2[MAXPATH] = "helloworld.exe";
 
+	int index = 0;
 	while (1)
-	{				
-		manager.RunCommand(commandBuffer);		
+	{			
+		if(index == 0)
+			manager.RunCommand(commandBuffer);		
+		else manager.RunCommand(commandBuffer2);
+
+		index++;
+		index = index % 2;
+
 		Syscall_Sleep(100);
 	}
 }

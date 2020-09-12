@@ -202,6 +202,47 @@ static int UserThreadEntry(void* parameter)
 	return 0;
 }
 
+static main_args* MakeArgument(const char* path, void* param)
+{
+	main_args* args = new main_args;
+	if (param != nullptr)
+	{
+		args->argv = (char**)kcalloc(10, sizeof(char*));
+		args->argv[0] = (char*)kcalloc(256, 1);
+		strcpy(args->argv[0], path);
+
+		char* pCurrentToken = strtok((char*)param, " ");
+		int index = 1;
+		while (true)
+		{
+			if (pCurrentToken != nullptr)
+			{
+				args->argv[index] = (char*)kcalloc(256, 1);
+				strcpy(args->argv[index], (char*)pCurrentToken);
+				index++;
+				pCurrentToken = strtok(NULL, " ");
+			}
+			else
+				break;
+		}
+
+		args->argc = index;
+
+		//for (int i = 0; i < args->argc; i++)
+			//kprintf("argument %d, %s\n", i, args->argv[i]);
+
+	}
+	else
+	{
+		args->argc = 1;
+		args->argv = (char**)kcalloc(2, sizeof(char*));
+		args->argv[0] = (char*)kcalloc(256, 1);
+		strcpy(args->argv[0], path);
+	}
+
+	return args;
+}
+
 static int ExecuteFile(const char* path, char* arg)
 {
 	FILE* fp = fopen(path, "rb");
@@ -219,24 +260,8 @@ static int ExecuteFile(const char* path, char* arg)
 
 	strcpy(param->name, path);
 	
-	main_args* args = new main_args;
-	
-	if (arg != nullptr)
-	{
-		args->argc = 2;
-		args->argv = (char**)kcalloc(3, sizeof(char*));
-		args->argv[0] = (char*)kcalloc(256, 1);
-		strcpy(args->argv[0], path);
-		args->argv[1] = (char*)kcalloc(256, 1);
-		strcpy(args->argv[1], (char*)arg);
-	}
-	else
-	{
-		args->argc = 1;
-		args->argv = (char**)kcalloc(2, sizeof(char*));
-		args->argv[0] = (char*)kcalloc(256, 1);
-		strcpy(args->argv[0], path);
-	}
+	main_args* args = MakeArgument(path, arg);
+
 	param->param = args;
 
 	param->entryPoint = 0;
@@ -250,14 +275,14 @@ static int ExecuteFile(const char* path, char* arg)
 	strcpy(newTeam->m_szCWD, cwd);
 
 	const char* filename = path + strlen(path);
-	while (filename > path&&* filename != '/')
+	while (filename > path &&* filename != '/')
 		filename--;
 
 	char appName[OS_NAME_LENGTH];
-	snprintf(appName, OS_NAME_LENGTH, "%.12s thread", filename);
+	snprintf(appName, OS_NAME_LENGTH, "%.14s thread", filename);
 
-	Thread* child = new Thread(appName, newTeam, UserThreadEntry, (void*)param);
-	if (child == 0)
+	Thread* userthread = new Thread(appName, newTeam, UserThreadEntry, (void*)param);
+	if (userthread == 0)
 	{
 		newTeam->ReleaseRef();
 		return E_NO_MEMORY;
@@ -289,7 +314,7 @@ static DWORD RunSkyThread(void* data)
 
 	return (0);
 }
-#endif
+
 
 ///////////////////////////////////////////////////////////////////////////////////
 //SystemAPI Implementation
@@ -307,7 +332,7 @@ HANDLE kCreateThread_temp(THREAD_START_ENTRY entry, const char* name, void* data
 	pSkyThread->m_handle = (HANDLE)thread;
 	return (HANDLE)thread;
 }
-
+#endif
 
 HANDLE kCreateThread(THREAD_START_ENTRY entry, const char* name, void* data, int priority)
 {
@@ -325,7 +350,7 @@ HANDLE kCreateThread(THREAD_START_ENTRY entry, const char* name, void* data, int
 #else
 	Team* pTeam = Thread::GetRunningThread()->GetTeam();
 
-	kDebugPrint("CreateThread Team : %x, Data : %x\n", pTeam, data);
+	kDebugPrint("CreateThread. Team : %x, Name : %s, Data : %x\n", pTeam, name, data);
 
 	ThreadParam* param = new ThreadParam;
 	memset(param, 0, sizeof(ThreadParam));
@@ -335,6 +360,7 @@ HANDLE kCreateThread(THREAD_START_ENTRY entry, const char* name, void* data, int
 
 	Thread* thread = new Thread(name, pTeam, UserThreadEntry, param, priority);
 	
+
 	HANDLE handle = (HANDLE)OpenHandle(thread);
 	//thread->ReleaseRef();
 	return handle;
@@ -428,40 +454,7 @@ HANDLE kCreateProcess(const char* execPath, void* param, int priority)
 
 	SKY_ASSERT(mainFunc != nullptr, "main entry null!!");
 
-	main_args* args = new main_args;
-	if (param != nullptr)
-	{
-		
-		args->argv = (char**)kcalloc(10, sizeof(char*));
-		args->argv[0] = (char*)kcalloc(256, 1);
-		strcpy(args->argv[0], path);
-		
-		char* pCurrentToken = strtok((char*)param, " ");
-		int index = 1;
-		while (true)
-		{
-			if (pCurrentToken != nullptr)
-			{
-				args->argv[index] = (char*)kcalloc(256, 1);
-				strcpy(args->argv[index], (char*)pCurrentToken);
-				index++;
-				pCurrentToken = strtok(NULL, " ");
-			}
-			else
-				break;
-		}
-
-		args->argc = index;
-		
-
-	}
-	else
-	{
-		args->argc = 1;
-		args->argv = (char**)kcalloc(2, sizeof(char*));
-		args->argv[0] = (char*)kcalloc(256, 1);
-		strcpy(args->argv[0], path);
-	}
+	main_args* args = MakeArgument(path, param);
 
 	kDebugPrint("CreateProcess %x %s %d\n", mainFunc, path, priority);
 

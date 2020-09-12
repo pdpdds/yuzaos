@@ -122,6 +122,13 @@ long cmdGUI(char *szCommand)
 	return false;
 }
 
+long cmdDebug(char* szCommand)
+{
+	Syscall_SysCallTest(szCommand);
+
+	return false;
+}
+
 char* rtrimslash(char* str) {
 	char* p;
 	p = strchr(str, '\0');

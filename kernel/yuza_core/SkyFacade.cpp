@@ -19,6 +19,8 @@
 #include <BuildOption.h>
 #include <IDT.h>
 #include <PEImage.h>
+#include <LoadDLL.h>
+
 extern idt_descriptor* g_pIDT;
 
 #if SKY_EMULATOR
@@ -102,8 +104,8 @@ extern "C" {
 	void trap50();
 };
 
-extern void OrangeOSConsole();
-extern void OrangeOSGUI();
+extern void OrangeOSConsole(char* consoleName);
+extern void OrangeOSGUI(char* desktopName);
 extern bool InitKernelSystem();
 extern void StartNativeSystem(void* param);
 
@@ -152,7 +154,7 @@ void KernelThreadProc()
 	
 	//EXE를 재배치시킨다.
 #if !SKY_EMULATOR
-	RelocatePE(g_bootParams._memoryInfo._kernelBase, g_bootParams._memoryInfo._kernelSize, 0x80000000);
+	//RelocatePE(g_bootParams._memoryInfo._kernelBase, g_bootParams._memoryInfo._kernelSize, 0x80000000);
 #endif
 
 	SetCurrentDriveId('Z');
@@ -165,25 +167,24 @@ void KernelThreadProc()
 	InitSerialPortSystem();
 	InitPCI();
 #endif
-	
-	InitEnvironment();
-	
-	InitStorageSystem();
+
 	InitDebuggerSystem();
+	InitEnvironment();
+	InitStorageSystem();
 
 	kSetCurrentDriveId('C');
-	
+
+	char buf[256];
 	if (g_bootParams.bGraphicMode == true)
 	{
-		
 		/*ULONG* bufferAddess = (ULONG*)g_bootParams.framebuffer_addr;
 		SampleFillRect(bufferAddess, 1004, 0, 20, 20, 0xFF00FF00);
 		for (;;);*/
 
 		InitDisplaySystem();
 		SkyGUISystem::GetInstance();
-
-		OrangeOSGUI();
+		kGetEnvironmentVariable("DESKTOPMGR", buf, 256);
+		OrangeOSGUI(buf);
 	}
 	else
 	{
@@ -191,8 +192,8 @@ void KernelThreadProc()
 		KeyboardController::SetupInterrupts();
 		SkyConsole::Print("Keyboard Init..\n");
 #endif
-
-		OrangeOSConsole();
+		kGetEnvironmentVariable("CONSOLEMGR", buf, 256);
+		OrangeOSConsole(buf);
 	}
 }
 
@@ -240,11 +241,10 @@ bool InitOSSystem(BootParams* pBootParam)
 
 	SkyConsole::Print("%x %x\n", g_bootParams._memoryInfo._kHeapBase, g_bootParams._memoryInfo._kHeapSize);
 	memset((void*)kHeapBase, 0, g_bootParams._memoryInfo._kHeapSize);
-
+	SkyConsole::Print("%x %x\n", kHeapBase, kHeapBase + g_bootParams._memoryInfo._kHeapSize);
+	
 	kmalloc_init(kHeapBase, g_bootParams._memoryInfo._kHeapSize);
 	
-	SkyConsole::Print("%x %x\n", g_bootParams._memoryInfo._kHeapBase, g_bootParams._memoryInfo._kHeapSize);
-
 #if SKY_EMULATOR	
 #if (SKY_CONSOLE_MODE == 0)
 	g_bootParams.bGraphicMode = true;
@@ -278,7 +278,7 @@ bool InitOSSystem(BootParams* pBootParam)
 	strcpy(g_stdIn->_name, "STDIN");
 	strcpy(g_stdErr->_name, "STDERR");
 	
-	JumpToNewKernelEntry((int)KernelThreadProc, g_bootParams._memoryInfo._kStackBase);
+	JumpToNewKernelEntry((int)KernelThreadProc, g_bootParams._memoryInfo._kStackBase + g_bootParams._memoryInfo._kStackSize);
 	
 	return true;
 }
@@ -389,6 +389,7 @@ extern I_FileManager* g_pFileManager;
 
 bool InitEnvironment()
 {
+	kprintf("InitEnvironment\n");
 	config_t cfg;
 
 	const char* str;
@@ -398,12 +399,13 @@ bool InitEnvironment()
 	/* Read the file. If there is an error, report it and exit. */
 	if (!config_read_file(&cfg, config_file))
 	{
+		
 		kPanic("driver config file load fail : %s", config_file);
 		kDebugPrint("%s:%d - %s\n", config_file, config_error_line(&cfg), config_error_text(&cfg));
 		config_destroy(&cfg);
 		
 	}
-	
+
 	if (!config_lookup_string(&cfg, "name", &str))
 		kPanic("No 'name' setting in configuration file\n");
 
@@ -411,6 +413,8 @@ bool InitEnvironment()
 	AddEnvironment(cfg, "image.FLOPPY", "FLOPPY");
 	AddEnvironment(cfg, "image.HARDDISK", "HARDDISK");
 #endif
+	AddEnvironment(cfg, "desktop.DESKTOPMGR", "DESKTOPMGR");
+	AddEnvironment(cfg, "console.CONSOLE", "CONSOLEMGR");
 
 	config_destroy(&cfg);
 
@@ -578,9 +582,12 @@ bool InitSerialPortSystem()
 
 bool InitDebuggerSystem()
 {
-	//StackTracer::GetInstance()->Init("DebugEngine.dll");
-	//StackTracer::GetInstance()->AddSymbol("kernel.map");
-	//StackTracer::GetInstance()->AddSymbol("net.map", moduleHandle->image_base);
+#if !SKY_EMULATOR
+	LOAD_DLL_INFO* pInfo = ModuleManager::GetInstance()->GetSystemPE("libconfig.dll");
+	StackTracer::GetInstance()->Init("stacktracer.dll");
+	StackTracer::GetInstance()->AddSymbol("yuza.map");
+	StackTracer::GetInstance()->AddSymbol("libconfig.map", pInfo->image_base);
+#endif
 
 	return true;
 }

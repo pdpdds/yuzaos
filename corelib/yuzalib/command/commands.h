@@ -29,3 +29,4 @@ long cmdPCI(char *szCommand);
 long cmdDir(char *szCommand);
 long cmdCallStack(char *szCommand);
 long cmdJpeg(char *szCommand);
+long cmdDebug(char* szCommand);

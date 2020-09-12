@@ -47,40 +47,55 @@ void Debugger::Bootstrap()
 
 void Debugger::DebugKernel()
 {
-	int fl = DisableInterrupts();
 	kprintf("\nOrangeOS Kernel Debugger\n");
+
+	int fl = DisableInterrupts();
 	char	commandBuffer[MAXPATH];
 
 	for (;;) {
 		kprintf("Debugger> ");
 
-		Syscall_GetCommandFromKeyboard(commandBuffer, MAXPATH - 2);
-		const char* argv[kMaxArgs];
-		int argc = ParseArguments(commandBuffer, argv, kMaxArgs);
-		if (argc == 0)
-			continue;
-
-		if (strcmp(argv[0], "continue") == 0 || strcmp(argv[0], "c") == 0)
+		if (ExecuteCommand(commandBuffer) == false)
 			break;
 
-		DebugHook hook = 0;
-		for (int index = 0; index < kMaxDebugCommands; index++)
-		{
-			if (debugCommands[index].hook != 0 && strcmp(debugCommands[index].name, argv[0]) == 0)
-			{
-				hook = debugCommands[index].hook;
-				break;
-			}
-		}
+		Syscall_GetCommandFromKeyboard(commandBuffer, MAXPATH - 2);
 
-		kprintf("\n");
-		if (hook)
-			hook(argc, argv);
-		else
-			kprintf("syntax error\n");
 	}
 
 	RestoreInterrupts(fl);
+}
+
+bool Debugger::ExecuteCommand(char* commandBuffer)
+{
+	int fl = DisableInterrupts();
+
+	const char* argv[kMaxArgs];
+	int argc = ParseArguments(commandBuffer, argv, kMaxArgs);
+	if (argc == 0)
+		return true;
+
+	if (strcmp(argv[0], "continue") == 0 || strcmp(argv[0], "c") == 0)
+		false;
+
+	DebugHook hook = 0;
+	for (int index = 0; index < kMaxDebugCommands; index++)
+	{
+		if (debugCommands[index].hook != 0 && strcmp(debugCommands[index].name, argv[0]) == 0)
+		{
+			hook = debugCommands[index].hook;
+			break;
+		}
+	}
+
+	kprintf("\n");
+	if (hook)
+		hook(argc, argv);
+	else
+		kprintf("syntax error\n");
+
+	RestoreInterrupts(fl);
+
+	return true;
 }
 
 void Debugger::AddCommand(const char name[], const char description[], DebugHook hook)

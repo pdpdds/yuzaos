@@ -56,7 +56,7 @@ namespace SkyConsole
 		MoveCursor(0, 0);
 	}
 
-	void Write(const char *szString)
+	void Write(const char* szString)
 	{
 		while ((*szString) != 0)
 		{
@@ -159,7 +159,8 @@ namespace SkyConsole
 
 			case '%':
 
-				switch (str[i + 1]) {
+				switch (str[i + 1])
+				{
 
 					/*** characters ***/
 				case 'c': {
@@ -169,7 +170,7 @@ namespace SkyConsole
 					break;
 				}
 
-						  /*** address of ***/
+						/*** address of ***/
 				case 's': {
 					int c = (int&)va_arg(args, char);
 					char str[256];
@@ -179,7 +180,7 @@ namespace SkyConsole
 					break;
 				}
 
-						  /*** integers ***/
+						/*** integers ***/
 				case 'd':
 				case 'i': {
 					int c = va_arg(args, int);
@@ -190,8 +191,8 @@ namespace SkyConsole
 					break;
 				}
 
-						  /*** display in hex ***/
-						  /*int*/
+						/*** display in hex ***/
+						/*int*/
 				case 'X': {
 					int c = va_arg(args, int);
 					char str[32] = { 0 };
@@ -200,7 +201,7 @@ namespace SkyConsole
 					i++;		// go to next character
 					break;
 				}
-						  /*unsigned int*/
+						/*unsigned int*/
 				case 'x': {
 					unsigned int c = va_arg(args, unsigned int);
 					char str[32] = { 0 };
@@ -262,7 +263,7 @@ namespace SkyConsole
 
 	void MoveCursor(unsigned int  X, unsigned int  Y)
 	{
-		
+
 	}
 	/* Sets the Cursor Type
 		0 to 15 is possible value to pass
@@ -273,7 +274,7 @@ namespace SkyConsole
 	*/
 	void SetCursorType(unsigned char  Bottom, unsigned char  Top)
 	{
-		
+
 	}
 
 	void scrollup()		// scroll the screen up one line
@@ -328,13 +329,13 @@ namespace SkyConsole
 
 	char	GetChar()
 	{
-		
+
 		return 0;
 	}
 
 
 	void GetCommand(char* commandBuffer, int bufSize)
 	{
-		
+
 	}
 }

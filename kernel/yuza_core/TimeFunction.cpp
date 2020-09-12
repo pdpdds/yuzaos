@@ -378,11 +378,8 @@ extern "C" bigtime_t SystemTime()
 void PrintCurrentTime()
 {
 	SYSTEMTIME time;
-#if SKY_EMULATOR
-	return;
-#else
 	kGetLocalTime(&time);
-#endif
+
 	char buffer[256];
 	sprintf(buffer, "Current Time : %d/%d/%d %d:%d:%d\n", time.wYear, time.wMonth, time.wDay, time.wHour, time.wMinute, time.wSecond);
 	kprintf("%s", buffer);

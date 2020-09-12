@@ -157,7 +157,7 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>wstring.lib;pcred.lib;streams.lib;yuzalib.lib;yuzaapi.lib;libwin32.lib;systemcall.lib;filemanager.lib;libcrt.lib;exestub.lib</AdditionalDependencies>
+      <AdditionalDependencies>pcred.lib;streams.lib;systemcall.lib;filemanager.lib;libcrt.lib;exestub.lib;yuzalib.lib;yuzaapi.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>../../../$(Configuration);../../../corelib/debug;../../../support\Debug;../../../runtime/debug;../../../thirdparty/debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
