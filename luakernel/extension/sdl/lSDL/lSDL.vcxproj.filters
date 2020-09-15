@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{45641897-0fca-42f3-8a5c-0114d4b1c7f9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\common\array.c">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\common.c">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\rwops.c">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\surface.c">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\table.c">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\video.c">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\variant.c">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="audio.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="channel.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="clipboard.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="cpu.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="display.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="events.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="gamecontroller.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="gl.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="haptic.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="joystick.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="keyboard.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="logging.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="mouse.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="platform.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="power.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="rectangle.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="texture.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="thread.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="timer.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="window.c">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\common\array.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\common.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\rwops.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\surface.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\table.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\video.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\variant.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="audio.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="channel.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="clipboard.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="cpu.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="display.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="events.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="gamecontroller.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="gl.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="haptic.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="joystick.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="keyboard.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="logging.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="mouse.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="platform.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="power.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="rectangle.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="texture.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="thread.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="timer.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="window.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

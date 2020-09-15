@@ -3,12 +3,12 @@
 #ifndef _REVISION_H_
 #define _REVISION_H_
 
-#define BUILD_DATE "03 September 2020"
-#define BUILD_TIME "16:23:41"
+#define BUILD_DATE "15 September 2020"
+#define BUILD_TIME "12:02:28"
 #define BUILD_SYSTEM "msvc"
 
 #define REVISION_MAJOR 0
 #define REVISION_MINOR 4
-#define REVISION_BUILD 8417
+#define REVISION_BUILD 8421
 
 #endif //!_REVISION_H_
