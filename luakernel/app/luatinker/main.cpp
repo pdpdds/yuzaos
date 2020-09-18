@@ -11,10 +11,10 @@ int main_impl(int argc, char** argv)
 
 	luaopen_base(L);
 
-	//test1(L);
+	test1(L);
 	//test2(L);
 	//test3(L);
-	test4(L);
+	//test4(L);
 	//test5(L);
 	//test6(L);
 

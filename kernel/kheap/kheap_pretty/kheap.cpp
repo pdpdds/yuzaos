@@ -17,7 +17,7 @@ typedef struct
 #pragma pack(pop)
 
 #define MAX_REGION_COUNT 0x20000
-static region_t       regions[MAX_REGION_COUNT] = { 0, };
+static region_t* regions;// [MAX_REGION_COUNT] = { 0, };
 static uint32_t       regionCount     = 0;
 static uint32_t       regionMaxCount  = 0;
 static uint32_t       firstFreeRegion = 0;
@@ -51,13 +51,13 @@ void  kmalloc_init(size_t base, size_t heap_size)
 {
     // This gets us the current placement address
     //regions = placementMalloc(0, 0);
-
+    regions = (region_t *)base;
     // We take the rest of the placement area
     regionCount = 0;
     regionMaxCount = MAX_REGION_COUNT;
 
-    firstFreeAddr = (void*)base;
-    heapStart = (uint8_t*)base;
+    firstFreeAddr = (void*)(base + regionMaxCount);
+    heapStart = (uint8_t*)firstFreeAddr;
 }
 
 void* heap_getCurrentEnd(void)
@@ -123,7 +123,7 @@ static bool heap_grow(size_t size, uint8_t* heapEnd, bool continuous)
 
 void* kmalloc(size_t size)
 {
-    return pretty_malloc(size, PAGE_SIZE);
+    return pretty_malloc(size, 0);
 }
 
 void  kfree(void* ptr)

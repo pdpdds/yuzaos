@@ -121,7 +121,6 @@ void KernelThreadProc();
 void JumpToNewKernelEntry(int entryPoint, unsigned int procStack);
 void InitPCI();
 
-
 BootParams g_bootParams;
 PlatformAPI g_platformAPI;
 
@@ -160,8 +159,6 @@ void KernelThreadProc()
 	SetCurrentDriveId('Z');
 	SystemProfiler::GetInstance()->Initialize();
 
-	g_startTickCount = kGetTickCount();
-	
 	//AcpiInit();
 #if !SKY_EMULATOR
 	InitSerialPortSystem();
@@ -176,14 +173,16 @@ void KernelThreadProc()
 
 	char buf[256];
 	if (g_bootParams.bGraphicMode == true)
-	{
-		/*ULONG* bufferAddess = (ULONG*)g_bootParams.framebuffer_addr;
-		SampleFillRect(bufferAddess, 1004, 0, 20, 20, 0xFF00FF00);
-		for (;;);*/
-
+	{	
 		InitDisplaySystem();
 		SkyGUISystem::GetInstance();
 		kGetEnvironmentVariable("DESKTOPMGR", buf, 256);
+
+		/*g_startTickCount = kGetTickCount();
+		ULONG* bufferAddess = (ULONG*)g_bootParams.framebuffer_addr;
+		SampleFillRect(bufferAddess, 1004, 0, 20, 20, 0xFFFFFF00);
+		for (;;);*/
+
 		OrangeOSGUI(buf);
 	}
 	else
@@ -211,7 +210,7 @@ bool InitOSSystem(BootParams* pBootParam)
 	unsigned long magic = 0;
 	g_bootParams._memoryInfo._kernelBase = 0x00800000;
 	g_bootParams._memoryInfo._IDT = (DWORD)&g_IDT;
-	
+
 	g_bootParams._memoryInfo._kHeapSize = g_bootParams._memoryInfo._memorySize - IO_AREA_PAGE_COUNT * PAGE_SIZE;
 	kHeapBase = (DWORD)(g_bootParams.MemoryRegion[0].begin);
 	//g_bootParams._heapVirtualEndAddr = (uint32_t)g_bootParams._heapVirtualStartAddr + g_bootParams._heapFrameCount * PAGE_SIZE;
@@ -222,14 +221,7 @@ bool InitOSSystem(BootParams* pBootParam)
 #else
 	memcpy(&g_bootParams, pBootParam, sizeof(BootParams));
 
-	if (g_bootParams.bGraphicMode == true)
-	{
-		g_bootParams.framebuffer_width = SKY_WIDTH;
-		g_bootParams.framebuffer_height = SKY_HEIGHT;
-		g_bootParams.framebuffer_bpp = SKY_BPP;
 
-		SkyGUIConsole::Initialize();
-	}
 #endif
 
 	SkyConsole::Initialize();
@@ -237,14 +229,15 @@ bool InitOSSystem(BootParams* pBootParam)
 	SkyConsole::Print("Boot Loader Name : %s\n", g_bootParams._szBootLoaderName);
 
 
+
 	InitInterrupt();
 
 	SkyConsole::Print("%x %x\n", g_bootParams._memoryInfo._kHeapBase, g_bootParams._memoryInfo._kHeapSize);
 	memset((void*)kHeapBase, 0, g_bootParams._memoryInfo._kHeapSize);
 	SkyConsole::Print("%x %x\n", kHeapBase, kHeapBase + g_bootParams._memoryInfo._kHeapSize);
-	
+
 	kmalloc_init(kHeapBase, g_bootParams._memoryInfo._kHeapSize);
-	
+
 #if SKY_EMULATOR	
 #if (SKY_CONSOLE_MODE == 0)
 	g_bootParams.bGraphicMode = true;
@@ -252,7 +245,7 @@ bool InitOSSystem(BootParams* pBootParam)
 	g_bootParams.bGraphicMode = false;
 #endif
 
-	
+
 
 	SKYOS_MODULE_LIST* pModule = InitSkyOSModule();
 
@@ -269,6 +262,17 @@ bool InitOSSystem(BootParams* pBootParam)
 		}
 	}
 #endif
+	if (!SKY_EMULATOR)
+	{
+		if (g_bootParams.bGraphicMode == true)
+		{
+			g_bootParams.framebuffer_width = SKY_WIDTH;
+			g_bootParams.framebuffer_height = SKY_HEIGHT;
+			g_bootParams.framebuffer_bpp = SKY_BPP;
+
+			SkyGUIConsole::Initialize();
+		}
+	}
 	
 	g_stdOut = new FILE;
 

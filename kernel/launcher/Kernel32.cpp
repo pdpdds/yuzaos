@@ -16,14 +16,14 @@
 
 //i번째 인터럽트 디스크립트를 얻어온다.
 extern idt_descriptor* GetInterruptDescriptor(uint32_t i);
+void SampleFillRect(ULONG* lfb0, int x, int y, int w, int h, int col);
 
 bool Boot32BitMode(unsigned long magic, multiboot_info_t* pBootInfo, char* szKernelName)
 {
 	BootParams* pBootParams = 0;
 	if (FALSE == InitCPU())
 	{
-		SkyConsole::Print(" Init CPU Fail!!\n");
-		for (;;);
+		LOG_FATAL("Init CPU Fail!!\n");
 	}
 
 	InitPhysicalMemorySystem(pBootInfo);
@@ -37,8 +37,7 @@ bool Boot32BitMode(unsigned long magic, multiboot_info_t* pBootInfo, char* szKer
 	KernelInfo info;
 	if (LoadKernel(pBootInfo, szKernelName, &info) == 0)
 	{
-		SkyConsole::Print(" Kernel %s Load Fail!!\n", szKernelName);
-		for (;;);
+		LOG_FATAL(" Kernel %s Load Fail!!\n", szKernelName);
 	}
 	
 	pBootParams->_memoryInfo._kernelBase = info._kernelBase;
@@ -51,11 +50,12 @@ bool Boot32BitMode(unsigned long magic, multiboot_info_t* pBootInfo, char* szKer
 
 	MapHeap(pBootParams);
 	MapStack(pBootParams);
+
 	MapFrameBuffer(pBootParams);
 
 	pBootParams->SetAllocated(pBootParams->_memoryInfo._kIdentityBase, pBootParams->_memoryInfo._kIdentitySize, MEMORY_REGION_HIBERNATE);
 	pBootParams->SetAllocated(pBootParams->_memoryInfo._kHeapBase, pBootParams->_memoryInfo._kHeapSize, MEMORY_REGION_HIBERNATE);
-	
+	pBootParams->SetAllocated(pBootParams->_memoryInfo._kStackBase, pBootParams->_memoryInfo._kStackSize, MEMORY_REGION_HIBERNATE);
 	EnablePaging(true);
 	//RestoreInterrupts(fl);
 	
@@ -76,7 +76,10 @@ bool LoadKernel(multiboot_info_t* pBootInfo, const char* szKernelName, KernelInf
 {
 	Module* pModule = FindModule(pBootInfo, szKernelName);
 	if (pModule == nullptr)
-		return false;
+	{
+		SkyConsole::Print("Module Find Fail!! : %s\n", szKernelName);
+		return 0;
+	}
 
 	bool result = FindModuleEntry(szKernelName, (char*)pModule->ModuleStart, pModuleInfo);
 
@@ -153,8 +156,7 @@ UINT32 GetSutableHeapSize(UINT64 memorySize)
 {
 	if (memorySize < 16 * 1024 * 1024)
 	{
-		SkyConsole::Print("Not Enough Memory %ld\n", memorySize);
-		for (;;);
+		LOG_FATAL(" Not Enough Memory %ld\n", memorySize);
 	}
 
 	if (memorySize >= 16 * 1024 * 1024 && memorySize < 32 * 1024 * 1024)

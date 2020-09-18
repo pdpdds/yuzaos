@@ -16,7 +16,7 @@ DWORD WINAPI StartVirtualFramework(LPVOID parameter)
 #endif
 
 int GUIManagerThread(void* param)
-{
+{ 
 	SkyGUISystem::GetInstance()->Initialize((const char*)param);
 	SkyGUISystem::GetInstance()->Run();
 

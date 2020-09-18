@@ -1,6 +1,7 @@
 #ifndef SKYCONSOLE_H
 #define SKYCONSOLE_H
 #include "windef.h"
+void LOG_FATAL(char* fmt, ...);
 
 enum ConsoleColor
 {

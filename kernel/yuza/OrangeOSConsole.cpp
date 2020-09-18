@@ -2,28 +2,9 @@
 #include <yuza_support.h>
 #include "test.h"
 
-void PrintInfomation();
 void TestCode();
 
 #define YUZA_DEBUGGER 0
-
-void OrangeOSConsole(char* consoleName)
-{
-	SkyConsole::Clear();
-	PrintInfomation();
-	PrintCurrentTime();
-	 
-#if YUZA_DEBUGGER
-	Debugger::GetInstance()->DebugKernel();
-#else
-	//TestCode();
-	HANDLE handle = kCreateProcess("console.dll", nullptr, 16);
-	SKY_ASSERT(handle != 0, "console.dll exec fail!!\n");
-	WatchDogProc(0);
-#endif
-	
-	//not reached
-}
 
 void PrintInfomation()
 {
@@ -32,6 +13,24 @@ void PrintInfomation()
 	kprintf("version %d.%d\n", REVISION_MAJOR, REVISION_MINOR);
 	kprintf("build time %s %s\n\n", BUILD_DATE, BUILD_TIME);
 }
+
+void OrangeOSConsole(char* consoleName) 
+{
+	SkyConsole::Clear();
+	PrintInfomation();
+	PrintCurrentTime();  
+	  
+#if YUZA_DEBUGGER
+	Debugger::GetInstance()->DebugKernel();
+#else 
+	//TestCode();
+	HANDLE handle = kCreateProcess(consoleName, nullptr, 16);
+	SKY_ASSERT(handle != 0, "OrangeOSConsole exec fail!!\n"); 
+	WatchDogProc(0); 
+#endif
+	
+	//not reached
+} 
 
 #include <audio/_pci.h>
 #include <audio/audio.h>

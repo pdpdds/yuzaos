@@ -11,13 +11,24 @@ BootModule* FindFileFromMemory(const char* moduleName)
 	uint32_t mods_count = g_bootParams._moduleCount;
 	uint32_t mods_addr = (uint32_t)g_bootParams.Modules;
 
+	char resolvedModuleName[256] = "/";
+
+	if (strcmp(g_bootParams._szBootLoaderName, GRUB_095) == 0)
+	{
+		strcat(resolvedModuleName, moduleName);
+	}
+	else
+	{
+		strcpy(resolvedModuleName, moduleName);
+	}
+
 	for (uint32_t mod = 0; mod < mods_count; mod++)
 	{
 		BootModule* module = (BootModule*)(mods_addr + (mod * sizeof(BootModule)));
 
 		const char* module_string = (const char*)module->Name;
 
-		if (strcmp(module_string, moduleName) == 0)
+		if (strcmp(module_string, resolvedModuleName) == 0)
 		{
 			return module;
 		}
@@ -31,6 +42,7 @@ BootModule* FindFileFromMemory(const char* moduleName)
 		}*/
 	}
 
+	kPanic("find error : %s\n", resolvedModuleName);
 	return nullptr;
 }
 

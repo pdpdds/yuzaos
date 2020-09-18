@@ -16,9 +16,9 @@ TeamManager::TeamManager()
 void TeamManager::Bootstrap()
 {
 	Team* init = CreateTeam("kernel", AddressSpace::GetKernelAddressSpace());
-
+	
 	Thread::GetRunningThread()->SetTeam(init);
-
+	
 	Debugger::GetInstance()->AddCommand("ps", "list running threads", PrintThreads);
 	Debugger::GetInstance()->AddCommand("areas", "list user areas", PrintAreas);
 	Debugger::GetInstance()->AddCommand("handles", "list handles", PrintHandles);

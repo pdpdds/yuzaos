@@ -75,7 +75,7 @@ void str_fmt(char* p, int size, int fmt)
  /*
   *  int vsprintf(d,s,ap)
   */
-int vsprintf1(char *d, const char *s, va_list ap)
+int vsprintf(char *d, const char *s, va_list ap)
 {
 	const char *t = 0;
 	char *p = 0, *dst = 0, tmp[40];
@@ -274,7 +274,25 @@ int vsprintf1(char *d, const char *s, va_list ap)
 
 
 
-extern double modf(double, double *);
+#define MAXPOWTWO	4.503599627370496000E+15
+ /* doubles >= MAXPOWTWO are already integers */
+double modf1(double value, register double* iptr)
+{
+	register double absvalue;
+
+	if ((absvalue = (value >= 0.0) ? value : -value) >= MAXPOWTWO)
+		*iptr = value; /* it must be an integer */
+	else {
+		*iptr = absvalue + MAXPOWTWO; /* shift fraction off right */
+		*iptr -= MAXPOWTWO; /* shift back without fraction */
+		while (*iptr > absvalue) /* above arithmetic might round */
+			*iptr -= 1.0; /* test again just to be sure */
+		if (value < 0.0)
+			*iptr = -*iptr;
+	}
+	return (value - *iptr); /* signed fractional part */
+}
+
 #define	to_char(n)	((n) + '0')
 #define	to_digit(c)	((c) - '0')
 #define _isNan(arg)	((arg) != (arg))
@@ -372,7 +390,7 @@ cvt(rtype number, int prec, char *signp, int fmtch, char *startp, char *endp)
 	else
 		*signp = 0;
 
-	fract = modf(number, &integer);
+	fract = modf1(number, &integer);
 
 	/* get an extra slot for rounding. */
 	t = ++startp;
@@ -382,7 +400,7 @@ cvt(rtype number, int prec, char *signp, int fmtch, char *startp, char *endp)
 	 * .01 is added for modf(356.0 / 10, &integer) returning .59999999...
 	 */
 	for (p = endp - 1; integer; ++expcnt) {
-		tmp = modf(integer / 10, &integer);
+		tmp = modf1(integer / 10, &integer);
 		*p-- = to_char((int)((tmp + .01) * 10));
 	}
 	switch (fmtch) {
@@ -402,7 +420,7 @@ cvt(rtype number, int prec, char *signp, int fmtch, char *startp, char *endp)
 		if (fract) {
 			if (prec)
 				do {
-					fract = modf(fract * 10, &tmp);
+					fract = modf1(fract * 10, &tmp);
 					*t++ = to_char((int)tmp);
 				} while (--prec && fract);
 				if (fract)
@@ -437,7 +455,7 @@ cvt(rtype number, int prec, char *signp, int fmtch, char *startp, char *endp)
 				else if (fract) {
 					/* adjust expcnt for digit in front of decimal */
 					for (expcnt = -1;; --expcnt) {
-						fract = modf(fract * 10, &tmp);
+						fract = modf1(fract * 10, &tmp);
 						if (tmp)
 							break;
 					}
@@ -454,7 +472,7 @@ cvt(rtype number, int prec, char *signp, int fmtch, char *startp, char *endp)
 				if (fract) {
 					if (prec)
 						do {
-							fract = modf(fract * 10, &tmp);
+							fract = modf1(fract * 10, &tmp);
 							*t++ = to_char((int)tmp);
 						} while (--prec && fract);
 						if (fract)
@@ -519,11 +537,11 @@ cvt(rtype number, int prec, char *signp, int fmtch, char *startp, char *endp)
 		if (fract) {
 			if (prec) {
 				do {
-					fract = modf(fract * 10, &tmp);
+					fract = modf1(fract * 10, &tmp);
 					*t++ = to_char((int)tmp);
 				} while (!tmp && !expcnt);
 				while (--prec && fract) {
-					fract = modf(fract * 10, &tmp);
+					fract = modf1(fract * 10, &tmp);
 					*t++ = to_char((int)tmp);
 				}
 			}
@@ -550,7 +568,7 @@ round(double fract, int *exp, char *start, char *end, char ch, char *signp)
 	double tmp;
 
 	if (fract)
-		(void)modf(fract * 10, &tmp);
+		(void)modf1(fract * 10, &tmp);
 	else
 		tmp = to_digit(ch);
 	if (tmp > 4)

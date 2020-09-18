@@ -31,7 +31,6 @@ int lua_fopen(const char* pathname, int flags, int mode)
 
 size_t lua_fwrite(int fd, const char* ptr)
 {
-	
 	return luatinker::call<int>(L, "write", fd, ptr);
 }
 
@@ -82,17 +81,39 @@ static int putpixel(lua_State *l)
 
 static int file_test(lua_State* l)
 {
-	int fd = lua_fopen("juhang", 64, 0);
-	size_t written = lua_fwrite(fd, "juhang is genius");
+	int fd = lua_fopen("test", 64, 0);
+	size_t written = lua_fwrite(fd, "test sentence");
 	lua_fseek(fd, 0, SEEK_SET);
 	
-	char* buf = lua_fread(fd, strlen("juhang is genius"));
+	char* buf = lua_fread(fd, strlen("test sentence"));
 	return 0;
+}
+
+int kMemCpy(void* pvDestination, const void* pvSource, int iSize)
+{
+	int i;
+	int iRemainByteStartOffset;
+
+	// 8 바이트씩 먼저 복사
+	for (i = 0; i < (iSize / 8); i++)
+	{
+		((QWORD*)pvDestination)[i] = ((QWORD*)pvSource)[i];
+	}
+
+	// 8 바이트씩 채우고 남은 부분을 마무리
+	iRemainByteStartOffset = i * 8;
+	for (i = 0; i < (iSize % 8); i++)
+	{
+		((char*)pvDestination)[iRemainByteStartOffset] =
+			((char*)pvSource)[iRemainByteStartOffset];
+		iRemainByteStartOffset++;
+	}
+	return iSize;
 }
 
 static int swap_buffers(lua_State *l)
 {
-	memcpy(fbmem, display_buffer, display_buffer_len);
+	kMemCpy(fbmem, display_buffer, display_buffer_len);
 	clear_screen(l);
 	return 0;
 }
@@ -121,6 +142,7 @@ static int lua_setmaskhook(lua_State *l)
 
 static int lua_get_timer_ticks(lua_State *l)
 {
+	Syscall_Sleep(0);
 	lua_pushinteger(l, Syscall_GetTickCount());
 	return 1;
 }
@@ -133,9 +155,10 @@ static int lua_sleep(lua_State *l)
 
 int lua_get_keyboard_interrupt(lua_State *l)
 {
-	// disable interrupts
-	
+	// disable interrupts	
 	Syscall_LockMutex(g_key_mutex);
+
+	
 	lua_createtable(l, keyboard_scancode_queue_len, 0);
 	for (int i = 0; i < keyboard_scancode_queue_len; ++i)
 	{
@@ -145,7 +168,6 @@ int lua_get_keyboard_interrupt(lua_State *l)
 	keyboard_scancode_queue_len = 0;
 	Syscall_UnlockMutex(g_key_mutex);
 
-	//kLeaveCriticalSection();
 	return 1;
 }
 
@@ -279,6 +301,7 @@ bool lua_main(uint8* frameBuffer, int width, int height, int bpp)
 
 bool HandleInterrupt(unsigned char scanCode)
 {
+	
 	//u32 scancode = inb(0x60);
 	Syscall_LockMutex(g_key_mutex);
 	if (keyboard_scancode_queue_len < arraylen(keyboard_scancode_queue))

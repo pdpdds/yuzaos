@@ -12,7 +12,7 @@ char *getenv(const char *name)
 	static char buf[256];
 	int count = Syscall_GetEnvironmentVariable(name, buf, 256);
 
-	if (count > 0)
+	if (count > 0) 
 		return buf;
 
 	return 0;

@@ -43,7 +43,6 @@ void InterruptFrame::Print() const
 	StackTracer::GetInstance()->TraceStackWithSymbol();
 }
 
-extern unsigned int g_tickCount;
 void HandleTrap(InterruptFrame iframe)
 {
 	switch (iframe.vector) 

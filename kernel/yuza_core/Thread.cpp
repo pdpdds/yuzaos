@@ -48,7 +48,8 @@ Thread::Thread(const char name[], Team *team, THREAD_START_ENTRY startAddress, v
 {
 	char stackName[OS_NAME_LENGTH];
 	snprintf(stackName, OS_NAME_LENGTH, "%.12s stack", name);
-	kDebugPrint("thread name : %s\n", name);
+	//kDebugPrint("thread name : %s\n", name);
+
 	fKernelStack = AddressSpace::GetKernelAddressSpace()->CreateArea(stackName,
 		kKernelStackSize, AREA_WIRED, SYSTEM_READ | SYSTEM_WRITE, new PageCache, 0,
 		INVALID_PAGE, SEARCH_FROM_TOP);

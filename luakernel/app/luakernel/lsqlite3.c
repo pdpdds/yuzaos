@@ -2074,7 +2074,7 @@ static const luaL_Reg vmlib[] = {
 
     { NULL, NULL }
 };
-
+ 
 static const luaL_Reg ctxlib[] = {
     {"user_data",               lcontext_user_data              },
 

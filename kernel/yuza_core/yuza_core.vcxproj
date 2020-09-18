@@ -220,7 +220,7 @@
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <AdditionalIncludeDirectories>./;../;../include;../../runtime/include;../../corelib/include;../../corelib/STL/SGI;../../corelib/streams;../../support/include;../../corelib/yuzalib/renderer</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>SKYOS32;_MSC_VER;_X86_32;LIBC_KERNEL;</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SKYOS32;_MSC_VER;_X86_32;LIBC_KERNEL;DEBUG_KERNEL</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>

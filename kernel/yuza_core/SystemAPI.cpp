@@ -77,9 +77,8 @@ BOOL ValidatePEImage(void* image)
 
 extern "C" void kprintf(const char *fmt, ...)
 {
-
 	char buf[4096] = { 0, };
-	
+
 	va_list arglist;
 	va_start(arglist, fmt);
 
@@ -102,22 +101,23 @@ extern "C" void kprintf(const char *fmt, ...)
 	}*/
 
 #if SKY_EMULATOR
-	g_platformAPI._printInterface.sky_printf(buf);	
+	g_platformAPI._printInterface.sky_printf(buf);
 #else
 
 	if (SkyGUISystem::GetInstance()->GUIEnable())
 	{
 		QWORD taskId = Thread::GetRunningThread()->GetTeam()->GetTaskId();
 
-		if(taskId > 0)
+		//if (taskId > 0)
 			SkyGUISystem::GetInstance()->Print(taskId, buf);
 	}
 	else
 	{
 		SkyConsole::Print(buf);
 	}
-	
+
 #endif
+	
 }
 
 extern BOOL kGetCurrentConsoleWindowId(QWORD* qwWindowID);
@@ -138,7 +138,7 @@ extern "C" void kprintMsg(const char* str)
 
 #else
 		QWORD taskId = Thread::GetRunningThread()->GetTeam()->GetTaskId();
-		if (taskId > 0)
+		//if (taskId > 0)
 			SkyGUISystem::GetInstance()->Print(taskId, (char*)str);
 
 #endif
@@ -1122,6 +1122,7 @@ void kSendSerialLog(char* buffer, int size)
 	SendSerialData((BYTE*)buffer, size);
 }
 
+extern bool g_serialPortInit;
 void kDebugPrint(const char* fmt, ...)
 {
 #ifndef DEBUG_KERNEL
@@ -1140,7 +1141,7 @@ void kDebugPrint(const char* fmt, ...)
 	return;
 #endif
 
-	if(g_bootParams.bGraphicMode) 	
+	if(g_bootParams.bGraphicMode && g_serialPortInit == true)
 		SendSerialData((BYTE*)buf, strlen(buf) + 1);
 	else
 		kprintf(buf);

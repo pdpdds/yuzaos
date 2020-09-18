@@ -17,7 +17,7 @@ extern "C" int vprintf(const char* format, va_list va)
 }
 
 //! writes formatted string to buffer
-extern "C" int vsprintf(char *str, const char *format, va_list ap) {
+/*extern "C" int vsprintf(char *str, const char *format, va_list ap) {
 
 	if (!str)
 		return 0;
@@ -35,7 +35,7 @@ extern "C" int vsprintf(char *str, const char *format, va_list ap) {
 		case '%':
 			switch (format[i + 1])
 			{
-				/*** characters ***/
+			
 			case 'c':
 			{
 				char c = va_arg(ap, char);
@@ -44,7 +44,7 @@ extern "C" int vsprintf(char *str, const char *format, va_list ap) {
 				break;
 			}
 
-			/*** integers ***/
+			
 			case 'd':
 			case 'I':
 			case 'i':
@@ -66,7 +66,7 @@ extern "C" int vsprintf(char *str, const char *format, va_list ap) {
 				break;
 			}
 
-			/*** display in hex ***/
+			
 			case 'X':
 			case 'p':
 			{
@@ -97,7 +97,7 @@ extern "C" int vsprintf(char *str, const char *format, va_list ap) {
 				loc += strlen(s) - 1;
 				break;
 			}
-			/*** strings ***/
+			
 			case 's':
 			{
 				int c = (int&)va_arg(ap, char);
@@ -171,7 +171,7 @@ extern "C" int vsprintf(char *str, const char *format, va_list ap) {
 	}
 
 	return i;
-}
+}*/
 
 /*extern "C" int vnsprintf(char *str, size_t size, const char *format, va_list ap) {
 

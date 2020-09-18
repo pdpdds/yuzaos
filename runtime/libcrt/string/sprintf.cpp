@@ -14,14 +14,13 @@ extern "C" int sprintf(char *s, const char *format, ...)
 	return ret;
 }
 
-extern "C" int vsprintf1(char *d, const char *s, va_list ap);
 extern "C" int sprintf_f(char *s, const char *format, ...)
 {
 	va_list arg;
 	int ret;
 
 	va_start(arg, format);
-	ret = vsprintf1(s, format, arg);
+	ret = vsprintf(s, format, arg);
 	va_end(arg);
 
 	return ret;

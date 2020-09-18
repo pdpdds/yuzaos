@@ -111,8 +111,7 @@ bool Boot64BitMode(multiboot_info_t* pBootInfo, char* szKernelName)
 
 	if (pModule == nullptr)
 	{
-		SkyConsole::Print(" %s Kernel Found Fail!!\n", szKernelName);
-		for (;;);
+		LOG_FATAL(" %s Kernel Found Fail!!\n", szKernelName);
 	}
 
 	//커널의 이미지 베이스 주소와 커널 엔트리를 찾는다.

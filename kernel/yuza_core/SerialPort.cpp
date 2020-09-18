@@ -19,8 +19,9 @@ typedef struct tag_SerialPortManager
 
 } SERIALMANAGER;
 
-static SERIALMANAGER g_serialManager;
 
+static SERIALMANAGER g_serialManager;
+ bool g_serialPortInit = false;
 /**
  *  시리얼 포트 초기화
  */
@@ -42,6 +43,8 @@ void InitializeSerialPort( void )
     
 	OutPortByte( wPortBaseAddress + SERIAL_PORT_INDEX_FIFOCONTROL,
             SERIAL_FIFOCONTROL_FIFOENABLE | SERIAL_FIFOCONTROL_14BYTEFIFO );
+
+    g_serialPortInit = true;
 }
 
 /**

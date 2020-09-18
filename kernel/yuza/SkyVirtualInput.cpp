@@ -5,7 +5,7 @@
 SkyVirtualInput::SkyVirtualInput()
 {
 }
-
+ 
 SkyVirtualInput::~SkyVirtualInput()
 {
 }

@@ -60,23 +60,36 @@ int sum(int a, int b)
 	return a + b;
 }
 
+void SampleFillRect(ULONG* lfb0, int x, int y, int w, int h, int col)
+{
+	for (int k = 0; k < h; k++)
+		for (int j = 0; j < w; j++)
+		{
+			int index = ((j + x) + (k + y) * 1024);
+			lfb0[index] = col;
+		}
+}
+
 extern "C" void kmain(unsigned long magic, unsigned long addr)
 {
+	multiboot_info_t* mb_info = (multiboot_info_t*)addr;
+	
+
 	InitializeConstructors(); 
 	SkyConsole::Initialize();	
 	SkyConsole::Print("32Bit Kernel Loader Entered..\n");
 	
 	int result = sum(5, 4);
-
-	multiboot_info_t* mb_info = (multiboot_info_t*)addr;
-	if (strlen(mb_info->cmdline) == 0)
-	{
-		SkyConsole::Print("kernel name missing\n");
-		for (;;);
-	}
 	
-	SkyConsole::Print("Kernel Name %s\n", mb_info->cmdline);
+	
+	
+	SkyConsole::Print("Kernel Name : %s, BootLoader : %s\n", mb_info->cmdline, mb_info->boot_loader_name);
 	// 부트로더 이름이 "GNU GRUB 0.95" 이라면 커널이름 앞에 /을 붙인다. 
+	if (0 == strcmp(mb_info->boot_loader_name, GRUB_095))
+	{
+		strcpy(mb_info->cmdline, "/yuza.exe");
+	}
+	 
 	
 	if (IsKernel64(mb_info, mb_info->cmdline))
 		Boot64BitMode(mb_info, mb_info->cmdline);
@@ -86,3 +99,16 @@ extern "C" void kmain(unsigned long magic, unsigned long addr)
 	for (;;);
 }
 
+void LOG_FATAL(char* fmt, ...)
+{
+	char buf[4096];
+
+	va_list arglist;
+	va_start(arglist, fmt);
+	vsnprintf(buf, 4096, fmt, arglist);
+	va_end(arglist);
+	buf[4095] = 0;
+
+	SkyConsole::Print(buf);
+	for (;;);
+}

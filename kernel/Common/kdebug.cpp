@@ -12,15 +12,22 @@ We are sorry for the inconvenience this might have caused.\n\n\
 Please report the following information and restart your computer.\n\
 The system has been halted.\n\n";
 
+#include <BootParams.h>
 extern void SampleFillRect(ULONG* lfb0, int x, int y, int w, int h, int col);
+extern BootParams g_bootParams;
+extern "C" void kprintf(const char* fmt, ...);
 
+extern "C" void kDebugPrint(const char* fmt, ...);
 void kHaltSystem(const char* errMsg)
 {
 	if (Syscall_IsGraphicMode())
 	{
-		/*ULONG* bufferAddess = (ULONG*)g_bootParams.framebuffer_addr;
+		ULONG* bufferAddess = (ULONG*)g_bootParams.framebuffer_addr;
 		SampleFillRect(bufferAddess, 1004, 0, 20, 20, 0xFF00FF00);
-		kDebugPrint(errMsg);*/
+		SampleFillRect(bufferAddess, 904, 0, 20, 20, 0xFFFFFF00);
+		kDebugPrint(errMsg);
+		kDebugPrint("fsdfdsdsdsfd\n");
+		kDebugPrint(errMsg);
 	}
 	else
 	{

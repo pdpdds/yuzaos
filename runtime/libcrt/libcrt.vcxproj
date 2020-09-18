@@ -187,7 +187,7 @@
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <AdditionalIncludeDirectories>../include;./libc/time;../../corelib/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_X86_32;__i386__;_MSC_VER;LIBC_KERNEL;_KRNL_DLL</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_X86_32;__i386__;_MSC_VER;LIBC_KERNEL;_KRNL_DLL;FLOATINGPT</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>

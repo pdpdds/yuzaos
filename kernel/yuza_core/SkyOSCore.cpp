@@ -36,7 +36,7 @@ extern bool InitKernelSystem()
 	
 	PhysicalMap::Bootstrap();
 	AddressSpace::Bootstrap();
-
+	
 	TeamManager::GetInstance()->Bootstrap();
 	
 	Processor::Bootstrap();

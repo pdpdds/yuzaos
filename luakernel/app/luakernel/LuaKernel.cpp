@@ -57,7 +57,10 @@ DWORD WINAPI LuaInputProc(LPVOID parameter)
 		char c= pKernel->GetCh();
 
 		if (c)
+		{
 			HandleInterrupt(c);
+			continue;
+		}
 
 		Syscall_Sleep(0);
 	}

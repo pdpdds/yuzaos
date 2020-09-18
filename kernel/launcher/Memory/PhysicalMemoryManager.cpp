@@ -103,8 +103,7 @@ namespace PhysicalMemoryManager
 	{
 		if (m_maxBlocks - m_usedBlocks <= size)
 		{
-			SkyConsole::Print("AllocBlocks Fail!! %d %d %d\n", m_maxBlocks, m_usedBlocks, size);
-			for (;;);
+			LOG_FATAL("AllocBlocks Fail!! %d %d %d\n", m_maxBlocks, m_usedBlocks, size);
 		}
 
 		int frame = GetFreeFrames(size);
@@ -112,9 +111,7 @@ namespace PhysicalMemoryManager
 		//연속된 빈 블럭들이 존재하지 않는다.
 		if (frame == -1)
 		{
-			SkyConsole::Print("AllocBlocks frame!!\n");
-			for (;;);
-			
+			LOG_FATAL("AllocBlocks frame!!\n");	
 		}
 
 		for (uint32_t i = 0; i < size; i++)

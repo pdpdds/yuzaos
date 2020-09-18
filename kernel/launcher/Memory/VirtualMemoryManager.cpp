@@ -13,6 +13,7 @@
 extern BootParams* g_pBootParams;
 extern DWORD* _hyperSpacePTE;
 
+
 namespace VirtualMemoryManager
 {
 	//! current directory table
@@ -269,8 +270,7 @@ namespace VirtualMemoryManager
 
 		if (pAllocatedMemory == nullptr)
 		{
-			SkyConsole::Print("MapAddress Fail!!\n");
-			for (;;);
+			LOG_FATAL("MapAddress Fail!!\n");
 		}
 
 		int endAddress = (uint32_t)startAddress + pageCount * PMM_BLOCK_SIZE;
