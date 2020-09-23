@@ -87,7 +87,7 @@ bool Debugger::ExecuteCommand(char* commandBuffer)
 		}
 	}
 
-	kprintf("\n");
+	//kprintf("\n");
 	if (hook)
 		hook(argc, argv);
 	else

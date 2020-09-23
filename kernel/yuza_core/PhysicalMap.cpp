@@ -100,19 +100,37 @@ PhysicalMap::~PhysicalMap()
 	for (int i = 32; i < 512; i++) {
 		unsigned int pdent = pageDirVA[i]; 
 		if (pdent & kPagePresent)
-			Page::LockPage(pdent & kPageMask)->Free();
-	}		
+		{
+			Page* page = Page::LockPage(pdent & kPageMask);
+			if(page)
+				page->Free();
+		}
+	}	
 
 	UnlockPhysicalPage(pageDirVA);
-	Page::LockPage(fPageDirectory)->Free();
+	Page::LockPage(fPageDirectory)->Free();	
 }
 
 void PhysicalMap::Map(unsigned int va, unsigned int pa, PageProtection protection)
 {
+
 	ASSERT(va < kKernelBase || fKernelPhysicalMap == this);
+
 	fLock.Lock();
 
 	unsigned int* pgdir = reinterpret_cast<unsigned int*>(LockPhysicalPage(fPageDirectory));
+	LockedPage* lockedPage = 0;
+	for (LockedPage* target = fLockedPageHash[((unsigned int)pgdir / PAGE_SIZE) & kLockedPageHashSize - 1];
+		target; target = target->hashNext) {
+		if (target->pa == (unsigned int)pgdir)
+		{
+			lockedPage = target;
+			//break;
+		}
+	}
+
+
+
 	unsigned int* pgtbl = 0;
 	if ((pgdir[va / PAGE_SIZE / 1024] & kPagePresent) == 0) {
 		// Allocate a new page table
@@ -138,8 +156,19 @@ void PhysicalMap::Map(unsigned int va, unsigned int pa, PageProtection protectio
 			| kPageUser;
 	}
 	else
+	{
+		unsigned int det = pgdir[va / PAGE_SIZE / 1024] & kPageMask;
 		pgtbl = reinterpret_cast<unsigned int*>(LockPhysicalPage(pgdir[va / PAGE_SIZE / 1024] & kPageMask));
+		UnlockPhysicalPage(pgtbl);
+		pgtbl = reinterpret_cast<unsigned int*>(LockPhysicalPage(pgdir[va / PAGE_SIZE / 1024] & kPageMask));
+		UnlockPhysicalPage(pgtbl);
+		pgtbl = reinterpret_cast<unsigned int*>(LockPhysicalPage(pgdir[va / PAGE_SIZE / 1024] & kPageMask));
+		UnlockPhysicalPage(pgtbl);
+		pgtbl = reinterpret_cast<unsigned int*>(LockPhysicalPage(pgdir[va / PAGE_SIZE / 1024] & kPageMask));
+		UnlockPhysicalPage(pgtbl);
 
+		pgtbl = reinterpret_cast<unsigned int*>(LockPhysicalPage(pgdir[va / PAGE_SIZE / 1024] & kPageMask));
+	}
 	unsigned int pageFlags = kPagePresent;
 	if (va >= kKernelBase)
 		pageFlags |= kPageGlobal;
@@ -246,7 +275,6 @@ unsigned int PhysicalMap::GetPageDir() const
 
 char* PhysicalMap::LockPhysicalPage(unsigned int pa)
 {
-
 	ASSERT((pa & (PAGE_SIZE - 1)) == 0);
 
 	unsigned int va = INVALID_PAGE;
@@ -269,6 +297,11 @@ char* PhysicalMap::LockPhysicalPage(unsigned int pa)
 		if (lockedPage == 0)
 			kPanic("out of IO page slots");
 
+		if (fInactiveLockedPages.CountItems() < 10)
+		{
+			int j = 10;
+		}
+
 		if (lockedPage->pa != INVALID_PAGE) {
 			*lockedPage->hashPrev = lockedPage->hashNext;
 			if (lockedPage->hashNext)
@@ -283,8 +316,7 @@ char* PhysicalMap::LockPhysicalPage(unsigned int pa)
 
 		va = (lockedPage - fLockedPages) * PAGE_SIZE + kIOAreaBase;
 		int diff = lockedPage - fLockedPages;
-		reinterpret_cast<unsigned int*>(kIOAreaBase)[diff] = pa | kPagePresent
-			| kPageWritable;
+		reinterpret_cast<unsigned int*>(kIOAreaBase)[diff] = pa | kPagePresent | kPageWritable;
 #if !SKY_EMULATOR
 		InvalidateTLB(va);		
 #endif		
@@ -298,19 +330,44 @@ char* PhysicalMap::LockPhysicalPage(unsigned int pa)
 	}
 	
 	RestoreInterrupts(fl);	
+#if SKY_EMULATOR
+	return reinterpret_cast<char*>(pa);
+#else
 	return reinterpret_cast<char*>(va);
+#endif
+	
 }
 
 void PhysicalMap::UnlockPhysicalPage(const void *va)
 {
 	int fl = DisableInterrupts();
-	unsigned int slot = (reinterpret_cast<unsigned int>(va) - kIOAreaBase) / PAGE_SIZE;
 
+
+
+#if SKY_EMULATOR
+	// Check to see if this is already mapped.
+	LockedPage* lockedPage = 0;
+	for (LockedPage* target = fLockedPageHash[((unsigned int)va / PAGE_SIZE) & kLockedPageHashSize - 1];
+		target; target = target->hashNext) {
+		if (target->pa == (unsigned int)va)
+		{
+			lockedPage = target;
+			break;
+		}
+	}
+
+	ASSERT(lockedPage != 0);
+	ASSERT(lockedPage->mapCount > 0);
+	unsigned int slot = lockedPage - fLockedPages;
+#else
+	unsigned int slot = (reinterpret_cast<unsigned int>(va) - kIOAreaBase) / PAGE_SIZE;
+#endif
 	ASSERT(slot < 1024);
 	ASSERT(fLockedPages[slot].mapCount > 0);
 	if (--fLockedPages[slot].mapCount == 0)
 		fInactiveLockedPages.Enqueue(&fLockedPages[slot]);
-	
+
+
 	RestoreInterrupts(fl);
 }
 
@@ -326,7 +383,7 @@ void PhysicalMap::CopyPage(unsigned int destpa, unsigned int srcpa)
 void PhysicalMap::Bootstrap()
 {
 	// Set up an area to temporarily map physical pages.
-	fLockedPages = new LockedPage[1024];
+	fLockedPages = new LockedPage[1024]();
 	for (int i = 1; i < 1024; i++) {
 		fInactiveLockedPages.Enqueue(&fLockedPages[i]);
 		fLockedPages[i].pa = INVALID_PAGE;
@@ -338,7 +395,9 @@ void PhysicalMap::Bootstrap()
 	fLockedPages[0].mapCount = 0x3fffffff;
 
 #if SKY_EMULATOR	
-	fKernelPhysicalMap =  new PhysicalMap(Page::Alloc()->GetPhysicalAddress());
+	//kIOAreaBase = reinterpret_cast<unsigned int>(fLockedPages);
+	kIOAreaBase = (unsigned int)(new unsigned int[1024]);
+	fKernelPhysicalMap =  new PhysicalMap(Page::Alloc(true)->GetPhysicalAddress());
 #else
 	fKernelPhysicalMap = new PhysicalMap(GetCurrentPageDir());
 #endif

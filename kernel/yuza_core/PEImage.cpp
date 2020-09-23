@@ -4,6 +4,9 @@
 #include <SystemAPI.h>
 #include <memory.h>
 #include <ModuleManager.h>
+#include <platformapi.h>
+
+extern PlatformAPI g_platformAPI;
 
 bool RelocatePE(DWORD imageBase, UINT64 peSize, DWORD relocationBase)
 {

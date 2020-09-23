@@ -20,6 +20,7 @@
 #include "ktypes.h"
 #include "x86.h"
 #include <BuildOption.h>
+#include <memory.h>
 
 void read_tsc(int *cl_Low, int *cl_High);
 
@@ -184,6 +185,11 @@ inline void Halt()
 
 inline void ClearPage(void *va)
 {
+#if SKY_EMULATOR
+	memset(va, 0, PAGE_SIZE);
+	return;
+#endif
+
 	int dummy0, dummy1;
 	__asm
 	{

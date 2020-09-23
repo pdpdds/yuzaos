@@ -12,6 +12,7 @@
 #include <MemoryResourceAdaptor.h>
 #include "MemoryResourceFS.h"
 #include <StackTracer.h>
+#include <BuildOption.h>
 
 ModuleManager* ModuleManager::m_pModuleManager = nullptr;
 I_FileManager* g_pFileManager = 0;

@@ -3,6 +3,7 @@
 #include <string.h>
 #include <MultiBoot.h>
 #include <SystemAPI.h>
+#include <BuildOption.h>
 
 extern BootParams g_bootParams;
 

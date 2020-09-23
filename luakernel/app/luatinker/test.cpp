@@ -167,7 +167,6 @@ void test5(lua_State* L)
 	printf("%s\n", "-------------------------- stack after push '1'");
 	luatinker::enum_stack(L);
 
-
 	// sample5.lua 파일을 로드/실행한다.
 	luatinker::dofile(L, "sample5.lua");
 
@@ -194,17 +193,15 @@ void test5(lua_State* L)
 	luatinker::call<void>(L, "test_error");
 }
 
-// 함수 형태가 int(*)(lua_State*) 또는 int(*)(lua_State*,T1) 일 경우만 lua_yield() 를 쓸 수 있다.
-// 함수 인자가 더 필요할 경우 lua_tinker.h 의 "functor (non-managed)" 코멘트 부분을 참고해서 직접 추가할 것
-int TestFunc(lua_State* L)
+int SampleFunc(lua_State* L)
 {
-	printf("# TestFunc 실행중\n");
+	printf("# SampleFunc...\n");
 	return lua_yield(L, 0);
 }
 
-int TestFunc2(lua_State* L, float a)
+int SampleFunc2(lua_State* L, float a)
 {
-	printf("# TestFunc2(L,%f) 실행중\n", a);
+	printf("# SampleFunc2(L,%f)...\n", a);
 	return lua_yield(L, 0);
 }
 
@@ -212,8 +209,6 @@ class TestClass
 {
 public:
 
-	// 함수 형태가 int(T::*)(lua_State*) 또는 int(T::*)(lua_State*,T1) 일 경우만 lua_yield() 를 쓸 수 있다.
-	// 함수 인자가 더 필요할 경우 lua_tinker.h 의 "class member functor (non-managed)" 코멘트 부분을 참고해서 직접 추가할 것
 	int TestFunc(lua_State* L)
 	{
 		printf("# TestClass::TestFunc 실행중\n");
@@ -233,8 +228,8 @@ void test6(lua_State* L)
 	luaopen_string(L);
 
 	// TestFunc 함수를 Lua 에 등록한다.
-	luatinker::def(L, "TestFunc", &TestFunc);
-	luatinker::def(L, "TestFunc2", &TestFunc2);
+	luatinker::def(L, "SampleFunc", &SampleFunc);
+	luatinker::def(L, "SampleFunc2", &SampleFunc2);
 
 	// TestClass 클래스를 Lua 에 추가한다.
 	luatinker::class_add<TestClass>(L, "TestClass");
@@ -243,34 +238,32 @@ void test6(lua_State* L)
 	luatinker::class_def<TestClass>(L, "TestFunc2", &TestClass::TestFunc2);
 
 	// TestClass 를 전역 변수로 선언한다.
-	TestClass g_test;
-	luatinker::set(L, "g_test", &g_test);
+	TestClass testClass;
+	luatinker::set(L, "testClass", &testClass);
 
-	// sample3.lua 파일을 로드한다.
+	// sample6.lua 파일을 로드한다.
 	luatinker::dofile(L, "sample6.lua");
 
-	// Thread 를 시작한다.
+	// 코루틴을 시작한다.
 	lua_State *co = lua_newthread(L);
 	lua_getglobal(co, "ThreadTest");
-	// Thread 를 시작한다.
 	int result = 0;
 	printf("* lua_resume() call\n");
 	lua_resume(co, L, 0, &result);
 
-	// Thread 를 다시 시작한다.
+	// 협업루틴을 재개한다.
 	printf("* lua_resume() call\n");
 	lua_resume(co, L, 0, &result);
 
-	// Thread 를 다시 시작한다.
+	// 협업루틴을 재개한다.
 	printf("* lua_resume() call\n");
 	lua_resume(co, L, 0, &result);
 
-	// Thread 를 다시 시작한다.
+	// 협업루틴을 재개한다.
 	printf("* lua_resume() call\n");
 	lua_resume(co, L, 0, &result);
 
-
-	// Thread 를 다시 시작한다.
+	// 협업루틴을 재개한다.
 	printf("* lua_resume() call\n");
 	lua_resume(co, L, 0, &result);
 }

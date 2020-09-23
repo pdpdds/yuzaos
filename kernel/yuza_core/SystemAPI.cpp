@@ -25,6 +25,7 @@
 #include <IDT.h>
 #include "physicalmap.h"
 #include <./KeyBoard/KeyboardController.h>
+#include <Thread.h>
 
 extern BootParams g_bootParams;
 DWORD g_dwSysLastError = 0;
@@ -120,6 +121,7 @@ extern "C" void kprintf(const char *fmt, ...)
 	
 }
 
+
 extern BOOL kGetCurrentConsoleWindowId(QWORD* qwWindowID);
 extern "C" void kprintMsg(const char* str)
 {
@@ -164,7 +166,7 @@ inline int OpenHandle(Resource* obj)
 	return Thread::GetRunningThread()->GetTeam()->GetHandleTable()->Open(obj);
 }
 
-static int UserThreadEntry(void* parameter)
+int UserThreadEntry(void* parameter)
 {
 	ThreadParam* pParam = (ThreadParam*)parameter;
 	static int count = 0;
@@ -202,7 +204,7 @@ static int UserThreadEntry(void* parameter)
 	return 0;
 }
 
-static main_args* MakeArgument(const char* path, void* param)
+main_args* MakeArgument(const char* path, void* param)
 {
 	main_args* args = new main_args;
 	if (param != nullptr)
@@ -292,6 +294,7 @@ static int ExecuteFile(const char* path, char* arg)
 }
 
 #if SKY_EMULATOR
+
 typedef struct tag_ThreadStartParms
 {
 	char threadName[256];
@@ -307,10 +310,17 @@ static DWORD RunSkyThread(void* data)
 	THREAD_START_ENTRY threadEntry = pThreadParms->threadEntry;
 	void* args = pThreadParms->data;
 	Thread* pSkyThread = pThreadParms->pSkyThread;
+	int threadId = kGetCurrentThreadId();
+	(*Thread::fMapThread)[threadId] = pSkyThread;
 
 	delete pThreadParms;
 	threadEntry(args);
+//#if SKY_EMULATOR
+	//pSkyThread->ReleaseRef();
+//#else
 	pSkyThread->Exit();
+//#endif
+	(*Thread::fMapThread).erase(threadId);
 
 	return (0);
 }
@@ -319,7 +329,7 @@ static DWORD RunSkyThread(void* data)
 ///////////////////////////////////////////////////////////////////////////////////
 //SystemAPI Implementation
 ///////////////////////////////////////////////////////////////////////////////////
-HANDLE kCreateThread_temp(THREAD_START_ENTRY entry, const char* name, void* data, int priority, Team* team)
+HANDLE kCreateThreadWithTeam(THREAD_START_ENTRY entry, const char* name, void* data, int priority, Team* team)
 {
 	Thread* pSkyThread = new Thread(name, team, entry, data, priority);
 	ThreadStartParms* pStartParam = new ThreadStartParms;
@@ -328,7 +338,7 @@ HANDLE kCreateThread_temp(THREAD_START_ENTRY entry, const char* name, void* data
 	pStartParam->data = data;
 	pStartParam->pSkyThread = pSkyThread;
 
-	int thread = g_platformAPI._processInterface.sky_kCreateThread(Thread::GetRunningThread()->GetCurrentThreadId(), (LPTHREAD_START_ROUTINE)RunSkyThread, pStartParam);
+	int thread = g_platformAPI._processInterface.sky_kCreateThread(team->GetTaskId(), (LPTHREAD_START_ROUTINE)RunSkyThread, pStartParam);
 	pSkyThread->m_handle = (HANDLE)thread;
 	return (HANDLE)thread;
 }
@@ -344,7 +354,7 @@ HANDLE kCreateThread(THREAD_START_ENTRY entry, const char* name, void* data, int
 	pStartParam->data = data;
 	pStartParam->pSkyThread = pSkyThread;
 
-	int thread = g_platformAPI._processInterface.sky_kCreateThread(Thread::GetRunningThread()->GetCurrentThreadId(), (LPTHREAD_START_ROUTINE)RunSkyThread, pStartParam);
+	int thread = g_platformAPI._processInterface.sky_kCreateThread(Thread::GetRunningThread()->GetTeam()->GetTaskId(), (LPTHREAD_START_ROUTINE)RunSkyThread, pStartParam);
 	pSkyThread->m_handle = (HANDLE)thread;
 	return (HANDLE)thread;
 #else
@@ -459,7 +469,7 @@ HANDLE kCreateProcess(const char* execPath, void* param, int priority)
 	kDebugPrint("CreateProcess %x %s %d\n", mainFunc, path, priority);
 
 	Team* newTeam = TeamManager::GetInstance()->CreateTeam(path);
-	HANDLE hwnd = (void*)kCreateThread_temp(mainFunc, path, args, 15, newTeam);
+	HANDLE hwnd = (void*)kCreateThreadWithTeam(mainFunc, path, args, 15, newTeam);
 
 	newTeam->m_mainThreadHandle = hwnd;
 	newTeam->m_moduleHandle = moduleHandle;
@@ -1106,9 +1116,67 @@ BOOL kMoveWindow(QWORD* qwWindowID, int x, int y)
 	return SkyGUISystem::GetInstance()->MoveWindow(qwWindowID, x, y);
 }
 
+#include "LoadDLL.h"
+
+char* remove_ext(char* myStr, char extSep, char pathSep) {
+	char* retStr, * lastExt, * lastPath;
+
+	// Error checks and allocate string.
+
+	if (myStr == NULL) return NULL;
+	if ((retStr = (char*)malloc(strlen(myStr) + 1)) == NULL) return NULL;
+
+	// Make a copy and find the relevant characters.
+
+	strcpy(retStr, myStr);
+	lastExt = (char*)strrchr(retStr, extSep);
+	lastPath = (pathSep == 0) ? NULL : (char*)strrchr(retStr, pathSep);
+
+	// If it has an extension separator.
+
+	if (lastExt != NULL) {
+		// and it's to the right of the path separator.
+
+		if (lastPath != NULL) {
+			if (lastPath < lastExt) {
+				// then remove it.
+
+				*lastExt = '\0';
+			}
+		}
+		else {
+			// Has extension separator with no path separator.
+
+			*lastExt = '\0';
+		}
+	}
+
+	// Return the modified string.
+
+	return retStr;
+}
+
 int kTraceCallStack()
 {
-	StackTracer::GetInstance()->TraceStackWithSymbol();
+	auto iter = Thread::GetRunningThread()->GetTeam()->m_loadedDllList.begin();
+
+	for (; iter != Thread::GetRunningThread()->GetTeam()->m_loadedDllList.end(); iter++)
+	{
+		LOAD_DLL_INFO* pInfo = (LOAD_DLL_INFO *)(*iter);
+
+		if (ModuleManager::GetInstance()->GetSystemPE(pInfo->moduleName))
+			continue;
+
+		char buf[256];
+		strcpy(buf, pInfo->moduleName);
+		char* retStr = remove_ext(buf, '.', '/');
+		std::string name = retStr;
+		name += ".map";
+
+		StackTracer::GetInstance()->AddSymbol(name.c_str(), pInfo->image_base);
+	}
+
+	StackTracer::GetInstance()->TraceStackWithSymbol(30, 0);
 
 	return 0;
 }
@@ -1552,6 +1620,11 @@ BOOL kGetCurrentConsoleWindowId(QWORD* qwWindowID)
 	}
 
 	return FALSE;
+}
+
+inline BOOL CopyUser(void* dest, const void* src, int size)
+{
+	return Thread::GetRunningThread()->CopyUser(dest, src, size);
 }
 
 BOOL kRegisterWindowId(QWORD* qwWindowID)

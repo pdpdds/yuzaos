@@ -23,7 +23,9 @@ Team::Team(const char* name, int teamId)
 	//m_userHeap(0)
 {
 	strcpy(m_szCWD, "/");
-	m_currentDrive = 'C';
+	char buf[256];
+	kGetEnvironmentVariable("BOOT_DRIVE", buf, 256);
+	m_currentDrive = buf[0];
 
 	m_addressSpace = new AddressSpace();
 	
@@ -43,7 +45,7 @@ Team::~Team()
 
 	for (; iter != m_loadedDllList.end(); iter++)
 		ModuleManager::GetInstance()->UnloadPE((*iter));
-
+	 
 	m_loadedDllList.clear();
 
 	int fl = DisableInterrupts();
@@ -301,6 +303,7 @@ static void FreeArgument(main_args* args)
 	kfree(args->argv);
 	kfree(args);
 }
+char* remove_ext(char* myStr, char extSep, char pathSep);
 
 int Team::StartMainThread(ThreadParam* pParam)
 {
@@ -309,7 +312,7 @@ int Team::StartMainThread(ThreadParam* pParam)
 
 	if (strlen((char*)pParam->name) == 0)
 	{
-		StackTracer::GetInstance()->TraceStackWithSymbol();
+		kTraceCallStack();
 		for (;;);
 	}
 
@@ -321,6 +324,12 @@ int Team::StartMainThread(ThreadParam* pParam)
 		kDebugPrint("error loading image : %s\n", pParam->name);
 		return E_ERROR;
 	}
+
+	char* retStr = remove_ext(pParam->name, '.', '/');
+	std::string name = retStr;
+	name += ".map";
+	StackTracer::GetInstance()->AddSymbol(name.c_str(), (unsigned int)m_image->fBaseAddress);
+	free(retStr);
 
 	dll_start_t dllEntry = reinterpret_cast<dll_start_t>(m_image->GetEntryAddress());
 

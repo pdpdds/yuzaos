@@ -223,9 +223,7 @@ int Synchronization::WaitInternal(int syncObjectCount,
 
 	waitEvent.fThread->SetState(kThreadWaiting);
 
-#if SKY_EMULATOR
-	InterruptDisabler disable;
-#else
+#if !SKY_EMULATOR	
 	gScheduler.Reschedule();
 #endif
 

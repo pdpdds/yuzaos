@@ -22,6 +22,9 @@ void TeamManager::Bootstrap()
 	Debugger::GetInstance()->AddCommand("ps", "list running threads", PrintThreads);
 	Debugger::GetInstance()->AddCommand("areas", "list user areas", PrintAreas);
 	Debugger::GetInstance()->AddCommand("handles", "list handles", PrintHandles);
+	Debugger::GetInstance()->AddCommand("ps2", "list loaded moudle address", PrintTeamModules);
+
+	
 }
 
 Team* TeamManager::CreateTeam(const char* name)
@@ -108,6 +111,26 @@ void TeamManager::PrintThreads(int argc, const char** argv)
 	}
 
 	kprintf("%d Threads  %d Teams\n", threadCount, teamCount);
+}
+
+#include <ModuleManager.h>
+#include <LoadDLL.h>
+
+void TeamManager::PrintTeamModules(int argc, const char** argv)
+{
+	kprintf("%s\n", Thread::GetRunningThread()->GetTeam()->GetName());
+
+	auto iter = Thread::GetRunningThread()->GetTeam()->m_loadedDllList.begin();
+
+	for (; iter != Thread::GetRunningThread()->GetTeam()->m_loadedDllList.end(); iter++)
+	{
+		LOAD_DLL_INFO* pInfo = (LOAD_DLL_INFO*)(*iter);
+
+		kprintf("%s 0x%x\n", pInfo->moduleName, pInfo->image_base);
+
+	}
+
+
 }
 
 void TeamManager::DoForEach(void (*EachTeamFunc)(void*, Team*), void* cookie)

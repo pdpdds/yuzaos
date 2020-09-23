@@ -29,6 +29,7 @@ public:
 
 	static void PrintThreads(int argc, const char** argv);
 	static void PrintAreas(int argc, const char** argv);
+	static void PrintTeamModules(int argc, const char** argv);
 	static void PrintHandles(int argc, const char** argv);
 
 	// Call a function for every team in the system

@@ -40,7 +40,7 @@ void InterruptFrame::Print() const
 			('A' - 'a'));
 	kprintf("\ntrap %x      error code %x\n", vector, errorCode);
 
-	StackTracer::GetInstance()->TraceStackWithSymbol();
+	StackTracer::GetInstance()->TraceStackWithSymbol(30, eip);
 }
 
 void HandleTrap(InterruptFrame iframe)

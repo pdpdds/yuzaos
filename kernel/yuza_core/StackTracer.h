@@ -23,7 +23,7 @@ public:
 		return m_pStackTracer;
 	}
 	
-	void TraceStackWithSymbol(unsigned int maxFrames = 30);
+	void TraceStackWithSymbol(unsigned int maxFrames, unsigned int faultAddress);
 	void TraceStackWithProcessId(int processId);
 
 	bool Init(const char* moduleName);
@@ -31,6 +31,7 @@ public:
 
 protected:	
 	bool ResolveAddressInfo(unsigned int eip);
+	bool AlreadySymbolLoaded(const char* symbolName);
 
 private:
 	StackTracer();

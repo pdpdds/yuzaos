@@ -9,6 +9,8 @@
 #include <ktypes.h>
 #include "platformapi.h"
 #include <BuildOption.h>
+#include <map>
+#include <SystemAPI.h>
 
 class Team;
 class Area;
@@ -131,6 +133,7 @@ public:
 	DWORD GetSuspendCount();
 
 	HANDLE m_handle;
+	static std::map<DWORD, Thread*>* fMapThread;
 
 private:
 	/// This is used to bootstream the first thread.
@@ -165,12 +168,18 @@ private:
 	static Thread *fRunningThread;
 	static _Queue fReapQueue;
 	static Semaphore fThreadsToReap;
+	
 
 	friend class Team;
 };
 
 inline Thread* Thread::GetRunningThread()
 {
+#if SKY_EMULATOR
+	DWORD threadId = g_platformAPI._processInterface.sky_kGetCurrentThreadId();
+	return (*fMapThread)[threadId];
+#endif // SKY_EMULATOR
+
 	return fRunningThread;
 }
 

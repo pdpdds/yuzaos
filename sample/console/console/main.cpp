@@ -54,6 +54,14 @@ int main_impl(int argc, char** argv)
 	printf("%s\nConsole Mode Start!!\n", (char*)argv[0]);
 	//Test();
 	//TestGrep();
+
+	int a = 100;
+	int j = 0;
+	a = a / j;
+
+	//Syscall_SysCallTest("pe");
+	
+	//Syscall_TraceCallStack();
 	NativeConsole();
 
 	printf("Bye!!\n");

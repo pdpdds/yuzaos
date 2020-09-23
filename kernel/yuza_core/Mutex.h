@@ -8,10 +8,15 @@ class Thread;
 class Mutex : public Synchronization {
 public:
 	Mutex(int = 0);
+	~Mutex();
 	int Lock();
 	void Unlock();
 private:
 	virtual void ThreadWoken();
+
+#if SKY_EMULATOR
+	CRITICAL_SECTION m_cs;
+#endif
 };
 
 /// Reader/Writer lock

@@ -100,12 +100,7 @@ Area* AddressSpace::CreateArea(const char name[], unsigned int size, AreaWiring 
 
 				Page *page = cache->GetPage(area->GetCacheOffset() + areaOffset, false);
 				page->Wire();
-	
-//20200828
-/*#if SKY_EMULATOR		
-				if(areaOffset == 0)
-					va = page->GetPhysicalAddress();								
-#endif */				
+		
 				m_pPhysicalMap->Map(va + areaOffset, page->GetPhysicalAddress(), protection);
 
 			}

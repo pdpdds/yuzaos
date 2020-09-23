@@ -29,6 +29,8 @@
 #include <memory_layout.h>
 
 Thread* Thread::fRunningThread = 0;
+std::map<DWORD, Thread*>* Thread::fMapThread = 0;
+
 _Queue Thread::fReapQueue;
 Semaphore Thread::fThreadsToReap("threads to reap", 0);
 
@@ -101,9 +103,7 @@ void Thread::Exit()
 {
 	kDebugPrint("ExitThread \n" );
 
-#ifndef SKY_EMULATOR 
 	ASSERT(GetRunningThread() == this);
-#endif
 
 	int fl = DisableInterrupts();
 	SetState(kThreadDead);
@@ -197,10 +197,15 @@ void Thread::EnqueueAPC(APC *apc)
 
 void Thread::Bootstrap()
 {
+#if SKY_EMULATOR
+	fMapThread = new std::map<DWORD, Thread*>();
+#endif
 	fRunningThread = new Thread("Init Thread");
-	
+
 #if SKY_EMULATOR
 	fRunningThread->m_handle = g_platformAPI._processInterface.sky_kGetCurrentThread();
+	DWORD threadId = g_platformAPI._processInterface.sky_kGetCurrentThreadId();
+	(*Thread::fMapThread)[threadId] = fRunningThread;
 #endif
 	Debugger::GetInstance()->AddCommand("st", "Stack trace of current thread", StackTrace);
 }
@@ -209,7 +214,7 @@ void Thread::SetKernelStack(Area *area)
 {
 	fKernelStack = area;
 }
-
+HANDLE kCreateThreadWithTeam(THREAD_START_ENTRY entry, const char* name, void* data, int priority, Team* team);
 void Thread::SetTeam(Team *team)
 {
 	fTeam = team;
@@ -219,9 +224,7 @@ void Thread::SetTeam(Team *team)
 	// This is kind of a weird side effect, the function should be more explicit.
 
 #if SKY_EMULATOR
-
-	kCreateThread(GrimReaper, "Grim Reaper", this, 30);
-
+	kCreateThreadWithTeam(GrimReaper, "Grim Reaper", this, 30, team);
 #else
 	new Thread("Grim Reaper", team, GrimReaper, this, 30);
 #endif
@@ -268,7 +271,6 @@ void Thread::StackTrace(int, const char**)
 // have exited.
 int Thread::GrimReaper(void*)
 {
-	
 	for (;;) {
 		
 		fThreadsToReap.Wait();

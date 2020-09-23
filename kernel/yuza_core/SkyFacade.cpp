@@ -120,6 +120,7 @@ bool InitDebuggerSystem();
 void KernelThreadProc();
 void JumpToNewKernelEntry(int entryPoint, unsigned int procStack);
 void InitPCI();
+bool AddEnvironmentForced(config_t& cfg, char* element, char* envName);
 
 BootParams g_bootParams;
 PlatformAPI g_platformAPI;
@@ -164,12 +165,10 @@ void KernelThreadProc()
 	InitSerialPortSystem();
 	InitPCI();
 #endif
-
-	InitDebuggerSystem();
 	InitEnvironment();
 	InitStorageSystem();
 
-	kSetCurrentDriveId('C');
+	InitDebuggerSystem();
 
 	char buf[256];
 	if (g_bootParams.bGraphicMode == true)
@@ -211,11 +210,10 @@ bool InitOSSystem(BootParams* pBootParam)
 	g_bootParams._memoryInfo._kernelBase = 0x00800000;
 	g_bootParams._memoryInfo._IDT = (DWORD)&g_IDT;
 
-	g_bootParams._memoryInfo._kHeapSize = g_bootParams._memoryInfo._memorySize - IO_AREA_PAGE_COUNT * PAGE_SIZE;
+	g_bootParams._memoryInfo._kHeapSize = (g_bootParams._memoryInfo._memorySize/ PAGE_SIZE) * PAGE_SIZE;
 	kHeapBase = (DWORD)(g_bootParams.MemoryRegion[0].begin);
+	g_bootParams._memoryInfo._kHeapBase = kHeapBase;
 	//g_bootParams._heapVirtualEndAddr = (uint32_t)g_bootParams._heapVirtualStartAddr + g_bootParams._heapFrameCount * PAGE_SIZE;
-
-	kIOAreaBase = (DWORD)(g_bootParams.MemoryRegion[0].begin) + g_bootParams._memoryInfo._kHeapSize;
 
 	kInitializeCriticalSection(&g_interrupt_cs);
 #else
@@ -420,6 +418,8 @@ bool InitEnvironment()
 	AddEnvironment(cfg, "desktop.DESKTOPMGR", "DESKTOPMGR");
 	AddEnvironment(cfg, "console.CONSOLE", "CONSOLEMGR");
 
+	AddEnvironmentForced(cfg, "environment.BOOT", "BOOT_DRIVE");
+
 	config_destroy(&cfg);
 
 
@@ -449,6 +449,7 @@ bool InitStorageSystem()
 	kDebugPrint("file : %s, name: %s\n\n", config_file, str);
 
 	AddStorageModule(cfg, "storage.IDE", true);
+
 	kSetCurrentDriveId('C');
 	
 	//AddStorageModule(cfg, "storage.FLOPPY", true);
@@ -584,15 +585,88 @@ bool InitSerialPortSystem()
 	return true;
 }
 
+bool AddSymbol(config_t& cfg, char* element);
 bool InitDebuggerSystem()
 {
-#if !SKY_EMULATOR
-	LOAD_DLL_INFO* pInfo = ModuleManager::GetInstance()->GetSystemPE("libconfig.dll");
-	StackTracer::GetInstance()->Init("stacktracer.dll");
-	StackTracer::GetInstance()->AddSymbol("yuza.map");
-	StackTracer::GetInstance()->AddSymbol("libconfig.map", pInfo->image_base);
-#endif
+	kprintf("InitDebuggerSystem\n");
+	config_t cfg;
 
+	const char* str;
+	config_init(&cfg);
+	char* config_file = "yuza.cfg";
+
+	/* Read the file. If there is an error, report it and exit. */
+	if (!config_read_file(&cfg, config_file))
+	{
+
+		kDebugPrint("%s:%d - %s\n", config_file, config_error_line(&cfg), config_error_text(&cfg));
+		config_destroy(&cfg);
+		kPanic("file load fail : %s", config_file);
+	}
+
+	config_setting_t* setting;
+
+	setting = config_lookup(&cfg, "debug.CONFIG");
+	int enable = 0;
+	int addmap = 0;
+	if (setting != NULL)
+	{
+		config_setting_t* env = config_setting_get_elem(setting, 0);
+
+		config_setting_lookup_int(env, "addmap", &addmap);
+		config_setting_lookup_int(env, "enable", &enable);
+	}
+
+//#if !SKY_EMULATOR
+	if (enable)
+	{
+		StackTracer::GetInstance()->Init("stacktracer.dll");
+
+		if (addmap)
+			AddSymbol(cfg, "debug.MAPFILE");
+	}
+
+//#endif
+	config_destroy(&cfg);
+
+	return true;
+}
+
+bool AddSymbol(config_t& cfg, char* element)
+{
+	config_setting_t* setting;
+	/* Output a list of all books in the inventory. */
+	setting = config_lookup(&cfg, element);
+	if (setting != NULL)
+	{
+		int count = config_setting_length(setting);
+		int i;
+
+		for (i = 0; i < count; ++i)
+		{
+			config_setting_t* env = config_setting_get_elem(setting, i);
+
+			const char* name = 0;
+			if (!(config_setting_lookup_string(env, "name", &name)))
+				continue;
+
+			std::string dllName = name;
+			std::string mapName = name;
+			dllName += ".dll";
+			mapName += ".map";
+
+			LOAD_DLL_INFO* pInfo = ModuleManager::GetInstance()->GetSystemPE(dllName.c_str());
+
+			if (pInfo == nullptr)
+			{
+				StackTracer::GetInstance()->AddSymbol(mapName.c_str());
+			}
+			else
+			{
+				StackTracer::GetInstance()->AddSymbol(mapName.c_str(), pInfo->image_base);
+			}
+		}
+	}
 	return true;
 }
 
@@ -624,6 +698,30 @@ bool AddEnvironment(config_t& cfg, char* element, char* envName)
 			kGetEnvironmentVariable(envName, buf, 256);
 			kDebugPrint("Add VirtualImage: %s\n", buf);
 
+		}
+	}
+	return true;
+}
+
+bool AddEnvironmentForced(config_t& cfg, char* element, char* envName)
+{
+	config_setting_t* setting;
+	/* Output a list of all books in the inventory. */
+	setting = config_lookup(&cfg, element);
+	if (setting != NULL)
+	{
+		int count = config_setting_length(setting);
+		int i;
+
+		for (i = 0; i < count; ++i)
+		{
+			config_setting_t* env = config_setting_get_elem(setting, i);
+
+			const char* name = 0;
+			if (!(config_setting_lookup_string(env, envName, &name)))
+				continue;
+
+			kSetEnvironmentVariable(envName, name);
 		}
 	}
 	return true;

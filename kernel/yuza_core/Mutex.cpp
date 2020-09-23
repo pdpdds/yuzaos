@@ -7,21 +7,48 @@ const int kMaxReaders = 0x50000000;
 
 Mutex::Mutex(int)
 {
+#if SKY_EMULATOR
+	kInitializeCriticalSection(&m_cs);
+	return;
+#endif
+
 	Signal(false);
+}
+
+Mutex::~Mutex()
+{
+#if SKY_EMULATOR
+	kDeleteCriticalSection(&m_cs);
+	return;
+#endif
 }
 
 int Mutex::Lock()
 {
+#if SKY_EMULATOR
+	kEnterCriticalSection(&m_cs);
+	return E_NO_ERROR;
+#endif
+
 	return Wait();
 }
 
 void Mutex::Unlock()
 {
+#if SKY_EMULATOR
+	kLeaveCriticalSection(&m_cs);
+	return;
+#endif
+
 	Signal(false);
 }
 
 void Mutex::ThreadWoken()
 {
+#if SKY_EMULATOR
+	return;
+#endif
+
 	Unsignal();
 }
 

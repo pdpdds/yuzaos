@@ -25,14 +25,10 @@ unsigned int GetCurrentPageDir()
 
 	if (Thread::GetRunningThread() == 0 || Thread::GetRunningThread()->GetTeam() == 0)
 	{
-		if(PhysicalMap::GetKernelPhysicalMap())
-			return PhysicalMap::GetKernelPhysicalMap()->fPageDirectory;
 		return 0;
 	}
 
 	Team* pTeam = Thread::GetRunningThread()->GetTeam();
-		
-
 	return pTeam->GetAddressSpace()->GetPhysicalMap()->GetPageDir();
 #endif 
 

@@ -9,5 +9,7 @@ public:
 	virtual int getAddressInfo(DWORD	address, char* module, char* fileName, int		&lineNumber, char* function, DWORD		&resultAddress) = 0;
 	virtual bool SimpleUndecorateCPP(char* in, char* out, int outLen) = 0;
 	virtual bool UndecorateCPP(char* in, char* out, int outLen) = 0;
-	virtual const char* GetModuleName() = 0;		
+	virtual const char* GetModuleName() = 0;	
+	virtual  DWORD getMinAddress() = 0;
+	virtual  DWORD getMaxAddress() = 0;
 };

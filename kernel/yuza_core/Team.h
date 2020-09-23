@@ -52,6 +52,7 @@ public:
 	char m_currentDrive;
 	HANDLE m_mainThreadHandle;
 	HANDLE m_moduleHandle;
+	std::list<void*> m_loadedDllList;
 
 private:
 	Team(const char* name, AddressSpace* addressSpace, int teamId);
@@ -63,7 +64,7 @@ private:
 	int m_teamId;
 	QWORD m_taskId;
 	HANDLE m_heapHandle;
-	std::list<void*> m_loadedDllList;
+	
 	//heap_t* m_userHeap;
 };
 

@@ -7,13 +7,16 @@
 #include <stringdef.h>
 #include "SysError.h"
 #include <kassert.h>
-#include <Thread.h>
 #include <SpinLock.h>
 #include <skyoswindow.h>
 #include <DeviceDriverManager.h>
+#include <BuildOption.h>
 
 #ifdef __cplusplus
 extern "C" {
+	class InterruptHandler;
+	class Team;
+	class Thread;
 #endif
 	HANDLE kCreateProcess(const char* execPath, void* param, int priority);
 	HANDLE kCreateThread(THREAD_START_ENTRY entry, const char* name, void* data, int priority);
@@ -148,10 +151,7 @@ extern "C" {
 	int CreateFileArea(const char name[], const char path[], unsigned int va, off_t offset,
 		size_t size, int flags, PageProtection prot, Team& team);
 
-	inline BOOL CopyUser(void* dest, const void* src, int size)
-	{
-		return Thread::GetRunningThread()->CopyUser(dest, src, size);
-	}
+	BOOL CopyUser(void* dest, const void* src, int size);
 
 	BOOL kGetCurrentConsoleWindowId(QWORD* qwWindowID);
 	BOOL kRegisterWindowId(QWORD* qwWindowID);

@@ -49,14 +49,14 @@ extern "C" DWORD kGetCurrentDirectory(DWORD nBufferLength, char* lpBuffer)
 	return len;
 }
 
-extern "C" bool kSetCurrentDriveId(char drive)
+extern "C" BOOL kSetCurrentDriveId(char drive)
 {
 	Thread::GetRunningThread()->GetTeam()->m_currentDrive = drive;
 	
 	return true;
 }
 
-extern "C" bool kSetCurrentDirectory(const char* lpPathName)
+extern "C" BOOL kSetCurrentDirectory(const char* lpPathName)
 {
 	if (strlen(lpPathName) >= MAXPATH)
 		return false;

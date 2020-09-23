@@ -81,21 +81,18 @@ Page* PageCache::GetPage(off_t offset, bool privateCopy)
 		fCacheLock.Lock();
 	}
 
-	if (page == 0 && fBackingStore && fBackingStore->HasPage(offset)) {
+	if (page == 0 && fBackingStore && fBackingStore->HasPage(offset)) 
+	{
 		// Check to see if the backing store has a copy.
 		page = Page::Alloc();
 		page->SetBusy();
 		InsertPage(offset, page);
 
 		fCacheLock.Unlock();
-#if SKY_EMULATOR
-		char *va = (char *)page->GetPhysicalAddress();
-		int err = fBackingStore->Read(offset, va, PAGE_SIZE);
-#else
 		char *va = PhysicalMap::LockPhysicalPage(page->GetPhysicalAddress());
 		int err = fBackingStore->Read(offset, va, PAGE_SIZE);
 		PhysicalMap::UnlockPhysicalPage(va);
-#endif
+
 		fCacheLock.Lock();
 		if (err < E_NO_ERROR) 
 		{

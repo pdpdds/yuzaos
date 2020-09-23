@@ -13,7 +13,7 @@ public:
 
 inline _QueueNode* _Queue::Enqueue(_QueueNode *element)
 {
-	return AddToTail(element);
+	return AddToTail(element); 
 }
 
 inline _QueueNode* _Queue::Dequeue()

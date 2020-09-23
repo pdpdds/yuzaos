@@ -10,8 +10,11 @@
 #include "intrinsic.h"
 #include <Debugger.h>
 #include <BuildOption.h>
+#include <memory_layout.h>
+#include <kmalloc.h>
 
 extern BootParams g_bootParams;
+unsigned int* virtualMemory;
 
 Semaphore Page::s_freePagesAvailable("Free Pages Available", 0);
 Page* Page::fPages = 0;
@@ -38,6 +41,9 @@ Page* Page::LockPage(unsigned int pa)
 	
 	for (;;) 
 	{
+#if SKY_EMULATOR
+		pa = pa - (unsigned int)virtualMemory;
+#endif
 		page = &fPages[pa / PAGE_SIZE];
 		if (page->m_state != kPageTransition)
 			break;
@@ -52,9 +58,14 @@ Page* Page::LockPage(unsigned int pa)
 
 	return page;
 }
+extern BootParams g_bootParams;
 
 unsigned int Page::GetPhysicalAddress() const
 {
+#if SKY_EMULATOR
+	int pageCount = (this - fPages);
+	return  pageCount  * PAGE_SIZE + (unsigned int)virtualMemory;
+#endif
 	return (this - fPages) * PAGE_SIZE;	
 }
 
@@ -143,16 +154,16 @@ int Page::CountFreePages()
 void Page::Bootstrap()
 {
 #if SKY_EMULATOR
-	DWORD pStartAddress = (DWORD)(g_bootParams.MemoryRegion[0].begin);
-	DWORD pEndAddress = (uint32_t)pStartAddress + g_bootParams._memoryInfo._kHeapSize;
-	
-	s_pageCount = (pEndAddress - pStartAddress) / PAGE_SIZE;
-#else
-	
-	s_pageCount = g_bootParams._memoryInfo._memorySize / PAGE_SIZE;
-	
-#endif 
+	virtualMemory = (unsigned int*)kmalloc_aligned(g_bootParams._memoryInfo._kHeapSize / 2, PAGE_SIZE);
+	s_pageCount = (unsigned int)(g_bootParams._memoryInfo._kHeapSize / 2 / PAGE_SIZE);
+	//fPages = (Page*)kmalloc_aligned(sizeof(Page) * s_pageCount, PAGE_SIZE);
 	fPages = new Page[s_pageCount];
+#else
+	s_pageCount = g_bootParams._memoryInfo._memorySize / PAGE_SIZE;
+	fPages = new Page[s_pageCount];
+#endif
+	
+	
 	s_freeCount = s_pageCount;
 	s_freePagesAvailable.Release(s_pageCount, false);
 	for (int pageIndex = 0; pageIndex < s_pageCount; pageIndex++)

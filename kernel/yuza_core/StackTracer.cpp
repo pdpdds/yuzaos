@@ -48,10 +48,13 @@ bool StackTracer::ResolveAddressInfo(unsigned int eip)
 
 	for (iter; iter != m_symbolList.end(); iter++)
 	{
-		addressResolved = (*iter)->getAddressInfo(eip, objFileName, filename, lineNumber, function, resultAddress);
+		//if (eip >= (*iter)->getMinAddress() && eip < (*iter)->getMaxAddress())
+		{
+			addressResolved = (*iter)->getAddressInfo(eip, objFileName, filename, lineNumber, function, resultAddress);
 
-		if (addressResolved == true)
-			break;
+			if (addressResolved == true)
+				break;
+		}
 	}
 
 	if (iter == m_symbolList.end() || addressResolved == false)
@@ -71,7 +74,8 @@ bool StackTracer::ResolveAddressInfo(unsigned int eip)
 	return true;
 }
 
-void StackTracer::TraceStackWithSymbol(unsigned int maxFrames)
+extern "C" void SetupTrapCommon(int, int);
+void StackTracer::TraceStackWithSymbol(unsigned int maxFrames, unsigned int faultAddress)
 {
 	if (m_engineInit == false)
 	{
@@ -79,25 +83,54 @@ void StackTracer::TraceStackWithSymbol(unsigned int maxFrames)
 		return;
 	}
 
+	SkyConsole::Print("Stack trace:\n");
+
+	if (faultAddress)
+	{
+		bool result = ResolveAddressInfo(faultAddress);
+
+		if (result == false)
+		{
+			SkyConsole::Print("fault address  0x{%x}\n", faultAddress);
+		}
+	}
+
 	//스택 상황
 	//  첫번째 파라메터 maxFrames
 	//  TraceStackWithSymbol 함수를 실행시킨 호출함수 복귀주소
 	//  호출함수의 EBP(현재 EBP 레지스터가 이값을 가리키고 있다)
 	unsigned int* ebp = &maxFrames - 2;
-	SkyConsole::Print("Stack trace:\n");
-
-		
+	
+	bool foundSetupTrapFunc = false;
 	for (unsigned int frame = 0; frame < maxFrames; ++frame)
 	{
 		unsigned int eip = ebp[1];
 
 		//함수 복귀주소가 0이면 콜스택 출력을 끝낸다.
-		if (eip == (unsigned int)&kExitThread || eip == (unsigned int)&kmain || eip == 0)
+		if (eip == (unsigned int)&kExitThread || eip == (unsigned int)&kmain || eip == 0 )
 			break;
 
 		// 직전 호출함수의 스택프레임으로 이동한다.
 		ebp = reinterpret_cast<unsigned int *>(ebp[0]);
 		unsigned int * arguments = &ebp[2];
+
+		if (ebp[0] == 0)
+			break;
+
+		bool found = false;
+		if (faultAddress && (eip == (unsigned int)&SetupTrapCommon + 0x07) && foundSetupTrapFunc == false)
+		{
+			found = true;
+		}
+
+		if (found == true)
+		{
+			foundSetupTrapFunc = true;
+			continue;
+		}
+
+		if (foundSetupTrapFunc == false && found == false)
+			continue;
 	
 		// 심벌엔진으로 부터 해당주소의 함수이름 정보 등을 얻어온다.
 		bool result = ResolveAddressInfo(eip);
@@ -106,6 +139,7 @@ void StackTracer::TraceStackWithSymbol(unsigned int maxFrames)
 		{
 			SkyConsole::Print("  0x{%x}\n", eip);			
 		}
+
 	}
 }
 
@@ -212,8 +246,21 @@ bool StackTracer::Init(const char* moduleName)
 	return true;
 }
 
+bool StackTracer::AlreadySymbolLoaded(const char* symbolName)
+{
+	auto iter = m_symbolList.begin();
+
+	for (iter; iter != m_symbolList.end(); iter++)
+	{
+		if (strcmp((*iter)->GetModuleName(), symbolName) == 0)
+			return true;
+	}
+
+	return false;
+}
+
 //디버그엔진 모듈을 로드한다.
-bool StackTracer::AddSymbol(const char* symbolFile, unsigned int loadedAddress)
+bool StackTracer::AddSymbol(const char* symbolName, unsigned int actualLoadedAddress)
 {				
 	I_MapFileReader* reader = GetDebugEngineDLLInterface();
 
@@ -221,18 +268,21 @@ bool StackTracer::AddSymbol(const char* symbolFile, unsigned int loadedAddress)
 	{
 		kPanic("Symbol Object Create Fail!!");
 	}
+
+	if (AlreadySymbolLoaded(symbolName))
+		return true;
 	
-	bool result = reader->readFile((char*)symbolFile);	
+	bool result = reader->readFile((char*)symbolName);
 	if (result == false)
 	{
-		kPanic("Add SymbolFile Fail!!");
+		kPanic("Add SymbolFile Fail!!, %s\n", symbolName);
 	}
 		
-	if (loadedAddress == 0)
+	if (actualLoadedAddress == 0)
 	{
-		loadedAddress = reader->getPreferredLoadAddress();
+		actualLoadedAddress = reader->getPreferredLoadAddress();
 	}
-	reader->setLoadAddress(loadedAddress);		
+	reader->setLoadAddress(actualLoadedAddress);
 
 	m_symbolList.push_back(reader);
 	

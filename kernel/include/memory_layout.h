@@ -1,6 +1,6 @@
 #pragma once
 
-#define IO_AREA_PAGE_COUNT 2000
+#define IO_AREA_PAGE_COUNT 1024
 
 const unsigned int kKernelBase = 0x80000000;
 #if !SKY_EMULATOR
@@ -18,6 +18,6 @@ const unsigned int kUserBase = 0x08000000;
 const unsigned int kUserHeapBase = 0x60000000;
 const unsigned int kUserHeapTop = 0x70000000;
 const unsigned int kUserTop = 0x80000000;
-const unsigned int kUserStackSize = 0x40000;
+const unsigned int kUserStackSize = 0x40000 * 4;
 
 const unsigned int kAddressSpaceTop = 0xffffffff;
