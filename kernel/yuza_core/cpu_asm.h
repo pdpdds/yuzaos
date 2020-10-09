@@ -180,7 +180,11 @@ inline void LoadGdt(const GdtEntry base[], unsigned int limit)
 
 inline void Halt()
 {
+#if SKY_EMULATOR
+	__asm pause
+#else
 	__asm hlt
+#endif
 }
 
 inline void ClearPage(void *va)

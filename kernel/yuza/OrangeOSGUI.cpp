@@ -25,7 +25,7 @@ int GUIManagerThread(void* param)
 
 void OrangeOSGUI(char* desktopName)
 {	
-	kCreateThread(GUIManagerThread, "GUIManager", desktopName, 16);
+	kCreateThread(GUIManagerThread, "GUIManager", desktopName, 16, 0);
 
 #if SKY_EMULATOR
 	StartVirtualFramework(0);

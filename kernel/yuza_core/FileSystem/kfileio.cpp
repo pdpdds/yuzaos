@@ -35,7 +35,9 @@ extern "C" DWORD kGetCurrentDirectory(DWORD nBufferLength, char* lpBuffer)
 	return g_platformAPI._processInterface.sky_GetCurrentDirectory(nBufferLength, lpBuffer);
 #endif*/
 
-	Team* pTeam = Thread::GetRunningThread()->GetTeam();
+	
+	Thread* pThread = Thread::GetRunningThread();
+	Team* pTeam = pThread->GetTeam();
 
 	int len = strlen(pTeam->m_szCWD);
 

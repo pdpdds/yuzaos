@@ -11,6 +11,10 @@
 #include <StackTracer.h>
 #include <common_struct.h>
 #include <kmalloc.h>
+#include <memory_layout.h>
+#include <PageCache.h>
+#include <Area.h>
+#include <systemcall_impl.h>
 
 Team::Team(const char* name, int teamId)
 	: Resource(OBJ_TEAM, name),
@@ -30,16 +34,13 @@ Team::Team(const char* name, int teamId)
 	m_addressSpace = new AddressSpace();
 	
 	int fl = DisableInterrupts();
-	
-	waitSemaphore = new Semaphore("wait", 0);
-	waitSemaphore->AcquireRef();
 
 	RestoreInterrupts(fl);	
 }
 
 Team::~Team()
 {
-	kprintf("team deleted, %d\n", m_loadedDllList.size());
+	kprintf("Team %s Deleted\n", GetName());
 
 	auto iter = m_loadedDllList.begin();
 
@@ -50,8 +51,6 @@ Team::~Team()
 
 	int fl = DisableInterrupts();
 	delete m_image;
-	waitSemaphore->Release(1);
-	waitSemaphore->ReleaseRef();
 
 	TeamManager::GetInstance()->GetTeamList().Remove(this);
 
@@ -72,12 +71,6 @@ void Team::ThreadCreated(Thread *thread)
 		
 	RestoreInterrupts(fl);
 }
-
-#include <memory_layout.h>
-#include <PageCache.h>
-#include <Area.h>
-#include <systemcall_impl.h>
-
 
 bool Team::CreateHeap()
 {
@@ -125,6 +118,8 @@ void Team::ThreadTerminated(Thread *thread)
 		thread->fTeamListNext->fTeamListPrev = thread->fTeamListPrev;
 
 	RestoreInterrupts(fl);
+	kDebugPrint("Team::ThreadTerminated, %s, 0x%x\n", GetName(), thread);
+
 	ReleaseRef();
 }
 
@@ -142,11 +137,26 @@ Team::Team(const char* name, AddressSpace *addressSpace, int teamId)
 
 Thread* Team::GetThread(HANDLE hThread)
 {
+	int fl = DisableInterrupts();
 	for (Thread* thread = m_pThreadList; thread; thread = thread->fTeamListNext)
 	{
-		if (thread == (Thread*)hThread)
+#if SKY_EMULATOR
+		if (thread->m_handle == (Thread*)hThread)
+		{
+			RestoreInterrupts(fl);
+
+			return thread;
+		}
+#else`
+		if (thread->m_handle == hThread)
+		{
+			RestoreInterrupts(fl);
 			return thread;
 	}
+#endif
+	}
+
+	RestoreInterrupts(fl);
 
 	return nullptr;
 }

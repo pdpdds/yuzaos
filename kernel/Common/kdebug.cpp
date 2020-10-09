@@ -3,6 +3,7 @@
 #include <systemcall_impl.h>
 #include <minwindef.h>
 #include <SkyConsole.h>
+#include <BuildOption.h>
 
 static char* sickpc = " (>_<) YUZA OS Error!!\n\n";
 
@@ -31,12 +32,16 @@ void kHaltSystem(const char* errMsg)
 	}
 	else
 	{
+#if SKY_EMULATOR
+		printf("*** STOP: %s", errMsg);
+#else
 		SkyConsole::MoveCursor(0, 0);
 		SkyConsole::SetColor(ConsoleColor::White, ConsoleColor::Blue, false);
 		SkyConsole::Clear();
 		SkyConsole::Print(sickpc);
 
 		SkyConsole::Print("*** STOP: %s", errMsg);
+#endif
 	}
 	for (;;);
 }

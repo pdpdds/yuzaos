@@ -185,7 +185,7 @@ enum
 #define Syscall_GetTickCount() (int)syscall0(eGetTickCount)
 #define Syscall_GetTime(time) (int)syscall1(eGetTime, SCPARAM(time))
 
-#define Syscall_CreateThread(entry, name, data, priority) (int)syscall4(eCreateThread, SCPARAM(entry), SCPARAM(name), SCPARAM(data), SCPARAM(priority))
+#define Syscall_CreateThread(entry, name, data, priority, flag) (int)syscall5(eCreateThread, SCPARAM(entry), SCPARAM(name), SCPARAM(data), SCPARAM(priority), flag)
 #define Syscall_TerminateThread(hThread, dwExitCode) (bool)syscall2(eTerminateThread, SCPARAM(hThread), SCPARAM(dwExitCode))
 #define Syscall_ExitThread(dwExitCode) (int)syscall1(eExitThread, SCPARAM(dwExitCode))
 #define Syscall_GetCurrentThreadId() (int)syscall0(eGetCurrentThreadId)

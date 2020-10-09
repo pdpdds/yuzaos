@@ -31,40 +31,11 @@ const int kQuantum = 8000;
 _Scheduler gScheduler;
 
 _Scheduler::_Scheduler()
-	:	fHighestReadyThread(0)
+: fHighestReadyThread(0)
+, fReadyThreadCount(0)
 {
 }
 
-#if SKY_EMULATOR
-bool _Scheduler::EnableReadyThread()
-{
-	fHighestReadyThread = 16;
-	while (fHighestReadyThread >= 0)
-	{
-		while (fReadyQueue[fHighestReadyThread].GetHead() != 0)
-		{
-			Thread* nextThread = static_cast<Thread*>(fReadyQueue[fHighestReadyThread].Dequeue());
-			DWORD result = g_platformAPI._processInterface.sky_kResumeThread(nextThread->m_handle);
-			//result = result + 1;
-		}
-
-		fHighestReadyThread--;
-	}
-
-	if (fHighestReadyThread < 0)
-		fHighestReadyThread = 0;
-
-	return true;
-}
-
-void _Scheduler::Reschedule()
-{
-	EnableReadyThread();
-
-	CancelTimeout();
-	SetTimeout(SystemTime() + kQuantum, kOneShotTimer);
-}
-#else
 void _Scheduler::Reschedule()
 {
 	int st = DisableInterrupts();
@@ -87,23 +58,28 @@ void _Scheduler::Reschedule()
 	CancelTimeout();		
 	SetTimeout(SystemTime() + kQuantum, kOneShotTimer);
 	
-	Thread* nextThread = PickNextThread();
+	while (1)
+	{
+		//다음 스레드 선택과 동시에 해당 스레드는 큐에서 제거됨
+		Thread* nextThread = PickNextThread();
+		
+		if (nextThread->GetState() == kThreadSuspended)
+		{
+			nextThread->SetCurrentPriority(0);
+			EnqueueReadyThread(nextThread);
+			continue;
+		}
 
-	if(nextThread)
-		nextThread->SwitchTo(thread);	
+		nextThread->SwitchTo(thread);
+		break;
+	}
 
 	RestoreInterrupts(st);
-}
-#endif
-
-void _Scheduler::EnqueueSuspendThread(Thread *thread)
-{
-	fSuspendQueue[thread->GetCurrentPriority()].Enqueue(thread);
 }
 
 void _Scheduler::EnqueueReadyThread(Thread *thread)
 {
-	if (thread->GetState() == kThreadSuspended || thread->GetState() == kThreadDead)
+	if (thread->GetState() == kThreadDead)
 		return;
 
 	int st = DisableInterrupts();
@@ -121,33 +97,24 @@ void _Scheduler::EnqueueReadyThread(Thread *thread)
 	if (thread->GetCurrentPriority() > fHighestReadyThread)
 		fHighestReadyThread = thread->GetCurrentPriority();
 			
-	thread->SetState(kThreadReady);
+	fReadyThreadCount++;
+
+	if(thread->GetState() != kThreadSuspended)
+		thread->SetState(kThreadReady);
+
 	fReadyQueue[thread->GetCurrentPriority()].Enqueue(thread);
 	
 	RestoreInterrupts(st);
 }
 
-void _Scheduler::RepickHighestReadyThread(Thread* thread)
-{	
-	int priority = thread->GetCurrentPriority();
-	Thread* node = (Thread*)fReadyQueue[priority].Remove(thread);
-	ASSERT(node == thread);
-
-	if (node == nullptr)
-		return;
-
-	
-	//EnqueueSuspendThread(thread);
-	//kprintf("Suspend Thread %x\n", node);	
-}
-
 Thread *_Scheduler::PickNextThread() 
 {		
+	fReadyThreadCount--;
 	Thread *nextThread = static_cast<Thread*>(fReadyQueue[fHighestReadyThread].Dequeue());
 	while (fReadyQueue[fHighestReadyThread].GetHead() == 0)
 		fHighestReadyThread--;
 
-	//ASSERT(nextThread);			
+	ASSERT(nextThread);			
 	return nextThread;
 }
 

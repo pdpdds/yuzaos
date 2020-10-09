@@ -33,13 +33,15 @@ public:
 	/// @note This function may block, so don't use it from interrupt context.
 	void ReleaseRef();
 
+	int GetRef() { return fRefCount; }
+
 	/// Print basic information about this resource
 	/// @note Should this be virtual to each resource can print its own information?
 	void Print() const;
-
+	volatile int fRefCount;
 private:
 	ResourceType fType;
-	volatile int fRefCount;
+	
 	char fName[OS_NAME_LENGTH];
 };
 

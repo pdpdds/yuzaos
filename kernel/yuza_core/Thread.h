@@ -16,6 +16,8 @@ class Team;
 class Area;
 //class VNode;
 
+#define CREATE_SUSPENDED                  0x00000004
+
 enum ThreadState {
 	kThreadCreated,
 	kThreadSuspended,
@@ -32,7 +34,7 @@ class Thread : public Resource, public _QueueNode
 	friend class TeamManager;
 
 public:
-	Thread(const char name[], Team*, THREAD_START_ENTRY, void *param, int priority = 16);
+	Thread(const char name[], Team*, THREAD_START_ENTRY, ThreadParam *param, int priority = 16, DWORD flag = 0);
 
 	/// This function must be called from within the context of this thread.  This function
 	/// will not return.  When this is called, the current thread will stop executing and
@@ -48,7 +50,8 @@ public:
 	void SwitchTo(Thread* prevThread);
 
 	/// Get a pointer to the thread that is currently running.
-	static inline Thread *GetRunningThread();
+	static Thread *GetRunningThread();
+	static inline Thread* GetThreadFromHandle(int handle);
 
 	/// Get the state of this thread structure
 	inline ThreadState GetState() const;
@@ -173,16 +176,11 @@ private:
 	friend class Team;
 };
 
-inline Thread* Thread::GetRunningThread()
+
+inline Thread* Thread::GetThreadFromHandle(int handle)
 {
-#if SKY_EMULATOR
-	DWORD threadId = g_platformAPI._processInterface.sky_kGetCurrentThreadId();
-	return (*fMapThread)[threadId];
-#endif // SKY_EMULATOR
-
-	return fRunningThread;
+	return (*fMapThread)[handle];
 }
-
 
 inline ThreadState Thread::GetState() const
 {

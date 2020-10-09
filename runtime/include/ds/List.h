@@ -49,13 +49,13 @@ inline ListNode::ListNode()
 inline void ListNode::RemoveFromList()
 {
 	//20190429
-	if (fNext == 0 || fPrev == 0)
-		return;
+	//if (fNext == 0 || fPrev == 0)
+		//return;
 
 	fPrev->fNext = fNext;
 	fNext->fPrev = fPrev;
 	fNext = 0;
-	fPrev = 0;
+	fPrev = 0; 
 }
 
 inline List::List()
@@ -66,7 +66,7 @@ inline List::List()
 
 inline ListNode* List::AddToTail(ListNode *node)
 {
-	ASSERT(!node->fPrev);
+	//ASSERT(!node->fPrev);
 	node->fNext = &fDummyHead;
 	node->fPrev = fDummyHead.fPrev;
 	node->fNext->fPrev = node;

@@ -17,7 +17,7 @@ public:
 	List& GetTeamList() { return m_teamList; }
 
 	//팀을 찾는다.
-	const Team* FindTeam(int teamId);
+	Team* FindTeam(int teamId);
 
 	static TeamManager* GetInstance()
 	{

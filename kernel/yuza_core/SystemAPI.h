@@ -19,7 +19,7 @@ extern "C" {
 	class Thread;
 #endif
 	HANDLE kCreateProcess(const char* execPath, void* param, int priority);
-	HANDLE kCreateThread(THREAD_START_ENTRY entry, const char* name, void* data, int priority);
+	HANDLE kCreateThread(THREAD_START_ENTRY entry, const char* name, void* data, int priority, DWORD flag);
 	DWORD kSuspendThread(HANDLE hThread);
 	DWORD kResumeThread(HANDLE hThread);
 	BOOL kTerminateThread(HANDLE handle, DWORD* dwRetCode);
@@ -31,6 +31,7 @@ extern "C" {
 	BOOL kSetThreadPriorityBoost(HANDLE hThread, bool DisablePriorityBoost);
 
 	int kGetCurrentThreadId(void);
+	int kGetCurrentThreadObject();
 	int kGetCurrentThread();
 
 	int kAquireSemaphore(HANDLE handle, int timeout);
@@ -71,7 +72,7 @@ extern "C" {
 	BOOL kResetEvent(HANDLE hEvent);
 	DWORD kWaitForSingleObject(HANDLE hHandle, DWORD dwMilliseconds);
 	int kWaitForMultipleObjects(int dispatcherCount, const HANDLE* lpHandles, BOOL bWaitAll, DWORD dwMilliseconds);
-	int kWaitForChildProcess(int teamId);
+	int kWaitForChildProcess(int handle);
 
 	HANDLE kCreateArea(const char* name, unsigned int* requestAddr, int flags, unsigned int size, PageProtection protection);
 	int kDeleteArea(HANDLE handle);

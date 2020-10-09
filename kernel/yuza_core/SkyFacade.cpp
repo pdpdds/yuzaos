@@ -17,7 +17,6 @@
 #include <Constants.h>
 #include <IDT.h>
 #include <BuildOption.h>
-#include <IDT.h>
 #include <PEImage.h>
 #include <LoadDLL.h>
 
@@ -581,7 +580,7 @@ int SerialPortServerThread(void* parameter)
 bool InitSerialPortSystem()
 {
 	InitializeSerialPort();
-	kCreateThread(SerialPortServerThread, "SerialPort", nullptr, 15);
+	kCreateThread(SerialPortServerThread, "SerialPort", nullptr, 15, 0);
 	return true;
 }
 

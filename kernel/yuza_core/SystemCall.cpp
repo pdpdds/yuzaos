@@ -22,7 +22,7 @@ __EXTERN "C" SCTYPE _syscall(SCTYPE Function, SCTYPE Arg0, SCTYPE Arg1, SCTYPE A
 
 int  NoOperation(void)
 {
-	kprintf("invalid syscall");
+	kprintf("invalid syscall\n");
 	return 0;
 }
 
@@ -262,7 +262,7 @@ void RegisterSysCall()
 	AddSyscall(eResumeThread, kResumeThread);
 	AddSyscall(eTerminateThread, kTerminateThread);
 	AddSyscall(eExitThread, kExitThread);
-	AddSyscall(eThreadExit, kTerminateThread);
+	AddSyscall(eThreadExit, kExitThread);
 
 	AddSyscall(eGetCurrentThreadId, kGetCurrentThreadId);
 	AddSyscall(eGetCurrentThread, kGetCurrentThread);

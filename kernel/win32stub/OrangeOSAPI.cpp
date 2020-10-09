@@ -20,6 +20,10 @@ void RegisterOrangeOSAPI(int APIIndex, char* strAPIName, void * ptrAPIFunction)
 
 	//printf("Register API : %s %x\n", strAPIName, (unsigned int)ptrAPIFunction);
 
+	if (APIIndex == 20)
+	{
+		int j = 0;
+	}
 	newAPIStruct = new SKY_APIStruct;
 	strName = new char[strlen(strAPIName) + 1];
 
@@ -62,6 +66,20 @@ void* GetOrangeOSAPI(char * strAPIName)
 	return 0;
 }
 
+DWORD GetOrangeOSAPISize()
+{
+
+	SKY_APIStruct* curAPIStruct = g_pRegisteredSkyAPIEntries;
+	DWORD count = 0;
+	while (curAPIStruct)
+	{
+		count++;
+		curAPIStruct = curAPIStruct->Next;
+	}
+
+	return count;
+}
+
 void* GetOrangeOSAPIByIndex(int index)
 {
 	SKY_APIStruct* curAPIStruct = g_pRegisteredSkyAPIEntries;
@@ -73,6 +91,8 @@ void* GetOrangeOSAPIByIndex(int index)
 
 		curAPIStruct = curAPIStruct->Next;
 	}
+
+	DWORD suppliesAPISize = GetOrangeOSAPISize();
 
 	return 0;
 }

@@ -64,11 +64,11 @@ bool StackTracer::ResolveAddressInfo(unsigned int eip)
 	
 	if (result == true)
 	{
-		SkyConsole::Print("  %s!%s + 0x%x, %s", (*iter)->GetModuleName(), undecorateName, eip - resultAddress, objFileName);
+		SkyConsole::Print("  %x %s!%s + 0x%x, %s", eip, (*iter)->GetModuleName(), undecorateName, eip - resultAddress, objFileName);
 	}
 	else
 	{
-		SkyConsole::Print("  %s!%s + 0x%x, %s", (*iter)->GetModuleName(), function, eip - resultAddress, objFileName);
+		SkyConsole::Print("  %x %s!%s + 0x%x, %s", eip, (*iter)->GetModuleName(), function, eip - resultAddress, objFileName);
 	}
 
 	return true;
@@ -129,7 +129,7 @@ void StackTracer::TraceStackWithSymbol(unsigned int maxFrames, unsigned int faul
 			continue;
 		}
 
-		if (foundSetupTrapFunc == false && found == false)
+		if (faultAddress && foundSetupTrapFunc == false && found == false)
 			continue;
 	
 		// 심벌엔진으로 부터 해당주소의 함수이름 정보 등을 얻어온다.
@@ -266,7 +266,7 @@ bool StackTracer::AddSymbol(const char* symbolName, unsigned int actualLoadedAdd
 
 	if (reader == nullptr)
 	{
-		kPanic("Symbol Object Create Fail!!");
+		kPanic("Debug Engine Fail!!");
 	}
 
 	if (AlreadySymbolLoaded(symbolName))
@@ -275,7 +275,8 @@ bool StackTracer::AddSymbol(const char* symbolName, unsigned int actualLoadedAdd
 	bool result = reader->readFile((char*)symbolName);
 	if (result == false)
 	{
-		kPanic("Add SymbolFile Fail!!, %s\n", symbolName);
+		printf("Add SymbolFile Fail!!, %s\n", symbolName);
+		return false;
 	}
 		
 	if (actualLoadedAddress == 0)

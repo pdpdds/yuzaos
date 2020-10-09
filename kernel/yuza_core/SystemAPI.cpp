@@ -166,40 +166,62 @@ inline int OpenHandle(Resource* obj)
 	return Thread::GetRunningThread()->GetTeam()->GetHandleTable()->Open(obj);
 }
 
+#if SKY_EMULATOR
+
+
+static DWORD RunSkyThread(void* data)
+{
+	ThreadParam* pThreadParms = (ThreadParam*)data;
+	THREAD_START_ENTRY threadEntry = pThreadParms->entryPoint;
+	void* args = pThreadParms->param;
+	//Thread* pSkyThread = pThreadParms->pSkyThread;
+	int thread = kGetCurrentThreadObject();
+	//g_platformAPI._processInterface.sky_TlsSetValue(100, pSkyThread->m_handle);
+	//(*Thread::fMapThread)[threadId] = pSkyThread;
+
+	delete pThreadParms;
+	threadEntry(args);
+	//pSkyThread->Exit();
+	//(*Thread::fMapThread).erase(thread);
+
+	return (0);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////
+//SystemAPI Implementation
+///////////////////////////////////////////////////////////////////////////////////
+
+#endif
+
 int UserThreadEntry(void* parameter)
 {
 	ThreadParam* pParam = (ThreadParam*)parameter;
-	static int count = 0;
+	int res = 0;
+
+	thread_storage_t    Tls;
+	tls_create(&Tls);
+
 	if (pParam->entryPoint == 0)
 	{
-		kDebugPrint("MainThread Start %s %x %x %d\n", (char*)pParam->name, pParam->entryPoint, parameter, count);
+		kDebugPrint("Main User Thread Start %s %x %x\n", (char*)pParam->name, pParam->entryPoint, parameter);
 		Team* pTeam = Thread::GetRunningThread()->GetTeam();
-		int res = pTeam->StartMainThread(pParam);
-		count++;
+		res = pTeam->StartMainThread(pParam);
 
+		tls_cleanup(thrd_current(), NULL, res);
+		tls_destroy(tls_current());
+
+		Thread::GetRunningThread()->Exit();
 	}
 	else
 	{
-		thread_storage_t    Tls;
-		tls_create(&Tls);
+		kDebugPrint("User Thread Start. thread : 0x%x Name : %s %x %x\n", Thread::GetRunningThread(), (char*)pParam->name, pParam->entryPoint, parameter);
+		res = pParam->entryPoint(pParam->param);
 
-		/*char* str = (char*)kmalloc(256);
-		sprintf(str, "tls test : %s\n", pParam->name);
-
-		tss_set(5, str);
-		char* tlsDate = (char*)tss_get(5);
-		kprintf("tls value %s", tlsDate);
-		tss_delete(5);
-		kfree(str);*/
-		
-		kDebugPrint("UserThread Start %s %x %x\n", (char*)pParam->name, pParam->entryPoint, parameter);
-		int res = pParam->entryPoint(pParam->param);
-		
-		tls_cleanup(thrd_current(), NULL, res);
-		tls_destroy(tls_current());
+		kExitThread(0);
 	}
 
-	kExitThread(0);
+	//Not Reached!!
 
 	return 0;
 }
@@ -283,84 +305,21 @@ static int ExecuteFile(const char* path, char* arg)
 	char appName[OS_NAME_LENGTH];
 	snprintf(appName, OS_NAME_LENGTH, "%.14s thread", filename);
 
-	Thread* userthread = new Thread(appName, newTeam, UserThreadEntry, (void*)param);
+	Thread* userthread = new Thread(appName, newTeam, UserThreadEntry, param);
 	if (userthread == 0)
 	{
 		newTeam->ReleaseRef();
 		return E_NO_MEMORY;
 	}
 
+	//HANDLE handle = (HANDLE)OpenHandle(userthread);
+	//userthread->m_handle = handle;
 	return (int)newTeam->GetTeamId();
 }
 
-#if SKY_EMULATOR
-
-typedef struct tag_ThreadStartParms
+HANDLE kCreateThread(THREAD_START_ENTRY entry, const char* name, void* data, int priority, DWORD flag)
 {
-	char threadName[256];
-	THREAD_START_ENTRY threadEntry;
-	Thread* pSkyThread;
-	void* data;
-
-}ThreadStartParms;
-
-static DWORD RunSkyThread(void* data)
-{
-	ThreadStartParms* pThreadParms = (ThreadStartParms*)data;
-	THREAD_START_ENTRY threadEntry = pThreadParms->threadEntry;
-	void* args = pThreadParms->data;
-	Thread* pSkyThread = pThreadParms->pSkyThread;
-	int threadId = kGetCurrentThreadId();
-	(*Thread::fMapThread)[threadId] = pSkyThread;
-
-	delete pThreadParms;
-	threadEntry(args);
-//#if SKY_EMULATOR
-	//pSkyThread->ReleaseRef();
-//#else
-	pSkyThread->Exit();
-//#endif
-	(*Thread::fMapThread).erase(threadId);
-
-	return (0);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////
-//SystemAPI Implementation
-///////////////////////////////////////////////////////////////////////////////////
-HANDLE kCreateThreadWithTeam(THREAD_START_ENTRY entry, const char* name, void* data, int priority, Team* team)
-{
-	Thread* pSkyThread = new Thread(name, team, entry, data, priority);
-	ThreadStartParms* pStartParam = new ThreadStartParms;
-	pStartParam->threadEntry = entry;
-	strcpy(pStartParam->threadName, name);
-	pStartParam->data = data;
-	pStartParam->pSkyThread = pSkyThread;
-
-	int thread = g_platformAPI._processInterface.sky_kCreateThread(team->GetTaskId(), (LPTHREAD_START_ROUTINE)RunSkyThread, pStartParam);
-	pSkyThread->m_handle = (HANDLE)thread;
-	return (HANDLE)thread;
-}
-#endif
-
-HANDLE kCreateThread(THREAD_START_ENTRY entry, const char* name, void* data, int priority)
-{
-#if SKY_EMULATOR
-	Thread* pSkyThread = new Thread(name, Thread::GetRunningThread()->GetTeam(), entry, data, priority);
-	ThreadStartParms* pStartParam = new ThreadStartParms;
-	pStartParam->threadEntry = entry;
-	strcpy(pStartParam->threadName, name);
-	pStartParam->data = data;
-	pStartParam->pSkyThread = pSkyThread;
-
-	int thread = g_platformAPI._processInterface.sky_kCreateThread(Thread::GetRunningThread()->GetTeam()->GetTaskId(), (LPTHREAD_START_ROUTINE)RunSkyThread, pStartParam);
-	pSkyThread->m_handle = (HANDLE)thread;
-	return (HANDLE)thread;
-#else
 	Team* pTeam = Thread::GetRunningThread()->GetTeam();
-
-	kDebugPrint("CreateThread. Team : %x, Name : %s, Data : %x\n", pTeam, name, data);
 
 	ThreadParam* param = new ThreadParam;
 	memset(param, 0, sizeof(ThreadParam));
@@ -368,18 +327,29 @@ HANDLE kCreateThread(THREAD_START_ENTRY entry, const char* name, void* data, int
 	param->param = data;
 	param->entryPoint = entry;
 
-	Thread* thread = new Thread(name, pTeam, UserThreadEntry, param, priority);
+	Thread* thread = new Thread(name, pTeam, UserThreadEntry, param, priority, flag);
 	
+	kDebugPrint("kCreateThread. Team : %x, Name : %s, Thread : %x\n", pTeam, name, thread);
 
 	HANDLE handle = (HANDLE)OpenHandle(thread);
-	//thread->ReleaseRef();
+	thread->m_handle = handle;
 	return handle;
-#endif
 }
 
 BOOL kExitThread(int errorCode)
 {
+	kCloseHandle(Thread::GetRunningThread()->m_handle);
+	
+	int res = 0;
+	tls_cleanup(thrd_current(), NULL, res);
+	tls_destroy(tls_current());
+	
 	Thread::GetRunningThread()->Exit();
+
+#if SKY_EMULATOR
+	g_platformAPI._processInterface.sky_kExitThread(0);
+#endif
+
 	return TRUE;
 }
 
@@ -420,11 +390,11 @@ char* GetFileNameFromPath(char* path)
 
 static int ProcessWatcher(void* parameter)
 {
-	Team* team = (Team*)parameter;
+	//Team* team = (Team*)parameter;
 	
-	kWaitForSingleObject(team->m_mainThreadHandle, -1);
+	//kWaitForSingleObject(team->m_mainThreadHandle, -1);
 
-	bool result = ModuleManager::GetInstance()->UnloadPE(team->m_moduleHandle);
+	//bool result = ModuleManager::GetInstance()->UnloadPE(team->m_moduleHandle);
 
 	return 0;
 }
@@ -469,36 +439,50 @@ HANDLE kCreateProcess(const char* execPath, void* param, int priority)
 	kDebugPrint("CreateProcess %x %s %d\n", mainFunc, path, priority);
 
 	Team* newTeam = TeamManager::GetInstance()->CreateTeam(path);
-	HANDLE hwnd = (void*)kCreateThreadWithTeam(mainFunc, path, args, 15, newTeam);
 
-	newTeam->m_mainThreadHandle = hwnd;
+	ThreadParam* pStartParam = new ThreadParam;
+	pStartParam->entryPoint = mainFunc;
+	strcpy(pStartParam->name, path);
+	pStartParam->param = args;
+	//pStartParam->pSkyThread = pSkyThread;
+
+	Thread* thread = new Thread(path, newTeam, (THREAD_START_ENTRY)RunSkyThread, pStartParam, priority);
+
+	HANDLE handle = (HANDLE)OpenHandle(thread);
+	thread->m_handle = handle;
+
+	newTeam->m_mainThreadHandle = handle;
 	newTeam->m_moduleHandle = moduleHandle;
 
-	kCreateThread(ProcessWatcher, "ProcessWatcher", newTeam, 15);
+	new Thread("ProcessWatcher", newTeam, ProcessWatcher, pStartParam, priority);
 
 #else
-	HANDLE hwnd = (HANDLE)ExecuteFile(path, (char*)param);
+	HANDLE handle = (HANDLE)ExecuteFile(path, (char*)param);
 #endif
 
 
-	return hwnd;
+	return handle;
 }
 
 DWORD kSuspendThread(HANDLE hThread)
 {
-	int fl = DisableInterrupts();
 	if (Thread::GetRunningThread() == hThread)
 		return 0;
 
+	int fl = DisableInterrupts();
 	Thread* target = Thread::GetRunningThread()->GetTeam()->GetThread(hThread);
+	
 	if (target == nullptr)
+	{
+		printf("sdfdssd\n");
+		RestoreInterrupts(fl);
 		return 0;
-
-	kprintf("found target %x\n", target);
+	}
+	//target->AcquireRef();
+	kDebugPrint("kSuspendThread Team : %s, Thread : 0x%0x\n", target->GetTeam()->GetName(), target);
 
 	target->SetState(kThreadSuspended);
 	target->IncreaseSuspendCount();
-	gScheduler.RepickHighestReadyThread(target);
 
 	RestoreInterrupts(fl);
 
@@ -507,18 +491,22 @@ DWORD kSuspendThread(HANDLE hThread)
 
 DWORD kResumeThread(HANDLE hThread)
 {
-	if (Thread::GetRunningThread() == hThread)
+	Thread* thread = reinterpret_cast<Thread*>(Thread::GetRunningThread()->GetTeam()->GetHandleTable()->GetResource((int)hThread, OBJ_THREAD));
+	
+	if (thread == 0)
 		return 0;
 
-	Thread* target = Thread::GetRunningThread()->GetTeam()->GetThread(hThread);
-	if (target == nullptr)
-		return 0;
+	kDebugPrint("found resume target %x\n", thread);
 
-	kprintf("found resume target %x\n", target);
-	ASSERT(target->GetState() == kThreadSuspended);
-	target->SetState(kThreadReady);
+	ASSERT(thread->GetState() == kThreadSuspended);
+	thread->SetCurrentPriority(thread->GetBasePriority());
+	thread->SetState(kThreadWaiting);
+	
+#if SKY_EMULATOR
+	g_platformAPI._processInterface.sky_kResumeThread(hThread);
+#endif
 
-	gScheduler.EnqueueReadyThread(target);
+	thread->ReleaseRef();
 
 	return 0;
 }
@@ -558,6 +546,15 @@ int kGetCurrentThreadId(void)
 	return g_platformAPI._processInterface.sky_kGetCurrentThreadId();
 #else
 	return Thread::GetRunningThread()->GetCurrentThreadId();
+#endif
+}
+
+int kGetCurrentThreadObject()
+{
+#if SKY_EMULATOR
+	return (DWORD)g_platformAPI._processInterface.sky_TlsGetValue(100);
+#else
+	return (int)Thread::GetRunningThread();
 #endif
 }
 
@@ -642,7 +639,7 @@ int kCreateSpinLock(_SPINLOCK* handle)
 
 int kLockSpinLock(_SPINLOCK* handle)
 {
-	const Team* team = TeamManager::GetInstance()->FindTeam(handle->teamId);
+	Team* team = TeamManager::GetInstance()->FindTeam(handle->teamId);
 
 	if (team == nullptr)
 		return false;
@@ -650,17 +647,22 @@ int kLockSpinLock(_SPINLOCK* handle)
 	SpinLock* spinlock = static_cast<SpinLock*>(team->GetHandleTable()->GetResource(handle->handleId, OBJ_SPINLOCK));
 
 	if (spinlock == 0)
+	{
+		//team->ReleaseRef();
 		return E_BAD_HANDLE;
+	}
 
 	int ret = spinlock->Lock();
 	spinlock->ReleaseRef();
+
+	//team->ReleaseRef();
 
 	return ret;
 }
 
 int kUnlockSpinLock(_SPINLOCK* handle)
 {
-	const Team* team = TeamManager::GetInstance()->FindTeam(handle->teamId);
+	Team* team = TeamManager::GetInstance()->FindTeam(handle->teamId);
 
 	if (team == nullptr)
 		return false;
@@ -668,10 +670,15 @@ int kUnlockSpinLock(_SPINLOCK* handle)
 	SpinLock* spinlock = static_cast<SpinLock*>(team->GetHandleTable()->GetResource(handle->handleId, OBJ_SPINLOCK));
 
 	if (spinlock == 0)
+	{
+		//team->ReleaseRef();
 		return E_BAD_HANDLE;
+	}
 
 	spinlock->Unlock();
 	spinlock->ReleaseRef();
+
+	//team->ReleaseRef();
 
 	return E_NO_ERROR;
 }
@@ -714,11 +721,14 @@ int kUnlockMutex(HANDLE handle)
 int kCloseHandle(HANDLE handle)
 {
 	Resource* resource = static_cast<Resource*>(GetResource((int)handle, OBJ_ANY));
+	
 	if (resource == 0)
 		return E_BAD_HANDLE;
 
 	Thread::GetRunningThread()->GetTeam()->GetHandleTable()->Close((int)handle);
+
 	resource->ReleaseRef();
+
 	return 0;
 }
 
@@ -757,8 +767,8 @@ HANDLE kSetTimer(HWND hWnd, DWORD nIDEvent, UINT nElapse, void (CALLBACK* lpfnTi
 	HANDLE handle = (HANDLE)OpenHandle(timer);
 
 	timer->Start(nElapse, lpfnTimer);
-	HANDLE threadHandle = kCreateThread(UserTimerThread, "TimerThread", timer, 15);
-	kCloseHandle(threadHandle);
+	HANDLE threadHandle = kCreateThread(UserTimerThread, "TimerThread", timer, 15, 0);
+	//kCloseHandle(threadHandle);
 
 	return (HANDLE)OpenHandle(timer);
 }
@@ -843,52 +853,75 @@ DWORD kWaitForSingleObject(HANDLE hHandle, DWORD dwMilliseconds)
 	return WAIT_FAILED;
 }
 
-int kWaitForMultipleObjects(int dispatcherCount, const HANDLE* lpHandles, BOOL bWaitAll, DWORD dwMilliseconds)
+int kWaitForMultipleObjects(int handleCount, const HANDLE* lpHandles, BOOL bWaitAll, DWORD dwMilliseconds)
 {
+#if SKY_EMULATOR
+	DWORD res = g_platformAPI._processInterface.sky_WaitForMultipleObjects(handleCount, lpHandles, bWaitAll, dwMilliseconds);
+	return res;
+#endif
+
+	int result = E_NO_ERROR;
+
 	bigtime_t timeOut = dwMilliseconds;
 
 	if (dwMilliseconds == 0xffffffff)
 		timeOut = INFINITE_TIMEOUT;
 
-	Synchronization** syncObjects = (Synchronization **)kmalloc(sizeof(Synchronization*) * dispatcherCount);
+	Resource** resources = new Resource * [handleCount];
+	for (int handleIndex = 0; handleIndex < handleCount; handleIndex++)
+		resources[handleIndex] = 0;
 
 	HandleTable* pTable = Thread::GetRunningThread()->GetTeam()->GetHandleTable();
-	for (int i = 0; i < dispatcherCount; i++)
+	for (int handleIndex = 0; handleIndex < handleCount; handleIndex++)
 	{
-		Resource* pResource = pTable->GetResource((int)lpHandles[i]);
+		resources[handleIndex] = pTable->GetResource((int)lpHandles[handleIndex]);
 		
-		if (pResource == 0)
-			kPanic("Sync Object is NULL");
+		if (resources[handleIndex] == 0) {
+			result = E_BAD_HANDLE;
+			break;
+		}
 
-		syncObjects[i] = pResource;
+		//if (resources[handleIndex]->GetType() == OBJ_THREAD)
+			//kDebugPrint("kWaitForMultipleObjects 0. Thread Ref : %x %x\n", resources[handleIndex], resources[handleIndex]->GetRef());
 	}
 
-	int result = Synchronization::WaitForMultipleSyncObject(dispatcherCount, syncObjects, (WaitFlags)bWaitAll, dwMilliseconds);
-
-	for (int i = 0; i < dispatcherCount; i++)
+	if (result == E_NO_ERROR)
 	{
-		((Resource * )syncObjects[i])->ReleaseRef();
+		result = Synchronization::WaitForMultipleSyncObject(handleCount, reinterpret_cast<Synchronization**>(resources), (WaitFlags)bWaitAll, dwMilliseconds);
+
+	}
+	
+	for (int handleIndex = 0; handleIndex < handleCount; handleIndex++)
+	{
+		if (resources[handleIndex])
+		{
+			
+			resources[handleIndex]->ReleaseRef();
+		
+			//if (resources[handleIndex]->GetType() == OBJ_THREAD)
+				//kDebugPrint("kWaitForMultipleObjects 1. Thread Ref : %x %x\n", resources[handleIndex], resources[handleIndex]->GetRef());
+		}
 	}
 
-	kfree(syncObjects);
+	delete[] resources;
+	
 	return result;
 }
 
-int kWaitForChildProcess(int teamId)
+int kWaitForChildProcess(int handle)
 {
 #if SKY_EMULATOR
-	return g_platformAPI._processInterface.sky_WaitForSingleObject((HANDLE)teamId, -1);
+	return g_platformAPI._processInterface.sky_WaitForSingleObject((HANDLE)handle, -1);
 #endif
-	const Team* pTeam = TeamManager::GetInstance()->FindTeam(teamId);
+	Team* pTeam = TeamManager::GetInstance()->FindTeam(handle);
 
 	if (pTeam == nullptr)
 	{
 		return 0;
-		//kPanic("WaitForChildProcess");
 	}
 
-	int ret = pTeam->waitSemaphore->Wait(INFINITE_TIMEOUT);
-
+	pTeam->ReleaseRef();
+	
 	return 0;
 }
 

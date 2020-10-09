@@ -1,10 +1,5 @@
-#include <orangeos.h>
-#include <SystemCall_Impl.h>
-#include <stringdef.h>
-
 #include <platformapi.h>
-#include <memory.h>
-#include <stdbool.h>
+#include <SystemCall_Impl.h>
 
 extern PlatformAPI g_platformAPI;
 extern "C" bool g_emulation = false;

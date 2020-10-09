@@ -126,7 +126,7 @@ bool GUIConsoleFramework::MainLoop(CONSOLE_START_STRUCT* args)
 	pConsole->Initialize(0, 0);
 	pConsole->SetWindowId(qwWindowID);
 
-	Syscall_CreateThread(GUIConsoleProc, args->argv[0], args, 16);
+	Syscall_CreateThread(GUIConsoleProc, args->argv[0], args, 16, 0);
 	CONSOLE_START_STRUCT* console = (CONSOLE_START_STRUCT*)args;
 	// 이전 화면 버퍼를 초기화
 	CHARACTER* vstPreviousScreenBuffer = new CHARACTER[CONSOLE_WIDTH * CONSOLE_HEIGHT];
@@ -245,7 +245,7 @@ bool GUIConsoleFramework::MainLoop2(CONSOLE_START_STRUCT* args)
 	pConsole->Initialize(0, 0);
 	pConsole->SetWindowId(qwWindowID);
 
-	Syscall_CreateThread(GUIConsoleProc, args->argv[0], args, 16);
+	Syscall_CreateThread(GUIConsoleProc, args->argv[0], args, 16, 0);
 
 	CONSOLE_START_STRUCT* console = (CONSOLE_START_STRUCT*)args;
 	// 이전 화면 버퍼를 초기화

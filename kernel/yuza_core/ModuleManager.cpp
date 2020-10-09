@@ -138,20 +138,21 @@ bool ModuleManager::IsSystemPE(const char* moduleName)
 
 bool ModuleManager::UnloadPE(void* handle)
 {
-	kDebugPrint("UnloadPE\n");
-
 #if SKY_EMULATOR_DLL
 	return (void*)g_platformAPI._processInterface.sky_FreeLibrary(handle);
 
 #endif
-	LOAD_DLL_INFO* info = (LOAD_DLL_INFO*)handle;
-	kDebugPrint("UnloadDll %s\n", info->moduleName);
 
+	LOAD_DLL_INFO* info = (LOAD_DLL_INFO*)handle;
+	if (IsSystemPE(info->moduleName))
+		return true;
+	
+	kDebugPrint("UnloadPE %s\n", info->moduleName);
+	
 	bool res = UnloadDLL(info);
 	assert(res == true);
 
-	if(!IsSystemPE(info->moduleName))
-		delete handle;
+	delete handle;
 
 	return res;
 }
@@ -253,7 +254,6 @@ bool ModuleManager::InitPE(void* image)
 		kDebugPrint("OriginalFirstThunk: %x\n", importDescriptor->OriginalFirstThunk);
 		kDebugPrint("     TimeDateStamp: %x\n", importDescriptor->TimeDateStamp);
 		kDebugPrint("    ForwarderChain: %x\n", importDescriptor->ForwarderChain);
-		//if (!IsBadReadPtr((char*)image + importDescriptor->Name, 2))
 		kDebugPrint("              Name: %x %s\n", importDescriptor->Name, (char*)image + importDescriptor->Name);
 
 		char* dllName = (char*)image + importDescriptor->Name;

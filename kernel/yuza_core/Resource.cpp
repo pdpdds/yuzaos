@@ -46,17 +46,27 @@ void Resource::SetName(const char name[])
 		strncpy(fName, name, OS_NAME_LENGTH - 1);
 	fName[OS_NAME_LENGTH - 1] = '\0';
 }
-
+#include <StackTracer.h>
 void Resource::AcquireRef()
 {
 	AtomicAdd(&fRefCount, 1);
+
+	//if(fType == OBJ_THREAD)
+		//kDebugPrint("Thread Acquire : Reference %d %s 0x%x\n", fRefCount, GetName(), this);
 }
 
 void Resource::ReleaseRef()
 {
 	ASSERT(fRefCount > 0);
+
 	if (AtomicAdd(&fRefCount, -1) == 1)
+	{
 		delete this;
+		return;
+	}
+
+	//if (fType == OBJ_THREAD)
+		//kDebugPrint("Thread Release : Reference %d %s 0x%x\n", fRefCount, GetName(), this);
 }
 
 void Resource::Print() const

@@ -99,6 +99,9 @@ Area* AddressSpace::CreateArea(const char name[], unsigned int size, AreaWiring 
 			{
 
 				Page *page = cache->GetPage(area->GetCacheOffset() + areaOffset, false);
+
+				ASSERT(page != nullptr);
+
 				page->Wire();
 		
 				m_pPhysicalMap->Map(va + areaOffset, page->GetPhysicalAddress(), protection);

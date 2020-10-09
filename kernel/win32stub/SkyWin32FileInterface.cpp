@@ -116,10 +116,11 @@ LPVOID sky_VirtualAlloc(LPVOID lpAddress, SIZE_T dwSize, DWORD  flAllocationType
 	return VirtualAlloc(lpAddress, dwSize, flAllocationType, flProtect);
 }
 
-unsigned int sky_CreateThread(unsigned int processId, LPTHREAD_START_ROUTINE lpStartAddress, LPVOID param)
+unsigned int sky_CreateThread(unsigned int processId, LPTHREAD_START_ROUTINE lpStartAddress, LPVOID param, DWORD flag)
 {
 	DWORD dwThreadId = 0;
-	HANDLE hThread = CreateThread(NULL, 0, lpStartAddress, param, 0, &dwThreadId);
+
+	HANDLE hThread = CreateThread(NULL, 0, lpStartAddress, param, flag, &dwThreadId);
 
 	return (unsigned int)hThread;
 }
@@ -168,15 +169,7 @@ DWORD sky_kResumeThread(HANDLE hThread)
 
 HANDLE sky_kGetCurrentThread()
 {
-	HANDLE hPProcess = GetCurrentProcess();
-	HANDLE hPThread = GetCurrentThread();
-
-	HANDLE hRProcess;
-	HANDLE hRThread;
-	DuplicateHandle(hPProcess, hPProcess, hPProcess, &hRProcess,NULL, FALSE, DUPLICATE_SAME_ACCESS);
-	DuplicateHandle(hPProcess, hPThread, hPProcess, &hRThread, NULL, FALSE, DUPLICATE_SAME_ACCESS);
-
-	return hRThread;
+	return GetCurrentThread();
 }
 
 DWORD sky_kGetCurrentThreadId()
@@ -212,6 +205,18 @@ HMODULE sky_GetModuleHandle(LPCTSTR lpModuleName)
 DWORD sky_WaitForSingleObject(HANDLE hHandle, DWORD dwMilliseconds)
 {
 	return WaitForSingleObject(hHandle, dwMilliseconds);
+}
+
+DWORD sky_WaitForMultipleObjects(DWORD nCount, const HANDLE* lpHandles, BOOL bWaitAll, DWORD dwMilliseconds)
+{
+	DWORD result = WaitForMultipleObjects(nCount, lpHandles, bWaitAll, dwMilliseconds);
+
+	if (result = 0xffffffff)
+	{
+		DWORD error = GetLastError();
+		int j = 0;
+	}
+	return result;
 }
 
 bool sky_FreeLibrary(HMODULE hLibModule)
@@ -354,5 +359,6 @@ SKY_PROCESS_INTERFACE g_processInterface =
 	sky_kExitThread,
 	sky_VirtualFree,
 	sky_VirtualProtect,
+	sky_WaitForMultipleObjects,
 };
 

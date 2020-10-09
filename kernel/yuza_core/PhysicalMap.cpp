@@ -328,6 +328,11 @@ char* PhysicalMap::LockPhysicalPage(unsigned int pa)
 		if (lockedPage->mapCount++ == 0)
 			lockedPage->RemoveFromList();
 	}
+
+	if (lockedPage->mapCount == 0)
+	{
+		int q = 0;
+	}
 	
 	RestoreInterrupts(fl);	
 #if SKY_EMULATOR
@@ -422,7 +427,7 @@ void PhysicalMap::Bootstrap()
 	unsigned int* pagetable = (unsigned int*)(g_bootParams._memoryInfo._hyperSpacePTE);
 #else
 	unsigned int* pagedir = reinterpret_cast<unsigned int*>(fKernelPhysicalMap->fPageDirectory);
-	unsigned int* pagetable = reinterpret_cast<unsigned int*>(Page::Alloc()->GetPhysicalAddress());
+	unsigned int* pagetable = reinterpret_cast<unsigned int*>(Page::Alloc(true)->GetPhysicalAddress());
 #endif
 	
 	int index = kIOAreaBase / PAGE_SIZE / 1024;

@@ -591,7 +591,7 @@ BOOL LocalFileTimeToFileTime(
 HANDLE CreateThread(LPSECURITY_ATTRIBUTES   lpThreadAttributes, SIZE_T  dwStackSize, LPTHREAD_START_ROUTINE  lpStartAddress,
 	LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD lpThreadId)
 {
-	return (HANDLE)Syscall_CreateThread(lpStartAddress, "user_thread", lpParameter, 16);
+	return (HANDLE)Syscall_CreateThread(lpStartAddress, "user_thread", lpParameter, 16, dwCreationFlags);
 }
 
 FARPROC GetProcAddress(HMODULE hModule, LPCSTR lpProcName)
@@ -828,12 +828,13 @@ uintptr_t _beginthreadex( // NATIVE CODE
 	unsigned* thrdaddr
 	)
 {
-	return Syscall_CreateThread(start_address, "user_thread", arglist, 16);
+	uintptr_t handle = Syscall_CreateThread(start_address, "beiginthreadex", arglist, 16, initflag);
+	return handle;
 }
 
 void _endthreadex(unsigned retval)
 {
-	Syscall_ExitThread(0);
+	Syscall_ExitThread(retval);
 }
 
 void InitializeCriticalSection(LPCRITICAL_SECTION lpCriticalSection)

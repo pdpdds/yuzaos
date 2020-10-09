@@ -42,8 +42,6 @@ public:
 	void SetTaskId(QWORD taskId) { m_taskId = taskId; };
 	QWORD GetTaskId() { return m_taskId; }
 
-	Semaphore* waitSemaphore;
-
 	HANDLE GetUserHeap() { return m_heapHandle; }
 	LPVOID AllocateMemory(DWORD dwSize);
 	bool DeallocateMemory(LPVOID lpAddress);

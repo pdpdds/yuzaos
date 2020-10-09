@@ -72,18 +72,29 @@ void TeamManager::PrintHandles(int argc, const char** argv)
 	}
 }
 
-const Team* TeamManager::FindTeam(int teamId)
+Team* TeamManager::FindTeam(int teamId)
 {
 	List& teamList = TeamManager::GetInstance()->GetTeamList();
-	for (const ListNode* node = teamList.GetHead(); node; node = teamList.GetNext(node))
-	{
-		const Team* team = static_cast<const Team*>(node);
 
-		if (teamId == team->m_teamId)
-			return team;
+	int fl = DisableInterrupts();
+	Team* team = nullptr;
+	for (ListNode* node = teamList.GetHead(); node; node = teamList.GetNext(node))
+	{
+		Team* tempTeam = static_cast<Team*>(node);
+
+		if (teamId == tempTeam->m_teamId)
+		{
+			team = tempTeam;
+			break;
+		}
 	}
 
-	return nullptr;
+	if (team)
+		team->AcquireRef();
+
+	RestoreInterrupts(fl);
+
+	return team;
 }
 
 void TeamManager::PrintThreads(int argc, const char** argv)

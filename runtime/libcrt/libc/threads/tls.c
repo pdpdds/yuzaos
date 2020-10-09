@@ -343,7 +343,7 @@ tls_callatexit(_In_ Collection_t* List, _In_ thrd_t ThreadId, _In_ void* DsoHand
     DataKey_t           Key = { .Value.Id = ThreadId };
     int                 Skip = 0;
 
-	printf("tls_callatexit(%u, 0x%x, %i)\n", ThreadId, DsoHandle, ExitCode);
+	//printf("tls_callatexit(%u, 0x%x, %i)\n", ThreadId, DsoHandle, ExitCode);
     if (TlsGlobal.TlsAtExitHasRun != 0) {
         return;
     }
@@ -384,7 +384,7 @@ tls_cleanup(_In_ thrd_t thr, _In_ void* DsoHandle, _In_ int ExitCode)
     int         NumberOfPassesLeft  = TSS_DTOR_ITERATIONS;
     int         NumberOfValsLeft    = 0;
     DataKey_t   Key                 = { .Value.Id = thr };
-	printf("tls_cleanup(%u, 0x%x, %i)\n", thr, DsoHandle, ExitCode);
+	//printf("tls_cleanup(%u, 0x%x, %i)\n", thr, DsoHandle, ExitCode);
 
     // Execute all stored destructors untill there is no
     // more values left or we reach the maximum number of passes
