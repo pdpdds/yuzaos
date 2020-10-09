@@ -75,7 +75,7 @@ bool LuaKernel::Run()
 	int height = m_linearBufferInfo.height;
 	int bpp = m_linearBufferInfo.depth / 8;
 	
-	Syscall_CreateThread(LuaInputProc, "InputProc", this, 16);
+	Syscall_CreateThread(LuaInputProc, "InputProc", this, 16, 0);
 
 	lua_main(frameBuffer, width, height, bpp);
 

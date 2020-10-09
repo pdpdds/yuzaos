@@ -159,7 +159,7 @@ bool GUIConsole::Run()
 {
 	ConsoleManager manager;
 
-	Syscall_CreateThread(GUIWatchDogProc,"guiwatchdog", this, 16);
+	Syscall_CreateThread(GUIWatchDogProc,"guiwatchdog", this, 16, 0);
 	int bufferLen = (m_width / CHAR_WIDTH) - 15;
 	char* commandBuffer = new char[bufferLen];
 
