@@ -35,7 +35,7 @@
     <ProjectGuid>{6A5F4586-913E-4243-9F41-88A7FFECD8A7}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>roadfighter</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

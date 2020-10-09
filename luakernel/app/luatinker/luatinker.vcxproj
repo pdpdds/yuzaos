@@ -30,7 +30,7 @@
     <ProjectGuid>{BDF7199B-BACD-438E-9BEB-608636E6C5A6}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>roadfighter</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>luatinker_test</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
