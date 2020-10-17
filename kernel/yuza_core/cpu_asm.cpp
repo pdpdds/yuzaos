@@ -22,14 +22,7 @@ void read_tsc(int *cl_Low, int *cl_High)
 unsigned int GetCurrentPageDir()
 {
 #if SKY_EMULATOR
-
-	if (Thread::GetRunningThread() == 0 || Thread::GetRunningThread()->GetTeam() == 0)
-	{
-		return 0;
-	}
-
-	Team* pTeam = Thread::GetRunningThread()->GetTeam();
-	return pTeam->GetAddressSpace()->GetPhysicalMap()->GetPageDir();
+	return 0;
 #endif 
 
 	unsigned int val;

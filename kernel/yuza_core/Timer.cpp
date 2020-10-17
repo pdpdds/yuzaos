@@ -26,6 +26,8 @@ Timer::~Timer()
 
 void Timer::SetTimeout(bigtime_t time, TimerMode mode)
 {
+	int st = DisableInterrupts();
+
 	ASSERT(mode == kPeriodicTimer || mode == kOneShotTimer);
 	if (fPending)
 		kPanic("Attempt to Set() a pending timer1\n");
@@ -42,7 +44,6 @@ void Timer::SetTimeout(bigtime_t time, TimerMode mode)
 	} else
 		fWhen = time;
 
-	int st = DisableInterrupts();
 	const Timer *oldHead = static_cast<const Timer*>(fTimerQueue.GetHead());
 	Enqueue(this);
 
@@ -91,12 +92,10 @@ InterruptStatus Timer::HardwareTimerInterrupt()
 	bigtime_t now = SystemTime();
 	
 	bool reschedule = false;
-	while (fTimerQueue.GetHead() && now >= static_cast<Timer*>(fTimerQueue.GetHead())->fWhen) 
+	Timer* expiredTimer = static_cast<Timer*>(fTimerQueue.GetHead());
+	while (expiredTimer && now >= expiredTimer->fWhen)
 	{
-		
-		Timer *expiredTimer = static_cast<Timer*>(fTimerQueue.Dequeue());
-		if (expiredTimer == 0)
-			continue;
+		expiredTimer = static_cast<Timer*>(fTimerQueue.Dequeue());
 
 		if (expiredTimer->fMode == kPeriodicTimer) 
 		{
@@ -111,6 +110,8 @@ InterruptStatus Timer::HardwareTimerInterrupt()
 		InterruptStatus ret = expiredTimer->HandleTimeout();
 		if (ret == InterruptStatus::kReschedule)
 			reschedule = true;
+
+		expiredTimer = static_cast<Timer*>(fTimerQueue.GetHead());
 	}
 
 	UINT32 currentTickCount = SystemTime();
@@ -134,13 +135,67 @@ InterruptStatus Timer::HardwareTimerInterrupt()
 	return reschedule ? InterruptStatus::kReschedule : InterruptStatus::kHandledInterrupt;
 }
 
+InterruptStatus Timer::HardwareTimerInterrupt2()
+{
+	g_tickCount++;
+
+	bigtime_t now = SystemTime();
+
+	bool reschedule = false;
+	Timer* expiredTimer = static_cast<Timer*>(fTimerQueue.GetHead());
+	while (expiredTimer && now >= expiredTimer->fWhen)
+	{
+		expiredTimer = static_cast<Timer*>(fTimerQueue.Dequeue());
+
+		if (expiredTimer->fMode == kPeriodicTimer)
+		{
+			expiredTimer->fWhen += expiredTimer->fInterval;
+			Enqueue(expiredTimer);
+		}
+		else
+		{
+			expiredTimer->fPending = false;
+		}
+
+		InterruptStatus ret = expiredTimer->HandleTimeout();
+		if (ret == InterruptStatus::kReschedule)
+			reschedule = true;
+
+		expiredTimer = static_cast<Timer*>(fTimerQueue.GetHead());
+	}
+
+	UINT32 currentTickCount = SystemTime();
+
+	if (currentTickCount - lastTickCount >= 1000)
+	{
+
+		//kprintf("Timer::HardwareTimerInterrupt %x\n", g_tickCount);
+		lastTickCount = currentTickCount;
+
+		bigtime_t now = SystemTime();
+		//kprintf("%d : %Ld\n", g_tickCount, now);
+
+	}
+
+	ReprogramHardwareTimer();
+
+	return reschedule ? InterruptStatus::kReschedule : InterruptStatus::kHandledInterrupt;
+}
+
 void KernelSoftwareInterrupt()
 {
-	Timer::HardwareTimerInterrupt();
+	int st = DisableInterrupts();
+	InterruptStatus result = Timer::HardwareTimerInterrupt2();
+	RestoreInterrupts(st); 
+
+	if(result == InterruptStatus::kReschedule)
+		gScheduler.Reschedule();
 }
 
 void Timer::Enqueue(Timer *newTimer)
 {
+	int st = DisableInterrupts();
+
 	if (fTimerQueue.GetTail() == 0)
 		fTimerQueue.Enqueue(newTimer); // Empty list.  Add this as the only element.
 	else if (static_cast<Timer*>(fTimerQueue.GetHead())->fWhen >= newTimer->fWhen)
@@ -157,6 +212,8 @@ void Timer::Enqueue(Timer *newTimer)
 			}
 		}
 	}
+
+	RestoreInterrupts(st);
 }
 
 void Timer::ReprogramHardwareTimer()

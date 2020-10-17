@@ -32,9 +32,10 @@ enum ThreadState {
 class Thread : public Resource, public _QueueNode 
 {
 	friend class TeamManager;
+	friend class Team;
 
 public:
-	Thread(const char name[], Team*, THREAD_START_ENTRY, ThreadParam *param, int priority = 16, DWORD flag = 0);
+	Thread(const char name[], Team*, THREAD_START_ENTRY, void *param, int priority = 16, DWORD flag = 0);
 
 	/// This function must be called from within the context of this thread.  This function
 	/// will not return.  When this is called, the current thread will stop executing and
@@ -51,7 +52,6 @@ public:
 
 	/// Get a pointer to the thread that is currently running.
 	static Thread *GetRunningThread();
-	static inline Thread* GetThreadFromHandle(int handle);
 
 	/// Get the state of this thread structure
 	inline ThreadState GetState() const;
@@ -135,9 +135,13 @@ public:
 	void IncreaseSuspendCount();
 	DWORD GetSuspendCount();
 
-	HANDLE m_handle;
-	static std::map<DWORD, Thread*>* fMapThread;
+	HANDLE m_win32Handle;
+	HANDLE m_resourceHandle;
+	bigtime_t fLastEvent;
 
+#if SKY_EMULATOR
+	static std::map<DWORD, Thread*>* fMapThread;
+#endif	
 private:
 	/// This is used to bootstream the first thread.
 	Thread(const char name[]);
@@ -155,7 +159,7 @@ private:
 	int fBasePriority;
 	int fCurrentPriority;
 	unsigned int fFaultHandler;
-	bigtime_t fLastEvent;
+	
 	//VNode *fCurrentDir;
 	ThreadState fState;
 	int fSuspendCount;	
@@ -167,20 +171,12 @@ private:
 	Thread **fTeamListPrev;
 	_Queue fApcQueue;
 
-	
 	static Thread *fRunningThread;
 	static _Queue fReapQueue;
 	static Semaphore fThreadsToReap;
-	
 
-	friend class Team;
+
 };
-
-
-inline Thread* Thread::GetThreadFromHandle(int handle)
-{
-	return (*fMapThread)[handle];
-}
 
 inline ThreadState Thread::GetState() const
 {

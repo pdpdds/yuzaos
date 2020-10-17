@@ -91,7 +91,7 @@ extern "C" int __declspec(dllexport) MainCRTStartup(void* args)
 	int result = MainCRTStartupDLL(args);
 	tls_cleanup(thrd_current(), NULL, 0);
 	tls_destroy(tls_current());
-	Exit();
+	//Exit();
 	
 	return result;
 }

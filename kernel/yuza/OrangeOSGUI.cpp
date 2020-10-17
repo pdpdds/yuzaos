@@ -7,12 +7,14 @@
 #include "../win32stub/SkyOSWin32Stub.h"
 
 extern unsigned int g_tickCount;
+extern bool SetFrameBufferInfo(WIN32_VIDEO* pVideoInfo);
 
 DWORD WINAPI StartVirtualFramework(LPVOID parameter)
 {
 	LoopWin32(new SkyVirtualInput(), g_tickCount);
 	return 0;
 }
+
 #endif
 
 int GUIManagerThread(void* param)
@@ -23,15 +25,21 @@ int GUIManagerThread(void* param)
 	return 0;
 }
 
+/*g_startTickCount = kGetTickCount();
+ULONG* bufferAddess = (ULONG*)g_bootParams.framebuffer_addr;
+SampleFillRect(bufferAddess, 1004, 0, 20, 20, 0xFFFFFF00);
+for (;;);*/
+
 void OrangeOSGUI(char* desktopName)
 {	
-	kCreateThread(GUIManagerThread, "GUIManager", desktopName, 16, 0);
-
 #if SKY_EMULATOR
 	StartVirtualFramework(0);
-#else
-	SystemIdle(0);
+	WIN32_VIDEO* pVideo = GetFrameBufferInfo();
+	SetFrameBufferInfo(pVideo);
 #endif
+
+	kCreateThread(GUIManagerThread, "GUIManager", desktopName, 16, 0);
+	SystemIdle(0);
 
 	//not reached
 }

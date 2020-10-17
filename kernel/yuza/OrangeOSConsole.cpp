@@ -4,6 +4,17 @@
 
 void TestCode();
 
+#if SKY_EMULATOR
+#include <SkyVirtualInput.h>
+#include "../win32stub/SkyOSWin32Stub.h"
+
+extern unsigned int g_tickCount;
+bool StartWin32Timer()
+{
+	return StartWin32StubTimer(new SkyVirtualInput(), g_tickCount);
+}
+#endif
+
 #define YUZA_DEBUGGER 0
 
 void PrintInfomation()
@@ -24,7 +35,7 @@ void OrangeOSConsole(char* consoleName)
 	Debugger::GetInstance()->DebugKernel();
 #else 
 	//TestCode();
-	HANDLE handle = kCreateProcess(consoleName, nullptr, 16);
+	HANDLE handle = kCreateProcess(consoleName, nullptr, 16);  
 	SKY_ASSERT(handle != 0, "OrangeOSConsole exec fail!!\n"); 
 	WatchDogProc(0); 
 #endif
@@ -45,7 +56,7 @@ void TestCode()
 
 	avl_tests();
 	atomic_tests();
-	cbuf_tests();
+	cbuf_tests(); 
 	test_timers();
 
 	//kCreateThread((THREAD_START_ENTRY)SystemIdle, "Systemidle", 0, 16);

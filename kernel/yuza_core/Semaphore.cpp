@@ -35,10 +35,12 @@ void Semaphore::Release(int releaseCount, bool reschedule)
 	int cs = DisableInterrupts();
 	int oldCount = fCount;
 	fCount += releaseCount;
+
+	RestoreInterrupts(cs);
+
 	if (oldCount == 0)
 		Signal(reschedule);
 
-	RestoreInterrupts(cs);
 }
 
 void Semaphore::Reset(int releaseCount)

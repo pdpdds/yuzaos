@@ -62,7 +62,7 @@ void Resource::ReleaseRef()
 	if (AtomicAdd(&fRefCount, -1) == 1)
 	{
 		delete this;
-		return;
+		return; 
 	}
 
 	//if (fType == OBJ_THREAD)

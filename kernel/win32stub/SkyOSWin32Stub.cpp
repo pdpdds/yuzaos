@@ -68,7 +68,7 @@ WIN32_STUB* GetWin32Stub()
 
 
 
-extern "C" WIN32_VIDEO* InitWin32System(int width, int height, int bpp)
+WIN32_VIDEO* InitWin32System(int width, int height, int bpp)
 {
 	int result = SDL_Init(SDL_INIT_EVERYTHING);
 	//윈도우와 렌더러를 생성
@@ -170,20 +170,44 @@ VOID CALLBACK TimerCallback(PVOID lpParameter, BOOLEAN TimerOrWaitFired) {
 		pInputHandler->SoftwareInterrupt();
 }
 
+HANDLE g_hTimer;
+HANDLE g_hTimerQueue;
+I_SkyInput* g_pVirtualIO;
 
-extern "C" void LoopWin32(I_SkyInput* pVirtualIO, unsigned int& tickCount)
+ORANGEOS_WIN32_DLL bool StartWin32StubTimer(I_SkyInput* pVirtualIO, unsigned int& tickCount)
+{
+	g_pVirtualIO = pVirtualIO;
+	pInputHandler = new SkyInputHandlerWin32();
+	pInputHandler->Initialize(g_pVirtualIO);
+
+	//타이머 생성
+	g_hTimerQueue = CreateTimerQueue();
+	
+	// 처음 시작할때 0.5초 지연, 주기 0.001초마다 호출되게
+	CreateTimerQueueTimer(&g_hTimer, g_hTimerQueue, TimerCallback, NULL, 500, 10, 0);
+
+	return true;
+}
+
+WIN32_VIDEO* g_pVideo = 0;
+WIN32_VIDEO* GetFrameBufferInfo()
+{
+	while (g_pVideo == 0)
+	{
+		Sleep(100);
+	}
+
+	return g_pVideo;
+		
+}
+
+
+DWORD WINAPI DesktopProc(LPVOID lpParam)
 {
 	bool running = true;
-	
-	pInputHandler = new SkyInputHandlerWin32();
-	pInputHandler->Initialize(pVirtualIO);
+	DWORD tickCount = (DWORD)lpParam;
 
-//타이머 생성
-	HANDLE hTimerQueue = CreateTimerQueue();
-	HANDLE hTimer;
-	// 처음 시작할때 0.5초 지연, 주기 0.5초마다 호출되게
-	CreateTimerQueueTimer(&hTimer, hTimerQueue, TimerCallback, NULL, 500, 10, 0);
-
+	g_pVideo = InitWin32System(1024, 768, 32);
 
 	SDL_ShowCursor(0);
 
@@ -230,7 +254,7 @@ extern "C" void LoopWin32(I_SkyInput* pVirtualIO, unsigned int& tickCount)
 				data.bXMovement = event.motion.x;
 				data.bYMovement = event.motion.y;
 				data.bAbsoluteCoordinate = 1;
-				pVirtualIO->PutMouseQueue(&data);
+				g_pVirtualIO->PutMouseQueue(&data);
 			}
 			else if (event.type == SDL_MOUSEBUTTONDOWN)
 			{
@@ -256,7 +280,7 @@ extern "C" void LoopWin32(I_SkyInput* pVirtualIO, unsigned int& tickCount)
 				data.bXMovement = event.motion.x;
 				data.bYMovement = event.motion.y;
 				data.bAbsoluteCoordinate = 1;
-				pVirtualIO->PutMouseQueue(&data);
+				g_pVirtualIO->PutMouseQueue(&data);
 			}
 			else if (event.type == SDL_MOUSEBUTTONUP)
 			{
@@ -265,12 +289,12 @@ extern "C" void LoopWin32(I_SkyInput* pVirtualIO, unsigned int& tickCount)
 				data.bXMovement = event.motion.x;
 				data.bYMovement = event.motion.y;
 				data.bAbsoluteCoordinate = 1;
-				pVirtualIO->PutMouseQueue(&data);
+				g_pVirtualIO->PutMouseQueue(&data);
 			}
 			//키보드 이벤트가 발생했다면
 			else if (event.type == SDL_KEYDOWN)
-			{       
-				
+			{
+
 				unsigned int keycode = SDL_GetKeyFromScancode(event.key.keysym.scancode);
 
 				if (event.key.keysym.sym == SDLK_COLON || event.key.keysym.sym == SDLK_SEMICOLON)
@@ -278,15 +302,15 @@ extern "C" void LoopWin32(I_SkyInput* pVirtualIO, unsigned int& tickCount)
 					int j = 1;
 				}
 
-				BYTE bScancode = pInputHandler->ConvertKeycodeToScancode(keycode);				
+				BYTE bScancode = pInputHandler->ConvertKeycodeToScancode(keycode);
 
 				if (bScancode != 0)
 					pInputHandler->ConvertScanCodeAndPutQueue(bScancode);
 
 				if (event.key.keysym.sym == SDLK_F12)
 				{
-					
-					while (0 == ::DeleteTimerQueueTimer(hTimerQueue, hTimer, nullptr))
+
+					while (0 == ::DeleteTimerQueueTimer(g_hTimerQueue, g_hTimer, nullptr))
 					{
 						if (ERROR_IO_PENDING == ::GetLastError())
 						{
@@ -297,7 +321,7 @@ extern "C" void LoopWin32(I_SkyInput* pVirtualIO, unsigned int& tickCount)
 					}
 
 					running = false;
-				
+
 				}
 			}
 			else if (event.type == SDL_KEYUP)
@@ -312,24 +336,24 @@ extern "C" void LoopWin32(I_SkyInput* pVirtualIO, unsigned int& tickCount)
 					bScancode = bScancode | 0x80;
 					pInputHandler->ConvertScanCodeAndPutQueue(bScancode);
 				}
-					
 
-				
+
+
 				/*unsigned char bASCIICode;
 				unsigned char bFlags;
 				if (bScancode != 0)
 					pInputHandler->ConvertScanCodeToASCIICode(bScancode, &bASCIICode, (bool*)&bFlags);*/
 
-				
+
 			}
-			
+
 			else if (event.type == SDL_QUIT)
 			{
 				running = false;
 			}
 		}
 
-		
+
 		if (screen)
 		{
 			SDL_RenderClear(pRenderer);
@@ -339,7 +363,7 @@ extern "C" void LoopWin32(I_SkyInput* pVirtualIO, unsigned int& tickCount)
 			//렌더러의 내용을 화면에 뿌린다.
 			SDL_RenderPresent(pRenderer);
 		}
-		
+
 	}
 
 	if (screen)
@@ -349,12 +373,32 @@ extern "C" void LoopWin32(I_SkyInput* pVirtualIO, unsigned int& tickCount)
 		SDL_DestroyRenderer(pRenderer);
 		SDL_DestroyWindow(pWindow);
 	}
-	
+
 	SDL_Quit();
 
 	delete pInputHandler;
 
 	exit(0);
+
+}
+
+
+
+extern "C" void LoopWin32(I_SkyInput* pVirtualIO, unsigned int& tickCount)
+{
+	
+
+	pInputHandler = new SkyInputHandlerWin32();
+	pInputHandler->Initialize(pVirtualIO);
+
+//타이머 생성
+	g_hTimerQueue = CreateTimerQueue();
+	
+	// 처음 시작할때 0.5초 지연, 주기 0.5초마다 호출되게
+	CreateTimerQueueTimer(&g_hTimer, g_hTimerQueue, TimerCallback, NULL, 500, 10, 0);
+
+	DWORD dwThreadId = 0;
+	CreateThread(NULL, 0, DesktopProc, (LPVOID)tickCount, 0, &dwThreadId);
 }
 
 #include <iostream>

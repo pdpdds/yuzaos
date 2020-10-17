@@ -31,7 +31,6 @@ extern "C" {
 	BOOL kSetThreadPriorityBoost(HANDLE hThread, bool DisablePriorityBoost);
 
 	int kGetCurrentThreadId(void);
-	int kGetCurrentThreadObject();
 	int kGetCurrentThread();
 
 	int kAquireSemaphore(HANDLE handle, int timeout);

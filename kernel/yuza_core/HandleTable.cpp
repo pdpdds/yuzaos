@@ -41,17 +41,17 @@ SubTable::SubTable()
 HandleTable::HandleTable()
 	:	fFreeHint(0)
 {
-	memset(fMainTable, 0, sizeof(fMainTable));
+	memset(fMainTable, 0, sizeof(SubTable*) * kLevel1Size);
 }
 
 HandleTable::~HandleTable()
 {
 	// Close handles that are still open
 	for (int level1Index = 0; level1Index < kLevel1Size; level1Index++) {
-		SubTable *sub = fMainTable[level1Index];
+		SubTable* sub = fMainTable[level1Index];
 		if (sub == 0)
 			continue;
-			
+
 		for (int level2Index = 0; level2Index < kLevel2Size; level2Index++)
 			if (!sub->fHandle[level2Index].IsFree())
 				sub->fHandle[level2Index].fDatum.fResource->ReleaseRef();

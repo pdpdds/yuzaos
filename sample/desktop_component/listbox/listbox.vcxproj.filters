@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\listbox.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\object.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\browser.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\button.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\check.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\choice.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dialog.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\filedialog.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\general.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\iconlist.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\image.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\info.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\input.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\number.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\progress.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pulldown.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\screen.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\slider.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\text.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\window.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\window_draw.cPP">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\window_thread.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="svgamgr.cpp" />
+    <ClCompile Include="src\svgalib.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\_mouse.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="demo_listbox.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{c3ced2d7-e60c-46ba-932f-d21b0fbe65f9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\local.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\bigfont.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\font.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\font2.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="svgamgr.h" />
+  </ItemGroup>
+</Project>

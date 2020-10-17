@@ -7,48 +7,25 @@ const int kMaxReaders = 0x50000000;
 
 Mutex::Mutex(int)
 {
-#if SKY_EMULATOR
-	kInitializeCriticalSection(&m_cs);
-	return;
-#endif
-
 	Signal(false);
 }
 
 Mutex::~Mutex()
 {
-#if SKY_EMULATOR
-	kDeleteCriticalSection(&m_cs);
-	return;
-#endif
 }
 
 int Mutex::Lock()
 {
-#if SKY_EMULATOR
-	kEnterCriticalSection(&m_cs);
-	return E_NO_ERROR;
-#endif
-
 	return Wait();
 }
 
 void Mutex::Unlock()
 {
-#if SKY_EMULATOR
-	kLeaveCriticalSection(&m_cs);
-	return;
-#endif
-
 	Signal(false);
 }
 
 void Mutex::ThreadWoken()
 {
-#if SKY_EMULATOR
-	return;
-#endif
-
 	Unsignal();
 }
 
@@ -76,7 +53,6 @@ void RWLock::UnlockRead()
 
 int RWLock::LockWrite()
 {
-	return 0;
 	int error = fWriteLock.Lock();
 	if (error != E_NO_ERROR)
 		return error;
@@ -105,25 +81,14 @@ RecursiveLock::RecursiveLock(const char name[])
 	fHolder(0),
 	fRecursion(0)
 {
-#if SKY_EMULATOR
-	kInitializeCriticalSection(&m_cs);
-#endif
 }
 
 RecursiveLock::~RecursiveLock()
 {
-#if SKY_EMULATOR
-	kDeleteCriticalSection(&m_cs);
-#endif
 }
 
 int RecursiveLock::Lock()
 {
-#if SKY_EMULATOR
-	kEnterCriticalSection(&m_cs);
-	fHolder = Thread::GetRunningThread();
-	return E_NO_ERROR;
-#else
 	if (fHolder != Thread::GetRunningThread())
 	{
 		while (fMutex.Lock() == E_INTERRUPTED)
@@ -133,22 +98,16 @@ int RecursiveLock::Lock()
 
 	fRecursion++;
 	return E_NO_ERROR;
-#endif
 
 }
 
 void RecursiveLock::Unlock()
 {
-#if SKY_EMULATOR
-	fHolder = 0;
-	kLeaveCriticalSection(&m_cs);
-#else
 	ASSERT(fHolder == Thread::GetRunningThread());
 	if (--fRecursion == 0) {
 		fHolder = 0;
 		fMutex.Unlock();
 	}
-#endif	
 }
 
 bool RecursiveLock::IsLocked() const

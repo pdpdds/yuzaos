@@ -123,6 +123,8 @@ void StartPITCounter(uint32_t freq, uint8_t counter, uint8_t mode) {
 		return;
 
 #if SKY_EMULATOR
+	extern bool StartWin32Timer();
+	StartWin32Timer();
 	return;
 #endif
 

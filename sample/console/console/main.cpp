@@ -14,16 +14,17 @@ void TestGrep()
 
 	char	commandBuffer[MAXPATH] = "grep.exe IDE driver_config.cfg";
 	char	commandBuffer2[MAXPATH] = "helloworld.exe";
-	char	commandBuffer3[MAXPATH] = "threadtest.exe";
+	char	commandBuffer3[MAXPATH] = "threadtest.exe 1";
 
 	int index = 0;
 	while (1)
 	{			
-		if(index == 0)
-			manager.RunCommand(commandBuffer);		
-		else if (index == 1)
-			manager.RunCommand(commandBuffer2);
-		else
+		//if(index == 0)
+		//manager.RunCommand(commandBuffer);		
+		//else 
+		//if (index == 1)
+			//manager.RunCommand(commandBuffer2);
+		//else
 			manager.RunCommand(commandBuffer3);
 
 		index++;

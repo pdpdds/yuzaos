@@ -21,9 +21,8 @@ Team::Team(const char* name, int teamId)
 	m_pThreadList(0),
 	m_teamId(teamId),
 	m_taskId(0),
-	m_heapHandle(0),
-	m_moduleHandle(0),
-	m_mainThreadHandle(0)
+	m_image(0),
+	m_heapHandle(0)
 	//m_userHeap(0)
 {
 	strcpy(m_szCWD, "/");
@@ -42,19 +41,25 @@ Team::~Team()
 {
 	kprintf("Team %s Deleted\n", GetName());
 
+	int fl = DisableInterrupts();
+
+	if(m_image)
+		delete m_image;
+
+	TeamManager::GetInstance()->GetTeamList().Remove(this);
+
+	if (m_addressSpace)
+		delete m_addressSpace;
+
+#if SKY_EMULATOR 
+	kFreeLibrary(m_moduleHandle);
+#endif // SKY_EMULATOR
 	auto iter = m_loadedDllList.begin();
 
 	for (; iter != m_loadedDllList.end(); iter++)
 		ModuleManager::GetInstance()->UnloadPE((*iter));
-	 
+
 	m_loadedDllList.clear();
-
-	int fl = DisableInterrupts();
-	delete m_image;
-
-	TeamManager::GetInstance()->GetTeamList().Remove(this);
-
-	delete m_addressSpace;
 	
 	RestoreInterrupts(fl);
 }
@@ -121,6 +126,7 @@ void Team::ThreadTerminated(Thread *thread)
 	kDebugPrint("Team::ThreadTerminated, %s, 0x%x\n", GetName(), thread);
 
 	ReleaseRef();
+
 }
 
 Team::Team(const char* name, AddressSpace *addressSpace, int teamId)
@@ -133,32 +139,6 @@ Team::Team(const char* name, AddressSpace *addressSpace, int teamId)
 {
 	strcpy(m_szCWD, "/");
 	m_currentDrive = 'C';
-}
-
-Thread* Team::GetThread(HANDLE hThread)
-{
-	int fl = DisableInterrupts();
-	for (Thread* thread = m_pThreadList; thread; thread = thread->fTeamListNext)
-	{
-#if SKY_EMULATOR
-		if (thread->m_handle == (Thread*)hThread)
-		{
-			RestoreInterrupts(fl);
-
-			return thread;
-		}
-#else`
-		if (thread->m_handle == hThread)
-		{
-			RestoreInterrupts(fl);
-			return thread;
-	}
-#endif
-	}
-
-	RestoreInterrupts(fl);
-
-	return nullptr;
 }
 
 //실기 전용
@@ -304,7 +284,7 @@ bool Team::MapDLL(void* image)
 	return true;
 }
 
-static void FreeArgument(main_args* args)
+void FreeArgument(main_args* args)
 {
 	for (int i = 0; i < args->argc; i++)
 	{

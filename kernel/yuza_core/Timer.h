@@ -49,6 +49,7 @@ public:
 
 	/// This is called when the hardware timer expires
 	static InterruptStatus HardwareTimerInterrupt();
+	static InterruptStatus HardwareTimerInterrupt2();
 
 private:
 	

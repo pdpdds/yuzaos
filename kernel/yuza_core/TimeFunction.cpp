@@ -16,11 +16,13 @@ Semaphore gSleepSemaphore("sleep_sem", 0);
 
 extern "C" void kSleep(DWORD dwMilliseconds)
 {
-#if SKY_EMULATOR
-	g_platformAPI._processInterface.sky_Sleep(dwMilliseconds);
-#else
-	gSleepSemaphore.Wait(dwMilliseconds);
-#endif
+//#if SKY_EMULATOR
+	Semaphore sleepSemaphore("sleep_sem", 0);
+	sleepSemaphore.Wait(dwMilliseconds); 
+	//g_platformAPI._processInterface.sky_Sleep(dwMilliseconds);
+//#else
+	//gSleepSemaphore.Wait(dwMilliseconds);
+//#endif
 }
 
 extern "C" DWORD kGetTickCount()

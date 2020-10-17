@@ -45,11 +45,8 @@ public:
 	void Unlock();
 	bool IsLocked() const;
 private:
-#if SKY_EMULATOR
-	CRITICAL_SECTION m_cs;
-#else
 	Mutex fMutex;
-#endif
+
 	Thread *fHolder;
 	int fRecursion;
 

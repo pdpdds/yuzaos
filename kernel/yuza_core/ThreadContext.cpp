@@ -129,6 +129,9 @@ void ThreadContext::SetupThread(THREAD_START_ENTRY startAddress, void *param, un
 
 void ThreadContext::SwitchTo()
 {
+#if SKY_EMULATOR
+	return;
+#endif
 	ThreadContext *previousTask = fCurrentTask;
 	fCurrentTask = this;
 	tss.esp0 = fKernelStackBottom; // kernel stack for user threads
@@ -141,12 +144,9 @@ void ThreadContext::SwitchTo()
 	// Note: the INVALID_PAGE will tell the context switching
 	// code to *not* switch address spaces.	
 	
-#if SKY_EMULATOR
-#else
 	ContextSwitch(&previousTask->fStackPointer, fCurrentTask->fStackPointer,
 		fPageDirectory != previousTask->fPageDirectory && !fKernelThread ? fPageDirectory
 		: INVALID_PAGE);
-#endif	
 }
 
 void ThreadContext::PrintStackTrace() const

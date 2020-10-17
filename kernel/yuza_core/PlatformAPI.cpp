@@ -23,7 +23,7 @@ SKY_PRINT_INTERFACE _printInterface =
 	0,
 };
 
-unsigned int sky_CreateThread(unsigned int processId, LPTHREAD_START_ROUTINE lpStartAddress, LPVOID param, DWORD flag)
+unsigned int sky_CreateThread(unsigned int processId, LPTHREAD_START_ROUTINE lpStartAddress, LPVOID param, DWORD flag, DWORD& dwThreadId)
 {
 	HANDLE hThread = (HANDLE)kCreateThread((THREAD_START_ENTRY)lpStartAddress, "memoryThread", (void*)param, 1, flag);
 	return (unsigned int)hThread;

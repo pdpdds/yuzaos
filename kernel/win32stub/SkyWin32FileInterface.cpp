@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <time.h>
 
+extern bool PrintWin32GUI(char* str);
+
 extern "C" __declspec(dllexport) size_t sky_fread(void *ptr, size_t size, size_t nmemb, FILE *stream)
 {
 	return fread(ptr, size, nmemb, stream);
@@ -17,7 +19,6 @@ extern "C" __declspec(dllexport) FILE* sky_fopen(const char *filename, const cha
 	return fopen(szFileName.c_str(), mode);
 }
 
-extern bool PrintWin32GUI(char* str);
 extern "C" __declspec(dllexport) size_t sky_fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream)
 {
 	
@@ -116,10 +117,8 @@ LPVOID sky_VirtualAlloc(LPVOID lpAddress, SIZE_T dwSize, DWORD  flAllocationType
 	return VirtualAlloc(lpAddress, dwSize, flAllocationType, flProtect);
 }
 
-unsigned int sky_CreateThread(unsigned int processId, LPTHREAD_START_ROUTINE lpStartAddress, LPVOID param, DWORD flag)
+unsigned int sky_CreateThread(unsigned int processId, LPTHREAD_START_ROUTINE lpStartAddress, LPVOID param, DWORD flag, DWORD& dwThreadId)
 {
-	DWORD dwThreadId = 0;
-
 	HANDLE hThread = CreateThread(NULL, 0, lpStartAddress, param, flag, &dwThreadId);
 
 	return (unsigned int)hThread;
@@ -167,10 +166,49 @@ DWORD sky_kResumeThread(HANDLE hThread)
 	return ResumeThread(hThread);
 }
 
+
+DWORD GetMainThreadId(DWORD pId)
+{
+	LPVOID lpThId;
+
+	_asm
+	{
+		mov eax, fs: [18h]
+		add eax, 36
+		mov[lpThId], eax
+	}
+
+	HANDLE hProcess = OpenProcess(PROCESS_VM_READ, FALSE, pId);
+	if (hProcess == NULL)
+		return NULL;
+
+	DWORD tId;
+	if (ReadProcessMemory(hProcess, lpThId, &tId, sizeof(tId), NULL) == FALSE)
+	{
+		CloseHandle(hProcess);
+		return NULL;
+	}
+
+	CloseHandle(hProcess);
+
+	return tId;
+}
+
+HANDLE sky_GetThreadRealHandle()
+{
+	DWORD processId = GetCurrentProcessId();
+	DWORD theadId = GetMainThreadId(processId);
+	if (theadId == FALSE)
+		return NULL;
+
+	return OpenThread(THREAD_ALL_ACCESS, FALSE, theadId);
+}
+
 HANDLE sky_kGetCurrentThread()
 {
 	return GetCurrentThread();
 }
+
 
 DWORD sky_kGetCurrentThreadId()
 {
@@ -223,29 +261,32 @@ bool sky_FreeLibrary(HMODULE hLibModule)
 {
 	return FreeLibrary(hLibModule);
 }
-
+CRITICAL_SECTION g_criticalSection;
 void sky_InitializeCriticalSection(LPCRITICAL_SECTION lpCriticalSection)
 {
-	InitializeCriticalSection(lpCriticalSection);
+	InitializeCriticalSection(&g_criticalSection);
+
+	DWORD dwError = GetLastError();
+	int j = 1;
 }
 void sky_DeleteCriticalSection(LPCRITICAL_SECTION lpCriticalSection)
 {
-	DeleteCriticalSection(lpCriticalSection);
+	DeleteCriticalSection(&g_criticalSection);
 }
 
 BOOL sky_TryEnterCriticalSection(LPCRITICAL_SECTION lpCriticalSection)
 {
-	return TryEnterCriticalSection(lpCriticalSection);
+	return TryEnterCriticalSection(&g_criticalSection);
 }
 
 void sky_EnterCriticalSection(LPCRITICAL_SECTION lpCriticalSection)
 {
-	EnterCriticalSection(lpCriticalSection);
+	EnterCriticalSection(&g_criticalSection);
 }
 
 void sky_LeaveCriticalSection(LPCRITICAL_SECTION lpCriticalSection)
 {
-	LeaveCriticalSection(lpCriticalSection);
+	LeaveCriticalSection(&g_criticalSection);
 }
 
 void sky_RaiseException(DWORD dwExceptionCode, DWORD dwExceptionFlags, DWORD nNumberOfArguments, CONST ULONG_PTR* lpArguments)
@@ -360,5 +401,7 @@ SKY_PROCESS_INTERFACE g_processInterface =
 	sky_VirtualFree,
 	sky_VirtualProtect,
 	sky_WaitForMultipleObjects,
+
+	sky_GetThreadRealHandle,
 };
 

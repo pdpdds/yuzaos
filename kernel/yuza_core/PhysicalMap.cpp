@@ -61,7 +61,7 @@ PhysicalMap::PhysicalMap()
 		fLock("Physical Map Lock")
 {
 
-	Page *pageDirectory = Page::Alloc();
+	Page *pageDirectory = Page::Alloc(true);
 	pageDirectory->Wire();
 	fPageDirectory = pageDirectory->GetPhysicalAddress();
 
@@ -297,11 +297,6 @@ char* PhysicalMap::LockPhysicalPage(unsigned int pa)
 		if (lockedPage == 0)
 			kPanic("out of IO page slots");
 
-		if (fInactiveLockedPages.CountItems() < 10)
-		{
-			int j = 10;
-		}
-
 		if (lockedPage->pa != INVALID_PAGE) {
 			*lockedPage->hashPrev = lockedPage->hashNext;
 			if (lockedPage->hashNext)
@@ -328,11 +323,6 @@ char* PhysicalMap::LockPhysicalPage(unsigned int pa)
 		if (lockedPage->mapCount++ == 0)
 			lockedPage->RemoveFromList();
 	}
-
-	if (lockedPage->mapCount == 0)
-	{
-		int q = 0;
-	}
 	
 	RestoreInterrupts(fl);	
 #if SKY_EMULATOR
@@ -347,16 +337,14 @@ void PhysicalMap::UnlockPhysicalPage(const void *va)
 {
 	int fl = DisableInterrupts();
 
-
-
 #if SKY_EMULATOR
 	// Check to see if this is already mapped.
 	LockedPage* lockedPage = 0;
-	for (LockedPage* target = fLockedPageHash[((unsigned int)va / PAGE_SIZE) & kLockedPageHashSize - 1];
-		target; target = target->hashNext) {
-		if (target->pa == (unsigned int)va)
+	for (LockedPage* page = fLockedPageHash[((unsigned int)va / PAGE_SIZE) & kLockedPageHashSize - 1];
+		page; page = page->hashNext) {
+		if (page->pa == (unsigned int)va)
 		{
-			lockedPage = target;
+			lockedPage = page;
 			break;
 		}
 	}

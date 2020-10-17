@@ -169,23 +169,37 @@ inline int OpenHandle(Resource* obj)
 #if SKY_EMULATOR
 
 
-static DWORD RunSkyThread(void* data)
+DWORD RunSkyThread(void* data)
 {
 	ThreadParam* pThreadParms = (ThreadParam*)data;
 	THREAD_START_ENTRY threadEntry = pThreadParms->entryPoint;
 	void* args = pThreadParms->param;
-	//Thread* pSkyThread = pThreadParms->pSkyThread;
-	int thread = kGetCurrentThreadObject();
-	//g_platformAPI._processInterface.sky_TlsSetValue(100, pSkyThread->m_handle);
-	//(*Thread::fMapThread)[threadId] = pSkyThread;
+	
+	delete pThreadParms;
+ 	threadEntry(args);
+
+	kExitThread(0);
+	
+	return (0);
+}
+
+extern void FreeArgument(main_args* args);
+DWORD RunMainSkyThread(void* data)
+{
+	ThreadParam* pThreadParms = (ThreadParam*)data;
+	THREAD_START_ENTRY threadEntry = pThreadParms->entryPoint;
+	void* args = pThreadParms->param;
 
 	delete pThreadParms;
-	threadEntry(args);
-	//pSkyThread->Exit();
-	//(*Thread::fMapThread).erase(thread);
+	threadEntry(args); 
+
+	FreeArgument((main_args *)args);
+	kExitThread(0);
 
 	return (0);
 }
+
+
 
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -270,7 +284,7 @@ main_args* MakeArgument(const char* path, void* param)
 static int ExecuteFile(const char* path, char* arg)
 {
 	FILE* fp = fopen(path, "rb");
-
+	
 	if (fp == nullptr)
 	{
 		kDebugPrint("ExecuteFile Fail : %s\n", path);
@@ -312,43 +326,54 @@ static int ExecuteFile(const char* path, char* arg)
 		return E_NO_MEMORY;
 	}
 
-	//HANDLE handle = (HANDLE)OpenHandle(userthread);
-	//userthread->m_handle = handle;
 	return (int)newTeam->GetTeamId();
 }
+
 
 HANDLE kCreateThread(THREAD_START_ENTRY entry, const char* name, void* data, int priority, DWORD flag)
 {
 	Team* pTeam = Thread::GetRunningThread()->GetTeam();
 
+#if SKY_EMULATOR
 	ThreadParam* param = new ThreadParam;
 	memset(param, 0, sizeof(ThreadParam));
 	strcpy(param->name, name);
 	param->param = data;
 	param->entryPoint = entry;
 
-	Thread* thread = new Thread(name, pTeam, UserThreadEntry, param, priority, flag);
-	
+	Thread* thread = new Thread(name, pTeam, (THREAD_START_ENTRY)RunSkyThread, param, priority, flag);
+#else
+	Thread* thread = 0;
+	if (pTeam->GetAddressSpace() == AddressSpace::GetKernelAddressSpace())
+	{
+		thread = new Thread(name, pTeam, entry, data, priority, flag);
+	}
+	else
+	{
+		ThreadParam* param = new ThreadParam;
+		memset(param, 0, sizeof(ThreadParam));
+		strcpy(param->name, name);
+		param->param = data;
+		param->entryPoint = entry;
+
+		thread = new Thread(name, pTeam, UserThreadEntry, param, priority, flag);
+	}
+
+#endif
+
 	kDebugPrint("kCreateThread. Team : %x, Name : %s, Thread : %x\n", pTeam, name, thread);
 
-	HANDLE handle = (HANDLE)OpenHandle(thread);
-	thread->m_handle = handle;
-	return handle;
+	return thread->m_resourceHandle;
 }
 
 BOOL kExitThread(int errorCode)
 {
-	kCloseHandle(Thread::GetRunningThread()->m_handle);
-	
 	int res = 0;
 	tls_cleanup(thrd_current(), NULL, res);
 	tls_destroy(tls_current());
-	
-	Thread::GetRunningThread()->Exit();
 
-#if SKY_EMULATOR
-	g_platformAPI._processInterface.sky_kExitThread(0);
-#endif
+	kCloseHandle(Thread::GetRunningThread()->m_resourceHandle);
+	Thread::GetRunningThread()->Exit();
 
 	return TRUE;
 }
@@ -361,11 +386,12 @@ BOOL kTerminateThread(HANDLE handle, DWORD* lpRetCode)
 #endif
 	lpRetCode = 0;
 	ASSERT(Thread::GetRunningThread() != handle);
-	Thread* target = Thread::GetRunningThread()->GetTeam()->GetThread(handle);
+	Thread* target = (Thread *)Thread::GetRunningThread()->GetTeam()->GetHandleTable()->GetResource((int)handle, OBJ_THREAD);
 	if (target == nullptr)
 		return false;
 
 	target->ForceExit();
+	target->ReleaseRef();
 
 	return true;
 }
@@ -388,24 +414,13 @@ char* GetFileNameFromPath(char* path)
 	return path;
 }
 
-static int ProcessWatcher(void* parameter)
-{
-	//Team* team = (Team*)parameter;
-	
-	//kWaitForSingleObject(team->m_mainThreadHandle, -1);
-
-	//bool result = ModuleManager::GetInstance()->UnloadPE(team->m_moduleHandle);
-
-	return 0;
-}
-
 HANDLE kCreateProcess(const char* execPath, void* param, int priority)
 {
 	char filepath[MAXPATH] = { 0, };
 	char* path = 0;
 	if (strlen(execPath) == 0)
 		return 0;
-
+ 
 	strcpy(filepath, execPath);
 	path = filepath;
 
@@ -439,23 +454,16 @@ HANDLE kCreateProcess(const char* execPath, void* param, int priority)
 	kDebugPrint("CreateProcess %x %s %d\n", mainFunc, path, priority);
 
 	Team* newTeam = TeamManager::GetInstance()->CreateTeam(path);
+	newTeam->m_moduleHandle = moduleHandle;
 
 	ThreadParam* pStartParam = new ThreadParam;
 	pStartParam->entryPoint = mainFunc;
 	strcpy(pStartParam->name, path);
 	pStartParam->param = args;
-	//pStartParam->pSkyThread = pSkyThread;
 
-	Thread* thread = new Thread(path, newTeam, (THREAD_START_ENTRY)RunSkyThread, pStartParam, priority);
-
-	HANDLE handle = (HANDLE)OpenHandle(thread);
-	thread->m_handle = handle;
-
-	newTeam->m_mainThreadHandle = handle;
-	newTeam->m_moduleHandle = moduleHandle;
-
-	new Thread("ProcessWatcher", newTeam, ProcessWatcher, pStartParam, priority);
-
+	Thread* thread = new Thread(path, newTeam, (THREAD_START_ENTRY)RunMainSkyThread, pStartParam, priority);
+	HANDLE handle = (HANDLE)thread->m_win32Handle;
+	
 #else
 	HANDLE handle = (HANDLE)ExecuteFile(path, (char*)param);
 #endif
@@ -463,28 +471,26 @@ HANDLE kCreateProcess(const char* execPath, void* param, int priority)
 
 	return handle;
 }
-
+ 
 DWORD kSuspendThread(HANDLE hThread)
 {
-	if (Thread::GetRunningThread() == hThread)
-		return 0;
-
 	int fl = DisableInterrupts();
-	Thread* target = Thread::GetRunningThread()->GetTeam()->GetThread(hThread);
+	Thread* target = reinterpret_cast<Thread*>(Thread::GetRunningThread()->GetTeam()->GetHandleTable()->GetResource((int)hThread, OBJ_THREAD));
 	
 	if (target == nullptr)
 	{
-		printf("sdfdssd\n");
 		RestoreInterrupts(fl);
 		return 0;
 	}
-	//target->AcquireRef();
+	
 	kDebugPrint("kSuspendThread Team : %s, Thread : 0x%0x\n", target->GetTeam()->GetName(), target);
 
 	target->SetState(kThreadSuspended);
 	target->IncreaseSuspendCount();
 
 	RestoreInterrupts(fl);
+
+	target->ReleaseRef();
 
 	return target->GetSuspendCount();
 }
@@ -496,18 +502,15 @@ DWORD kResumeThread(HANDLE hThread)
 	if (thread == 0)
 		return 0;
 
-	kDebugPrint("found resume target %x\n", thread);
-
+	ASSERT(hThread != Thread::GetRunningThread()->m_resourceHandle);
 	ASSERT(thread->GetState() == kThreadSuspended);
-	thread->SetCurrentPriority(thread->GetBasePriority());
-	thread->SetState(kThreadWaiting);
-	
-#if SKY_EMULATOR
-	g_platformAPI._processInterface.sky_kResumeThread(hThread);
-#endif
+	thread->SetState(kThreadReady);
+	kprintf("found resume target %x\n", thread);
+
+	gScheduler.EnqueueReadyThread(thread); 
+	gScheduler.Reschedule();
 
 	thread->ReleaseRef();
-
 	return 0;
 }
 
@@ -549,22 +552,13 @@ int kGetCurrentThreadId(void)
 #endif
 }
 
-int kGetCurrentThreadObject()
-{
-#if SKY_EMULATOR
-	return (DWORD)g_platformAPI._processInterface.sky_TlsGetValue(100);
-#else
-	return (int)Thread::GetRunningThread();
-#endif
-}
-
 int kGetCurrentThread()
 {
-#if SKY_EMULATOR
-	return (int)g_platformAPI._processInterface.sky_kGetCurrentThread();
-#else
-	return (int)Thread::GetRunningThread();
-#endif
+//#if SKY_EMULATOR
+	//return (int)g_platformAPI._processInterface.sky_kGetCurrentThread();
+//#else
+	return (int)Thread::GetRunningThread()->m_resourceHandle;
+//#endif
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -723,13 +717,16 @@ int kCloseHandle(HANDLE handle)
 	Resource* resource = static_cast<Resource*>(GetResource((int)handle, OBJ_ANY));
 	
 	if (resource == 0)
+	{
+		ASSERT("kCloseHandle");
 		return E_BAD_HANDLE;
+	}
 
 	Thread::GetRunningThread()->GetTeam()->GetHandleTable()->Close((int)handle);
 
 	resource->ReleaseRef();
 
-	return 0;
+	return 0; 
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -791,7 +788,7 @@ BOOL kKillTimer(HWND hWnd, DWORD* nIDEvent)
 //ÀÌº¥Æ®
 HANDLE kCreateEvent(LPSECURITY_ATTRIBUTES lpEventAttributes, bool bManualReset, bool bInitialState, LPCTSTR lpName)
 {
-	Semaphore* sem = new Semaphore(lpName, 0);
+	Semaphore* sem = new Semaphore("event", 0);
 	if (sem == 0)
 		return 0;
 
@@ -826,11 +823,6 @@ BOOL kResetEvent(HANDLE hEvent)
 
 DWORD kWaitForSingleObject(HANDLE hHandle, DWORD dwMilliseconds)
 {
-
-#if SKY_EMULATOR
-	return g_platformAPI._processInterface.sky_WaitForSingleObject((HANDLE)hHandle, dwMilliseconds);
-#endif
-
 	bigtime_t timeOut = dwMilliseconds;
 
 	if (dwMilliseconds == 0xffffffff)
@@ -855,11 +847,11 @@ DWORD kWaitForSingleObject(HANDLE hHandle, DWORD dwMilliseconds)
 
 int kWaitForMultipleObjects(int handleCount, const HANDLE* lpHandles, BOOL bWaitAll, DWORD dwMilliseconds)
 {
-#if SKY_EMULATOR
+/*#if SKY_EMULATOR
 	DWORD res = g_platformAPI._processInterface.sky_WaitForMultipleObjects(handleCount, lpHandles, bWaitAll, dwMilliseconds);
 	return res;
-#endif
-
+#endif*/
+	int fl = DisableInterrupts();
 	int result = E_NO_ERROR;
 
 	bigtime_t timeOut = dwMilliseconds;
@@ -884,6 +876,8 @@ int kWaitForMultipleObjects(int handleCount, const HANDLE* lpHandles, BOOL bWait
 		//if (resources[handleIndex]->GetType() == OBJ_THREAD)
 			//kDebugPrint("kWaitForMultipleObjects 0. Thread Ref : %x %x\n", resources[handleIndex], resources[handleIndex]->GetRef());
 	}
+
+	RestoreInterrupts(fl);
 
 	if (result == E_NO_ERROR)
 	{
@@ -910,19 +904,8 @@ int kWaitForMultipleObjects(int handleCount, const HANDLE* lpHandles, BOOL bWait
 
 int kWaitForChildProcess(int handle)
 {
-#if SKY_EMULATOR
-	return g_platformAPI._processInterface.sky_WaitForSingleObject((HANDLE)handle, -1);
-#endif
-	Team* pTeam = TeamManager::GetInstance()->FindTeam(handle);
-
-	if (pTeam == nullptr)
-	{
-		return 0;
-	}
-
-	pTeam->ReleaseRef();
-	
 	return 0;
+	return kWaitForSingleObject((HANDLE)handle, INFINITE);
 }
 
 HANDLE kCreateArea(const char* name, unsigned int* requestAddr, int flags, unsigned int size, PageProtection protection)
@@ -1522,7 +1505,7 @@ char kGetChar()
 void kInitializeCriticalSection(void* lpCriticalSection)
 {
 	CRITICAL_SECTION* cs = (CRITICAL_SECTION*)lpCriticalSection;
-	if (cs == 0 || cs->LockSemaphore == 0)
+	if (cs == 0)
 		return;
 
 #if SKY_EMULATOR
@@ -1569,9 +1552,9 @@ BOOL kTryEnterCriticalSection(void* lpCriticalSection)
 
 void kEnterCriticalSection(void* lpCriticalSection)
 {
-	CRITICAL_SECTION* cs = (CRITICAL_SECTION*)lpCriticalSection;
-	if (lpCriticalSection == 0 || cs->LockSemaphore == 0)
-		return;
+	//CRITICAL_SECTION* cs = (CRITICAL_SECTION*)lpCriticalSection;
+	//if (lpCriticalSection == 0 || cs->LockSemaphore == 0)
+	//	return;
 
 #if SKY_EMULATOR
 	g_platformAPI._processInterface.sky_EnterCriticalSection((LPCRITICAL_SECTION)lpCriticalSection);
@@ -1582,9 +1565,9 @@ void kEnterCriticalSection(void* lpCriticalSection)
 
 void kLeaveCriticalSection(void* lpCriticalSection)
 {
-	CRITICAL_SECTION* cs = (CRITICAL_SECTION*)lpCriticalSection;
-	if (lpCriticalSection == 0 || cs->LockSemaphore == 0)
-		return;
+//	CRITICAL_SECTION* cs = (CRITICAL_SECTION*)lpCriticalSection;
+	//if (lpCriticalSection == 0 || cs->LockSemaphore == 0)
+		//return;
 
 #if SKY_EMULATOR
 	g_platformAPI._processInterface.sky_LeaveCriticalSection((LPCRITICAL_SECTION)lpCriticalSection);

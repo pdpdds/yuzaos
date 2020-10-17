@@ -435,7 +435,7 @@ static void ehci_handler(pciDev_t* device)
         if (e->enabledPortFlag && e->PCIdevice)
         {
             //20200330
-            Syscall_CreateThread(ehci_portCheck, "EHCI Ports", e, 16);
+            Syscall_CreateThread(ehci_portCheck, "EHCI Ports", e, 16, 0);
             /*task_t* thread = create_cthread((void*)&ehci_portCheck, "EHCI Ports");
             task_passStackParameter(thread, &e, sizeof(e));
             scheduler_insertTask(thread);*/
@@ -456,7 +456,7 @@ static void ehci_handler(pciDev_t* device)
         printf("\n>>> Press key for EHCI (re)initialization. <<<");
         //20200330
         Syscall_GetChar();
-        Syscall_CreateThread(ehci_start, "ehci_start", e, 16);
+        Syscall_CreateThread(ehci_start, "ehci_start", e, 16, 0);
         /*getch();
         task_t* thread = create_cthread((void*)&ehci_start, "EHCI");
         task_passStackParameter(thread, &e, sizeof(e));

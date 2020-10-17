@@ -557,8 +557,6 @@ typedef struct _FIND_FILE_HANDLE
 #define CREATE_SUSPENDED                  0x00000004
 #define DETACHED_PROCESS                  0x00000008
 
-#pragma pack(push, 8)
-
 typedef struct _LIST_ENTRY {
     struct _LIST_ENTRY* Flink;
     struct _LIST_ENTRY* Blink;
@@ -575,6 +573,9 @@ typedef struct _RTL_CRITICAL_SECTION_DEBUG {
     WORD   CreatorBackTraceIndexHigh;
     WORD   SpareWORD;
 } RTL_CRITICAL_SECTION_DEBUG, * PRTL_CRITICAL_SECTION_DEBUG, RTL_RESOURCE_DEBUG, * PRTL_RESOURCE_DEBUG;
+
+
+#pragma pack(push, 8)
 
 typedef struct _RTL_CRITICAL_SECTION {
     PRTL_CRITICAL_SECTION_DEBUG DebugInfo;

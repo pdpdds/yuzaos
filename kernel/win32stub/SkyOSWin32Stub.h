@@ -41,14 +41,16 @@ typedef struct tag_SKYOS_MODULE_LIST
 extern "C"
 {
 	ORANGEOS_WIN32_DLL WIN32_STUB* GetWin32Stub();
-	ORANGEOS_WIN32_DLL tag_WIN32_VIDEO* InitWin32System(int width, int height, int bpp);
+	ORANGEOS_WIN32_DLL WIN32_VIDEO* GetFrameBufferInfo();
 	ORANGEOS_WIN32_DLL void LoopWin32(I_SkyInput* pVirtualIO, unsigned int& tickCount);
+	ORANGEOS_WIN32_DLL bool StartWin32StubTimer(I_SkyInput* pVirtualIO, unsigned int& tickCount);
 	ORANGEOS_WIN32_DLL SKYOS_MODULE_LIST* InitSkyOSModule();
 	
-	ORANGEOS_WIN32_DLL bool SKY_VirtualProtect(void* address, int size, int attribute, unsigned int* dwOld);
+	/*ORANGEOS_WIN32_DLL bool SKY_VirtualProtect(void* address, int size, int attribute, unsigned int* dwOld);
 	ORANGEOS_WIN32_DLL bool SKY_VirtualProtect(void* address, int size, int attribute, unsigned int* dwOld);
 	ORANGEOS_WIN32_DLL bool SKY_VirtualFree(void* lpAddress, unsigned int dwSize, unsigned int  dwFreeType);
 	ORANGEOS_WIN32_DLL void* SKY_VirtualAlloc(void* lpAddress, unsigned int dwSize, unsigned int  flAllocationType, unsigned int  flProtect);
+	*/
 
 	ORANGEOS_WIN32_DLL size_t sky_fread(void* ptr, size_t size, size_t nmemb, FILE* stream);
 	ORANGEOS_WIN32_DLL FILE * sky_fopen(const char* filename, const char* mode);

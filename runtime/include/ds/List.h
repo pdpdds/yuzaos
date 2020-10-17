@@ -48,14 +48,10 @@ inline ListNode::ListNode()
 
 inline void ListNode::RemoveFromList()
 {
-	//20190429
-	//if (fNext == 0 || fPrev == 0)
-		//return;
-
 	fPrev->fNext = fNext;
 	fNext->fPrev = fPrev;
 	fNext = 0;
-	fPrev = 0; 
+	fPrev = 0;  
 }
 
 inline List::List()
@@ -66,7 +62,7 @@ inline List::List()
 
 inline ListNode* List::AddToTail(ListNode *node)
 {
-	//ASSERT(!node->fPrev);
+	ASSERT(!node->fPrev);
 	node->fNext = &fDummyHead;
 	node->fPrev = fDummyHead.fPrev;
 	node->fNext->fPrev = node;
@@ -76,7 +72,7 @@ inline ListNode* List::AddToTail(ListNode *node)
 
 inline ListNode* List::AddToHead(ListNode *node)
 {
-	//ASSERT(!node->fPrev);
+	ASSERT(!node->fPrev);
 	node->fPrev = &fDummyHead;
 	node->fNext = fDummyHead.fNext;
 	node->fNext->fPrev = node;
@@ -124,7 +120,7 @@ inline ListNode* List::GetPrevious(const ListNode *node) const
 
 inline ListNode* List::AddBefore(ListNode *nextEntry, ListNode *newEntry)
 {
-	//ASSERT(!newEntry->fPrev);
+	ASSERT(!newEntry->fPrev);
 	newEntry->fNext = nextEntry;
 	newEntry->fPrev = nextEntry->fPrev;
 	newEntry->fPrev->fNext = newEntry;
@@ -135,7 +131,7 @@ inline ListNode* List::AddBefore(ListNode *nextEntry, ListNode *newEntry)
 
 inline ListNode* List::AddAfter(ListNode *previousEntry, ListNode *newEntry)
 {
-	//ASSERT(!newEntry->fPrev);
+	ASSERT(!newEntry->fPrev);
 	newEntry->fNext = previousEntry->fNext;
 	newEntry->fPrev = previousEntry;
 	newEntry->fPrev->fNext = newEntry;

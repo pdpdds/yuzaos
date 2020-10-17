@@ -16,8 +16,7 @@ public:
 	void Reschedule();
 
 	// 실행 준비가 된 스레드를 레디 큐에 넣는다.
-	// 레디 큐에 존재하는 스레드는 두가지 상태를 가진다. 
-	// kThreadReady, kThreadSuspended
+	// kThreadReady
 	void EnqueueReadyThread(Thread* pThread);
 
 private:

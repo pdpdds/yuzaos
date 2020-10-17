@@ -69,12 +69,11 @@ void* thread_main(void* arg)
 	int i;
 	double result = 0;
 
-	for (i = 0; i < 1000000; i++)
+	//for (i = 0; i < 1000000; i++)
 	{
 		result += (rand() % 100) / 5.0f;
 	}
 	printf("thread: %d, result = %f\n", (int)arg, result);
-
 
 
 	return nullptr;

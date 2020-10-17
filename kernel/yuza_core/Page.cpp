@@ -178,7 +178,7 @@ void Page::Bootstrap()
 
 void Page::StartPageEraser()
 {
-	new Thread("Page Eraser", Thread::GetRunningThread()->GetTeam(), PageEraser, 0, 1);
+	kCreateThread(PageEraser, "Page Eraser", 0, 1, 0);
 }
 
 //커널 로더가 할당한 물리 메모리들은 이미 사용중에 있다고

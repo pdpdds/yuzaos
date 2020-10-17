@@ -3,14 +3,14 @@
 #include "x86.h"
 
 class PhysicalMap;
+class Thread;
 
 #pragma pack( push, 1 )
 typedef struct tag_ThreadParam
 {
 	void* param;
 	char name[MAXPATH];
-	THREAD_START_ENTRY entryPoint;
-	
+	THREAD_START_ENTRY entryPoint;	
 }ThreadParam;
 #pragma pack( pop )
 

@@ -301,6 +301,10 @@ inline void SetTrapOnFp()
 
 inline bool _get_interrupt_state()
 {
+#if SKY_EMULATOR
+	return false;
+#endif
+
 	unsigned int result;
 	__asm
 	{

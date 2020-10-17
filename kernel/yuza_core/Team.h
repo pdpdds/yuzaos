@@ -31,9 +31,6 @@ public:
 
 	bool CreateHeap();
 
-	// 스레드 핸들로부터 스레드 객체를 얻는다.
-	Thread* GetThread(HANDLE hThread);
-
 	int GetTeamId() { return m_teamId; }
 
 	int StartMainThread(ThreadParam* pParam);
@@ -48,9 +45,8 @@ public:
 
 	char m_szCWD[MAXPATH];
 	char m_currentDrive;
-	HANDLE m_mainThreadHandle;
-	HANDLE m_moduleHandle;
 	std::list<void*> m_loadedDllList;
+	HANDLE m_moduleHandle;
 
 private:
 	Team(const char* name, AddressSpace* addressSpace, int teamId);

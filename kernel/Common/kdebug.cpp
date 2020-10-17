@@ -27,13 +27,12 @@ void kHaltSystem(const char* errMsg)
 		SampleFillRect(bufferAddess, 1004, 0, 20, 20, 0xFF00FF00);
 		SampleFillRect(bufferAddess, 904, 0, 20, 20, 0xFFFFFF00);
 		kDebugPrint(errMsg);
-		kDebugPrint("fsdfdsdsdsfd\n");
-		kDebugPrint(errMsg);
 	}
 	else
 	{
 #if SKY_EMULATOR
 		printf("*** STOP: %s", errMsg);
+		__asm hlt
 #else
 		SkyConsole::MoveCursor(0, 0);
 		SkyConsole::SetColor(ConsoleColor::White, ConsoleColor::Blue, false);

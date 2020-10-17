@@ -117,7 +117,7 @@ void uhci_install(pciDev_t* PCIdev)
     char str[10];
     snprintf(str, 10, "UHCI %u", u->num+1);
 //20191112
-	Syscall_CreateThread(uhci_start, "uhci_start", u, 16);
+	Syscall_CreateThread(uhci_start, "uhci_start", u, 16, 0);
     //task_t* thread = create_cthread((void*)&uhci_start, str);
     //task_passStackParameter(thread, &u, sizeof(u));
     //scheduler_insertTask(thread);

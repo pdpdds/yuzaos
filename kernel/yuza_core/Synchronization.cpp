@@ -43,8 +43,10 @@ ThreadWaitEvent::ThreadWaitEvent(Thread *thread, WaitFlags flags)
 InterruptStatus ThreadWaitEvent::HandleTimeout()
 {
 	// Remove this event from the wait queues of all the dispatchers.
-	for (WaitTag *threadBlock = fTags; threadBlock; threadBlock = threadBlock->ftagNext)
+	for (WaitTag* threadBlock = fTags; threadBlock; threadBlock = threadBlock->ftagNext)
+	{
 		threadBlock->RemoveFromList();
+	}
 
 	fWakeError = E_TIMED_OUT;
 	gScheduler.EnqueueReadyThread(fThread);
@@ -69,16 +71,20 @@ int Synchronization::Wait(bigtime_t timeout)
 	if (m_bSignalled)
 	{
 		ThreadWoken();
+
+		RestoreInterrupts(fl);
 	}
 	else
 	{
 		WaitTag tag;
 		Synchronization *list = this;
+
+		RestoreInterrupts(fl);
 		
 		result = WaitInternal(1, &list, WAIT_FOR_ONE, timeout, &tag);
 	}
 
-	RestoreInterrupts(fl);
+	
 
 	return result;
 }
@@ -121,29 +127,31 @@ int Synchronization::WaitForMultipleSyncObject(int dispatcherCount, Synchronizat
 		return E_NO_ERROR;
 	}
 
+	RestoreInterrupts(fl);
+
 	const int kMaxStackAlloc = 5;
 	if (dispatcherCount <= kMaxStackAlloc) 
 	{
 		WaitTag tags[kMaxStackAlloc];
+
 		result = WaitInternal(dispatcherCount, syncObjects, flags, timeout, tags);
 	}
 	else 
-	{
+	{ 
 		WaitTag *tags = new WaitTag[dispatcherCount];
 		result = WaitInternal(dispatcherCount, syncObjects, flags, timeout, tags);
 		delete[] tags;
 	}
 
-	RestoreInterrupts(fl);
+	
 	return result;
 }
 
 void Synchronization::Signal(bool reschedule)
 {
 	int fl = DisableInterrupts();
-#if !SKY_EMULATOR
 	ASSERT(!_get_interrupt_state());
-#endif
+
 	m_bSignalled = true;
 	bool threadsWoken = false;
 	for (WaitTag *nextWaitTag = static_cast<WaitTag*>(m_waitTagList.GetHead()); nextWaitTag && m_bSignalled;)
@@ -207,8 +215,13 @@ int Synchronization::WaitInternal(int syncObjectCount,
 	                                   bigtime_t timeout, 
 	                                   WaitTag waitTags[])
 {
+	int fl = DisableInterrupts();
+
 	int result = E_NO_ERROR;
 	ThreadWaitEvent waitEvent(Thread::GetRunningThread(), flags);
+
+	//ASSERT(waitEvent.fThread->m_resourceHandle != 0);
+
 	for (int index = 0; index < syncObjectCount; index++)
 	{
 		waitTags[index].fEvent = &waitEvent;
@@ -225,9 +238,9 @@ int Synchronization::WaitInternal(int syncObjectCount,
 	if(waitEvent.fThread)
 		waitEvent.fThread->SetState(kThreadWaiting);
 
-#if !SKY_EMULATOR	
+	RestoreInterrupts(fl);
+	
 	gScheduler.Reschedule();
-#endif
 
 	return waitEvent.fWakeError;	
 	

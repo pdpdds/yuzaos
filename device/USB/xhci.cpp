@@ -103,7 +103,7 @@ void xhci_install(pciDev_t* PCIdev)
     char str[10];
     snprintf(str, 10, "xHCI %u", ++numPorts);
 	
-	Syscall_CreateThread(xhci_start, str, x, 16);
+	Syscall_CreateThread(xhci_start, str, x, 16, 0);
     //task_t* thread = create_cthread((void*)&xhci_start, str);
     //task_passStackParameter(thread, &x, sizeof(x));
     //scheduler_insertTask(thread);
@@ -462,7 +462,7 @@ static void xhci_portCheck(xhci_t* x)
                 // xhci_showPortStatus(x, j);
 				g_j = j;
 				
-				Syscall_CreateThread(xhci_detectDevice, "xhci_detectDevice", x, 16);
+				Syscall_CreateThread(xhci_detectDevice, "xhci_detectDevice", x, 16, 0);
                 //task_t* thread = create_cthread((void*)&xhci_detectDevice, "xhci_detectDevice");
                 //task_passStackParameter(thread, &x, sizeof(x));
                 //task_passStackParameter(thread, &j, sizeof(j));

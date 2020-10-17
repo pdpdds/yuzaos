@@ -111,7 +111,6 @@ extern void StartNativeSystem(void* param);
 void SetInterruptVectors();
 void InitInterrupt();
 bool BuildPlatformAPI();
-bool InitDisplaySystem();
 bool InitEnvironment();
 bool AddEnvironment(config_t& cfg, char* element, char* envName);
 bool InitStorageSystem();
@@ -172,15 +171,8 @@ void KernelThreadProc()
 	char buf[256];
 	if (g_bootParams.bGraphicMode == true)
 	{	
-		InitDisplaySystem();
 		SkyGUISystem::GetInstance();
 		kGetEnvironmentVariable("DESKTOPMGR", buf, 256);
-
-		/*g_startTickCount = kGetTickCount();
-		ULONG* bufferAddess = (ULONG*)g_bootParams.framebuffer_addr;
-		SampleFillRect(bufferAddess, 1004, 0, 20, 20, 0xFFFFFF00);
-		for (;;);*/
-
 		OrangeOSGUI(buf);
 	}
 	else
@@ -200,9 +192,9 @@ idt_descriptor g_IDT[I86_MAX_INTERRUPTS] = { 0, };
 
 bool InitOSSystem(BootParams* pBootParam)
 {
-	InitializeConstructors();
-
 	BuildPlatformAPI();
+	kInitializeCriticalSection(&g_interrupt_cs);
+	InitializeConstructors();
 
 #if SKY_EMULATOR	
 	unsigned long magic = 0;
@@ -213,8 +205,6 @@ bool InitOSSystem(BootParams* pBootParam)
 	kHeapBase = (DWORD)(g_bootParams.MemoryRegion[0].begin);
 	g_bootParams._memoryInfo._kHeapBase = kHeapBase;
 	//g_bootParams._heapVirtualEndAddr = (uint32_t)g_bootParams._heapVirtualStartAddr + g_bootParams._heapFrameCount * PAGE_SIZE;
-
-	kInitializeCriticalSection(&g_interrupt_cs);
 #else
 	memcpy(&g_bootParams, pBootParam, sizeof(BootParams));
 
@@ -236,6 +226,8 @@ bool InitOSSystem(BootParams* pBootParam)
 	kmalloc_init(kHeapBase, g_bootParams._memoryInfo._kHeapSize);
 
 #if SKY_EMULATOR	
+
+	
 #if (SKY_CONSOLE_MODE == 0)
 	g_bootParams.bGraphicMode = true;
 #else
@@ -363,15 +355,9 @@ bool BuildPlatformAPI()
 	return true;
 }
 
-bool InitDisplaySystem()
+bool SetFrameBufferInfo(WIN32_VIDEO* pVideoInfo)
 {
 #if SKY_EMULATOR
-	g_bootParams.framebuffer_width = 1024;
-	g_bootParams.framebuffer_height = 768;
-	g_bootParams.framebuffer_bpp = 32;
-	WIN32_VIDEO* pVideoInfo = InitWin32System(g_bootParams.framebuffer_width, g_bootParams.framebuffer_height, g_bootParams.framebuffer_bpp);
-	if (pVideoInfo == nullptr)
-		return false;
 
 	g_bootParams.framebuffer_addr = pVideoInfo->_frameBuffer;
 	g_bootParams.framebuffer_bpp = pVideoInfo->_bpp;
@@ -517,7 +503,7 @@ bool AddStorageModule(config_t& cfg, char* driverName, bool fromMemory)
 }
 
 bool MountStorageDriver(const char* modulename, const char* moduletype, char preferedDrive, bool fromMemory, const char* pakFile)
-{
+{ 
 	HWND hwnd = 0;
 	PFileSysAdaptor GetFileSysAdaptor;
 
@@ -565,11 +551,11 @@ int SerialPortServerThread(void* parameter)
 {
 	//char Hello[] = "Hello World!!";
 	//SendSerialData((BYTE*)Hello, strlen(Hello) + 1);
-
+	kDebugPrint("Starting SerialPortServerThread\n");
 	while (1)
 	{
 
-		kSleep(1);
+		kSleep(1000);
 	}
 
 	kExitThread(0);

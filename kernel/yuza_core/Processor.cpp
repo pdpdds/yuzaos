@@ -34,7 +34,11 @@ Processor::Processor()
 	// not specifically bound to that processor or even treated specially by
 	// scheduler code.  This guarantees that there will always be a thread that is
 	// ready to run, simplifying the scheduler.
-	new Thread("Idle Thread", Thread::GetRunningThread()->GetTeam(), IdleLoop, 0, 0);
+	
+#if SKY_EMULATOR
+#else
+	kCreateThread(IdleLoop, "Idle Thread", 0, 0, 0);
+#endif
 }
 
 void Processor::Bootstrap()

@@ -12,29 +12,35 @@
 #include <memory_layout.h>
 
 Thread* Thread::fRunningThread = 0;
-std::map<DWORD, Thread*>* Thread::fMapThread = 0;
+
+
+#if SKY_EMULATOR
+std::map<DWORD, Thread*>* Thread::fMapThread = nullptr;
+#endif
 
 _Queue Thread::fReapQueue;
 Semaphore Thread::fThreadsToReap("threads to reap", 0);
 
-Thread::Thread(const char name[], Team *team, THREAD_START_ENTRY startAddress, ThreadParam* param, int priority, DWORD flag)
+Thread::Thread(const char name[], Team *team, THREAD_START_ENTRY startAddress, void* param, int priority, DWORD flag)
 	:	Resource(OBJ_THREAD, name),
 		fThreadContext(team->GetAddressSpace()->GetPhysicalMap()),
 		fBasePriority(priority),
 		fCurrentPriority(priority),
 		fFaultHandler(0),
 		fLastEvent(SystemTime()),
-		fState(kThreadCreated),
+		fState(kThreadCreated), 
 		fTeam(team),
-		fKernelStack(0),
+		fKernelStack(0), 
 		fUserStack(0),
 		fSuspendCount(0),
-		m_handle(0)
+	    m_resourceHandle(0)
 {
 	char stackName[OS_NAME_LENGTH];
 	snprintf(stackName, OS_NAME_LENGTH, "%.12s stack", name);
+	
 	//kDebugPrint("thread name : %s\n", name);
-
+#if SKY_EMULATOR
+#else
 	fKernelStack = AddressSpace::GetKernelAddressSpace()->CreateArea(stackName,
 		kKernelStackSize, AREA_WIRED, SYSTEM_READ | SYSTEM_WRITE, new PageCache, 0,
 		INVALID_PAGE, SEARCH_FROM_TOP);
@@ -65,12 +71,12 @@ Thread::Thread(const char name[], Team *team, THREAD_START_ENTRY startAddress, T
 	}
 	
 	fThreadContext.SetupThread(startAddress, param, userStack, kernelStack);
-
+#endif
 	// Inherit the current directory from the thread that created this.
 	//fCurrentDir = GetRunningThread()->fCurrentDir;
 	//if (fCurrentDir)
 	//	fCurrentDir->AcquireRef();
-
+	 
 	AcquireRef();	// This reference is effectively owned by the actual thread
 					// of execution.  It will be released by the Grim Reaper
 	team->ThreadCreated(this);
@@ -79,13 +85,22 @@ Thread::Thread(const char name[], Team *team, THREAD_START_ENTRY startAddress, T
 		SetState(kThreadSuspended);
 
 #if SKY_EMULATOR
-	int thread = g_platformAPI._processInterface.sky_kCreateThread(Thread::GetRunningThread()->GetTeam()->GetTaskId(), (LPTHREAD_START_ROUTINE)startAddress, param, flag);
-	(*Thread::fMapThread)[thread] = this;
-	
-#else
-	gScheduler.EnqueueReadyThread(this);
-	gScheduler.Reschedule();
-#endif	
+	DWORD dwThreadId = 0;
+	int thread = g_platformAPI._processInterface.sky_kCreateThread(Thread::GetRunningThread()->GetTeam()->GetTaskId(), (LPTHREAD_START_ROUTINE)startAddress, param, flag | CREATE_SUSPENDED, dwThreadId);
+	ASSERT(dwThreadId != 0);
+	(*fMapThread)[dwThreadId] = this;
+	m_win32Handle = (HANDLE)thread;
+
+#endif
+
+	HANDLE handle = (HANDLE)team->GetHandleTable()->Open(this);
+	m_resourceHandle = handle;
+
+	if (GetState() != kThreadSuspended)
+	{
+		gScheduler.EnqueueReadyThread(this);
+		gScheduler.Reschedule();
+	}
 }
 
 void Thread::Exit()
@@ -94,22 +109,30 @@ void Thread::Exit()
 
 	ASSERT(GetRunningThread() == this);
 
-#if SKY_EMULATOR
-	return;
-#endif
-
 	int fl = DisableInterrupts();
 	SetState(kThreadDead);
 	fReapQueue.Enqueue(this);
-	fThreadsToReap.Release(1, false);
+	
 	RestoreInterrupts(fl);
-
-	gScheduler.Reschedule();
+	fThreadsToReap.Release(1, false);
+	
+	fl = DisableInterrupts();
 
 #if SKY_EMULATOR
+	Thread* pThread = (*Thread::fMapThread)[kGetCurrentThreadId()];
+	ASSERT(pThread != 0);
+
+	Thread::fMapThread->erase(kGetCurrentThreadId());
+
+	RestoreInterrupts(fl);
+	
+	g_platformAPI._processInterface.sky_kExitThread(0);
 #else
-	kPanic("terminated thread got scheduled");
+	RestoreInterrupts(fl);
+	gScheduler.Reschedule();
 #endif
+
+	kPanic("terminated thread got scheduled");
 }
 
 int Thread::ForceExit()
@@ -132,22 +155,18 @@ void Thread::SwitchTo(Thread* prevThread)
 	int cs = DisableInterrupts();
 
 	fState = kThreadRunning;
-	if (fRunningThread != this) 
-	{				
+
+	if (fRunningThread != this)
+	{
 		bigtime_t now = SystemTime();
 		fRunningThread->fLastEvent = now;
 		fLastEvent = now;
 		fRunningThread = this;
 
-#if SKY_EMULATOR
-		DWORD result = g_platformAPI._processInterface.sky_kResumeThread(nextThread->m_handle);
-		_platformAPI._processInterface.sky_kSuspendThread(prevThread->m_handle)l
-#else
 		fThreadContext.SwitchTo();
-#endif
 	}
-
 	RestoreInterrupts(cs);
+	
 }
 
 bool Thread::CopyUser(void *dest, const void *src, int size)
@@ -195,17 +214,17 @@ void Thread::EnqueueAPC(APC *apc)
 }
 
 void Thread::Bootstrap()
-{
-#if SKY_EMULATOR
-	fMapThread = new std::map<DWORD, Thread*>();
-#endif
+{ 
 	fRunningThread = new Thread("Init Thread");
 
 #if SKY_EMULATOR
-	fRunningThread->m_handle = (HANDLE)kGetCurrentThreadObject();
-	g_platformAPI._processInterface.sky_TlsSetValue(100, fRunningThread->m_handle);
-	(*Thread::fMapThread)[(DWORD)fRunningThread->m_handle] = fRunningThread;
+	fMapThread = new std::map<DWORD, Thread*>();
+	DWORD dwThreaId = kGetCurrentThreadId();
+	(*fMapThread)[dwThreaId] = fRunningThread;
+	fRunningThread->SetState(kThreadRunning);
 #endif
+	
+
 	Debugger::GetInstance()->AddCommand("st", "Stack trace of current thread", StackTrace);
 }
 
@@ -213,6 +232,7 @@ void Thread::SetKernelStack(Area *area)
 {
 	fKernelStack = area;
 }
+
 HANDLE kCreateThreadWithTeam(THREAD_START_ENTRY entry, const char* name, void* data, int priority, Team* team, DWORD flag);
 void Thread::SetTeam(Team *team)
 {
@@ -221,8 +241,7 @@ void Thread::SetTeam(Team *team)
 
 	// Threading is ready to go... start the Grim Reaper.
 	// This is kind of a weird side effect, the function should be more explicit.
-
-	new Thread("Grim Reaper", team, GrimReaper, 0, 30);
+	kCreateThread(GrimReaper, "Grim Reaper", team, 30, 0);
 }
 
 // This is the constructor for bootstrap thread.  There is less state to
@@ -239,9 +258,12 @@ Thread::Thread(const char name[])
 		fUserStack(0),
 		fSuspendCount(0),
 		fTeam(0),
-		m_handle(0)
+	    m_resourceHandle(0)
 {
-	
+#if SKY_EMULATOR
+	m_win32Handle = g_platformAPI._processInterface.sky_GetThreadRealHandle();
+	ASSERT(m_win32Handle != 0);
+#endif
 }
 
 Thread::~Thread()
@@ -253,10 +275,11 @@ Thread::~Thread()
 		fTeam->GetAddressSpace()->DeleteArea(fUserStack);
 
 	kDebugPrint("Thread Terminated. thread : 0x%x, name : %s\n", this, GetName());
-	fTeam->ThreadTerminated(this);
+	fTeam->ThreadTerminated(this); 
+
 }
 
-void Thread::StackTrace(int, const char**)
+void Thread::StackTrace(int, const char**) 
 {
 	GetRunningThread()->fThreadContext.PrintStackTrace();
 }
@@ -277,7 +300,7 @@ int Thread::GrimReaper(void*)
 		// a handle to it.
 
 		if (victim)
-		{
+		{ 
 			victim->Signal(false);
 
 			//kDebugPrint("Grim Reaper. Victim : %x %s\n", victim, victim->GetName());
@@ -290,17 +313,11 @@ int Thread::GrimReaper(void*)
 Thread* Thread::GetRunningThread()
 {
 #if SKY_EMULATOR
+	DWORD dwThreadId = kGetCurrentThreadId();
+	Thread* pThread = (*fMapThread)[dwThreadId];
 
-	DWORD thread = (DWORD)g_platformAPI._processInterface.sky_TlsGetValue(100);
-	//DWORD threadId = (DWORD)g_platformAPI._processInterface.sky_kGetCurrentThread();
-	Thread* pObject = (*fMapThread)[thread];
-
-	if(pObject == 0)
-		return (*fMapThread)[0];
-
-	return pObject;
-
-#endif // SKY_EMULATOR
-
+	return pThread;
+#else
 	return fRunningThread;
+#endif
 }
