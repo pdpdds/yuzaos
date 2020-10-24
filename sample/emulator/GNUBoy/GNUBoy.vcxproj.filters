@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="sys">
+      <UniqueIdentifier>{534279a0-dd10-46dc-b843-8c610f35b79e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sys\windows">
+      <UniqueIdentifier>{2a8e0f35-6bd9-41fe-bb23-57e5167637e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sys\sdl2">
+      <UniqueIdentifier>{99961ba6-311a-4b28-9faa-26571bda8883}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{b4971718-860d-4e93-95f5-a026c22104be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\xz">
+      <UniqueIdentifier>{91ccddd7-c6aa-4093-9698-82e19543a67c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\gz">
+      <UniqueIdentifier>{15165747-2a6d-408d-b459-19f9c82fba63}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\cpu.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\debug.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\emu.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\events.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\exports.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastmem.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\hw.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\keytable.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lcd.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lcdc.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\loader.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mem.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\palette.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\path.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rccmds.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rcfile.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rckeys.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rcvars.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\refresh.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rtc.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\save.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sound.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\split.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\windows\windows.c">
+      <Filter>sys\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\sdl2\sdl-audio.c">
+      <Filter>sys\sdl2</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\sdl2\sdl-input.c">
+      <Filter>sys\sdl2</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\sdl2\sdl-video.c">
+      <Filter>sys\sdl2</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\xz\xz_crc32.c">
+      <Filter>lib\xz</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\xz\xz_crc64.c">
+      <Filter>lib\xz</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\xz\xz_dec_bcj.c">
+      <Filter>lib\xz</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\xz\xz_dec_lzma2.c">
+      <Filter>lib\xz</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\xz\xz_dec_stream.c">
+      <Filter>lib\xz</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\gz\inflate.c">
+      <Filter>lib\gz</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
