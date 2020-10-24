@@ -12,7 +12,7 @@ SkyInputManager::~SkyInputManager()
 }
 
 bool SkyInputManager::Initialize()
-{
+{ 
 	m_pKeyQueue = new SkyQueue();
 	m_pKeyQueue->Initialize(m_keyQueueBuffer, KEY_MAXQUEUECOUNT, sizeof(KEYDATA));
 

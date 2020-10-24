@@ -42,9 +42,9 @@ extern "C" {
 	//int stat(const char* path, struct stat* buf);
 	char* getcwd(char* buf, size_t size);
 	int access(const char* pathname, int mode);
-	void* bsearch(register const void* key, const void* base0,
-		size_t nmemb, register size_t size,
-		register int (*compar)(const void*, const void*));
+	void* bsearch(const void* key, const void* base0,
+		size_t nmemb, size_t size,
+		int (*compar)(const void*, const void*));
 	
 #ifdef  __cplusplus
 }

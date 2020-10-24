@@ -257,6 +257,8 @@ void RegisterSysCall()
 	AddSyscall(eMalloc_Aligned, kmalloc_aligned);
 
 	AddSyscall(eCreateProcess, kCreateProcess);
+	AddSyscall(eGetCurrentProcessId, kGetCurrentProcessId);
+
 	AddSyscall(eCreateThread, kCreateThread);
 	AddSyscall(eSuspendThread, kSuspendThread);
 	AddSyscall(eResumeThread, kResumeThread);

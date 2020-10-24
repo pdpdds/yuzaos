@@ -20,7 +20,7 @@ Team::Team(const char* name, int teamId)
 	: Resource(OBJ_TEAM, name),
 	m_pThreadList(0),
 	m_teamId(teamId),
-	m_taskId(0),
+	m_windowId(0),
 	m_image(0),
 	m_heapHandle(0)
 	//m_userHeap(0)
@@ -134,7 +134,7 @@ Team::Team(const char* name, AddressSpace *addressSpace, int teamId)
 	m_addressSpace(addressSpace),
 	m_pThreadList(0),
 	m_teamId(teamId),
-	m_taskId(0),
+	m_windowId(0),
 	m_heapHandle(0)
 {
 	strcpy(m_szCWD, "/");

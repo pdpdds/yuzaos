@@ -12,7 +12,7 @@ extern unsigned int g_tickCount;
 bool StartWin32Timer()
 {
 	return StartWin32StubTimer(new SkyVirtualInput(), g_tickCount);
-}
+} 
 #endif
 
 #define YUZA_DEBUGGER 0

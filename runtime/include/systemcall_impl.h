@@ -68,6 +68,7 @@ enum
 	eRemoteCallRespond = 70,	
 
 	eCreateProcess = 71,
+	eGetCurrentProcessId = 72,
 
 	eCreateSpinlock = 81,
 	eLockSpinlock = 82,
@@ -194,6 +195,7 @@ enum
 #define Syscall_ResumeThread(handle) (bool)syscall1(eResumeThread, SCPARAM(handle))
 
 #define Syscall_CreateProcess(name, param, priority) (int)syscall3(eCreateProcess, SCPARAM(name), SCPARAM(param), SCPARAM(priority))
+#define Syscall_GetCurrentProcessId() (int)syscall0(eGetCurrentProcessId)
 
 #define Syscall_CreateSemaphore(name, count) (int)syscall2(eCreateSemaphore, SCPARAM(name), SCPARAM(count))
 #define Syscall_AquireSemaphore(handle,timeout) (int)syscall2(eAquireSemaphore, SCPARAM(handle), SCPARAM(timeout))

@@ -193,7 +193,9 @@ idt_descriptor g_IDT[I86_MAX_INTERRUPTS] = { 0, };
 bool InitOSSystem(BootParams* pBootParam)
 {
 	BuildPlatformAPI();
+#if SKY_EMULATOR
 	kInitializeCriticalSection(&g_interrupt_cs);
+#endif
 	InitializeConstructors();
 
 #if SKY_EMULATOR	
@@ -208,14 +210,11 @@ bool InitOSSystem(BootParams* pBootParam)
 #else
 	memcpy(&g_bootParams, pBootParam, sizeof(BootParams));
 
-
 #endif
 
 	SkyConsole::Initialize();
 	SkyConsole::Print("*** YUZA OS Console System Init ***\n");
 	SkyConsole::Print("Boot Loader Name : %s\n", g_bootParams._szBootLoaderName);
-
-
 
 	InitInterrupt();
 
@@ -354,19 +353,18 @@ bool BuildPlatformAPI()
 
 	return true;
 }
-
+#if SKY_EMULATOR
 bool SetFrameBufferInfo(WIN32_VIDEO* pVideoInfo)
 {
-#if SKY_EMULATOR
-
 	g_bootParams.framebuffer_addr = pVideoInfo->_frameBuffer;
 	g_bootParams.framebuffer_bpp = pVideoInfo->_bpp;
 	g_bootParams.framebuffer_width = pVideoInfo->_width;
 	g_bootParams.framebuffer_height = pVideoInfo->_height;
-#endif	
 
 	return true;
 }
+#endif	
+
 
 bool AddStorageModule(config_t& cfg, char* driverName, bool fromMemory);
 bool MountStorageDriver(const char* modulename, const char* moduletype, char preferedDrive, bool fromMemoryconst, const char* pakFile);
@@ -576,7 +574,6 @@ bool InitDebuggerSystem()
 	kprintf("InitDebuggerSystem\n");
 	config_t cfg;
 
-	const char* str;
 	config_init(&cfg);
 	char* config_file = "yuza.cfg";
 

@@ -36,8 +36,8 @@ public:
 	int StartMainThread(ThreadParam* pParam);
 	bool MapDLL(void* image);
 
-	void SetTaskId(QWORD taskId) { m_taskId = taskId; };
-	QWORD GetTaskId() { return m_taskId; }
+	void SetWindowId(QWORD windowId) { m_windowId = windowId; };
+	QWORD GetWindowId() { return m_windowId; }
 
 	HANDLE GetUserHeap() { return m_heapHandle; }
 	LPVOID AllocateMemory(DWORD dwSize);
@@ -56,7 +56,7 @@ private:
 	HandleTable m_handleTable;
 	AddressSpace* m_addressSpace;
 	int m_teamId;
-	QWORD m_taskId;
+	QWORD m_windowId;
 	HANDLE m_heapHandle;
 	
 	//heap_t* m_userHeap;

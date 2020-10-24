@@ -381,8 +381,22 @@ struct dirent* FAT_FileSystem::readdir(DIR* dir)
 
 int FAT_FileSystem::fstat(char const* const fileName, struct stat* fno)
 {
+	
 	char abolutePath[MAX_PATH] = "0:";
-	strcat(abolutePath, fileName);
+	char currentDir[MAX_PATH];
+
+	if (fileName[0] == '.' && fileName[1] == '/')
+	{
+		Syscall_GetCurrentDirectory(MAX_PATH, currentDir);
+		strcat(abolutePath, currentDir);
+		strcat(abolutePath, fileName + 2);
+
+	}
+	else
+	{
+		strcat(abolutePath, fileName);
+	}
+	
 	rtrimslash((char*)abolutePath);
 
 	for (int i = 0; i < strlen(abolutePath); i++)

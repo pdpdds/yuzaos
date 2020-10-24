@@ -712,7 +712,7 @@ DWORD WINAPI GetLastError(void)
 
 DWORD GetCurrentProcessId()
 {
-	return Syscall_GetCurrentThreadId();
+	return Syscall_GetCurrentProcessId();
 }
 
 //-----------------------------------------------------------------------------------

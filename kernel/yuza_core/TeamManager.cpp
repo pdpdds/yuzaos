@@ -31,6 +31,7 @@ Team* TeamManager::CreateTeam(const char* name)
 {
 	m_teamId++;
 	Team* team = new Team(name, m_teamId);
+	kGetCurrentDirectory(MAXPATH, team->m_szCWD);
 
 	if (team == 0)
 		return 0;

@@ -33,6 +33,8 @@ extern "C" {
 	int kGetCurrentThreadId(void);
 	int kGetCurrentThread();
 
+	int kGetCurrentProcessId(void);
+
 	int kAquireSemaphore(HANDLE handle, int timeout);
 	HANDLE kCreateSemaphore(const char* name, int count);
 	int kReleaseSemaphore(HANDLE handle, int count);

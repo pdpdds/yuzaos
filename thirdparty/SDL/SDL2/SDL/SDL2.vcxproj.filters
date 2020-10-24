@@ -366,6 +366,9 @@
     <ClCompile Include="src\thread\generic\SDL_systls.c">
       <Filter>소스 파일\generic</Filter>
     </ClCompile>
+    <ClCompile Include="src\video\dummy\SDL_dummymessagebox.c">
+      <Filter>소스 파일\dummy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\I_LuaModule.h">

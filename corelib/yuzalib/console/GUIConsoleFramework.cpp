@@ -214,7 +214,6 @@ bool GUIConsoleFramework::MainLoop2(CONSOLE_START_STRUCT* args)
 	QWORD qwWindowID = WINDOW_INVALIDID;
 	int iWindowWidth, iWindowHeight;
 	EVENT stReceivedEvent;
-	KEYEVENT* pstKeyEvent;
 	WINDOWEVENT* windowEvent;
 	RECT stScreenArea;
 	KEYDATA stKeyData;

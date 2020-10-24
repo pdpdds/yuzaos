@@ -86,7 +86,7 @@ Thread::Thread(const char name[], Team *team, THREAD_START_ENTRY startAddress, v
 
 #if SKY_EMULATOR
 	DWORD dwThreadId = 0;
-	int thread = g_platformAPI._processInterface.sky_kCreateThread(Thread::GetRunningThread()->GetTeam()->GetTaskId(), (LPTHREAD_START_ROUTINE)startAddress, param, flag | CREATE_SUSPENDED, dwThreadId);
+	int thread = g_platformAPI._processInterface.sky_kCreateThread(Thread::GetRunningThread()->GetTeam()->GetTeamId(), (LPTHREAD_START_ROUTINE)startAddress, param, flag | CREATE_SUSPENDED, &dwThreadId);
 	ASSERT(dwThreadId != 0);
 	(*fMapThread)[dwThreadId] = this;
 	m_win32Handle = (HANDLE)thread;

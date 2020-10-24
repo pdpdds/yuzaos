@@ -107,10 +107,10 @@ extern "C" void kprintf(const char *fmt, ...)
 
 	if (SkyGUISystem::GetInstance()->GUIEnable())
 	{
-		QWORD taskId = Thread::GetRunningThread()->GetTeam()->GetTaskId();
+		QWORD windowId = Thread::GetRunningThread()->GetTeam()->GetWindowId();
 
 		//if (taskId > 0)
-			SkyGUISystem::GetInstance()->Print(taskId, buf);
+			SkyGUISystem::GetInstance()->Print(windowId, buf);
 	}
 	else
 	{
@@ -139,9 +139,9 @@ extern "C" void kprintMsg(const char* str)
 		SkyGUISystem::GetInstance()->Print(taskId, (char*)str);
 
 #else
-		QWORD taskId = Thread::GetRunningThread()->GetTeam()->GetTaskId();
+		QWORD windowId = Thread::GetRunningThread()->GetTeam()->GetWindowId();
 		//if (taskId > 0)
-			SkyGUISystem::GetInstance()->Print(taskId, (char*)str);
+			SkyGUISystem::GetInstance()->Print(windowId, (char*)str);
 
 #endif
 	}
@@ -559,6 +559,11 @@ int kGetCurrentThread()
 //#else
 	return (int)Thread::GetRunningThread()->m_resourceHandle;
 //#endif
+}
+
+int kGetCurrentProcessId(void)
+{
+	return Thread::GetRunningThread()->GetTeam()->GetTeamId();
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -1022,7 +1027,7 @@ BOOL kCreateWindow(RECT* rect, const char* title, DWORD flags, QWORD* windowId)
 
 	if (result)
 	{
-		Thread::GetRunningThread()->GetTeam()->SetTaskId(*windowId);
+		Thread::GetRunningThread()->GetTeam()->SetWindowId(*windowId);
 	}
 
 	return result;
@@ -1552,26 +1557,29 @@ BOOL kTryEnterCriticalSection(void* lpCriticalSection)
 
 void kEnterCriticalSection(void* lpCriticalSection)
 {
-	//CRITICAL_SECTION* cs = (CRITICAL_SECTION*)lpCriticalSection;
-	//if (lpCriticalSection == 0 || cs->LockSemaphore == 0)
-	//	return;
+	
 
 #if SKY_EMULATOR
 	g_platformAPI._processInterface.sky_EnterCriticalSection((LPCRITICAL_SECTION)lpCriticalSection);
 #else
+	CRITICAL_SECTION* cs = (CRITICAL_SECTION*)lpCriticalSection;
+	if (lpCriticalSection == 0 || cs->LockSemaphore == 0)
+		return;
 	kLockMutex(cs->LockSemaphore);
 #endif
 }
 
 void kLeaveCriticalSection(void* lpCriticalSection)
 {
-//	CRITICAL_SECTION* cs = (CRITICAL_SECTION*)lpCriticalSection;
-	//if (lpCriticalSection == 0 || cs->LockSemaphore == 0)
-		//return;
+
 
 #if SKY_EMULATOR
 	g_platformAPI._processInterface.sky_LeaveCriticalSection((LPCRITICAL_SECTION)lpCriticalSection);
 #else
+ 
+	CRITICAL_SECTION* cs = (CRITICAL_SECTION*)lpCriticalSection;
+	if (lpCriticalSection == 0 || cs->LockSemaphore == 0)
+		return;
 	kUnlockMutex(cs->LockSemaphore);
 #endif
 }

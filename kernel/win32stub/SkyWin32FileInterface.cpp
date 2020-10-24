@@ -117,9 +117,9 @@ LPVOID sky_VirtualAlloc(LPVOID lpAddress, SIZE_T dwSize, DWORD  flAllocationType
 	return VirtualAlloc(lpAddress, dwSize, flAllocationType, flProtect);
 }
 
-unsigned int sky_CreateThread(unsigned int processId, LPTHREAD_START_ROUTINE lpStartAddress, LPVOID param, DWORD flag, DWORD& dwThreadId)
+unsigned int sky_CreateThread(unsigned int processId, LPTHREAD_START_ROUTINE lpStartAddress, LPVOID param, DWORD flag, LPDWORD pThreadId)
 {
-	HANDLE hThread = CreateThread(NULL, 0, lpStartAddress, param, flag, &dwThreadId);
+	HANDLE hThread = CreateThread(NULL, 0, lpStartAddress, param, flag, pThreadId);
 
 	return (unsigned int)hThread;
 }

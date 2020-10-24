@@ -17,7 +17,7 @@ extern "C" {
 //프로세스 관련 인터페이스
 typedef struct tag_SKY_PROCESS_INTERFACE
 {
-	unsigned int(*sky_kCreateThread)(unsigned int processId, LPTHREAD_START_ROUTINE lpStartAddress, LPVOID param, DWORD flag, DWORD& dwThreadId);
+	unsigned int(*sky_kCreateThread)(unsigned int processId, LPTHREAD_START_ROUTINE lpStartAddress, LPVOID param, DWORD flag, LPDWORD pThreadId);
 	void(*sky_Sleep)(int ms);
 	DWORD(*sky_GetTickCount)();
 

@@ -73,6 +73,8 @@ DUMMY_Available(void)
 	//return (0);
 }
 
+int YUZA_ShowMessageBox(const SDL_MessageBoxData* messageboxdata, int* buttonid);
+
 static void
 DUMMY_DeleteDevice(SDL_VideoDevice* device)
 {
@@ -101,6 +103,8 @@ static SDL_VideoDevice* DUMMY_CreateDevice(int devindex)
 
 	device->free = DUMMY_DeleteDevice;
 	device->CreateSDLWindow = Dummy_CreateWindow;
+
+	device->ShowMessageBox = YUZA_ShowMessageBox;
 
 	return device;
 }
