@@ -243,7 +243,7 @@ static void add_file_type(char* file_type_string, char* file_mask)
 }
 
 
-GuiWindow* create_file_dialog(GuiWinThread* win_thread, char* title, char* ok_button_str)
+GuiWindow* CreateFileDialog(GuiWinThread* win_thread, char* title, char* ok_button_str)
 {
 	int width = 380, height = 270;
 	int x = (guiscreen.width - width) / 2;

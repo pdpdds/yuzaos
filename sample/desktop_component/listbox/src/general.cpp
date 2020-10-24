@@ -57,7 +57,7 @@ int GuiGetMessage(void)
 	
 	switch (guiscreen.type) {
 		case SVGALIB : 
-			message = get_svga_message();
+			message = GetMessageEvent();
 			break;
 #if 0
 		case XLIB :

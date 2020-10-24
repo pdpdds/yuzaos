@@ -1,14 +1,5 @@
-﻿#include "windef.h"
-#include <memory.h>
-#include <skyoswindow.h>
-#include <SkyInputHandler.h>
-#include <stdio.h>
-#include <string.h>
-#include <math.h>
-#include "svgagui.h"
-#include "svgamgr.h"
+﻿#include "svgamgr.h"
 #include "play.xpm"
-bool ProcessEvent(WINDOWEVENT* pWindowEvent);
 
 GuiWindow* color_win;
 GuiObject* counter, * color[3], * color_text;
@@ -159,7 +150,7 @@ static void file_cb(GuiObject* obj, int data)
 
 	sprintf(mask, "C files|*.c|Object files|*.o|All files|*|");
 	directory[0] = '\0';
-	create_file_dialog((obj->win)->win_thread, "File dialog", "Open");
+	CreateFileDialog((obj->win)->win_thread, "File dialog", "Open");
 	if (file_dialog(directory, filename, mask))
 	{
 
@@ -169,7 +160,7 @@ static void file_cb(GuiObject* obj, int data)
 
 static void select_color_cb(GuiObject* obj, int data)
 {
-	/*int r, g, b;
+	int r, g, b;
 
 	kleur = data;
 	get_gui_palette(kleur, &r, &g, &b);
@@ -178,7 +169,7 @@ static void select_color_cb(GuiObject* obj, int data)
 	set_slider_position(color[2], (int)(b));
 	win_fillbox(color_win, 100, 70, 40, 30, kleur);
 	win_3dbox(color_win, DOWN_FRAME, 100, 70, 40, 30);
-	show_window(color_win);*/
+	show_window(color_win);
 }
 
 void default_cb(GuiObject* obj, int data)
@@ -192,11 +183,11 @@ void default_cb(GuiObject* obj, int data)
 
 void load_cb(GuiObject* obj, int data)
 {
-	/*FILE *invoer;
+	FILE *invoer;
 	int i, r, g, b;
-	char hulp[50];
+	char hulp[50] = { 0, };
 
-	sprintf(hulp, "%s/.svgaguicolors", getenv("HOME"));
+	//sprintf(hulp, "%s/.svgaguicolors", getenv("HOME"));
 	invoer = fopen(hulp, "r");
 	if (invoer != NULL) {
 		for (i = 0; i < 25; i++) {
@@ -206,17 +197,17 @@ void load_cb(GuiObject* obj, int data)
 		select_color_cb(NULL, kleur);
 		fclose(invoer);
 		message_dialog((obj->win)->win_thread, NULL, "Color settings loaded", DIA_INFO);
-	}*/
+	}
 }
 
 
 void save_cb(GuiObject* obj, int data)
 {
-	/*FILE *uitvoer;
+	FILE *uitvoer;
 	int i, r, g, b;
-	char hulp[50];
+	char hulp[50] = { 0, };
 
-	sprintf(hulp, "%s/.svgaguicolors", getenv("HOME"));
+	//sprintf(hulp, "%s/.svgaguicolors", getenv("HOME"));
 	uitvoer = fopen(hulp, "w");
 	if (uitvoer != NULL) {
 		for (i = 0;i < 25;i++) {
@@ -225,21 +216,21 @@ void save_cb(GuiObject* obj, int data)
 		}
 		fclose(uitvoer);
 		message_dialog((obj->win)->win_thread, NULL, "Color settings saved", DIA_INFO);
-	}*/
+	}
 }
 
 static void set_color_cb(GuiObject* obj, int data)
 {
-	/*int r, g, b;
+	int r, g, b;
 
 	r = (int)(color[0]->position);
 	g = (int)(color[1]->position);
 	b = (int)(color[2]->position);
-	set_gui_palette(kleur, r, g, b);*/
+	set_gui_palette(kleur, r, g, b);
 }
 static void create_color_choice(GuiWindow* win)
 {
-	/*GuiObject *obj, *pd;
+	GuiObject *obj, *pd;
 
 	pd = add_choice(win, 6, 24, 130);
 	  obj = add_item(pd, "Background", NORMAL_ITEM);
@@ -296,13 +287,13 @@ static void create_color_choice(GuiWindow* win)
 	  obj = add_item(pd, "Number foreground", NORMAL_ITEM);
 	  set_object_callback(obj, select_color_cb);
 	  set_object_user_data(obj, NUMBER_FORE);
-	create_choice(pd);*/
+	create_choice(pd);
 }
 
 
 void create_color_win(GuiWinThread* win_thread)
 {
-	/*int r, g, b;
+	int r, g, b;
 	GuiWindow *win;
 	GuiObject *obj;
 
@@ -337,7 +328,7 @@ void create_color_win(GuiWinThread* win_thread)
 	set_slider_position(color[1], (int)(g));
 	set_slider_position(color[2], (int)(b));
 	win_fillbox(color_win, 100, 70, 40, 30, kleur);
-	win_3dbox(color_win, DOWN_FRAME, 100, 70, 40, 30);*/
+	win_3dbox(color_win, DOWN_FRAME, 100, 70, 40, 30);
 }
 
 void CreateButtonBar(GuiWinThread* win_thread)
@@ -431,7 +422,7 @@ Testing 1...2";
 	set_object_callback(obj, counter_cb);
 	set_object_user_data(obj, 1);
 	set_object_info(obj, "Increase counter");
-	obj->wait_for_mouse = FALSE;
+	//obj->wait_for_mouse = FALSE;
 	obj = add_button(win, NORMAL_BUTTON, guiscreen.width - 50, 20, 44, 20, "Quit");
 	set_object_info(obj, "Quit");
 	set_object_callback(obj, exit_cb);
@@ -558,15 +549,33 @@ GuiWinThread* m_pWinThread;
 DWORD WINAPI StartGDI(LPVOID parameter)
 {
 	GuiObject* obj = NULL;
-	while (!0)
+	bool loop = true;
+	while (loop)
 	{
 		obj = do_windows(m_pWinThread);
 		if (obj != 0 && obj == (obj->win)->kill)
 			delete_window(obj->win, TRUE);
-		else
-			Syscall_Sleep(10);
+		
+		Syscall_Sleep(1);
 	}
 	return 0;
+}
+
+bool CreateWidget(QWORD windowId, int width, int height)
+{
+	int type = SVGALIB;
+	init_svgagui(windowId);
+	open_screen(type, width - 1, height - 1, 256, "SVGAGui");
+	//마우스 이미지만 초기화
+	init_mouse();
+	kleur = BACKGROUND;
+	m_pWinThread = create_window_thread();
+	init_interface(m_pWinThread);
+
+	ShowWindowThread(m_pWinThread);
+	Syscall_CreateThread(StartGDI, "GDI", 0, 16, 0);
+
+	return true;
 }
 
 
@@ -584,17 +593,15 @@ int main(int argc, char** argv)
 
 	Syscall_GetCursorPosition(&iMouseX, &iMouseY);
 
-	// 윈도우의 크기와 제목 설정
 	iWindowWidth = 640;
 	iWindowHeight = 480;
 
-	// 윈도우 생성 함수 호출, 마우스가 있던 위치를 기준으로 생성
 	RECT rect;
 	rect.left = iMouseX - 10;
 	rect.top = iMouseY - WINDOW_TITLEBAR_HEIGHT / 2;
 	rect.right = rect.left + iWindowWidth;
 	rect.bottom = rect.top + iWindowHeight;
-	Syscall_CreateWindow(&rect, "Hello World Window", WINDOW_FLAGS_DEFAULT | WINDOW_FLAGS_RESIZABLE, &qwWindowID);
+	Syscall_CreateWindow(&rect, "Widget Window Example", WINDOW_FLAGS_DEFAULT | WINDOW_FLAGS_RESIZABLE, &qwWindowID);
 
 
 	// 윈도우를 생성하지 못했으면 실패
@@ -603,17 +610,7 @@ int main(int argc, char** argv)
 		return 0;
 	}
 
-	int type = SVGALIB;
-	init_svgagui(qwWindowID);
-	open_screen(type, iWindowWidth - 1, iWindowHeight - 1, 256, "SVGAGui");
-	//마우스 이미지만 초기화
-	init_mouse();
-	kleur = BACKGROUND;
-	m_pWinThread = create_window_thread();
-	init_interface(m_pWinThread);
-
-	show_window_thread(m_pWinThread);
-	Syscall_CreateThread(StartGDI, "GDI", 0, 16, 0);
+	CreateWidget(qwWindowID, iWindowWidth, iWindowHeight);
 
 	while (1)
 	{
@@ -621,7 +618,7 @@ int main(int argc, char** argv)
 		// 이벤트 큐에서 이벤트를 수신
 		if (Syscall_ReceiveEventFromWindowQueue(&qwWindowID, &stReceivedEvent) == FALSE)
 		{
-			Syscall_Sleep(0);
+			Syscall_Sleep(1);
 			continue;
 		}
 
@@ -643,7 +640,7 @@ int main(int argc, char** argv)
 
 			break;
 
-			// 키 이벤트 처리
+		// 키 이벤트 처리
 		case EVENT_KEY_DOWN:
 		case EVENT_KEY_UP:
 			// 여기에 키보드 이벤트 처리 코드 넣기
@@ -676,14 +673,7 @@ int main(int argc, char** argv)
 			break;
 		}
 
-		ProcessEvent(pstWindowEvent);
 	}
 
 	return 0;
-}
-
-bool ProcessEvent(WINDOWEVENT* pWindowEvent)
-{
-
-	return true;
 }

@@ -102,7 +102,7 @@ void delete_window_thread(GuiWinThread * win_thread)
 }
 
 
-void show_window_thread(GuiWinThread * win_thread)
+void ShowWindowThread(GuiWinThread * win_thread)
 {
 	GuiWindow *tmp_win;
 	int z = win_thread->number - 1;
@@ -133,10 +133,13 @@ void do_window_functions(GuiWinThread *win_thread)
 {
 	GuiWindow *win = win_thread->first;
 
-	while (win != NULL) {
+	while (win != NULL) 
+	{
 		if (!win->hide)
 			win->function();
 		win = win->next;
+
+		//Syscall_Sleep(0);
 	}
 }
 
@@ -385,8 +388,6 @@ GuiObject *do_windows(GuiWinThread * win_thread)
 		case GuiMouseEvent:
 			move_mouse();
 			window_region(win_thread);
-			//20180614 일단 비효율적이지만 버그를 고쳤으므로 나중에 개선한다.
-			bring_window_to_top(win_thread->focuswin);
 			break;
 		case GuiKeyboardEvent:
 			ch = GuiKeyboardGetChar();

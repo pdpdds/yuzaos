@@ -1,11 +1,5 @@
-﻿#include "windef.h"
-#include <memory.h>
-#include <skyoswindow.h>
+﻿#include <skyoswindow.h>
 #include <systemcall_impl.h>
-#include <SkyInputHandler.h>
-#include <stdio.h>
-#include <string.h>
-#include <math.h>
 
 int main(int argc, char** argv)
 {
@@ -52,7 +46,7 @@ int main(int argc, char** argv)
 		{
 
 			//20180628
-			Syscall_Sleep(0);
+			Syscall_Sleep(1);
 			continue;
 		}
 

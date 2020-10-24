@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <SccProjectName />
+    <SccLocalPath />
+    <ProjectGuid>{CFC2D935-C24A-48AE-8691-924930A8672B}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>doom</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\Release\</OutDir>
+    <IntDir>.\Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\Intermediate\$(ProjectName)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>c:\software dev\sdl-1.2.12\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;WIN32;_CONSOLE;MY_SDL_VER;DOGS;BETA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Release\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\Release\WinMBF.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\Release\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
+    </ClCompile>
+    <Midl>
+      <TypeLibraryName>.\Release\WinMBF.tlb</TypeLibraryName>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release\WinMBF.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <SubSystem>Console</SubSystem>
+      <OutputFile>.\Release\WinMBF.exe</OutputFile>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;sdl.lib;sdlmain.lib;sdl_mixer.lib;sdl_net.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <MinimalRebuild>true</MinimalRebuild>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>./;../include;../../../corelib/include;../../../runtime/include;../../../corelib/STL/SGI;../../../ThirdParty/SDL/SDL1CL/SDL/include;../../../runtime/libcrt/string;../../../ThirdParty/SDL/SDL1CL/SDL_Mixer;../../../ThirdParty/SDL/SDL1CL/SDL_net</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>SKYOS32;_CRT_SECURE_NO_WARNINGS;_CONSOLE;MY_SDL_VER;DOGS;BETA;RANGECHECK;INSTRUMENTED;_WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Debug\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\Debug\WinMBF.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\Debug\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <DisableSpecificWarnings>4018;4996</DisableSpecificWarnings>
+      <SDLCheck>false</SDLCheck>
+      <OmitFramePointers>true</OmitFramePointers>
+      <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
+      <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <ExceptionHandling>false</ExceptionHandling>
+      <AdditionalOptions>/Oy /arch:SSE %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Midl>
+      <TypeLibraryName>.\Debug\WinMBF.tlb</TypeLibraryName>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug\WinMBF.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalDependencies>systemcall.lib;SDL_mixer.lib;sdlcl.lib;math.lib;libcrt.lib;libwin32.lib;exestub.lib;filemanager.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../../Debug;../../../$(Configuration);../../../corelib/debug;../../../runtime/debug;../../../ThirdParty/SDL/SDL1CL/debug;../../../ThirdParty/debug</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <AdditionalOptions>/safeseh:no /ALIGN:1024 %(AdditionalOptions)</AdditionalOptions>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <BaseAddress>0x08000000</BaseAddress>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\am_map.c" />
+    <ClCompile Include="Source\doomdef.c" />
+    <ClCompile Include="Source\doomstat.c" />
+    <ClCompile Include="Source\dstrings.c" />
+    <ClCompile Include="Source\d_deh.c" />
+    <ClCompile Include="Source\d_items.c" />
+    <ClCompile Include="Source\d_main.c" />
+    <ClCompile Include="Source\d_net.c" />
+    <ClCompile Include="Source\f_finale.c" />
+    <ClCompile Include="Source\f_wipe.c" />
+    <ClCompile Include="Source\g_game.c" />
+    <ClCompile Include="Source\hu_lib.c" />
+    <ClCompile Include="Source\hu_stuff.c" />
+    <ClCompile Include="Source\info.c" />
+    <ClCompile Include="Source\i_main.c" />
+    <ClCompile Include="Source\i_net.c" />
+    <ClCompile Include="Source\i_sound.c" />
+    <ClCompile Include="Source\i_stretch.c" />
+    <ClCompile Include="Source\i_system.c" />
+    <ClCompile Include="Source\i_video.c" />
+    <ClCompile Include="Source\mmus2mid.c" />
+    <ClCompile Include="Source\m_argv.c" />
+    <ClCompile Include="Source\m_bbox.c" />
+    <ClCompile Include="Source\m_cheat.c" />
+    <ClCompile Include="Source\m_menu.c" />
+    <ClCompile Include="Source\m_misc.c" />
+    <ClCompile Include="Source\m_random.c" />
+    <ClCompile Include="Source\p_ceilng.c" />
+    <ClCompile Include="Source\p_doors.c" />
+    <ClCompile Include="Source\p_enemy.c" />
+    <ClCompile Include="Source\p_floor.c" />
+    <ClCompile Include="Source\p_genlin.c" />
+    <ClCompile Include="Source\p_inter.c" />
+    <ClCompile Include="Source\p_lights.c" />
+    <ClCompile Include="Source\p_map.c" />
+    <ClCompile Include="Source\p_maputl.c" />
+    <ClCompile Include="Source\p_mobj.c" />
+    <ClCompile Include="Source\p_plats.c" />
+    <ClCompile Include="Source\p_pspr.c" />
+    <ClCompile Include="Source\p_saveg.c" />
+    <ClCompile Include="Source\p_setup.c" />
+    <ClCompile Include="Source\p_sight.c" />
+    <ClCompile Include="Source\p_spec.c" />
+    <ClCompile Include="Source\p_switch.c" />
+    <ClCompile Include="Source\p_telept.c" />
+    <ClCompile Include="Source\p_tick.c" />
+    <ClCompile Include="Source\p_user.c" />
+    <ClCompile Include="Source\r_bsp.c" />
+    <ClCompile Include="Source\r_data.c" />
+    <ClCompile Include="Source\r_draw.c" />
+    <ClCompile Include="Source\r_main.c" />
+    <ClCompile Include="Source\r_plane.c" />
+    <ClCompile Include="Source\r_segs.c" />
+    <ClCompile Include="Source\r_sky.c" />
+    <ClCompile Include="Source\r_things.c" />
+    <ClCompile Include="Source\sounds.c" />
+    <ClCompile Include="Source\st_lib.c" />
+    <ClCompile Include="Source\st_stuff.c" />
+    <ClCompile Include="Source\s_sound.c" />
+    <ClCompile Include="Source\tables.c" />
+    <ClCompile Include="Source\version.c" />
+    <ClCompile Include="Source\v_video.c" />
+    <ClCompile Include="Source\wi_stuff.c" />
+    <ClCompile Include="Source\w_wad.c" />
+    <ClCompile Include="Source\z_zone.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\am_map.h" />
+    <ClInclude Include="Source\doomdata.h" />
+    <ClInclude Include="Source\doomdef.h" />
+    <ClInclude Include="Source\doomstat.h" />
+    <ClInclude Include="Source\doomtype.h" />
+    <ClInclude Include="Source\dstrings.h" />
+    <ClInclude Include="Source\d_deh.h" />
+    <ClInclude Include="Source\d_englsh.h" />
+    <ClInclude Include="Source\d_event.h" />
+    <ClInclude Include="Source\d_french.h" />
+    <ClInclude Include="Source\d_io.h" />
+    <ClInclude Include="Source\d_items.h" />
+    <ClInclude Include="Source\d_main.h" />
+    <ClInclude Include="Source\d_net.h" />
+    <ClInclude Include="Source\d_player.h" />
+    <ClInclude Include="Source\d_textur.h" />
+    <ClInclude Include="Source\d_think.h" />
+    <ClInclude Include="Source\d_ticcmd.h" />
+    <ClInclude Include="Source\f_finale.h" />
+    <ClInclude Include="Source\f_wipe.h" />
+    <ClInclude Include="Source\g_game.h" />
+    <ClInclude Include="Source\hu_lib.h" />
+    <ClInclude Include="Source\hu_stuff.h" />
+    <ClInclude Include="Source\info.h" />
+    <ClInclude Include="Source\i_net.h" />
+    <ClInclude Include="Source\i_sound.h" />
+    <ClInclude Include="Source\i_system.h" />
+    <ClInclude Include="Source\i_video.h" />
+    <ClInclude Include="Source\mmus2mid.h" />
+    <ClInclude Include="Source\m_argv.h" />
+    <ClInclude Include="Source\m_bbox.h" />
+    <ClInclude Include="Source\m_cheat.h" />
+    <ClInclude Include="Source\m_fixed.h" />
+    <ClInclude Include="Source\m_menu.h" />
+    <ClInclude Include="Source\m_misc.h" />
+    <ClInclude Include="Source\m_random.h" />
+    <ClInclude Include="Source\m_swap.h" />
+    <ClInclude Include="Source\p_enemy.h" />
+    <ClInclude Include="Source\p_inter.h" />
+    <ClInclude Include="Source\p_map.h" />
+    <ClInclude Include="Source\p_maputl.h" />
+    <ClInclude Include="Source\p_mobj.h" />
+    <ClInclude Include="Source\p_pspr.h" />
+    <ClInclude Include="Source\p_saveg.h" />
+    <ClInclude Include="Source\p_setup.h" />
+    <ClInclude Include="Source\p_spec.h" />
+    <ClInclude Include="Source\p_tick.h" />
+    <ClInclude Include="Source\p_user.h" />
+    <ClInclude Include="Source\r_bsp.h" />
+    <ClInclude Include="Source\r_data.h" />
+    <ClInclude Include="Source\r_defs.h" />
+    <ClInclude Include="Source\r_draw.h" />
+    <ClInclude Include="Source\r_main.h" />
+    <ClInclude Include="Source\r_plane.h" />
+    <ClInclude Include="Source\r_segs.h" />
+    <ClInclude Include="Source\r_sky.h" />
+    <ClInclude Include="Source\r_state.h" />
+    <ClInclude Include="Source\r_things.h" />
+    <ClInclude Include="Source\sounds.h" />
+    <ClInclude Include="Source\st_lib.h" />
+    <ClInclude Include="Source\st_stuff.h" />
+    <ClInclude Include="Source\s_sound.h" />
+    <ClInclude Include="Source\tables.h" />
+    <ClInclude Include="Source\version.h" />
+    <ClInclude Include="Source\v_video.h" />
+    <ClInclude Include="Source\wi_stuff.h" />
+    <ClInclude Include="Source\w_wad.h" />
+    <ClInclude Include="Source\z_zone.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

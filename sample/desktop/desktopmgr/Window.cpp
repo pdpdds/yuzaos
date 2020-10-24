@@ -337,9 +337,8 @@ QWORD kCreateWindow( int iX, int iY, int iWidth, int iHeight, DWORD dwFlags,
     kInitializeQueue(&(pstWindow->stKeyEventQueue), pstWindow->pstKeyEventBuffer,
         EVENTQUEUE_WINDOWMAXCOUNT, sizeof(EVENT));
 
-    // 윈도우를 생성한 태스크의 ID를 저장
-//    pstTask = kGetRunningTask( kGetAPICID() );
-  //   pstWindow->qwTaskID =  pstTask->stLink.qwID;
+    // 윈도우를 생성한 프로세스의 ID를 저장
+    pstWindow->qwTaskID = Syscall_GetCurrentProcessId();
 
     // 윈도우 속성 설정
     pstWindow->dwFlags = dwFlags;

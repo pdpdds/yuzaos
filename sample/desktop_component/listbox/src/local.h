@@ -58,7 +58,7 @@ void save_svga_screen_to_xpm(void);
 void set_svga_default_palette(int colors);
 void set_svga_palette(int color, int red, int green, int blue);
 void get_svga_palette(int color, int *red, int *green, int *blue);
-extern "C" int get_svga_message(void);
+extern "C" int GetMessageEvent(void);
 int get_svga_mouse_button(void);
 char get_svga_keyboard_char(void);
 

@@ -1,25 +1,24 @@
 #include "svgamgr.h"
-#include <windef.h>
-#include <memory.h>
-#include <skyoswindow.h>
 #include <InputQueue.h>
-#include <stdio.h>
-//32bit!!
+
 unsigned long color[50];
+QUEUE stEventQueue;
+unsigned long* g_frameBuffer;
+EVENT svga_event;
+
+char savechar = '\0';
 
 void __cdecl error(char*)
 {
 
 }
 
-unsigned long* tempBuffer;
-
 unsigned long* getlfb()
 {
-	return tempBuffer;
+	return g_frameBuffer;
 }
 
-static void define_32bit_colors(void)
+static void Define32BitColor(void)
 {
 	/* Define the extra colors */
 	BLACK = 1;
@@ -114,96 +113,73 @@ void UpdateSheet()
 		rect.bottom = guiscreen.height- WINDOW_TITLEBAR_HEIGHT;
 	if (rect.right >= guiscreen.width)
 		rect.right = guiscreen.width;
-	Syscall_BitBlt(&parentScreenId, &rect, buffer, guiscreen.width, guiscreen.height);
-	 
-
-
+	Syscall_BitBlt(&parentScreenId, &rect, buffer, guiscreen.width, guiscreen.height);	 
 }
-QUEUE stEventQueue;
+
+
 bool CreateSheet(QWORD windowId, int width, int height, int colors)
 {
-	tempBuffer = (unsigned long*)malloc(width * height * sizeof(unsigned long));
-	memset(tempBuffer, 0, sizeof(tempBuffer) * width * height);
+	g_frameBuffer = (unsigned long*)malloc(width * height * sizeof(unsigned long));
+	memset(g_frameBuffer, 0, sizeof(unsigned long) * width * height);
 
-	define_32bit_colors();
+	Define32BitColor();
+
 	if (guiscreen.data)
 		free(guiscreen.data);
+
 	guiscreen.data = (char*)malloc(width * height);
 	if (guiscreen.data == NULL)
 		error("Cannot allocate memory for screen operations in open_screen().");
-
 	memset(guiscreen.data, 0, width * height);
+
 	guiscreen.type = SVGALIB;
+
 	EVENT* pstEventBuffer;
 	// 이벤트 큐에서 사용할 이벤트 자료구조 풀을 생성
-	pstEventBuffer = (EVENT*) new char[sizeof(EVENT) *
-		EVENTQUEUE_WNIDOWMANAGERMAXCOUNT];
+	pstEventBuffer = (EVENT*) new char[sizeof(EVENT) * EVENTQUEUE_WNIDOWMANAGERMAXCOUNT];
 	
 	// 이벤트 큐를 초기화
 	kInitializeQueue(&stEventQueue, pstEventBuffer, EVENTQUEUE_WNIDOWMANAGERMAXCOUNT, sizeof(EVENT));
 
 	return true;
 }
-EVENT svga_event;
-
-
 
 void SVGA_SetEvent(const EVENT& stReceivedEvent)
 {
 	kPutQueue(&stEventQueue, (void*)&stReceivedEvent);
-	//svga_event = stReceivedEvent;
-	//mouse.x = svga_event.stMouseEvent.stPoint.iX;
-	//mouse.y = svga_event.stMouseEvent.stPoint.iY - WINDOW_TITLEBAR_HEIGHT;
 }
 
-extern "C" int mouse_update()
+extern "C" int GetMessageEvent()
 {
-
-	/*if (svga_event.qwType == EVENT_MOUSE_LBUTTONUP)
+	if (kGetQueue(&stEventQueue, (void*)&svga_event))
 	{
-		mouse.x = svga_event.stMouseEvent.stPoint.iX;
-		mouse.y = svga_event.stMouseEvent.stPoint.iY - WINDOW_TITLEBAR_HEIGHT;
-		svga_event.qwType = 0;
-		return 1;
-	}*/
+		switch (svga_event.qwType)
+		{
+			// 마우스 이벤트 처리
+		case EVENT_MOUSE_MOVE:
+		case EVENT_MOUSE_LBUTTONUP:
+		case EVENT_MOUSE_LBUTTONDOWN:
+		case EVENT_MOUSE_RBUTTONDOWN:
+		case EVENT_MOUSE_RBUTTONUP:
+		case EVENT_MOUSE_MBUTTONDOWN:
+		case EVENT_MOUSE_MBUTTONUP:
+		{
+			mouse.x = svga_event.stMouseEvent.stPoint.iX;
+			mouse.y = svga_event.stMouseEvent.stPoint.iY - WINDOW_TITLEBAR_HEIGHT;
 
-	//return svga_event.qwType == EVENT_MOUSE_MOVE;
+			if (svga_event.qwType == EVENT_MOUSE_LBUTTONUP)
+				svga_event.qwType = 0;
 
-/*if (false == kGetQueue(&stEventQueue, (void*)&svga_event))
-	{
-		svga_event.stMouseEvent.bButtonStatus = 0;
-		return false;
-	}*/
-
-	if (false == kGetQueue(&stEventQueue, (void*)&svga_event))
-	{
-		
-		return 0;
-	}
-
-	kGetQueue(&stEventQueue, (void*)&svga_event);
-
-	if (svga_event.qwType == EVENT_MOUSE_LBUTTONUP)
-	{
-		mouse.x = svga_event.stMouseEvent.stPoint.iX;
-		mouse.y = svga_event.stMouseEvent.stPoint.iY - WINDOW_TITLEBAR_HEIGHT;
-		svga_event.qwType = 0;
-		return 1;
-	}
-
-	switch (svga_event.qwType)
-	{
-		// 마우스 이벤트 처리
-	case EVENT_MOUSE_MOVE:
-	case EVENT_MOUSE_LBUTTONDOWN:
-	case EVENT_MOUSE_LBUTTONUP:
-	case EVENT_MOUSE_RBUTTONDOWN:
-	case EVENT_MOUSE_RBUTTONUP:
-	case EVENT_MOUSE_MBUTTONDOWN:
-	case EVENT_MOUSE_MBUTTONUP:
-		mouse.x = svga_event.stMouseEvent.stPoint.iX;
-		mouse.y = svga_event.stMouseEvent.stPoint.iY - WINDOW_TITLEBAR_HEIGHT;
-		return 1;
+			return GuiMouseEvent;
+		}
+			// 키 이벤트 처리
+		/*case EVENT_KEY_DOWN:
+		case EVENT_KEY_UP:
+			// 여기에 키보드 이벤트 처리 코드 넣기
+			//pstKeyEvent = &(stReceivedEvent.stKeyEvent);
+			savechar = svga_event.stKeyEvent.bASCIICode;
+			return GuiKeyboardEvent;*/
+		}
 	}
 
 	return 0;

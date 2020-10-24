@@ -183,9 +183,9 @@ static void fatalsignal(int s)
 
 static void catch_signals()
 {
-	int i;
+	/*int i;
 	for (i = 0; bad_signals[i]; i++)
-		signal(bad_signals[i], fatalsignal);
+		signal(bad_signals[i], fatalsignal);*/
 }
 
 

@@ -12,22 +12,16 @@
 #include <systemcall_impl.h>
 #include <gdi32.h>
 #include <time.h>
+#include <libconfig.h>
 
 // 애플리케이션 테이블
-APPLICATIONENTRY gs_vstApplicationTable[] =
-{
-    
- { "System Monitor Task", "monitor.dll" },
- { "Console", "cmd.dll" },
- { "imgui", "17_imgui.dll" },
- { "nuklear", "18_nuklear.dll" },
-  { "prince of persia", "10_pop.dll" },
-   { "fmsx", "11_fmsx.dll" },
-   { "dosbox", "dosbox2.dll" },
-	{ "sdlbird", "09_sdlbird.dll" },
-	{ "editor", "12_editor.dll" },
-	{ "pdcurse", "15_pdcurse.dll" },
-};
+APPLICATIONENTRY** g_applicationTable;
+
+// 애플리케이션 테이블에 정의된 이름 중에서 가장 긴 것
+int g_iMaxNameLength = 0;
+
+//등록된 앱의 수
+int g_appCount = 0;
 
 static void DrawApplicationListItem(int iIndex, bool bMouseOver);
 static void DrawDigitalClock(QWORD qwWindowID);
@@ -271,34 +265,88 @@ bool ProcessApplicationPanelWindowEvent( void )
     return bProcessResult;
 }
 
+
+bool AddApp(config_t& cfg, char* element)
+{
+    config_setting_t* setting;
+   
+    setting = config_lookup(&cfg, element);
+    if (setting != NULL)
+    {
+        g_appCount = config_setting_length(setting);
+
+        if(g_appCount > 0)
+            g_applicationTable = (APPLICATIONENTRY**)calloc(sizeof(APPLICATIONENTRY*) * g_appCount, 0) ;
+        
+        int appCount = 0;
+
+        for (int appIndex = 0; appIndex < g_appCount; ++appIndex)
+        {
+            config_setting_t* env = config_setting_get_elem(setting, appIndex);
+
+            const char* name = 0;
+            const char* desc = 0;
+
+            if (!(config_setting_lookup_string(env, "name", &name)
+                && config_setting_lookup_string(env, "desc", &desc)))
+                continue;
+
+            g_applicationTable[appCount] = (APPLICATIONENTRY*)calloc(sizeof(APPLICATIONENTRY), 0);
+
+            strcpy(g_applicationTable[appCount]->appName, name);
+            strcpy(g_applicationTable[appCount]->appDesc, desc);
+
+            int iNameLength = strlen(g_applicationTable[appCount]->appName);
+            if (g_iMaxNameLength < iNameLength)
+            {
+                g_iMaxNameLength = iNameLength;
+            }
+
+            appCount++;
+        }
+    }
+
+    return true;
+}
+
+bool LoadAppList()
+{
+    config_t cfg;
+    config_init(&cfg);
+    char* config_file = "panel.cfg";
+
+    if (!config_read_file(&cfg, config_file))
+    {
+        printf("panel config file load fail : %s", config_file);
+        printf("%s:%d - %s\n", config_file, config_error_line(&cfg), config_error_text(&cfg));
+        config_destroy(&cfg);
+        return false;
+    }
+
+    AddApp(cfg, "appinfo.APPLIST");
+
+    config_destroy(&cfg);
+
+
+    return true;
+}
+
+
 /**
  *  애플리케이션 리스트 윈도우를 생성
  */
 bool CreateApplicationListWindow( void )
 {
     int i;
-    int iCount;
-    int iMaxNameLength;
-    int iNameLength;
     QWORD qwWindowID;
     int iX;
     int iY;
     int iWindowWidth;
-    
-    // 애플리케이션 테이블에 정의된 이름 중에서 가장 긴 것을 검색
-    iMaxNameLength = 0;
-    iCount = sizeof( gs_vstApplicationTable ) / sizeof( APPLICATIONENTRY );
-    for( i = 0 ; i < iCount ; i++ )
-    {
-        iNameLength = strlen( gs_vstApplicationTable[ i ].appName );
-        if( iMaxNameLength < iNameLength )
-        {
-            iMaxNameLength = iNameLength;
-        }
-    }
+
+    LoadAppList();
     
     // 윈도우의 너비 계산, 20은 좌우 10픽셀의 여유공간
-    iWindowWidth = iMaxNameLength * FONT_ENGLISHWIDTH + 20;
+    iWindowWidth = g_iMaxNameLength * FONT_ENGLISHWIDTH + 20;
     
     // 윈도우의 위치는 애플리케이션 패널의 버튼 아래로 설정
     iX = gs_stApplicationPanelData.stButtonArea.left;
@@ -308,9 +356,9 @@ bool CreateApplicationListWindow( void )
     // 애플리케이션 윈도우는 윈도우 제목 표시줄이 필요 없으므로 속성은 NULL로 전달
 	RECT rect;
 	rect.left = iX;
-	rect.top = 768 - iCount * APPLICATIONPANEL_LISTITEMHEIGHT - APPLICATIONPANEL_LISTITEMHEIGHT - APPLICATIONPANEL_LISTITEMHEIGHT;
+	rect.top = 768 - g_appCount * APPLICATIONPANEL_LISTITEMHEIGHT - APPLICATIONPANEL_LISTITEMHEIGHT - APPLICATIONPANEL_LISTITEMHEIGHT;
 	rect.right = rect.left + iWindowWidth;
-	rect.bottom = rect.top + iCount * APPLICATIONPANEL_LISTITEMHEIGHT + 1;
+	rect.bottom = rect.top + g_appCount * APPLICATIONPANEL_LISTITEMHEIGHT + 1;
     Syscall_CreateWindow( &rect, APPLICATIONPANEL_LISTTITLE, NULL, &qwWindowID);
     
 	 // 윈도우를 생성하지 못했으면 실패
@@ -331,7 +379,7 @@ bool CreateApplicationListWindow( void )
     gs_stApplicationPanelData.iPreviousMouseOverIndex = -1;
 
     // 윈도우 내부에 응용프로그램 이름과 영역을 표시
-    for( i = 0 ; i < iCount ; i++ )
+    for( i = 0 ; i < g_appCount ; i++ )
     {
         DrawApplicationListItem( i, FALSE );
     }
@@ -383,7 +431,7 @@ void DrawApplicationListItem( int iIndex, bool bMouseOver )
 	loc.iY = stItemArea.top + 2;
     // GUI 태스크의 이름을 표시
 	TEXTCOLOR textColor = { RGB(255, 255, 255), stColor };
-	Syscall_DrawText(&qwWindowID, &loc, &textColor, gs_vstApplicationTable[ iIndex ].appName, strlen( gs_vstApplicationTable[ iIndex ].appName) );
+	Syscall_DrawText(&qwWindowID, &loc, &textColor, g_applicationTable[iIndex]->appName, strlen(g_applicationTable[iIndex]->appName) );
     
     // 업데이트된 아이템을 화면에 업데이트
 	Syscall_UpdateScreenByWindowArea(&qwWindowID, &stItemArea );
@@ -461,7 +509,7 @@ bool ProcessApplicationListWindowEvent( void )
                 break;
             }
 
-			Syscall_CreateProcess(gs_vstApplicationTable[iMouseOverIndex].exePath, nullptr, 16);
+			Syscall_CreateProcess(g_applicationTable[iMouseOverIndex]->appName, nullptr, 16);
 			
 
             // 애플리케이션 패널에 마우스 왼쪽 버튼이 눌렸다는 메시지를 전송하여 처리
@@ -486,16 +534,12 @@ bool ProcessApplicationListWindowEvent( void )
  */
 static int GetMouseOverItemIndex( int iMouseY )
 {
-    int iCount;
     int iItemIndex;
-    
-    // 애플리케이션 테이블의 총 아이템 수
-    iCount = sizeof( gs_vstApplicationTable ) / sizeof( APPLICATIONENTRY );
     
     // 마우스 좌표로 아이템의 인덱스를 계산
     iItemIndex = iMouseY / APPLICATIONPANEL_LISTITEMHEIGHT;
     // 범위를 벗어나면 -1을 반환
-    if( ( iItemIndex < 0 ) || ( iItemIndex >= iCount ) )
+    if( (g_appCount < 0 ) || ( iItemIndex >= g_appCount) )
     {
         return -1;
     }

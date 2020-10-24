@@ -22,17 +22,12 @@
  *************************************************************************/
 
 #include "local.h"
-#include <stdio.h>
-//#include <stdlib.h>
-#include "windef.h"
-//#include "bootinfo.h"
-#include "memory.h"
-//#include "vesa.h"
-#include <string.h>
-//#include "svga_mouse.h"
-//#include "svga_keyb.h"
+#include <skyoswindow.h>
 
-static char savechar = '\0';
+
+
+extern EVENT svga_event;
+extern char savechar;
 
 extern "C" void init_svga_mouse()
 {
@@ -49,28 +44,15 @@ extern "C" void init_svga_mouse()
 	//mouse.y = mouse_gety();
 }
 
-#include <skyoswindow.h>
-extern EVENT svga_event;
+
 extern "C" void get_svga_mouse_position(void)
 {
-	mouse.x = svga_event.stMouseEvent.stPoint.iX;
-	mouse.y = svga_event.stMouseEvent.stPoint.iY - WINDOW_TITLEBAR_HEIGHT;
+	//mouse.x = svga_event.stMouseEvent.stPoint.iX;
+	//mouse.y = svga_event.stMouseEvent.stPoint.iY - WINDOW_TITLEBAR_HEIGHT;
 }
 
-extern "C" int mouse_update();
+extern "C" int GetMessageEvent();
 extern "C" int mouse_getbutton();
-
-extern "C" int get_svga_message(void)
-{
-	//if ((savechar = vga_getkey()))
-	//	return GuiKeyboardEvent;
-
-	if (mouse_update())
-		return GuiMouseEvent;
-
-	return FALSE;
-}
-
 
 int get_svga_mouse_button(void)
 {
@@ -162,5 +144,6 @@ extern "C" void set_svga_mouse_position(int x, int y)
 {
 	mouse.x = x;
 	mouse.y = y;
-
+	svga_event.qwType = 0;
+	
 }

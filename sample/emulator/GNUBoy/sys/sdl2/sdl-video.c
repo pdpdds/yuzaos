@@ -58,7 +58,8 @@ void vid_init()
 		vmode[1] = 144;
 	}
 
-	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
+	if (SDL_Init(SDL_INIT_AUDIO | SDL_INIT_VIDEO) < 0)
+	//if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
 	{
 		printf("SDL_Init failed: %s\n", SDL_GetError());
 		exit(1);
@@ -73,7 +74,8 @@ void vid_init()
 			window = SDL_CreateWindow("SDL2 GNUBoy", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, vmode[0] * window_scale, vmode[1] * window_scale, SDL_WINDOW_RESIZABLE);
 		}
 		
-		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+		//renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
 		SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
 		texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, vmode[0], vmode[1]);
 	}

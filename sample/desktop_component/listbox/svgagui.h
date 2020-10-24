@@ -410,7 +410,7 @@ void save_background(GuiWinThread * win_thread);
 void set_auto_raise(GuiWinThread * win_thread, int auto_raise);
 GuiWinThread * create_window_thread(void);
 void delete_window_thread(GuiWinThread * win_thread);
-void show_window_thread(GuiWinThread * win_thread);
+void ShowWindowThread(GuiWinThread * win_thread);
 void do_window_functions(GuiWinThread * win_thread);
 void bring_window_to_top(GuiWindow *win);
 GuiObject *do_windows(GuiWinThread * win_thread);
@@ -423,7 +423,7 @@ int question_dialog(GuiWinThread *win_thread, GuiWindow *p_win, char *message, i
 void message_dialog(GuiWinThread *win_thread, GuiWindow *p_win, char *message, int symbol);
 
 GuiObject **create_directory_list(char *dirname, int files, GuiObject *List);
-GuiWindow *create_file_dialog(GuiWinThread *win_thread, char *title, char *ok_button_str);
+GuiWindow * CreateFileDialog(GuiWinThread *win_thread, char *title, char *ok_button_str);
 int file_dialog(char *directory, char *filename, char *mask);
 
 void enable_info(GuiWinThread *win_thread, int enable);

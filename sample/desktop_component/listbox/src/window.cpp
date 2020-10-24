@@ -27,7 +27,7 @@
 #include "local.h"
 #include "windef.h"
 #include "images/kill.xpm"
-
+#include <systemcall_impl.h>
 /* allocate memory to store the disable levels */
 int disable_count = 0;
 int *disable_win[10];	/* 10 disable levels */
@@ -79,7 +79,7 @@ void move_window(GuiWindow * win)
 	y_old = win->y;
 
 	do {
-		//ksleep(sleep_time / 5);
+		Syscall_Sleep(0);
 		do_window_functions(win_thread);
 		if (GuiGetMessage() == GuiMouseEvent) {
 			move_mouse();
@@ -195,7 +195,7 @@ void show_window(GuiWindow * win)
 	bool result = win->win_thread->show_window_thread;
 	if (!result)
 	{
-		//		fprintf(stderr, "----> Warning: show_window() called before show_window_thread()!\n");
+		//		fprintf(stderr, "----> Warning: show_window() called before ShowWindowThread()!\n");
 	}
 
 	copy_window_to_screen_image(win, FALSE, TRUE, TRUE);

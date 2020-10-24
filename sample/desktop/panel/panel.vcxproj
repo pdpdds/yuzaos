@@ -137,7 +137,7 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>yuzalib.lib;yuzaapi.lib;streams.lib;systemcall.lib;filemanager.lib;libcrt.lib;exestub.lib</AdditionalDependencies>
+      <AdditionalDependencies>libconfig.lib;yuzalib.lib;yuzaapi.lib;streams.lib;systemcall.lib;filemanager.lib;libcrt.lib;exestub.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>../../../$(Configuration)/lib;../../../$(Configuration);../../../corelib/debug;../../../runtime/debug;../../../thirdparty/debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>

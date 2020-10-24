@@ -210,7 +210,8 @@ void copy_window_to_screen_image(GuiWindow *win, int savescreen_, int update_mou
 	else 
 		z = win->z_order - 1;
 	set_clipping_window(x1, y1, x2, y2);
-	while (z >= 0) {
+	while (z >= 0) 
+	{
 		tmp_win = win_thread->first;
 		while (tmp_win->z_order != z) {
 			tmp_win = tmp_win->next;

@@ -21,6 +21,7 @@
 #include "save.h"
 #include "sound.h"
 #include "sys.h"
+#include <math.h>
 
 static int mbc_table[256] =
 {

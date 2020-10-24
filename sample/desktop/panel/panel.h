@@ -69,8 +69,9 @@ typedef struct kApplicationPanelDataStruct
 // GUI 태스크의 정보를 저장하는 자료구조
 typedef struct kApplicationEntryStruct
 {   
-    char* appName;
-	char* exePath;	
+    char appName[MAX_PATH];
+    char appDesc[MAX_PATH];
+	char exePath[MAX_PATH];
 } APPLICATIONENTRY;
 
 bool CreateApplicationPanelWindow( void );
