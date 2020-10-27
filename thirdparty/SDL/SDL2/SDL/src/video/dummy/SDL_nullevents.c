@@ -97,6 +97,9 @@ DUMMY_PumpEvents(_THIS)
 			{
 				// 윈도우 삭제
 				DeleteWindow(0);
+				SDL_Quit();
+				ExitThread(0);
+				
 				return;
 			}
 			break;

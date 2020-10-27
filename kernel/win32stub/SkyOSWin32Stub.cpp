@@ -6,13 +6,9 @@
 #include <windows.h> 
 #include "SkyOSWin32Stub.h"
 #include <iostream>
-#include <stdio.h> 
-
 #include "../../runtime/include/platformapi.h"
-#include "I_SkyInput.h"
 #include "SkyInputHandlerWin32.h"
 #include "../include/BuildOption.h"
-//#include <../kernelcore/include/memory_layout.h>
 #include <time.h>
 #include <io.h>
 
