@@ -25,11 +25,24 @@ extern "C" void kSleep(DWORD dwMilliseconds)
 //#endif
 }
 
+union int32to64
+{
+	__int64 i64;
+	int i32[2];
+};
+
+void read_tsc(int* cl_Low, int* cl_High);
+
+
 extern "C" DWORD kGetTickCount()
 {
 #if SKY_EMULATOR
 	return g_platformAPI._processInterface.sky_GetTickCount() - g_startTickCount;
 #endif
+	//kSleep(0);
+	//int32to64 a;
+	//read_tsc(&a.i32[0], &a.i32[1]);
+	//return a.i32[1];
 	return (g_tickCount - g_startTickCount);
 }
 

@@ -160,7 +160,7 @@
       <StructMemberAlignment>Default</StructMemberAlignment>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
-      <AdditionalOptions>/Oy %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Oy /arch:SSE %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4819;4250;4018</DisableSpecificWarnings>
       <AdditionalIncludeDirectories>./;../include;../../runtime/include;../../corelib/include;../STL/EASTL/include\EASTL;../STL/EASTL;../STL/EASTL/include;../STL\EASTL\test\packages\EAStdC\include;../STL\EASTL\test\source;../STL\EASTL\test\packages/EABase\include\Common;../STL\EASTL\test\packages\EAAssert\include;../STL\EASTL\test\packages\EATest\include;../STL\EASTL\test\packages\EAMain\include</AdditionalIncludeDirectories>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>

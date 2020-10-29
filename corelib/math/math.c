@@ -500,13 +500,13 @@ double pow(float x, int y)
 	}
 }
 
-float powf(float x, int y)
+float powf(float x, float y)
 {
 	float temp;
 	if (y == 0)
 		return 1;
-	temp = pow(x, y / 2);
-	if ((y % 2) == 0) {
+	temp = pow(x, (int)(y / 2));
+	if (((int)y % 2) == 0) {
 		return temp * temp;
 	}
 	else {
@@ -548,7 +548,7 @@ long fact(int n)
 	return result;
 }
 
-double fmod(float a, float b)
+double fmod(double a, double b)
 {
 	return (a - b * floor(a / b));
 }

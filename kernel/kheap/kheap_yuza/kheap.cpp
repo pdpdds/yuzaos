@@ -119,7 +119,11 @@ void* kcalloc(size_t count, size_t size)
 
 void* kmalloc(size_t size)
 {
-	return (void*)kmalloc_int(size, 0, 0);
+	void* pAlloc = (void*)kmalloc_int(size, 0, 0);
+	if(pAlloc)
+		memset(pAlloc, 0, size);
+
+	return pAlloc;
 }
 
 size_t kmalloc_size(void* ptr)

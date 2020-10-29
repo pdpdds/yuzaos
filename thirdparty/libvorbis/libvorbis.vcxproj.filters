@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{f98dc337-a470-4470-a783-e891e867a4c5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="lib\analysis.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\bitrate.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\block.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\codebook.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\envelope.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\floor0.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\floor1.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\info.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\lookup.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\lpc.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\lsp.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\mapping0.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\mdct.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\psy.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\registry.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\res0.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\sharedbook.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\smallft.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\synthesis.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\window.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\vorbisfile.c">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="lib\backends.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\bitrate.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\codebook.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\codec_internal.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\envelope.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\highlevel.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\lookup.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\lookup_data.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\lpc.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\lsp.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\masking.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\mdct.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\misc.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\os.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\psy.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\registry.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\scales.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\smallft.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\window.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

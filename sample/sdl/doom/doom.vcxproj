@@ -94,7 +94,7 @@
       <Optimization>Disabled</Optimization>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <WarningLevel>Level3</WarningLevel>
-      <MinimalRebuild>true</MinimalRebuild>
+      <MinimalRebuild>false</MinimalRebuild>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <AdditionalIncludeDirectories>./;../include;../../../corelib/include;../../../runtime/include;../../../corelib/STL/SGI;../../../ThirdParty/SDL/SDL1CL/SDL/include;../../../runtime/libcrt/string;../../../ThirdParty/SDL/SDL1CL/SDL_Mixer;../../../ThirdParty/SDL/SDL1CL/SDL_net</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SKYOS32;_CRT_SECURE_NO_WARNINGS;_CONSOLE;MY_SDL_VER;DOGS;BETA;RANGECHECK;INSTRUMENTED;_WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>

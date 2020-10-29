@@ -1,0 +1,386 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="DEBUG_WIN32_DLL|Win32">
+      <Configuration>DEBUG_WIN32_DLL</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DEBUG_WIN32|Win32">
+      <Configuration>DEBUG_WIN32</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="lib\analysis.c" />
+    <ClCompile Include="lib\bitrate.c" />
+    <ClCompile Include="lib\block.c" />
+    <ClCompile Include="lib\codebook.c" />
+    <ClCompile Include="lib\envelope.c" />
+    <ClCompile Include="lib\floor0.c" />
+    <ClCompile Include="lib\floor1.c" />
+    <ClCompile Include="lib\info.c" />
+    <ClCompile Include="lib\lookup.c" />
+    <ClCompile Include="lib\lpc.c" />
+    <ClCompile Include="lib\lsp.c" />
+    <ClCompile Include="lib\mapping0.c" />
+    <ClCompile Include="lib\mdct.c" />
+    <ClCompile Include="lib\psy.c" />
+    <ClCompile Include="lib\registry.c" />
+    <ClCompile Include="lib\res0.c" />
+    <ClCompile Include="lib\sharedbook.c" />
+    <ClCompile Include="lib\smallft.c" />
+    <ClCompile Include="lib\synthesis.c" />
+    <ClCompile Include="lib\vorbisenc.c" />
+    <ClCompile Include="lib\window.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="lib\backends.h" />
+    <ClInclude Include="lib\bitrate.h" />
+    <ClInclude Include="lib\codebook.h" />
+    <ClInclude Include="lib\codec_internal.h" />
+    <ClInclude Include="lib\envelope.h" />
+    <ClInclude Include="lib\highlevel.h" />
+    <ClInclude Include="lib\lookup.h" />
+    <ClInclude Include="lib\lookup_data.h" />
+    <ClInclude Include="lib\lpc.h" />
+    <ClInclude Include="lib\lsp.h" />
+    <ClInclude Include="lib\masking.h" />
+    <ClInclude Include="lib\mdct.h" />
+    <ClInclude Include="lib\misc.h" />
+    <ClInclude Include="lib\os.h" />
+    <ClInclude Include="lib\psy.h" />
+    <ClInclude Include="lib\registry.h" />
+    <ClInclude Include="lib\scales.h" />
+    <ClInclude Include="lib\smallft.h" />
+    <ClInclude Include="lib\window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="vorbis.def" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{61F86716-E4E9-4D8B-9172-7A37A30E61CB}</ProjectGuid>
+    <RootNamespace>Kernel</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>vorbis</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DEBUG_WIN32|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DEBUG_WIN32_DLL|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DEBUG_WIN32|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DEBUG_WIN32_DLL|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Intermediate\$(ProjectName)\</IntDir>
+    <ExtensionsToDeleteOnClean>*.exp *.obj%3b*.ilk%3b*.tlb%3b*.tli%3b*.tlh%3b*.tmp%3b*.rsp%3b*.pgc%3b*.pgd%3b$(TargetPath)</ExtensionsToDeleteOnClean>
+    <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
+    <TargetName>$(ProjectName)</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DEBUG_WIN32|Win32'">
+    <OutDir>$(SolutionDir)Debug\</OutDir>
+    <IntDir>$(SolutionDir)$(ProjectName)Intermediate\</IntDir>
+    <ExtensionsToDeleteOnClean>*.exp *.obj%3b*.ilk%3b*.tlb%3b*.tli%3b*.tlh%3b*.tmp%3b*.rsp%3b*.pgc%3b*.pgd%3b$(TargetPath)</ExtensionsToDeleteOnClean>
+    <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
+    <TargetName>$(ProjectName)</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DEBUG_WIN32_DLL|Win32'">
+    <OutDir>$(SolutionDir)Debug\</OutDir>
+    <IntDir>$(SolutionDir)Intermediate\$(ProjectName)\</IntDir>
+    <ExtensionsToDeleteOnClean>*.exp *.obj%3b*.ilk%3b*.tlb%3b*.tli%3b*.tlh%3b*.tmp%3b*.rsp%3b*.pgc%3b*.pgd%3b$(TargetPath)</ExtensionsToDeleteOnClean>
+    <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
+    <TargetName>$(ProjectName)</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IntDir>$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/Oy  /arch:SSE %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <AdditionalIncludeDirectories>../libogg134/include;./;./;../../runtime/include;../../corelib/include;../../thirdparty/zlib128/zlib;./include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>SKYOS32;_MSC_VER=1920;_WIN32</PreprocessorDefinitions>
+      <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
+      <StringPooling>
+      </StringPooling>
+      <ExceptionHandling>false</ExceptionHandling>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <AssemblerOutput>NoListing</AssemblerOutput>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <CallingConvention>Cdecl</CallingConvention>
+      <DisableSpecificWarnings>4457;4189;4100;4702;4102;4244;4239;4333;4127;4554</DisableSpecificWarnings>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <LanguageStandard>
+      </LanguageStandard>
+      <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <SDLCheck>false</SDLCheck>
+    </ClCompile>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <Link>
+      <AdditionalDependencies>systemcall.lib;DllStub.lib;libcrt.lib;filemanager.lib;math.lib;libogg134.lib</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>../../runtime/Debug;../../corelib/Debug;../../debug;../debug</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(OutDir)$(TargetName).map</MapFileName>
+      <SubSystem>Console</SubSystem>
+      <Driver>NotSet</Driver>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <FunctionOrder>
+      </FunctionOrder>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <NoEntryPoint>false</NoEntryPoint>
+      <BaseAddress>
+      </BaseAddress>
+      <FixedBaseAddress>
+      </FixedBaseAddress>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <FullProgramDatabaseFile>true</FullProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <AddModuleNamesToAssembly>
+      </AddModuleNamesToAssembly>
+      <ForceSymbolReferences>
+      </ForceSymbolReferences>
+      <AdditionalOptions>/safeseh:no /ALIGN:1024
+ %(AdditionalOptions)</AdditionalOptions>
+      <ModuleDefinitionFile>.\vorbis.def</ModuleDefinitionFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+      <OutputFile>../debug/$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DEBUG_WIN32|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/Oy %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <AdditionalIncludeDirectories>./;../../CommonLib;../../CommonLib/jsmn;../../Include;../../CommonLib/CPlusPlus;./Driver;./include;./arch\x86;./CPU;./Heap;./Memory;./Keyboard;./FileSystem;../../CommonLib/stl;../SkyOSWin32Stub;../../Module/Include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>SKY_EMULATOR;SKYOS32;_MSC_VER</PreprocessorDefinitions>
+      <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
+      <StringPooling>
+      </StringPooling>
+      <ExceptionHandling>false</ExceptionHandling>
+      <StructMemberAlignment>1Byte</StructMemberAlignment>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <AssemblerOutput>NoListing</AssemblerOutput>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <CallingConvention>Cdecl</CallingConvention>
+      <DisableSpecificWarnings>4457;4189;4100;4702;4102;4244;4239;4333;4127;4554</DisableSpecificWarnings>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <LanguageStandard>
+      </LanguageStandard>
+      <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <SDLCheck>false</SDLCheck>
+    </ClCompile>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <Link>
+      <AdditionalDependencies>SkyLua.lib;SkyOSWin32Stub.lib;CommonLib.lib;skysdl.lib;freetyped.lib</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>../Debug</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(OutDir)$(TargetName).map</MapFileName>
+      <SubSystem>Console</SubSystem>
+      <Driver>NotSet</Driver>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <FunctionOrder>@order.txt</FunctionOrder>
+      <EntryPointSymbol>kmain</EntryPointSymbol>
+      <NoEntryPoint>false</NoEntryPoint>
+      <BaseAddress>0x01600000</BaseAddress>
+      <FixedBaseAddress>
+      </FixedBaseAddress>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <FullProgramDatabaseFile>true</FullProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <AddModuleNamesToAssembly>
+      </AddModuleNamesToAssembly>
+      <ForceSymbolReferences>
+      </ForceSymbolReferences>
+      <AdditionalOptions>/safeseh:no /ALIGN:1024
+ /SUBSYSTEM:CONSOLE
+/NODEFAULTLIB:LIBC %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Lib>
+      <OutputFile>../debug/$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DEBUG_WIN32_DLL|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/Oy %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <AdditionalIncludeDirectories>../../include;../include;../../kernelcore/include;../../librt/libstring;../../librt/include;../../module/include;../../userlib/libogg/include;../../userlib/libvorbis/include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>SKY_EMULATOR_DLL;SKY_EMULATOR;SKYOS32;_MSC_VER</PreprocessorDefinitions>
+      <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
+      <StringPooling>
+      </StringPooling>
+      <ExceptionHandling>false</ExceptionHandling>
+      <StructMemberAlignment>1Byte</StructMemberAlignment>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <AssemblerOutput>NoListing</AssemblerOutput>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <CallingConvention>Cdecl</CallingConvention>
+      <DisableSpecificWarnings>4457;4189;4100;4702;4102;4244;4239;4333;4127;4554</DisableSpecificWarnings>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <LanguageStandard>
+      </LanguageStandard>
+      <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <SDLCheck>false</SDLCheck>
+    </ClCompile>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <Link>
+      <AdditionalDependencies>SkyLua.lib;SkyOSWin32Stub.lib;CommonLib.lib;skysdl.lib;freetyped.lib</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>../Debug</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(OutDir)$(TargetName).map</MapFileName>
+      <SubSystem>Console</SubSystem>
+      <Driver>NotSet</Driver>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <FunctionOrder>@order.txt</FunctionOrder>
+      <EntryPointSymbol>kmain</EntryPointSymbol>
+      <NoEntryPoint>false</NoEntryPoint>
+      <BaseAddress>0x01600000</BaseAddress>
+      <FixedBaseAddress>
+      </FixedBaseAddress>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <FullProgramDatabaseFile>true</FullProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <AddModuleNamesToAssembly>
+      </AddModuleNamesToAssembly>
+      <ForceSymbolReferences>
+      </ForceSymbolReferences>
+      <AdditionalOptions>/safeseh:no /ALIGN:1024
+ /SUBSYSTEM:CONSOLE
+/NODEFAULTLIB:LIBC %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Lib>
+      <OutputFile>../debug/$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <DisableSpecificWarnings>4457</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>./;../../CommonLib;../../Include;./CPU;./Memory;./Heap;./Test;../../CommonLib/stl;../../CommonLib/jsmn;./FileSystem</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ARCH_X86;</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+  </ImportGroup>
+</Project>

@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{C1CC95E4-3787-4A00-8986-AD84A986470E}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>roadfighter</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IntDir>$(SolutionDir)\Intermediate\$(ProjectName)\</IntDir>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>false</SDLCheck>
+      <PreprocessorDefinitions>_CRT_NO_TIME_T;SKYOS32;_CRT_SECURE_NO_WARNINGS;_MSC_VER=1920;_WIN32</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>./;../include;../../../corelib/include;../../../runtime/include;../../../corelib/STL/SGI;../../../ThirdParty/SDL/SDL1CL/SDLCL;../../../ThirdParty/SDL/SDL1CL/SDL_image;../../../ThirdParty/SDL/SDL1CL/SDL_ttf;../../../ThirdParty/SDL/SDL1CL/SDL/INCLUDE;../../../ThirdParty/SDL/SDL1CL/SDL_mixer;../../../corelib/streams</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4819;4554</DisableSpecificWarnings>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <OmitFramePointers>true</OmitFramePointers>
+      <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
+      <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <AdditionalOptions>/Oy /arch:SSE %(AdditionalOptions)</AdditionalOptions>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>../../../Debug;../../../$(Configuration);../../../corelib/debug;../../../runtime/debug;../../../ThirdParty/SDL/SDL2/debug;../../../ThirdParty/debug;../../../ThirdParty/SDL/SDL1CL/Debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>systemcall.lib;SDL_mixer.lib;freetyped.lib;sdlcl.lib;math.lib;libcrt.lib;libwin32.lib;exestub.lib;filemanager.lib;streams.lib;sdl_ttf.lib;SDL_image.lib</AdditionalDependencies>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <BaseAddress>0x08000000</BaseAddress>
+      <AdditionalOptions>/safeseh:no /ALIGN:1024 %(AdditionalOptions)</AdditionalOptions>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\DevPlatform\SDL\SDLProgramming\SDL_Modue\SDL-1.2.15\include;D:\DevPlatform\SDL\SDLProgramming\SDL_Modue\SDL_mixer-1.2.12;D:\DevPlatform\SDL\SDLProgramming\SDL_Modue\SDL_image-1.2.12;./sge;../thirdparty/liblua/include;../thirdparty/libintl-0.14.4-lib\include;../thirdparty/zlib\include;../thirdparty/SDL2_Module\SDL2_image\external\libpng-1.6.2;D:\DevPlatform\SDL\SDLProgramming\SDL_Modue\SDL_ttf-2.0.11</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4819</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL.lib;SDL_image.lib;SDL_ttf.lib;SDLmain.lib;SDL_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\DevPlatform\SDL\SDLProgramming\SDL_Modue\SDL-1.2.15\lib\x86</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="auxiliar.h" />
+    <ClInclude Include="CGame.h" />
+    <ClInclude Include="CObject.h" />
+    <ClInclude Include="CRoadFighter.h" />
+    <ClInclude Include="CTile.h" />
+    <ClInclude Include="debug.h" />
+    <ClInclude Include="filehandling.h" />
+    <ClInclude Include="List.h" />
+    <ClInclude Include="sge\sge.h" />
+    <ClInclude Include="sge\sge_blib.h" />
+    <ClInclude Include="sge\sge_bm_text.h" />
+    <ClInclude Include="sge\sge_collision.h" />
+    <ClInclude Include="sge\sge_config.h" />
+    <ClInclude Include="sge\sge_internal.h" />
+    <ClInclude Include="sge\sge_misc.h" />
+    <ClInclude Include="sge\sge_primitives.h" />
+    <ClInclude Include="sge\sge_rotation.h" />
+    <ClInclude Include="sge\sge_shape.h" />
+    <ClInclude Include="sge\sge_surface.h" />
+    <ClInclude Include="sge\sge_textpp.h" />
+    <ClInclude Include="sge\sge_tt_text.h" />
+    <ClInclude Include="sound.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="auxiliar.cpp" />
+    <ClCompile Include="CCarObject.cpp" />
+    <ClCompile Include="CEnemyCarObject.cpp" />
+    <ClCompile Include="CEnemyFastCarObject.cpp" />
+    <ClCompile Include="CEnemyNormalCarObject.cpp" />
+    <ClCompile Include="CEnemyRacerCarObject.cpp" />
+    <ClCompile Include="CEnemySlidderCarObject.cpp" />
+    <ClCompile Include="CEnemyTruckObject.cpp" />
+    <ClCompile Include="CExplosionObject.cpp" />
+    <ClCompile Include="CFuelObject.cpp" />
+    <ClCompile Include="CGame.cpp" />
+    <ClCompile Include="CObject.cpp" />
+    <ClCompile Include="configuration.cpp" />
+    <ClCompile Include="CPlayerCarObject.cpp" />
+    <ClCompile Include="CRoadFighter.cpp" />
+    <ClCompile Include="CSemaphoreObject.cpp" />
+    <ClCompile Include="CTile.cpp" />
+    <ClCompile Include="debug.cpp" />
+    <ClCompile Include="filehandling.cpp" />
+    <ClCompile Include="gameover_state.cpp" />
+    <ClCompile Include="interlevel_state.cpp" />
+    <ClCompile Include="konami_state.cpp" />
+    <ClCompile Include="loadmg2.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="menu_state.cpp" />
+    <ClCompile Include="playing_state.cpp" />
+    <ClCompile Include="presentation_state.cpp" />
+    <ClCompile Include="quick_tables.cpp" />
+    <ClCompile Include="sge\sge_blib.cpp" />
+    <ClCompile Include="sge\sge_bm_text.cpp" />
+    <ClCompile Include="sge\sge_collision.cpp" />
+    <ClCompile Include="sge\sge_misc.cpp" />
+    <ClCompile Include="sge\sge_primitives.cpp" />
+    <ClCompile Include="sge\sge_rotation.cpp" />
+    <ClCompile Include="sge\sge_shape.cpp" />
+    <ClCompile Include="sge\sge_surface.cpp" />
+    <ClCompile Include="sge\sge_textpp.cpp" />
+    <ClCompile Include="sge\sge_tt_text.cpp" />
+    <ClCompile Include="sound.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

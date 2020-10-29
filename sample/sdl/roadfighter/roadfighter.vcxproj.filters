@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="소스 파일\sge">
+      <UniqueIdentifier>{3d51b825-7fbd-4006-a620-e9b94868ba12}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="auxiliar.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CGame.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CObject.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CRoadFighter.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CTile.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="debug.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandling.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="List.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="sound.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="sge\sge.h">
+      <Filter>소스 파일\sge</Filter>
+    </ClInclude>
+    <ClInclude Include="sge\sge_blib.h">
+      <Filter>소스 파일\sge</Filter>
+    </ClInclude>
+    <ClInclude Include="sge\sge_bm_text.h">
+      <Filter>소스 파일\sge</Filter>
+    </ClInclude>
+    <ClInclude Include="sge\sge_collision.h">
+      <Filter>소스 파일\sge</Filter>
+    </ClInclude>
+    <ClInclude Include="sge\sge_config.h">
+      <Filter>소스 파일\sge</Filter>
+    </ClInclude>
+    <ClInclude Include="sge\sge_internal.h">
+      <Filter>소스 파일\sge</Filter>
+    </ClInclude>
+    <ClInclude Include="sge\sge_misc.h">
+      <Filter>소스 파일\sge</Filter>
+    </ClInclude>
+    <ClInclude Include="sge\sge_primitives.h">
+      <Filter>소스 파일\sge</Filter>
+    </ClInclude>
+    <ClInclude Include="sge\sge_rotation.h">
+      <Filter>소스 파일\sge</Filter>
+    </ClInclude>
+    <ClInclude Include="sge\sge_shape.h">
+      <Filter>소스 파일\sge</Filter>
+    </ClInclude>
+    <ClInclude Include="sge\sge_surface.h">
+      <Filter>소스 파일\sge</Filter>
+    </ClInclude>
+    <ClInclude Include="sge\sge_textpp.h">
+      <Filter>소스 파일\sge</Filter>
+    </ClInclude>
+    <ClInclude Include="sge\sge_tt_text.h">
+      <Filter>소스 파일\sge</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="auxiliar.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CCarObject.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CEnemyCarObject.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CEnemyFastCarObject.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CEnemyNormalCarObject.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CEnemyRacerCarObject.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CEnemySlidderCarObject.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CEnemyTruckObject.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CExplosionObject.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CFuelObject.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CGame.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CObject.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="configuration.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayerCarObject.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CRoadFighter.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CSemaphoreObject.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CTile.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="debug.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandling.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="gameover_state.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="interlevel_state.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="konami_state.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="loadmg2.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="menu_state.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="playing_state.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="presentation_state.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="quick_tables.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="sound.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="sge\sge_blib.cpp">
+      <Filter>소스 파일\sge</Filter>
+    </ClCompile>
+    <ClCompile Include="sge\sge_bm_text.cpp">
+      <Filter>소스 파일\sge</Filter>
+    </ClCompile>
+    <ClCompile Include="sge\sge_collision.cpp">
+      <Filter>소스 파일\sge</Filter>
+    </ClCompile>
+    <ClCompile Include="sge\sge_misc.cpp">
+      <Filter>소스 파일\sge</Filter>
+    </ClCompile>
+    <ClCompile Include="sge\sge_primitives.cpp">
+      <Filter>소스 파일\sge</Filter>
+    </ClCompile>
+    <ClCompile Include="sge\sge_rotation.cpp">
+      <Filter>소스 파일\sge</Filter>
+    </ClCompile>
+    <ClCompile Include="sge\sge_shape.cpp">
+      <Filter>소스 파일\sge</Filter>
+    </ClCompile>
+    <ClCompile Include="sge\sge_surface.cpp">
+      <Filter>소스 파일\sge</Filter>
+    </ClCompile>
+    <ClCompile Include="sge\sge_textpp.cpp">
+      <Filter>소스 파일\sge</Filter>
+    </ClCompile>
+    <ClCompile Include="sge\sge_tt_text.cpp">
+      <Filter>소스 파일\sge</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

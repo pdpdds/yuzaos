@@ -84,7 +84,7 @@
       <StructMemberAlignment>Default</StructMemberAlignment>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <DisableSpecificWarnings>4146;4244</DisableSpecificWarnings>
-      <AdditionalOptions>/Oy %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Oy /arch:SSE %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>libcrt.lib;dllstub.lib;filemanager.lib;systemcall.lib;iconv.lib</AdditionalDependencies>

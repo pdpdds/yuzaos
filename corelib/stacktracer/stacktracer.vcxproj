@@ -166,7 +166,7 @@
       <StructMemberAlignment>Default</StructMemberAlignment>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
-      <AdditionalOptions>/Oy %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Oy /arch:SSE %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4819</DisableSpecificWarnings>
       <AdditionalIncludeDirectories>../include;../../runtime/include;../../corelib/stl/sgi;../../corelib\streams</AdditionalIncludeDirectories>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>

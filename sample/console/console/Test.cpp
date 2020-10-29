@@ -5,6 +5,7 @@
 #include <math.h>
 //#include "ModuleManager.h"
 //#include <SystemAPI.h>
+#include <systemcall_impl.h>
 
 void TestSnappy()
 {
@@ -89,7 +90,7 @@ void TestMath()
 	float a = 2.0f;
 	value = sin(a);
 	printf("sin. %f, %f\n", a, a);
-	/*while (1)
+	while (1)
 	{
 		//printf("cos. %f, %f\n", a, cos(a));
 
@@ -104,11 +105,10 @@ void TestMath()
 	}
 	cos(180);
 
-
-	double value, ipart, fpart;
+	double ipart, fpart;
 	value = 3.14;
 	fpart = modf(value, &ipart);
-	printf("%f %f %f\n", value, ipart, fpart);*/
+	printf("%f %f %f\n", value, ipart, fpart);
 }
 
 
@@ -136,6 +136,6 @@ void Test()
 	//TestSnappy();
 	//Testslog();
 	//TestLibFAT32();
-	//TestMath();
+	TestMath();
 	//TestFile();
 }

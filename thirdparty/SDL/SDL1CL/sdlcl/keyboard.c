@@ -21,7 +21,7 @@
  */
 
 #include <string.h>
-
+#include <wchar.h>
 #include "SDL2.h"
 #include "events.h"
 

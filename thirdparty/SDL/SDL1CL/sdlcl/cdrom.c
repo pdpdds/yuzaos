@@ -21,7 +21,7 @@
  */
 
 #include <stdlib.h>
-
+#include <wchar.h>
 #include "SDL2.h"
 
 #define SDL1_MAX_TRACKS 99

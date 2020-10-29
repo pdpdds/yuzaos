@@ -303,7 +303,7 @@ int I_ScanCode2DoomCode (int a)
 
 // Automatic caching inverter, so you don't need to maintain two tables.
 // By Lee Killough
-
+#include <systemcall_impl.h>
 int I_DoomCode2ScanCode (int a)
 {
    // haleyjd
@@ -418,6 +418,8 @@ void I_GetEvent()
       default:
          break;
       }
+
+      Syscall_Sleep(0);
    }
 
    if(sendmouseevent)

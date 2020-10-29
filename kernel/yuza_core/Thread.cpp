@@ -310,12 +310,16 @@ int Thread::GrimReaper(void*)
 	}
 }
 
+//extern "C" void kLock();
+//extern "C" void kUnlock();
+
 Thread* Thread::GetRunningThread()
 {
 #if SKY_EMULATOR
+	//kLock();
 	DWORD dwThreadId = kGetCurrentThreadId();
 	Thread* pThread = (*fMapThread)[dwThreadId];
-
+	//kUnlock();
 	return pThread;
 #else
 	return fRunningThread;

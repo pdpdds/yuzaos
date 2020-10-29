@@ -60,8 +60,8 @@ ThreadContext::ThreadContext()
 		fKernelThread(true)
 {
 	//fStackPointer = 0x40000;
-	SaveFp(fDefaultFpState);
-	LoadGdt(gdt, sizeof(gdt));
+	SaveFp(&fDefaultFpState);
+	//LoadGdt(gdt, sizeof(gdt));
 	fCurrentTask = this;
 }
 
@@ -163,9 +163,9 @@ void ThreadContext::SwitchFp()
 {
 	ClearTrapOnFp();
 	if (fFpuOwner)
-		SaveFp(fFpuOwner->fFpState);
+		SaveFp(&fFpuOwner->fFpState);
 
-	RestoreFp(fCurrentTask->fFpState);
+	RestoreFp(&fCurrentTask->fFpState);
 	fFpuOwner = fCurrentTask;
 }
 

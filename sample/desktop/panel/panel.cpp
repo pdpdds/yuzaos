@@ -276,7 +276,7 @@ bool AddApp(config_t& cfg, char* element)
         g_appCount = config_setting_length(setting);
 
         if(g_appCount > 0)
-            g_applicationTable = (APPLICATIONENTRY**)calloc(sizeof(APPLICATIONENTRY*) * g_appCount, 0) ;
+            g_applicationTable = (APPLICATIONENTRY**)calloc(sizeof(APPLICATIONENTRY*) * g_appCount, 1) ;
         
         int appCount = 0;
 
@@ -291,7 +291,7 @@ bool AddApp(config_t& cfg, char* element)
                 && config_setting_lookup_string(env, "desc", &desc)))
                 continue;
 
-            g_applicationTable[appCount] = (APPLICATIONENTRY*)calloc(sizeof(APPLICATIONENTRY), 0);
+            g_applicationTable[appCount] = (APPLICATIONENTRY*)calloc(sizeof(APPLICATIONENTRY), 1);
 
             strcpy(g_applicationTable[appCount]->appName, name);
             strcpy(g_applicationTable[appCount]->appDesc, desc);

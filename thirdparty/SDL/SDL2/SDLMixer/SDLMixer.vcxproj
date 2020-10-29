@@ -90,7 +90,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>SKYOS32;SKY_DLL;MUSIC_WAV;MUSIC_MOD_MODPLUG;MODPLUG_DYNAMIC="libmodplug-1.dll";MUSIC_OGG;OGG_DYNAMIC="libvorbisfile-3.dll";MUSIC_OPUS;OPUS_DYNAMIC="libopusfile-0.dll";MUSIC_FLAC;FLAC_DYNAMIC="libFLAC-8.dll";MUSIC_MP3_MPG123;MPG123_DYNAMIC="libmpg123-0.dll";MUSIC_MID_TIMIDITY;MUSIC_MID_NATIVE</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SKYOS32;SKY_DLL;MUSIC_WAV;MUSIC_MOD_MODPLUG;MODPLUG_DYNAMIC="libmodplug-1.dll";MUSIC_OGG;MUSIC_OPUS;OPUS_DYNAMIC="libopusfile-0.dll";MUSIC_FLAC;FLAC_DYNAMIC="libFLAC-8.dll";MUSIC_MP3_MPG123;MPG123_DYNAMIC="libmpg123-0.dll";MUSIC_MID_TIMIDITY;MUSIC_MID_NATIVE</PreprocessorDefinitions>
       <SDLCheck>false</SDLCheck>
       <MinimalRebuild>false</MinimalRebuild>
       <ExceptionHandling>false</ExceptionHandling>
@@ -116,8 +116,8 @@
       <EntryPointSymbol>
       </EntryPointSymbol>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>dllstub.lib;libcrt.lib;filemanager.lib;libwin32.lib;sdl.lib;math.lib;systemcall.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../../../../$(Configuration);../../../../corelib/debug;../../../../runtime/debug;../Debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libogg.lib;libvorbis.lib;dllstub.lib;libcrt.lib;filemanager.lib;libwin32.lib;sdl.lib;math.lib;systemcall.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../../../$(Configuration);../../../../corelib/debug;../../../../runtime/debug;../Debug;../../../debug</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>

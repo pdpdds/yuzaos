@@ -163,7 +163,7 @@ void KernelThreadProc()
 	InitSerialPortSystem();
 	InitPCI();
 #endif
-	InitEnvironment();
+	InitEnvironment(); 
 	InitStorageSystem();
 
 	InitDebuggerSystem();

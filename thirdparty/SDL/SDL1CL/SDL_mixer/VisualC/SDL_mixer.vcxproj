@@ -100,8 +100,8 @@
       <AdditionalOptions>/Oy /arch:SSE %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\timidity;..\native_midi;external\include;../../../../../corelib/include;../../../../../runtime/include;../../SDL/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>HAVE_MEMSET;SKYOS32;_CRT_SECURE_NO_WARNINGS;WAV_MUSIC;MOD_MUSIC;MOD_DYNAMIC="libmikmod-2.dll";OGG_MUSIC;OGG_DYNAMIC="libvorbisfile-3.dll";FLAC_MUSIC;FLAC_DYNAMIC="libFLAC-8.dll";MP3_MUSIC;MP3_DYNAMIC="smpeg.dll";MID_MUSIC;USE_TIMIDITY_MIDI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
+      <PreprocessorDefinitions>HAVE_MEMSET;SKYOS32;_CRT_SECURE_NO_WARNINGS;WAV_MUSIC;OGG_MUSIC;OGG_DYNAMIC="vorbisfile.dll";MID_MUSIC;USE_TIMIDITY_MIDI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeaderOutputFile>.\Debug/SDL_mixer.pch</PrecompiledHeaderOutputFile>
       <WarningLevel>Level3</WarningLevel>
@@ -112,6 +112,9 @@
       <DisableSpecificWarnings>4142</DisableSpecificWarnings>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <StructMemberAlignment>Default</StructMemberAlignment>
+      <ExceptionHandling>false</ExceptionHandling>
+      <SDLCheck>false</SDLCheck>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -123,7 +126,7 @@
       <ProgramDatabaseFile>.\Debug/SDL_mixer.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalLibraryDirectories>../../../../../$(Configuration);../../../../../corelib/debug;../../../../../runtime/debug;../Debug;../../../SDL2/DEBUG;../../debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../../../../$(Configuration);../../../../../corelib/debug;../../../../../runtime/debug;../Debug;../../../../debug;../../debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

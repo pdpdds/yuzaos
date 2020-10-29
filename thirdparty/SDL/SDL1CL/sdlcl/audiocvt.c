@@ -19,9 +19,10 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
-
+#include <wchar.h>
 #include "SDL2.h"
 #include "audio.h"
+
 
 typedef struct SDL1_AudioCVT {
 	int needed;

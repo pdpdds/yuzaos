@@ -57,7 +57,7 @@ void NativeConsole()
 int main_impl(int argc, char** argv)
 {
 	printf("%s\nConsole Mode Start!!\n", (char*)argv[0]);
-	//Test();
+	Test();
 	//TestGrep();
 
 	//int a = 100;

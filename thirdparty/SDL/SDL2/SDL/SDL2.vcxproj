@@ -100,7 +100,7 @@
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <AdditionalOptions>/Oy  /arch:SSE %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4819;4244</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>./;./include;../../../../corelib/include;../../../../runtime/include;../../../../verify\pthreads</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./include;../../../../corelib/include;../../../../runtime/include;../../../../corelib/pthreads</AdditionalIncludeDirectories>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
       <OmitFramePointers>true</OmitFramePointers>
@@ -123,6 +123,7 @@
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <AdditionalOptions>/SAFESEH:no  /ALIGN:1024 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <ProjectReference>
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>

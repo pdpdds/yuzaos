@@ -174,7 +174,7 @@
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalOptions>/Oy  /arch:SSE %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Oy   /arch:SSE %(AdditionalOptions)</AdditionalOptions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <AssemblerOutput>All</AssemblerOutput>

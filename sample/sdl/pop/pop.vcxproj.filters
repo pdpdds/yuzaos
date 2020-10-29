@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.c" />
+    <ClCompile Include="lighting.cpp" />
+    <ClCompile Include="midi.cpp" />
+    <ClCompile Include="opl3.cpp" />
+    <ClCompile Include="screenshot.cpp" />
+    <ClCompile Include="seg000.cpp" />
+    <ClCompile Include="seg001.cpp" />
+    <ClCompile Include="seg002.cpp" />
+    <ClCompile Include="seg003.cpp" />
+    <ClCompile Include="seg004.cpp" />
+    <ClCompile Include="seg005.cpp" />
+    <ClCompile Include="seg006.cpp" />
+    <ClCompile Include="seg007.cpp" />
+    <ClCompile Include="seg008.cpp" />
+    <ClCompile Include="seg009.cpp" />
+    <ClCompile Include="seqtbl.cpp" />
+    <ClCompile Include="stb_vorbis.cpp" />
+    <ClCompile Include="replay.c" />
+    <ClCompile Include="data.cpp" />
+    <ClCompile Include="options.c" />
+    <ClCompile Include="menu.c" />
+    <ClCompile Include="qsort.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="data.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="config.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="__types.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="GPLv3.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="opl3.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="proto.h">
+      <Filter>header</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="header">
+      <UniqueIdentifier>{29fa8534-f02d-4a5f-9789-95ea7737209c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

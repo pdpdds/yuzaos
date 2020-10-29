@@ -76,9 +76,9 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <PreprocessorDefinitions>_MSC_VER=1920;SKYOS32;SDL_DYNAMIC_API;SKY_DLL;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SKYOS32;SDL_DYNAMIC_API;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <DisableSpecificWarnings>4244</DisableSpecificWarnings>
       <AdditionalIncludeDirectories>../../sdl2\sdl\include;./;./include;../../../../corelib/include;../../../../runtime/include</AdditionalIncludeDirectories>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -91,6 +91,7 @@
       <OmitFramePointers>true</OmitFramePointers>
       <AdditionalOptions>/Oy /arch:SSE %(AdditionalOptions)</AdditionalOptions>
       <ExceptionHandling>false</ExceptionHandling>
+      <SupportJustMyCode>false</SupportJustMyCode>
     </ClCompile>
     <Link>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>

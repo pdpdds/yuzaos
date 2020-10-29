@@ -80,6 +80,8 @@ int FAT_FileSystem::Read(PFILE file, unsigned char* buffer, unsigned int size, i
 	FIL* fp = (FIL*)(file->_handle);
 	FRESULT result = f_read(fp, buffer, size * count, &readCnt);
 
+	readCnt = readCnt / size;
+
 	return readCnt;
 }
 

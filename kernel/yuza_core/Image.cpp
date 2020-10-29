@@ -147,7 +147,7 @@ int Image::ReadHeader()
 		return E_NOT_IMAGE;
 	}
 #else
-	if (fread(buf, 512, 1, (FILE*)fFileHandle) != 512) {
+	if (fread(buf, 1, 512, (FILE*)fFileHandle) != 512) {
 		kprintf("incomplete header\n");
 		return E_NOT_IMAGE;
 	}

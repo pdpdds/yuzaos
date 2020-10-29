@@ -37,7 +37,7 @@
 #elif SDL_THREAD_STDCPP
 #include "stdcpp/SDL_systhread_c.h"
 #else
-#error Need thread implementation for this platform
+//#error Need thread implementation for this platform
 #include "generic/SDL_systhread_c.h"
 #endif
 #include "../SDL_error_c.h"

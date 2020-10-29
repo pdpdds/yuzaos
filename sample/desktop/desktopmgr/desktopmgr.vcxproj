@@ -177,7 +177,7 @@
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <AdditionalOptions>/safeseh:no %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/safeseh:no  /ALIGN:1024 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <ProjectReference>
       <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>

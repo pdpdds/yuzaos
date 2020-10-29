@@ -135,7 +135,7 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <SDLCheck>false</SDLCheck>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalOptions>/Oy    %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Oy /arch:SSE %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>

@@ -93,6 +93,7 @@
       <SDLCheck>false</SDLCheck>
       <OmitFramePointers>true</OmitFramePointers>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
+      <AdditionalOptions>/Oy  /arch:SSE %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;FT2_BUILD_LIBRARY;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>

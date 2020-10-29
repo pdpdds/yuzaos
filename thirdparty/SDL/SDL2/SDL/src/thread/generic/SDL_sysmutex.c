@@ -72,7 +72,7 @@ SDL_DestroyMutex(SDL_mutex * mutex)
 int
 SDL_LockMutex(SDL_mutex * mutex)
 {
-#if SDL_THREADS_DISABLED
+#if 0
     return 0;
 #else
     SDL_threadID this_thread;
@@ -102,7 +102,7 @@ SDL_LockMutex(SDL_mutex * mutex)
 int
 SDL_TryLockMutex(SDL_mutex * mutex)
 {
-#if SDL_THREADS_DISABLED
+#if 0
     return 0;
 #else
     int retval = 0;
@@ -135,7 +135,7 @@ SDL_TryLockMutex(SDL_mutex * mutex)
 int
 SDL_mutexV(SDL_mutex * mutex)
 {
-#if SDL_THREADS_DISABLED
+#if 0
     return 0;
 #else
     if (mutex == NULL) {

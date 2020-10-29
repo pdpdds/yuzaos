@@ -22,7 +22,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <wchar.h>
 #include "SDL2.h"
 #include "rwops.h"
 

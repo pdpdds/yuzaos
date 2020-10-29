@@ -21,7 +21,7 @@
  */
 
 #include <stdlib.h>
-
+#include <wchar.h>
 #include "SDL2.h"
 
 int SDLCALL SDLCL_JoystickInit (void) {

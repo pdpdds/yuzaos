@@ -18,6 +18,7 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
+#include <wchar.h>
 #include "SDL2.h"
 #include "loadso.h"
 #include "main.h"

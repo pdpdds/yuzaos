@@ -23,7 +23,7 @@
 #include <stdlib.h>
 #include <string.h>
 //#include <dlfcn.h>
-
+#include <wchar.h>
 #include "SDL2.h"
 
 extern DECLSPEC SDL_bool SDLCALL SDL_HasRDTSC(void)

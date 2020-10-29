@@ -165,17 +165,32 @@ inline void LoadIdt(const IdtEntry base[], unsigned int limit)
 
 }
 
+#pragma pack( push, 1 )
+struct desc {
+	unsigned short limit;
+	const GdtEntry* base;
+} PACKED;
+#pragma pack( pop )
+
 inline void LoadGdt(const GdtEntry base[], unsigned int limit)
 {
-	/*struct desc {
-		unsigned short limit;
-		const GdtEntry *base;
-	} PACKED;
+	
 	desc d;
 	d.base = base;
 	d.limit = limit;
 
-	_asm lgdt[d]*/		
+	_asm
+	{
+		lgdt[d]
+		mov ax, 0x10
+		mov ds, ax
+		mov es, ax
+		mov gs, ax
+		mov fs, ax
+		mov ss, ax
+		mov ax, 0x28
+		ltr ax
+	}
 }
 
 inline void Halt()
@@ -256,25 +271,21 @@ inline void CopyPageInternal(void *dest, const void *src)
 	}			
 }
 
-//20181206 어셈블리에 &state가 들어가므로 확인 필요
-inline void SaveFp(FpState &state)
+inline void SaveFp(FpState* state)
 {
-	DWORD i = (DWORD)&state;
+	
 	__asm
 	{
-		mov eax, i
+		mov eax, state
 		fnsave [eax]
-		fwait
 	}
 }
 
-//20181206 어셈블리에 &state가 들어가므로 확인 필요
-inline void RestoreFp(const FpState &state)
+inline void RestoreFp(const FpState* state)
 {
-	DWORD i = (DWORD)&state;
 	__asm
 	{
-		mov eax, i
+		mov eax, state
 		frstor [eax]
 	}
 	 

@@ -36,7 +36,7 @@ static const char rcsid[] =
 #include "i_video.h"
 #include "i_net.h"
 #include "g_game.h"
-
+#include <systemcall_impl.h>
 #define NCMD_EXIT               0x80000000
 #define NCMD_RETRANSMIT         0x40000000
 #define NCMD_SETUP              0x20000000
@@ -758,6 +758,8 @@ void TryRunTics (void)
       M_Ticker ();
       return;
     } 
+
+    Syscall_Sleep(0);
   }
   
   // run the count * ticdup dics

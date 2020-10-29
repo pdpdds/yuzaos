@@ -82,9 +82,10 @@ extern "C" {
 	MATH_API float log10f(float x);
 	MATH_API long double log10l(double x);
 
-	MATH_API double pow(double x, double y);
+	//MATH_API double pow(double x, double y);
+	MATH_API double pow(float x, int y);
 	MATH_API float powf(float x, float y);
-	MATH_API long double powl(long double x, long double y);
+	//MATH_API long double powl(long double x, long double y);
 
 	MATH_API double tan(double x);
 	MATH_API float tanf(float x);
