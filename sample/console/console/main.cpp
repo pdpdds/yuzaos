@@ -1,40 +1,9 @@
-#include <windef.h>
 #include <minwindef.h>
 #include <yuzaapi.h>
-#include <stdio.h>
 #include <ConsoleManager.h>
-#include "Test.h"
-#include <systemcall_impl.h>
-#include <string.h>
 #include <GUIConsoleFramework.h>
 
-void TestGrep()
-{
-	ConsoleManager manager;
-
-	char	commandBuffer[MAXPATH] = "grep.exe IDE driver_config.cfg";
-	char	commandBuffer2[MAXPATH] = "helloworld.exe";
-	char	commandBuffer3[MAXPATH] = "threadtest.exe 1";
-
-	int index = 0;
-	while (1)
-	{			
-		//if(index == 0)
-		//manager.RunCommand(commandBuffer);		
-		//else 
-		//if (index == 1)
-			//manager.RunCommand(commandBuffer2);
-		//else
-			manager.RunCommand(commandBuffer3);
-
-		index++;
-		index = index % 3;
-
-		Syscall_Sleep(100);
-	}
-}
-
-void NativeConsole()
+void ExecNativeConsole()
 {
 	ConsoleManager manager;
 
@@ -57,17 +26,8 @@ void NativeConsole()
 int main_impl(int argc, char** argv)
 {
 	printf("%s\nConsole Mode Start!!\n", (char*)argv[0]);
-	Test();
-	//TestGrep();
 
-	//int a = 100;
-	//int j = 0;
-	//a = a / j;
-
-	//Syscall_SysCallTest("pe");
-	
-	//Syscall_TraceCallStack();
-	NativeConsole();
+	ExecNativeConsole();
 
 	printf("Bye!!\n");
 

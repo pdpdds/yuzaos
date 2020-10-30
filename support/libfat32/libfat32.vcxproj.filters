@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{59b16c6b-9980-4c64-9650-4c39902a5413}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{74761560-d4ae-4bf7-bbc8-7506a5f2bfa7}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Common.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DiskImgFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ImgFileFind.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MemFS.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MemFSService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MirrorFileModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sysfs12.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sysfs16.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sysfs32.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WinDiskFSService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DiskImgFile32.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="libfat32.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Support.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AnsiMemFile.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DiskImgFile.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FSService.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ImgFileFind.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MemFS.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MemFSService.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MirrorFileModel.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NameMap.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sysfs.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sysfs12.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sysfs16.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sysfs32.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WinDiskFSService.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Support.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
