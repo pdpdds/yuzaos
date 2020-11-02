@@ -5,7 +5,7 @@
 *	Started 990826 / 010207 (new version)
 *
 *	License: LGPL v2+ (see the file LICENSE)
-*	(c)1999-2003 Anders Lindström
+*	(c)1999-2003 Anders Lindstr?
 *
 *	Uses the excellent FreeType 2 library, available at:
 *	http://www.freetype.org/

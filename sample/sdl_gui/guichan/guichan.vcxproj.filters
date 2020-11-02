@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\actionevent.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basiccontainer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cliprectangle.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\color.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\defaultfont.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\event.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\exception.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\focushandler.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\font.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\genericinput.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gui.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\guichan.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\image.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imagefont.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\inputevent.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\key.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\keyevent.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\keyinput.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mouseevent.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mouseinput.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rectangle.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\selectionevent.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\truetypefont.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\widget.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sdl\sdl.cpp">
+      <Filter>src\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sdl\sdlgraphics.cpp">
+      <Filter>src\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sdl\sdlimage.cpp">
+      <Filter>src\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sdl\sdlimageloader.cpp">
+      <Filter>src\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sdl\sdlinput.cpp">
+      <Filter>src\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\widgets\button.cpp">
+      <Filter>src\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\widgets\checkbox.cpp">
+      <Filter>src\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\widgets\container.cpp">
+      <Filter>src\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\widgets\dropdown.cpp">
+      <Filter>src\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\widgets\icon.cpp">
+      <Filter>src\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\widgets\imagebutton.cpp">
+      <Filter>src\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\widgets\label.cpp">
+      <Filter>src\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\widgets\listbox.cpp">
+      <Filter>src\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\widgets\radiobutton.cpp">
+      <Filter>src\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\widgets\scrollarea.cpp">
+      <Filter>src\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\widgets\slider.cpp">
+      <Filter>src\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\widgets\tab.cpp">
+      <Filter>src\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\widgets\tabbedarea.cpp">
+      <Filter>src\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\widgets\textbox.cpp">
+      <Filter>src\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\widgets\textfield.cpp">
+      <Filter>src\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\widgets\ttflistbox.cpp">
+      <Filter>src\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\widgets\window.cpp">
+      <Filter>src\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="GUIManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="WidgetsContainer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{5ff6c52b-f107-4fa3-9af4-96b125f12d7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc">
+      <UniqueIdentifier>{e18806c6-09ff-4f4b-ab1f-a31118e936d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sdl">
+      <UniqueIdentifier>{72ef2c79-c463-4bda-aac8-4414fa355356}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\widgets">
+      <UniqueIdentifier>{ba7bc0da-62bc-4f8b-9e51-c6ef8dcf108b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\guichan.hpp">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIManager.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="IWidgetContainer.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="WidgetsContainer.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

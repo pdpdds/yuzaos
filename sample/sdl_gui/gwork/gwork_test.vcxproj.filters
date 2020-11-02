@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="api">
+      <UniqueIdentifier>{9ec6d4c4-985d-4ceb-99e9-0c363ae83b5f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\test\source\api\Button.cpp">
+      <Filter>api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\Checkbox.cpp">
+      <Filter>api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\CollapsibleList.cpp">
+      <Filter>api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\ColorPicker.cpp">
+      <Filter>api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\ComboBox.cpp">
+      <Filter>api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\CrossSplitter.cpp">
+      <Filter>api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\GroupBox.cpp">
+      <Filter>api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\ImagePanel.cpp">
+      <Filter>api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\Label.cpp">
+      <Filter>api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\LabelMultiline.cpp">
+      <Filter>api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\ListBox.cpp">
+      <Filter>api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\MenuStrip.cpp">
+      <Filter>api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\Numeric.cpp">
+      <Filter>api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\PageControl.cpp">
+      <Filter>api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\ProgressBar.cpp">
+      <Filter>api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\Properties.cpp">
+      <Filter>api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\RadioButton.cpp">
+      <Filter>api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\ScrollControl.cpp">
+      <Filter>api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\Slider.cpp">
+      <Filter>api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\StatusBar.cpp">
+      <Filter>api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\TabControl.cpp">
+      <Filter>api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\TestAPI.cpp">
+      <Filter>api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\TextBox.cpp">
+      <Filter>api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\TreeControl.cpp">
+      <Filter>api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\Window.cpp">
+      <Filter>api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\Test.cpp" />
+    <ClCompile Include="source\samples\SDL2\SDL2Sample.cpp" />
+  </ItemGroup>
+</Project>

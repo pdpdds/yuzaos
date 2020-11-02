@@ -11,7 +11,7 @@ int main(int argc, char* argv[])
 	HMODULE libDriveHandle = LoadLibrary("libfat32.dll");
 	
 	PCreateDrive func = (PCreateDrive)GetProcAddress(libDriveHandle, "CreateDrive");
-	CSysfs* pDrive = func("fat32.img");
+	CSysfs* pDrive = func("floppy.ima");
 	if (pDrive)
 	{
 		pDrive->CreateDirectory("\\juhang3", 0);

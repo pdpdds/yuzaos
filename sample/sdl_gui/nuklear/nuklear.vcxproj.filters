@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{09de2362-ee96-4e41-a5ac-061fa200c171}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_buffer.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_button.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_chart.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_color.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_color_picker.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_combo.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_context.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_contextual.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_draw.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_edit.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_font.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_group.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_image.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_input.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_layout.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_list_view.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_math.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_menu.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_page_element.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_panel.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_pool.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_popup.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_progress.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_property.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_scrollbar.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_selectable.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_slider.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_string.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_style.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_table.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_text.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_text_editor.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_toggle.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_tooltip.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_tree.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_utf8.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_util.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_vertex.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_widget.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\nuklear_window.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Engine\nuklear.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\nuklear_internal.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\nuklear_rawfb.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

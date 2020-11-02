@@ -5,7 +5,7 @@
 *	Started 000625
 *
 *	License: LGPL v2+ (see the file LICENSE)
-*	(c)1999-2003 Anders Lindström
+*	(c)1999-2003 Anders Lindstr?
 */
 
 /*********************************************************************

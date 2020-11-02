@@ -1,0 +1,320 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="source\gwork\source\Anim.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\BaseRender.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\ControlList.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\DragAndDrop.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Events.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Gwork.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Hook.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\InputHandler.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Skin.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\ToolTip.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\Base.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\Button.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\Canvas.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\CheckBox.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\CollapsibleCategory.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\ColorControls.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\ColorPicker.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\ComboBox.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\CrossSplitter.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\DockBase.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\DockedTabControl.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\Dragger.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\GroupBox.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\HorizontalScrollBar.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\HorizontalSlider.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\HSVColorPicker.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\ImagePanel.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\Label.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\LabelClickable.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\ListBox.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\Menu.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\MenuItem.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\MenuStrip.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\NumericUpDown.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\PageControl.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\ProgressBar.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\Properties.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\PropertyTree.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\RadioButton.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\RadioButtonController.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\Rectangle.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\ResizableControl.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\Resizer.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\RichLabel.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\ScrollBar.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\ScrollBarBar.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\ScrollBarButton.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\ScrollControl.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\Slider.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\SplitterBar.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\TabButton.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\TabControl.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\TabStrip.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\Text.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\TextBox.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\TextBoxNumeric.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\TreeControl.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\TreeNode.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\VerticalScrollBar.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\VerticalSlider.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\WindowCanvas.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\WindowControl.cpp">
+      <Filter>source\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\Dialog\FileOpen.cpp">
+      <Filter>source\Controls\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\Dialog\FileSave.cpp">
+      <Filter>source\Controls\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\Dialog\FolderOpen.cpp">
+      <Filter>source\Controls\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gwork\source\Controls\Dialog\Query.cpp">
+      <Filter>source\Controls\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="source\platform\platforms\CrossPlatform.cpp">
+      <Filter>source\platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="source\platform\platforms\PlatformCommon.cpp">
+      <Filter>source\platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="source\platform\platforms\Utility.cpp">
+      <Filter>source\platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="source\platform\renderers\SDL2\SDL2.cpp">
+      <Filter>source\platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="source\samples\SDL2\SDL2Sample.cpp" />
+    <ClCompile Include="source\test\source\Test.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\Button.cpp">
+      <Filter>test\api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\Checkbox.cpp">
+      <Filter>test\api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\CollapsibleList.cpp">
+      <Filter>test\api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\ColorPicker.cpp">
+      <Filter>test\api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\ComboBox.cpp">
+      <Filter>test\api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\CrossSplitter.cpp">
+      <Filter>test\api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\GroupBox.cpp">
+      <Filter>test\api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\ImagePanel.cpp">
+      <Filter>test\api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\Label.cpp">
+      <Filter>test\api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\LabelMultiline.cpp">
+      <Filter>test\api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\ListBox.cpp">
+      <Filter>test\api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\MenuStrip.cpp">
+      <Filter>test\api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\Numeric.cpp">
+      <Filter>test\api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\PageControl.cpp">
+      <Filter>test\api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\ProgressBar.cpp">
+      <Filter>test\api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\Properties.cpp">
+      <Filter>test\api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\RadioButton.cpp">
+      <Filter>test\api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\ScrollControl.cpp">
+      <Filter>test\api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\Slider.cpp">
+      <Filter>test\api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\StatusBar.cpp">
+      <Filter>test\api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\TabControl.cpp">
+      <Filter>test\api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\TestAPI.cpp">
+      <Filter>test\api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\TextBox.cpp">
+      <Filter>test\api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\TreeControl.cpp">
+      <Filter>test\api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\test\source\api\Window.cpp">
+      <Filter>test\api</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="source">
+      <UniqueIdentifier>{5048da6d-90d2-4193-9ae7-97e403df0675}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\Controls">
+      <UniqueIdentifier>{60f4f32d-4edb-4c58-8fc3-bde7ba32aae5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\Controls\Dialog">
+      <UniqueIdentifier>{03b819ab-63af-4bb5-9b69-8159b45e6c57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\platforms">
+      <UniqueIdentifier>{a7933b1f-dffd-4427-a4be-020d9070e758}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test">
+      <UniqueIdentifier>{d7728604-afd7-4e8a-9883-b1de78648b09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test\api">
+      <UniqueIdentifier>{833189f3-779a-4330-ad3a-fc489c9344e9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\platform\platforms\DebugBreak.h">
+      <Filter>source\platforms</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

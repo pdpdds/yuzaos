@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\GUI_App.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI_Button.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI_CheckBox.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI_ComboBox.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI_Config.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI_EditText.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI_Fonts.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI_IconView.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI_image.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI_ImageView.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI_Label.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI_List.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI_Menu.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI_MenuBar.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI_MessageBox.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI_PopupView.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI_Preference.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI_RadioButton.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI_RadioButtonGroup.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI_ScrollView.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI_shapes.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI_Slider.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI_StatusBar.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI_Switch.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI_TextUtil.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI_TextView.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI_TopBar.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI_Utils.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI_View.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SDL_gui.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\GUI_App.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI_Button.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI_CheckBox.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI_ComboBox.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI_Config.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI_EditText.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI_Fonts.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI_IconView.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI_image.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI_ImageView.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI_Label.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI_List.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI_Menu.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI_MenuBar.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI_MessageBox.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI_PopupView.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI_Preference.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI_RadioButton.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI_RadioButtonGroup.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI_ScrollView.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI_shapes.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI_Slider.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI_StatusBar.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI_Switch.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI_TextUtil.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI_TextView.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI_TopBar.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI_Utils.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI_View.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SDL_gui.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
