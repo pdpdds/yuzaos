@@ -2335,7 +2335,7 @@ BOOL  DiskImgFile32::ImgMoveDirectory(IN LPCSTR lpSrcDir, IN LPCSTR lpDesDir)	//
 BOOL  DiskImgFile32::CreateImageFile(IN LPCSTR lpszFileName, IN UINT fatType, IN LONGLONG diskSize)					// 创建镜像文件
 {
 #ifdef _WINDOWS
-	ASSERT(AfxIsValidString(lpszFileName));
+	//ASSERT(AfxIsValidString(lpszFileName));
 
 	// map read/write mode
 	DWORD dwAccess = 0;
@@ -2664,29 +2664,21 @@ BOOL DiskImgFile32::RefreshFatTable()
 
 BOOL DiskImgFile32::OpenImgFile(IN LPCSTR lpFileName, IN LONGLONG diskSize )
 {
-
-
-	//if ( !CreateDiskFile(lpFileName) ) return FALSE;
-	//printf("lpFileName is :%s\n", lpFileName);
 	int ret = CreateDiskFile(lpFileName);
-	//printf("ret==%d\n", ret);
-
-	if(ret == 0) return FALSE;
+	if(ret == 0) 
+		return FALSE;
 	else if (ret == 2)
 		FormatImgFile(DEFAULT_VOLUME_NAME,0,diskSize);
 
 	SetDiskFilePointer(_hFile, 0, NULL, FILE_BEGIN);
-	//printf("SetDiskFilePointer\n");
+	
 	DWORD nRead;
 
 	BootSector_BPB_RW bpbRw;
 	ZeroMemory(&bpbRw, sizeof(BootSector_BPB_RW));
 	
-	//printf("bbb ReadDiskFile\n");
 	ReadDiskFile(_hFile, &bpbRw, sizeof(BootSector_BPB_RW), &nRead, NULL);
-	//printf("bpbRw.BPB_BytsPerSec=%d, bpbRw.BPB_SecPerClus=%d, nRead=%d\n", 
-		//bpbRw.BPB_BytsPerSec, bpbRw.BPB_SecPerClus, nRead);
-
+	printf("bpbRw.BPB_BytsPerSec=%d, bpbRw.BPB_SecPerClus=%d, nRead=%d\n", bpbRw.BPB_BytsPerSec, bpbRw.BPB_SecPerClus, nRead);
 
 	if(nRead != sizeof(BootSector_BPB_RW))
 	{
@@ -2700,6 +2692,7 @@ BOOL DiskImgFile32::OpenImgFile(IN LPCSTR lpFileName, IN LONGLONG diskSize )
 // 		printmsg("Error in  open Imgfile--- Read bpb!");z
 		return FALSE;
 	}
+
 	Bpb32CobyFromRwInfo(_imgBpb, bpbRw);
 	
 	_stOfFATAddr = _imgBpb.BPB_RsvdSecCnt*_imgBpb.BPB_BytsPerSec;

@@ -1,6 +1,6 @@
 #include "windef.h"
 #include "PlatformAPI.h"
-#include "Sysfs32.h"
+#include "Sysfs16.h"
 #include <map>
 #include "AnsiMemFile.h"
 #include <string>
@@ -12,7 +12,7 @@ extern "C" __declspec(dllexport) CSysfs * CreateDrive(char* fileName)
 {
 	g_MapName2File = new std::map<std::string, CAnsiMemFile*>();
 	g_MapHandle2Name = new std::map<HANDLE, std::string>();
-	CSysfs32* pfat32 = new CSysfs32();
+	CSysfs16* pfat32 = new CSysfs16();
 	FILE* fp = fopen(fileName, "rb");
 	fseek(fp, 0, SEEK_END);
 	int size = ftell(fp);

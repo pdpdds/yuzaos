@@ -381,9 +381,8 @@ struct dirent* FAT_FileSystem::readdir(DIR* dir)
 	return f_utime(filename, fno);
 }*/
 
-int FAT_FileSystem::fstat(char const* const fileName, struct stat* fno)
+int GetAbsolutePathTest(char const* const fileName, struct stat* fno)
 {
-	
 	char abolutePath[MAX_PATH] = "0:";
 	char currentDir[MAX_PATH];
 
@@ -398,7 +397,7 @@ int FAT_FileSystem::fstat(char const* const fileName, struct stat* fno)
 	{
 		strcat(abolutePath, fileName);
 	}
-	
+
 	rtrimslash((char*)abolutePath);
 
 	for (int i = 0; i < strlen(abolutePath); i++)
@@ -412,7 +411,7 @@ int FAT_FileSystem::fstat(char const* const fileName, struct stat* fno)
 	FILINFO info;
 
 	int res = f_stat(abolutePath, &info);
-	
+
 	if (res == 0)
 	{
 		fno->st_size = info.fsize;
@@ -424,6 +423,58 @@ int FAT_FileSystem::fstat(char const* const fileName, struct stat* fno)
 	}
 
 	return res;
+}
+
+int GetRelativePathTest(char const* const fileName, struct stat* fno)
+{
+	char abolutePath[MAX_PATH] = "0:";
+	char currentDir[MAX_PATH];
+
+	if (fileName[0] == '/')
+	{
+		Syscall_GetCurrentDirectory(MAX_PATH, currentDir);
+		strcat(abolutePath, currentDir);
+		strcat(abolutePath, fileName + 1);
+
+	}
+	else
+	{
+		strcat(abolutePath, fileName);
+	}
+
+	rtrimslash((char*)abolutePath);
+
+	for (int i = 0; i < strlen(abolutePath); i++)
+	{
+		if (abolutePath[i] == '/')
+		{
+			abolutePath[i] = '\\';
+		}
+	}
+
+	FILINFO info;
+
+	int res = f_stat(abolutePath, &info);
+
+	if (res == 0)
+	{
+		fno->st_size = info.fsize;
+		fno->st_mtime = info.ftime;
+		if (info.fattrib & AM_DIR)
+			fno->st_mode = 0;
+		else
+			fno->st_mode = 1;
+	}
+
+	return res;
+}
+
+int FAT_FileSystem::fstat(char const* const fileName, struct stat* fno)
+{
+	if (GetAbsolutePathTest(fileName, fno) == 0)
+		return 0;
+
+	return GetRelativePathTest(fileName, fno);
 }
 
 

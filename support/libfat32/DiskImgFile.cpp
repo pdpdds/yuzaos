@@ -4120,7 +4120,7 @@ DWORD DiskImgFile::SetFilePointerEx(HANDLE hFile,
 BOOL  DiskImgFile::CreateImageFile(IN LPCSTR lpszFileName, IN UINT fatType, IN LONGLONG diskSize)					// 创建镜像文件
 {
 #ifdef _WINDOWS
-	ASSERT(AfxIsValidString(lpszFileName));
+	//ASSERT(AfxIsValidString(lpszFileName));
 
 	// map read/write mode
 	DWORD dwAccess = 0;

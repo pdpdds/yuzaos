@@ -16,7 +16,7 @@ public:
 	bool PutMouseueue(MOUSEDATA* pstData);
 
 private:
-	SkyQueue* m_pKeyQueue;
+	SkyQueue* m_pKeyQueue; 
 	SkyQueue* m_pMouseQueue;
 
 	KEYDATA m_keyQueueBuffer[KEY_MAXQUEUECOUNT];

@@ -27,10 +27,10 @@
     <ClCompile Include="imgui_sw.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="imgui_impl_sdl.cpp">
+    <ClCompile Include="imgui_demo.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="sample.cpp">
+    <ClCompile Include="imgui_sdl.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -56,10 +56,7 @@
     <ClInclude Include="stb_truetype.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
-    <ClInclude Include="imgui_impl_sdl.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="sample.h">
+    <ClInclude Include="imgui_sdl.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
   </ItemGroup>

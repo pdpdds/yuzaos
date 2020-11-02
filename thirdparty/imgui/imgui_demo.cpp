@@ -2666,7 +2666,7 @@ struct ExampleAppConsole
     {
         ClearLog();
         for (int i = 0; i < History.Size; i++)
-            kfree(History[i]);
+            free(History[i]);
     }
 
     // Portable helpers
@@ -2678,7 +2678,7 @@ struct ExampleAppConsole
     void    ClearLog()
     {
         for (int i = 0; i < Items.Size; i++)
-            kfree(Items[i]);
+            free(Items[i]);
         Items.clear();
         ScrollToBottom = true;
     }
@@ -2806,7 +2806,7 @@ struct ExampleAppConsole
         for (int i = History.Size-1; i >= 0; i--)
             if (Stricmp(History[i], command_line) == 0)
             {
-                kfree(History[i]);
+                free(History[i]);
                 History.erase(History.begin() + i);
                 break;
             }

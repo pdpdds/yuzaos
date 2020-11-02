@@ -170,6 +170,7 @@ char* ConsoleManager::MakePathName()
 {
 
 	static char pathName[MAX_PATH];
+	memset(pathName, 0, MAX_PATH);
 	DOS_Drive* pDrive = Drives[g_currentDriveIndex];
 	if (!pDrive)
 	{
