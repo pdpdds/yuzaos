@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{393c1d1b-0e45-4a02-9113-58ecd6bcb890}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Source Files\GBA">
+      <UniqueIdentifier>{1416c148-a447-440d-8d9f-d50879c0620f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GB">
+      <UniqueIdentifier>{0d56db3b-41fe-4869-a4bf-a03583f8c130}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SDL">
+      <UniqueIdentifier>{0e2f2aad-cbed-4ca8-a1d6-e71e4c7c2eb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{d8e0148c-d164-4347-b4cf-c7a5f33556a2}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{cf8e97b1-af8c-4552-be81-680b62ed6687}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="Source Files\zlib">
+      <UniqueIdentifier>{1db1512d-97aa-463a-b4a5-35eae372f757}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\2xSaI.cpp">
+      <Filter>Source Files\GBA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Cheats.cpp">
+      <Filter>Source Files\GBA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\EEprom.cpp">
+      <Filter>Source Files\GBA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Flash.cpp">
+      <Filter>Source Files\GBA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\GBA.cpp">
+      <Filter>Source Files\GBA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Gfx.cpp">
+      <Filter>Source Files\GBA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Globals.cpp">
+      <Filter>Source Files\GBA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Mode0.cpp">
+      <Filter>Source Files\GBA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Mode1.cpp">
+      <Filter>Source Files\GBA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Mode2.cpp">
+      <Filter>Source Files\GBA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Mode3.cpp">
+      <Filter>Source Files\GBA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Mode4.cpp">
+      <Filter>Source Files\GBA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Mode5.cpp">
+      <Filter>Source Files\GBA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\RTC.cpp">
+      <Filter>Source Files\GBA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Sound.cpp">
+      <Filter>Source Files\GBA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Sram.cpp">
+      <Filter>Source Files\GBA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Util.cpp">
+      <Filter>Source Files\GBA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\admame.cpp">
+      <Filter>Source Files\GBA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\agbprint.cpp">
+      <Filter>Source Files\GBA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\bilinear.cpp">
+      <Filter>Source Files\GBA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\bios.cpp">
+      <Filter>Source Files\GBA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\elf.cpp">
+      <Filter>Source Files\GBA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\hq2x.cpp">
+      <Filter>Source Files\GBA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\interframe.cpp">
+      <Filter>Source Files\GBA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\memgzio.c">
+      <Filter>Source Files\GBA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\motionblur.cpp">
+      <Filter>Source Files\GBA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\pixel.cpp">
+      <Filter>Source Files\GBA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\scanline.cpp">
+      <Filter>Source Files\GBA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\simple2x.cpp">
+      <Filter>Source Files\GBA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\unzip.cpp">
+      <Filter>Source Files\GBA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gb\GB.cpp">
+      <Filter>Source Files\GB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gb\gbCheats.cpp">
+      <Filter>Source Files\GB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gb\gbGfx.cpp">
+      <Filter>Source Files\GB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gb\gbGlobals.cpp">
+      <Filter>Source Files\GB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gb\gbMemory.cpp">
+      <Filter>Source Files\GB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gb\gbPrinter.cpp">
+      <Filter>Source Files\GB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gb\gbSGB.cpp">
+      <Filter>Source Files\GB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gb\gbSound.cpp">
+      <Filter>Source Files\GB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\sdl\SDL.cpp">
+      <Filter>Source Files\SDL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Text.cpp">
+      <Filter>Source Files\SDL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\armdis.cpp">
+      <Filter>Source Files\SDL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\sdl\debugger.cpp">
+      <Filter>Source Files\SDL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\expr-lex.cpp">
+      <Filter>Source Files\SDL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\expr.cpp">
+      <Filter>Source Files\SDL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\exprNode.cpp">
+      <Filter>Source Files\SDL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\getopt.c">
+      <Filter>Source Files\SDL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\getopt1.c">
+      <Filter>Source Files\SDL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\prof\prof.cpp">
+      <Filter>Source Files\SDL</Filter>
+    </ClCompile>
+    <ClCompile Include="dependencies\zlib\gzio.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\src\i386\2xSaImmx.asm" />
+  </ItemGroup>
+</Project>

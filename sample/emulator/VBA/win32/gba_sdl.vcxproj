@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{CCC4389B-D478-44CB-BA20-7CE2847A9716}</ProjectGuid>
+    <SccProjectName />
+    <SccLocalPath />
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>16.0.29511.113</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\Intermediate\$(ProjectName)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\SDLRelease\</OutDir>
+    <IntDir>.\SDLRelease\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>./include;./;../include;../../../../runtime/include;../../../../corelib/include;../../../../corelib/STL/SGI;../../../../yuza_core;../../../../corelib/streams;../../../../runtime/libcrt/input;../../../../thirdparty/sdl/sdl1cl/sdl/include;../../../../thirdparty/zlib128/zlib;../../../../thirdparty/libpng/libpng</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NO_vsnprintf;_WIN32;_CRT_SECURE_NO_WARNINGS;ZLIB_INTERNAL;DEV_VERSION;WIN32;_CONSOLE;BKPT_SUPPORT;MMX;SDL;PROFILING;C_CORE;SKYOS32</PreprocessorDefinitions>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <PrecompiledHeaderOutputFile>.\SDLDebug/gba_sdl.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+      <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
+      <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
+      <SDLCheck>false</SDLCheck>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <DisableSpecificWarnings>4309</DisableSpecificWarnings>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <OmitFramePointers>true</OmitFramePointers>
+      <ExceptionHandling>false</ExceptionHandling>
+      <AdditionalOptions>/Oy /arch:SSE %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalOptions>/safeseh:no /ALIGN:1024 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>zlib128.lib;libpng.lib;systemcall.lib;sdlcl.lib;math.lib;libcrt.lib;libwin32.lib;exestub.lib;filemanager.lib</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\SDLDebug/VisualBoyAdvance-SDL.pdb</ProgramDatabaseFile>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>.\SDLDebug/VisualBoyAdvance-SDL.map</MapFileName>
+      <SubSystem>Windows</SubSystem>
+      <AdditionalLibraryDirectories>../../../../$(Configuration)/lib;../../../../$(Configuration);../../../../corelib/debug;../../../../runtime/debug;../../../../thirdparty/debug</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <BaseAddress>0x08000000</BaseAddress>
+    </Link>
+    <Midl>
+      <TypeLibraryName>.\SDLDebug/gba_sdl.tlb</TypeLibraryName>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>../src;include/zlib;include/png;SDL-1.2.2/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;FINAL_VERSION;DEV_VERSION;WIN32;_CONSOLE;BKPT_SUPPORT;MMX;SDL;PROFILING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader />
+      <PrecompiledHeaderOutputFile>.\SDLRelease/gba_sdl.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\SDLRelease/</AssemblerListingLocation>
+      <ObjectFileName>.\SDLRelease/</ObjectFileName>
+      <ProgramDataBaseFileName>.\SDLRelease/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <Link>
+      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>SDLRelease/VisualBoyAdvance-SDL.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <IgnoreSpecificDefaultLibraries>libmmd;libircmt;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ProgramDatabaseFile>.\SDLRelease/VisualBoyAdvance-SDL.pdb</ProgramDatabaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <Midl>
+      <TypeLibraryName>.\SDLRelease/gba_sdl.tlb</TypeLibraryName>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\2xSaI.cpp" />
+    <ClCompile Include="..\src\admame.cpp" />
+    <ClCompile Include="..\src\agbprint.cpp" />
+    <ClCompile Include="..\src\armdis.cpp" />
+    <ClCompile Include="..\src\bilinear.cpp" />
+    <ClCompile Include="..\src\bios.cpp" />
+    <ClCompile Include="..\src\Cheats.cpp" />
+    <ClCompile Include="..\src\EEprom.cpp" />
+    <ClCompile Include="..\src\elf.cpp" />
+    <ClCompile Include="..\src\expr-lex.cpp" />
+    <ClCompile Include="..\src\expr.cpp" />
+    <ClCompile Include="..\src\exprNode.cpp" />
+    <ClCompile Include="..\src\Flash.cpp" />
+    <ClCompile Include="..\src\GBA.cpp" />
+    <ClCompile Include="..\src\gb\GB.cpp" />
+    <ClCompile Include="..\src\gb\gbCheats.cpp" />
+    <ClCompile Include="..\src\gb\gbGfx.cpp" />
+    <ClCompile Include="..\src\gb\gbGlobals.cpp" />
+    <ClCompile Include="..\src\gb\gbMemory.cpp" />
+    <ClCompile Include="..\src\gb\gbPrinter.cpp" />
+    <ClCompile Include="..\src\gb\gbSGB.cpp" />
+    <ClCompile Include="..\src\gb\gbSound.cpp" />
+    <ClCompile Include="..\src\getopt.c" />
+    <ClCompile Include="..\src\getopt1.c" />
+    <ClCompile Include="..\src\Gfx.cpp" />
+    <ClCompile Include="..\src\Globals.cpp" />
+    <ClCompile Include="..\src\hq2x.cpp" />
+    <ClCompile Include="..\src\interframe.cpp" />
+    <ClCompile Include="..\src\memgzio.c" />
+    <ClCompile Include="..\src\Mode0.cpp" />
+    <ClCompile Include="..\src\Mode1.cpp" />
+    <ClCompile Include="..\src\Mode2.cpp" />
+    <ClCompile Include="..\src\Mode3.cpp" />
+    <ClCompile Include="..\src\Mode4.cpp" />
+    <ClCompile Include="..\src\Mode5.cpp" />
+    <ClCompile Include="..\src\motionblur.cpp" />
+    <ClCompile Include="..\src\pixel.cpp" />
+    <ClCompile Include="..\src\prof\prof.cpp" />
+    <ClCompile Include="..\src\RTC.cpp" />
+    <ClCompile Include="..\src\scanline.cpp" />
+    <ClCompile Include="..\src\sdl\debugger.cpp" />
+    <ClCompile Include="..\src\sdl\SDL.cpp" />
+    <ClCompile Include="..\src\simple2x.cpp" />
+    <ClCompile Include="..\src\Sound.cpp" />
+    <ClCompile Include="..\src\Sram.cpp" />
+    <ClCompile Include="..\src\Text.cpp" />
+    <ClCompile Include="..\src\unzip.cpp" />
+    <ClCompile Include="..\src\Util.cpp" />
+    <ClCompile Include="dependencies\zlib\gzio.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\src\i386\2xSaImmx.asm">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"C:\Dev\OS\yuza\Kernel\yuza_core\nasmw.exe" -D__DJGPP__ -f win32 -o $(OutDir)%(Filename).obj %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"c:\Program Files\Nasm\nasmw.exe" -D__DJGPP__ -f win32 -o $(OutDir)%(Filename).obj %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)%(Filename).obj;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="AY8910.c" />
+    <ClCompile Include="Debug.c" />
+    <ClCompile Include="Disk.c" />
+    <ClCompile Include="fMSX.c" />
+    <ClCompile Include="I8255.c" />
+    <ClCompile Include="LibUnix.c" />
+    <ClCompile Include="MSX.c" />
+    <ClCompile Include="Patch.c" />
+    <ClCompile Include="SCC.c" />
+    <ClCompile Include="SDLfilter.c" />
+    <ClCompile Include="SDLgfx.c" />
+    <ClCompile Include="SDLsnd.c" />
+    <ClCompile Include="SndUnix.c" />
+    <ClCompile Include="Sound.c" />
+    <ClCompile Include="Unix.c" />
+    <ClCompile Include="V9938.c" />
+    <ClCompile Include="YM2413.c" />
+    <ClCompile Include="Z80.c" />
+    <ClCompile Include="device\emu2149.c">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="device\emu2212.c">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="device\emu2413.c">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="device\emu8950.c">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="device\emu76489.c">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="device\emuadpcm.c">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="msxaudio\fmopl.c">
+      <Filter>msxaudio</Filter>
+    </ClCompile>
+    <ClCompile Include="msxaudio\ymdeltat.c">
+      <Filter>msxaudio</Filter>
+    </ClCompile>
+    <ClCompile Include="I8251.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="_mingw.h" />
+    <ClInclude Include="AY8910.h" />
+    <ClInclude Include="Boot.h" />
+    <ClInclude Include="Codes.h" />
+    <ClInclude Include="CodesCB.h" />
+    <ClInclude Include="CodesED.h" />
+    <ClInclude Include="CodesXCB.h" />
+    <ClInclude Include="CodesXX.h" />
+    <ClInclude Include="Common.h" />
+    <ClInclude Include="dirent.h" />
+    <ClInclude Include="DiskUtil.h" />
+    <ClInclude Include="Help.h" />
+    <ClInclude Include="Hires.h" />
+    <ClInclude Include="I8255.h" />
+    <ClInclude Include="LibUnix.h" />
+    <ClInclude Include="MIDIFreq.h" />
+    <ClInclude Include="MSX.h" />
+    <ClInclude Include="SCC.h" />
+    <ClInclude Include="SDLfilter.h" />
+    <ClInclude Include="SDLfnt.h" />
+    <ClInclude Include="Sound.h" />
+    <ClInclude Include="Tables.h" />
+    <ClInclude Include="unistd.h" />
+    <ClInclude Include="utime.h" />
+    <ClInclude Include="V9938.h" />
+    <ClInclude Include="YM2413.h" />
+    <ClInclude Include="Z80.h" />
+    <ClInclude Include="device\2413tone.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="device\emu2149.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="device\emu2212.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="device\emu2413.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="device\emu8950.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="device\emu76489.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="device\emuadpcm.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="device\emutypes.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="device\vrc7tone.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="msxaudio\fmopl.h">
+      <Filter>msxaudio</Filter>
+    </ClInclude>
+    <ClInclude Include="msxaudio\ymdeltat.h">
+      <Filter>msxaudio</Filter>
+    </ClInclude>
+    <ClInclude Include="I8251.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="device">
+      <UniqueIdentifier>{519a9c6d-ff0e-4630-9898-0cb3d1839297}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="msxaudio">
+      <UniqueIdentifier>{491af41a-6269-490f-82da-d5862a09f8f5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,41 @@
+128a129,137
+> #ifdef SDL
+> extern int   Use2413;    /* MSX-MUSIC emulation (1-yes) */
+> extern int   Use8950;    /* MSX-AUDIO emulation (1-yes) */
+> extern int   UseStereo;  /* Stereo sound (1-yes)        */
+> extern int   UseFilter;  /* Filter mode                 */
+> extern int   WIDTH;      /* width of window             */
+> extern int   HEIGHT;     /* height of window            */
+> #endif
+> 
+223a233,262
+> 
+> #ifdef SDL
+> void HiresRefreshLineTx80(byte Y);
+> void HiresRefreshLine0(byte Y);
+> void HiresRefreshLine1(byte Y);
+> void HiresRefreshLine2(byte Y);
+> void HiresRefreshLine3(byte Y);
+> void HiresRefreshLine4(byte Y);
+> void HiresRefreshLine5(byte Y);
+> void HiresRefreshLine6(byte Y);
+> void HiresRefreshLine7(byte Y);
+> void HiresRefreshLine8(byte Y);
+> void HiresRefreshLine10(byte Y);
+> void HiresRefreshLine12(byte Y);
+> 
+> /** SetLowres() **********************************************/
+> /** Switch to 320x240 graphics driver.                      **/
+> /*************************************************************/
+> void SetLowres();
+> 
+> /** ResetMSX() ***********************************************/
+> /** Reset MSX emulation.                                    **/
+> /*************************************************************/
+> void ResetMSX(int hard);
+> 
+> /** RewindTape() *********************************************/
+> /** Set tape filepointer to beginning of file.              **/
+> /*************************************************************/
+> void RewindTape();
+> #endif

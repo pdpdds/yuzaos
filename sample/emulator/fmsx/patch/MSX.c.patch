@@ -1,0 +1,200 @@
+189,202c189,202
+<   RefreshLine0,   /* SCR 0:  TEXT 40x24  */
+<   RefreshLine1,   /* SCR 1:  TEXT 32x24  */
+<   RefreshLine2,   /* SCR 2:  BLK 256x192 */
+<   RefreshLine3,   /* SCR 3:  64x48x16    */
+<   RefreshLine4,   /* SCR 4:  BLK 256x192 */
+<   RefreshLine5,   /* SCR 5:  256x192x16  */
+<   RefreshLine6,   /* SCR 6:  512x192x4   */
+<   RefreshLine7,   /* SCR 7:  512x192x16  */
+<   RefreshLine8,   /* SCR 8:  256x192x256 */
+<   0,              /* SCR 9:  NONE        */
+<   RefreshLine10,  /* SCR 10: YAE 256x192 */
+<   RefreshLine10,  /* SCR 11: YAE 256x192 */
+<   RefreshLine12,  /* SCR 12: YJK 256x192 */
+<   RefreshLineTx80 /* SCR 0:  TEXT 80x24  */
+---
+>   HiresRefreshLine0,   /* SCR 0:  TEXT 40x24  */
+>   HiresRefreshLine1,   /* SCR 1:  TEXT 32x24  */
+>   HiresRefreshLine2,   /* SCR 2:  BLK 256x192 */
+>   HiresRefreshLine3,   /* SCR 3:  64x48x16    */
+>   HiresRefreshLine4,   /* SCR 4:  BLK 256x192 */
+>   HiresRefreshLine5,   /* SCR 5:  256x192x16  */
+>   HiresRefreshLine6,   /* SCR 6:  512x192x4   */
+>   HiresRefreshLine7,   /* SCR 7:  512x192x16  */
+>   HiresRefreshLine8,   /* SCR 8:  256x192x256 */
+>   0,                   /* SCR 9:  NONE        */
+>   HiresRefreshLine10,  /* SCR 10: YAE 256x192 */
+>   HiresRefreshLine10,  /* SCR 11: YAE 256x192 */
+>   HiresRefreshLine12,  /* SCR 12: YJK 256x192 */
+>   HiresRefreshLineTx80 /* SCR 0:  TEXT 80x24  */
+675a676
+> #ifndef SDL
+685a687
+> #endif
+871a874,880
+> #ifdef SDL
+> case 0x04: if(Use8950) return 2; else return(NORAM);
+> case 0x05: if(Use8950) return 0; else return(NORAM);
+> case 0xC0: if(Use8950) return ReadAUDIO(0); else return(NORAM);
+> case 0xC1: if(Use8950) return ReadAUDIO(1); else return(NORAM);
+> #endif
+> 
+1005a1015
+> #ifndef SDL
+1006a1017,1019
+> #else
+>   return ReadPSG(PSG.Latch);
+> #endif
+1024a1038
+> #ifndef SDL
+1027d1040
+< case 0x91: Printer(Value);return;                 /* Printer Data   */
+1028a1042,1049
+> #else
+> case 0x7C: OPLL.Latch=Value;return;               /* OPLL Register# */
+> case 0x7D: WriteOPLL(OPLL.Latch,Value);return;    /* OPLL Data      */
+> case 0xA0: PSG.Latch=Value;return;                /* PSG Register#  */
+> case 0xC0: WriteAUDIO(0,Value);return;            /* AUDIO Register#*/
+> case 0xC1: WriteAUDIO(1,Value);return;            /* AUDIO Data     */
+> #endif
+> case 0x91: Printer(Value);return;                 /* Printer Data   */
+1154a1176
+> #ifndef SDL
+1156a1179,1181
+> #else
+>   WritePSG(PSG.Latch,Value);
+> #endif
+1242a1268
+> #ifndef SDL
+1276a1303,1309
+> #else
+>   if((A&0xFF00)==0x9800 || (A&0xFF00)==0xB800)
+>   {
+>         Write2212(A,V);
+>         return;
+>   }
+> #endif
+1830a1864
+> #ifndef SDL
+1834a1869
+> #endif
+2035a2071
+> #ifndef SDL
+2045a2082
+> #endif
+2408a2446,2559
+> 
+> #ifdef SDL
+> /** SetLowres() **********************************************/
+> /** Switch to 320x240 graphics driver.                      **/
+> /*************************************************************/
+> void SetLowres()
+> {
+> #ifdef NARROW
+>   WIDTH=320;HEIGHT=240;
+>   RefreshLine[0]=RefreshLine0;
+>   RefreshLine[1]=RefreshLine1;
+>   RefreshLine[2]=RefreshLine2;
+>   RefreshLine[3]=RefreshLine3;
+>   RefreshLine[4]=RefreshLine4;
+>   RefreshLine[5]=RefreshLine5;
+>   RefreshLine[6]=RefreshLine6;
+>   RefreshLine[7]=RefreshLine7;
+>   RefreshLine[8]=RefreshLine8;
+>   RefreshLine[9]=0;
+>   RefreshLine[10]=RefreshLine10;
+>   RefreshLine[11]=RefreshLine10;
+>   RefreshLine[12]=RefreshLine12;
+>   RefreshLine[13]=RefreshLineTx80;
+> #endif
+>   return;
+> }
+> 
+> /** ResetMSX() ***********************************************/
+> /** Reset MSX emulation.                                    **/
+> /*************************************************************/
+> void ResetMSX(int hard)
+> {
+> 
+>   int J;
+>   
+>   /*** VDP status register states: ***/
+>   static byte VDPSInit[16] = { 0x9F,0,0x6C,0,0,0,0,0,0,0,0,0,0,0,0,0 };
+>   
+>   /*** VDP control register states: ***/
+>   static byte VDPInit[64]  = {
+>     0x00,0x10,0xFF,0xFF,0xFF,0xFF,0x00,0x00,
+>     0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+>     0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+>     0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+>     0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+>     0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+>     0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
+>   };
+> 
+>   /*** Initial palette: ***/
+>   static byte PalInit[16][3] = {
+>     {0x00,0x00,0x00},{0x00,0x00,0x00},{0x20,0xC0,0x20},{0x60,0xE0,0x60},
+>     {0x20,0x20,0xE0},{0x40,0x60,0xE0},{0xA0,0x20,0x20},{0x40,0xC0,0xE0},
+>     {0xE0,0x20,0x20},{0xE0,0x60,0x60},{0xC0,0xC0,0x20},{0xC0,0xC0,0x80},
+>     {0x20,0x80,0x20},{0xC0,0x40,0xA0},{0xA0,0xA0,0xA0},{0xE0,0xE0,0xE0},
+>   };
+> 
+>   /* Initialize palette */
+>   for(J=0;J<16;J++) {
+>     Palette[J]=RGB2INT(PalInit[J][0],PalInit[J][1],PalInit[J][2]);
+>     SetColor(J,PalInit[J][0],PalInit[J][1],PalInit[J][2]);
+>   }
+> 
+>   memcpy(VDP,VDPInit,sizeof(VDP));
+>   memcpy(VDPStatus,VDPSInit,sizeof(VDPStatus));
+>   memset(KeyMap,0xFF,16);               /* Keyboard         */
+>   IRQPending=0x00;                      /* No IRQs pending  */
+>   SCCOn[0]=SCCOn[1]=0;                  /* SCCs off for now */
+>   RTCReg=RTCMode=0;                     /* Clock registers  */
+>   KanCount=0;KanLetter=0;               /* Kanji extension  */
+>   ChrTab=ColTab=ChrGen=VRAM;            /* VDP tables       */
+>   SprTab=SprGen=VRAM;
+>   ChrTabM=ColTabM=ChrGenM=SprTabM=~0;   /* VDP addr. masks  */
+>   VPAGE=VRAM;                           /* VRAM page        */
+>   FGColor=BGColor=XFGColor=XBGColor=0;  /* VDP colors       */
+>   ScrMode=0;                            /* Screen mode      */
+>   VKey=PKey=1;WKey=0;                   /* VDP keys         */
+>   VAddr=0x0000;                         /* VRAM access addr */
+>   ScanLine=0;                           /* Current scanline */
+>   VDPData=NORAM;                        /* VDP data buffer  */
+>   UseFont=0;                            /* Extern. font use */   
+> 
+>   /* init memory */
+>   for(J=0;J<4;J++)
+>   {
+>     EnWrite[J]=0;                      /* Write protect ON for all slots */
+>     PSL[J]=SSL[J]=0;                   /* PSL=0:0:0:0, SSL=0:0:0:0       */
+>     MemMap[3][2][J*2]   = RAMData+(3-J)*0x4000;        /* RAMMap=3:2:1:0 */
+>     MemMap[3][2][J*2+1] = MemMap[3][2][J*2]+0x2000;
+>     RAMMapper[J]        = 3-J;
+>     RAM[J*2]            = MemMap[0][0][J*2];           /* Setting RAM    */
+>     RAM[J*2+1]          = MemMap[0][0][J*2+1];
+>   }
+> 
+>   if(hard) memset(RAMData,NORAM,RAMPages*0x4000);
+>   
+>   /* Set "V9958" VDP version for MSX2+ */
+>   if(MSXVersion>=2) VDPStatus[1]|=0x04;
+>   
+>   /* Reset soundchips */
+>   ResetSound();
+>   
+>   /* Reset CPU */
+>   ResetZ80(&CPU);
+> }
+> 
+> /** RewindTape() *********************************************/
+> /** Set tape filepointer to beginning of file.              **/
+> /*************************************************************/
+> void RewindTape()
+> {
+>   if(CasStream!=NULL) fseek(CasStream,0,SEEK_SET);
+> }
+> #endif /* SDL */

@@ -1,0 +1,503 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="DEBUG_WIN32_DLL|Win32">
+      <Configuration>DEBUG_WIN32_DLL</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DEBUG_WIN32|Win32">
+      <Configuration>DEBUG_WIN32</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AnimatedGraphic.h" />
+    <ClInclude Include="AStarHeuristicPolicies.h" />
+    <ClInclude Include="autolist.h" />
+    <ClInclude Include="base64.h" />
+    <ClInclude Include="Bomb.h" />
+    <ClInclude Include="BombermanStructure.h" />
+    <ClInclude Include="BreakableLayer.h" />
+    <ClInclude Include="C2DMatrix.h" />
+    <ClInclude Include="Callback.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="cellspacepartition.h" />
+    <ClInclude Include="Collision.h" />
+    <ClInclude Include="CollisionManager.h" />
+    <ClInclude Include="ConsoleUtils.h" />
+    <ClInclude Include="CrudeTimer.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="ExploreGoal_Evaluator.h" />
+    <ClInclude Include="Explosion.h" />
+    <ClInclude Include="FrameCounter.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GameConstant.h" />
+    <ClInclude Include="GameMap.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameObjectFactory.h" />
+    <ClInclude Include="GameObjectManager.h" />
+    <ClInclude Include="GameOverState.h" />
+    <ClInclude Include="GameState.h" />
+    <ClInclude Include="GameStateMachine.h" />
+    <ClInclude Include="geometry.h" />
+    <ClInclude Include="GetBombGoal_Evaluator.h" />
+    <ClInclude Include="Goal.h" />
+    <ClInclude Include="Goal_Composite.h" />
+    <ClInclude Include="Goal_Evaluator.h" />
+    <ClInclude Include="Goal_Explore.h" />
+    <ClInclude Include="Goal_FollowPath.h" />
+    <ClInclude Include="Goal_GetItem.h" />
+    <ClInclude Include="Goal_InstallBomb.h" />
+    <ClInclude Include="Goal_MoveToPosition.h" />
+    <ClInclude Include="Goal_SeekToPosition.h" />
+    <ClInclude Include="Goal_SetBomb.h" />
+    <ClInclude Include="Goal_Think.h" />
+    <ClInclude Include="Goal_TraverseEdge.h" />
+    <ClInclude Include="Goal_Types.h" />
+    <ClInclude Include="Goal_Wander.h" />
+    <ClInclude Include="GraphAlgorithms.h" />
+    <ClInclude Include="GraphEdgeTypes.h" />
+    <ClInclude Include="GraphNodeTypes.h" />
+    <ClInclude Include="HandyGraphFunctions.h" />
+    <ClInclude Include="IDGenerator.h" />
+    <ClInclude Include="InputHandler.h" />
+    <ClInclude Include="InstallBombGoal_Evaluator.h" />
+    <ClInclude Include="InvertedAABBox2D.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="Layer.h" />
+    <ClInclude Include="Level.h" />
+    <ClInclude Include="LevelParser.h" />
+    <ClInclude Include="LoaderParams.h" />
+    <ClInclude Include="MainMenuState.h" />
+    <ClInclude Include="MapLoader.h" />
+    <ClInclude Include="MenuButton.h" />
+    <ClInclude Include="MenuState.h" />
+    <ClInclude Include="MessageDispatcher.h" />
+    <ClInclude Include="Messages.h" />
+    <ClInclude Include="NodeTypeEnumerations.h" />
+    <ClInclude Include="ObjectLayer.h" />
+    <ClInclude Include="pathedge.h" />
+    <ClInclude Include="PathManager.h" />
+    <ClInclude Include="PathPlanner.h" />
+    <ClInclude Include="PathTarget.h" />
+    <ClInclude Include="PauseState.h" />
+    <ClInclude Include="PlatformerObject.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayState.h" />
+    <ClInclude Include="PriorityQueue.h" />
+    <ClInclude Include="Regulator.h" />
+    <ClInclude Include="ResourceConstant.h" />
+    <ClInclude Include="RTTI.h" />
+    <ClInclude Include="ScrollingBackground.h" />
+    <ClInclude Include="SearchTerminationPolicies.h" />
+    <ClInclude Include="Smoother.h" />
+    <ClInclude Include="Snail.h" />
+    <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="SparseGraph.h" />
+    <ClInclude Include="StateParser.h" />
+    <ClInclude Include="SteeringBehaviors.h" />
+    <ClInclude Include="Stream_Utility_Functions.h" />
+    <ClInclude Include="Telegram.h" />
+    <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="TileLayer.h" />
+    <ClInclude Include="TimeSlicedGraphAlgorithms.h" />
+    <ClInclude Include="tinystr.h" />
+    <ClInclude Include="tinyxml.h" />
+    <ClInclude Include="Transformations.h" />
+    <ClInclude Include="Trigger.h" />
+    <ClInclude Include="TriggerGenerator.h" />
+    <ClInclude Include="TriggerItemGiver.h" />
+    <ClInclude Include="TriggerLimitedLifeTime.h" />
+    <ClInclude Include="TriggerRegion.h" />
+    <ClInclude Include="TriggerSystem.h" />
+    <ClInclude Include="Turret.h" />
+    <ClInclude Include="TypeToString.h" />
+    <ClInclude Include="utils.h" />
+    <ClInclude Include="Vector2D.h" />
+    <ClInclude Include="Wall.h" />
+    <ClInclude Include="Wall2D.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AnimatedGraphic.cpp" />
+    <ClCompile Include="base64.cpp" />
+    <ClCompile Include="Bomb.cpp" />
+    <ClCompile Include="BreakableLayer.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CollisionManager.cpp" />
+    <ClCompile Include="CrudeTimer.cpp" />
+    <ClCompile Include="ExploreGoal_Evaluator.cpp" />
+    <ClCompile Include="Explosion.cpp" />
+    <ClCompile Include="FrameCounter.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameMap.cpp" />
+    <ClCompile Include="GameObjectFactory.cpp" />
+    <ClCompile Include="GameObjectManager.cpp" />
+    <ClCompile Include="GameOverState.cpp" />
+    <ClCompile Include="GameStateMachine.cpp" />
+    <ClCompile Include="GetBombGoal_Evaluator.cpp" />
+    <ClCompile Include="Goal_Explore.cpp" />
+    <ClCompile Include="Goal_FollowPath.cpp" />
+    <ClCompile Include="Goal_GetItem.cpp" />
+    <ClCompile Include="Goal_InstallBomb.cpp" />
+    <ClCompile Include="Goal_MoveToPosition.cpp" />
+    <ClCompile Include="Goal_SeekToPosition.cpp" />
+    <ClCompile Include="Goal_SetBomb.cpp" />
+    <ClCompile Include="Goal_Think.cpp" />
+    <ClCompile Include="Goal_TraverseEdge.cpp" />
+    <ClCompile Include="Goal_Wander.cpp" />
+    <ClCompile Include="GraphEdgeTypes.cpp" />
+    <ClCompile Include="IDGenerator.cpp" />
+    <ClCompile Include="InputHandler.cpp" />
+    <ClCompile Include="InstallBombGoal_Evaluator.cpp" />
+    <ClCompile Include="Item.cpp" />
+    <ClCompile Include="Level.cpp" />
+    <ClCompile Include="LevelParser.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenuState.cpp" />
+    <ClCompile Include="MapLoader.cpp" />
+    <ClCompile Include="MenuButton.cpp" />
+    <ClCompile Include="MessageDispatcher.cpp" />
+    <ClCompile Include="ObjectLayer.cpp" />
+    <ClCompile Include="PathPlanner.cpp" />
+    <ClCompile Include="PauseState.cpp" />
+    <ClCompile Include="PlatformerObject.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayState.cpp" />
+    <ClCompile Include="Regulator.cpp" />
+    <ClCompile Include="ScrollingBackground.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="StateParser.cpp" />
+    <ClCompile Include="SteeringBehaviors.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="TileLayer.cpp" />
+    <ClCompile Include="tinystr.cpp" />
+    <ClCompile Include="tinyxml.cpp" />
+    <ClCompile Include="tinyxmlerror.cpp" />
+    <ClCompile Include="tinyxmlparser.cpp" />
+    <ClCompile Include="TriggerGenerator.cpp" />
+    <ClCompile Include="TriggerItemGiver.cpp" />
+    <ClCompile Include="utils.cpp" />
+    <ClCompile Include="Vector2D.cpp" />
+    <ClCompile Include="Wall.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{EFAE5E70-3301-447A-9293-C798C3FC14B6}</ProjectGuid>
+    <RootNamespace>Kernel</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>bomberman</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DEBUG_WIN32|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DEBUG_WIN32_DLL|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DEBUG_WIN32|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DEBUG_WIN32_DLL|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\Intermediate\$(ProjectName)\</IntDir>
+    <ExtensionsToDeleteOnClean>*.exp *.obj%3b*.ilk%3b*.tlb%3b*.tli%3b*.tlh%3b*.tmp%3b*.rsp%3b*.pgc%3b*.pgd%3b$(TargetPath)</ExtensionsToDeleteOnClean>
+    <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
+    <TargetName>$(ProjectName)</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DEBUG_WIN32|Win32'">
+    <OutDir>$(SolutionDir)Debug\</OutDir>
+    <IntDir>$(SolutionDir)$(ProjectName)Intermediate\</IntDir>
+    <ExtensionsToDeleteOnClean>*.exp *.obj%3b*.ilk%3b*.tlb%3b*.tli%3b*.tlh%3b*.tmp%3b*.rsp%3b*.pgc%3b*.pgd%3b$(TargetPath)</ExtensionsToDeleteOnClean>
+    <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
+    <TargetName>$(ProjectName)</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DEBUG_WIN32_DLL|Win32'">
+    <OutDir>$(SolutionDir)Debug\</OutDir>
+    <IntDir>$(SolutionDir)\Intermediate\$(ProjectName)\</IntDir>
+    <ExtensionsToDeleteOnClean>*.exp *.obj%3b*.ilk%3b*.tlb%3b*.tli%3b*.tlh%3b*.tmp%3b*.rsp%3b*.pgc%3b*.pgd%3b$(TargetPath)</ExtensionsToDeleteOnClean>
+    <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
+    <TargetName>$(ProjectName)</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IntDir>$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/Oy  /Zc:threadSafeInit- /arch:SSE %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <AdditionalIncludeDirectories>./;../include;../../../corelib/include;../../../runtime/include;../../../corelib/STL/SGI;../../../ThirdParty/SDL/SDL2/SDL/include;../../../corelib/tinygl/include;../../../ThirdParty/SDL/SDL2/SDLttf;../../../ThirdParty/SDL/SDL2/SDLgfx;../../../ThirdParty/SDL/SDL2/SDLIMAGE;../../../corelib/streams;../../../ThirdParty/SDL/SDL2/SDLMixer;../../../ThirdParty/zlib128/zlib</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;SKYOS32;_CRT_SECURE_NO_WARNINGS;__i386__;_MSC_VER=1920</PreprocessorDefinitions>
+      <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
+      <StringPooling>
+      </StringPooling>
+      <ExceptionHandling>false</ExceptionHandling>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <AssemblerOutput>NoListing</AssemblerOutput>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CallingConvention>Cdecl</CallingConvention>
+      <DisableSpecificWarnings>4146;4244;4267;4018;4305</DisableSpecificWarnings>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <LanguageStandard>
+      </LanguageStandard>
+      <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <SDLCheck>false</SDLCheck>
+    </ClCompile>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <Link>
+      <AdditionalDependencies>zlib128.lib;streams.lib;sdlmixer.lib;libpng.lib;sdlimage.lib;systemcall.lib;sdl.lib;libcrt.lib;libwin32.lib;exestub.lib;math.lib;filemanager.lib;sdl2_ttf.lib</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>../../../Debug;../../../$(Configuration);../../../corelib/debug;../../../runtime/debug;../../../ThirdParty/SDL/SDL2/debug;../../../ThirdParty/debug</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(OutDir)$(TargetName).map</MapFileName>
+      <SubSystem>Console</SubSystem>
+      <Driver>NotSet</Driver>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <FunctionOrder>
+      </FunctionOrder>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <NoEntryPoint>false</NoEntryPoint>
+      <BaseAddress>0x08000000</BaseAddress>
+      <FixedBaseAddress>
+      </FixedBaseAddress>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <FullProgramDatabaseFile>true</FullProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <AddModuleNamesToAssembly>
+      </AddModuleNamesToAssembly>
+      <ForceSymbolReferences>
+      </ForceSymbolReferences>
+      <AdditionalOptions>/safeseh:no /ALIGN:1024
+ /SUBSYSTEM:CONSOLE
+/NODEFAULTLIB:LIBC %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DEBUG_WIN32|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/Oy %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <AdditionalIncludeDirectories>../../include;../Include;../../librt/include;../kernelcore</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>SKY_EMULATOR;_MSC_VER;__STDC__;i386;DLL_EXPORT</PreprocessorDefinitions>
+      <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
+      <StringPooling>
+      </StringPooling>
+      <ExceptionHandling>false</ExceptionHandling>
+      <StructMemberAlignment>1Byte</StructMemberAlignment>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <AssemblerOutput>NoListing</AssemblerOutput>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <CallingConvention>Cdecl</CallingConvention>
+      <DisableSpecificWarnings>4457;4189;4100;4702;4102;4244;4239;4333;4127;4554</DisableSpecificWarnings>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <LanguageStandard>
+      </LanguageStandard>
+      <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <SDLCheck>false</SDLCheck>
+    </ClCompile>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <Link>
+      <AdditionalDependencies>libcrt.lib;dllstub.lib;libds.lib;libstring.lib</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>../debug;../librt/debug</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(OutDir)$(TargetName).map</MapFileName>
+      <SubSystem>Console</SubSystem>
+      <Driver>NotSet</Driver>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <FunctionOrder>
+      </FunctionOrder>
+      <EntryPointSymbol>_DllMainCRTStartup</EntryPointSymbol>
+      <NoEntryPoint>false</NoEntryPoint>
+      <BaseAddress>
+      </BaseAddress>
+      <FixedBaseAddress>
+      </FixedBaseAddress>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <FullProgramDatabaseFile>true</FullProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <AddModuleNamesToAssembly>
+      </AddModuleNamesToAssembly>
+      <ForceSymbolReferences>
+      </ForceSymbolReferences>
+      <AdditionalOptions>/safeseh:no /ALIGN:1024
+ /SUBSYSTEM:CONSOLE
+/NODEFAULTLIB:LIBC %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Lib>
+      <OutputFile>../debug/$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DEBUG_WIN32_DLL|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/Oy %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <AdditionalIncludeDirectories>../../thirdparty/skysdlimage/;../../librt/exestub;../../include;../Include;../../librt/include;../../kernelcore;../../thirdparty/skysdl/include;../../librt/libstring;../../module/include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>SKY_DLL;SKYOS32;_CRT_SECURE_NO_WARNINGS;__i386__;DLL_EXPORT;_WIN32</PreprocessorDefinitions>
+      <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
+      <StringPooling>
+      </StringPooling>
+      <ExceptionHandling>false</ExceptionHandling>
+      <StructMemberAlignment>1Byte</StructMemberAlignment>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <AssemblerOutput>NoListing</AssemblerOutput>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <CallingConvention>Cdecl</CallingConvention>
+      <DisableSpecificWarnings>4457;4189;4100;4702;4102;4244;4239;4333;4127;4554</DisableSpecificWarnings>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <LanguageStandard>
+      </LanguageStandard>
+      <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <SDLCheck>false</SDLCheck>
+    </ClCompile>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <Link>
+      <AdditionalDependencies>libcrt.lib;exestub.lib;libds.lib;libstring.lib;skysdl.lib;libc.lib;libmath.lib;skysdlimage.lib;libpng.lib</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>../../debug;../../librt/debug</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(OutDir)$(TargetName).map</MapFileName>
+      <SubSystem>Console</SubSystem>
+      <Driver>NotSet</Driver>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <FunctionOrder>
+      </FunctionOrder>
+      <EntryPointSymbol>_DllMainCRTStartup</EntryPointSymbol>
+      <NoEntryPoint>false</NoEntryPoint>
+      <BaseAddress>
+      </BaseAddress>
+      <FixedBaseAddress>
+      </FixedBaseAddress>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <FullProgramDatabaseFile>true</FullProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <AddModuleNamesToAssembly>
+      </AddModuleNamesToAssembly>
+      <ForceSymbolReferences>
+      </ForceSymbolReferences>
+      <AdditionalOptions>/safeseh:no /ALIGN:1024
+ /SUBSYSTEM:CONSOLE
+/NODEFAULTLIB:LIBC %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Lib>
+      <OutputFile>../../debug/$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <DisableSpecificWarnings>4457</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>./;../../CommonLib;../../Include;./CPU;./Memory;./Heap;./Test;../../CommonLib/stl;../../CommonLib/jsmn;./FileSystem</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ARCH_X86;</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+  </ImportGroup>
+</Project>

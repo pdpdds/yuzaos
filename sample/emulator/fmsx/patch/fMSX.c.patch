@@ -1,0 +1,49 @@
+16a17,20
+> #ifdef SDL
+> #include "SDL.h"
+> #endif
+> 
+32a37,39
+> #ifdef SDL
+>   "msxmusic","msxaudio","buffer","lowres","filter","stereo",
+> #endif
+44a52
+> extern int   SndBufSize; /* Size of audio buffer (#ifdef SDL)   */
+80a89,94
+> #ifdef SDL
+> #ifndef UNIX
+>   Verbose=0;
+> #endif
+> #endif
+> 
+104a119
+> #ifndef SDL
+154a170
+> #endif
+176a193
+> #ifndef SDL
+184a202
+> #endif
+216a235
+> #ifndef SDL
+281a301,320
+> #endif /* SDL */
+> #ifdef SDL
+>         case 40: Use2413=1;break;
+>         case 41: Use8950=1;break;
+>         case 42: N++;
+>                  if(N<argc) SndBufSize=atoi(argv[N]);
+>                  else printf("%s: No buffer size supplied\n",argv[0]);
+>                  break;
+> #ifdef NARROW
+>         case 43: SetLowres();break;
+> #endif
+>         case 44: N++;
+>                  if(N<argc) UseFilter=atoi(argv[N]);
+>                  if(UseFilter>5 || UseFilter<0) {
+>                    printf("%s: Invalid filter mode supplied\n",argv[0]);
+>                    UseFilter=0;
+>                  }
+>                  break;
+>         case 45: UseStereo=1;break;
+> #endif /* SDL */

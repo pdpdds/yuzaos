@@ -103,14 +103,14 @@ istream& istream::operator >>(char& c)
 /**************************************************************/
 {
 	/*NOTE: If you want to skip spaces, uncomment follow loop*/
-//	do
-//	{
-//		InFunction("%c", &c); //Strange bug, scanf,fscanf, sscanf don't ignore
-//		                      //spacing when passing in single char arguments
-//	}
-//	while (c==' ');
+	do
+	{
+		InFunction("%c", &c); //Strange bug, scanf,fscanf, sscanf don't ignore
+		                      //spacing when passing in single char arguments
+	}
+	while (c==' ');
 
-	InFunction("%c", &c); //...all comment out this line if you uncomment the loop
+	//InFunction("%c", &c); //...all comment out this line if you uncomment the loop
 	return (*this);
 }
 

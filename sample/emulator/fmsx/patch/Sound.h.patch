@@ -1,0 +1,27 @@
+109a110
+> #ifndef SDL
+134a136
+> #endif /* SDL */
+135a138,159
+> 
+> #ifdef SDL
+> /*************************************************************/
+> /* SDL sound routines and constants                          */
+> /*                                                           */
+> /* The following provide sound for the SDL port.             */
+> /*************************************************************/
+> 
+> #define SND_BUFSIZE     512    /* Buffer size for DMA        */
+> #define SND_CHANNELS    16     /* Number of sound channels   */
+> #define SND_SAMPLESIZE  512    /* Max. SetWave() sample size */
+> 
+> int  InitSound(int Rate,int Verb);
+> void ResetSound();
+> void WritePSG(int R,int V);
+> void WriteSNG(int R,int V);
+> void Write2212(int R,int V);
+> void WriteOPLL(int R,int V);
+> void WriteAUDIO(int R,int V);
+> int  ReadAUDIO(int R);
+> int  ReadPSG(int R);
+> #endif /* SDL */
