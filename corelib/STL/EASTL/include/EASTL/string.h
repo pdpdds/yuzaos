@@ -2437,7 +2437,7 @@ namespace eastl
 				EASTL_FAIL_MSG("basic_string::erase -- invalid position");
 		#endif
 
-		memmove(const_cast<value_type*>(p), p + 1, (size_t)(mpEnd - p) * sizeof(value_type));
+		memmove(const_cast<value_type*>(p), (void*)(p + 1), (size_t)(mpEnd - p) * sizeof(value_type));
 		--mpEnd;
 		return const_cast<value_type*>(p);
 	}
@@ -3254,7 +3254,7 @@ namespace eastl
 		if((mpEnd + 1) < mpCapacity)
 		{
 			*(mpEnd + 1) = 0;
-			memmove(const_cast<value_type*>(p) + 1, p, (size_t)(mpEnd - p) * sizeof(value_type));
+			memmove(const_cast<value_type*>(p) + 1, (void*)p, (size_t)(mpEnd - p) * sizeof(value_type));
 			*pNewPosition = c;
 			++mpEnd;
 		}

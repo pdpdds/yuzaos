@@ -27,6 +27,11 @@ void kHaltSystem(const char* errMsg)
 		SampleFillRect(bufferAddess, 1004, 0, 20, 20, 0xFF00FF00);
 		SampleFillRect(bufferAddess, 904, 0, 20, 20, 0xFFFFFF00);
 		kDebugPrint(errMsg);
+#if SKY_EMULATOR
+		__asm {
+			int 3
+		}
+#endif
 	}
 	else
 	{

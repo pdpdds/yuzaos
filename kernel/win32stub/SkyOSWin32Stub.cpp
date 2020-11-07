@@ -293,11 +293,6 @@ DWORD WINAPI DesktopProc(LPVOID lpParam)
 
 				unsigned int keycode = SDL_GetKeyFromScancode(event.key.keysym.scancode);
 
-				if (event.key.keysym.sym == SDLK_COLON || event.key.keysym.sym == SDLK_SEMICOLON)
-				{
-					int j = 1;
-				}
-
 				BYTE bScancode = pInputHandler->ConvertKeycodeToScancode(keycode);
 
 				if (bScancode != 0)

@@ -17,7 +17,7 @@
 #include<functional.h>
 int main(int argc, char** argv)
 {
-    const Gwk::Point screenSize(1024, 768);
+    const Gwk::Point screenSize(640, 480);
 
     if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER) != 0)
         return EXIT_FAILURE;

@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="header">
+      <UniqueIdentifier>{29fa8534-f02d-4a5f-9789-95ea7737209c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{f60e69e6-ca77-47a9-abbc-776ec1b045f6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="application.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="base_text_buffer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="color.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="coord.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="cpp_highlighter.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="current_dir.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="deja_vu_sans_mono.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="dialog.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="full_file_name.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="isearch_buffer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="key_event.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="layout.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="layoutable.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="main_window.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="open_dialog.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="painter.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="save_dialog.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="screen.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="status_bar.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="tabs.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="text_file.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="text_input_event.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="to_utf8.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="to_utf16.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="undo_stack.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="widget.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="application.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="base_text_buffer.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="char_traits.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="color.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="coord.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="cpp_highlighter.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="current_dir.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="deja_vu_sans_mono.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="deliting_object.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="dialog.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="full_file_name.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="isearch_buffer.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="key_event.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="layout.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="layoutable.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="main_window.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="open_dialog.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="paint_device.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="paint_event.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="painter.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="resize_event.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="RTTI.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="save_dialog.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="screen.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="status_bar.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="tabs.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="text_file.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="text_input_event.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="to_utf8.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="to_utf16.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="undo_stack.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="widget.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="bind.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="functional.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="eastlbind.h">
+      <Filter>header</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-//namespace eastl
-//{
+namespace eastl
+{
 
 /**************************************************************/
 istream::istream()
@@ -57,9 +57,9 @@ istream& istream::getline(char* s, int streamsize, char delimiter)
 }
 
 /**************************************************************/
-//istream& istream::getline(string& s, char delimiter)
+istream& istream::getline(eastl::string& s, char delimiter)
 /**************************************************************/
-/*{
+{
 	int ctr = 0;
 	char current; //embedded visual c++ 4.0 bug, can't disambiguate between char and char*
 	//TODO: This implementation gives bugs when using istringstring or stringstream.getline()
@@ -74,7 +74,7 @@ istream& istream::getline(char* s, int streamsize, char delimiter)
 
 
 	return (*this);
-}*/
+}
 
 /**************************************************************/
 template <typename T> istream& istream::operator>>(T &var)
@@ -102,15 +102,16 @@ template <typename T> istream& istream::operator>>(T &var)
 istream& istream::operator >>(char& c)
 /**************************************************************/
 {
+	//20201105
 	/*NOTE: If you want to skip spaces, uncomment follow loop*/
-//	do
-//	{
-//		InFunction("%c", &c); //Strange bug, scanf,fscanf, sscanf don't ignore
-//		                      //spacing when passing in single char arguments
-//	}
-//	while (c==' ');
+	do
+	{
+		InFunction("%c", &c); //Strange bug, scanf,fscanf, sscanf don't ignore
+		                      //spacing when passing in single char arguments
+	}
+	while (c==' ');
 
-	InFunction("%c", &c); //...all comment out this line if you uncomment the loop
+	//InFunction("%c", &c); //...all comment out this line if you uncomment the loop
 	return (*this);
 }
 
@@ -197,20 +198,20 @@ istream& istream::operator >>(unsigned short& us)
 }
 
 /**************************************************************/
-//istream& istream::operator >>(string& s)
+istream& istream::operator >>(eastl::string& s)
 /**************************************************************/
-/*{
+{
 	char buffer[MAX_SIZE_STD_STRING_IN_STREAM]; //The buffer size can't be known, max 2 K
 	InFunction("%s", buffer);
 	string temp(buffer);
 	s = buffer;
 	return (*this);
-}*/
+}
 
 /**************************************************************/
-//istream::operator void*()
+istream::operator void*()
 /**************************************************************/
-/*{
+{
 	
 	if (!(this->ios::operator void *()))
 		return false;
@@ -220,6 +221,6 @@ istream& istream::operator >>(unsigned short& us)
 		
 	return (void*)true;
 
-}*/
+}
 
-//}; /*end namespace ppcStreams*/
+}; /*end namespace ppcStreams*/

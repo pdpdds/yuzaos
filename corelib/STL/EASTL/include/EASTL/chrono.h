@@ -23,7 +23,8 @@
 #include <EASTL/type_traits.h>
 #include <EASTL/numeric_limits.h>
 #include <EASTL/ratio.h>
-
+#include <gettimeofday.h>
+#include <systemcall_impl.h>
 
 // TODO:  move to platform specific cpp or header file
 #if  defined EA_PLATFORM_MICROSOFT
@@ -579,8 +580,13 @@ namespace chrono
 				return nMicroseconds;
 			#endif
 		#elif defined(SKYOS32)
-			//20191026
-			return 0;
+
+			const uint64_t nMicroseconds = Syscall_GetTickCount();
+			return nMicroseconds * 1000;
+			//struct timeval tv;
+			//gettimeofday(&tv, NULL);
+			//const uint64_t nMicroseconds = (uint64_t)tv.tv_usec + ((uint64_t)tv.tv_sec * 1000000);
+			//return nMicroseconds;
         #else
 			#error "chrono not implemented for platform"
 		#endif

@@ -64,9 +64,6 @@
     <ClCompile Include="libc\strtoi64.c">
       <Filter>libc</Filter>
     </ClCompile>
-    <ClCompile Include="libc\towupper.c">
-      <Filter>libc</Filter>
-    </ClCompile>
     <ClCompile Include="libc\unistd.c">
       <Filter>libc</Filter>
     </ClCompile>
@@ -231,6 +228,126 @@
     <ClCompile Include="arch\ctrycatch.cpp">
       <Filter>arch</Filter>
     </ClCompile>
+    <ClCompile Include="libc\cwtype\iswalnum.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\iswalnum_l.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\iswalpha.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\iswalpha_l.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\iswblank.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\iswblank_l.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\iswcntrl.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\iswcntrl_l.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\iswctype.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\iswctype_l.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\iswdigit.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\iswdigit_l.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\iswgraph.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\iswgraph_l.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\iswlower.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\iswlower_l.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\iswprint.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\iswprint_l.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\iswpunct.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\iswpunct_l.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\iswspace.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\iswspace_l.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\iswupper.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\iswupper_l.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\iswxdigit.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\iswxdigit_l.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\jp2uc.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\toascii_l.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\tolower_l.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\toupper_l.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\towctrans.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\towctrans_l.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\towlower.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\towlower_l.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\towupper.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\towupper_l.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\wctrans.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\wctrans_l.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\wctype.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\cwtype\wctype_l.c">
+      <Filter>libc\cwtype</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">
@@ -262,6 +379,9 @@
     </Filter>
     <Filter Include="arch">
       <UniqueIdentifier>{5a834978-19f6-4ee3-9ea1-7562e0ba4401}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libc\cwtype">
+      <UniqueIdentifier>{fd5dcad9-5871-4273-8aa8-d95baaa2c630}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -327,6 +447,18 @@
     </ClInclude>
     <ClInclude Include="string\printf.h">
       <Filter>string</Filter>
+    </ClInclude>
+    <ClInclude Include="libc\cwtype\jp2uc.h">
+      <Filter>libc\cwtype</Filter>
+    </ClInclude>
+    <ClInclude Include="libc\cwtype\local.h">
+      <Filter>libc\cwtype</Filter>
+    </ClInclude>
+    <ClInclude Include="libc\cwtype\utf8alpha.h">
+      <Filter>libc\cwtype</Filter>
+    </ClInclude>
+    <ClInclude Include="libc\cwtype\utf8print.h">
+      <Filter>libc\cwtype</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

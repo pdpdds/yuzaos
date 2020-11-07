@@ -1,10 +1,13 @@
 #include "SkyInputManager.h"
-#include "intrinsic.h"
 #include "SystemAPI.h"
 
 SkyInputManager::SkyInputManager()
-	: m_mutex(0)
+	: m_mutex(0),
+	m_pKeyQueue(0),
+    m_pMouseQueue(0)
 {
+	memset(m_keyQueueBuffer, 0, sizeof(KEYDATA) * KEY_MAXQUEUECOUNT);
+	memset(m_mouseQueueBuffer, 0, sizeof(MOUSEDATA) * MOUSE_MAXQUEUECOUNT);
 }
 
 SkyInputManager::~SkyInputManager()

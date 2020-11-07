@@ -11,13 +11,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ctype\iswcntrl.c" />
-    <ClCompile Include="ctype\iswcntrl_l.c" />
-    <ClCompile Include="ctype\iswprint.c" />
-    <ClCompile Include="ctype\iswprint_l.c" />
-    <ClCompile Include="ctype\iswspace.c" />
-    <ClCompile Include="ctype\towlower.c" />
-    <ClCompile Include="ctype\towlower_l.c" />
     <ClCompile Include="unicode.c" />
     <ClCompile Include="wcpcpy.c" />
     <ClCompile Include="wcpncpy.c" />
@@ -112,7 +105,7 @@
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <AdditionalIncludeDirectories>../include;../../corelib/include;../../corelib/STL/SGI;./libc/time;../../runtime/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_X86_32;_MSC_VER;__i386__;LIBC_KERNEL;_KRNL_DLL;DLL_WSTRING_EXPORT</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SKYOS32;DLL_WSTRING_EXPORT</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>

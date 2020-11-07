@@ -358,6 +358,30 @@ static SDL_Scancode SkyOS_Keycodes[] = {
 	SDL_SCANCODE_PASTE, /* AKEYCODE_PASTE */
 };
 
+static IsText(int keycode)
+{
+	if (keycode >= 'A' && keycode <= 'Z')
+	{
+		return true;
+	}
+
+	if (keycode >= 'a' && keycode <= 'z')
+	{
+		return true;
+	}
+
+	if (keycode >= '0' && keycode <= '9')
+	{
+		return true;
+	}
+
+	if (keycode == ' ')
+		return true;
+
+
+	return false;
+}
+
 static SDL_Scancode TranslateKeycode(int keycode)
 {
 	SDL_Scancode scancode = SDL_SCANCODE_UNKNOWN;
@@ -562,6 +586,13 @@ SkyOS_OnKeyDown(int keycode)
 {
 	int scanCode = TranslateKeycode(keycode);
 
+//20201104
+	char text[5] = { 0, };
+	text[0] = keycode;
+
+	if(IsText(keycode))
+		SDL_SendKeyboardText(text);
+	
 	/*if (scanCode == 0)
 	{
 		scanCode = SDL_GetScancodeFromKey(keycode);

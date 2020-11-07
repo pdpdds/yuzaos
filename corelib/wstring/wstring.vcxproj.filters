@@ -39,35 +39,9 @@
     <ClCompile Include="wmemcpy.c" />
     <ClCompile Include="wmemmove.c" />
     <ClCompile Include="wmemset.c" />
-    <ClCompile Include="ctype\towlower.c">
-      <Filter>ctype</Filter>
-    </ClCompile>
-    <ClCompile Include="ctype\towlower_l.c">
-      <Filter>ctype</Filter>
-    </ClCompile>
-    <ClCompile Include="ctype\iswcntrl.c">
-      <Filter>ctype</Filter>
-    </ClCompile>
-    <ClCompile Include="ctype\iswcntrl_l.c">
-      <Filter>ctype</Filter>
-    </ClCompile>
-    <ClCompile Include="ctype\iswprint.c">
-      <Filter>ctype</Filter>
-    </ClCompile>
-    <ClCompile Include="ctype\iswprint_l.c">
-      <Filter>ctype</Filter>
-    </ClCompile>
     <ClCompile Include="wcstod.c" />
     <ClCompile Include="wcsicmp.c" />
-    <ClCompile Include="ctype\iswspace.c">
-      <Filter>ctype</Filter>
-    </ClCompile>
     <ClCompile Include="wcstoul.c" />
     <ClCompile Include="wcstol.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="ctype">
-      <UniqueIdentifier>{b4ce5b19-9d57-4a66-9e59-a526495ecebf}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
 </Project>

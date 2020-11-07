@@ -36,7 +36,6 @@ PORTABILITY
 */
 #include <windef.h>
 #include <wchar.h>
-#include <wctype.h>
 #include <../libcrt/libc/time/local.h>
 extern int __wcwidth(const wint_t ucs);
 

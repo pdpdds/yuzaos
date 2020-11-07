@@ -69,12 +69,14 @@ DUMMY_PumpEvents(_THIS)
 		// 키 이벤트 처리
 		case EVENT_KEY_DOWN:
 		{
+			SDL_SetKeyboardFocus(_this->windows);
 			pstKeyEvent = &(stReceivedEvent.stKeyEvent);			
 			SkyOS_OnKeyDown(pstKeyEvent->bASCIICode);
 		}
 		break;
 		case EVENT_KEY_UP:
 		{
+			SDL_SetKeyboardFocus(_this->windows);
 			// 여기에 키보드 이벤트 처리 코드 넣기
 			pstKeyEvent = &(stReceivedEvent.stKeyEvent);			
 			SkyOS_OnKeyUp(pstKeyEvent->bASCIICode);

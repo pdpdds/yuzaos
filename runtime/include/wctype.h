@@ -24,6 +24,8 @@
 
 /* Includes
  * - Library */
+#include <size_t.h>
+#include <stdbool.h>
 #include <osdefs.h>
 #include <locale.h>
 

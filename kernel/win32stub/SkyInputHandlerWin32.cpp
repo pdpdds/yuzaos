@@ -231,6 +231,7 @@ bool SkyInputHandlerWin32::ConvertScanCodeAndPutQueue(BYTE bScanCode)
 			m_owner->PutKeyboardQueue(&stData);
 		}
 	}
+	
 	return bResult;
 }
 
