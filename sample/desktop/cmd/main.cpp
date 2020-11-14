@@ -1,10 +1,17 @@
 ﻿#include "windef.h"
 #include "GUIConsoleFramework.h"
+#include "ConsoleShell.h"
+
+int main_impl(int argc, char** argv)
+{
+	StartConsoleShell(argc, argv);
+	return 0;
+}
 
 int main(int argc, char** argv)
 {
 	GUIConsoleFramework framework;
-	return framework.Run();
+	return framework.Run(argc, argv, main_impl);
 }
 
 #if 0

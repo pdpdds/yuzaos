@@ -26,6 +26,9 @@ GUIEngine::~GUIEngine()
 
 bool GUIEngine::Run()
 {
+	Syscall_CreateProcess("panel.dll", 0, 16);
+	Syscall_CreateProcess("cmd.dll", 0, 16);
+
 	Update(0);
 
 	return true;
@@ -122,7 +125,7 @@ char GUIEngine::GetCh()
 	QWORD qwWindowID = 0;
 	Syscall_GetCurrentConsoleWindowId(&qwWindowID);
 
-	return kGetKeyFromWindowId(qwWindowID);
+	return kGetKeyFromConsoleWindow(qwWindowID);
 }
 
 bool GUIEngine::ReceiveEventFromWindowQueue(QWORD* windowId, EVENT* pstEvent)

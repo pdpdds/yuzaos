@@ -22,9 +22,6 @@ void kStartWindowManager(LinearBufferInfo* bufferInfo)
     // 현재 마우스 위치에 커서를 출력
     kGetCursorPosition( &iMouseX, &iMouseY );
     kMoveCursor( iMouseX, iMouseY );    
-		   
-	Syscall_CreateProcess("panel.dll", 0, 16);
-	Syscall_CreateProcess("cmd.dll", 0, 16);
 }
 
 void kUpdate(bool isDirectBuffer)
@@ -432,12 +429,22 @@ bool kProcessKeyData( void )
     {
         return FALSE;
     }
-
+    
 	//SendSerialLog("Key %x, %x, %x\n", stKeyData.bASCIICode, stKeyData.bScanCode, stKeyData.bFlags);
 
     // 최상위 윈도우, 즉 선택된 윈도우로 메시지를 전송
     qwAcitveWindowID = kGetTopWindowID();
     kSetKeyEvent( qwAcitveWindowID, &stKeyData, &stEvent );
+
+    WINDOW* pstWindow = kGetWindowWithWindowLock(qwAcitveWindowID);
+    if (pstWindow != NULL)
+    {
+        
+        kPutQueue(&pstWindow->stKeyEventQueue, &stEvent);
+
+        SpinlockRelease(&pstWindow->stLock);
+    }
+
     return kSendEventToWindow( qwAcitveWindowID, &stEvent );
 }    
 
@@ -474,7 +481,7 @@ bool kProcessEventQueueData(void)
 			}
 		}
 
-        if (vstEvent[i].qwType == EVENT_CONSOLE_KEY)
+        if (vstEvent[i].qwType == EVENT_CONSOLE_PRINT)
         {
             WINDOW* pstWindow;
 
@@ -486,6 +493,7 @@ bool kProcessEventQueueData(void)
             }
 
             kPutQueue(&pstWindow->stKeyEventQueue, &vstEvent[i]);
+
 
             SpinlockRelease(&pstWindow->stLock);
             continue;

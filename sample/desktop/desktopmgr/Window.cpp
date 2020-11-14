@@ -2803,7 +2803,7 @@ inline bool kIsDrawBitmapAllOff( const DRAWBITMAP* pstDrawBitmap )
     return TRUE;
 }
 
-char kGetKeyFromWindowId(QWORD qwWindowID)
+char kGetKeyFromConsoleWindow(QWORD qwWindowID)
 {
     WINDOW* pstWindow;
     RECT stArea;
@@ -2822,6 +2822,16 @@ char kGetKeyFromWindowId(QWORD qwWindowID)
 
     if (result == false)
         return 0;
+
+    if ((data.stKeyEvent.bFlags & KEY_FLAGS_DOWN) == 0)
+        return 0;
+ 
+    if (data.stKeyEvent.bASCIICode != '\n')
+    {
+        data.qwType = EVENT_CONSOLE_KEY;
+        kSendEventToWindow(qwWindowID, &data);
+    }
+    
 
     return (char)data.stKeyEvent.bASCIICode;
 }

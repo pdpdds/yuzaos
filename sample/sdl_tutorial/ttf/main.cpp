@@ -1,7 +1,5 @@
 #include <stdio.h>
-#include <MainEntry.h>
 #include <SDL.h>
-#include <systemcall_impl.h>
 #include <SDL_ttf.h>
 
 #define TICK_INTERVAL    30
@@ -23,7 +21,7 @@ int main(int argc, char** argv)
 {
 	SDL_Window *pWindow;
 	SDL_Renderer *pRenderer;
-	TTF_Font* gFont;
+	TTF_Font* pFont;
 	
 	int width = 320;
 	int height = 200;
@@ -45,17 +43,17 @@ int main(int argc, char** argv)
 	SDL_Texture* screenTexture  = SDL_CreateTexture(pRenderer, SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_STREAMING, width, height);
 		
 #if 1
-	gFont = TTF_OpenFont("Inconsolata-Regular.ttf", 30);
+	pFont = TTF_OpenFont("Inconsolata-Regular.ttf", 30);
 #else	
-	gFont = TTF_OpenFont("beskin.ttf", 30);
+	pFont = TTF_OpenFont("beskin.ttf", 30);
 #endif
 #ifdef _WIN32
-	TTF_SetFontHinting(gFont, TTF_HINTING_MONO);
+	TTF_SetFontHinting(pFont, TTF_HINTING_MONO);
 #endif
 
 #if 1
 	SDL_Color textColor = { 0, 0, 0 };
-	SDL_Surface* textSurface = TTF_RenderText_Blended(gFont, "TTF Test", textColor);
+	SDL_Surface* textSurface = TTF_RenderText_Blended(pFont, "TTF Test", textColor);
 	SDL_Texture* mTexture = SDL_CreateTextureFromSurface(pRenderer, textSurface);
 #else
 	FILE* fp = fopen("utf8_text.txt", "rb");
@@ -64,8 +62,8 @@ int main(int argc, char** argv)
 	fclose(fp);
 
 	SDL_Color textColor = { 0, 0, 0 };
-	SDL_Surface* textSurface = TTF_RenderUTF8_Blended(gFont, utf8_string, textColor);
-	//SDL_Surface* textSurface2 = TTF_RenderText_Blended(gFont, "TTF font bug is panic!!", textColor);
+	SDL_Surface* textSurface = TTF_RenderUTF8_Blended(pFont, utf8_string, textColor);
+	//SDL_Surface* textSurface2 = TTF_RenderText_Blended(pFont, "TTF font bug is panic!!", textColor);
 	SDL_Texture* mTexture = SDL_CreateTextureFromSurface(pRenderer, textSurface);
 #endif
 
@@ -112,6 +110,7 @@ int main(int argc, char** argv)
 		next_time += TICK_INTERVAL;
 	}
 
+	TTF_CloseFont(pFont);
 	SDL_DestroyRenderer(pRenderer);
 	SDL_DestroyWindow(pWindow);
 	SDL_Quit();

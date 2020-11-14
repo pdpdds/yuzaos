@@ -40,7 +40,7 @@
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>SampleDll</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>sqlite31</ProjectName>
+    <ProjectName>sqlite3</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -159,7 +159,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>SKY_LUA_DLL_EXPORT;SKYOS32;SKY_DLL;_CRT_SECURE_NO_WARNINGS;_DEBUG;_MSC_VER;_X86_32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SKYOS32;_CRT_SECURE_NO_WARNINGS;_MSC_VER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>false</SDLCheck>
       <MinimalRebuild>false</MinimalRebuild>
       <ExceptionHandling>false</ExceptionHandling>
@@ -185,7 +185,7 @@
       <EntryPointSymbol>
       </EntryPointSymbol>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>yuzaapi.lib;yuzalib.lib;sqlite3.lib;systemcall.lib;filemanager.lib;streams.lib;libcrt.lib;exestub.lib;math.lib</AdditionalDependencies>
+      <AdditionalDependencies>yuzaapi.lib;yuzalib.lib;libsqlite3.lib;systemcall.lib;filemanager.lib;streams.lib;libcrt.lib;exestub.lib;math.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>../../../$(Configuration);../../../corelib/debug;../../../support\Debug;../../../runtime/debug;../../../thirdparty/debug</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -196,7 +196,7 @@
       </SectionAlignment>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <AdditionalOptions>/FILEALIGN:4096 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/ALIGN:1024 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <ProjectReference>
       <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>

@@ -1251,11 +1251,11 @@ static char *local_getline(char *zPrompt, FILE *in){
     while( zLine[n] ){ n++; }
     eol = 1;
 
-    /*if( n>0 && zLine[n-1]=='\n' ){
+    if( n>0 && zLine[n-1]=='\n' ){
       n--;
       zLine[n] = 0;
       eol = 1;
-    }*/
+    }
   }
   zLine = realloc( zLine, n+1 );
   return zLine;
@@ -2178,7 +2178,7 @@ static int genfkeyCmdCb(void *pCtx, int eType, const char *z){
 */
 static char zHelp[] =
   ".backup ?DB? FILE      Backup DB (default \"main\") to FILE\n"
-  ".bail ON|OFF           Stop after hitting an error.  Default OFF\n"
+  ".bail ON|OFF           Stop after hitting an error. Default OFF\n"
   ".databases             List names and files of attached databases\n"
   ".dump ?TABLE? ...      Dump the database in an SQL text format\n"
   "                         If TABLE specified, only dump tables matching\n"
@@ -3164,6 +3164,8 @@ static int process_input(struct callback_data *p, FILE *in){
       }
       continue;
     }
+
+
     if( _is_command_terminator(zLine) && _is_complete(zSql, nSql) ){
       memcpy(zLine,";",2);
     }

@@ -2,6 +2,7 @@
 #include <systemcall_impl.h>
 #include <minwindef.h>
 #include <time.h>
+#include "GUIConsoleFramework.h"
 
 DWORD WINAPI Test(LPVOID parameter)
 {
@@ -9,7 +10,7 @@ DWORD WINAPI Test(LPVOID parameter)
 	return 0;
 }
 
-int main(int argc, char** argv)
+int main_impl(int argc, char** argv)
 {
 	printf("Hello World!!\n"); 
 
@@ -27,6 +28,13 @@ int main(int argc, char** argv)
 	//Syscall_CloseHandle(handle);
 
 	//Syscall_Sleep(1000);
+
+	return 0;
+}
+int main(int argc, char** argv)
+{
+	GUIConsoleFramework framework;
+	return framework.Run(argc, argv, main_impl);
 
 	return 0;
 }

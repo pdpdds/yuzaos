@@ -157,7 +157,7 @@ bool kUpdateScreenByScreenArea( const RECT* pstArea );
 //  이벤트 큐 관련
 bool kSendEventToWindow( QWORD qwWindowID, const EVENT* pstEvent );
 bool kReceiveEventFromWindowQueue( QWORD qwWindowID, EVENT* pstEvent );
-char kGetKeyFromWindowId(QWORD qwWindowID);
+char kGetKeyFromConsoleWindow(QWORD qwWindowID);
 
 bool kSendEventToWindowManager( const EVENT* pstEvent );
 bool kReceiveEventFromWindowManagerQueue( EVENT* pstEvent );

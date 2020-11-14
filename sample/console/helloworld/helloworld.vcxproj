@@ -22,7 +22,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{6724C12C-FCD6-4B66-B2D6-023F4396DBA1}</ProjectGuid>
+    <ProjectGuid>{5D13478C-D0CF-42CD-94A6-6887201843BF}</ProjectGuid>
     <RootNamespace>Kernel</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>helloworld</ProjectName>
@@ -133,7 +133,7 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>systemcall.lib;filemanager.lib;libcrt.lib;exestub.lib</AdditionalDependencies>
+      <AdditionalDependencies>streams.lib;yuzaapi.lib;yuzalib.lib;systemcall.lib;filemanager.lib;libcrt.lib;exestub.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>../../../$(Configuration);../../../corelib/debug;../../../support\Debug;../../../runtime/debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
