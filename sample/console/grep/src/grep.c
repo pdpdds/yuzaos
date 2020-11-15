@@ -595,7 +595,7 @@ fillbuf(size_t save, struct stats const* stats)
 	if (!fillsize)
 	{
 		ssize_t bytesread;
-		while ((bytesread = fread(readbuf, readsize, 1, bufdesc)) < 0
+		while ((bytesread = fread(readbuf, 1 , readsize, bufdesc)) < 0
 			&& errno == EINTR)
 			continue;
 		if (bytesread < 0)

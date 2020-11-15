@@ -22,7 +22,7 @@
 #endif
 
 #if HAVE_INTTYPES_H
-# include <inttypes.h>
+//# include <inttypes.h>
 #endif
 #include <stdint.h>
 #if HAVE_STDLIB_H

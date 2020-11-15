@@ -19,10 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
+    <ClInclude Include="font_to_svg.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="font_to_svg.hpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{E70DF79F-104F-4EED-8B88-77E6F6AAFB38}</ProjectGuid>

@@ -1828,7 +1828,7 @@ badtokens:
             // Execute the command line, getting a handle to its standard output
             // stream.
             //
-            pChildOutput = popen( spBegin, "rb" );
+            pChildOutput = fopen( spBegin, "rb" );
             if (pChildOutput == NULL) {
                 PutStdErr(MSG_DIR_BAD_COMMAND_OR_FILE, ONEARG, argtoks);
                 return(GetLastError());
@@ -1850,7 +1850,7 @@ badtokens:
                         spBegin = HeapAlloc(GetProcessHeap(), 0, cbTotal);
                     if (spBegin == NULL) {
                         PutStdErr(MSG_NO_MEMORY, ONEARG, argtoks);
-                        pclose(pChildOutput);
+                        fclose(pChildOutput);
                         return(ERROR_NOT_ENOUGH_MEMORY);
                     }
                 }
@@ -1864,7 +1864,7 @@ badtokens:
             // All done.  Close the child output handle, which will actually wait
             // for the child process to terminate.
             //
-            pclose(pChildOutput);
+            fclose(pChildOutput);
 
             //
             // Reallocate memory to what we actually need for the UNICODE representation

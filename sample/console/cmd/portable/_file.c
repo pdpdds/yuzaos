@@ -37,7 +37,7 @@ GetFileAttributes(LPCTSTR lpFileName)
 {
 	struct stat st;
 	char* unix_path = DOSPath2UNIXPath(lpFileName);
-	int ret = stat(unix_path, &st);
+	int ret = fstat(unix_path, &st);
 	free(unix_path);
 	if (ret != 0) {
 		return SetLastErrno();
@@ -52,7 +52,7 @@ SetFileAttributes(LPCTSTR lpFileName, DWORD dwFileAttributes)
 	BOOL ret = FALSE;
 	char* unix_path = DOSPath2UNIXPath(lpFileName);
 
-	if (stat(unix_path, &st) == 0)
+	if (fstat(unix_path, &st) == 0)
 	{
 		DWORD dwThisAttr = 0;
 		if (access(unix_path, W_OK) != 0)
@@ -257,7 +257,7 @@ BOOL WINAPI GetBinaryType(
 	struct stat sb;
 	BOOL ret = FALSE;
 	char* unix_path = DOSPath2UNIXPath(lpApplicationName);
-	if (!stat(lpApplicationName, &sb)) {
+	if (!fstat(lpApplicationName, &sb)) {
 		ret = sb.st_mode & S_IXUSR;
 		if (ret && lpBinaryType) {
 			*lpBinaryType = SCS_POSIX_BINARY;
@@ -588,7 +588,7 @@ BOOL WINAPI CopyFile(
 ) {
 	if (bFailIfExists) {
 		struct stat sb;
-		if (!stat(dest, &sb))
+		if (!fstat(dest, &sb))
 			return FALSE;
 	}
 

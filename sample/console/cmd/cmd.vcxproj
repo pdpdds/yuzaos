@@ -156,7 +156,7 @@
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>./portable;./;../../../ShareDll/include;../../../RunTimeLib/include;../../../UserLib/include;../../../UserDll/include;../../../UserLib/UserAPI</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./portable;./;../include;../../../corelib/include;../../../runtime/include;../../yuza_core;../../../corelib/stl/sgi;../../../corelib/streams;../../../support/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_SYSTIME_DEFINED;_WIN32;_MSC_VER;_X86_32;__i386__;_KRNL_DLL;DLL_EXPORT;SKYOS32;SKY_DLL;HAVE_FLOOR;HAVE_STDIO_H</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
@@ -184,7 +184,7 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>systemcall.lib;filemanager.lib;userapi.lib;libcrt.lib;exestub.lib;libcommand.lib</AdditionalDependencies>
+      <AdditionalDependencies>systemcall.lib;filemanager.lib;libcrt.lib;exestub.lib;</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>../../../$(Configuration)/lib;../../../ShareDll/debug;../../../UserLib/debug;../../../UserDll/debug;../../../RunTimeLib/debug;../../../Debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
@@ -196,12 +196,13 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <FunctionOrder>
       </FunctionOrder>
-      <EntryPointSymbol>_DllMainCRTStartup</EntryPointSymbol>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
       <NoEntryPoint>false</NoEntryPoint>
       <BaseAddress>0x08000000</BaseAddress>
       <FixedBaseAddress>
       </FixedBaseAddress>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <FullProgramDatabaseFile>true</FullProgramDatabaseFile>
       <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
@@ -211,9 +212,7 @@
       </AddModuleNamesToAssembly>
       <ForceSymbolReferences>
       </ForceSymbolReferences>
-      <AdditionalOptions>/safeseh:no /ALIGN:1024
- /SUBSYSTEM:CONSOLE
-/NODEFAULTLIB:LIBC %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/safeseh:no /ALIGN:1024 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>
