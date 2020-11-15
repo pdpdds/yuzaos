@@ -150,7 +150,7 @@
       <EntryPointSymbol>
       </EntryPointSymbol>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>lsample.lib;math.lib;sqlite3.lib;luatinker.lib;lua5.lib;filemanager.lib;libcrt.lib;dllstub.lib;systemcall.lib</AdditionalDependencies>
+      <AdditionalDependencies>lsample.lib;math.lib;libsqlite3.lib;luatinker.lib;lua5.lib;filemanager.lib;libcrt.lib;dllstub.lib;systemcall.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>../../../$(Configuration)/lib;../../../corelib/debug;../../../runtime/debug;../../../Debug;../../../support/debug</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
