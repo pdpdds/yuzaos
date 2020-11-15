@@ -133,7 +133,7 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>vorbis.lib;systemcall.lib;DllStub.lib;libcrt.lib;filemanager.lib;math.lib;libogg134.lib;</AdditionalDependencies>
+      <AdditionalDependencies>vorbis.lib;systemcall.lib;DllStub.lib;libcrt.lib;filemanager.lib;math.lib;libogg.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>../../runtime/Debug;../../corelib/Debug;../../debug;../debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
