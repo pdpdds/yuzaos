@@ -46,7 +46,7 @@ extern "C" {
  * This function is declared here only. You have to write your custom implementation somewhere
  * \param character Character to output
  */
-//void _putchar(char character);
+void _putchar(char character);
 
 
 /**
@@ -94,8 +94,8 @@ int vsnprintf_(char* buffer, size_t count, const char* format, va_list va);
  * \param va A value identifying a variable arguments list
  * \return The number of characters that are WRITTEN into the buffer, not counting the terminating null character
  */
-#define vprintf vprintf_
-int vprintf_(const char* format, va_list va);
+#//define vprintf vprintf_
+int vprintf(const char* format, va_list va);
 
 
 /**

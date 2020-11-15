@@ -76,33 +76,14 @@ BOOL ValidatePEImage(void* image)
 	return true;
 }
 
-extern "C" void kprintf(const char *fmt, ...)
+/*extern "C" void kprintf(const char *fmt, ...)
 {
-	char buf[4096] = { 0, };
-
 	va_list arglist;
 	va_start(arglist, fmt);
 
-	vsnprintf(buf, 4096, fmt, arglist);
-
-	/*if (g_bootParams.bSystemInit)
-	{
-		//SkyGUISystem::GetInstance()->Print(buf);
-
-		FILE* fp = fopen("sky32_log.txt", "ab");
-
-		if (fp)
-		{
-			unsigned int pa = 0;
-			char* buffer = (char*)kmalloc_ap(1024, &pa);
-			memcpy(buffer, buf, 1024);
-			fwrite(buffer, 1024, 1, fp);
-			fclose(fp);
-		}
-	}*/
 
 #if SKY_EMULATOR
-	g_platformAPI._printInterface.sky_printf(buf);
+	g_platformAPI._printInterface.sky_printf(fmt, arglist);
 #else
 
 	if (SkyGUISystem::GetInstance()->GUIEnable())
@@ -119,38 +100,58 @@ extern "C" void kprintf(const char *fmt, ...)
 
 #endif
 	
-}
+}*/
 
 
 extern BOOL kGetCurrentConsoleWindowId(QWORD* qwWindowID);
-extern "C" void kprintMsg(const char* str)
-{
 
+
+extern "C" void uprintf(const char* format, va_list arglist)
+{
+	
 #if SKY_CONSOLE_MODE
-	g_platformAPI._printInterface.sky_printf(str);
+	SkyConsole::vprint(format, arglist);
+	return;
 #else
+	char buf[4096] = { 0, };
+	vsnprintf(buf, 4096, format, arglist);
 
 	if (SkyGUISystem::GetInstance()->GUIEnable())
 	{
+		
 
-#if SKY_EMULATOR
+/*#if SKY_EMULATOR
 		QWORD taskId = 0;
 		kGetCurrentConsoleWindowId(&taskId);
-		SkyGUISystem::GetInstance()->Print(taskId, (char*)str);
+		SkyGUISystem::GetInstance()->Print(taskId, (char*)buf);
 
-#else
+#else*/
 		QWORD windowId = Thread::GetRunningThread()->GetTeam()->GetWindowId();
 		//if (taskId > 0)
-			SkyGUISystem::GetInstance()->Print(windowId, (char*)str);
+		SkyGUISystem::GetInstance()->Print(windowId, (char*)buf);
 
-#endif
+//#endif
 	}
 	else
 	{
-		SkyConsole::Print(str);
+		SkyConsole::Print(buf);
 	}
 
 #endif
+}
+
+extern "C" void kprintf(const char* format, ...)
+{
+	va_list arglist;
+	va_start(arglist, format);
+
+#if SKY_CONSOLE_MODE
+	SkyConsole::vprint(format, arglist);
+#else
+
+	uprintf(format, arglist);
+#endif
+	va_end(arglist);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -225,6 +226,7 @@ int UserThreadEntry(void* parameter)
 		tls_cleanup(thrd_current(), NULL, res);
 		tls_destroy(tls_current());
 
+		kCloseHandle(Thread::GetRunningThread()->m_resourceHandle);
 		Thread::GetRunningThread()->Exit();
 	}
 	else
@@ -326,7 +328,10 @@ static int ExecuteFile(const char* path, char* arg)
 		return E_NO_MEMORY;
 	}
 
-	return (int)newTeam->GetTeamId();
+	//int handle = OpenHandle(newTeam);
+	//newTeam->ReleaseRef();
+
+	return newTeam->GetTeamId();
 }
 
 
@@ -461,13 +466,11 @@ HANDLE kCreateProcess(const char* execPath, void* param, int priority)
 	strcpy(pStartParam->name, path);
 	pStartParam->param = args;
 
-	Thread* thread = new Thread(path, newTeam, (THREAD_START_ENTRY)RunMainSkyThread, pStartParam, priority);
-	HANDLE handle = (HANDLE)thread->m_win32Handle;
-	
+	new Thread(path, newTeam, (THREAD_START_ENTRY)RunMainSkyThread, pStartParam, priority);
+	HANDLE handle = (HANDLE)newTeam->GetTeamId();
 #else
 	HANDLE handle = (HANDLE)ExecuteFile(path, (char*)param);
 #endif
-
 
 	return handle;
 }
@@ -624,7 +627,7 @@ int kCreateSpinLock(_SPINLOCK* handle)
 {
 	SpinLock* spinlock = new SpinLock();
 	if (spinlock == 0)
-		return E_NO_MEMORY;
+		return E_NO_MEMORY;	
 
 	spinlock->teamId = Thread::GetRunningThread()->GetTeam()->GetTeamId();
 	spinlock->fHolder = Thread::GetRunningThread();
@@ -647,14 +650,14 @@ int kLockSpinLock(_SPINLOCK* handle)
 
 	if (spinlock == 0)
 	{
-		//team->ReleaseRef();
+		team->ReleaseRef();
 		return E_BAD_HANDLE;
 	}
 
 	int ret = spinlock->Lock();
 	spinlock->ReleaseRef();
 
-	//team->ReleaseRef();
+	team->ReleaseRef();
 
 	return ret;
 }
@@ -670,14 +673,14 @@ int kUnlockSpinLock(_SPINLOCK* handle)
 
 	if (spinlock == 0)
 	{
-		//team->ReleaseRef();
+		team->ReleaseRef();
 		return E_BAD_HANDLE;
 	}
 
 	spinlock->Unlock();
 	spinlock->ReleaseRef();
 
-	//team->ReleaseRef();
+	team->ReleaseRef();
 
 	return E_NO_ERROR;
 }
@@ -833,7 +836,7 @@ DWORD kWaitForSingleObject(HANDLE hHandle, DWORD dwMilliseconds)
 	if (dwMilliseconds == 0xffffffff)
 		timeOut = INFINITE_TIMEOUT;
 
-	Resource* res = static_cast<Thread*>(GetResource((int)hHandle, OBJ_ANY));
+	Resource* res = static_cast<Resource*>(GetResource((int)hHandle, OBJ_ANY));
 	if (res == 0)
 		return WAIT_FAILED;
 
@@ -909,8 +912,19 @@ int kWaitForMultipleObjects(int handleCount, const HANDLE* lpHandles, BOOL bWait
 
 int kWaitForChildProcess(int handle)
 {
+	while (1)
+	{
+		Team* team = TeamManager::GetInstance()->FindTeam(handle);
+
+		if (team == nullptr)
+			break;
+
+		team->ReleaseRef();
+
+		kSleep(100);
+	}
+
 	return 0;
-	return kWaitForSingleObject((HANDLE)handle, INFINITE);
 }
 
 HANDLE kCreateArea(const char* name, unsigned int* requestAddr, int flags, unsigned int size, PageProtection protection)
@@ -1318,23 +1332,26 @@ int kGetCommandFromKeyboard(char* commandBuffer, int bufSize)
 		//! buffer the next char
 		BufChar = true;
 
-#if SKY_EMULATOR
 		if (kIsGraphicMode())
 		{
 			c = SkyGUISystem::GetInstance()->GetCh();
 			
-			if(c == 0)
+			if (c == 0)
+			{
+				kSleep(1);
 				continue;
+
+			}
 		}
 		else
 		{
+#if SKY_EMULATOR
 			c = g_platformAPI._printInterface.sky_getchar();
-		}
+			
 #else
-
-		c = KeyboardController::GetInput();
-
+			c = KeyboardController::GetInput();
 #endif
+		}
 
 		//return
 		if (c == 0x0d || c == '\n')
@@ -1352,11 +1369,12 @@ int kGetCommandFromKeyboard(char* commandBuffer, int bufSize)
 
 			if (i > 0) {
 
-#if SKY_EMULATOR
-				g_platformAPI._printInterface.sky_printf("%c", c);
-				g_platformAPI._printInterface.sky_printf("%c", ' ');
-				g_platformAPI._printInterface.sky_printf("%c", c);
+#if SKY_CONSOLE_MODE
 
+#if SKY_EMULATOR
+				SkyConsole::Print("%c", c);
+				SkyConsole::Print("%c", ' ');
+				SkyConsole::Print("%c", c);
 #else
 				//! go back one char
 				uint y, x;
@@ -1377,6 +1395,7 @@ int kGetCommandFromKeyboard(char* commandBuffer, int bufSize)
 				//! go back one char in cmd buf
 
 #endif 
+#endif
 				i--;
 			}
 		}
@@ -1389,10 +1408,8 @@ int kGetCommandFromKeyboard(char* commandBuffer, int bufSize)
 			//if (c != 0 && KEY_SPACE != c) { //insure its an ascii char
 			if (c != 0) { //insure its an ascii char
 
-#if SKY_EMULATOR
-				g_platformAPI._printInterface.sky_printf("%c", c);
-#else
-				SkyConsole::WriteChar(c);
+#if SKY_CONSOLE_MODE
+				SkyConsole::Print("%c", c);			
 #endif
 				commandBuffer[i++] = c;
 			}
@@ -1453,10 +1470,9 @@ char kGetChar()
 		{
 
 #if SKY_EMULATOR
-			g_platformAPI._printInterface.sky_printf("%c", c);
-			g_platformAPI._printInterface.sky_printf("%c", ' ');
-			g_platformAPI._printInterface.sky_printf("%c", c);
-
+			SkyConsole::Print("%c", c);
+			SkyConsole::Print("%c", ' ');
+			SkyConsole::Print("%c", c);
 #else
 			//! go back one char
 			uint y, x;
@@ -1493,7 +1509,7 @@ char kGetChar()
 		if (c != 0) { //insure its an ascii char
 
 #if SKY_EMULATOR
-			g_platformAPI._printInterface.sky_printf("%c", c);
+			SkyConsole::Print("%c", c);
 #else
 			SkyConsole::WriteChar(c);
 #endif

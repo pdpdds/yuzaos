@@ -158,10 +158,9 @@ int TerminalSystem::fputc(int character, FILE* stream)
 	return 1;
 }
 
-int TerminalSystem::fprintf(FILE* stream, const char* buffer)
+int TerminalSystem::fprintf(FILE* stream, const char* buf, va_list args)
 {
-	printf((const char*)buffer);
-	return strlen((const char*)buffer);
+	return vprintf((const char*)buf, args);
 }
 
 char* TerminalSystem::fgets(char* dst, int size, FILE* fp)

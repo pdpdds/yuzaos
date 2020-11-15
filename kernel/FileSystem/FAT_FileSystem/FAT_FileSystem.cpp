@@ -484,11 +484,11 @@ int FAT_FileSystem::rename(const char* path_old, const char* path_new)
 	return f_rename(path_old, path_new);
 }
 
-int FAT_FileSystem::fprintf(FILE* stream, const char* buf)
+int FAT_FileSystem::fprintf(FILE* stream, const char* buf, va_list args)
 {
 	if (stream == 0)
 	{
-		printf(buf);
+		printf(buf, args);
 		return 0;
 	}
 
@@ -496,12 +496,11 @@ int FAT_FileSystem::fprintf(FILE* stream, const char* buf)
 
 	if (fp == 0)
 	{
-		int len = strlen(buf);
-		printf(buf);
+		printf(buf, args);
 		return 0;
 	}
 
-	int done = f_printf(fp, buf);
+	int done = f_vprintf(fp, buf, args);
 
 	return done;
 }

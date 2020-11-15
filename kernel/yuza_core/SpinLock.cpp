@@ -34,8 +34,7 @@ int SpinLock::Lock()
 	//임계영역 진입
 	if (cmpxchg32(&(m_lockFlag), 0, 1) == false)
 	{
-		
-		//
+	
 		if (m_APICID == GetAPICID() && fHolder == Thread::GetRunningThread())
 		{
 			RestoreInterrupts(fl);
@@ -43,7 +42,6 @@ int SpinLock::Lock()
 			return E_NO_ERROR;
 		}
 
-		//
 		while (cmpxchg32(&(m_lockFlag), 0, 1) == false)
 		{			
 			while (m_lockFlag == LOCK_TRUE)

@@ -1,5 +1,6 @@
 #pragma once
 #include "windef.h"
+#include <va_list.h>
 
 enum ConsoleColor
 {
@@ -41,6 +42,7 @@ namespace SkyConsole
 	void WriteChar(char c);
 
 	void Print(const char* str, ...);
+	void vprint(const char* format, va_list args);
 	void SetCallback(void* fn);
 
 	void MoveCursor(unsigned int  X, unsigned int  Y);

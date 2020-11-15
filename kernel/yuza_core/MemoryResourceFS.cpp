@@ -249,7 +249,7 @@ int MemoryResourceFS::closedir(DIR* dir)
 	return 1;
 }
 
-int MemoryResourceFS::fprintf(FILE* stream, const char* buf)
+int MemoryResourceFS::fprintf(FILE* stream, const char* buf, va_list args)
 {
 	return 0;
 }

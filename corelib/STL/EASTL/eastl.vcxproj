@@ -71,7 +71,7 @@
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>./;./include;.\test\packages\EABase\include\Common;../../include;../../../runtime/include;../SGI</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./include;.\test\packages\EABase\include\Common;../../include;../../../runtime/include;../../../corelib/eastreams;../../../corelib/stl/sgi</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SKYOS32;_MSC_VER=1914</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>

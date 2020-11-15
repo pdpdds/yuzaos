@@ -1,5 +1,8 @@
 #pragma once
 #include <stdarg.h>
+#include <memory.h>
+#include <FileService.h>
+#include <sprintf.h>
 
 #if  defined(DLL_CRT_EXPORT)
 #define CRT_API __declspec(dllexport) 
@@ -13,7 +16,6 @@
 extern "C" {
 #endif
 	CRT_API int vprintf(const char *format, va_list ap);
-	//int vfprintf(FILE *stream, const char *format, va_list ap);
 	CRT_API int vsprintf(char *str, const char *format, va_list ap);
 	//int vasprintf(char **ret, const char *format, va_list ap);
 	CRT_API long strtol(const char* nptr, char** endptr, int base);
@@ -37,9 +39,7 @@ extern "C" {
 }
 #endif
 
-#include <memory.h>
-#include <FileService.h>
-#include <sprintf.h>
+
 
 // Function pointer typedef for less typing //
 typedef void(__cdecl* _PVFV)(void);

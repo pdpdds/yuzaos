@@ -1,4 +1,5 @@
 #pragma once
+#include <va_list.h>
 //#include <stat_def.h>
 
 #ifdef DLL_EXPORT
@@ -58,6 +59,8 @@ extern "C" {
 	DLL_API int fputc(int character, FILE * stream);
 	
 	DLL_API int fprintf(FILE * stream, const char * format, ...);
+	DLL_API int vfprintf(FILE* stream, const char* format, va_list ap);
+
 	DLL_API int fscanf(FILE* fp, const char* fmt, ...);
 
 	DLL_API int ftruncate(FILE* fp);

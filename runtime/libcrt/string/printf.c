@@ -146,13 +146,13 @@ static inline void _out_null(char character, void* buffer, size_t idx, size_t ma
 
 
 // internal _putchar wrapper
-/*static inline void _out_char(char character, void* buffer, size_t idx, size_t maxlen)
+static inline void _out_char(char character, void* buffer, size_t idx, size_t maxlen)
 {
   (void)buffer; (void)idx; (void)maxlen;
   if (character) {
     _putchar(character);
   }
-}*/
+}
 
 
 // internal output function wrapper
@@ -889,16 +889,11 @@ int snprintf_(char* buffer, size_t count, const char* format, ...)
   return ret;
 }
 
-//20200226
-int vprintf_(const char* format, va_list va)
-{
-    return 0;
-}
-/*int vprintf_(const char* format, va_list va)
+int vprintf(const char* format, va_list va)
 {
   char buffer[1];
   return _vsnprintf(_out_char, buffer, (size_t)-1, format, va);
-}*/
+}
 
 
 int vsnprintf_(char* buffer, size_t count, const char* format, va_list va)
@@ -919,12 +914,13 @@ int fctprintf(void (*out)(char character, void* arg), void* arg, const char* for
 
 void printf(const char* fmt, ...)
 {
-    char buf[4096];
-
     va_list arglist;
     va_start(arglist, fmt);
-    vsnprintf(buf, 4096, fmt, arglist);
+    Syscall_Printf(fmt, arglist);   
     va_end(arglist);
-    buf[4095] = 0;
-    Syscall_Printf(buf);
+}
+
+void _putchar(char character)
+{
+    printf("%c", character);
 }

@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\runtime\include\systemcall_impl.h" />
     <ClInclude Include="..\include\winapi.h" />
     <ClInclude Include="..\include\wintypedef.h" />
   </ItemGroup>

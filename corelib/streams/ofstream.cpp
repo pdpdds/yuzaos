@@ -31,7 +31,7 @@ int ofstream::OutFunction(const char* format, ...)
 {
 	va_list argList;
 	va_start(argList, format);
-	return(fprintf(_fileHandle, format, va_arg(argList, double))); //Sloppy, stack manip problems
+	return(vfprintf(_fileHandle, format, argList)); //Sloppy, stack manip problems
 }
 
 /**************************************************************/

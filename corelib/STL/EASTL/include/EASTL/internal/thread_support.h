@@ -13,6 +13,10 @@
 #endif
 #include <EASTL/internal/config.h>
 
+#if defined(SKYOS32)
+#include <winapi.h>
+#endif
+
 #if defined(EA_HAVE_CPP11_MUTEX) && !defined(EA_PLATFORM_MICROSOFT) && !defined(EA_PLATFORM_UNIX) // We stick with platform-specific mutex support to the extent possible, as it's currently more reliably available.
 	#define EASTL_CPP11_MUTEX_ENABLED 1
 #else
@@ -94,7 +98,7 @@ namespace eastl
 				return __sync_add_and_fetch(p32, 1);
 			#elif defined(EA_COMPILER_MSVC)
 				static_assert(sizeof(long) == sizeof(int32_t), "unexpected size");
-				return _InterlockedIncrement((volatile long*)p32);
+				return InterlockedIncrement((volatile long*)p32);
 			#elif defined(EA_COMPILER_GNUC)
 				int32_t result;
 				__asm__ __volatile__ ("lock; xaddl %0, %1"
@@ -116,7 +120,7 @@ namespace eastl
 			#if defined(EA_COMPILER_CLANG) || (defined(EA_COMPILER_GNUC) && (EA_COMPILER_VERSION >= 4003))
 				return __sync_add_and_fetch(p32, -1);
 			#elif defined(EA_COMPILER_MSVC)
-				return _InterlockedDecrement((volatile long*)p32); // volatile long cast is OK because int32_t == long on Microsoft platforms.
+				return InterlockedDecrement((volatile long*)p32); // volatile long cast is OK because int32_t == long on Microsoft platforms.
 			#elif defined(EA_COMPILER_GNUC)
 				int32_t result;
 				__asm__ __volatile__ ("lock; xaddl %0, %1"
@@ -143,7 +147,7 @@ namespace eastl
 			#if defined(EA_COMPILER_CLANG) || (defined(EA_COMPILER_GNUC) && (EA_COMPILER_VERSION >= 4003))
 				return __sync_bool_compare_and_swap(p32, condition, newValue);
 			#elif defined(EA_COMPILER_MSVC)
-				return ((int32_t)_InterlockedCompareExchange((volatile long*)p32, (long)newValue, (long)condition) == condition);
+				return ((int32_t)InterlockedCompareExchange((volatile long*)p32, (long)newValue, (long)condition) == condition);
 			#elif defined(EA_COMPILER_GNUC)
 				// GCC Inline ASM Constraints     
 				// r  <--> Any general purpose register  

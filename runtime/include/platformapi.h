@@ -74,7 +74,7 @@ typedef struct tag_SKY_PROCESS_INTERFACE
 //데이터 입출력관련 인터페이스
 typedef struct tag_SKY_PRINT_INTERFACE
 {
-	void(*sky_printf)(const char* str, ...);
+	void(*sky_printf)(const char* str, va_list args);
 	int(*sky_getchar)();
 	void(*sky_cls)(char* szCls);
 } SKY_PRINT_INTERFACE;

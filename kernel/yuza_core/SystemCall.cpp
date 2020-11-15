@@ -236,7 +236,7 @@ void dsunlock(_In_ SafeMemoryLock_t* MemoryLock)
 	//RestoreInterrupts(MemoryLock->Flags);
 #endif
 }
-
+extern "C" void uprintf(const char* format, va_list arglist);
 void RegisterSysCall()
 {
 	//Develop
@@ -246,7 +246,7 @@ void RegisterSysCall()
 	AddSyscall(ePanic, kHaltSystem);
 	AddSyscall(eTraceCallStack, kTraceCallStack);
 	AddSyscall(eSendSerialLog, kSendSerialLog);
-	AddSyscall(ePrintf, kprintMsg);
+	AddSyscall(ePrintf, uprintf);
 	AddSyscall(eSetLastError, kSetLastError);
 	AddSyscall(eGetLastError, kGetLastError);
 

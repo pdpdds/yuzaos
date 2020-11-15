@@ -2,6 +2,7 @@
 #include <stringdef.h>
 #include <memory.h>
 #include <stdint.h>
+#include <systemcall_impl.h>
 
 /*int vsprintf(char *buffer, char *format, va_list argptr)
 {
@@ -10,11 +11,11 @@
 	return(nR);
 }*/
 
-extern "C" int vprintf(const char* format, va_list va)
+/*extern "C" int vprintf(const char* format, va_list va)
 {
-	printf(format, va);
+	Syscall_Printf(format, va);
 	return 0;
-}
+}*/
 
 //! writes formatted string to buffer
 /*extern "C" int vsprintf(char *str, const char *format, va_list ap) {

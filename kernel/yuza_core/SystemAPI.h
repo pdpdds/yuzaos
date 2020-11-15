@@ -148,7 +148,7 @@ extern "C" {
 	void PrintCurrentTime();
 
 	void kprintf(const char* fmt, ...);
-	void kprintMsg(const char* str);
+	//void kprintMsg(const char* str, ...);
 	
 	int CreateFileArea(const char name[], const char path[], unsigned int va, off_t offset,
 		size_t size, int flags, PageProtection prot, Team& team);

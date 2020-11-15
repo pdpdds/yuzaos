@@ -83,7 +83,7 @@ namespace SkyConsole
 	void WriteChar(char c)
 	{
 #if SKY_EMULATOR
-		g_platformAPI._printInterface.sky_printf("%c", c);
+		Print("%c", c);
 #else
 		WriteChar(c, m_Text, m_backGroundColor);
 #endif
@@ -92,7 +92,7 @@ namespace SkyConsole
 	void WriteChar(char c, ConsoleColor textColour, ConsoleColor backColour)
 	{
 #if SKY_EMULATOR
-		g_platformAPI._printInterface.sky_printf("%c", c);
+		Print("%c", c);
 		return;
 #endif
 
@@ -177,36 +177,146 @@ namespace SkyConsole
 		printGUI = (PrintCallBack)fn;
 	}
 
-	void Print(const char* str, ...)
+	void vprint(const char* format, va_list args)
 	{
-		if (!str)
+		if (!format)
+			return;
+
+#if SKY_EMULATOR 
+		g_platformAPI._printInterface.sky_printf(format, args);
+		return;
+#endif	
+
+		size_t i;
+
+		for (i = 0; i < strlen(format); i++) {
+
+			switch (format[i]) {
+
+			case '%':
+
+				switch (format[i + 1]) {
+
+					/*** characters ***/
+				case 'c': {
+					char c = va_arg(args, char);
+					WriteChar(c, m_Text, m_backGroundColor);
+					i++;		// go to next character
+					break;
+				}
+
+						/*** address of ***/
+				case 's': {
+					int c = (int&)va_arg(args, char);
+					char str[256];
+					strcpy(str, (const char*)c);
+					Write(str);
+					i++;		// go to next character
+					break;
+				}
+
+						/*** integers ***/
+				case 'd':
+				case 'i': {
+					int c = va_arg(args, int);
+					char str[32] = { 0 };
+					itoa_s(c, 10, str);
+					Write(str);
+					i++;		// go to next character
+					break;
+				}
+
+						/*** display in hex ***/
+						/*int*/
+				case 'X': {
+					int c = va_arg(args, int);
+					char str[32] = { 0 };
+					itoa_s(c, 16, str);
+					Write(str);
+					i++;		// go to next character
+					break;
+				}
+						/*unsigned int*/
+				case 'x': {
+					unsigned int c = va_arg(args, unsigned int);
+					char str[32] = { 0 };
+					itoa_s(c, 16, str);
+					Write(str);
+					i++;		// go to next character
+					break;
+				}
+
+				case 'f':
+					double double_temp;
+					double_temp = va_arg(args, double);
+					char buffer[512];
+					ftoa_fixed(buffer, double_temp);
+					Write(buffer);
+					i++;
+					break;
+
+				case 'Q':
+				{
+					__int64 int64_temp;
+					int64_temp = va_arg(args, __int64);
+					char buffer2[20];
+					_i64toa(int64_temp, buffer2, 10);
+					Write(buffer2);
+					i++;
+					break;
+				}
+
+				case 'q':
+				{
+					uint64_t int64_temp;
+					int64_temp = va_arg(args, uint64_t);
+					char buffer2[20];
+					_i64toa(int64_temp, buffer2, 16);
+					Write(buffer2);
+					i++;
+					break;
+				}
+
+				default:
+					va_end(args);
+					return;
+				}
+
+				break;
+
+			default:
+
+				WriteChar(format[i], m_Text, m_backGroundColor);
+				break;
+			}
+		}
+
+	}
+
+	void Print(const char* format, ...)
+	{
+		if (!format)
 			return;
 
 #if SKY_EMULATOR 
 		va_list 	va;
-		int 		nI;
-		char		szTX[512];
-
-		va_start(va, str);
-		nI = vsprintf(szTX, str, va);
+		va_start(va, format);
+		g_platformAPI._printInterface.sky_printf(format, va);
 		va_end(va);
-
-		g_platformAPI._printInterface.sky_printf("%s", szTX);
-
 		return;
 #endif		
 
 		va_list		args;
-		va_start(args, str);
+		va_start(args, format);
 		size_t i;
 
-		for (i = 0; i < strlen(str); i++) {
+		for (i = 0; i < strlen(format); i++) {
 
-			switch (str[i]) {
+			switch (format[i]) {
 
 			case '%':
 
-				switch (str[i + 1]) {
+				switch (format[i + 1]) {
 
 					/*** characters ***/
 				case 'c': {
@@ -297,7 +407,7 @@ namespace SkyConsole
 
 			default:
 
-				WriteChar(str[i], m_Text, m_backGroundColor);
+				WriteChar(format[i], m_Text, m_backGroundColor);
 				break;
 			}
 		}

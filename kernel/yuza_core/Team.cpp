@@ -118,12 +118,19 @@ bool Team::DeallocateMemory(LPVOID lpAddress)
 void Team::ThreadTerminated(Thread *thread)
 {
 	int fl = DisableInterrupts();
+
 	*thread->fTeamListPrev = thread->fTeamListNext;
 	if (thread->fTeamListNext)
 		thread->fTeamListNext->fTeamListPrev = thread->fTeamListPrev;
 
 	RestoreInterrupts(fl);
-	kDebugPrint("Team::ThreadTerminated, %s, 0x%x\n", GetName(), thread);
+	kDebugPrint("Team::ThreadTerminated, %s, 0x%x, %d\n", GetName(), thread, GetRef());
+
+
+	if (m_pThreadList == 0)
+	{
+		Signal(false);
+	}
 
 	ReleaseRef();
 

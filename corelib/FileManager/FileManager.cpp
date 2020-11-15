@@ -444,12 +444,12 @@ struct dirent* FileManager::readdir(DIR* dir)
 	return entry;
 }
 
-int FileManager::fprintf(FILE * stream, const char *buf)
+int FileManager::fprintf(FILE* stream, const char* buf, va_list args)
 {
 	I_FileSystem* pFileSys = GetFileSystem(stream);
 
 	if (pFileSys)
-		return pFileSys->fprintf(stream, buf);
+		return pFileSys->fprintf(stream, buf, args);
 
 	return 0;
 }

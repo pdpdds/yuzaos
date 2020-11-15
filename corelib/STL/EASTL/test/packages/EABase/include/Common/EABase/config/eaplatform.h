@@ -413,7 +413,7 @@
 		#define EA_ASM_STYLE_INTEL 1
 	#endif
 	#define EA_PLATFORM_DESKTOP 1
-	#define EA_PLATFORM_MICROSOFT 1
+	//#define EA_PLATFORM_MICROSOFT 1
 
 	// WINAPI_FAMILY defines to support Windows 8 Metro Apps - mirroring winapifamily.h in the Windows 8 SDK
 	#define EA_WINAPI_PARTITION_DESKTOP   0x00000001

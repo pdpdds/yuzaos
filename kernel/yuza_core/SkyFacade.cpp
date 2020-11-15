@@ -345,10 +345,10 @@ bool BuildPlatformAPI()
 	g_bootParams._memoryInfo._kernelSize = pStub->_kernelSize;
 #else
 	extern SKY_PROCESS_INTERFACE _processInterface;
-	extern SKY_PRINT_INTERFACE		_printInterface;
+	//extern SKY_PRINT_INTERFACE		_printInterface;
 
 	g_platformAPI._processInterface = _processInterface;
-	g_platformAPI._printInterface = _printInterface;
+	//g_platformAPI._printInterface = _printInterface;
 #endif	
 
 	return true;

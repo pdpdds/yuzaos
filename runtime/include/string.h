@@ -36,7 +36,7 @@ extern "C" {
 	CRT_API void ftoa_fixed(char* buffer, double value);
 	CRT_API void ftoa_sci(char* buffer, double value);
 	CRT_API char* strichr(char* p, int c);
-	CRT_API void vsnprintf(char* out, size_t size, const char* format, va_list args);
+	CRT_API int vsnprintf(char* out, size_t size, const char* format, va_list args);
 	CRT_API int snprintf(char* out, int size, const char* fmt, ...);
 	//CRT_API char* strndup(const char* s, size_t n);
 	CRT_API char* strdup(const char* s);

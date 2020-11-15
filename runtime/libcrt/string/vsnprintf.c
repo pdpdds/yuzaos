@@ -22,7 +22,7 @@ const char *kPrefixCharacters = "FNhlL";
 /*
  *	 % flags width .precision prefix format
  */
-void vsnprintf(char *out, size_t size, const char *format, va_list args)
+int vsnprintf(char *out, size_t size, const char *format, va_list args)
 {
 	int flags = 0;
 	int prefixes = 0;
@@ -287,6 +287,8 @@ void vsnprintf(char *out, size_t size, const char *format, va_list args)
 	}
 	
 	*out = 0;
+
+	return strlen(out);
 }
 
 int snprintf(char *out, int size, const char *fmt, ...)

@@ -247,7 +247,7 @@ enum
 
 #define Syscall_GetCommandFromKeyboard(buffer, size) (int)syscall2(eGetCommandFromKeyboard, SCPARAM(buffer), SCPARAM(size))
 #define Syscall_GetChar() (char)syscall0(eGetChar)
-#define Syscall_Printf(buf) (void)syscall1(ePrintf, SCPARAM(buf))
+#define Syscall_Printf(buf, arglist) (void)syscall2(ePrintf, SCPARAM(buf), SCPARAM(arglist))
 
 #define Syscall_Malloc(size) (char*)syscall1(eMalloc, SCPARAM(size))
 #define Syscall_Malloc_Aligned(size, alignment) (void*)syscall2(eMalloc_Aligned, SCPARAM(size), SCPARAM(alignment))
@@ -308,7 +308,7 @@ enum
 #define Syscall_TryEnterCriticalSection(cs) (bool)syscall1(eTryEnterCriticalSection, SCPARAM(cs))
 #define Syscall_EnterCriticalSection(cs) (void)syscall1(eEnterCriticalSection, SCPARAM(cs))
 #define Syscall_LeaveCriticalSection(cs) (void)syscall1(eLeaveCriticalSection, SCPARAM(cs))
-#define Syscall_IsGraphicMode() syscall0(eIsGraphicMode)
+#define Syscall_IsGraphicMode() (bool)syscall0(eIsGraphicMode)
 #define Syscall_VirtualAlloc(lpAddress, dwSize, flAllocationType, flProtect) (LPVOID)syscall4(eVirtualAlloc, SCPARAM(lpAddress), SCPARAM(dwSize), SCPARAM(flAllocationType), SCPARAM(flProtect))
 #define Syscall_VirtualProtect(lpAddress, dwSize, flNewProtect, lpflOldProtect) (LPVOID)syscall4(eVirtualProtect, SCPARAM(lpAddress), SCPARAM(dwSize), SCPARAM(flNewProtect), SCPARAM(lpflOldProtect))
 #define Syscall_VirtualFree(lpAddress, dwSize, dwFreeType) (LPVOID)syscall3(eVirtualFree, SCPARAM(lpAddress), SCPARAM(dwSize), SCPARAM(dwFreeType))

@@ -234,7 +234,7 @@ int MINT64_FileSystem::closedir(DIR* dir)
 	return 0;
 }
 
-int MINT64_FileSystem::fprintf(FILE* stream, const char* buf)
+int MINT64_FileSystem::fprintf(FILE* stream, const char* buf, va_list args)
 {
 	return 0;
 }

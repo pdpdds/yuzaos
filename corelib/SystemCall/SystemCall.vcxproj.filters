@@ -17,6 +17,9 @@
     <ClInclude Include="..\include\wintypedef.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\runtime\include\systemcall_impl.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SystemCall_impl.cpp">

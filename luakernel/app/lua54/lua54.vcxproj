@@ -113,9 +113,9 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>streams.lib;lua5.lib;systemcall.lib;filemanager.lib;libcrt.lib;exestub.lib;yuzalib.lib;yuzaapi.lib;math.lib</AdditionalDependencies>
+      <AdditionalDependencies>streams.lib;lua5.lib;systemcall.lib;filemanager.lib;libcrt.lib;exestub.lib;math.lib;yuzalib.lib;yuzaapi.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>../../../$(Configuration)/lib;../../../corelib/debug;../../../runtime/debug;../../../Debug;../../../support/debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../../$(Configuration)/lib;../../../corelib/debug;../../../runtime/debug;../../../Debug;../../../support/debug;../../../thirdparty/debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(OutDir)$(TargetName).map</MapFileName>

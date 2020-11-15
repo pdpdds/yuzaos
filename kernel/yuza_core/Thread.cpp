@@ -105,7 +105,7 @@ Thread::Thread(const char name[], Team *team, THREAD_START_ENTRY startAddress, v
 
 void Thread::Exit()
 {
-	//kDebugPrint("ExitThread %s 0x%x 0x%x\n", GetName(), this, fRefCount);
+	kDebugPrint("ExitThread %s 0x%x 0x%x\n", GetName(), this, fRefCount);
 
 	ASSERT(GetRunningThread() == this);
 
@@ -114,6 +114,7 @@ void Thread::Exit()
 	fReapQueue.Enqueue(this);
 	
 	RestoreInterrupts(fl);
+	
 	fThreadsToReap.Release(1, false);
 	
 	fl = DisableInterrupts();
@@ -233,7 +234,6 @@ void Thread::SetKernelStack(Area *area)
 	fKernelStack = area;
 }
 
-HANDLE kCreateThreadWithTeam(THREAD_START_ENTRY entry, const char* name, void* data, int priority, Team* team, DWORD flag);
 void Thread::SetTeam(Team *team)
 {
 	fTeam = team;
@@ -302,8 +302,7 @@ int Thread::GrimReaper(void*)
 		if (victim)
 		{ 
 			victim->Signal(false);
-
-			//kDebugPrint("Grim Reaper. Victim : %x %s\n", victim, victim->GetName());
+			kDebugPrint("Grim Reaper. Victim : %x %s, %d\n", victim, victim->GetName(), victim->GetRef());
 			victim->ReleaseRef();
 		} 
 		

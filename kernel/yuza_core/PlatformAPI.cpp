@@ -5,23 +5,6 @@
 #include "SkyConsole.h"
 #include "SystemAPI.h"
 
-void sky_printf(const char* str, ...)
-{
-	char buf[1024];
-
-	va_list arglist;
-	va_start(arglist, str);
-	vsnprintf(buf, 1024, str, arglist);
-
-	SkyConsole::Print(str);
-}
-
-SKY_PRINT_INTERFACE _printInterface =
-{
-	sky_printf,
-	0,
-	0,
-};
 
 unsigned int sky_CreateThread(unsigned int processId, LPTHREAD_START_ROUTINE lpStartAddress, LPVOID param, DWORD flag, LPDWORD pThreadId)
 {

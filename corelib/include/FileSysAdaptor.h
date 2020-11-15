@@ -71,7 +71,7 @@ public:
 	virtual int mkdir(const char* pathname) = 0;
 	virtual int unlink(const char* pathname) = 0;
 	
-	virtual int fprintf(FILE* stream, const char* buf) = 0;
+	virtual int fprintf(FILE* stream, const char* buf, va_list args) = 0;
 	virtual int rename(const char* path_old, const char* path_new) = 0;
 	
 	virtual int fstat(char const* const fileName, struct stat* fno) = 0;

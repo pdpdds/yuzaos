@@ -34,7 +34,7 @@ public:
 	virtual int rmdir(const char* pathname) override;
 	virtual int mkdir(const char* pathname) override;
 	virtual int unlink(const char* pathname) override;
-	virtual int fprintf(FILE* stream, const char* buf) override;
+	virtual int fprintf(FILE* stream, const char* buf, va_list args) override;
 	virtual int rename(const char* path_old, const char* path_new) override;
 	//virtual int utime(const char* filename, FILINFO* fno) override;
 	virtual int fstat(char const* const fileName, struct stat* fno) override;

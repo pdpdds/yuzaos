@@ -174,17 +174,19 @@ extern "C" char* strerror(int errnum)
 	return errorMsg;
 }
 
+
 int fprintf(FILE* stream, const char* format, ...)
 {
-	char buf[4096] = { 0, };
 	va_list arglist;
 	va_start(arglist, format);
-	vsnprintf(buf, 4096, format, arglist);
+	int done = g_pFileManager->fprintf(stream, format, arglist);
 	va_end(arglist);
-	buf[4095] = 0;
+	return done;
+}
 
-	int done = g_pFileManager->fprintf(stream, buf);
-
+int vfprintf(FILE* stream, const char* format, va_list ap)
+{
+	int done = g_pFileManager->fprintf(stream, format, ap);
 	return done;
 }
 

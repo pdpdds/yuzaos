@@ -38,17 +38,9 @@ extern "C" __declspec(dllexport) int sky_fseek(FILE* stream, long int offset, in
 	return fseek(stream, offset, whence);
 }
 
-void sky_printf(const char* str, ...)
+void sky_printf(const char* format, va_list arglist)
 {
-	char* p = new char[1024];
-	va_list ap;
-
-	va_start(ap, str);
-	(void)vsnprintf(p, 1024, str, ap);
-	va_end(ap);
-
-	printf(p);
-	delete p;
+	vprintf(format, arglist);
 }
 
 int sky_getchar()

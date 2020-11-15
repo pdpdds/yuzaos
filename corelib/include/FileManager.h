@@ -38,7 +38,7 @@ public:
 	virtual int rmdir(const char* pathname) = 0;
 	virtual int mkdir(const char* pathname) = 0;
 	virtual int unlink(const char* pathname) = 0;
-	virtual int fprintf(FILE* stream, const char* buf) = 0;
+	virtual int fprintf(FILE* stream, const char* buf, va_list args) = 0;
 	virtual int rename(const char* path_old, const char* path_new) = 0;
 
 	virtual void rewinddir(DIR* dp) = 0;
@@ -83,7 +83,7 @@ public:
 	int mkdir(const char *pathname);
 	int unlink(const char *pathname);
 
-	int fprintf(FILE * stream, const char* buf);
+	int fprintf(FILE* stream, const char* buf, va_list args);
 	int rename(const char* path_old, const char* path_new);
 	
 	//int utime(const char *filename, FILINFO* fno);

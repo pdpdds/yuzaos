@@ -332,8 +332,8 @@ namespace EA
             EATEST_API int EATEST_VERIFY_F_IMP_G(bool bExpression, const char* pFormat, ...);
         }
 
-        #define EATEST_VERIFY(expression)          //EA::UnitTest::TestInternal::EATEST_VERIFY_IMP((expression), nErrorCount, __FILE__, __LINE__, (#expression))
-        #define EATEST_VERIFY_MSG(expression, msg) //EA::UnitTest::TestInternal::EATEST_VERIFY_IMP((expression), nErrorCount, __FILE__, __LINE__, msg)
+        #define EATEST_VERIFY(expression)       ASSERT(expression);   //EA::UnitTest::TestInternal::EATEST_VERIFY_IMP((expression), nErrorCount, __FILE__, __LINE__, (#expression))
+        #define EATEST_VERIFY_MSG(expression, msg) ASSERT_WITH_MESSAGE(expression, msg)//EA::UnitTest::TestInternal::EATEST_VERIFY_IMP((expression), nErrorCount, __FILE__, __LINE__, msg)
 
         #if defined(EA_COMPILER_NO_VARIADIC_MACROS)
             #define EATEST_VERIFY_F //EA::UnitTest::TestInternal::EATEST_VERIFY_F_IMP_G

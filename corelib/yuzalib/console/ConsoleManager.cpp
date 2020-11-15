@@ -119,16 +119,16 @@ long processCommandLine(const char *a_szCommand)
 			strcat(execPath, pCurrentToken);
 			//printf("execute file %s\n", execPath);
 
-			int teamId = Syscall_CreateProcess(pCurrentToken, pArg, 16);
+			int handle = Syscall_CreateProcess(pCurrentToken, pArg, 16);
 
-			if(teamId > 0)
+			if(handle > 0)
 				result = true;
 
 			bool graphicMode = Syscall_IsGraphicMode();
 			if (graphicMode == false)
 			{
-				if (teamId != 0)
-					Syscall_WaitForChildProcess(teamId);
+				if (handle != 0)
+					Syscall_WaitForChildProcess(handle);
 			}	
 		}
 	}

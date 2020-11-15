@@ -682,7 +682,7 @@ namespace eastl
 	#if defined(EA_COMPILER_NO_RTTI) || (defined(_MSC_VER) && defined(EA_HAVE_DINKUMWARE_CPP_LIBRARY) && !(defined(_HAS_EXCEPTIONS) && _HAS_EXCEPTIONS))
 		#define EASTL_RTTI_ENABLED 0
 	#else
-		#define EASTL_RTTI_ENABLED 1
+		//#define EASTL_RTTI_ENABLED 1
 	#endif
 #endif
 
