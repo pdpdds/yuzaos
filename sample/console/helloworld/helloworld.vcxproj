@@ -106,7 +106,7 @@
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <AdditionalIncludeDirectories>./;../include;../../../corelib/include;../../../runtime/include;../../yuza_core;../../../corelib/yuzalib/renderer;../../../runtime/libcrt/input;../../../support/unicodefont;../../../support/hangul;../../../corelib/stl/sgi;../../../corelib/streams</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_MSC_VER;__STDC__;i386;DLL_EXPORT</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MSC_VER;</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>
