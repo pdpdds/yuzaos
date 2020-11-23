@@ -6,6 +6,7 @@
 #include <BuildOption.h>
 #include <SkyConsole.h>
 #include <ProcessUtil64.h>
+#include <ktypes.h>
 
 uint32_t GetTotalMemory(multiboot_info* bootinfo)
 {

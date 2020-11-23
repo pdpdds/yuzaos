@@ -264,7 +264,7 @@ void RegisterSysCall()
 	AddSyscall(eResumeThread, kResumeThread);
 	AddSyscall(eTerminateThread, kTerminateThread);
 	AddSyscall(eExitThread, kExitThread);
-	AddSyscall(eThreadExit, kExitThread);
+	AddSyscall(eExitProcess, kExitProcess);
 
 	AddSyscall(eGetCurrentThreadId, kGetCurrentThreadId);
 	AddSyscall(eGetCurrentThread, kGetCurrentThread);

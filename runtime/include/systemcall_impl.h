@@ -25,7 +25,7 @@ enum
 	eGetTime =		4,
 	ePanic = 5,
 
-	eThreadExit = 19,
+	eExitProcess = 19,
 	eExitThread = 20,
 	eCreateThread = 21,
 	eTerminateThread = 22,
@@ -218,7 +218,7 @@ enum
 #define Syscall_SetThreadPriorityBoost(hThread, DisablePriorityBoost)  (bool)syscall2(eSetThreadPriority, SCPARAM(hThread), SCPARAM(DisablePriorityBoost))
 
 #define Syscall_GetCurrentThread()  (int)syscall0(eGetCurrentThread)
-#define Syscall_exit(reason)  (int)syscall1(eThreadExit, reason)
+#define Syscall_exit(reason)  (int)syscall1(eExitProcess, reason)
 #define Syscall_SetTimer(hWnd, nIDEvent, nElapse, lpfnTimer) (HANDLE)syscall4(eSetTimer, SCPARAM(hWnd), SCPARAM(nIDEvent), SCPARAM(nElapse), SCPARAM(lpfnTimer))
 #define Syscall_KillTimer(hWnd, nIDEvent) (bool)syscall2(eKillTimer, SCPARAM(hWnd), SCPARAM(nIDEvent))
 

@@ -24,6 +24,7 @@ extern "C" {
 	DWORD kResumeThread(HANDLE hThread);
 	BOOL kTerminateThread(HANDLE handle, DWORD* dwRetCode);
 	BOOL kExitThread(int errorCode);
+	BOOL kExitProcess(int errorCode);
 
 	BOOL kSetThreadPriority(HANDLE hThread, int nPriority);
 	int kGetThreadPriority(HANDLE hThread);

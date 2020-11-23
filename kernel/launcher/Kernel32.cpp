@@ -13,6 +13,7 @@
 #include <string.h>
 #include <BuildOption.h>
 #include <intrinsic.h>
+#include <ktypes.h>
 
 //i번째 인터럽트 디스크립트를 얻어온다.
 extern idt_descriptor* GetInterruptDescriptor(uint32_t i);
@@ -143,7 +144,7 @@ void BuildBootParam(BootParams* pBootParams, multiboot_info_t* pBootInfo, char* 
 
 		pBootParams->Modules = (BootModule*)PhysicalMemoryManager::AllocBlocks(modules);
 
-		for (int i = 0; i < pBootInfo->mods_count; i++)
+		for (unsigned int i = 0; i < pBootInfo->mods_count; i++)
 		{
 			pBootParams->Modules[i].ModuleStart = pBootInfo->Modules[i].ModuleStart;
 			pBootParams->Modules[i].ModuleEnd = pBootInfo->Modules[i].ModuleEnd;

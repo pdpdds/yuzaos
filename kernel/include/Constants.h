@@ -1,6 +1,4 @@
 #pragma once
-
-#define PAGE_SIZE 4096
 #define MEGA_BYTES 1048576
 #define KILO_BYTES 1024
 

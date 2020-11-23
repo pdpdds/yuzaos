@@ -9,6 +9,7 @@
 #include <Constants.h>
 #include "SkyConsole.h"
 #include <BootParams.h>
+#include <ktypes.h>
 
 extern BootParams* g_pBootParams;
 extern DWORD* _hyperSpacePTE;

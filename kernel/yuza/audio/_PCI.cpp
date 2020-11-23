@@ -13,7 +13,7 @@
 #include <systemcall_impl.h>
 //#include "network/network.h"
 #include <audio.h>
-
+#include <ktypes.h>
 
 list_t pci_devices = list_init();
 static DWORD pci_mutex;

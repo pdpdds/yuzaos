@@ -4,6 +4,7 @@
 #include <minwindef.h>
 #include <SkyConsole.h>
 #include <BuildOption.h>
+#include <BootParams.h>
 
 static char* sickpc = " (>_<) YUZA OS Error!!\n\n";
 
@@ -13,7 +14,6 @@ We are sorry for the inconvenience this might have caused.\n\n\
 Please report the following information and restart your computer.\n\
 The system has been halted.\n\n";
 
-#include <BootParams.h>
 extern void SampleFillRect(ULONG* lfb0, int x, int y, int w, int h, int col);
 extern BootParams g_bootParams;
 extern "C" void kprintf(const char* fmt, ...);

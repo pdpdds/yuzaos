@@ -127,6 +127,16 @@ typedef struct kRectangleStruct
 	int bottom;
 } RECT;
 
+
+typedef struct tag_RectangleInfo
+{
+	int left;
+	int top;
+	int width;
+	int height;
+} RECTINFO;
+
+
 // 점의 정보를 담는 자료구조
 typedef struct kPointStruct
 {

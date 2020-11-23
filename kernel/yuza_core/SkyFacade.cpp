@@ -20,8 +20,6 @@
 #include <PEImage.h>
 #include <LoadDLL.h>
 
-extern idt_descriptor* g_pIDT;
-
 #if SKY_EMULATOR
 #include "../win32stub/OrangeOSAPI.h"
 #include "../win32stub/SkyOSWin32Stub.h"
@@ -57,13 +55,6 @@ CRITICAL_SECTION g_interrupt_cs;
 
 typedef I_FileManager* (*PCreateFileManager)();
 typedef FileSysAdaptor* (*PFileSysAdaptor)();
-
-bool InitSerialPortSystem();
-
-/*ULONG aaaa = (ULONG)g_bootParams.framebuffer_addr;
-	SampleFillRect((ULONG*)aaaa, 1004, 0, 20, 20, 0xFFFF0000);
-	for (;;);
-	*/
 
 extern "C" {
 	void trap0(); 
@@ -103,6 +94,10 @@ extern "C" {
 	void trap50();
 };
 
+BootParams g_bootParams;
+PlatformAPI g_platformAPI;
+extern idt_descriptor* g_pIDT;
+
 extern void OrangeOSConsole(char* consoleName);
 extern void OrangeOSGUI(char* desktopName);
 extern bool InitKernelSystem();
@@ -113,15 +108,14 @@ void InitInterrupt();
 bool BuildPlatformAPI();
 bool InitEnvironment();
 bool AddEnvironment(config_t& cfg, char* element, char* envName);
-bool InitStorageSystem();
-bool InitDebuggerSystem();
+bool InitStorageSystem(const char* configName);
+bool InitDebuggerSystem(const char* configName);
 void KernelThreadProc();
 void JumpToNewKernelEntry(int entryPoint, unsigned int procStack);
 void InitPCI();
 bool AddEnvironmentForced(config_t& cfg, char* element, char* envName);
-
-BootParams g_bootParams;
-PlatformAPI g_platformAPI;
+extern void InterrputDefaultHandler();
+bool InitSerialPortSystem();
 
 void SampleFillRect(ULONG* lfb0, int x, int y, int w, int h, int col)
 {
@@ -133,7 +127,6 @@ void SampleFillRect(ULONG* lfb0, int x, int y, int w, int h, int col)
 		}
 }
 
-extern void InterrputDefaultHandler();
 void KernelThreadProc()
 {	
 	kprintf("KernelThreadProc Entered. base : %x size : %x\n", g_bootParams._memoryInfo._kernelBase, g_bootParams._memoryInfo._kernelSize);
@@ -164,9 +157,8 @@ void KernelThreadProc()
 	InitPCI();
 #endif
 	InitEnvironment(); 
-	InitStorageSystem();
-
-	InitDebuggerSystem();
+	InitStorageSystem("driver_config.cfg");
+	InitDebuggerSystem("yuza.cfg");
 
 	char buf[256];
 	if (g_bootParams.bGraphicMode == true)
@@ -242,7 +234,7 @@ bool InitOSSystem(BootParams* pBootParam)
 	{
 		g_bootParams.Modules = new BootModule[pModule->_moduleCount];
 
-		for (int i = 0; i < pModule->_moduleCount; i++)
+		for (unsigned int i = 0; i < pModule->_moduleCount; i++)
 		{
 			g_bootParams.Modules[i].ModuleStart = pModule->_module[i]._startAddress;
 			g_bootParams.Modules[i].ModuleEnd = pModule->_module[i]._endAddress;
@@ -409,27 +401,26 @@ bool InitEnvironment()
 	return true;
 }
 
-bool InitStorageSystem()
+bool InitStorageSystem(const char* configName)
 {
 	config_t cfg;
 	
 	const char* str;
 	config_init(&cfg);
-	char* config_file = "driver_config.cfg";
 	
 	/* Read the file. If there is an error, report it and exit. */
-	if (!config_read_file(&cfg, config_file))
+	if (!config_read_file(&cfg, configName))
 	{
-		kDebugPrint("%s:%d - %s\n", config_file, config_error_line(&cfg), config_error_text(&cfg));
-		kPanic("driver config file load fail : %s", config_file);
+		kDebugPrint("%s:%d - %s\n", configName, config_error_line(&cfg), config_error_text(&cfg));
+		kPanic("driver config file load fail : %s", configName);
 	}
 	
 	if (!config_lookup_string(&cfg, "name", &str))
 	{
-		kPanic("%s : No 'name' setting in configuration file.\n", config_file);
+		kPanic("%s : No 'name' setting in configuration file.\n", configName);
 	}
 	
-	kDebugPrint("file : %s, name: %s\n\n", config_file, str);
+	kDebugPrint("file : %s, name: %s\n\n", configName, str);
 
 	AddStorageModule(cfg, "storage.IDE", true);
 
@@ -569,21 +560,20 @@ bool InitSerialPortSystem()
 }
 
 bool AddSymbol(config_t& cfg, char* element);
-bool InitDebuggerSystem()
+bool InitDebuggerSystem(const char* configName)
 {
 	kprintf("InitDebuggerSystem\n");
 	config_t cfg;
 
 	config_init(&cfg);
-	char* config_file = "yuza.cfg";
 
 	/* Read the file. If there is an error, report it and exit. */
-	if (!config_read_file(&cfg, config_file))
+	if (!config_read_file(&cfg, configName))
 	{
 
-		kDebugPrint("%s:%d - %s\n", config_file, config_error_line(&cfg), config_error_text(&cfg));
+		kDebugPrint("%s:%d - %s\n", configName, config_error_line(&cfg), config_error_text(&cfg));
 		config_destroy(&cfg);
-		kPanic("file load fail : %s", config_file);
+		kPanic("file load fail : %s", configName);
 	}
 
 	config_setting_t* setting;

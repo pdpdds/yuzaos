@@ -3,6 +3,7 @@
 #include "memory.h"
 #include <stringdef.h>
 #include <Constants.h>
+#include <ktypes.h>
 #include "SkyConsole.h"
 #include <BootParams.h>
 

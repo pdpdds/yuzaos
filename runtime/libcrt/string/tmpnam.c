@@ -9,8 +9,7 @@
 static char tmpnam_buffer[L_tmpnam];
 static int tmpnam_counter;
 
-char*
-tmpnam(char* s)
+char* tmpnam(char* s)
 {
     int pid = 0;
     if (s == NULL)
@@ -20,7 +19,7 @@ tmpnam(char* s)
     while (1)
     {
         FILE* f;
-        sprintf(s, "%s/%s%x.%x", P_tmpdir, "t", pid, tmpnam_counter);
+        sprintf(s, "%s/%s%x.%x", "/temp", "t", pid, tmpnam_counter);
         f = fopen(s, "r");
         if (f == NULL)
             break;

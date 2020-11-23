@@ -383,6 +383,19 @@ BOOL kExitThread(int errorCode)
 	return TRUE;
 }
 
+BOOL kExitProcess(int errorCode)
+{
+	if (kIsGraphicMode())
+	{
+		QWORD windowId = Thread::GetRunningThread()->GetTeam()->GetWindowId();
+		SkyGUISystem::GetInstance()->DeleteWindow(&windowId);
+	}
+
+	kExitThread(errorCode);
+
+	return TRUE;
+}
+
 BOOL kTerminateThread(HANDLE handle, DWORD* lpRetCode)
 {
 #if SKY_EMULATOR

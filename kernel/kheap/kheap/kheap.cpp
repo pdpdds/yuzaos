@@ -6,6 +6,7 @@
 #include <math.h>
 #include <InterruptDisabler.h>
 #include <systemcall_impl.h>
+#include <ktypes.h>
 
 #define SANITIZE_KMALLOC
 #define MB 1024 * 1024
