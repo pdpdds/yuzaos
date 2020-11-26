@@ -105,7 +105,7 @@
 
 /* turn on assertions */
 #undef NDEBUG
-#include <_assert.h>
+#include <assert.h>
 
 /* just in case */
 #undef xmalloc
@@ -124,8 +124,7 @@ static lzo_voidp xmalloc(lzo_uint len)
     lzo_voidp p;
     lzo_uint align = (lzo_uint) sizeof(lzo_align_t);
 
-	//20200110
-    p = (lzo_voidp)lzo_malloc_aligned((len > 0 ? len : 1), (unsigned int*)&align);
+    p = (lzo_voidp)lzo_malloc_aligned((len > 0 ? len : 1), (size_t)&align);
     if (p == NULL)
     {
         printf("%s: out of memory\n", progname);
