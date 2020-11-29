@@ -142,9 +142,9 @@ static int select_files(dirent* info)
 	if (info->d_name[0] == '.')
 		return 0;
 	if (wild_match(info->d_name, filemask))
-		return info->dwAttribute == 0;
-	else
 		return info->dwAttribute == 1;
+	else
+		return info->dwAttribute == 0;
 }
 
 extern int scandir(const char* dirname, dirent*** namelist, int (*sdfilter)(dirent*), int (*dcomp)(const void*, const void*));

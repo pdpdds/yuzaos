@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="freetype_harfbuzz_scene.cpp" />
+    <ClCompile Include="freetype_outline_scene.cpp" />
+    <ClCompile Include="freetype_scene.cpp" />
+    <ClCompile Include="freetype_stroke_scene.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="menu_scene.cpp" />
+    <ClCompile Include="scene.cpp" />
+    <ClCompile Include="texture.cpp" />
+  </ItemGroup>
+</Project>

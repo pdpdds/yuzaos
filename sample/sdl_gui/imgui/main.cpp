@@ -1,4 +1,5 @@
 #include <SDL.h>
+#include "imgui_impl_sdl.h"
 #include "imgui_sdl.h"
 #include "ImGuiFileDialog.h"
 
@@ -84,6 +85,7 @@ int main(int argc, char** argv)
 
 	ImGui::CreateContext();
 	ImGuiSDL::Initialize(renderer, 800, 600);
+	ImGui_ImplSDL2_Init(window);
 
 	SDL_Texture* texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_TARGET, 100, 100);
 	{
@@ -103,6 +105,8 @@ int main(int argc, char** argv)
 		SDL_Event e;
 		while (SDL_PollEvent(&e))
 		{
+			ImGui_ImplSDL2_ProcessEvent(&e);
+
 			if (e.type == SDL_QUIT) run = false;
 			else if (e.type == SDL_WINDOWEVENT)
 			{
@@ -124,9 +128,9 @@ int main(int argc, char** argv)
 		// Setup low-level inputs (e.g. on Win32, GetKeyboardState(), or write to those fields from your Windows message loop handlers, etc.)
 
 		io.DeltaTime = 1.0f / 60.0f;
-		io.MousePos = ImVec2(static_cast<float>(mouseX), static_cast<float>(mouseY));
+		/*io.MousePos = ImVec2(static_cast<float>(mouseX), static_cast<float>(mouseY));
 		io.MouseDown[0] = buttons & SDL_BUTTON(SDL_BUTTON_LEFT);
-		io.MouseDown[1] = buttons & SDL_BUTTON(SDL_BUTTON_RIGHT);
+		io.MouseDown[1] = buttons & SDL_BUTTON(SDL_BUTTON_RIGHT);*/
 		io.MouseWheel = static_cast<float>(wheel);
 
 		ImGui::NewFrame();
@@ -142,12 +146,16 @@ int main(int argc, char** argv)
 		SDL_SetRenderDrawColor(renderer, 114, 144, 154, 255);
 		SDL_RenderClear(renderer);
 
+		ImGui_ImplSDL2_UpdateMousePosAndButtons();
+		ImGui_ImplSDL2_UpdateMouseCursor();
+		ImGui_ImplSDL2_UpdateGamepads();
+
 		ImGui::Render();
 		ImGuiSDL::Render(ImGui::GetDrawData());
 
 		SDL_RenderPresent(renderer);
 	}
-
+	ImGui_ImplSDL2_Shutdown();
 	ImGuiSDL::Deinitialize();
 
 	SDL_DestroyRenderer(renderer);

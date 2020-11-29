@@ -201,7 +201,7 @@ void press_choice(GuiObject * obj)
 	do {
 		//ksleep(sleep_time);
 		do_window_functions(win_thread);
-		if (GuiGetMessage() == EVENT_MOUSE_LBUTTONDOWN) {
+		if (GuiGetMessage() == EVENT_MOUSE_LBUTTONDOWN || GuiGetMessage() == EVENT_MOUSE_LBUTTONUP) {
 			move_mouse();
 			object_region(win);
 			if (win->focusobj != object) {
@@ -226,10 +226,12 @@ void press_choice(GuiObject * obj)
 	/* wait for mousebutton to be released */
 	while (status == EVENT_MOUSE_LBUTTONDOWN) {
 		//ksleep(sleep_time);
+		
 		do_window_functions(win_thread);
-		if (GuiGetMessage() == EVENT_MOUSE_LBUTTONDOWN) {
+		status = GuiGetMessage();
+		if (status == EVENT_MOUSE_LBUTTONDOWN) {
 			move_mouse();
-			status = GuiMouseGetButton();
+			
 		}
 	}
 	
