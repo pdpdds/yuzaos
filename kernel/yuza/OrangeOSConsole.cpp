@@ -25,7 +25,7 @@ void PrintInfomation()
 	kprintf("build time %s %s\n\n", BUILD_DATE, BUILD_TIME);
 }
 
-void OrangeOSConsole(char* consoleName) 
+void YuzaOSConsole(char* consoleName)
 {
 	SkyConsole::Clear();
 	PrintInfomation();
@@ -36,7 +36,7 @@ void OrangeOSConsole(char* consoleName)
 #else 
 	//TestCode();
 	HANDLE handle = kCreateProcess(consoleName, nullptr, 16);  
-	SKY_ASSERT(handle != 0, "OrangeOSConsole exec fail!!\n"); 
+	SKY_ASSERT(handle != 0, "YuzaOSConsole exec fail!!\n"); 
 	WatchDogProc(0); 
 #endif
 	

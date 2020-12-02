@@ -87,11 +87,22 @@ int FAT_FileSystem::Read(PFILE file, unsigned char* buffer, unsigned int size, i
 
 bool FAT_FileSystem::Close(PFILE file)
 {
-	bool result = f_close((FIL*)(file->_handle));
-	delete (FILE*)file->_handle;
-	delete file;
-	file = 0;
+	bool result = 0;
+	if (file->_referenceCount > 0)
+	{
+		file->_referenceCount--;
+	}
+
+	if (file->_referenceCount == 0)
+	{
+		result = f_close((FIL*)(file->_handle));
+		delete (FILE*)file->_handle;
+		delete file;
+		file = 0;
+	}
+		
 	return result;
+	
 }
 
 #define OPENMODE_NONE 0
@@ -149,6 +160,7 @@ PFILE FAT_FileSystem::Open(const char* fileName, const char* mode)
 	file->_deviceID = 'C';
 	strcpy(file->_name, fileName);
 	file->_handle = (DWORD)fil;
+	file->_referenceCount = 1;
 
 	//printf("FAT_FileSystem::Open Sucess %s %x\n", fileName, file);
 
@@ -521,5 +533,6 @@ FILE* FAT_FileSystem::freopen(const char* filename, const char* mode, FILE* stre
 	//not implemented
 	return 0;
 }
+
 
 

@@ -12,7 +12,7 @@ SPDX-License-Identifier: MIT
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdarg.h>
-#include <string.h>
+
 #include "gif_lib.h"
 
 bool GifNoisyPrint = false;

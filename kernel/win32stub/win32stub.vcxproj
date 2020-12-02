@@ -125,7 +125,7 @@
       <PreprocessorDefinitions>WINDOWS_IGNORE_PACKING_MISMATCH;WIN32STUB;_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>false</SDLCheck>
       <DisableSpecificWarnings>4819;4244</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>./SDL2/include;../../corelib/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./SDL2/include;../../corelib/include;</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <StructMemberAlignment>Default</StructMemberAlignment>
       <BufferSecurityCheck>false</BufferSecurityCheck>
@@ -234,6 +234,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OrangeOSAPI.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="SkyInputHandlerWin32.h" />
     <ClInclude Include="SkyOSWin32Stub.h" />
     <ClInclude Include="stdafx.h" />

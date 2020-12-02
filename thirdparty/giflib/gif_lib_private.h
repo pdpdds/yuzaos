@@ -36,7 +36,7 @@ SPDX-License-Identifier: MIT
 #define IS_WRITEABLE(Private)   (Private->FileState & FILE_STATE_WRITE)
 
 typedef struct GifFilePrivateType {
-    GifWord FileState,  /* Where all this data goes to! */
+    GifWord FileState, FileHandle,  /* Where all this data goes to! */
       BitsPerPixel,     /* Bits per pixel (Codes uses at least this + 1). */
       ClearCode,   /* The CLEAR LZ code. */
       EOFCode,     /* The EOF LZ code. */

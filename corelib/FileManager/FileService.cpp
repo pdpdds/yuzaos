@@ -184,6 +184,13 @@ int fprintf(FILE* stream, const char* format, ...)
 	return done;
 }
 
+FILE* fdopen(int fd, const char* mode)
+{
+	FILE* fp = (FILE*)fd;
+	
+	return fp;
+}
+
 int vfprintf(FILE* stream, const char* format, va_list ap)
 {
 	int done = g_pFileManager->fprintf(stream, format, ap);

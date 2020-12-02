@@ -28,3 +28,12 @@ char* tmpnam(char* s)
     }
     return s;
 }
+
+
+FILE* tmpfile(void)
+{
+    char* tempName = tmpnam(0);
+    FILE* fp = fopen(tempName, "rw");
+
+    return fp;
+}

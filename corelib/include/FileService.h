@@ -32,6 +32,8 @@ typedef struct _FILE
 	unsigned int    _currentCluster; //현재 클러스터 위치
 	unsigned int    _deviceID; //디바이스 아이디
 	unsigned int    _fileType; //파일타입.
+	unsigned int    _referenceCount; //파일 참조 카운트.
+
 }FILE, *PFILE;
 
 
@@ -45,6 +47,7 @@ extern "C" {
 	DLL_API size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream);
 	DLL_API size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream);
 	DLL_API int fclose(FILE *stream);
+	DLL_API FILE* fdopen(int fd, const char* mode);
 
 	DLL_API long int ftell(FILE* stream);
 	DLL_API int fseek(FILE* stream, long int offset, int whence);

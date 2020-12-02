@@ -11,8 +11,6 @@ SPDX-License-Identifier: MIT
 #include <ctype.h>
 #include <fcntl.h>
 #include <stdbool.h>
-#include <string.h>
-#include <getenv.h>
 
 #ifdef _WIN32
 #include <io.h>
@@ -238,7 +236,7 @@ int main(int argc, char **argv)
 		    exit(EXIT_FAILURE);
 		}
 		if (!RawFlag) {
-			printf("\n");
+		    putchar('\n');
 		    switch (ExtCode)
 		    {
 		    case COMMENT_EXT_FUNC_CODE:

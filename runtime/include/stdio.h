@@ -35,6 +35,8 @@ extern "C" {
 	CRT_API void abort();
 
 	char* tmpnam(char* s);
+	FILE* tmpfile(void);
+
 #ifdef  __cplusplus
 }
 #endif

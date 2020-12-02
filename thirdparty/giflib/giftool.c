@@ -12,6 +12,7 @@ SPDX-License-Identifier: MIT
 #include <fcntl.h>
 #include <stdbool.h>
 
+#include "getopt.h"
 #include "gif_lib.h"
 #include "getarg.h"
 

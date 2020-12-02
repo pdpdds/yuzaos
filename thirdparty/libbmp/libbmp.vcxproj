@@ -381,11 +381,9 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BMPImageModule.cpp" />
     <ClCompile Include="libbmp.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BMPImageModule.h" />
     <ClInclude Include="libbmp.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

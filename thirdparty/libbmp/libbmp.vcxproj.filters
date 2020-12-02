@@ -18,17 +18,11 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BMPImageModule.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="libbmp.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BMPImageModule.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
     <ClInclude Include="libbmp.h">
       <Filter>소스 파일</Filter>
     </ClInclude>

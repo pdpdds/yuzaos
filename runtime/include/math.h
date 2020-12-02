@@ -124,6 +124,8 @@ extern "C" {
 	MATH_API int isfinite(double x);
 
 	MATH_API double hypot(double x, double y);
+
+	MATH_API double rint(double x);
 	
 
 #ifdef __cplusplus

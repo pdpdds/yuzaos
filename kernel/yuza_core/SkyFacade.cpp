@@ -98,7 +98,7 @@ BootParams g_bootParams;
 PlatformAPI g_platformAPI;
 extern idt_descriptor* g_pIDT;
 
-extern void OrangeOSConsole(char* consoleName);
+extern void YuzaOSConsole(char* consoleName);
 extern void OrangeOSGUI(char* desktopName);
 extern bool InitKernelSystem();
 extern void StartNativeSystem(void* param);
@@ -174,7 +174,7 @@ void KernelThreadProc()
 		SkyConsole::Print("Keyboard Init..\n");
 #endif
 		kGetEnvironmentVariable("CONSOLEMGR", buf, 256);
-		OrangeOSConsole(buf);
+		YuzaOSConsole(buf);
 	}
 }
 

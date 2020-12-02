@@ -20,7 +20,7 @@ SPDX-License-Identifier: MIT
 #include <io.h>
 #else
 #include <unistd.h>
-//#include <sys/types.h>
+#include <sys/types.h>
 #endif /* _WIN32 */
 //#include <sys/stat.h>
 
@@ -62,22 +62,23 @@ static int EGifBufferedOutput(GifFileType * GifFile, GifByteType * Buf,
 GifFileType *
 EGifOpenFileName(const char *FileName, const bool TestExistence, int *Error)
 {
-    FILE* fp;
+
+    int FileHandle;
     GifFileType *GifFile;
 
     if (TestExistence)
-        fp = fopen(FileName, "wb+");
+        FileHandle = (int)fopen(FileName, "rw");
     else
-        fp = fopen(FileName, "wb+");
+        FileHandle = (int)fopen(FileName, "rw");
 
-    if (fp == 0) {
+    if (FileHandle == 0) {
         if (Error != NULL)
 	    *Error = E_GIF_ERR_OPEN_FAILED;
         return NULL;
     }
-    GifFile = EGifOpenFileHandle(fp, Error);
+    GifFile = EGifOpenFileHandle(FileHandle, Error);
     if (GifFile == (GifFileType *) NULL)
-        (void)fclose(fp);
+        (void)fclose((FILE*)FileHandle);
     return GifFile;
 }
 
@@ -89,10 +90,11 @@ EGifOpenFileName(const char *FileName, const bool TestExistence, int *Error)
  Only fails on a memory allocation error.
 ******************************************************************************/
 GifFileType *
-EGifOpenFileHandle(const FILE* fp, int *Error)
+EGifOpenFileHandle(const int FileHandle, int *Error)
 {
     GifFileType *GifFile;
     GifFilePrivateType *Private;
+    FILE *f;
 
     GifFile = (GifFileType *) malloc(sizeof(GifFileType));
     if (GifFile == NULL) {
@@ -117,14 +119,15 @@ EGifOpenFileHandle(const FILE* fp, int *Error)
         return NULL;
     }
 
-//#ifdef _WIN32
-   // _setmode(FileHandle, O_BINARY);    /* Make sure it is in binary mode. */
-//#endif /* _WIN32 */
-    //
-  //  f = fdopen(FileHandle, "wb");    /* Make it into a stream: */
+#ifdef _WIN32
+    _setmode(FileHandle, O_BINARY);    /* Make sure it is in binary mode. */
+#endif /* _WIN32 */
+
+    f = fdopen(FileHandle, "wb");    /* Make it into a stream: */
 
     GifFile->Private = (void *)Private;
-    Private->File = fp;
+    Private->FileHandle = FileHandle;
+    Private->File = f;
     Private->FileState = FILE_STATE_WRITE;
     Private->gif89 = false;
 
@@ -175,6 +178,7 @@ EGifOpen(void *userData, OutputFunc writeFunc, int *Error)
     }
 
     GifFile->Private = (void *)Private;
+    Private->FileHandle = 0;
     Private->File = (FILE *) 0;
     Private->FileState = FILE_STATE_WRITE;
 
@@ -800,6 +804,7 @@ EGifCloseFile(GifFileType *GifFile, int *ErrorCode)
 		free((char *) Private->HashTable);
 	    }
 	    free((char *) Private);
+        GifFile->Private = 0;
 	}
 
 	if (File && fclose(File) != 0) {

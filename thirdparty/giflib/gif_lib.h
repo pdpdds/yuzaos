@@ -22,7 +22,6 @@ extern "C" {
 
 #include <stddef.h>
 #include <stdbool.h>
-#include <FileService.h>
 
 #define GIF_STAMP "GIFVER"          /* First chars in file - GIF stamp.  */
 #define GIF_STAMP_LEN sizeof(GIF_STAMP) - 1
@@ -128,7 +127,7 @@ typedef struct GraphicsControlBlock {
 /* Main entry points */
 GifFileType *EGifOpenFileName(const char *GifFileName,
                               const bool GifTestExistence, int *Error);
-GifFileType *EGifOpenFileHandle(const FILE* fp, int *Error);
+GifFileType *EGifOpenFileHandle(const int GifFileHandle, int *Error);
 GifFileType *EGifOpen(void *userPtr, OutputFunc writeFunc, int *Error);
 int EGifSpew(GifFileType * GifFile);
 const char *EGifGetGifVersion(GifFileType *GifFile); /* new in 5.x */
@@ -180,7 +179,7 @@ int EGifPutCodeNext(GifFileType *GifFile,
 
 /* Main entry points */
 GifFileType *DGifOpenFileName(const char *GifFileName, int *Error);
-GifFileType *DGifOpenFileHandle(FILE* fp, int *Error);
+GifFileType *DGifOpenFileHandle(int GifFileHandle, int *Error);
 int DGifSlurp(GifFileType * GifFile);
 GifFileType *DGifOpen(void *userPtr, InputFunc readFunc, int *Error);    /* new one (TVT) */
     int DGifCloseFile(GifFileType * GifFile, int *ErrorCode);

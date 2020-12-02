@@ -55,16 +55,16 @@ static int DGifBufferedInput(GifFileType *GifFile, GifByteType *Buf,
 GifFileType *
 DGifOpenFileName(const char *FileName, int *Error)
 {
-    FILE* fp;
+    int FileHandle;
     GifFileType *GifFile;
 
-    if ((fp = fopen(FileName, "rb")) == 0) {
+    if ((FileHandle = (int)fopen(FileName, "rb")) == 0) {
 	if (Error != NULL)
 	    *Error = D_GIF_ERR_OPEN_FAILED;
         return NULL;
     }
 
-    GifFile = DGifOpenFileHandle(fp, Error);
+    GifFile = DGifOpenFileHandle(FileHandle, Error);
     return GifFile;
 }
 
@@ -74,17 +74,18 @@ DGifOpenFileName(const char *FileName, int *Error)
  info record.
 ******************************************************************************/
 GifFileType *
-DGifOpenFileHandle(FILE* fp, int *Error)
+DGifOpenFileHandle(int FileHandle, int *Error)
 {
     char Buf[GIF_STAMP_LEN + 1];
     GifFileType *GifFile;
     GifFilePrivateType *Private;
+    FILE *f;
 
     GifFile = (GifFileType *)malloc(sizeof(GifFileType));
     if (GifFile == NULL) {
         if (Error != NULL)
 	    *Error = D_GIF_ERR_NOT_ENOUGH_MEM;
-        (void)fclose(fp);
+        (void)fclose((FILE*)FileHandle);
         return NULL;
     }
 
@@ -98,23 +99,23 @@ DGifOpenFileHandle(FILE* fp, int *Error)
     if (Private == NULL) {
         if (Error != NULL)
 	    *Error = D_GIF_ERR_NOT_ENOUGH_MEM;
-        (void)fclose(fp);
+        (void)fclose((FILE*)FileHandle);
         free((char *)GifFile);
         return NULL;
     }
 
     /*@i1@*/memset(Private, '\0', sizeof(GifFilePrivateType));
 
-//#ifdef _WIN32
-  //  _setmode(FileHandle, O_BINARY);    /* Make sure it is in binary mode. */
-//#endif /* _WIN32 */
+#ifdef _WIN32
+    _setmode(FileHandle, O_BINARY);    /* Make sure it is in binary mode. */
+#endif /* _WIN32 */
 
-   // f = fdopen(FileHandle, "rb");    /* Make it into a stream: */
+    f = fdopen(FileHandle, "rb");    /* Make it into a stream: */
 
     /*@-mustfreeonly@*/
     GifFile->Private = (void *)Private;
-    //Private->FileHandle = FileHandle;
-    Private->File = fp;
+    Private->FileHandle = FileHandle;
+    Private->File = f;
     Private->FileState = FILE_STATE_READ;
     Private->Read = NULL;        /* don't use alternate input method (TVT) */
     GifFile->UserData = NULL;    /* TVT */
@@ -125,7 +126,7 @@ DGifOpenFileHandle(FILE* fp, int *Error)
     if (InternalRead(GifFile, (unsigned char *)Buf, GIF_STAMP_LEN) != GIF_STAMP_LEN) {
         if (Error != NULL)
 	    *Error = D_GIF_ERR_READ_FAILED;
-        (void)fclose(fp);
+        (void)fclose(f);
         free((char *)Private);
         free((char *)GifFile);
         return NULL;
@@ -136,14 +137,14 @@ DGifOpenFileHandle(FILE* fp, int *Error)
     if (strncmp(GIF_STAMP, Buf, GIF_VERSION_POS) != 0) {
         if (Error != NULL)
 	    *Error = D_GIF_ERR_NOT_GIF_FILE;
-        (void)fclose(fp);
+        (void)fclose(f);
         free((char *)Private);
         free((char *)GifFile);
         return NULL;
     }
 
     if (DGifGetScreenDesc(GifFile) == GIF_ERROR) {
-        (void)fclose(fp);
+        (void)fclose(f);
         free((char *)Private);
         free((char *)GifFile);
         return NULL;
@@ -190,6 +191,7 @@ DGifOpen(void *userData, InputFunc readFunc, int *Error)
     /*@i1@*/memset(Private, '\0', sizeof(GifFilePrivateType));
 
     GifFile->Private = (void *)Private;
+    Private->FileHandle = 0;
     Private->File = NULL;
     Private->FileState = FILE_STATE_READ;
 
@@ -699,6 +701,7 @@ DGifCloseFile(GifFileType *GifFile, int *ErrorCode)
 	if (ErrorCode != NULL)
 	    *ErrorCode = D_GIF_ERR_NOT_READABLE;
 	free((char *)GifFile->Private);
+    GifFile->Private = 0;
 	free(GifFile);
         return GIF_ERROR;
     }
@@ -707,11 +710,13 @@ DGifCloseFile(GifFileType *GifFile, int *ErrorCode)
 	if (ErrorCode != NULL)
 	    *ErrorCode = D_GIF_ERR_CLOSE_FAILED;
 	free((char *)GifFile->Private);
+    GifFile->Private = 0;
 	free(GifFile);
         return GIF_ERROR;
     }
 
     free((char *)GifFile->Private);
+    GifFile->Private = 0;
     free(GifFile);
     if (ErrorCode != NULL)
 	*ErrorCode = D_GIF_SUCCEEDED;

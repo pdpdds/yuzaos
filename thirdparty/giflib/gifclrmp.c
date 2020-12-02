@@ -12,7 +12,7 @@ SPDX-License-Identifier: MIT
 #include <string.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#include <_assert.h>
+#include <assert.h>
 
 #include "gif_lib.h"
 #include "getarg.h"

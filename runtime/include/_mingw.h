@@ -301,10 +301,11 @@ typedef struct threadlocalinfostruct *pthreadlocinfo;
 typedef struct threadmbcinfostruct *pthreadmbcinfo;
 #ifdef WIN32STUB
 #else
-typedef struct localeinfo_struct {
+//20201126
+/*typedef struct localeinfo_struct {
 	pthreadlocinfo locinfo;
 	pthreadmbcinfo mbcinfo;
-} _locale_tstruct, *_locale_t;
+} _locale_tstruct, *_locale_t;*/
 #endif
 
 /* The __AW() definition will be used for mapping UNICODE versus ASCII versions
