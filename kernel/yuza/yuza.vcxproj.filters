@@ -68,6 +68,9 @@
     <ClInclude Include="audio\wav.h">
       <Filter>audio</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="resource1.h" />
+    <ClInclude Include="resource2.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="test">
@@ -76,5 +79,11 @@
     <Filter Include="audio">
       <UniqueIdentifier>{9c706e4a-d7e8-49ac-870a-54d5b940d88d}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="yuza.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon1.ico" />
   </ItemGroup>
 </Project>
