@@ -99,7 +99,7 @@ PlatformAPI g_platformAPI;
 extern idt_descriptor* g_pIDT;
 
 extern void YuzaOSConsole(char* consoleName);
-extern void OrangeOSGUI(char* desktopName);
+extern void YuzaOSGUI(char* desktopName);
 extern bool InitKernelSystem();
 extern void StartNativeSystem(void* param);
 
@@ -165,7 +165,7 @@ void KernelThreadProc()
 	{	
 		SkyGUISystem::GetInstance();
 		kGetEnvironmentVariable("DESKTOPMGR", buf, 256);
-		OrangeOSGUI(buf);
+		YuzaOSGUI(buf);
 	}
 	else
 	{
