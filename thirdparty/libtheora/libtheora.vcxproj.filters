@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="enc">
+      <UniqueIdentifier>{bf7c0a62-ff75-4e28-b704-a4bbf4d0af17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dec">
+      <UniqueIdentifier>{175e6901-3d29-4795-93ab-1bd0d49b9e7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dec\x86">
+      <UniqueIdentifier>{bd111d66-5800-4152-8892-c90be7c6c696}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="enc\x86">
+      <UniqueIdentifier>{03e131de-53d9-4bbf-842f-248281ba5ec8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="lib\analyze.c">
+      <Filter>enc</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\encapiwrapper.c">
+      <Filter>enc</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\encfrag.c">
+      <Filter>enc</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\encinfo.c">
+      <Filter>enc</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\encode.c">
+      <Filter>enc</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\enquant.c">
+      <Filter>enc</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\fdct.c">
+      <Filter>enc</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\huffenc.c">
+      <Filter>enc</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\mathops.c">
+      <Filter>enc</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\mcenc.c">
+      <Filter>enc</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\rate.c">
+      <Filter>enc</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\tokenize.c">
+      <Filter>enc</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\apiwrapper.c">
+      <Filter>dec</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\bitpack.c">
+      <Filter>dec</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\decinfo.c">
+      <Filter>dec</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\decapiwrapper.c">
+      <Filter>dec</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\decode.c">
+      <Filter>dec</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\dequant.c">
+      <Filter>dec</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\fragment.c">
+      <Filter>dec</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\huffdec.c">
+      <Filter>dec</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\idct.c">
+      <Filter>dec</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\info.c">
+      <Filter>dec</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\internal.c">
+      <Filter>dec</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\quant.c">
+      <Filter>dec</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\state.c">
+      <Filter>dec</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\cpu.c" />
+    <ClCompile Include="lib\x86_vc\mmxfrag.c">
+      <Filter>dec\x86</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\x86_vc\mmxidct.c">
+      <Filter>dec\x86</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\x86_vc\mmxstate.c">
+      <Filter>dec\x86</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\x86_vc\x86state.c">
+      <Filter>dec\x86</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\x86_vc\mmxencfrag.c">
+      <Filter>enc\x86</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\x86_vc\mmxfdct.c">
+      <Filter>enc\x86</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\x86_vc\x86enc.c">
+      <Filter>enc\x86</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="lib\encint.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\enquant.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\huffenc.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\mathops.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\modedec.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\apiwrapper.h">
+      <Filter>dec</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\bitpack.h">
+      <Filter>dec</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\dct.h">
+      <Filter>dec</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\decint.h">
+      <Filter>dec</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\dequant.h">
+      <Filter>dec</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\huffdec.h">
+      <Filter>dec</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\huffman.h">
+      <Filter>dec</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\ocintrin.h">
+      <Filter>dec</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\quant.h">
+      <Filter>dec</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\cpu.h" />
+    <ClInclude Include="lib\internal.h" />
+  </ItemGroup>
+</Project>
