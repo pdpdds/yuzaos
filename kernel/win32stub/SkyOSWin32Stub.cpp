@@ -241,7 +241,7 @@ ORANGEOS_WIN32_DLL bool StartWin32StubTimer(I_SkyInput* pVirtualIO, unsigned int
 	//타이머 생성
 	g_hTimerQueue = CreateTimerQueue();
 	
-	// 처음 시작할때 0.5초 지연, 주기 0.001초마다 호출되게
+	// 처음 시작할때 0.5초 지연, 주기 10ms초마다 호출되게
 	CreateTimerQueueTimer(&g_hTimer, g_hTimerQueue, TimerCallback, NULL, 500, 10, 0);
 
 	return true;
