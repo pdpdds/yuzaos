@@ -123,7 +123,7 @@
       <MinimalRebuild>true</MinimalRebuild>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalIncludeDirectories>./;../include;../../runtime/include;../../corelib/include;../../corelib/STL/SGI;../yuza_core;./audio;../../corelib/streams</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>SKYOS32;HAVE_STRUCT_TIMESPEC;NEED_FTIME;PTW32_RC_MSC;PTW32_ARCHx86;_TIMESPEC_DEFINED;__CLEANUP_C;WIN32;_DEBUG;_WINDOWS;_USRDLL;PTW32_BUILD;_X86_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SKYOS32;_MSC_VER=1920;HAVE_STRUCT_TIMESPEC;NEED_FTIME;PTW32_RC_MSC;PTW32_ARCHx86;_TIMESPEC_DEFINED;__CLEANUP_C;PTW32_BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\.\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\.\pthread.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\.\</ObjectFileName>
@@ -136,6 +136,7 @@
       <SDLCheck>false</SDLCheck>
       <OmitFramePointers>true</OmitFramePointers>
       <AdditionalOptions>/Oy /arch:SSE %(AdditionalOptions)</AdditionalOptions>
+      <DisableSpecificWarnings>4819</DisableSpecificWarnings>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>

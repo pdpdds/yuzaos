@@ -521,7 +521,7 @@ DWORD kResumeThread(HANDLE hThread)
 	ASSERT(hThread != Thread::GetRunningThread()->m_resourceHandle);
 	ASSERT(thread->GetState() == kThreadSuspended);
 	thread->SetState(kThreadReady);
-	kprintf("found resume target %x\n", thread);
+	//kprintf("found resume target %x\n", thread);
 
 	gScheduler.EnqueueReadyThread(thread); 
 	gScheduler.Reschedule();
@@ -586,9 +586,9 @@ int kGetCurrentProcessId(void)
 //세마포어
 int kAquireSemaphore(HANDLE handle, int timeout)
 {
-#if SKY_EMULATOR
+/*#if SKY_EMULATOR
 	return g_platformAPI._processInterface.sky_AquireSemaphore(handle, timeout);
-#endif
+#endif*/
 
 	bigtime_t timeOut = timeout;
 
@@ -606,9 +606,9 @@ int kAquireSemaphore(HANDLE handle, int timeout)
 
 HANDLE kCreateSemaphore(const char* name, int count)
 {
-#if SKY_EMULATOR
+/*#if SKY_EMULATOR
 	return g_platformAPI._processInterface.sky_CreateSemaphore(NULL, count, -1, name);
-#endif
+#endif*/
 
 	Semaphore* sem = new Semaphore(name, count);
 
@@ -620,10 +620,10 @@ HANDLE kCreateSemaphore(const char* name, int count)
 
 int kReleaseSemaphore(HANDLE handle, int count)
 {
-#if SKY_EMULATOR
+/*#if SKY_EMULATOR
 	LONG previousCount;
 	return g_platformAPI._processInterface.sky_ReleaseSemaphore(handle, count, &previousCount);
-#endif
+#endif*/
 
 	Semaphore* sem = static_cast<Semaphore*>(GetResource((int)handle, OBJ_SEMAPHORE));
 	if (sem == 0)

@@ -236,8 +236,6 @@ class fast_mutex {
 #else
   #if defined(_TTHREAD_WIN32_)
     CRITICAL_SECTION mHandle;
-  #elif defined(_TTHREAD_SKYOS32_)
-	  DWORD mHandle;
   #elif defined(_TTHREAD_POSIX_)
     pthread_mutex_t mHandle;
   #endif

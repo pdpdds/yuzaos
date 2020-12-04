@@ -36,6 +36,7 @@ Processor::Processor()
 	// ready to run, simplifying the scheduler.
 	
 #if SKY_EMULATOR
+	kCreateThread(IdleLoop, "Idle Thread", 0, 0, 0);
 #else
 	kCreateThread(IdleLoop, "Idle Thread", 0, 0, 0);
 #endif
