@@ -204,6 +204,11 @@ int isspace(int c) {
 	return _pctype[c] & _SPACE;
 }
 
+int isblank(int c)
+{
+	return _pctype[c] & _SPACE;
+}
+
 int ispunct(int c) {
 	return _pctype[c] & _PUNCT;
 }

@@ -22,10 +22,10 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{18BA361D-9062-49B0-A545-C627896C4C26}</ProjectGuid>
+    <ProjectGuid>{3EB89C5E-3A5D-4D18-85CB-5D61D7095395}</ProjectGuid>
     <RootNamespace>Kernel</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>test_io</ProjectName>
+    <ProjectName>test_localtime</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -133,7 +133,7 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>systemcall.lib;filemanager.lib;libcrt.lib;exestub.lib</AdditionalDependencies>
+      <AdditionalDependencies>systemcall.lib;filemanager.lib;libcrt.lib;exestub.lib;libwin32.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>../../../$(Configuration);../../../corelib/debug;../../../support\Debug;../../../runtime/debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>

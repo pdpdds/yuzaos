@@ -121,6 +121,15 @@ typedef unsigned long long   uintmax_t;
 #define WCHAR_MAX ((wchar_t)-1) /* UINT16_MAX */
 #endif
 
+#if defined(SKYOS32)
+#define PACKED 
+#define ATTRIBUTE_WEAK __declspec(selectany)
+#else
+#define PACKED __attribute__ ((__packed__))
+
+#define ATTRIBUTE_WEAK __attribute__((weak))
+#endif
+
 /*
  * wint_t is unsigned short for compatibility with MS runtime
  */

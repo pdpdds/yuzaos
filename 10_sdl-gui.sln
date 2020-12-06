@@ -94,7 +94,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "gui", "gui", "{E0BF2EF6-F40
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tinygui", "sample\sdl_gui\tinygui\tinygui.vcxproj", "{FCB83494-1836-40CB-B7EA-151FA51A8400}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test_cairo", "sample\sdl_gui\cairo\cairo.vcxproj", "{2EA2037D-6BB4-4A0B-AE50-C4DB1D4D8C43}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cairo_test", "sample\sdl_gui\cairo\cairo.vcxproj", "{2EA2037D-6BB4-4A0B-AE50-C4DB1D4D8C43}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nuklear", "sample\sdl_gui\nuklear\nuklear.vcxproj", "{9F38527F-C8BC-4609-ACC1-4F8593BC498F}"
 EndProject
@@ -106,7 +106,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gwork", "sample\sdl_gui\gwo
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gwork_test", "sample\sdl_gui\gwork\gwork_test.vcxproj", "{18FFDFE8-B854-4165-8F93-FF1241C35163}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "imgui_test", "sample\sdl_gui\imgui\imgui.vcxproj", "{A70B3E57-948C-4EFA-9662-848122B7AAD8}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test_imgui", "sample\sdl_gui\imgui\test_imgui.vcxproj", "{A70B3E57-948C-4EFA-9662-848122B7AAD8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

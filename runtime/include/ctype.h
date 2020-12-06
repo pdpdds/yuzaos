@@ -76,7 +76,7 @@ extern "C" {
 	int isgraph(int c);
 	int iscntrl(int c);
 	int isleadbyte(int c);
-
+	int isblank(int c);
 	int toupper(int c);
 	int tolower(int c);
 

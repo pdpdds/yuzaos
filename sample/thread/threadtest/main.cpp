@@ -1,30 +1,19 @@
-#include <minwindef.h>
 #include <stdio.h>
-#include <dirent.h>
-#include <unistd.h>
 #include <string.h>
 #include <pthread.h>
 #include <math.h>
-#include <systemcall_impl.h>
 
 void* thread_main(void*);
-
-DWORD WINAPI Test(LPVOID parameter)
-{
-	printf("Thread Test!!, %s\n", parameter);
-	return 0;
-}
 
 #define MAX_THREAD_COUNT 100
 int main(int argc, char* argv[])
 {
-	//Syscall_ExitThread(0);
-
+	
 	int i, rc, status;
 
 	if (argc != 2)
 	{
-		printf("Usage: threadtest.exe <thread count>\n");
+		printf("Usage: test_posix.exe <thread count>\n");
 		return 1;
 	}
 
@@ -57,8 +46,6 @@ int main(int argc, char* argv[])
 		}
 	}
 
-	//Syscall_CreateThread(Test, "Pthread", "Pthread", 16, 0);
-
 	free(threads);
 
 	return 0;
@@ -66,15 +53,13 @@ int main(int argc, char* argv[])
 
 void* thread_main(void* arg)
 {
-	int i;
 	double result = 0;
 
-	//for (i = 0; i < 1000000; i++)
+	for (int i = 0; i < 1000000; i++)
 	{
 		result += (rand() % 100) / 5.0f;
 	}
 	printf("thread: %d, result = %f\n", (int)arg, result);
-
 
 	return nullptr;
 }
