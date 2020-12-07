@@ -54,18 +54,17 @@ void test()
 {
 	jp::Regex re("\\w+ect");
 
-	if (re.match("I am the subject")) //always uses a new temporary match object
+	if (re.match("I am the subject"))
 		std::cout << "matched (case sensitive)";
 	else
 		std::cout << "Didn't match";
 
-	//For case insensitive match, re-compile with modifier 'i'
 	re.addModifier("i").compile();
 
-	if (re.match("I am the subjEct")) //always uses a new temporary match object
+	if (re.match("I am the subjEct")) 
 		std::cout << "matched (case insensitive)";
 	else
 		std::cout << "Didn't match";
 
-	size_t count = jp::Regex("[a]", "i").match("I am the subject", "g"); //always uses a new temporary match object
+	size_t count = jp::Regex("[a]", "i").match("I am the subject", "g");
 }

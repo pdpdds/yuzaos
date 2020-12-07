@@ -19,17 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="code_edit.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="code_edit.h" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{808BF50A-F131-44E5-B6B2-0888F31951FB}</ProjectGuid>
+    <ProjectGuid>{27C82616-5682-4B7B-B06D-1716FA459AC7}</ProjectGuid>
     <RootNamespace>Kernel</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>editor</ProjectName>
+    <ProjectName>test_tuple</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -109,7 +105,7 @@
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>../../../corelib/include;../../../runtime/include;../../../corelib/eastreams;./;../include;../../../ThirdParty/SDL/SDL2/SDL/include;../../../ThirdParty/SDL/SDL2/SDLgfx;../../../ThirdParty/SDL/SDL2/SDLttf;../../../corelib/stl/eastl/include;../../../corelib/stl/EASTL\test\packages\EAStdC\include;../../../corelib/stl/EASTL\test\source;../../../corelib/stl/EASTL\test\packages/EABase\include\Common;../../../corelib/stl/EASTL\test\packages\EAAssert\include;../../../corelib/stl/EASTL\test\packages\EATest\include;../../../corelib/stl/EASTL\test\packages\EAMain\include;../../../corelib/stl/EASTL\include\EASTL;../../../;../../../corelib/stl/EASTL;../../../thirdparty/pcre2</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../corelib/include;../../../runtime/include;../../../corelib/eastreams;../../../corelib/stl/EASTL\test\packages\EAStdC\include;../../../corelib/stl/EASTL\test\source;../../../corelib/stl/EASTL\test\packages/EABase\include\Common;../../../corelib/stl/EASTL\test\packages\EAAssert\include;../../../corelib/stl/EASTL\test\packages\EATest\include;../../../corelib/stl/EASTL\test\packages\EAMain\include;../../../corelib/stl/EASTL\include\EASTL;../../../corelib/stl/EASTL;../../../corelib/stl/eastl/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>EA_COMPILER_NO_VARIADIC_MACROS;SKYOS32;_CRT_SECURE_NO_WARNINGS;_MSC_VER=1920</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
