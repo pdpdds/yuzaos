@@ -109,7 +109,7 @@
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <AdditionalIncludeDirectories>./;../include;../../../runtime/include;../../../corelib/include;../../../corelib/STL/SGI;../../../yuza_core;../../../corelib/streams;../../../runtime/libcrt/input</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>SKY_DLL;SKYOS32;_CRT_SECURE_NO_WARNINGS;__i386__;DLL_EXPORT</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SKYOS32;_CRT_SECURE_NO_WARNINGS;__i386__</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>
