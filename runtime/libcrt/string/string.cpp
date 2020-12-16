@@ -708,6 +708,15 @@ extern "C"
 		return fraction;
 	}
 
+	float strtof(const char* str, char** endptr) {
+		return (float)strtod(str, endptr);
+	}
+
+
+	long double strtold(const char* str, char** endptr) {
+		return strtod(str, endptr);
+	}
+
 	size_t
 		strcspn(const char* s1, const char* s2)
 	{

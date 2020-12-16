@@ -1440,8 +1440,8 @@ recurse:
   return count;
 }
 
-size_t strftime(CHAR *__restrict s,
-	size_t maxsize, const CHAR *__restrict format,
+size_t strftime(char *__restrict s,
+	size_t maxsize, const char*__restrict format,
 	const struct tm *__restrict tim_p)
 {
 #ifdef _WANT_C99_TIME_FORMATS

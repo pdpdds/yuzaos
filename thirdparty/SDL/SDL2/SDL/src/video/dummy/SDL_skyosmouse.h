@@ -25,7 +25,7 @@
 #include "SDL_nullvideo.h"
 
 extern void Skyos_InitMouse(void);
-extern void SKYos_OnMouse(SDL_Window* pWindow, QWORD action, float x, float y);
+extern void SKYOS_OnMouse(SDL_Window* pWindow, QWORD action, float x, float y);
 
 #endif /* _SDL_androidmouse_h */
 

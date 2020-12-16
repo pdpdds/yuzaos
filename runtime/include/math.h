@@ -126,6 +126,10 @@ extern "C" {
 	MATH_API double hypot(double x, double y);
 
 	MATH_API double rint(double x);
+
+	MATH_API float       nanf(const char* arg);
+	MATH_API double      nan(const char* arg);
+	MATH_API long double nanl(const char* arg);
 	
 
 #ifdef __cplusplus

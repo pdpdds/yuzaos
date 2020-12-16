@@ -41,7 +41,7 @@ void* operator new[](size_t size, size_t alignment, size_t alignmentOffset, cons
 {
 	return new uint8_t[size];
 }
-#include <systemcall_impl.h>
+
 int main(int argc, char *argv[])
 {
   // initialize SDL

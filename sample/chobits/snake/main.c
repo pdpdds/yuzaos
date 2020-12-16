@@ -1,5 +1,6 @@
 #include "chobits_api.h"
-
+#include <memory.h>
+#include <string.h>
 /* 
  * codes by Yeori
  *
@@ -117,7 +118,7 @@ int main()
 		/* draw snake */
 		if(!move_snake()) {
 			API_PrintTextXY("YOU GUY DEAD!! Press any key to quit!, or 'r' to retry ;)", MSG_BOX_XPOS, MSG_BOX_YPOS);
-			while(!API_HasKey()) ;
+			//while(!API_HasKey()) ;
 			if(get_key(&key_data)) {
 				if(key_data == 'r') {
 					retry_game();
@@ -135,8 +136,7 @@ int main()
 	}
 
 $exit:
-	API_FlushKbdBuf();
-	API_ClearScreen();
+	
 	API_PrintText("Bye~! ;) \r\n");
 	return 0;
 }
@@ -168,7 +168,7 @@ static void retry_game(void)
 	draw_border();
 
 	/* game gogogo! */
-	API_FlushKbdBuf();
+	//API_FlushKbdBuf();
 }
 
 static BOOL get_key(BYTE *pKey)

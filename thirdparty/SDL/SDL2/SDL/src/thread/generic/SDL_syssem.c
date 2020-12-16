@@ -28,23 +28,17 @@
 
 #if SDL_THREADS_DISABLED
 
-SDL_sem *
-SDL_CreateSemaphore(Uint32 initial_value)
+SDL_sem* SDL_CreateSemaphore(Uint32 initial_value)
 {
 	return (SDL_sem *)CreateSemaphore(NULL, initial_value, -1, NULL);
-	
-    //SDL_SetError("SDL not built with thread support");
-    //return (SDL_sem *) 0;
 }
 
-void
-SDL_DestroySemaphore(SDL_sem * sem)
+void SDL_DestroySemaphore(SDL_sem * sem)
 {
 	CloseHandle(sem);
 }
 
-int
-SDL_SemTryWait(SDL_sem * sem)
+int SDL_SemTryWait(SDL_sem * sem)
 {
     return SDL_SetError("SDL not built with thread support");
 }
@@ -54,8 +48,8 @@ SDL_SemTryWait(SDL_sem * sem)
 #define WAIT_ABANDONED 2
 #define WAIT_FAILED 3
 #define INFINITE 0xffffffff
-int
-SDL_SemWaitTimeout(SDL_sem * sem, Uint32 timeout)
+
+int SDL_SemWaitTimeout(SDL_sem * sem, Uint32 timeout)
 {
 	int retval;
 	DWORD dwMilliseconds;
@@ -87,26 +81,20 @@ SDL_SemWaitTimeout(SDL_sem * sem, Uint32 timeout)
 		break;
 	}
 	return retval;
-    //return SDL_SetError("SDL not built with thread support");
-	return 0;
+    
 }
 
-int
-SDL_SemWait(SDL_sem * sem)
+int SDL_SemWait(SDL_sem * sem)
 {
 	return AquireSemaphore(sem, -1);
-
-    //return SDL_SetError("SDL not built with thread support");
 }
 
-Uint32
-SDL_SemValue(SDL_sem * sem)
+Uint32 SDL_SemValue(SDL_sem * sem)
 {
     return 0;
 }
 
-int
-SDL_SemPost(SDL_sem * sem)
+int SDL_SemPost(SDL_sem * sem)
 {
 	if (!sem) 
 	{
@@ -116,7 +104,6 @@ SDL_SemPost(SDL_sem * sem)
 	ReleaseSemaphore(sem, 1, &dwPreviousReleaseCount);
 	
 	return 0;
-    //return SDL_SetError("SDL not built with thread support");
 }
 
 #else

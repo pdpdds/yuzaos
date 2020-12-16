@@ -6,16 +6,16 @@
 
 /* A NULL environment, the day we support env
 * variables this should be in TLS and initialized */
-static char *_GlbEnvironmentNull[] = { NULL };
-char **_GlbEnviron = &_GlbEnvironmentNull[0];
+static char* _GlbEnvironmentNull[] = { NULL };
+char** _GlbEnviron = &_GlbEnvironmentNull[0];
 
-char* __findenv(register const char *name, int *offset)
+char* __findenv(register const char* name, int* offset)
 {
 	register int len;
-	register const char *np;
-	register char **p, *c;
+	register const char* np;
+	register char** p, * c;
 
-	char **environ = _GlbEnviron;
+	char** environ = _GlbEnviron;
 
 	if (name == NULL || environ == NULL)
 		return (NULL);
@@ -32,14 +32,14 @@ char* __findenv(register const char *name, int *offset)
 
 /* Get environmental var
 * Returns the settings for a given key */
-char *getenv(const char *name)
+char* getenv(const char* name)
 {
 	/* Get a pointer to the environment
 	* first entry  */
-	char ***Env = &_GlbEnviron;
+	char*** Env = &_GlbEnviron;
 	register int len;
-	register char **p;
-	const char *c;
+	register char** p;
+	const char* c;
 
 	/* Sanitize the env variable, the first entry
 	* may not be null actually */
@@ -57,7 +57,7 @@ char *getenv(const char *name)
 		for (p = *Env; *p; ++p) {
 			if (!strncmp(*p, name, len)) {
 				if (*(c = *p + len) == '=') {
-					return (char *)(++c);
+					return (char*)(++c);
 				}
 			}
 		}
@@ -74,10 +74,10 @@ char *getenv(const char *name)
 *	"value".  If rewrite is set, replace any current value.
 */
 int
-setenv(const char *name, const char *value, int rewrite)
+setenv(const char* name, const char* value, int rewrite)
 {
-	static char **lastenv;			/* last value of environ */
-	char *C;
+	static char** lastenv;			/* last value of environ */
+	char* C;
 	int l_value, offset;
 	if (*value == '=')			/* no `=' in value */
 		++value;
@@ -93,20 +93,20 @@ setenv(const char *name, const char *value, int rewrite)
 	}
 	else {					/* create new slot */
 		size_t cnt;
-		char **P;
+		char** P;
 		for (P = _GlbEnviron; *P != NULL; P++)
 			;
 		cnt = P - _GlbEnviron;
-		P = (char **)krealloc(lastenv, sizeof(char *) * (cnt + 2));
+		P = (char**)krealloc(lastenv, sizeof(char*) * (cnt + 2));
 		if (!P)
 			return (-1);
 		if (lastenv != _GlbEnviron)
-			memcpy(P, _GlbEnviron, cnt * sizeof(char *));
+			memcpy(P, _GlbEnviron, cnt * sizeof(char*));
 		lastenv = _GlbEnviron = P;
 		offset = cnt;
 		_GlbEnviron[cnt + 1] = NULL;
 	}
-	for (C = (char *)name; *C && *C != '='; ++C)
+	for (C = (char*)name; *C && *C != '='; ++C)
 		;				/* no `=' in name */
 	if (!(_GlbEnviron[offset] =			/* name + `=' + value */
 		(char*)kmalloc((size_t)((int)(C - name) + l_value + 2))))
@@ -122,9 +122,9 @@ setenv(const char *name, const char *value, int rewrite)
 *	Delete environmental variable "name".
 */
 int
-unsetenv(const char *name)
+unsetenv(const char* name)
 {
-	char **P;
+	char** P;
 	int offset;
 	while (__findenv(name, &offset))	/* if set multiple times */
 		for (P = &_GlbEnviron[offset];; ++P)
@@ -133,9 +133,9 @@ unsetenv(const char *name)
 	return 0;
 }
 
-int putenv(char *str)
+int putenv(char* str)
 {
-	char *p, *equal;
+	char* p, * equal;
 	int rval;
 	if ((p = strdup(str)) == NULL)
 		return (-1);

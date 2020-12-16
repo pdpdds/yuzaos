@@ -19,13 +19,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ImGuiFileDialog.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="TextEditor.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ImGuiFileDialog.h" />
+    <ClInclude Include="TextEditor.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{5D13478C-D0CF-42CD-94A6-6887201843BF}</ProjectGuid>
+    <ProjectGuid>{E9D28881-AF74-413E-AD76-2C78BFD8DBF6}</ProjectGuid>
     <RootNamespace>Kernel</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>helloworld</ProjectName>
+    <ProjectName>SDLEditor</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -74,7 +80,7 @@
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
     <TargetName>$(ProjectName)</TargetName>
-    <TargetExt>.exe</TargetExt>
+    <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DEBUG_WIN32|Win32'">
     <OutDir>$(SolutionDir)Debug\</OutDir>
@@ -99,14 +105,14 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalOptions>/Oy %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Oy  /arch:SSE /Zc:threadSafeInit- %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>./;../include;../../../corelib/include;../../../runtime/include;../../yuza_core;../../../corelib/yuzalib/renderer;../../../runtime/libcrt/input;../../../support/unicodefont;../../../support/hangul;../../../corelib/stl/sgi;../../../corelib/streams</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_MSC_VER;</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../../corelib/include;../../../runtime/include;../../../corelib/eastreams;./;../include;../../../ThirdParty/SDL/SDL2/SDL/include;../../../ThirdParty/SDL/SDL2/SDLgfx;../../../ThirdParty/SDL/SDL2/SDLttf;../../../corelib/stl/eastl/include;../../../corelib/stl/EASTL\test\packages\EAStdC\include;../../../corelib/stl/EASTL\test\source;../../../corelib/stl/EASTL\test\packages/EABase\include\Common;../../../corelib/stl/EASTL\test\packages\EAAssert\include;../../../corelib/stl/EASTL\test\packages\EATest\include;../../../corelib/stl/EASTL\test\packages\EAMain\include;../../../corelib/stl/EASTL\include\EASTL;../../../;../../../corelib/stl/EASTL;../../../thirdparty/pcre2;../../../thirdparty/imgui</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>EA_COMPILER_NO_VARIADIC_MACROS;SKYOS32;_CRT_SECURE_NO_WARNINGS;_MSC_VER=1920</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>
@@ -118,12 +124,11 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <CallingConvention>Cdecl</CallingConvention>
-      <DisableSpecificWarnings>4146;4244</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4146;4244;4018</DisableSpecificWarnings>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <LanguageStandard>
-      </LanguageStandard>
+      <LanguageStandard>Default</LanguageStandard>
       <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <SDLCheck>false</SDLCheck>
@@ -133,9 +138,9 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>streams.lib;yuzaapi.lib;yuzalib.lib;systemcall.lib;filemanager.lib;libcrt.lib;exestub.lib</AdditionalDependencies>
+      <AdditionalDependencies>pcre2.lib;eastreams.lib;systemcall.lib;sdl.lib;libcrt.lib;libwin32.lib;exestub.lib;math.lib;filemanager.lib;eastl.lib;sdl2_gfx.lib;imgui.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>../../../$(Configuration);../../../corelib/debug;../../../support\Debug;../../../runtime/debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../../Debug;../../../$(Configuration);../../../corelib/debug;../../../runtime/debug;../../../ThirdParty/SDL/SDL2/debug;../../../ThirdParty/debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(OutDir)$(TargetName).map</MapFileName>
@@ -161,8 +166,7 @@
       </AddModuleNamesToAssembly>
       <ForceSymbolReferences>
       </ForceSymbolReferences>
-      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalOptions>/ALIGN:1024 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/safeseh:no /ALIGN:1024 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -174,11 +178,11 @@
       <AdditionalOptions>/Oy %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
-      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <AdditionalIncludeDirectories>../../include;../Include;../../librt/include;../kernelcore</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>SKY_EMULATOR;_MSC_VER;__STDC__;i386;DLL_EXPORT</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SKY_EMULATOR;SKY_EMULATOR_DLL;_WIN32;_MSC_VER;_X86_32;__i386__;_KRNL_DLL;DLL_EXPORT;SKYOS32;SKY_DLL;HAVE_FLOOR;HAVE_STDIO_H</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>
@@ -205,7 +209,7 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>libcrt.lib;dllstub.lib;libds.lib;libstring.lib</AdditionalDependencies>
+      <AdditionalDependencies>libcrt.lib;exestub.lib;libds.lib;libstring.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>../debug;../librt/debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
@@ -247,14 +251,14 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DEBUG_WIN32_DLL|Win32'">
     <ClCompile>
-      <AdditionalOptions>/Oy %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Oy  /arch:SSE /Zc:threadSafeInit- %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>../../kernelcore/include;../../userlib/protobuf;../../librt/dllstub;../../include;../Include;../../librt/include;../../kernelcore;../../librt/libstring;../../module/include;../../userlib/libmpeg;../../librt/sgi_stl;../../userlib/libmpeg/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>PCRE2_CODE_UNIT_WIDTH=8;SKY_DLL;SKYOS32;_CRT_SECURE_NO_WARNINGS;__i386__;DLL_EXPORT;_MSC_VER</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../librt/eastl/include;../../librt\EASTL\test\packages\EAStdC\include;../../librt\EASTL\test\source;../../librt\EASTL\test\packages/EABase\include\Common;../../librt\EASTL\test\packages\EAAssert\include;../../librt\EASTL\test\packages\EATest\include;../../librt\EASTL\test\packages\EAMain\include;../../librt\EASTL\include\EASTL;../../module/include;../../librt/exestub;../../include;../Include;../../librt/include;../../kernelcore;../../librt/libstring;../../thirdparty/skysdl/include;../../thirdparty/skysdlimage;../../librt;../../thirdparty/skysdlttf;../../thirdparty/skysdlgfx</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>EA_COMPILER_NO_VARIADIC_MACROS;SKY_DLL;SKYOS32;_CRT_SECURE_NO_WARNINGS;__i386__;_MSC_VER=1914</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>
@@ -266,7 +270,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <CallingConvention>Cdecl</CallingConvention>
-      <DisableSpecificWarnings>4819</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4457;4189;4100;4702;4102;4244;4239;4333;4127;4554;4200</DisableSpecificWarnings>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -281,9 +285,9 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>libcrt.lib;libstring.lib;exestub.lib;libc.lib;libds.lib</AdditionalDependencies>
+      <AdditionalDependencies>libcrt.lib;exestub.lib;libds.lib;libstring.lib;libc.lib;eastl.lib;libmath.lib;libc.lib;libcrt.lib;exestub.lib;libds.lib;libstring.lib;skysdl.lib;skysdlimage.lib;sdl2_ttf.lib;eastl.lib;libmath.lib;libpng.lib;freetyped.lib;SDL2_gfx.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>../../debug;../../librt/debug;../../userlib/debug;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../debug;../../librt/debug;../../userlib/debug;../../thirdparty/debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(OutDir)$(TargetName).map</MapFileName>

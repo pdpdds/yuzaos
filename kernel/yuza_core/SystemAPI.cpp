@@ -615,7 +615,9 @@ HANDLE kCreateSemaphore(const char* name, int count)
 	if (sem == 0)
 		return 0;
 
-	return (HANDLE)OpenHandle(sem);
+	HANDLE hHandle = (HANDLE)OpenHandle(sem);
+
+	return hHandle;
 }
 
 int kReleaseSemaphore(HANDLE handle, int count)
@@ -629,7 +631,7 @@ int kReleaseSemaphore(HANDLE handle, int count)
 	if (sem == 0)
 		return E_BAD_HANDLE;
 
-	sem->Release(count);
+	sem->Release(count, false);
 	sem->ReleaseRef();
 	return E_NO_ERROR;
 }

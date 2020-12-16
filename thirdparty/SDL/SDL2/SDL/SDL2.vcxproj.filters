@@ -25,9 +25,6 @@
     <Filter Include="math">
       <UniqueIdentifier>{f2adda75-152a-4d34-81b4-068448ca2958}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\pthreads">
-      <UniqueIdentifier>{5c1668d9-77bb-4f48-b158-589e6fb02822}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

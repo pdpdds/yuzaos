@@ -62,7 +62,7 @@ DUMMY_PumpEvents(_THIS)
 			//20191024
 			//SDL_Window* focusWindow = SDL_GetWindowFromID(0);
 			//SDL_Window* focusWindow = SDL_GetMouseFocus();
-			SKYos_OnMouse(_this->windows, stReceivedEvent.qwType, pstMouseEvent->stPoint.iX, pstMouseEvent->stPoint.iY - WINDOW_TITLEBAR_HEIGHT);
+			SKYOS_OnMouse(_this->windows, stReceivedEvent.qwType, pstMouseEvent->stPoint.iX, pstMouseEvent->stPoint.iY - WINDOW_TITLEBAR_HEIGHT);
 		}
 		break;
 

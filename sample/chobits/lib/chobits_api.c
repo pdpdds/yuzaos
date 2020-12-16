@@ -1,7 +1,7 @@
 #include "chobits_api.h"
 #include <systemcall_impl.h>
 #include <stdlib.h>
-
+#include <skyoswindow.h>
 /**********************************************************************************************************
  *                                            SYSTEM API CALLS                                            *
  **********************************************************************************************************/
@@ -36,7 +36,13 @@ VOID API_PrintText(BYTE *pText)
 
 VOID API_PrintTextXY(BYTE *pText, WORD x, WORD y)
 {
-	
+	TEXTCOLOR textColor;
+	textColor.textColor = RGB(255, 255, 255);
+	textColor.backgroundColor = RGB(55, 215, 47);
+	POINT point;
+	point.iX = x;
+	point.iY = y;
+	Syscall_DrawText(&qwWindowID, &point, &textColor, pText, strlen(pText));
 }
 
 BOOL API_GetKey(KBD_KEY_DATA *pKeyData)

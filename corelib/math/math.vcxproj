@@ -15,6 +15,7 @@
     <ClCompile Include="labs.c" />
     <ClCompile Include="math.c" />
     <ClCompile Include="modf.c" />
+    <ClCompile Include="nan.c" />
     <ClCompile Include="src\e_acos.c" />
     <ClCompile Include="src\e_asin.c" />
     <ClCompile Include="src\e_atan2.c" />

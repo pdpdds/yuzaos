@@ -40,7 +40,7 @@ Skyos_InitMouse(void)
     SDLButton = 0;
 }
 
-void SKYos_OnMouse(SDL_Window* pWindow, QWORD action, float x, float y)
+void SKYOS_OnMouse(SDL_Window* pWindow, QWORD action, float x, float y)
 {
    
     switch(action) {

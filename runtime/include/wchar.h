@@ -25,6 +25,13 @@ extern "C"
 		wchar_t __lc;
 	} __wchar_info_t;
 
+
+#define MB_CUR_MAX 128
+
+	WSTRING_API double wcstod(const wchar_t* __restrict nptr, wchar_t** __restrict endptr);
+	WSTRING_API size_t
+		wcsftime(wchar_t* __restrict wcs, size_t maxsize,
+			const wchar_t* __restrict format, const struct tm* __restrict timeptr);
 	WSTRING_API long wcstol(const wchar_t* __restrict nptr, wchar_t** __restrict endptr, int base);
 	WSTRING_API unsigned long wcstoul(const wchar_t* __restrict nptr, wchar_t** __restrict endptr, int base);
 	WSTRING_API size_t wcsxfrm(wchar_t* __restrict a, const wchar_t* __restrict b, size_t n);
@@ -50,6 +57,8 @@ extern "C"
 	WSTRING_API wchar_t *wmemcpy(wchar_t *__restrict d, const wchar_t *__restrict s, size_t n);
 	WSTRING_API size_t wcslcpy(wchar_t *dst, const wchar_t *src, size_t siz);
 	WSTRING_API wchar_t* wcsncpy(wchar_t* __restrict s1, const wchar_t* __restrict s2, size_t n);
+	//WSTRING_API size_t wcsrtombs(char* __restrict dst, const wchar_t** __restrict src, size_t len, mbstate_t* __restrict ps);
+	
 
 #ifdef __cplusplus
 }

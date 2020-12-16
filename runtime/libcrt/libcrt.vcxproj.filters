@@ -409,9 +409,6 @@
     <ClInclude Include="string\stricmp.h">
       <Filter>string</Filter>
     </ClInclude>
-    <ClInclude Include="string\string.h">
-      <Filter>string</Filter>
-    </ClInclude>
     <ClInclude Include="libc\byteswap.h">
       <Filter>libc</Filter>
     </ClInclude>

@@ -153,7 +153,6 @@
     <ClInclude Include="string\sprintf.h" />
     <ClInclude Include="string\strdup.h" />
     <ClInclude Include="string\stricmp.h" />
-    <ClInclude Include="string\string.h" />
     <ClInclude Include="string\str_util.h" />
   </ItemGroup>
   <ItemGroup>

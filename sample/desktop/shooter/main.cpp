@@ -1,11 +1,10 @@
 ﻿#include "main.h"
-#include <memory.h>
-#include <skyoswindow.h>
 #include <systemcall_impl.h>
-#include <SkyInputHandler.h>
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+#include <gdi32.h>
+
 
 #define FONT_ENGLISHWIDTH   8
 #define FONT_ENGLISHHEIGHT  16
@@ -13,40 +12,6 @@
 // 한글 폰트의 너비와 길이
 #define FONT_HANGULWIDTH   16
 #define FONT_HANGULHEIGHT  16
-
-/**
- *  사각형의 너비를 반환
- */
-inline int GetRectangleWidth(const RECT* pstArea)
-{
-	int iWidth;
-
-	iWidth = pstArea->right - pstArea->left + 1;
-
-	if (iWidth < 0)
-	{
-		return -iWidth;
-	}
-
-	return iWidth;
-}
-
-/**
- *  사각형의 높이를 반환
- */
-inline int GetRectangleHeight(const RECT* pstArea)
-{
-	int iHeight;
-
-	iHeight = pstArea->bottom - pstArea->top + 1;
-
-	if (iHeight < 0)
-	{
-		return -iHeight;
-	}
-
-	return iHeight;
-}
 
 // 게임 관련 정보를 저장하는 자료구조
 GAMEINFO g_stGameInfo = { 0, };

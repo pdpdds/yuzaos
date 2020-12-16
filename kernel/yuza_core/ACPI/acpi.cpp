@@ -256,7 +256,7 @@ static bool AcpiParseRsdp(u8 *p)
 
         if (xsdtAddr)
         {
-			/*size_t offset = xsdtAddr % PAGE_SIZE;
+			size_t offset = xsdtAddr % PAGE_SIZE;
 			int mmioSize = alignUp(sizeof(AcpiHeader) + offset, PAGE_SIZE) / PAGE_SIZE;
 			
 
@@ -266,7 +266,7 @@ static bool AcpiParseRsdp(u8 *p)
 			u32 len = header->length;
 
 			kprintf("%x %x\n", header, header->length);
-			for (;;);*/
+			
             AcpiParseXsdt((AcpiHeader*)xsdtAddr);
         }
         else

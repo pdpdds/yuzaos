@@ -14,6 +14,7 @@
     <ClCompile Include="unicode.c" />
     <ClCompile Include="wcpcpy.c" />
     <ClCompile Include="wcpncpy.c" />
+    <ClCompile Include="wcrtomb.c" />
     <ClCompile Include="wcscasecmp.c" />
     <ClCompile Include="wcscasecmp_l.c" />
     <ClCompile Include="wcscat.c" />
@@ -24,6 +25,7 @@
     <ClCompile Include="wcscpy.c" />
     <ClCompile Include="wcscspn.c" />
     <ClCompile Include="wcsdup.c" />
+    <ClCompile Include="wcsftime.c" />
     <ClCompile Include="wcsicmp.c" />
     <ClCompile Include="wcslcat.c" />
     <ClCompile Include="wcslcpy.c" />
@@ -35,13 +37,16 @@
     <ClCompile Include="wcsncpy.c" />
     <ClCompile Include="wcsnicmp.c" />
     <ClCompile Include="wcsnlen.c" />
+    <ClCompile Include="wcsnrtombs.c" />
     <ClCompile Include="wcspbrk.c" />
     <ClCompile Include="wcsrchr.c" />
+    <ClCompile Include="wcsrtombs.c" />
     <ClCompile Include="wcsspn.c" />
     <ClCompile Include="wcsstr.c" />
     <ClCompile Include="wcstod.c" />
     <ClCompile Include="wcstok.c" />
     <ClCompile Include="wcstol.c" />
+    <ClCompile Include="wcstold.c" />
     <ClCompile Include="wcstombs.c" />
     <ClCompile Include="wcstoul.c" />
     <ClCompile Include="wcswidth.c" />
@@ -53,6 +58,9 @@
     <ClCompile Include="wmemcpy.c" />
     <ClCompile Include="wmemmove.c" />
     <ClCompile Include="wmemset.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\runtime\include\wchar.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{329EE3D8-6A04-42ED-8411-CDD83ED17ED4}</ProjectGuid>
@@ -132,7 +140,7 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>dllstub.lib;libcrt.lib;systemcall.lib</AdditionalDependencies>
+      <AdditionalDependencies>dllstub.lib;libcrt.lib;systemcall.lib;math.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>../../debug;../debug;../../runtime/debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>

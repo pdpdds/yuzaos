@@ -1,8 +1,7 @@
-#include <orangeos.h>
-#include <stringdef.h>
 #include <wchar.h>
 #include <errno.h>
-
+#include <corecrt.h>
+#include <memory.h>
 //android ndk musl-multibyte 
 //#include "internal.h"
 
@@ -40,21 +39,7 @@ const uint32_t bittab[] = {
 	F(0x0),F(0x1),F(0x2),F(0x3),F(0x4)
 };
 
-#ifndef __WINT_TYPE__
-# define __WINT_TYPE__ unsigned int
-#endif
-/* Conversion state information.  */
-typedef struct
-{
-	int __count;
-	union
-	{
-		__WINT_TYPE__ __wch;
-		char __wchb[4];
-	} __value;                /* Value so far.  */
-} __mbstate_t;
 
-typedef __mbstate_t mbstate_t;
 
 
 size_t __mbsrtowcs(wchar_t* ws, const char** src, size_t wn, mbstate_t* st)

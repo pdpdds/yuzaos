@@ -34,6 +34,9 @@
 #define	S_ISSOCK(m)	((m & 0170000) == 0140000)	/* socket */
 #endif
 
+#if !defined(mode_t)
+typedef int mode_t;
+#endif
 
 #ifdef  __cplusplus
 extern "C" {
@@ -42,6 +45,9 @@ extern "C" {
 	//int stat(const char* path, struct stat* buf);
 	char* getcwd(char* buf, size_t size);
 	int access(const char* pathname, int mode);
+	int lstat(const char* filename, struct stat* buf);
+	int chmod(const char* filename, int pmode);
+	int open(const char* pathname, int flags, mode_t mode);
 	void* bsearch(const void* key, const void* base0,
 		size_t nmemb, size_t size,
 		int (*compar)(const void*, const void*));
