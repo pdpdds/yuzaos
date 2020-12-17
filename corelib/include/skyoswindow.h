@@ -1,6 +1,13 @@
 #pragma once
 #include <minwindef.h>
 
+#define FONT_ENGLISHWIDTH   8
+#define FONT_ENGLISHHEIGHT  16
+
+// 한글 폰트의 너비와 길이
+#define FONT_HANGULWIDTH   16
+#define FONT_HANGULHEIGHT  16
+
 // 윈도우를 생성할 수 있는 최대 개수
 #define WINDOW_MAXCOUNT             2048
 // 윈도우 ID로 윈도우 풀 내의 오프셋을 계산하는 매크로

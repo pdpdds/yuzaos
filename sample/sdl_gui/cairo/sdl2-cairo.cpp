@@ -75,6 +75,7 @@ int main(void)
 
         cairo_arc(cairo_context, xc, yc, radius, angle1, angle1);
         cairo_line_to(cairo_context, xc, yc);
+
         cairo_arc(cairo_context, xc, yc, radius, angle2, angle2);
         cairo_line_to(cairo_context, xc, yc);
         cairo_stroke(cairo_context);

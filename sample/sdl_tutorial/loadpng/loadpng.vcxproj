@@ -106,7 +106,7 @@
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <AdditionalIncludeDirectories>./;../include;../../../corelib/include;../../../runtime/include;../../../ThirdParty/SDL/SDL2/SDL/include;../../../ThirdParty/SDL/SDL2/SDLimage</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>SKY_DLL;SKYOS32;_CRT_SECURE_NO_WARNINGS;__i386__;DLL_EXPORT</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SKYOS32;_CRT_SECURE_NO_WARNINGS;</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>

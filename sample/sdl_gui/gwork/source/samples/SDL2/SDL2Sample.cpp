@@ -28,11 +28,6 @@ int main(int argc, char** argv)
     ptr.reset(new int(4));  // deletes int(3)
     ptr.reset(NULL);        // deletes int(4)
 
-    unique_ptr<int> ptr2(new int(3));
-    unique_ptr<int> newPtr(new int(4));
-    ptr2 = eastl::move(newPtr);  // Deletes int(3) and assigns mpValue to int(4)
-    int* pLost = newPtr.get();
-    int* pGet = ptr2.get();
     //Setup our window and renderer
     SDL_Window *window = SDL_CreateWindow("Gwork SDL2 Sample", 100, 100,
                                           screenSize.x, screenSize.y, SDL_WINDOW_SHOWN);
@@ -43,7 +38,6 @@ int main(int argc, char** argv)
     // Create a Gwork Allegro Renderer
     //SDL_Renderer *sdlRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 	//Gwk::Platform::RelativeToExecutablePaths paths(GWORK_RESOURCE_DIR);
-//20200102
 	SDL_Renderer* sdlRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
 	Gwk::Platform::RelativeToExecutablePaths paths("/");
     

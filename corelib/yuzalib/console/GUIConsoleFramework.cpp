@@ -8,13 +8,6 @@
 #include <yuzaapi.h>
 #include "GUIConsole.h"
 
-#define FONT_ENGLISHWIDTH   8
-#define FONT_ENGLISHHEIGHT  16
-
-// 한글 폰트의 너비와 길이
-#define FONT_HANGULWIDTH   16
-#define FONT_HANGULHEIGHT  16
-
 
 GUIConsole* pConsole = 0;
 QWORD g_qwWindowID = 0;
@@ -97,7 +90,6 @@ bool GUIConsoleFramework::MainLoop(CONSOLE_START_STRUCT* args)
 		// 이벤트 큐에서 이벤트를 수신
 		if (Syscall_ReceiveEventFromWindowQueue(&qwWindowID, &stReceivedEvent) == FALSE)
 		{
-			//20180628
 			Syscall_Sleep(1);
 			continue;
 		}
@@ -154,24 +146,17 @@ bool GUIConsoleFramework::MainLoop(CONSOLE_START_STRUCT* args)
 		}
 		// 윈도우 이벤트 처리
 		case EVENT_WINDOW_CLOSE:
-			// 생성한 셸 태스크가 종료되도록 종료 플래그를 설정하고 종료될 때까지 대기
-		   // kSetConsoleShellExitFlag( TRUE );
-			//while( kIsTaskExist( qwConsoleShellTaskID ) == TRUE )
 		{
-			//20180628
 			Syscall_Sleep(1);
 		}
 
-		// 윈도우를 삭제하고 윈도우 ID를 초기화
 		Syscall_DeleteWindow(&qwWindowID);
 		qwWindowID = WINDOW_INVALIDID;
 		return 0;
 
 		break;
 
-		// 그 외 정보
 		default:
-			// 여기에 알 수 없는 이벤트 처리 코드 넣기
 			break;
 		}
 	}
