@@ -77,6 +77,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ogg", "libogg134\libogg134.vcxproj", "{D64C01F6-12EC-45BF-9D64-04F7EAEF8FC1}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vorbis", "libvorbis137\libvorbis137.vcxproj", "{61F86716-E4E9-4D8B-9172-7A37A30E61CB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6E02C42E-8109-433A-8CEF-8B3ED9E202CE} = {6E02C42E-8109-433A-8CEF-8B3ED9E202CE}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vorbisfile", "libvorbis137\libvorbisfile137.vcxproj", "{0983A724-D6FF-49C1-94F9-8821EBADCB96}"
 	ProjectSection(ProjectDependencies) = postProject
