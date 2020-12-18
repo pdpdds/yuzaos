@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="audiosod.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="audiowl6.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dc_vmu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="f_spear.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fmopl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="foreign.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gfxv_apo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gfxv_sod.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gfxv_wl6.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gp2x.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="id_ca.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="id_in.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="id_pm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="id_sd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="id_us.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="id_vh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="id_vl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="version.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wl_atmos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wl_cloudsky.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wl_def.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wl_menu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wl_shade.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Changes.txt" />
+    <Text Include="README.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\actions.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ball.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\bonus.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\collisions.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DCSoundEngine.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ladder.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\levels.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objets.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PCGfxEngine.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PCSoundEngine.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\plateforme.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\player.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SDL_collide.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\shoot.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\structures.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,118 @@
+Should add options (possibly not default?) to make it possible to:
+
+- convert 8-bit images to 24-bit;
+
+- use the viewer mode for *everything* (assuming it's sane, i.e.
+  640x480 or better, and 256 colours or better - temporarily resort to
+  640x480 256 or 16-colour otherwise). This means the file selector
+  and help page will need to also support 15, 16, 24, and 32-bit
+  modes.
+
+Without these changes zgv risks being a real pain to use on modern
+monitors, some of which blank the screen not-so-briefly on mode
+changes. Besides, I do like the idea of sticking to a single mode. So
+I should probably make these the default, but be sure to add a
+separate top-level "why is zgv slower now?" section to the info if I
+do, explaining why, and how to disable it.
+
+
+Various problems with SDL backend:
+
+- run it on the console using svgalib as *its* backend :-), and exit
+  the file selector's help page. Seems to briefly flash the screen
+  blue. Not sure if this one is my fault or not, SDL's svgalib support
+  does seem a bit cranky. [This one still happens despite my colour
+  fixes for fillbox etc., so this one may be SDL's fault.]
+
+- the SDL code assumes traditional PC encoding for 15/16/24/32-bit,
+  and ignores any shift/mask info that SDL provides. This is likely to
+  be ok on anything PC-based, but could break rather dramatically
+  elsewhere.
+
+
+Reread timeout and slideshow timeout are disabled for the current file
+after a GIF is animated - this should be mentioned in the manual.
+
+
+A `list modes available' option would be nice, and useful for
+troubleshooting.
+
+
+The TIFF reader could do with progress reporting. Unfortunately, the
+TIFF format and libtiff combine to make this a total pain to do in a
+sufficiently general manner without killing the loading speed. Maybe I
+could try reading line-by-line with progress report, then resort to
+no-progress read-at-once if it can't be read that way? Even for the
+line-by-line case we have the not-abortable problem - but bearing in
+mind that the hffunc would only be called at a well-defined time
+outside of all libtiff functions, it should be possible to close
+things down cleanly.
+
+
+It would be nice if the smaller/bigger mode keys ([,]) worked in the
+selector too. Could even use the same code to do it
+(change_mode_size() in vgadisp.c) if hacked slightly (would need to
+remove dependence on pixelsize, effectively 1 in the selector).
+
+
+The (concept) indexing of Invoking zgv is weak at the moment -
+everything's at the top of the node, when most of them should go next
+to the thing they're indexing.
+
+
+Recursive updates don't honour the fs-slow-thumbnail-update setting
+across directories - that is, they jump to the first file which needs
+changing. But frankly, this is a feature not a bug. :-)
+
+
+I suspect the small italic font isn't being used any more; should
+check, and get rid of it if so.
+
+
+The file details dialog doesn't look so great if the old line-based
+text is enabled. But I'm probably going to drop the line-based text
+soon, so I doubt there's much point trying to fix this. :-)
+
+
+readgif.c should cope with files with more than 256 images.
+(Technically it does *cope* with more images, but it doesn't load
+them.)
+
+
+Dithering in 15/16-bit modes could probably be made faster, the
+implementation is fairly basic at the moment.
+
+
+If you specify selector colours (with the col-* options) which don't
+differ by very much, and thumbnails are being displayed, then the
+differences disappear entirely and only one of the close colours is
+shown.
+
+
+Should probably have right-button-menu options for GIF animation,
+auto-mode-fit, and smaller/bigger mode.
+
+
+It might be nice to have a further `act like xzgv' option for reversed
+mouse movement in the viewer (dragging the picture around, rather
+zgv's dragging the screen around). But probably tricky to get the feel
+right, given the lack of a mouse cursor when doing it.
+
+
+Copy over any handy build changes from xzgv. Most already dealt with,
+but doc/Makefile hasn't been changed to use gzipped info files and
+chmod a+r the dir file (important if install-info created one from
+scratch, for example).
+
+
+Mouse support isn't really finished - the goto-dir dialog should have
+ok/cancel buttons, and currently you can't interrupt file loading and
+thumbnail updates. The latter two would need a custom mouse event
+handler temporarily installed, so that we could avoid losing any
+clicks. Actually it might not be too bad an idea to always use a
+custom handler; that would be easier. After all, on a slow machine you
+can already lose clicks during a file-selector screen redraw!
+
+
+File move should probably delete any existing thumbnail for the file
+if the file itself is moved successfully.

@@ -1,0 +1,328 @@
+DOCUMENTATION GFXENGINE FRO SDL
+-------------------------------
+
+Variables globale :
+-----------------
+
+int keyRight;  // Cette variable prends la valeur 1 quand la touche droite est enfoncée
+int keyLeft;   // Cette variable prends la valeur 1 quand la touche gauche est enfoncée
+int keyUp;     // Cette variable prends la valeur 1 quand la touche haut est enfoncée
+int keyDown;   // Cette variable prends la valeur 1 quand la touche bas est enfoncée
+int keyQuit;   // Cette variable prends la valeur 1 quand la touche pour quitter est enfoncée
+keyAction1
+keyAction2
+keyAction3
+keyAction4
+keyActionPause
+
+IMPORTANT : Les images N° 1 et 3 gère la transparence (Pixel 255 de couleur 255,255,255)
+
+void initGfxEngine() :
+--------------------
+
+Cette function doit être obligatoirement appelée pour initialiser le mode vidéo.
+
+int loadBmp(char *path,char *filename,char *totalpath,char *pathdc,int noImage) :
+---------------------------------------------------------
++ path : répertoire d'accès à l'image   GP32            +
++ filename : nom du fichier image       GP32            +
++ totalPath : repertoire + nom fichier  PC              +
++ pathdc : repertoire + nom fichier     DC              +
++ noImage : numéro de l'image (0 à 2)                   +
+---------------------------------------------------------
+
+Charge une image BMP en mémoire.
+Cette fonction diffère entre la version SDL et la version GP32.
+Le paramètre tc permet de savoir si l'image chargée va prendre en
+compte la transparence ou non. On utilise la transparence généralement
+lorsque l'on va découper des morceau de cette image pour des sprites.
+La couleur de transparence en SDL est obligatoirement le noir (0,0,0).
+Pour GP32 la couleur de transparence est celle d'index 0, pour garder la 
+compatibilité cette couleur d'index 0 doit être de composante (0,0,0).
+
+path et filename : chemin pour GP32 (gp:\\xxx\\xxxx\\ et test.bmp)
+totalPath : chemin pour SDL (d:\\images\\toto.bmp)
+pathdc : chemin pour Dreamcast (/rd/blocks.bmp)
+
+
+void flipScreen() :
+-----------------
+
+Affiche les modifications graphique fait à l'écran
+
+void waitInMs(int ms) :
+------------------------------
++ ms : temps en milliseconde +
+------------------------------
+
+Ne fait rien pendant ms millisecondes
+
+int synchroStart() :
+------------------
+
+Initialise la synchro de boucle
+
+int synchroEnd(int ms) :
+-------------------------
++ ms : temps de synchro +
+-------------------------
+
+Finit la synchro de boucle et attend le temps restant pour atteindre ms milliseconde.
+
+EXEMPLE :
+        
+        While (1)
+        {
+               synchroStart()
+               
+               .. Traitement de jeu ..
+               .. Affichage ..
+               
+               synchroEnd(5);
+        }
+        
+        La boucle mettra au minimum 5 millisecondes à s'executer. Cela permet de synchroniser
+        la vitesse du jeu pour tout les PC. Sur un PC plus lent, elle ne bloquera pas le PC.
+     
+
+
+int checkController() :
+---------------------
+
+Cette fonction appelée dans une boucle scrupte le clavier et met à jour automatiquement
+les variables :
+
+int keyRight;  // Cette variable prends la valeur 1 quand la touche droite est enfoncée
+int keyLeft;   // Cette variable prends la valeur 1 quand la touche gauche est enfoncée
+int keyUp;     // Cette variable prends la valeur 1 quand la touche haut est enfoncée
+int keyDown;   // Cette variable prends la valeur 1 quand la touche bas est enfoncée
+int keyQuit;   // Cette variable prends la valeur 1 quand la touche pour quitter est enfoncée
+
+
+
+void blitImageToScreen(int imageNo,int sx,int sy,int sw,int sh,int dx,int dy,int dw,int dh,int ttw,int tth) :
+--------------------------------------------------------------------------------------------------
++ imageNo : N° de l'image source                                                                 +
++ sx : position x dans l'image source                                                            +
++ sy : position y dans l'image source                                                            +
++ sw : largeur à partir de la position sx,sy                                                     +
++ sh : hauteur à partir de la position sx,sy                                                     +
++ dx : position x dans l'image de destination (l'écran)                                          +
++ dy : position y dans l'image de destination (l'écran)                                          +
++ dw : largeur à partir de dx,dy dans l'image de destination (l'écran)                           +
++ dh : hauteur à partir de dx,dy dans l'image de destination (l'écran)                           +
++ ttw : Largeur totale de l'image source                                                         +
++ tth : Hauteur totale de l'image source                                                         +                                                                                         +
+--------------------------------------------------------------------------------------------------
+
+Copie une partie de l'image imageNo dans l'écran. Cette partie d'image peut être déformée
+dans l'écran en modifiant la taille grace à dw et dh. La couleur de transparence, est uniquement
+utilisée par la version GP32. Pour la compatibilité entre toutes les version, il est judicieux
+de placer ce paramètre à 0.
+
+
+MOTEUR DE SPRITE
+----------------
+
+void initSpriteEngine() :
+-----------------------
+
+Cette function doit être obligatoirement appelée pour initialiser le moteur de sprite.
+
+
+void getImage(int n,int x,int y,int l,int h,int imageNo,int w,int he) :
+----------------------------------------------------------------------------
++ n : Numéro que vous attribuez au morceau d'image                         +
++ x : position x du morceau                                                +
++ y : position y du morceau                                                +
++ l : largeur du morceau                                                   +
++ h : hauteur du morceau                                                   +
++ imageNo : A partir de quelle image source on récupère ce morceau         +
++ w : largeur de l'image source                                            +
++ he : hauteur de l'image source                                           +
+----------------------------------------------------------------------------
+
+Cette fonction permet de se créer une banque de morceau d'image à partir d'images
+sources chargés grace à la fonction loadBmp.
+Les paramètres w,he semblent redondant, mais il est important de spécifier au
+système la taille de l'image source. La couleur de transparence tc, pour compatibilité
+doit être mise à 0.
+
+void initSprite(int n,int x,int y,int i) :
+-------------------------------------------
++ n : Numéro que vous attribuez au sprite +
++ x : position x                          +
++ y : position y                          +
++ i : Numéro du morceau d'image           +
+-------------------------------------------
+
+Initialise un sprite n° n avec une image i, et une position de départ x,y. Attention
+d'être sur que le sprite n est bien libre ! Il est plutot conseillé d'utiliser la méthode
+initFreeSprite;
+
+
+int initFreeSprite(int x,int y,int i) :
+-------------------------------------------
++ x : position x                          +
++ y : position y                          +
++ i : Numéro du morceau d'image           +
+-------------------------------------------
+
+Initialise un sprite avec une image i, et une position de départ x,y. Cette fonction
+retourne le n° du sprite initialisé.
+
+Exemple : int playerShip = initFreeSprite(10,10,1);
+
+void releaseSprite(int n) :
+-------------------------
++ n : Numéro du sprite  + 
+-------------------------
+
+Libère le sprite n, pour qu'il puisse être réutilisé.
+
+
+void releaseAllSprite() :
+-----------------------
+
+Libère tout les sprites.
+
+void animateSprite(int s,int a)
+-------------------------------
++ s : N° du sprite            +
++ a : N° de l'animation (0à9) +
+-------------------------------
+
+Déclenche l'animation n° a du sprite n° s.
+
+void setSpriteAnimation(int s,int a,int speed,int f0,int f1,int f2,int
+f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int
+f12,int f13,int f14,int f15,int f16,int f17,int f18,int f19) :
+--------------------------------------------------------------
++ s : N° du sprite                                           +
++ a : N° de l'animation (0à9)                                +
++ speed : Vitesse de l'animation                             +
++ f0 à f19 : N° des morceaux d'images composants l'animation +
+--------------------------------------------------------------
+
+Crée une animation pour un sprite s. Si une valeur de f. prend -1
+on boule en repartant de f0.
+
+void stopAnimateSprite(int s) :
+-----------------------------
++ s : N° du sprite          +
+-----------------------------
+
+Arrête l'animation du sprite s. Attention, le sprite reste sur sa dernière image.
+
+
+void moveSprite(int n,int x,int y) :
+-----------------------------------
++ n : Numéro du sprite            +
++ x : position x                  +
++ y : position y                  +
+-----------------------------------
+
+Change la position du sprite n.
+
+
+void changeSpriteImage(int n,int i) :
+-----------------------------------
++ n : Numéro du sprite            +
++ i : morceau d'image             +
+-----------------------------------
+
+Change l'image du sprite n.
+
+
+void showSprite(int n) :
+-----------------------------------
++ n : Numéro du sprite            +
+-----------------------------------
+
+Affiche le sprite n à l'écran
+
+
+void showLRSprite(int n)
+-----------------------------------
++ n : Numéro du sprite            +
+-----------------------------------
+
+Affiche le sprite n à l'écran en flip horizontal
+
+IMPORTANT : ne fonctionne pas en SDL !
+
+void showAllSprite() :
+--------------------
+
+Affiche tout les sprites à l'écran
+
+
+int isSpriteCollide(int sprite1,int sprite2) :
+--------------------------------------------
++ sprite1 : N° du sprite 1                 +
++ sprite2 : N° du sprite 2                 +
+--------------------------------------------
+
+Renvoie 1 si les 2 sprites sont en collision.
+
+
+TILE ENGINE
+-----------
+
+Le tile engine, permet de définir une aire graphique de jeu. Dans le SDK de base
+il y à 4 aires (map) possible, de 100*100 briques (tiles).
+Une tile, est composé d'un morceau d'image (capturé par getImage) et de 3 attributs
+qui vous sont libres. Une map est composé de tiles.
+
+On distingue 2 type de coordonnées :
+             - les coordonnées de tiles : max 100*100
+             - les coordonnées de monde (world) : max 1600*1600
+             
+Pour créer la map, on lui indique des coordonnées de tiles. Pour l'afficher à
+l'écran, des coordonnées de monde. Cela permet la gestion de scrolling extrèmement
+facilement.
+
+void initTileEngine() :
+---------------------
+
+Initialise le moteur de Tiles et de Map
+
+void createTile(int n,int imageNo,int a1,int a2,int a3) :
+-------------------------------------------------------
++ n : N° de la tile                                   +
++ imageNo : Morceau d'image composant la tile         +
++ a1 : attribut1                                      +
++ a2 : attribut2                                      +
++ a3 : attribut3                                      +
+-------------------------------------------------------
+
+Crée une Tile n° n avec le morceau d'image imageNo (créé grace à
+getImage). On lui définit 3 attribut libres a1,a2,a3
+
+
+void setTileInMap(int mapNo,int x,int y,int tileNo) :
+---------------------------------------------------
++ mapNo : Numéro de la map                        +
++ x : position x de la brique (tile) dans la map  +
++ y : position y de la brique (tile) dans la map  +
++ tileNo : brique (tile) à affecter               +
+---------------------------------------------------
+
+Avec cette méthode on va créer la map, composé de Tiles.
+
+void setWorldView(int mapNo,int x,int y) :
+---------------------------------------------------------------
++ mapNo : Numéro de la map                                    +
++ x : position x en PIXELS (coordonnées de monde)             +
++ y : position y en PIXELS (coordonnées de monde)             +
+---------------------------------------------------------------
+
+Grace à cela on peut se positionner au pixel prêt dans la map.
+
+void mapDraw(int mapNo) :
+----------------------------
++ mapNo : Numéro de la map +
+----------------------------
+
+Dessine la map dans l'écran
+

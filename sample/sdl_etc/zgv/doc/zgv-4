@@ -1,0 +1,493 @@
+This is zgv, produced by makeinfo version 4.1 from zgv.texi.
+
+INFO-DIR-SECTION Graphics Utilities
+START-INFO-DIR-ENTRY
+* zgv: (zgv).   A picture viewer for Linux/FreeBSD systems with VGA/SVGA.
+END-INFO-DIR-ENTRY
+
+   The zgv manual, for version 5.9, last updated 28th January 2005.
+
+   Copyright 1998-2004 Russell Marks.
+
+   Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+   Permission is granted to copy and distribute modified versions of
+this manual under the conditions for verbatim copying, provided that the
+entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+
+   Permission is granted to copy and distribute translations of this
+manual into another language, under the above conditions for modified
+versions, except that this permission notice may be stated in a
+translation approved by the Free Software Foundation.
+
+
+File: zgv,  Node: Configuration Variables Index,  Next: Concept Index,  Prev: Keyboard Commands Index,  Up: Top
+
+Configuration Variables Index
+*****************************
+
+* Menu:
+
+* auto-animate:                          Invoking zgv.
+* auto-mode-fit:                         Invoking zgv.
+* auto-mode-fit-diff:                    Invoking zgv.
+* avoid-single-progress:                 Invoking zgv.
+* black-background:                      Invoking zgv.
+* block-cursor:                          Invoking zgv.
+* brightness:                            Invoking zgv.
+* center:                                Invoking zgv.
+* centre:                                Invoking zgv.
+* clear-screen-on-exit:                  Invoking zgv.
+* col-black:                             Invoking zgv.
+* col-dark:                              Invoking zgv.
+* col-light:                             Invoking zgv.
+* col-medium:                            Invoking zgv.
+* col-tagged:                            Invoking zgv.
+* contrast:                              Invoking zgv.
+* delete-single-prompt:                  Invoking zgv.
+* delete-tagged-prompt:                  Invoking zgv.
+* dither-16col-fast:                     Invoking zgv.
+* dither-hicol:                          Invoking zgv.
+* fake-cols:                             Invoking zgv.
+* force-fs-16col:                        Invoking zgv.
+* force-viewer-8bit:                     Invoking zgv.
+* fs-16col-color-thumbnails:             Invoking zgv.
+* fs-16col-colour-thumbnails:            Invoking zgv.
+* fs-ignore-old-pos:                     Invoking zgv.
+* fs-magic:                              Invoking zgv.
+* fs-perfect-cols:                       Invoking zgv.
+* fs-slow-thumbnail-update:              Invoking zgv.
+* fs-small-text:                         Invoking zgv.
+* fs-start-mode:                         Invoking zgv.
+* fs-thick-text:                         Invoking zgv.
+* fullscreen:                            Invoking zgv.
+* gamma:                                 Invoking zgv.
+* gnulitically-correct:                  Invoking zgv.
+* ignore-errors:                         Invoking zgv.
+* jpeg-index-style:                      Invoking zgv.
+* jpeg-speed:                            Invoking zgv.
+* line-text:                             Invoking zgv.
+* mode-all-bad:                          Config Variables.
+* mode-all-good:                         Config Variables.
+* mode-bad MODESPEC:                     Config Variables.
+* mode-good MODESPEC:                    Config Variables.
+* mouse:                                 Invoking zgv.
+* mouse-kludge:                          Config Variables.
+* mouse-scale:                           Invoking zgv.
+* pcd-res:                               Invoking zgv.
+* pgm-truecol:                           Invoking zgv.
+* reverse-bc-order:                      Invoking zgv.
+* revert-orient:                         Invoking zgv.
+* revert-scale:                          Invoking zgv.
+* scrollbar:                             Invoking zgv.
+* show-xvpics-dir:                       Invoking zgv.
+* slideshow-delay:                       Invoking zgv.
+* slideshow-loop:                        Invoking zgv.
+* slideshow-randomise:                   Invoking zgv.
+* slideshow-randomize:                   Invoking zgv.
+* viewer-16col-color:                    Invoking zgv.
+* viewer-16col-colour:                   Invoking zgv.
+* viewer-start-mode:                     Invoking zgv.
+* visual:                                Invoking zgv.
+* vkludge:                               Invoking zgv.
+* xzgv-keys:                             Invoking zgv.
+* zoom:                                  Invoking zgv.
+* zoom-reduce-only:                      Invoking zgv.
+
+
+File: zgv,  Node: Concept Index,  Prev: Configuration Variables Index,  Up: Top
+
+Concept Index
+*************
+
+* Menu:
+
+* 15/16-bit modes, dithering in:         Drawbacks of 15/16-bit Modes.
+* 15/16-bit modes, problems with:        Drawbacks of 15/16-bit Modes.
+* 16-colour 640x480 mode:                The Viewer 640x480x4 Mode.
+* 16-colour file selector:               16-colour File Selector.
+* 32-bit video modes, about:             32-bit Video Modes.
+* acknowledgements:                      Acknowledgements.
+* activating the mouse:                  Enabling The Mouse.
+* adjustment, gamma:                     Gamma Adjustment.
+* Animated GIF files:                    Multiple-image GIF Animation.
+* arguments, command-line:               Invoking zgv.
+* author, contacting the:                Reporting Bugs.
+* auto-mode-fit:                         Auto-mode-fit.
+* background, running in the:            Running In The Background.
+* backward compatibility of config names: Config File Backward Compatibility.
+* big pictures:                          Big Pictures.
+* bit depth:                             What a Video Mode is.
+* bitmaps, X:                            Supported File Formats.
+* black-and-white file selector:         16-colour File Selector.
+* bright images, fixing overly:          Gamma Adjustment.
+* brightness and contrast:               Brightness and Contrast.
+* bug, that's a feature not a:           Suboptimal Features.
+* bugs and restrictions:                 Bugs and Restrictions.
+* bugs, known:                           Known Bugs.
+* bugs, reporting:                       Reporting Bugs.
+* bugs, reporting documentation:         Reporting Documentation Bugs.
+* changes, possible future:              Future Changes.
+* changing a file's name:                Renaming a File.
+* changing directory:                    Changing Directory.
+* changing the file selector sorting order: Changing the Sorting Order.
+* changing the initial video mode:       Invoking zgv.
+* changing zgv's behaviour:              Configuring zgv.
+* choosing a file:                       Moving Around The List.
+* colour depth:                          What a Video Mode is.
+* colours in config files:               Config Variable Types.
+* colours, faking extra:                 Increased Greyscales.
+* command-line options:                  Invoking zgv.
+* compatibility with xzgv:               xzgv Compatibility.
+* complete filename, showing a:          Other File Sel Commands.
+* config files:                          Config Files.
+* config files, types in:                Config Variable Types.
+* config variable names, old:            Config File Backward Compatibility.
+* config variables:                      Config Variables.
+* config variables types:                Config Variable Types.
+* configuration:                         Configuring zgv.
+* consoles:                              Consoles.
+* consoles, not running from:            Running From Non-consoles.
+* consoles, switching:                   Running In The Background.
+* contacting the author:                 Reporting Bugs.
+* contrast and brightness:               Brightness and Contrast.
+* copying files:                         Copying/Moving/Deleting Files.
+* creating thumbnails:                   Updating Thumbnails.
+* credits:                               Acknowledgements.
+* current directory:                     Changing Directory.
+* cursor:                                Moving Around The List.
+* customising:                           Configuring zgv.
+* dark images, fixing overly:            Gamma Adjustment.
+* date order, showing files in:          Changing the Sorting Order.
+* date, showing a file's:                Other File Sel Commands.
+* dealing with big pictures:             Big Pictures.
+* default video mode:                    Default Video Mode.
+* defaults, changing:                    Configuring zgv.
+* deleting a file:                       Other File Sel Commands.
+* deleting files:                        Copying/Moving/Deleting Files.
+* depth, bit:                            What a Video Mode is.
+* depth, colour:                         What a Video Mode is.
+* depth, file format:                    File Format Depths.
+* dialog boxes:                          Dialog Boxes.
+* differences from xzgv:                 xzgv Compatibility.
+* directory dialog:                      Dialog Boxes.
+* directory, changing:                   Changing Directory.
+* directory, rereading:                  Other File Sel Commands.
+* directory, starting on given:          Invoking zgv.
+* directory, updating thumbnails in a:   Updating Thumbnails.
+* disabling mouse:                       Other File Sel Commands.
+* disabling video modes:                 Disabling Video Modes.
+* display, changing resolution of:       Selecting a Video Mode.
+* display, resolution of:                Video Modes.
+* display, resolution of selector:       Showing More Files.
+* displaying the number of files:        Other File Sel Commands.
+* dithering in 15/16-bit modes:          Drawbacks of 15/16-bit Modes.
+* documentation, reporting bugs in the:  Reporting Documentation Bugs.
+* Emacs, running from:                   Running From Non-consoles.
+* enabling mouse support:                Enabling The Mouse.
+* enlarging a picture:                   Scaling.
+* entire filename, showing an:           Other File Sel Commands.
+* errors:                                Dialog Boxes.
+* exiting the viewer:                    Exiting the Viewer.
+* exiting zgv:                           Exiting zgv.
+* extension, showing files in order of:  Changing the Sorting Order.
+* extensions, listing files without:     File Selector Toggles.
+* faults, reporting:                     Reporting Bugs.
+* file count:                            Other File Sel Commands.
+* file format depths:                    File Format Depths.
+* file format, identification of:        File Type Identification.
+* file formats:                          File Formats.
+* file formats, supported:               Supported File Formats.
+* file selector:                         The File Selector.
+* file selector toggles:                 File Selector Toggles.
+* file selector, 16-colour:              16-colour File Selector.
+* file selector, cursor movement in:     Moving Around The List.
+* file selector, generic VGA:            16-colour File Selector.
+* file selector, grey:                   16-colour File Selector.
+* file selector, layout of:              Screen Layout.
+* file selector, monochrome:             16-colour File Selector.
+* file selector, moving around:          Moving Around The List.
+* file selector, options in:             File Selector Toggles.
+* file selector, returning to:           Exiting the Viewer.
+* file selector, run-time configuration of: File Selector Toggles.
+* file selector, showing more files in the: Showing More Files.
+* file selector, sorting order of the:   Changing the Sorting Order.
+* file selector, using a mouse in the:   Mouse Funcs in the File Selector.
+* file selector, video modes in the:     Showing More Files.
+* file selector, viewing a file from the: Viewing a File.
+* file thumbnails:                       Thumbnails.
+* file, deleting a:                      Other File Sel Commands.
+* file, renaming a:                      Renaming a File.
+* file, showing date/time of:            Other File Sel Commands.
+* file, showing full filename of:        Other File Sel Commands.
+* file, showing size of:                 Other File Sel Commands.
+* file, viewing only one:                Invoking zgv.
+* files, config:                         Config Files.
+* files, copying:                        Copying/Moving/Deleting Files.
+* files, effect of video modes on displaying: Video Mode Issues.
+* files, identification of:              File Type Identification.
+* files, moving:                         Copying/Moving/Deleting Files.
+* files, slideshow of:                   Slideshows.
+* fitting picture to screen:             Zoom Mode.
+* fixing overly dark/bright images:      Gamma Adjustment.
+* flipping a picture:                    Mirror and Rotate.
+* format of config files:                Config Files.
+* function keys, using the:              Selecting a Video Mode.
+* future changes:                        Future Changes.
+* gamma adjustment:                      Gamma Adjustment.
+* GIF:                                   Supported File Formats.
+* GIF file animation:                    Multiple-image GIF Animation.
+* grey file selector:                    16-colour File Selector.
+* greyscales, faking extra:              Increased Greyscales.
+* having fun, how to avoid:              Gamma Adjustment.
+* help, mode-select key:                 Selecting a Video Mode.
+* help, online:                          Online help.
+* high-colour video modes, problems with: Drawbacks of 15/16-bit Modes.
+* identifying files:                     File Type Identification.
+* index, configuration variables:        Configuration Variables Index.
+* index, keyboard commands:              Keyboard Commands Index.
+* Info file, reporting bugs in the:      Reporting Documentation Bugs.
+* initial video mode:                    Default Video Mode.
+* introduction to zgv:                   Overview.
+* invoking zgv:                          Invoking zgv.
+* JPEG:                                  Supported File Formats.
+* jumping to a directory:                Changing Directory.
+* killing mouse:                         Other File Sel Commands.
+* known bugs:                            Known Bugs.
+* large pictures:                        Big Pictures.
+* last-modified date/time, showing a file's: Other File Sel Commands.
+* layout, screen:                        Screen Layout.
+* leaving the viewer:                    Exiting the Viewer.
+* leaving zgv:                           Exiting zgv.
+* listing files without extensions:      File Selector Toggles.
+* location of thumbnails:                Thumbnail Storage.
+* magic number, listing files based on:  File Selector Toggles.
+* making a picture bigger:               Scaling.
+* making thumbnails:                     Updating Thumbnails.
+* man page, why not just have a:         Why a Texinfo Manual?.
+* manual, reporting bugs in the:         Reporting Documentation Bugs.
+* marked files, deleting:                Copying/Moving/Deleting Files.
+* marking files:                         Tagging.
+* menus, mouse:                          Mouse Menus.
+* messages:                              Dialog Boxes.
+* mirroring a picture:                   Mirror and Rotate.
+* moaning for fun and profit:            Rationale.
+* mode, automatically choosing video:    Auto-mode-fit.
+* mode, selecting a video:               Selecting a Video Mode.
+* mode, specifying the initial video:    Invoking zgv.
+* modes in selector, video:              Showing More Files.
+* modes, video:                          Video Modes.
+* monochrome file selector:              16-colour File Selector.
+* more files in the selector, showing:   Showing More Files.
+* mouse support:                         Using a Mouse.
+* mouse, changing modes with the:        Mouse Funcs in the Viewer.
+* mouse, disabling:                      Other File Sel Commands.
+* mouse, enabling the:                   Enabling The Mouse.
+* mouse, file selector use of the:       Mouse Funcs in the File Selector.
+* mouse, menus used with the:            Mouse Menus.
+* mouse, moving around with the:         Mouse Funcs in the File Selector.
+* mouse, problems with the:              Mouse Deficiencies.
+* mouse, selecting a file with the:      Mouse Funcs in the File Selector.
+* moving around the file list:           Moving Around The List.
+* moving around the picture:             Scrolling.
+* moving directory:                      Changing Directory.
+* moving files:                          Copying/Moving/Deleting Files.
+* mrf:                                   Supported File Formats.
+* mtime, showing a file's:               Other File Sel Commands.
+* Multiple-image GIF files:              Multiple-image GIF Animation.
+* normal, returning display to:          Zoom Mode.
+* normal, setting brightness/contrast to: Brightness and Contrast.
+* number of files, showing the:          Other File Sel Commands.
+* old config variable names:             Config File Backward Compatibility.
+* online help:                           Online help.
+* options in file selector:              File Selector Toggles.
+* options, command-line:                 Invoking zgv.
+* options, setting:                      Configuring zgv.
+* order, brightness/contrast:            Brightness and Contrast.
+* orientation, picture:                  Mirror and Rotate.
+* overview:                              Overview.
+* owner, showing a file's:               Other File Sel Commands.
+* panning:                               Scrolling.
+* panning, using mouse for:              Mouse Funcs in the Viewer.
+* pausing slideshows:                    Pausing Slideshows.
+* PBM:                                   Supported File Formats.
+* PCX:                                   Supported File Formats.
+* permissions, showing a file's:         Other File Sel Commands.
+* PGM:                                   Supported File Formats.
+* Photo-CD (optional):                   Supported File Formats.
+* picture format, identification of:     File Type Identification.
+* picture orientation:                   Mirror and Rotate.
+* picture thumbnails:                    Thumbnails.
+* picture, enlarging:                    Scaling.
+* picture, flipping a:                   Mirror and Rotate.
+* picture, mirroring a:                  Mirror and Rotate.
+* picture, moving around a:              Scrolling.
+* picture, rotating a:                   Mirror and Rotate.
+* picture, selecting:                    Moving Around The List.
+* picture, tagging current:              Changing Picture.
+* picture, using mouse to move around:   Mouse Funcs in the Viewer.
+* picture, using mouse to select a:      Mouse Funcs in the File Selector.
+* picture, viewing a:                    Viewing a File.
+* picture, viewing only one:             Invoking zgv.
+* pictures, big:                         Big Pictures.
+* pictures, changing:                    Changing Picture.
+* pictures, copying:                     Copying/Moving/Deleting Files.
+* pictures, effect of video modes on:    Video Mode Issues.
+* pictures, file formats used by:        File Formats.
+* pictures, moving:                      Copying/Moving/Deleting Files.
+* pictures, slideshow of:                Slideshows.
+* pixels, modes with wide:               Virtual Modes.
+* pixmaps, X:                            Supported File Formats.
+* PNG:                                   Supported File Formats.
+* PNM:                                   Supported File Formats.
+* pointer, removing the mouse:           Other File Sel Commands.
+* PPM:                                   Supported File Formats.
+* PRF:                                   Supported File Formats.
+* problematic features:                  Suboptimal Features.
+* problems, reporting:                   Reporting Bugs.
+* quitting the viewer:                   Exiting the Viewer.
+* quitting zgv:                          Exiting zgv.
+* rationale:                             Rationale.
+* recursion joke, ANSI standard:         Concept Index.
+* recursively, updating thumbnails:      Updating Thumbnails.
+* reduce-only in zoom mode:              Zoom Mode.
+* renaming a file:                       Renaming a File.
+* reporting bugs:                        Reporting Bugs.
+* reporting documentation bugs:          Reporting Documentation Bugs.
+* rereading a directory:                 Other File Sel Commands.
+* response curve:                        Gamma Adjustment.
+* restoring picture orientation:         Mirror and Rotate.
+* restrictions:                          Restrictions.
+* returning to file selector:            Exiting the Viewer.
+* right-button menus:                    Mouse Menus.
+* rotating a picture:                    Mirror and Rotate.
+* running from non-consoles:             Running From Non-consoles.
+* running in the background:             Running In The Background.
+* running zgv:                           Invoking zgv.
+* scaling up a picture:                  Scaling.
+* scanning a directory again:            Other File Sel Commands.
+* screen layout:                         Screen Layout.
+* screen, changing resolution of:        Selecting a Video Mode.
+* screen, resolution of:                 Video Modes.
+* screen, resolution of selector:        Showing More Files.
+* scrollbar, toggling:                   File Selector Toggles.
+* scrollbar, using mouse with the:       Mouse Funcs in the File Selector.
+* scrolling:                             Scrolling.
+* scrolling, using mouse for:            Mouse Funcs in the Viewer.
+* selecting a file:                      Moving Around The List.
+* selecting a video mode:                Selecting a Video Mode.
+* selecting directory:                   Changing Directory.
+* selecting multiple files:              Tagging.
+* selector:                              The File Selector.
+* selector video modes:                  Showing More Files.
+* settings, changing:                    Configuring zgv.
+* showing a full filename:               Other File Sel Commands.
+* showing more files in the selector:    Showing More Files.
+* showing the number of files:           Other File Sel Commands.
+* showing the size of a file:            Other File Sel Commands.
+* size, showing a file's:                Other File Sel Commands.
+* size, showing files in order of:       Changing the Sorting Order.
+* slideshows:                            Slideshows.
+* slideshows, changing picture in:       Changing Picture.
+* slideshows, pausing in:                Pausing Slideshows.
+* slideshows, toggling looping:          File Selector Toggles.
+* slideshows, toggling randomised:       File Selector Toggles.
+* small picture, enlarging a:            Scaling.
+* small picture, making screen fit a:    Zoom Mode.
+* small screen, coping with a:           Big Pictures.
+* small screen, making picture fit a:    Zoom Mode.
+* sorting order, changing the file selector's: Changing the Sorting Order.
+* special video modes:                   Special Modes.
+* starting on given directory:           Invoking zgv.
+* starting zgv:                          Invoking zgv.
+* storage of thumbnails:                 Thumbnail Storage.
+* suboptimal features:                   Suboptimal Features.
+* supported file formats:                Supported File Formats.
+* switching on mouse support:            Enabling The Mouse.
+* tag and untag commands:                Tag and Untag Commands.
+* tagged files, deleting:                Copying/Moving/Deleting Files.
+* tagged files, showing number of:       Other File Sel Commands.
+* tagging:                               Tagging.
+* tagging, how to use:                   Tag and Untag Commands.
+* tagging, using viewer for:             Changing Picture.
+* Targa:                                 Supported File Formats.
+* Texinfo documentation, reporting bugs in the: Reporting Documentation Bugs.
+* Texinfo, problems with:                Why One-space Sentence Ends?.
+* Texinfo, why zgv doc. is in:           Why a Texinfo Manual?.
+* TGA:                                   Supported File Formats.
+* the file selector:                     The File Selector.
+* the viewer:                            The Viewer.
+* thumbnails:                            Thumbnails.
+* thumbnails, creating:                  Updating Thumbnails.
+* thumbnails, issues relating to:        Thumbnail Issues.
+* thumbnails, location:                  Thumbnail Storage.
+* thumbnails, problems with displaying:  Thumbnail Issues.
+* thumbnails, storage:                   Thumbnail Storage.
+* thumbnails, toggling display of:       File Selector Toggles.
+* thumbnails, updating:                  Updating Thumbnails.
+* TIFF:                                  Supported File Formats.
+* time, showing a file's:                Other File Sel Commands.
+* TODO list:                             Future Changes.
+* tree, updating all thumbnails in a directory: Updating Thumbnails.
+* turning off the mouse:                 Other File Sel Commands.
+* turning on the mouse:                  Enabling The Mouse.
+* types of picture supported:            Supported File Formats.
+* types, config variable:                Config Variable Types.
+* Unfeasibly tall pictures:              Multiple-image GIF Animation.
+* updating thumbnails:                   Updating Thumbnails.
+* using the viewer:                      The Viewer.
+* variable, types of config:             Config Variable Types.
+* VGA cards, useful modes for generic:   Special Modes.
+* video mode, automatically choosing:    Auto-mode-fit.
+* video mode, default:                   Default Video Mode.
+* video mode, definition of a:           What a Video Mode is.
+* video mode, selecting a:               Selecting a Video Mode.
+* video mode, specifying the initial:    Invoking zgv.
+* video mode, the viewer's 640x480 16-colour: The Viewer 640x480x4 Mode.
+* video modes:                           Video Modes.
+* video modes in config files:           Config Variable Types.
+* video modes in the selector:           Showing More Files.
+* video modes, 32-bit:                   32-bit Video Modes.
+* video modes, disabling:                Disabling Video Modes.
+* video modes, issues relating to:       Video Mode Issues.
+* video modes, problems with 15/16-bit:  Drawbacks of 15/16-bit Modes.
+* video modes, special:                  Special Modes.
+* video modes, virtual:                  Virtual Modes.
+* viewer, 640x480 16-colour mode in the: The Viewer 640x480x4 Mode.
+* viewer, changing pictures from the:    Changing Picture.
+* viewer, mouse menu for:                Mouse Funcs in the Viewer.
+* viewer, moving around in the:          Scrolling.
+* viewer, scrolling in the:              Scrolling.
+* viewer, tagging picture from the:      Changing Picture.
+* viewer, using mouse with the:          Mouse Funcs in the Viewer.
+* viewer, using the:                     The Viewer.
+* viewing a file:                        Viewing a File.
+* viewing multiple files:                Slideshows.
+* viewing only one file:                 Invoking zgv.
+* virtual modes:                         Virtual Modes.
+* why a texinfo manual?:                 Why a Texinfo Manual?.
+* why another viewer?:                   Why Yet Another Viewer?.
+* why one-space sentence ends?:          Why One-space Sentence Ends?.
+* wide-pixel modes:                      Virtual Modes.
+* wish-list:                             Future Changes.
+* X, running from:                       Running From Non-consoles.
+* XBM:                                   Supported File Formats.
+* XPM:                                   Supported File Formats.
+* XPM files, special treatment of:       File Format Depths.
+* xterm, running from an:                Running From Non-consoles.
+* xv, comparison with:                   Why Yet Another Viewer?.
+* xv-compatible thumbnails:              Thumbnails.
+* xzgv, differences from:                xzgv Compatibility.
+* xzgv-like keys, about the:             xzgv Compatibility.
+* zgv.conf:                              Config Files.
+* zgvrc:                                 Config Files.
+* zoom mode:                             Zoom Mode.
+* zoom mode, reduce-only in:             Zoom Mode.
+* zoom, automatic mode-switching for effective: Auto-mode-fit.
+* zooming big but not small pictures:    Zoom Mode.
+* zooming into a picture:                Scaling.
+
+

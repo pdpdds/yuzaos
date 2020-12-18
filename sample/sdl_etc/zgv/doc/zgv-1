@@ -1,0 +1,1323 @@
+This is zgv, produced by makeinfo version 4.1 from zgv.texi.
+
+INFO-DIR-SECTION Graphics Utilities
+START-INFO-DIR-ENTRY
+* zgv: (zgv).   A picture viewer for Linux/FreeBSD systems with VGA/SVGA.
+END-INFO-DIR-ENTRY
+
+   The zgv manual, for version 5.9, last updated 28th January 2005.
+
+   Copyright 1998-2004 Russell Marks.
+
+   Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+   Permission is granted to copy and distribute modified versions of
+this manual under the conditions for verbatim copying, provided that the
+entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+
+   Permission is granted to copy and distribute translations of this
+manual into another language, under the above conditions for modified
+versions, except that this permission notice may be stated in a
+translation approved by the Free Software Foundation.
+
+
+File: zgv,  Node: Top,  Next: Overview,  Prev: (dir),  Up: (dir)
+
+The zgv manual
+**************
+
+   zgv is a full-featured picture viewer, with a reasonably nice file
+selector, for Linux and FreeBSD systems with VGA/SVGA (it uses
+svgalib). It can read most common file formats (and, it might be
+suggested, a few others besides).
+
+   By default zgv only takes input from the keyboard. *Note Using a
+Mouse::, for how to enable extensive mouse support.
+
+   This documentation is for zgv version 5.9, last updated 28th January
+2005.
+
+* Menu:
+
+* Overview::                    A simple look at how to use zgv.
+* Acknowledgements::            Who did what.
+
+* Invoking zgv::                Command-line options.
+
+* Online help::                 Getting help on what keys to press.
+* The File Selector::           How to pick files to view, and more.
+* The Viewer::                  What you can do when a picture is onscreen.
+
+* xzgv Compatibility::          xzgv is similar to zgv, but not
+                                identical; you can make zgv behave a bit
+                                more like xzgv, helpful if you use both.
+
+* File Formats::                Issues related to the way picture files
+                                  are stored.
+* Consoles::                    How zgv deals with virtual consoles, and
+                                  console switching.
+
+* Using a Mouse::               How to enable a mouse and use it in zgv.
+
+* Configuring zgv::             You can change aspects of zgv's behaviour.
+
+* Rationale::                   The thinking behind certain things.
+* Bugs and Restrictions::       Problems with zgv, and how to report bugs.
+* Future Changes::              Pending ideas for zgv features etc.
+
+ --- Indexes ---
+
+* Keyboard Commands Index::     What various keys do in zgv.
+* Configuration Variables Index::  Settings in zgv's config file(s).
+* Concept Index::               General index of topics covered.
+
+
+File: zgv,  Node: Overview,  Next: Acknowledgements,  Prev: Top,  Up: Top
+
+Overview
+********
+
+   zgv lets you view pictures on Linux or FreeBSD boxes with VGA/SVGA
+displays. The kinds of pictures it supports are raster-format pictures
+(sometimes called `bitmaps' and/or `pixmaps'); things like GIF files,
+JPEG files, PNG files, and so on. (The full list of file formats
+supported is listed elsewhere. *Note Supported File Formats::.)
+
+   Most of the time, you will probably want to use zgv's file selector
+(*note The File Selector::) to pick which file(s) to view. This is what
+appears when you start zgv as just `zgv' (*note Invoking zgv::). It
+displays a list of subdirectories and picture files in the current
+directory, along with small `thumbnail' versions of the pictures if they
+exist. (If no thumbnails appear for a given directory, or if they are
+missing for some files, you can create/update them by pressing `u'.
+*Note Updating Thumbnails::.)
+
+   When you've picked a file to view, you can view it by pressing
+`Enter'. This puts you into the viewer, where the whole screen is used
+to display the picture (*note The Viewer::). You can then move around
+the picture (if it is larger than the screen) using the cursor keys.
+Pressing `Esc' returns you to the file selector, where you can pick
+another file to view, or you can quit zgv by pressing `Esc' again.
+
+   While zgv is by default controlled entirely from the keyboard, it
+does have quite good mouse support you can enable if you like that sort
+of thing. *Note Using a Mouse::.
+
+   This overview is, as you might expect, only the very simplest of
+introductions to what zgv can do, and describes only a very basic use of
+zgv. zgv can do a lot more; read on to find out what.
+
+
+File: zgv,  Node: Acknowledgements,  Next: Invoking zgv,  Prev: Overview,  Up: Top
+
+Acknowledgements
+****************
+
+   zgv was primarily written by Russell Marks, who also wrote this
+manual.
+
+   Matan Ziv-Av added multiple-image animated GIF support, Photo-CD
+support, brightness/contrast support in high-colour modes, the original
+file-rename code, and some of the support for 32-bit modes, as well as
+inspiring a few other changes like high-res file selector support.
+
+   Carsten Engelmann wrote the BMP support.
+
+   Edwin Fong added support for command-line slideshows, and a few other
+features including the original mouse support.
+
+   Radim Kolar added support for FreeBSD.
+
+   Costa Sapuntzakis contributed code for much faster JPEG thumbnail
+generation.
+
+   Dimitar Zhekov added SDL mouse support.
+
+   `install-info' is a (very) slightly modified version of the original
+(which is part of the `texinfo' package). This program is used during
+installation. I think it was mostly written by Karl Berry, but it's not
+terribly clear.
+
+   The authors of the special-purpose libraries zgv uses deserve credit
+-- JPEG and PNG might not have been supported in zgv without the JPEG
+library, libpng and zlib. Most of all though, zgv would certainly not
+have been written without VGAlib and later svgalib, and thanks are due
+to Tommy Frandsen, Harm Hanemaayer, Michael Weller, Matan Ziv-Av and
+many others for that.
+
+   Thanks also to the zgv users who've contributed bug reports,
+suggestions, ideas for features, and even... dare I say...
+compliments. zgv would be even worse without their input, so count your
+lucky stars. :-)
+
+   This program is based in part on the work of the Independent JPEG
+Group.
+
+   "The Graphics Interchange Format(c) is the Copyright property of
+CompuServe Incorporated. GIF(sm) is a Service Mark property of
+CompuServe Incorporated."
+
+
+File: zgv,  Node: Invoking zgv,  Next: Online help,  Prev: Acknowledgements,  Up: Top
+
+Invoking zgv
+************
+
+   Normally you'd invoke zgv as plain `zgv'. However, you can directly
+specify files to view or a start directory on the command-line. In
+addition, there are various options.
+
+   (If you're new to zgv, you should probably skip the rest of this
+section for now and come back to it later.)
+
+   The general format of the zgv command-line goes roughly like this:
+
+     zgv [OPTIONS] [START-DIR | FILE [FILE2 ...]]
+
+   Two types of options are supported -- the traditional Unix
+single-letter options, and GNU-style long options. Both forms are listed
+in the table below, but not all long options have single-letter
+equivalents.
+
+   Note that all options are processed after any configuration file(s).
+Config file settings are just like the long-option names below minus the
+`--' (*note Configuring zgv::), though a few command-line options are
+not permitted as config file settings (e.g. `help'), and vice versa.
+
+   Here's what the options do:
+
+`-A'
+`--auto-animate'
+     Automatically animate multiple-image GIF files (*note
+     Multiple-image GIF Animation::). This limits your viewing options
+     greatly, but can be handy for slideshows and the like.
+
+`--auto-mode-fit'
+     Automatically switch modes to suit image size.
+
+`--auto-mode-fit-diff DIFF'
+     When choosing an auto-mode-fit mode, add DIFF to each mode's width
+     and height. For example, with a value of 20 any picture up to
+     820x620 will be displayed in an 800x600 mode if possible. If DIFF
+     is negative, for example -20, the effect is reversed; any picture
+     above 780x580 will be displayed in a mode with a resolution higher
+     than 800x600 if possible.
+
+`-p'
+`--avoid-single-progress'
+     Don't show progress indicator when loading a single file from the
+     command-line.
+
+`--black-background'
+     Try to use a black (or nearest-to-black) background when in 8-bit
+     modes.  This can be quite nice for consistency's sake when viewing
+     (say) a mixture of GIFs and JPEGs, but the extra pass over the
+     loaded image slows things down slightly.
+
+`-b'
+`--block-cursor'
+     Use a blocky outline cursor in the selector, which is rather
+     unsubtle but more obvious.
+
+`--brightness ADJUST_VAL'
+     Specify how much to add to colour values to change brightness
+     (default 0). Values less than zero decrease brightness, values
+     greater than zero increase it. Brightness is applied after
+     contrast by default.
+
+`--centre'
+`--center'
+     (Normally enabled, use e.g. `--centre=off' to disable.) By default
+     zgv centres pictures smaller than the screen, in whichever
+     dimensions they are smaller. This setting gives you a way to
+     disable this, so that pictures always start in the top-left.
+
+`--clear-screen-on-exit'
+     Clear the screen on exit. (Normally, zgv leaves the original screen
+     contents intact.)
+
+`--col-black R G B'
+     Set colour used for `black' (text) in selector; RGB values should
+     be in the range 0-63 for this and the other colour settings below,
+     and the three numbers should be quoted, e.g. `--col-black "10 20
+     30"'.
+
+`--col-dark R G B'
+     Set colour used for lowlights in selector.
+
+`--col-light R G B'
+     Set colour used for highlights in selector.
+
+`--col-medium R G B'
+     Set colour used for background in selector.
+
+`--col-tagged R G B'
+     Set colour used for tagged files in selector.
+
+`--contrast MULTIPLIER'
+     Specify how much to multiply colour values by to change contrast
+     (default 1.0). zgv multiplies each colour's difference from grey
+     by this number; values less than one decrease contrast, values
+     greater than one increase it. Negative values are also allowed,
+     and act in a similar way, but with the picture's colours inverted.
+     Contrast is applied before brightness by default.
+
+`--delete-single-prompt'
+     (Normally enabled, use `--delete-single-prompt=off' to disable.) If
+     disabled, don't prompt for confirmation when deleting a single
+     file.
+
+`--delete-tagged-prompt'
+     (Normally enabled, use `--delete-tagged-prompt=off' to disable.)
+     If disabled, don't prompt for confirmation when deleting all tagged
+     files.
+
+`--dither-16col-fast'
+     (Normally enabled, use `--dither-16col-fast=off' to disable.) By
+     default, zgv uses a (reasonably fast) ordered dither when
+     displaying a dithered colour image in 640x480x4 mode. But if you
+     disable this setting, it uses error-diffused dithering (which
+     looks better but is rather noticeably slower).
+
+`--dither-hicol'
+     If enabled, use dithering in `high-colour' modes, i.e. 15/16-bit
+     modes. This makes colour gradients smoother, but slows things down
+     quite a bit.
+
+`--fake-cols'
+     (Normally enabled, use `--fake-cols=off' to disable.) If disabled,
+     don't fake extra greyscales and colour depth in 8-bit modes.
+     *Note Increased Greyscales::, for details.
+
+`--force-fs-16col'
+     Force the use of the 640x480 16-colour mode for the selector.
+
+`-j'
+`--force-viewer-8bit'
+     Force all images to be loaded as 8-bit. Normally zgv will load
+     24-bit images (e.g. colour JPEGs) as 24-bit if you have any modes
+     capable of displaying the image in 15, 16, 24, or 32-bit colour.
+
+`--fs-16col-colour-thumbnails'
+`--fs-16col-color-thumbnails'
+     Use low-quality colour thumbnail pictures when the file selector is
+     using 640x480 16-colour mode. Normally zgv uses higher-quality
+     monochrome thumbnails in this situation.
+
+`--fs-ignore-old-pos'
+     Don't recall previous cursor position in a directory when
+     returning to it later. (This mechanism only applies when changing
+     directory `normally'; jumping directly to another dir with `G'
+     never does such a save/restore (*note Changing Directory::).)
+
+`--fs-magic'
+     Use `magic number'-type identification to determine which files
+     should be listed in the file selector. This is more accurate, but
+     very much slower. *Note File Type Identification::, for a
+     discussion of the tradeoffs involved.
+
+`--fs-perfect-cols'
+     Don't change thumbnail colours when using the file selector to
+     make the rest of the selector look right. *Note Thumbnail Issues::.
+
+`--fs-slow-thumbnail-update'
+     `Walk' through the directory when updating thumbnails, moving the
+     cursor over every single picture whether it needs updating or not.
+     Normally, zgv completely skips any pictures which don't need
+     updating, which makes it considerably faster on large directories
+     and/or slow machines.
+
+`--fs-small-text'
+     Reduce the size of the filename text in the selector. You may find
+     this useful if you think the text is too big, or if you'd like to
+     see more of the filename without having to press `:'.
+
+`--fs-start-mode MODESPEC'
+     Specify the video mode zgv should start off using for the file
+     selector. (The default is 640x480x8 if possible, otherwise
+     640x480x4.)  The `modespec' should be the width, height, and depth
+     in quotes, e.g.  `"640 480 8"'. *Note Video Modes::, for details
+     of precisely what this means. The specified depth is actually
+     ignored in this case, as you can only choose 8-bit modes for the
+     selector.
+
+`-t'
+`--fs-thick-text'
+     Thicken the text (filenames etc.) in the file selector (and
+     elsewhere).  (Note that if `line-text' has been enabled, then
+     `fs-thick-text' only has an effect if `block-cursor' is on as
+     well.)
+
+`--fullscreen'
+     (Normally enabled, use `--fullscreen=off' to disable.) This option
+     only applies when using the SDL backend. By default, zgv generally
+     uses the entire screen for its display. But if you disable this
+     option, it tries to run in a window when possible (e.g. when
+     running under X). Note that zgv won't be able to fill the screen in
+     modes it doesn't natively support, in either case.
+
+`-G VAL'
+`--gamma VAL'
+     Set the gamma adjustment used (*note Gamma Adjustment::). This
+     also sets the `initial value' used when resetting the gamma
+     adjustment. The default is 1.0, i.e. no adjustment.
+
+`--gnulitically-correct'
+     GNU has `POSIXLY_CORRECT' for compatibility with silly POSIX
+     misfeatures, and zgv has...
+
+`-h'
+`--help'
+     Display a list of options and a terse description of what the
+     options do.
+
+`-i'
+`--ignore-errors'
+     When loading a single file from the command-line, ignore (some)
+     errors.  Only meaningful for PNG currently.
+
+`--jpeg-index-style STYLE'
+     Specify how to read JPEGs when creating thumbnails. Style `1' is
+     the quickest, but sometimes generates rather fuzzy/blocky
+     thumbnails; `2' is fairly cautious (and the default), but still
+     quite fast; `3' is an extremely cautious and slow method.
+
+`-J TYPE'
+`--jpeg-speed TYPE'
+     Set JPEG speed/quality tradeoff. Type `1' is slow but accurate;
+     `2' is faster but not as accurate (and the default); `3' is the
+     fastest but the least accurate.
+
+`--line-text'
+     Draw text by drawing lines rather than using bitmap fonts. This
+     looks worse but is faster.
+
+`-M'
+`--mouse'
+     Enable mouse support in zgv. `/dev/mouse' must be (usually a
+     symlink to) the mouse device. The actual configuration of the mouse
+     should be done via svgalib's config file `libvga.config'; see the
+     man page for that for details.
+
+`--mouse-scale SCALE'
+     Set the ratio of `mouse pixels' to onscreen pixels. The larger the
+     number, the slower the mouse moves, and vice versa. (However, the
+     number must be greater than zero.) If the mouse pointer moves at
+     the wrong speed for your tastes, play about with this setting and
+     you should be able to fix it.
+
+`--pcd-res RESNUM'
+     Selects the resolution used for Photo-CD files; 1=192x128,
+     2=384x256, 3=768x512 (default), 4=1536x1024, 5=3072x2048. (This
+     setting only has an effect if Photo-CD support was enabled at
+     compile-time.)
+
+`-g'
+`--pgm-truecol'
+     This one needs some background to fully explain -- greyscale files
+     are normally displayed in 8-bit modes, which due to VGA's limited
+     palette means that only 64 greyscales can be shown (zgv normally
+     fakes extra ones, though; *note Increased Greyscales::). But for
+     people who work with greyscale files and have 24/32-bit video
+     modes available this can be frustrating, as 24/32-bit modes
+     display 256 greyscales. For this reason, using the `--pgm-truecol'
+     option enables a special-case hack to read (only) PGM files as if
+     they were 24-bit. Using a 24/32-bit mode then gives you 256
+     greyscales. (Be careful to avoid 15/16-bit modes as these will
+     only give 32! *Note Drawbacks of 15/16-bit Modes::.)
+
+`-r SECONDS'
+`--reload-delay SECONDS'
+     If SECONDS is positive, then any picture displayed is re-read and
+     redisplayed (without clearing the screen first) every SECONDS
+     seconds. If it's `0' (zero), or negative, the picture is only read
+     once -- the default. Unless this option has suddenly inspired you
+     to write an interesting little shell script, you're unlikely ever
+     to have a use for it. :-)
+
+`--reverse-bc-order'
+     Normally, any brightness modification is applied after applying any
+     contrast. Enabling this reverses the order.
+
+`--revert-orient'
+     (Normally enabled, use `--revert-orient=off' to disable.) If
+     disabled, orientation (flip/mirror/rotate) state is retained
+     between pictures.
+
+`--revert-scale'
+     (Normally enabled, use `--revert-scale=off' to disable.) If
+     disabled, scaling is retained between pictures.
+
+`--scrollbar'
+     (Normally enabled, use `--scrollbar=off' to disable.) If disabled,
+     don't show a scrollbar below the selector.
+
+`-s'
+`--show-dimensions'
+     Cause zgv to output the x and y offsets, and width and height of
+     the section of the image being displayed when you exit zgv. Can be
+     useful for things like `pnmcut `zgv -s input.ppm` input.ppm >
+     output.ppm'.
+
+`-T'
+`--show-tagged'
+     Print names of tagged files on exit. This can be useful in
+     constructions something like `mv `zgv -T` /tmp', which moves to
+     `/tmp' only the files you select.
+
+`--show-xvpics-dir'
+     Show any `.xvpics' directories so that the thumbnails can be viewed
+     even if the files they referred to no longer exist. (However, it's
+     usually easier to simply start zgv in the `.xvpics' dir.)
+
+`-S DELAY'
+`--slideshow-delay DELAY'
+     Set time to wait in seconds before loading the next picture in a
+     slideshow. The default is 4.
+
+`-l'
+`--slideshow-loop'
+     Loop in slideshows `forever' (or rather, until you exit).
+
+`-R'
+`--slideshow-randomise'
+`--slideshow-randomize'
+     Randomise picture order in slideshows. Due to the shuffling
+     approach taken, there will be no repeats or omissions.
+
+`--viewer-16col-colour'
+`--viewer-16col-color'
+     Give a dithered colour image in 640x480x4 mode when in the viewer
+     (*note The Viewer 640x480x4 Mode::), rather than greyscale.
+
+`-m MODESPEC'
+`--viewer-start-mode MODESPEC'
+     Specify the video mode zgv should start off using for the viewer.
+     The default is generally 640x480x8, but it's actually a bit more
+     complicated than that (*note Default Video Mode::). The `modespec'
+     should be the width, height, and depth in quotes, e.g. `"640 480
+     8"'. *Note Video Modes::, for details of precisely what this means.
+
+`--visual'
+     (Normally enabled, use `--visual=off' to disable.) If disabled, no
+     thumbnails are shown.
+
+`-k'
+`--vkludge'
+     enables vkludge, which smoothes slightly when `zooming' a big
+     picture down to screen size, and also when in 320x400 and 360x480
+     modes.
+
+`--version'
+     Show version number.
+
+`-w'
+`--write-ppm'
+     Write the file as a PPM to stdout rather than viewing it. (This
+     only works if you run zgv on a single file, specified on the
+     command-line.)  You're usually better off using a dedicated
+     image-converting program, though.
+
+`--xzgv-keys'
+     Makes zgv acts a bit more like xzgv, at least in terms of the
+     keypresses it supports (*note xzgv Compatibility::).
+
+`-z'
+`--zoom'
+     Enable zoom mode, which resizes the picture to fit the screen.
+     *Note Zoom Mode::.
+
+`--zoom-reduce-only'
+     When in zoom mode, only _reduce_ pictures to fit; i.e. make big
+     pictures viewable all-at-once while leaving small picures intact.
+
+   If zgv is started with `zgv FILE', zgv auto-loads the file
+(bypassing the file selector), and exits when you exit from viewing the
+picture. (By the way, this also makes it possible to view single files
+without the usual extensions such as `.gif', etc. *Note File Type
+Identification::.)
+
+   If started with `zgv FILE FILE2 ...' -- i.e. with more than one
+filename -- zgv works in a similar way, except the multiple files are
+shown as a slideshow, one after the other. You may want to specify `-l'
+so that zgv will loop around these pictures until `Esc' is pressed, and
+the `-R' option to shuffle (randomise) the picture order may also be of
+interest.
+
+   If started with `zgv START-DIR', zgv starts up with the usual file
+selector, but with the current directory being the one specified.
+
+   Settings which are either on or off (boolean) are, as you might
+expect, enabled by using e.g. `-z' or `--zoom'. However, there's an
+alternative long-option form for setting these, resembling how they're
+set in config files -- the syntax is `--option=STATE', where STATE is
+`on'/`y'/`yes'/`1' to enable the option, or `off'/`n'/`no'/`0' to
+disable it. The most useful thing about this is that it allows you to
+disable options which were previously enabled, by using e.g.
+`--zoom=off'.
+
+   (Readers used to the way GNU-style long options work should note
+that, since this `on'/`off'/etc. arg is optional, you can't use the
+`--option arg' form in this case; it must be `--option=arg' for it to
+work.)
+
+
+File: zgv,  Node: Online help,  Next: The File Selector,  Prev: Invoking zgv,  Up: Top
+
+Online help
+***********
+
+   Online help (of a sort) is available in both the file selector and
+viewer:
+
+`?'
+     Gives online help. This lists some of the most commonly-used
+     keypresses in the current context.
+
+   In the viewer, you can also get a list of which key combinations
+select which video modes. *Note Selecting a Video Mode::.
+
+
+File: zgv,  Node: The File Selector,  Next: The Viewer,  Prev: Online help,  Up: Top
+
+The File Selector
+*****************
+
+   Usually, on starting up zgv, you will enter the file selector, which
+lets you pick files to view (among other things). This lists the
+subdirectories and picture files in the current directory, along with
+small `thumbnail' versions of the pictures if they exist.
+
+* Menu:
+
+* Exiting zgv::                 Why would you want to? :-)
+* Thumbnails::                  How to create thumbnails, and how they
+                                  work.
+* Screen Layout::               The file selector lists dirs/files.
+* Moving Around The List::      How to move the cursor.
+* Viewing a File::              How to view a single file.
+* Dialog Boxes::                How zgv reports errors and asks you things.
+* Tagging::                     You can tag (mark) multiple files, then
+                                  view/copy/move/delete them.
+* Renaming a File::             Renaming a single file or directory.
+* Changing Directory::          As well as the normal dir-by-dir way,
+                                  you can jump directly to a directory.
+* Changing the Sorting Order::  Files can be sorted by name,
+                                  `extension', size, and date/time.
+* File Selector Toggles::       Some options can be changed while zgv is
+                                  running.
+* Other File Sel Commands::     Miscellaneous operations.
+* Showing More Files::          You can use different video modes for the
+                                  file selector, showing more files at
+                                  once.
+* 16-colour File Selector::     If 640x480 256-colour mode is absent
+                                  thumbnails don't look as good, but you
+                                  can choose between monochrome and
+                                  colour approximations.
+
+
+File: zgv,  Node: Exiting zgv,  Next: Thumbnails,  Prev: The File Selector,  Up: The File Selector
+
+Exiting zgv
+===========
+
+   Exiting zgv can be achieved two ways:
+
+`Esc'
+`x'
+     Quit zgv normally.
+
+`^C'
+     Quit zgv in a rather immediate and nasty way, by sending `SIGINT'.
+     (This is actually dealt with by svgalib.) You should only use ^C
+     to quit if zgv appears to lock up or takes an unbearably long time
+     to do something.
+
+     (Technically it may not be `^C' which sends `SIGINT', but you
+     would have to have a strange setup for this to be the case.)
+
+
+File: zgv,  Node: Thumbnails,  Next: Screen Layout,  Prev: Exiting zgv,  Up: The File Selector
+
+Thumbnails
+==========
+
+   (This section is deliberately early on in the manual, as thumbnails
+are probably the most important feature of the file selector, so it's
+best that you know how to create/update them sooner rather than later.)
+
+   Thumbnails are small versions of the pictures they represent, and are
+displayed by the file selector if they exist. zgv uses xv-compatible
+thumbnails -- if you create thumbnails with xv they will work with zgv,
+and vice versa. zgv's thumbnails are also compatible with the Gimp, and
+xzgv.
+
+   If no thumbnail exists for a file or directory, a small `document' or
+`folder' graphic appears instead.
+
+* Menu:
+
+* Updating Thumbnails::         How to create or update thumbnails.
+* Thumbnail Storage::           Where thumbnails are stored.
+* Thumbnail Issues::            Thumbnails need all 256 colours.
+
+
+File: zgv,  Node: Updating Thumbnails,  Next: Thumbnail Storage,  Prev: Thumbnails,  Up: Thumbnails
+
+Updating Thumbnails
+-------------------
+
+   While thumbnails can be made relatively quickly, it's by no means an
+instant process. For this reason, thumbnails have to be created in
+advance, and are stored as files in their own right in (usually) a
+subdirectory `.xvpics'.
+
+   zgv never creates/updates thumbnails without you telling it to. So,
+if you enter a directory where the picture files don't have any
+thumbnails, or where the thumbnails seem to be out of date, you should
+press `u'.
+
+   Alternatively, you can create/update thumbnails for the current
+directory and all subdirectories by using `Alt-u'. But be warned that a
+recursive update can take some time!
+
+`u'
+     Create thumbnails for any files which don't have them, and update
+     thumbnails which are older than than the corresponding file. While
+     this is going on, the text `updating index of' prefixes the usual
+     display of the current directory's name.
+
+     You can press `Esc' while the update is in progress to abort it;
+     zgv will stop once it has finished the thumbnail it is currently
+     working on (if any).
+
+     If you switch consoles while the update is in progress, it will
+     continue to run `in the background'. When you switch back, if the
+     update is still in progress, it may look as though zgv is doing
+     nothing (or the screen may look a bit confusing) for some time.
+     The reason is that the screen is not updated unless zgv is running
+     on the currently displayed console (this is unfortunately
+     necessary). The screen is redrawn when the current thumbnail has
+     been dealt with.
+
+`Alt-u'
+     Create/update thumbnails for all files in the current directory
+     and all subdirectories -- in other words, do a recursive update.
+     This can take some time, so you are prompted to confirm that you
+     really want to do this (*note Dialog Boxes::). As above, it will
+     continue running `in the background' if you switch consoles, and
+     you can press `Esc' to abort.
+
+`d'
+     Create thumbnails for subdirectories. Don't confuse this with the
+     recursive update; this generates thumbnails for the directories
+     _themselves_, not the files within them. (Most people probably
+     won't want to bother with these, as they're not as helpful as you
+     might think.) These consist of the first four files in the subdir,
+     squeezed together into a single thumbnail. There is (currently) no
+     `update' mechanism for subdir thumbnails -- all of them are newly
+     created each time you press `d'.
+
+
+File: zgv,  Node: Thumbnail Storage,  Next: Thumbnail Issues,  Prev: Updating Thumbnails,  Up: Thumbnails
+
+Thumbnail Storage
+-----------------
+
+   Normally, thumbnails are stored in the subdirectory `.xvpics'
+(creating the dir first if needed), with the same name as the filename
+they represent. However, there are times when using `.xvpics' isn't
+possible -- for example, the filesystem may be read-only (such as on a
+CD), or may not support the `.xvpics' name (such as on an `msdos'
+filesystem), or you may not have permission to write to the directory.
+
+   In these situations, zgv stores the thumbnails elsewhere. They go in
+directories under the `.xvpics' dir in your home directory. The name
+for the directory they go in there is the directory name they were
+found in, but with slashes (`/') converted to underscores (`_').
+
+   An example should make things clearer. Say zgv needs to create a
+thumbnail for `wibble.jpg', in the directory `/foo/bar/baz', but can't
+use `.xvpics'. It will put the thumbnail in
+`$HOME/.xvpics/_foo_bar_baz/wibble.jpg', creating directories as
+necessary.
+
+   Where a thumbnail is stored makes virtually no difference to how zgv
+works; the main difference is that the latter, more indirect way of
+storing thumbnails means that thumbnails will take slighter longer to
+display.
+
+
+File: zgv,  Node: Thumbnail Issues,  Prev: Thumbnail Storage,  Up: Thumbnails
+
+Thumbnail Issues
+----------------
+
+   The thumbnails used in zgv require 256 colours to display.
+Unfortunately, the rest of zgv's file selector needs an additional five
+colours. Normally this is dealt with by finding the `closest' thumbnail
+colours, and (this is the important part) changing them to the file
+selector colours. The disturbance to the thumbnails should be barely
+noticeable.
+
+   (All the same, you can disable this using the config file setting
+`fs-perfect-cols' (*note Configuring zgv::). But bear in mind that the
+selector will then look rather strange!)
+
+   In 16-colour mode (*note 16-colour File Selector::), the way it works
+means fewer colours are needed, and the file selector's five colours can
+be (and are) separate from the thumbnail colours.
+
+
+File: zgv,  Node: Screen Layout,  Next: Moving Around The List,  Prev: Thumbnails,  Up: The File Selector
+
+Screen Layout
+=============
+
+   The file selector is simply a list of subdirectories and filenames,
+along with any thumbnails that exist for them. The list is in
+asciibetical order (but you can change this; *note Changing the Sorting
+Order::). Names of directories are shown (like this), and they are shown
+in order at the beginning of the list, before all the picture files.
+Long filenames are truncated to fit; three dots indicate where this has
+happened. (*Note Other File Sel Commands::, for how to display the full
+filename.)
+
+   The list is often larger than can fit on the screen at once. If this
+is the case, only part is shown at a time, but you can move around the
+list with the cursor keys and the like.
+
+   The colours used for the file selector can be changed, if you dislike
+the defaults (*note Configuring zgv::).
+
+
+File: zgv,  Node: Moving Around The List,  Next: Viewing a File,  Prev: Screen Layout,  Up: The File Selector
+
+Moving Around The List
+======================
+
+   The cursor in zgv is (normally) shown as a `raised' entry in the
+list.  The cursor has two main functions:
+
+   - It selects a file for `view', `tag' etc. commands to operate on.
+
+   - It determines which part of the list is shown, as the part of the
+     list shown onscreen always contains the cursor.
+
+   There are many commands for moving the cursor. In summary, most
+`special' keys like the cursors do what you'd imagine they do -- also,
+a few Emacs-like keys, a few vi-like keys, and the Sinclair
+Spectrum-style (!) QAOP keys are supported.
+
+   Using a mouse in the file selector is not covered here. *Note Mouse
+Funcs in the File Selector::, for details of what you can do with a
+mouse. (Experienced users may wish to consult the `Tom & Jerry' and
+`Pinky and the Brain' cartoons for further enlightenment on this
+subject.)
+
+`Cursor Up'
+`^P'
+`k'
+`q'
+     Move up. Moving up from a topmost entry moves to the bottom of the
+     previous column.
+
+`Cursor Down'
+`^N'
+`j'
+`a'
+     Move down. Moving down from a bottommost entry moves to the top of
+     the next column.
+
+`Cursor Left'
+`^B'
+`h'
+`o'
+     Move left one column.
+
+`Cursor Right'
+`^F'
+`l'
+`p'
+     Move right one column.
+
+`Page Up'
+`^U'
+     Move the cursor back (nearly) a page.
+
+`Page Down'
+`^V'
+     Move the cursor forward (nearly) a page.
+
+`Home'
+`^A'
+     Move the cursor to the start of the list.
+
+`End'
+`^E'
+     Move the cursor to the end of the list.
+
+`g'
+`''
+     Move the cursor to the first filename starting with the next key
+     pressed, which would generally be a letter or number. Case is
+     significant; `a' and `A' are different.
+
+     If no files start with the specified character, it moves to the
+     first file which starts with a later char (in asciibetical order).
+     If there are none for which this is the case, it moves to the last
+     file -- unless there are no files (just directories), in which
+     case it has no effect.
+
+
+File: zgv,  Node: Viewing a File,  Next: Dialog Boxes,  Prev: Moving Around The List,  Up: The File Selector
+
+Viewing a File
+==============
+
+   There are two ways to view files from the file selector. The usual
+way is to press `Enter' when you've moved the cursor to the file to
+view. However, you can also view tagged files as a `slideshow', which is
+described later (*note Tagging::).
+
+`Enter'
+     View a picture file, or if the cursor is on a subdirectory, make
+     that the current directory. A progress indicator is shown when
+     reading in a file -- while this is onscreen, you can use `Esc' to
+     abort.
+
+
+File: zgv,  Node: Dialog Boxes,  Next: Tagging,  Prev: Viewing a File,  Up: The File Selector
+
+Dialog Boxes
+============
+
+   If zgv has a serious problem reading a file, it will give an error.
+Errors are shown in boxes which appear in the middle of the screen --
+they stay there until you press `Enter' or `Esc' (if using a mouse,
+clicking `OK' has the same effect).
+
+   zgv also uses similar dialog boxes for other things:
+
+   - Getting a yes or no answer. `Enter' or `y' picks `yes'; `Esc' or
+     `n' picks no. (Again, you can click on the relevant button with
+     the mouse to do the same.)
+
+   - Reading a directory name. Here you should type the directory name
+     then `Enter', or press `Esc' to abort. In fact, this line-input
+     dialog allows a certain amount of editing, and so supports these
+     additional keys:
+
+    `Cursor Left'
+    `^B'
+          Move the cursor left. (An underline character shows the cursor
+          position.)
+
+    `Cursor Right'
+    `^F'
+          Move the cursor right.
+
+    `Home'
+    `^A'
+          Move the cursor to the start of the line.
+
+    `End'
+    `^E'
+          Move the cursor to the end of the line.
+
+    `Insert'
+    `^I'
+          Toggle insert/overwrite mode. (Insert mode is the default.)
+          In insert mode, characters you type are inserted at the
+          cursor position. In overwrite mode, they replace the existing
+          chars.
+
+    `Backspace'
+    `^H'
+          Delete char to the left of the cursor. (This assumes
+          `Backspace' really generates a `DEL', which is the usual
+          setup on Linux. Note that `Backspace' is (usually) the key
+          above the main `Enter' key; it is often labelled simply as an
+          arrow.)
+
+    `Delete'
+    `^D'
+          Delete the char the cursor is on.
+
+
+File: zgv,  Node: Tagging,  Next: Renaming a File,  Prev: Dialog Boxes,  Up: The File Selector
+
+Tagging
+=======
+
+   The file selector is not restricted to working on one file at a time.
+You can `tag' as many (or as few) files as you wish, and certain
+commands described in this section will act on them.
+
+   Initially, all files are untagged, and the filenames appear in black.
+Tagged files appear in red. (*Note Configuring zgv::, if you'd prefer
+zgv to use different colours.)
+
+* Menu:
+
+* Tag and Untag Commands::      Selecting multiple files.
+* Slideshows::                  How to view them all in turn.
+* Copying/Moving/Deleting Files::  Or, do simple file management.
+
+
+File: zgv,  Node: Tag and Untag Commands,  Next: Slideshows,  Prev: Tagging,  Up: Tagging
+
+Tag and Untag Commands
+----------------------
+
+   There are several ways to tag or untag files. The ones which work on
+individual files also move the cursor forward one place afterwards, to
+make tagging or untagging multiple files easier.
+
+   As elsewhere in zgv, the case of the keys is significant -- the `t'
+(unshifted `t') command has quite a different effect to that of `T'
+(shifted `t').
+
+   There is also a command available in the viewer to tag the
+currently-viewed file. *Note Changing Picture::, for details.
+
+`t'
+     Tag file.
+
+`n'
+     Untag file. Note that this is `n' (for `no tag', er, or something
+     like that); `u' would be more logical, but that is used for
+     updating thumbnails.
+
+`T'
+     Tag all files.
+
+`N'
+     Untag all files. This is on `N' rather than `U' for consistency.
+
+`Space'
+     Toggle the tag status of the file -- if it's tagged, untag it; if
+     it's untagged, tag it.
+
+   To see how many files are tagged, use `Alt-f' (*note Other File Sel
+Commands::).
+
+
+File: zgv,  Node: Slideshows,  Next: Copying/Moving/Deleting Files,  Prev: Tag and Untag Commands,  Up: Tagging
+
+Slideshows
+----------
+
+   A `slideshow' lets you view all the tagged files in the current
+directory one after the other, or in a randomised order if `shuffling'
+is enabled (*note File Selector Toggles::):
+
+`Tab'
+     View the tagged files as a slideshow. (`Tab' is usually the key
+     above `Caps Lock', which is often labelled with two arrows.)
+
+   Each file is shown for a certain amount of time, normally 4 seconds.
+(*Note Invoking zgv::, if you find this too short or long.) After the
+time runs out, the next file is shown. You can cut this delay short by
+hand using one of the viewer's change-picture commands such as `Space'
+(*note Changing Picture::), or abort the slideshow prematurely by
+pressing `Esc'. You can also pause a slideshow so that you remain on
+the current file until you unpause it (*note Pausing Slideshows::).
+
+   Normally, once each file has been shown the slideshow ends, and you
+are returned to the file selector. But if looping is enabled, the
+slideshow repeats until you press `Esc' (*note File Selector Toggles::).
+
+
+File: zgv,  Node: Copying/Moving/Deleting Files,  Prev: Slideshows,  Up: Tagging
+
+Copying/Moving/Deleting Files
+-----------------------------
+
+   You can copy or move tagged files to a directory you specify, or
+delete all tagged files. If no files are tagged, zgv
+copies/moves/deletes the file the cursor is currently on -- unless the
+cursor is on a subdirectory, in which case it gives an error.
+
+   Note that the commands given here are uppercase -- lowercase `c',
+`m', and `d' do not do the same thing.
+
+`C'
+     Copy tagged files (or the current file) to a given directory. zgv
+     asks for the destination directory using a dialog (*note Dialog
+     Boxes::) and copies the files there. If it comes to copy a file
+     but there is an existing file in the dir with the same name, the
+     file is not copied and nor are any of the remaining files.
+
+`M'
+     Move tagged files (or the current file) similarly.
+
+`D'
+     Delete tagged files (or the current file) similarly. In this case,
+     there's obviously no need to specify any directory :-) but you're
+     prompted before deletion starts (unless this is disabled, *note
+     Configuring zgv::). It also deletes thumbnails, for those files
+     which have them.
+
+
+File: zgv,  Node: Renaming a File,  Next: Changing Directory,  Prev: Tagging,  Up: The File Selector
+
+Renaming a File
+===============
+
+   As well as copying/moving files, you can rename them:
+
+`R'
+`Alt-r'
+     Rename the current file or directory -- zgv will refuse to
+     overwrite any existing files/directories. The new name must remain
+     in the current directory. (*Note Copying/Moving/Deleting Files::,
+     for how to move a file to a different directory (albeit keeping
+     the same name).)
+
+   It's better to use `R' than `Alt-r'; the latter never made much
+sense, and is likely to be removed before long.
+
+
+File: zgv,  Node: Changing Directory,  Next: Changing the Sorting Order,  Prev: Renaming a File,  Up: The File Selector
+
+Changing Directory
+==================
+
+   The easiest way to change the current directory in zgv is usually to
+select a directory entry in the file list and press `Enter'.
+(Selecting `(..)' moves to the parent directory of the current one.)
+
+   There is an alternative though:
+
+   (Note that this command is shift-`g', not `g'.)
+
+`G'
+     Go to a specified directory. zgv asks for the destination directory
+     using a dialog box which you should type the dir's name into
+     (*note Dialog Boxes::), and moves to that directory if it exists.
+
+     If the directory turns out to be unreadable -- i.e. you do not have
+     permission to read it -- zgv resorts to going to your home
+     directory.  (This is actually a general mechanism in zgv, but this
+     command is the most likely trigger of it.) If that in turn is
+     unreadable, zgv gives up in disgust and exits. :-)
+
+
+File: zgv,  Node: Changing the Sorting Order,  Next: File Selector Toggles,  Prev: Changing Directory,  Up: The File Selector
+
+Changing the Sorting Order
+==========================
+
+   Normally, the files are listed in asciibetical order by name.
+However, you can instead have the file list sorted by size,
+last-modified date/time, or by `extension' (the file type).
+
+   (Only the order of files can be altered; directories are always
+listed first, and always in name order.)
+
+`Alt-n'
+     Sort by name. This is the default.
+
+`Alt-s'
+     Sort by size. The biggest files are listed last.
+
+`Alt-d'
+`Alt-t'
+     Sort by last-modified date/time. The newest files are listed last.
+
+`Alt-e'
+     Sort by extension.
+
+
+File: zgv,  Node: File Selector Toggles,  Next: Other File Sel Commands,  Prev: Changing the Sorting Order,  Up: The File Selector
+
+File Selector Toggles
+=====================
+
+   Various aspects of the file selector's behaviour can be configured
+while zgv is running, by using these toggle commands (which enable the
+feature if it was previously disabled, and vice versa).
+
+   These settings can also be altered using command-line options (*note
+Invoking zgv::) and/or config file settings (*note Configuring zgv::).
+
+`v'
+     Toggle display of thumbnails (default is on). The
+     without-thumbnails display can sometimes be useful for navigating
+     around large directories (many filenames are shown onscreen at
+     once), and it is of course faster.
+
+`s'
+     Toggle scrollbar on/off (default is on). The scrollbar shows which
+     part and which proportion of the list is currently being shown
+     onscreen, and when mouse support is enabled can be used to move
+     around the list.
+
+`S'
+     Toggle shuffling (randomising) of slideshows. *Note Slideshows::.
+
+`L'
+     Toggle looping in slideshows. *Note Slideshows::.
+
+`Alt-m'
+     Toggle use of `magic numbers' (identifiers at the start of a file)
+     to pick which files in a directory to list in the selector. The
+     usual method of doing this is based on the file's extension (*note
+     File Type Identification::, which is much faster but won't catch
+     e.g. files without extensions.
+
+`c'
+     If the file selector is running in 16-colour mode (it usually
+     doesn't unless zgv has no choice -- *note 16-colour File
+     Selector::), toggle between greyscale (default) and colour
+     thumbnails.
+
+
+File: zgv,  Node: Other File Sel Commands,  Next: Showing More Files,  Prev: File Selector Toggles,  Up: The File Selector
+
+Other File Sel Commands
+=======================
+
+   There are some other commands in the file selector which don't easily
+fit anywhere else. Here they are:
+
+`Delete'
+     Delete (only) the file the cursor is on. Asks for confirmation
+     (unless this is disabled, *note Configuring zgv::). It also
+     deletes the file's thumbnail, if it has one. *Note
+     Copying/Moving/Deleting Files::, for a more general command which
+     deletes all tagged files.
+
+`:'
+     Show various details about the file the cursor is on; the (full)
+     filename, the size in kilobytes, width/height if recorded in any
+     thumbnail, last-modified date, etc. You can also use the `;' key to
+     get this.
+
+`Alt-f'
+     Show the number of (picture) files in the current directory, and
+     the number of tagged files (*note Tagging::).
+
+`^L'
+`^R'
+     Rescan the directory contents, and redraw the screen.
+
+`K'
+     Kill mouse -- disable mouse for the rest of this zgv session. (It
+     prompts to check if you really want to do so.) This can be useful
+     if you have the mouse enabled in a config file, so that zgv always
+     starts up with the mouse on, but you're currently using just the
+     keyboard. In such a situation the mouse pointer can be a bit
+     annoying. This command lets you disable the mouse completely for
+     the current zgv process.
+
+
+File: zgv,  Node: Showing More Files,  Next: 16-colour File Selector,  Prev: Other File Sel Commands,  Up: The File Selector
+
+Showing More Files
+==================
+
+   The file selector normally runs at a relatively low resolution
+(640x480), meaning it can only show 20 thumbnails at once. This keeps
+the selector running at a reasonable speed even on slow machines.
+
+   If you have a faster machine, however, and your video card has
+256-colour modes with higher resolutions than 640x480 (*note Video
+Modes::), you may want to see more thumbnails onscreen at once.
+
+   (zgv tends not to look as `right' in such modes as it does in the
+usual 640x480, but apart from that it's much the same.)
+
+`F1'
+     Select 640x480 mode. This is the default.
+
+`F2'
+     Select 800x600 mode.
+
+`F3'
+     Select 1024x768 mode.
+
+`F4'
+     Select 1280x1024 mode.
+
+   If you want to change the default mode used in the file selector, use
+the `fs-start-mode' config file setting (*note Configuring zgv::).  For
+example, to use 800x600 by default, you'd use `fs-start-mode 800 600 8'.
+
+   Note these modes are subject to the same checks as in the viewer --
+in particular, this means that the file selector obeys the viewer's
+`mode-good', `mode-bad', etc. settings. *Note Config Variables::.
+
+   Finally, if you have no 640x480 256-colour mode, or if
+`force-fs-16col' has been set, the 640x480 16-colour mode is all that
+is available.
+
+
+File: zgv,  Node: 16-colour File Selector,  Prev: Showing More Files,  Up: The File Selector
+
+16-colour File Selector
+=======================
+
+   The file selector normally operates in a 256-colour mode (by default,
+the 640x480 one). However, the original VGA cards didn't have this mode,
+and SVGA cards not supported by svgalib won't have it as far as zgv is
+concerned either.
+
+   For such cards, zgv supports a more limited and slower file selector
+which works in 640x480 16-colour mode. It should be easy to tell which
+zgv is using -- if thumbnails appear in monochrome rather than colour
+(and the files are colour pictures ;-)) then it's running in 16-colour
+mode. (Another hint is that 16-colour mode has an extra border around
+the edge of the screen which 256-colour mode probably won't have.)
+
+   As you might imagine, having 240 fewer colours makes things
+difficult.  The default way of coping with this is the greyscale
+thumbnails (eleven grey levels are used), which are reasonably fast and
+quite faithful to the originals. If you'd prefer less accurate -- but
+colour -- thumbnails (eight colours are used, with dithering and
+increased contrast), you can press `c' to toggle between the two, or
+set zgv up to default to using colour thumbnails instead with
+`fs-16col-colour-thumbnails on' in a config file (*note Configuring
+zgv::).
+
+   (For those of you out there who have a 640x480 256-colour mode, but
+feel you're missing out by not seeing this 16-colour file selector :-),
+you can force zgv to use it by using the `--force-fs-16col' option.)
+
+
+File: zgv,  Node: The Viewer,  Next: xzgv Compatibility,  Prev: The File Selector,  Up: Top
+
+The Viewer
+**********
+
+   When a picture is being shown onscreen, you're in the viewer. This
+section describes what you can do while viewing the picture.
+
+* Menu:
+
+* Exiting the Viewer::          Usually returns you to the file selector.
+* Big Pictures::                Scrolling, zoom mode, and auto-mode-fit.
+* Scaling::                     Making the picture appear larger.
+* Mirror and Rotate::           Distorting your sense of reality on a budget.
+* Brightness and Contrast::     You can have zgv alter the picture
+                                  to change the brightness or contrast.
+* Gamma Adjustment::            If a picture looks unexpectedly dark or
+                                  bright, chances are you need to tweak this.
+* Increased Greyscales::        Normally, zgv tries to fake some extra
+                                  greyscales.
+* Changing Picture::            You can change the currently-viewed
+                                  picture without returning to the file
+                                  selector.
+* File Details::                Seeing the file's name, size, etc.
+* Pausing Slideshows::          You can temporarily stop a slideshow.
+* Multiple-image GIF Animation::  Now you too can have digitised flip
+                                  books in your very own home.
+* Video Modes::                 The pixels that make up the displayed
+                                  picture can have different physical
+                                  sizes and `depths'; change video mode
+                                  to change these attributes.
+

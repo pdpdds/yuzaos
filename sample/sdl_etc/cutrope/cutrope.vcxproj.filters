@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="Ball.h" />
+    <ClInclude Include="Box.h" />
+    <ClInclude Include="Drawable.h" />
+    <ClInclude Include="Environment.h" />
+    <ClInclude Include="Rope.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="Scene1.h" />
+    <ClInclude Include="Scene2.h" />
+    <ClInclude Include="Scene3.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="Box.cpp" />
+    <ClCompile Include="Drawable.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Rope.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Scene1.cpp" />
+    <ClCompile Include="Scene2.cpp" />
+    <ClCompile Include="Scene3.cpp" />
+  </ItemGroup>
+</Project>

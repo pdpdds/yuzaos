@@ -1,0 +1,68 @@
+zgv 5.9 - a picture viewer for Linux/FreeBSD systems with VGA/SVGA.
+Copyright (C) 1993-2005 Russell Marks.
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+
+
+Roadmap
+-------
+
+The COPYING file contains a copy of the GPL described above.
+
+README.fonts contains the copyright/license details for the bitmap
+fonts (which are from X). It's pretty GPL-ish though, don't worry. :-)
+
+The NEWS file describes the changes made since the last version - it
+describes changes between versions all the way back to 1.3, in fact -
+so if you're upgrading from an old version of zgv, be sure to read the
+relevant parts of that.
+
+ChangeLog is similar to NEWS, but more hacker-orientated. :-)
+
+sample.zgvrc (in the `doc' directory) is a simple example
+configuration file.
+
+See INSTALL for installation details. (Or, in the binary distribution,
+README.bin.) See SECURITY for an overview of the issues involved with
+zgv having to be setuid root.
+
+
+Description
+-----------
+
+`zgv' is an svgalib-based viewer which views GIF, JPEG, PNG,
+PBM/PGM/PPM, TIFF, BMP, TGA, PCX, mrf, XBM, and XPM files, with a
+full-screen file selector front-end. It can be used as a simple
+command, with `zgv filename(s)', which bypasses the front-end. For
+more on how zgv works and how to use it, do `info zgv' or `man zgv'
+once it's installed.
+
+
+FreeBSD problems
+----------------
+
+There seem to currently be some minor problems when building using the
+svgalib backend on FreeBSD - see the INSTALL file for details.
+
+
+Contacting me
+-------------
+
+You can email me at rus@svgalib.org.
+
+
+Share and enjoy! 
+
+-Rus.

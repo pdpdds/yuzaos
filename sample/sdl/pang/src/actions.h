@@ -1,0 +1,1 @@
+int checkBallCollisionWithBorder(int i);

@@ -1,0 +1,168 @@
+# This is mangled by mkopts.awk to make rcfile_{opt,var,short}.h. Such
+# an approach is necessary so we can use it to make the tables for
+# both getopt_long() and my config file stuff. It also generates the
+# short-options getopt string as a #define in rcfile_short.h, so that
+# it doesn't have to be duplicated by hand in rcfile.c (which would suck).
+#
+# The main remaining duplication is that options are documented in
+# both rcfile.c's usage_help() and the texinfo docs, but I don't see
+# that as too huge a problem really. :-)
+
+
+# The format is one record per line, with blank lines and lines
+# starting with `#' ignored. Lines have these fields (separated
+# by whitespace, and *without any commas*):
+#
+# name		long option/config variable name.
+# shortopt	char used for short option (0 if none or not appropriate).
+# allow_option	1 if allowed as option.
+# allow_config	1 if allowed as config variable.
+# has_arg	NO_ARG/REQ_ARG/OPT_ARG, like the no_argument/required_argument/
+#		optional_argument used by getopt_long().
+# funcptr	function to call if opt/var is encountered.
+# dataptr	data pointer supplied to function.
+#
+# funcptr is called like this:
+#
+#	funcptr(optarg,dataptr);
+#
+# with `optarg' being any argument given to the opt/var, NULL if none.
+
+# Note that most apparently-boolean args below which are OPT_ARG use
+# the extra arg to override the default set-the-flag behaviour; so for
+# example, `--zoom' sets the zoom flag, but `--zoom=off' unsets it
+# (useful if it's set in a config file).
+
+
+# name		short	opt,cfg,has_arg	funcptr		dataptr
+
+# help opts
+"help"		'h'	1 0 NO_ARG	usage_help	NULL
+"version"	0	1 0 NO_ARG	print_version	NULL
+
+"auto-animate"	'A'	1 1 OPT_ARG	get_bool	&cfg.auto_animate
+"auto-mode-fit"	0	1 1 OPT_ARG	get_bool	&cfg.automodefit
+"avoid-single-progress" 'p' 1 1 OPT_ARG get_bool_and_inv &cfg.onefile_progress
+"black-background" 0	1 1 OPT_ARG	get_bool	&cfg.black_bg
+"block-cursor"	'b'	1 1 OPT_ARG	get_bool	&cfg.blockcursor
+"brightness"	0	1 1 REQ_ARG	get_int		&cfg.brightness
+"center"	0	1 1 OPT_ARG	get_bool	&cfg.centreflag
+"centre"	0	1 1 OPT_ARG	get_bool	&cfg.centreflag
+"clear-screen-on-exit" 0 1 1 OPT_ARG	get_bool	&cfg.cleartext
+"col-black"	0	1 1 REQ_ARG	get_rgbval	&cfg.black
+"col-dark"	0	1 1 REQ_ARG	get_rgbval	&cfg.dark
+"col-light"	0	1 1 REQ_ARG	get_rgbval	&cfg.light
+"col-medium"	0	1 1 REQ_ARG	get_rgbval	&cfg.medium
+"col-tagged"	0	1 1 REQ_ARG	get_rgbval	&cfg.marked
+"contrast"	0	1 1 REQ_ARG	get_double	&cfg.contrast
+"delete-single-prompt" 0 1 1 OPT_ARG 	get_bool_and_inv &cfg.nodelprompt
+"delete-tagged-prompt" 0 1 1 OPT_ARG 	get_bool_and_inv &cfg.nodelprompt_tagged
+"auto-mode-fit-diff" 0	1 1 REQ_ARG	get_int		&cfg.deltamodefit
+"dither-16col-fast" 0	1 1 OPT_ARG	get_bool	&cfg.fastdither16col
+"dither-hicol"	0	1 1 OPT_ARG	get_bool	&cfg.dither_hicol
+"fake-cols"	0	1 1 OPT_ARG	get_bool	&cfg.fakecols
+"force-fs-16col" 0	1 1 OPT_ARG	get_bool	&cfg.force16fs
+"force-viewer-8bit" 'j'	1 1 OPT_ARG	get_bool_and_inv &cfg.jpeg24bit
+"fs-16col-color-thumbnails" 0 1 1 OPT_ARG get_bool	&cfg.fs16col
+"fs-16col-colour-thumbnails" 0 1 1 OPT_ARG get_bool	&cfg.fs16col
+"fs-ignore-old-pos" 0	1 1 OPT_ARG	get_bool	&cfg.forgetoldpos
+"fs-magic"	0	1 1 OPT_ARG	get_bool	&cfg.fsmagic
+"fs-perfect-cols" 0	1 1 OPT_ARG	get_bool	&cfg.perfectindex
+"fs-slow-thumbnail-update" 0 1 1 OPT_ARG get_bool	&cfg.slowupdate
+"fs-small-text"	0	1 1 OPT_ARG	get_bool	&cfg.smallfstext
+"fs-start-mode" 0	1 1 REQ_ARG	do_startmode	&cfg.fs_startmode
+"fs-thick-text" 't'	1 1 OPT_ARG	get_bool	&cfg.thicktext
+"fullscreen"	0	1 1 OPT_ARG	get_bool	&cfg.fullscreen
+"gamma"		'G'	1 1 REQ_ARG	get_double	&cfg.initial_picgamma
+"gnulitically-correct" 0 1 1 OPT_ARG	get_bool      &cfg.stupid_gnu_verbosity
+"ignore-errors"	'i'	1 1 OPT_ARG	get_bool	&cfg.errignore
+"jpeg-index-style" 0	1 1 REQ_ARG	get_jis		&cfg.jpegindexstyle
+"jpeg-speed"	'J'	1 1 REQ_ARG	get_int		&cfg.jpegspeed
+"line-text"	0	1 1 OPT_ARG	get_bool	&cfg.linetext
+"mouse"		'M'	1 1 OPT_ARG	get_bool	&cfg.svgalib_mouse
+"mouse-scale"	0	1 1 REQ_ARG	get_int		&cfg.mousescale
+"pcd-res"	0	1 1 REQ_ARG	get_int		&cfg.pcdres
+"pgm-truecol"	'g'	1 1 OPT_ARG	get_bool	&cfg.betterpgm
+"reverse-bc-order" 0	1 1 OPT_ARG	get_bool	&cfg.bc_order_rev
+"revert-orient"	0	1 1 OPT_ARG	get_bool	&cfg.revert_orient
+"revert-scale"	0	1 1 OPT_ARG	get_bool	&cfg.revert
+"scrollbar"	0	1 1 OPT_ARG	get_bool	&cfg.scrollbar
+"show-xvpics-dir" 0	1 1 OPT_ARG	get_bool	&cfg.showxvpicdir
+"slideshow-delay" 'S'	1 1 REQ_ARG	get_int		&cfg.tag_timer
+"slideshow-loop" 'l'	1 1 OPT_ARG	get_bool	&cfg.loop
+"slideshow-randomise" 'R' 1 1 OPT_ARG 	get_bool	&cfg.shuffleslideshow
+"slideshow-randomize" 0	1 1 OPT_ARG 	get_bool	&cfg.shuffleslideshow
+"viewer-16col-color" 0	1 1 OPT_ARG	get_bool	&cfg.viewer16col
+"viewer-16col-colour" 0	1 1 OPT_ARG	get_bool	&cfg.viewer16col
+"viewer-start-mode" 'm'	1 1 REQ_ARG	do_startmode	&cfg.videomode
+"vkludge"	'k'	1 1 OPT_ARG	get_bool	&cfg.vkludge
+"visual"	0	1 1 OPT_ARG	get_bool	&cfg.xvpic_index
+"xzgv-keys"	0	1 1 OPT_ARG	get_bool	&cfg.xzgvkeys
+"zoom"		'z'	1 1 OPT_ARG	get_bool	&cfg.zoom
+"zoom-reduce-only" 0	1 1 OPT_ARG	get_bool	&cfg.zoom_reduce_only
+
+# `one-offs', ones you can't enable in a config file
+"reload-delay"	'r'	1 0 REQ_ARG	get_int		&cfg.repeat_timer
+"show-tagged"	'T'	1 0 OPT_ARG	get_bool	&cfg.echotagged
+"show-dimensions" 's'	1 0 OPT_ARG	get_bool	&cfg.selecting
+"write-ppm"	'w'	1 0 OPT_ARG	get_bool	&cfg.writefile
+
+# config-file-only ones
+"mode-all-bad"	0	0 1 NO_ARG	do_allmodesbad	NULL
+"mode-all-good"	0	0 1 NO_ARG	do_allmodesgood	NULL
+"mode-bad"	0	0 1 REQ_ARG	do_badmode	NULL
+"mode-good"	0	0 1 REQ_ARG	do_goodmode	NULL
+"mouse-kludge"	0	0 1 OPT_ARG 	get_bool	&cfg.mousekludge
+
+# more config-file-only ones; these are the old (pre-5.5) names for
+# config file vars (only here if the name was changed, of course).
+"allmodesbad"	0	0 1 NO_ARG	do_allmodesbad	NULL
+"allmodesgood"	0	0 1 NO_ARG	do_allmodesgood	NULL
+"automodefit"	0	0 1 REQ_ARG	get_bool	&cfg.automodefit
+"badmode"	0	0 1 REQ_ARG	do_badmode	NULL
+"bc_order_rev"	0	0 1 REQ_ARG	get_bool	&cfg.bc_order_rev
+"betterpgm"	0	0 1 REQ_ARG	get_bool	&cfg.betterpgm
+"black"		0	0 1 REQ_ARG	get_rgbval	&cfg.black
+"blockcursor"	0	0 1 REQ_ARG	get_bool	&cfg.blockcursor
+"cleartext"	0	0 1 REQ_ARG	get_bool	&cfg.cleartext
+"dark"		0	0 1 REQ_ARG	get_rgbval	&cfg.dark
+"fakecols"	0	0 1 REQ_ARG	get_bool	&cfg.fakecols
+"fastdither16col" 0	0 1 REQ_ARG	get_bool	&cfg.fastdither16col
+"force16fs"	0	0 1 REQ_ARG	get_bool	&cfg.force16fs
+"forgetoldpos"	0	0 1 REQ_ARG	get_bool	&cfg.forgetoldpos
+"fs16col"	0	0 1 REQ_ARG	get_bool	&cfg.fs16col
+"fs_startmode"	0	0 1 REQ_ARG	do_startmode	&cfg.fs_startmode
+"fsmagic"	0	0 1 REQ_ARG	get_bool	&cfg.fsmagic
+"gnulitically_correct" 0 0 1 REQ_ARG	get_bool     &cfg.stupid_gnu_verbosity
+"goodmode"	0	0 1 REQ_ARG	do_goodmode	NULL
+"jpeg24bit"	0	0 1 REQ_ARG	get_bool	&cfg.jpeg24bit
+"jpegindexstyle" 0	0 1 REQ_ARG	get_jis		&cfg.jpegindexstyle
+"jpegspeed"	0	0 1 REQ_ARG	get_int		&cfg.jpegspeed
+"light"		0	0 1 REQ_ARG	get_rgbval	&cfg.light
+"linetext"	0	0 1 REQ_ARG	get_bool	&cfg.linetext
+"medium"	0	0 1 REQ_ARG	get_rgbval	&cfg.medium
+"mousekludge"	0	0 1 REQ_ARG	get_bool	&cfg.mousekludge
+"mousescale"	0	0 1 REQ_ARG	get_int		&cfg.mousescale
+"nodelprompt"	0	0 1 REQ_ARG	get_bool	&cfg.nodelprompt
+"onefile_progress" 0	0 1 REQ_ARG	get_bool	&cfg.onefile_progress
+"pcdres"	0	0 1 REQ_ARG	get_int		&cfg.pcdres
+"perfectindex"	0	0 1 REQ_ARG	get_bool	&cfg.perfectindex
+"revert"	0	0 1 REQ_ARG	get_bool	&cfg.revert
+"revert_orient"	0	0 1 REQ_ARG	get_bool	&cfg.revert_orient
+"showxvpicdir"	0	0 1 REQ_ARG	get_bool	&cfg.showxvpicdir
+"shuffleslideshow" 0	0 1 REQ_ARG	get_bool	&cfg.shuffleslideshow
+"slowupdate"	0	0 1 REQ_ARG	get_bool	&cfg.slowupdate
+"smallfstext"	0	0 1 REQ_ARG	get_bool	&cfg.smallfstext
+"startmode"	0	0 1 REQ_ARG	do_startmode	&cfg.videomode
+"tagged"	0	0 1 REQ_ARG	get_rgbval	&cfg.marked
+"tagtimeout"	0	0 1 REQ_ARG	get_int		&cfg.tag_timer
+"thicktext"	0	0 1 REQ_ARG	get_bool	&cfg.thicktext
+"viewer16col"	0	0 1 REQ_ARG	get_bool	&cfg.viewer16col
+"xzgvkeys"	0	0 1 REQ_ARG	get_bool	&cfg.xzgvkeys
+"zoom_reduce_only" 0	0 1 REQ_ARG	get_bool	&cfg.zoom_reduce_only
+
+# more config-file-only ones; no effect other than to give a warning
+# of the form "warning: the `<foo>' option is obsolete, and is being ignored."
+"fullsel"	0	0 1 REQ_ARG	do_warn		"fullsel"
+"hicolmodes"	0	0 1 REQ_ARG	do_warn		"hicolmodes"
+"hicontrol"	0	0 1 REQ_ARG	do_warn		"hicontrol"

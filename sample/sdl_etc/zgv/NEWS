@@ -1,0 +1,1300 @@
+* Changes between versions   -*- mode:indented-text; mode:outline-minor -*-
+
+This file (NEWS) documents the significant changes between all
+versions of zgv, with the newest changes first.
+
+
+* Changes in zgv 5.9
+
+** New features
+
+Added SDL mouse support. Thanks to Dimitar Zhekov for this.
+
+
+** Bugfixes
+
+Added width/height limits to all picture readers, 32767x32765 is now
+the maximum image size supported (essentially consistent with xzgv).
+This is a crude (albeit effective) fix for several reported overflow
+bugs, which had previously meant that zgv could be exploited to run
+commands as the user when viewing a maliciously-formatted file. Thanks
+to Luke Macken for letting me know about the problems. I suppose I
+should also thank "infamous41md" for publishing the original
+advisory/exploit, even if he didn't bother emailing me or anything.
+
+Added more multiple-image GIF brokenness checks than before.
+Previously it was possible to get a segfault with the `right' file,
+despite there already being various range checks. Thanks to Mikulas
+Patocka for spotting this.
+
+Fixed a problem with freeing memory when a GIF fails to load. Thanks
+to Mikulas Patocka for the fix.
+
+Fixed a possible hang when reading GIF files with corrupted extension
+blocks. Thanks to Mikulas Patocka for finding this.
+
+Fixed a possible hang when reading corrupted non-raw PBM files.
+
+The SDL backend previously had a timer-related bug which could cause
+some odd problems. Thanks to Dimitar Zhekov for spotting this one.
+
+
+** Other changes
+
+The `fullscreen' option now defaults to on, so you now have to use
+`--fullscreen=off' (or similar config file option) to disable it. This
+keeps the SDL backend's behaviour closer to the svgalib one.
+
+
+* Changes in zgv 5.8
+
+** New features
+
+Added FreeBSD support, thanks to Radim Kolar for contributing this. Be
+sure to read INSTALL in full before building zgv on FreeBSD, there's a
+minor problem with it at the moment (nothing too horrible though :-)).
+
+Added support for dithering in 15/16-bit modes. It's slower than I'd
+hoped, so it's not enabled by default, but it seems to work well
+enough. You can toggle it in the viewer by pressing `F', or add
+`dither-hicol on' to a config file. Thanks to Stephane ODUL for
+suggesting this.
+
+Added `fullscreen' option, to override possible use of a windowed
+display with non-svgalib backends in some situations, the obvious
+example being the SDL backend running under X. This isn't necessarily
+what you'd want, and has problems like not being able to fill the
+screen in modes it doesn't support natively under svgalib. (And SDL
+can cause further problems, from what I've seen.)
+
+
+** Bugfixes
+
+Fixed long-standing bug with interpolation (fix ported from xzgv). In
+xzgv the bug could have caused segfaults, but I don't believe this was
+the case in zgv due to the way it allocates memory.
+
+Added SDL getbox routine, fixing one of the display glitches when
+using that (dialogs not restoring previous screen contents).
+
+Fixed missing-picture-update bug when doing certain mode changes under
+SDL.
+
+The SDL backend will now only ever use SDL's non-native-depth mode
+emulation for 8-bit modes. This should improve picture quality when
+only 8-bit modes are available, and make all modes other than
+24/32-bit quite a bit faster. Thanks to David Matthews for inspiring
+this change.
+
+The SDL backend is now a lot more sensible about automatically picking
+a file selector mode, and should have a better chance of working when
+using a single-mode VESA framebuffer. Thanks to David Matthews for
+indirectly spotting this problem.
+
+Added timer start/stop to backend code, so now timer-based stuff (most
+notably GIF animation) works ok under SDL.
+
+Fixed colour glitches in dialogs under SDL.
+
+
+** Other changes
+
+Finally changed default installation prefix to /usr/local. `make
+install' now removes any old version (both program and documentation)
+in the old default locations.
+
+Removed embedded LFs from src/bdf2h.c, which were causing compilation
+errors with newer versions of gcc. Not strictly a bug - blame the gcc
+folks :-), though to be fair there had been plenty of advance warning.
+Thanks to Dimitar Zhekov for the patch.
+
+Moved `fake-cols' toggle key from `F' to `G'.
+
+Removed support for a repeat-timer setting of "-1" (i.e. constantly
+reload the image), which had been broken previously anyway.
+
+`x' now aborts GIF animation like Esc does. Thanks to Thomas M. Ott
+for pointing out the inconsistency. Note that I don't consider
+supporting this slightly pointless alternative to Esc to be terribly
+important (e.g. dialogs don't support it and never have, and they've
+been in zgv since 1993), and couldn't add it everywhere even if I
+wanted to (e.g. change-to-arbitrary-directory dialog).
+
+
+* Changes in zgv 5.7
+
+** New features
+
+Added support for display backends other than svgalib; currently SDL
+is supported. (There are still problems with this - e.g. graphical
+glitches with dialog boxes, and broken GIF animation - but it seems to
+be mostly working.) Alternative backends are by definition never going
+to be *better* than native svgalib, but if you somehow can't use
+svgalib then at least this gives you a way of running zgv. Note that
+you have to compile a separate zgv executable for each backend, and
+only the svgalib one is compiled by default.
+
+New `--auto-mode-fit-diff' option, allows you to specify a pixel
+width/height to be disregarded when zgv picks a mode to use and
+auto-mode-fit is enabled. So e.g. a 330x250 image would be shown in
+320x240 mode if auto-mode-fit-diff is 10. Thanks to Dimitar Zhekov for
+this.
+
+
+** Bugfixes
+
+32-bit modes can now be specified on the command-line (they couldn't
+previously). Thanks to "kscott" for spotting this one.
+
+Fixed mouse cursor appearance in 32-bit modes. Thanks to Dimitar
+Zhekov for the patch.
+
+No longer sets background colour to black for 1-bit mono PNG files,
+where this sometimes caused problems. Thanks to Morten Bo Johansen for
+spotting this.
+
+
+** Other changes
+
+Restored documentation for `-r', `-s', and `-w' options, which was
+mistakenly dropped when I added long-option support.
+
+
+* Changes in zgv 5.6
+
+** New features
+
+New `-A' or `--auto-animate' option, forces the viewer to
+automatically animate multiple-image GIF files. Thanks to John
+Fitzgerald for suggesting this (more or less). It limits your viewing
+options greatly, of course (since it's like pressing `e' every time
+you view one, and exiting the image when you exit the animation), but
+can be handy for slideshows etc. When this option is enabled, you can
+use Backspace/Enter/Space for file navigation/tagging during an
+animation. (The skip-to-next-frame key (previously Enter) is now `n'.)
+
+Added multi-file delete. This is on `D', by analogy with `C' and `M'
+for copy/move (since it works the same way) - the single-file-only
+delete remains available on the Delete key. A new config variable
+`delete-tagged-prompt' says whether to prompt before deleting all
+tagged files (enabled by default). Thanks to Max Drozdoff for prodding
+me into action on this. :-)
+
+
+** Bugfixes
+
+In the very unusual case of both global and local GIF colourmaps being
+present, they were applied in the wrong order. Thanks to Michal Svec
+for spotting this.
+
+Should now support 16-bit RGB TGA files. 16-bit palette-based files
+*may* also work now, but are untested - it's not all that easy to find
+samples of these rather unusual types of TGA file. Thanks to Michal
+Svec for spotting the problem.
+
+If a 32-bit mode existed without a corresponding 24-bit mode, and it
+was one of the modes which are listed on the viewer right-button menu,
+then it was incorrectly `greyed out', i.e. made unavailable from the
+menu. Thanks for Dimitar Zhekov for spotting this.
+
+When using `delete-single-prompt off', it previously didn't update the
+screen after the deletion. Thanks to Max Drozdoff for spotting this
+one.
+
+
+** Other changes
+
+Added 15/16/24/32-bit 320x240 modes. Thanks to Michal Svec for
+suggesting this. Currently only the 24/32-bit mode is selectable
+directly (using `^', on the assumption that it's shift-6 - unshifted 6
+selects 320x240x8).
+
+Removed `--version-svgalib' option, this was causing trouble when
+compiling with old versions of svgalib.
+
+
+* Changes in zgv 5.5
+
+** New features
+
+Recursive thumbnail update, ported from xzgv. This updates thumbnails
+for the current dir and all subdirs (being careful to avoid symlink
+loops).
+
+The selector looks different in various ways. Most obviously, the logo
+is gone (replaced with a sort of `title bar' with similar content to
+xzgv's), the scrollbar is enabled by default, and 20 thumbnails are
+visible by default rather than 12 - but there are other changes, like
+losing the `raised border' look in most cases, and buttons looking
+roughly like they do in GTK+.
+
+GIF animation speed is now much, much more accurate; it previously
+tended to run rather slowly.
+
+Now supports GIF animation with the same orientation as the normal
+picture. So for example you can flip the picture, and the animation
+will be of similarly flipped frames.
+
+The file info dialog (on `:') is much improved - it's now roughly the
+same as the one in xzgv.
+
+Added GNU-style long-option support, and changed/reorganised config
+file option names to suit this; see `Invoking zgv' in info file or
+`OPTIONS' in man page. Essentially things are a lot more xzgv-like now
+(and just about everything can be messed about with on the
+command-line). Note that most old option names are still supported in
+config files, so it shouldn't break things.
+
+Optional black background in 8-bit modes, disabled by default (use the
+`black-background' config file option to enable). It works by swapping
+the nearest-to-black palette index with the zero index, and altering
+the in-memory image to match. This can be rather nice for consistency
+with high-colour images, but means that 8-bit images which need such a
+`fix' will take longer to appear.
+
+
+** Bugfixes
+
+Fixed three buffer overruns. Given the nature of these, I suspect they
+weren't exploitable for a DoS (i.e. leaving the console in graphics
+mode), but it's difficult to be certain.
+
+More BMP fixes - thanks to Jakub Bogusz for most of these.
+
+Finally generates correct height comment for animated GIFs. (Be sure
+to remove any old `.xvpics' dir if you want to fix this for existing
+files.)
+
+GIF animation with zoom mode enabled no longer pointlessly clears the
+screen for each frame.
+
+It previously drew entire pixel lines unnecessarily for images which
+remained smaller than the screen width when scaled up.
+
+It didn't previously do the required redraw when toggling fakecols
+(with `F') when in 16-colour mode.
+
+No longer undraws/redraws scrollbar unnecessarily during thumbnail
+update.
+
+The progress report bar now says "Reading" rather than
+"Decompressing". At last. :-)
+
+
+** Other changes
+
+Message boxes can now pop up over the existing viewer screen in most
+cases (i.e. in any mode which is 640x480 or higher and has 256 or more
+colours), using much the same approach as the mouse menu does. This
+means that e.g. doing `:' in the viewer to get file info generally
+doesn't need a mode switch any more.
+
+The old `fullsel', `hicolmodes', and `hicontrol' settings have been
+dropped, as they're now obsolete. You get a warning if you try to use
+them.
+
+The `centre' setting can no longer be toggled on the command-line with
+the `-c' option. (You can use `--centre=off' if you still want to
+disable this from the command-line.)
+
+
+* Changes in zgv 5.4
+
+** New features
+
+Added equivalent of xzgv's zoom-reduce-only option, which lets you
+reduce big pictures in zoom mode without it also enlarging small ones.
+The toggle is on Alt-r, and the config file option is
+`zoom_reduce_only'. Thanks to Jan Blasiak for this.
+
+You can now optionally use a magic-number-based scheme to choose which
+files to list in the selector (Alt-m toggles it, and `fsmagic' is the
+relevant config file option). This approach is much slower, but useful
+when you have files lacking extensions. Thanks to Dankó Miklós for
+suggesting this.
+
+Added optional error-diffused dithering in 640x480x4 mode (enable with
+Alt-c or `fastdither16col off' in config file) - this usually looks
+better, but is much too slow to be the default.
+
+
+** Bugfixes
+
+A fix for `restore to background colour' replacement method in
+animated GIFs - it previously trusted the left/top/width/height values
+for the GIF images to be sane (i.e. to fit within the defined
+`screen'), which was a pretty stupid mistake. Thanks to Michal Svec
+for spotting the problem.
+
+Several significant BMP-reading fixes, particularly affecting some
+16-colour and 24-bit files. Thanks to Matan Ziv-Av and Vlad Harchev
+for spotting the problems.
+
+Previously, when you deleted a file, or a file-move wasn't successful,
+all tags were lost. This could be extremely annoying at times, but
+it's finally fixed. Thanks to Dankó Miklós for reminding me about this
+one (I'd noticed it before).
+
+Animated GIFs now have thumbnails showing only the first image, though
+the current implementation is... less efficient than it could be (it
+reads the lot, then ignores everything after the first :-)).
+
+The 640x480x4 (16-colour) mode-select key was still listed as `4' on
+the mode help page, when it's been `0' for a while. (A similar problem
+with the mouse menu meant the 640x480x4 option on that wasn't working,
+either.) Thanks to Wim Osterholt for spotting this.
+
+
+** Other changes
+
+Improved 640x480x4 mode's colour dithering slightly, and changed so it
+now transparently adjusts base gamma adjustment (without changing the
+effect of user-specified gamma). Essentially, it tends to look a bit
+more like it does in proper 8-bit modes now. :-)
+
+The GIF reader didn't previously read a certain form of broken
+animated GIF (those with multiple image block terminators, which
+breaks the GIF spec) - it stopped after one image. This was *not* a
+bug, but it now tolerates such bogosity anyway. Thanks to Daniel
+Biddle for spotting this.
+
+Now allows `1' and `0' as alternatives to `on'/`off' and `yes'/`no'
+for boolean option setting in config files. Also made the
+documentation a bit clearer about how bools can be set. Thanks to
+Johannes Zellner for indirectly noticing the problem.
+
+The man page's OPTIONS section now has the right name again.
+
+
+* Changes in zgv 5.3
+
+** New features
+
+Builtin TIFF reader (libtiff-based). No more tifftopnm kludges :-),
+and it makes things a lot faster. It does currently mean there's no
+progress report while reading the TIFF; this looks hard to fix without
+bloating the TIFF code tremendously, but it's on the TODO list.
+
+Added support for PRF, which is basically a kind of extrapolated
+version of my old mrf format - unlike mrf, PRF supports greyscale and
+colour. Thanks to Brian Raiter for both devising the format, and
+writing the reference implementation readprf.c is heavily based on.
+
+File details reported by `:' now include image width and height.
+
+You can now show file details (with `:') in the viewer. Thanks to
+Leopoldo Cerbaro for suggesting this sort of thing, even if it's not
+entirely what he had in mind. :-) It has to change modes, so it's a
+bit ugly, but may be useful if you're using zgv from lynx or
+something. (To this end, it reports the correct height for animated
+GIFs even though the selector doesn't yet do this.)
+
+You can now use Alt-f in the selector to get a file and tagged-file
+count, i.e. to show how many picture files there are in the dir, and
+how many are tagged. Thanks to Leopoldo Cerbaro (again) for this idea.
+
+
+** Bugfixes
+
+Big-endian TIFF magic was wrong, so it didn't recognise those files.
+Thanks to Gaute Strokkenes for noting this, albeit shortly after I'd
+spotted it. :-)
+
+A fix for certain unusual GIFs (with an abnormally large code size -
+larger than even non-LZW GIFs need), which previously caused zgv to
+keep using more and more stack, eventually leading to a segfault and
+potential DoS (since the console was left in graphics mode). Thanks to
+Lenart Janos (in particular), Josip Rodin, Chris Lawrence, and Andy
+Mortimer for all helping with this in one way or another.
+
+The GIF reader no longer uses any recursive code; not really a bugfix,
+but avoids the potential for any as-yet-unknown GIF bug to screw up
+the console. (And no, I don't know of any unknown bugs. :-))
+
+Interlaced GIFs with less than 4 lines are now read correctly.
+
+Minor man page fixes.
+
+
+** Other changes
+
+The viewer's mode help page now mentions the `[' and `]' keys.
+
+Makefiles now use `cd foo && $(MAKE)' instead of the previous `$(MAKE)
+-C foo', in case a FreeBSD port gets integrated in future. Thanks to
+Michael Lynn for pointing this out.
+
+`make install' permissions are now Debian-ish, i.e. explicitly marked
+as writeable by root (rather than implicitly so ;-)), and all
+world-readable.
+
+
+* Changes in zgv 5.2
+
+** New features
+
+Added gamma support (finally!). The basic idea is to ignore the rather
+unworkable image/screen gamma distinction, and just use a relative
+gamma with fast shortcuts for common cases. So pressing `1' gives a
+gamma adjustment of 1.0 (i.e. no adjustment), `2' gives 2.2 (for e.g.
+viewing linear-gamma files on an average PC monitor), `3' gives 1/2.2
+(~0.45, for e.g. viewing 2.2-gamma files on a linear-gamma display),
+and `4' reverts to any `-G' setting (or 1.0 if none was set). You can
+also use alt-comma and alt-dot for more precise control of gamma
+adjustment.
+
+root is now allowed to run zgv from any tty, for consistency with
+svgalib's approach to this. (I was reluctant to make this change, but
+if you're root there are rather worse things you could do...) Thanks
+to Vlad Harchev for convincing me to do this. :-)
+
+
+** Bugfixes
+
+TIFF-reading used to blindly run an unmodified filename through the
+shell. Fixed that. Thanks to Sergei Ivanov for pointing this out, and
+suggesting the fix. Since the TIFF reader still trusts that
+`tifftopnm' will do what the name suggests, there's now a TIFFTOPNM
+setting in config.mk to specify the exact location of the tifftopnm
+executable.
+
+Previously, JPEG thumbnails for images over a certain size were
+generated with bogus width/height info. This isn't shown in zgv yet,
+but was a pain from things like xzgv. If you found this an annoyance,
+you should delete any old thumbnails generated by zgv 5.0 or 5.1
+(removing the whole .xvpics dir is easiest), and generate new ones.
+
+makeman.awk used to output a slightly broken NAME line (with "-"
+rather than "\-").
+
+
+** Other changes
+
+Moved 640x480 16-colour mode select to `0' (rather than 4) and
+off-by-one interpolation toggle to `!' (rather than 1). This was to
+make room for the gamma support keys.
+
+
+* Changes in zgv 5.1
+
+** New features
+
+You can now switch to a smaller/bigger (lower/higher-res) video mode
+in the viewer by using `[' and `]' respectively. Thanks to Michal Svec
+for this idea. I'd wanted a saner way to select modes for some time
+now, and this approach seems to have been sufficiently obvious that it
+never occurred to me. :-)
+
+Added auto-mode-fit mode (enabled by shift-z in viewer, or
+`automodefit on' in config file, but disabled by default) which, if
+enabled, chooses the `smallest' mode in which the picture can be shown
+in its entirety. A bit like zoom mode, but using video modes to do the
+work. Thanks to Michal Svec for suggesting this, too. I feel duty
+bound to point out that all the mode-switching can be a bit hard on
+your monitor, so even if you really like this idea you might not want
+to enable it all the time. Still, it's up to you.
+
+Added an `xzgvkeys' mode which changes some keys to match xzgv, as
+while xzgv has similar keys to zgv some of them differ - in
+particular, the tagging keys in the selector, and the
+previous/next/tag-then-next keys in the viewer.
+
+
+** Bugfixes
+
+Three buffer overrun fixes. See the new `SECURITY' file if you think
+this is the end of the world.
+
+Fixed typo which meant that, if you started up in a non-640x480
+selector with the mouse enabled, the pointer still started at
+(320,240).
+
+File rename used to theoretically allow renaming to `./foo', but
+screwed up the test. Made it just refuse anything with `/' in,
+formalising the bug. :-)
+
+A couple of corrections to the docs.
+
+
+** Other changes
+
+A new file `SECURITY' discussing security issues.
+
+Now installs info file/man page in /usr/share/{info,man/man1} by
+default, but this is easily changed back to `traditional' locations
+(by commenting out the SHARE_INFIX line in the Makefile). Note also
+that the binary distribution still uses the old locations by default,
+to try and avoid problems.
+
+Now supports raw 16-bit PNMs, as added in netpbm 9.0. Thanks to Bryan
+Henderson for pointing out this format.
+
+Added `uninstall' target to Makefile.
+
+
+* Changes in zgv 5.0
+
+** New features
+
+Animated GIF support, and optional Photo-CD support. Thanks to Matan
+Ziv-Av for these.
+
+Scaling is now supported in 320x400 and 360x480 modes.
+
+
+** Bugfixes
+
+Finally removed that annoying flashing off and on of most of the
+display just to draw a single newly-created/updated thumbnail!
+
+Not doing a VT_WAITACTIVE when switching to a new console seemed to be
+breaking things sometimes when switching from a graphics mode
+(particularly from X).
+
+Added several changes from Debian as pointed out by Andy Mortimer.
+Thanks to Andy and the others responsible for these. Mostly these were
+fixes for potential buffer overruns, though there was also a fix for
+corrupt GIFs, and the `-a' option was removed for security reasons
+(well, personally I removed it for `it was a kludgey old crock'
+reasons, but one has to keep up appearances, y'know :-)).
+
+The modes chosen by shift-F1 to shift-F9 were two keys out of sync on
+most/all `modern' keymaps (I didn't notice as I don't tend to use
+these modes :-)). Fixed now, but I had to move the 1280x1024x24 mode
+to another key. (I decided the least nasty thing to do would be to
+move it to Tab-F1, and move up all the (1152x864 and 1600x1200) modes
+previously on Tab-F1..F8 up a key. Sorry if this annoys anyone.)
+
+The online help and non-thumbnail selector now deal with colours more
+like the thumbnail-based selector, saving the screen from suddenly
+sprouting a border on svgalib drivers which enable it (e.g. the SiS
+5597/8 driver, at the time of writing).
+
+The mouse pointer is no longer distorted (double-width) in 320x400 and
+360x480 modes.
+
+Thumbnails are now generated with width/height info. This isn't yet
+used by zgv, but it's used by (e.g.) xzgv's `file details' dialog.
+
+Fixed `nextline' memory leak, which was leaking width*3 bytes on
+15/16/24/32-bit displays for every redraw when viewing a scaled
+picture.
+
+
+** Other changes
+
+`:' and `;' now both reset brightness and contrast to normal (`*'
+still does this too). These keys make more sense, I think (being next
+to the keys used for brightness/contrast). I honestly have no idea why
+I picked `*' for this originally...
+
+Uses libraries in a saner way, using `-lfoo' and assuming you've got
+them installed.
+
+
+* Note on `newzgv', and why there was no zgv 4.x
+
+A modified version of zgv 3.0 called `newzgv' was, for a while,
+maintained independently by Matan Ziv-Av, under the impression that I
+had ceased maintaining zgv and could no longer be contacted (he was
+wrong on both counts :-)).
+
+Once I had learned of this and asked Matan about it, I incorporated
+into zgv 3.2 the `newzgv' additions I thought reasonable at the time.
+Later, with Matan's help (and some reluctance on my part I admit :-)),
+zgv 5.0 incorporated the remaining `big' features from it - animated
+GIF support, and Photo-CD support (the latter being optional).
+
+The reason I named this version 5.0 (despite it following 3.3) was to
+avoid confusion with newzgv, which had used version numbers in the 4.x
+range (such as 4.2). *Some* Linux distributions, who shall remain
+nameless, had replaced their zgv packages with newzgv ones, *despite
+zgv being newer* (and having a similar number of new features relative
+to zgv 3.0), and still called them `zgv' - thus both misrepresenting
+zgv and ignoring Matan's contribution to newzgv! Matan conceded that
+his rather incomplete renaming may have contributed to this, but I
+don't think the packaging errors were entirely (or even mostly) down
+to that.
+
+Anyway, Matan agreed that zgv 5.0 would be "not too confusing" for
+newzgv 4.2 users, as only a few fairly minor newzgv features remain
+`missing'. I welcome feedback on any features zgv still lacks which
+newzgv users miss.
+
+
+* Changes in zgv 3.3
+
+** New features
+
+Support for 32-bit modes; zgv will now use a suitable 32-bit mode as a
+kind of substitute 24-bit mode, if a requested 24-bit mode is
+unavailable. This is more a bugfix than a new feature though, as zgv
+was apparently rather broken on some (all?) cards with 32-bit modes
+before. Some of the 32-bit support was based on Matan Ziv-Av's code.
+
+You can now reverse the order in which brightness and contrast are
+applied, using `B' or the config file option `bc_order_rev'.
+
+
+** Bugfixes
+
+Fixed bug where thin images would cause FP exceptions. (This applied
+to pictures with aspect ratios wider than 80:1 or taller than 1:60.)
+Thanks to Jan Willamowius for finding this one.
+
+Now has a less stupid check-for-high-colour-modes routine.
+
+`zgv -T' now outputs filenames followed by LFs, not spaces. This
+should hopefully avoid problems for filenames with embedded spaces, at
+least.
+
+Multi-plane (4-bit or 24-bit) PCXs which had runs going across planes
+weren't decoded correctly; fixed that.
+
+When updating thumbnails, the "Resampling..." text could previously
+have appeared in just about any colour. :-)
+
+
+** Other changes
+
+vkludge in 8-bit modes is now slightly less accurate (it works with
+15-bit RGB values rather than 18-bit ones), but considerably faster.
+
+You can now use R to rename a file, by analogy with C, M, and D for
+copy/move/delete. The old alt-r still works, though. (The slideshow
+shuffle (randomise) toggle is now only available on S.)
+
+The old `README.src' was renamed to the more reasonable `INSTALL'.
+
+
+* Changes in zgv 3.2
+
+** New features
+
+The file selector can now run in higher-res modes (800x600, 1024x768,
+and 1280x1024). You can change modes with F1/F2/F3/F4, or use the
+config file var `fs_startmode' to set the initial mode. The higher-res
+selector was Matan Ziv-Av's idea, though I found his approach slightly
+confusing so I ended up writing my own code to do it. :-)
+
+You can now have files sorted by `extension', size or last-modified
+date/time (using Alt-e, Alt-s, or Alt-d respectively) instead of just
+in filename order (Alt-n). Thanks to Jan Willamowius for the
+suggestion, but it would be fair to say it's been in the back of my
+mind for, oh, it must only be three or four years now. :-) (Matan
+Ziv-Av also deserves a mention for reminding me of it.)
+
+Brightness/contrast now work in 15/16/24-bit modes (thanks to Matan
+Ziv-Av for this). There's no slowdown if you haven't changed
+brightness/contrast (it uses the old display method in that case), but
+if you still don't like the idea you can use `hicontrol off' in a
+config file to disable it completely.
+
+Brightness/contrast also now work in the 640x480 16-colour mode.
+
+Picture orientation (the effect of mirrors/flips/rotations) can now be
+preserved between pictures in various ways. Alt-n reverts to normal
+(undoing any mirrors/flips/rotations), Alt-o restores the orientation
+which was used for the previous picture, and Alt-s saves the current
+orientation to be used for all pictures until you press Esc. Also, the
+config file option `revert_orient' can be disabled to always preserve
+orientation between pictures. Thanks to Ben Schluricke for the basic
+idea behind this (I extended and generalised it a bit).
+
+You can rename a file with Alt-r. Thanks to Matan Ziv-Av (again) for
+the code this was based on.
+
+`:' is now much more useful as it shows the file size and
+last-modified date/time in addition to the full filename.
+
+The viewer now has separate video-mode help (listing which key
+combination gives which video mode) on `/'. (Another of Matan's
+ideas.)
+
+zgv's man page is now automagically generated from zgv.texi. This
+effectively brings it up to date and should make it a lot more usable,
+which should be good news for everyone out there who hates Info. :-)
+
+
+** Bugfixes
+
+Previously, zgv segfaulted on (some, possibly all) GIFs which had both
+global *and* local colour maps.
+
+Fixed a display bug where you could sometimes have had weirdness after
+a file delete or move, or after rescanning a directory where there
+were fewer files.
+
+Fixed `-p' bug where mouse pointer position was effectively
+uninitialised.
+
+Removed a couple more unnecessary redraws in the selector.
+
+
+** Other changes
+
+zgv now only changes mode in the viewer when needed - otherwise, it
+just clears the screen. (Thanks to Matan Ziv-Av for the nth time.)
+
+The directory structure in the distribution is now much more sensible.
+
+Removed `-src' from source distribution's filename. :-)
+
+
+* Changes in zgv 3.1
+
+** New features
+
+Mouse support is much improved. There's a mouse pointer, the file
+selector has a scrollbar, you can click on a file to view it, and a
+menu appears when you right-click (in both the file selector and
+viewer).
+
+Texinfo documentation. It's rather better than the man page, largely
+because much of the text has been rewritten. (The man page is still
+included, but probably won't be updated in future other than for
+really major changes.)
+
+Added support for XBM and XPM files.
+
+Added simple-minded (but working) support for TIFF files. A hint as to
+how it works - you need to have netpbm's `tifftopnm' on the path for
+the TIFF support to work. :-) (I did it this way as it was dead easy
+and I don't like TIFF very much. But there are TIFF files out there,
+so *some* sort of support seemed a good idea.)
+
+You can now copy/move the current file or tagged files to a specified
+directory using the file selector.
+
+Thumbnail updating is now much faster on large dirs, as the screen is
+only redrawn when a thumbnail needs to be created/updated. (There's a
+config file option `slowupdate' to get the old behaviour.)
+
+Added `go to file starting with next char' function to file selector,
+on `g' and `'' (quote).
+
+Slideshow picture order can now be randomised (shuffled).
+
+Added slideshow pause/resume (on ^S/^Q).
+
+Added `-S' option to set slideshow timeout (like `tagtimeout' in
+config file).
+
+Added 24-bit PCX support. I haven't tested this very much (as I just
+hacked it in quickly because I didn't like zgv not supporting them)
+but it seems to work. :-)
+
+In the file selector you can now use `G' to go straight to a specified
+directory.
+
+Added `-w' option, which writes a PPM to stdout instead of viewing a
+file, acting as a sort of poor-man's-converter. This is primarily
+useful where zgv copes with some images in a given format that (say)
+netpbm's filters can't. (This seems to apply to PCX, XBM and XPM.)
+
+Now supports GNU-ish `--help' and `--version' options.
+
+
+** Bugfixes
+
+zgv's key-reader routine used to lose keys in some situations; this
+was mainly a theoretical problem in the past, but caused real problems
+with zgv 3.1's new directory-name input. Fixed that.
+
+Fixed bug in 24-bit image rotate code. Previously the last line ended
+up being (in three out of four cases) an `earlier' line.
+
+PBM/PGM/PPM-reading code could previously have dropped into an
+infinite loop for certain bizarre kinds of corrupt files with
+comments.
+
+When started on (or jumped to) unreadable dir, previously would have
+segfaulted if $HOME wasn't set. Now coughs and dies, as it does in the
+same situation when the home dir itself isn't readable.
+
+Previously a permission-denied message on a picture moved to with
+enter etc. *from the viewer* didn't update the screen, resulting in a
+corrupted file selector screen. Fixed that.
+
+Fixed some bugs in help text you get with `-h'.
+
+
+** Other changes
+
+The file selector now dynamically allocates memory for the directory,
+so it should now work with any size dir (previous limit was 4096
+files) and shouldn't take up memory it doesn't need. This generally
+makes the zgv process several hundred K smaller.
+
+Mouse support now works by using svgalib's mouse interface.
+
+In those cases where vgadisp.c only wants to clear the screen, that's
+now all it does (rather than changing mode, setting palette etc. too).
+This speeds up a few things a little when viewing an image.
+
+Similarly, the file selector now doesn't redraw the screen unless it
+has to (though there are still a few niggling exceptions).
+
+The drawing of the blank background for dialogs is much faster in
+16-colour mode now.
+
+Made bitmap fonts the default even for cards without a 640x480
+256-colour mode.
+
+Made `thicktext' mode nicer if using bitmap fonts by using a proper
+bold font for it.
+
+Added Emacs-style ^B/^F/^N/^P to file selector.
+
+To toggle between colour and greyscale in the viewer's 640x480
+16-colour mode, you can now use `c' rather than `C'. This makes it
+consistent with the similar toggle in the 16-colour file selector.
+
+Esc now aborts when a single file specified on the command-line is
+loading.
+
+Renamed poorly-named `gamma' command/cfg-file-option `fakecols', which
+is a much more sensible name for it. :-)
+
+
+* Changes in zgv 3.0
+
+** New features
+
+Added `mrf' support. Mrf is a 1-bit-mono-only file format I thought up
+while thinking about how you could compress such images more
+effectively. For some kinds of input (esp. line-art), it compresses
+better than GIF or PNG. (I've also written PD convertors to/from PBM -
+look for `pbmtomrf'.)
+
+Added bitmap fonts (from X, though you don't need X installed). You
+can still get the old line-based font if you want, though.
+
+It now remembers where you were in a directory if you return to it. So
+if you go into a subdir then return to the parent dir, the cursor will
+be on that subdir.
+
+Added thumbnails for subdirs. These are made up of the first four
+files in the dir squeezed together into a single thumbnail. Details in
+the man page.
+
+Added support for 1152x864 and 1600x1200 modes. You get at them by
+prefixing the function key (F1-F8) with tab. (I can't actually test
+these modes, but they should work.)
+
+Zoom mode (for images smaller than the screen) works more sensibly
+now, and is roughly twice as fast. (It also happens to fix an
+occasional segfault in 320x200 modes - albeit only by completely
+replacing the code. An unusual debugging technique, to be sure. :-))
+
+There's now support for the 640x480 16-colour mode in the viewer. It
+works by emulating an 8-bit mode, and either displays in greyscale
+(default) or in dithered colour.
+
+New `smallfiletext' option which reduces the size of the filename text
+in the file selector. You may find this useful if you think the text
+is too big or if you'd like to see more of the filename.
+
+Alternatively, you can do `:' in the file selector to display the full
+filename of the currently-selected file (or at least, as much as will
+fit on a single line).
+
+
+** Bugfixes
+
+Previously, if errors occurred when zgv was loading a new file while
+the old file was still being displayed, the error message appeared
+over the top of the old image (which looked terrible). It now changes
+modes to display the message if necessary.
+
+The 7-missing-or-junk-pixels problem in 320x200 and 320x240 modes has
+been fixed (finally).
+
+Fixed starting-on-unreadable-dir problem.
+
+Previously, if you started with `visual off', the mid-grey colour was
+set to the tagged-file colour (i.e. red). Fixed that.
+
+Bugs in usage output (i.e. output from zgv -h) fixed.
+
+Fixed a couple of minor problems with the help pages.
+
+Fixed a few spelling errors in the man page.
+
+
+** Other changes
+
+Updated png support (better late than never :-)). Apparently it was
+terribly out of date before and did bad things for some files; thanks
+to Greg Roelofs for pointing this out. Hopefully it's reasonably
+up-to-date now, and should work with any future versions of libpng.
+
+Sped directory reading up a little for directories where no files have
+any associated thumbnails (i.e. dirs with no `.xvpics' subdir etc.).
+
+The help screens now use 256-colour mode (which is faster) in the same
+circumstances as the file selector does (i.e. if the mode's available
+and not specifically disabled with the force16fs option).
+
+
+* Changes in zgv 2.8
+
+** New features
+
+PCX support. (But 24-bit PCXs aren't supported yet.)
+
+Much faster generation of JPEG thumbnails, thanks to Costa
+Sapuntzakis.
+
+Optionally ditch the logo to get a proper, full-screen selector, with
+`f' or `z', or with `fullsel on' in config file.
+
+Thumbnail files can be viewed like other images, and thumbnail files
+are their own thumbnails - this means you can browse thumbnail
+directories even if you don't have the images they represent.
+
+`-T' option, to echo tagged files on exit.
+
+
+** Bugfixes
+
+Thumbnail create/update for read-only media and DOS filesystems fixed.
+It previously created all of them each time rather than only doing
+those necessary.
+
+Fixed problem with uncleared display when switching from zoom mode to
+scaling up.
+
+The switching-from-X etc. now works with kernel 2.0.x. Previously it
+hanged. (It should still work with 1.2.x, too.)
+
+Now resets to blocking input even when ^C'ed.
+
+Various documentation `bugs' fixed, e.g. the `c' and `n' keys weren't
+previously listed.
+
+
+** Other changes
+
+ANSIfied the code. This caught a couple of (as it turned out)
+innocuous bugs. (Fortuitously, they had no ill effect in practice.)
+
+Updated PNG support to work with libpng 0.81 (and, hopefully, any
+later versions).
+
+Sped up viewing in 15/16-bit modes a little.
+
+Incorporated Adam Radulovic's patch to v2.7 allowing more files in the
+directory and reducing memory usage.
+
+`TO-DO' renamed to `TODO'. :-)
+
+
+* Changes in zgv 2.7
+
+** New features
+
+PNG support. PNG is a new format primarily designed to replace GIF. It
+has better compression (still lossless), supports 24-bit, and has much
+more useful interlacing. It currently can't handle images with alpha
+channels, but it should - and as far as I can tell, does - handle
+everything else.
+
+'-i' option added, to ignore errors with PNG or GIF files. You should
+now be able to view files of all types as they download or are
+generated (see the description of the '-i' option in the man page for
+details). This is particularly effective with interlaced PNG files,
+where you can see a rough image after only 15% of the file has
+downloaded.
+
+
+** Bugfixes
+
+A couple of memory leaks related to aborting the loading of a 24-bit
+image on an 8-bit display fixed.
+
+
+* Changes in zgv 2.6
+
+** New features
+
+zgv will now load create/update thumbnails in the background. That is,
+when you switch to another VC while zgv is updating the index, it'll
+keep doing it rather than suspending until you switch back.
+
+Support for TGA files, types 1, 2, 9 and 10 (this should include most
+of them; certainly the ones produced by Povray). Heiko Eissfeldt
+deserves honourable mention for doing a similar job independently.
+
+Better BMP support (from Carsten Engelmann).
+
+Added support for GIFs with local colour maps, such as those produced
+by Ghostscript.
+
+
+** Bugfixes
+
+Problem with -p fixed. I hope. :-)
+
+File selector bug fixed. If you pressed enter to view a file, then
+used ^N or Enter to go through more than a screen's-worth of files,
+then exited or reached the end of the list of picture files, it used
+to try and undraw the file you started with, which meant the screen
+got corrupted.
+
+
+** Other changes
+
+Now gets through '-Wall -Wno-implicit -Wno-return-type' without
+warnings.
+
+
+* Changes in zgv 2.5
+
+** New features
+
+Mouse support by Edwin Fong. The mouse driving code is from
+'selection' by Andrew Haylett.
+
+A few other features by Edwin, mostly to do with tagging and
+slideshows, such as slideshows from the command line (e.g. 'zgv
+~/graphics/*.jpg').
+
+Windows 3.x BMP support by Carsten Engelmann.
+
+zgv will now load pictures in the background. That is, when you switch
+to another VC while zgv is loading a picture, it'll keep loading
+rather than suspending until you switch back.
+
+The visual file selector now works in 16-colour modes. This should be
+useful for machines with 'normal' VGA cards rather than SVGA, or for
+machines with SVGA cards not supported by svgalib. Due to the
+limitation of 16 colours, it operates in greyscale usually, with
+optional (poor quality) colour.
+
+
+** Bugfixes
+
+Avoided 'logs you out on exiting zgv' problem with (some versions of?)
+bash.
+
+Fixed automatic mode changing from 320x400 and 360x480 bug.
+
+Fixed 'strange colours' bug with PBM files and vkludge.
+
+
+* Changes in zgv 2.4
+
+** New features
+
+zgv now uses version 5 of the IJG's JPEG software. Version four *will
+not work* any more, so get version 5 if you're compiling from source.
+
+Added the facility to do 'slide shows'. You tag/untag files using 't'
+and 'n' (or 'T' and 'N' for all files in the current directory), and
+press Tab to start displaying the files. See the man page for more
+details.
+
+Ctrl-P and Ctrl-N now move backward one file and forward one file
+respectively. These keys work while viewing a file. The idea is, you
+can skip back and forth between files easily without needing to quit
+to the file selector. Thanks to Mark A. Pitcher for suggesting this.
+
+
+** Bugfixes
+
+Stopped errors being reported when a corrupt file is read during
+thumbnail index updating. Thanks to David Meyer for pointing this out.
+
+Added '.jpeg' to listed filetypes. Thanks to Alan Shutko for pointing
+this out as a common alternative to '.jpg'.
+
+
+** Other changes
+
+Tnpic has been removed. (It's been pretty much obsolete since version
+2.2). If anyone is terribly upset about this, contact me and I'll
+consider putting it back or releasing it separately.
+
+
+* Changes in zgv 2.3
+
+** New features
+
+zgv can now be run from a non-console tty and still work, provided
+there is a free VT available - that is, one without a getty or other
+process running on it. (Generally you'll have at least one or two.) If
+this is required, it switches to the new VT before starting and
+switches back when finished; this gives reasonably transparent
+operation from X, Emacs, iScreen, etc. (Redirect stderr to a
+non-console to force this behaviour when running from consoles - e.g.
+"zgv 2>/dev/null" with bash/ksh/zsh.)
+
+Scaling mode - allows you to 'zoom in' on a picture and pan around the
+enlarged image. Also available in 'interpolation between the enlarged
+pixels' flavour in 24-bit modes, if you really want your computer to
+crawl... :)
+
+PgUp, PgDn and similar all do what you might expect now.
+
+The '-a "command"' option which allows you to use the zgv file
+selection front-end while actually invoking some other program when a
+file is selected for viewing. At the moment, this is a little rough
+around the edges (shell scripts seem to confuse it).
+
+A couple of other small hacks which might be useful, although they
+aren't strictly the domain of a picture viewer - the '-s' option
+outputs the area of the picture onscreen when Esc is pressed, which
+can be useful in constructions like "djpeg foo.jpg|pnmcut `zgv -s
+foo.jpg` >blarg.ppm"; and the '-r' option to repeatedly re-read a
+picture after a certain timeout.
+
+
+** Bugfixes
+
+I think I've fixed the 'floating point exception or division by zero'
+problem which several people noted. However, I can't test it, so if
+v2.3 works on your machine and v2.2 didn't, please email me saying so.
+
+A couple of other, more innocuous bugs fixed.
+
+
+** Other changes
+
+Added 'force16fs' entry in config file, to force 16-colour mode for
+file selector. Designed for use if the 256-colour 640x480 mode is
+available from your video card, but for some reason is unusable.
+
+System config. file is now /etc/zgv.conf. /etc/system.zgvrc still
+works, but it's best to rename it.
+
+zgv uses stdin now for keyboard input instead of /dev/tty. (Since
+reading output from another process from stdin in graphics mode (along
+the lines of "djpeg thingy.jpg | zgv /proc/self/fd/0") doesn't really
+work, there was no reason not to; in addition, starting up on a free
+VT would be more tricky otherwise.)
+
+zgv is now distributed under the terms of the GNU General Public
+License.
+
+
+* Changes in zgv 2.2
+
+** New features
+
+zgv now supports 'xv' format thumbnail files - i.e. it views them
+together with filenames on the file selector, and creates them if
+asked to. The files created by zgv are compatible with xv. This
+requires the 640x480x256 mode.
+
+Added file deletion to file selector; it also deletes any accompanying
+xv thumbnail format file.
+
+Added command-line options for zoom, startup mode, etc.
+
+
+** Bugfixes
+
+[where did all these bugs come from!]
+
+zgv now opens /dev/tty instead of /dev/tty0. This eliminates any
+security hole that needing a world-readable /dev/tty0 might have
+caused. If you previously installed version 2.1, you should probably
+issue a "chmod go-r /dev/tty0" as root to be on the safe side.
+
+in v2.1, tnpic often segfaulted when loading JPEG files due to a
+change in the JPEG reading routine which I forgot to allow for in
+tnpic.c (blush).
+
+zgv segfaulted when trying to load a file which didn't exist - this
+has been fixed. It wasn't the canonical dumb segfault bug, it was to
+do with files not ending in {.gif,.jpg} being loaded as PNM files, and
+free() trying to deallocate a random pointer (two, in fact) when that
+couldn't load the file. Oops.
+
+fixed bug on file select screen to do with moving a file or two with
+the cursor on an entry past the new number of files (if you see what I
+mean), where it previously didn't redraw.
+
+fixed typo in aborted_file_cleanup() which caused nasty transient bugs.
+
+fixed obscure bug in 'zoom' mode.
+
+fixed equally obscure bug in PPM dithering.
+
+bug with vkludge for <256 colour pictures fixed.
+
+fixed bug with 'junk on right-hand side' in (most? all?) standard VGA
+modes.
+
+
+** Other changes
+
+Allows files ending in all caps .GIF and .JPG to appear in the
+directory listing also. This was meant to be in v2.1 but wasn't, due
+to what can only be described as a clerical error.
+
+Added 'hicolmodes' entry in .zgvrc file. This is to force high-colour
+modes if your card - for example - has a 640x480 high-colour mode, but
+no 320x200 high-colour mode. This is definitely a kludge, but it's
+very tricky/awkward to fix properly.
+
+
+* Changes in zgv 2.1
+
+** New features
+
+Now supports PBM/PGM/PPM format.
+
+Option to centre pictures on screen (default)
+
+Optional block prompt and thick text, which may help if you find the
+file selection screen unclear.
+
+** Bugfixes
+
+Fixed "Directory of ..." bug for long pathnames.
+
+If you had a 15/16/24-bit mode but had 'jpeg24bit off' in your
+ /etc/system.zgvrc or ~/.zgvrc file, zgv ignored it. [fixed]
+
+Greyscale JPEGs wouldn't load when you had a 15/16/24-bit mode and had
+ 'jpeg24bit on'. [fixed, but not as fast as it should be]
+
+
+* Changes in zgv 2.0
+
+(These changes were relative to zgv 1.3.)
+
+** New features
+
+15/16/24-bit support.
+
+You can now use zgv like 'zgv filename' and it'll view that file, then
+quit on Esc.
+
+Proper (i.e. usable) .rc file handling. See the manpage and
+sample.zgvrc for details.
+
+Filters out unusable modes (not really sure why it took me so long to
+fix this!).
+
+
+** Bugfixes
+
+Fixed so that zgv displays long filenames truncated instead of messing
+up the screen.
+
+
+** Other changes
+
+Saving of configuration removed. The .zgvrc file is now designed to be
+written by the user.
+
+Mono and 16-colour modes no longer used (they never really worked
+anyhow).
+
+More documentation (TeX doc. brings together the loose ends, to a
+degree.)
+
+

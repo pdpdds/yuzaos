@@ -1,0 +1,1 @@
+void initLevel(int n);

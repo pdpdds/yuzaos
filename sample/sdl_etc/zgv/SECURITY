@@ -1,0 +1,79 @@
+SECURITY - why zgv is setuid root, etc.
+---------------------------------------
+
+This file is an attempt to explain the approach zgv takes to security.
+I know setuid binaries are scary things, but zgv isn't half as
+insecure as some people seem to think. I wouldn't claim it's 100%
+secure either, of course, but no-one with a clue would claim that of
+anything. You could switch your box off permanently and seal it in
+concrete, but you'd still be prone to explosives, for example. :-)
+
+The discussion here is Linux-centric, but I'm assured that the
+basic reasoning applies to FreeBSD too despite it dealing with
+effective-ID a bit differently.
+
+
+Now, zgv uses svgalib, and svgalib programs must be setuid root (or
+otherwise run as root), that is, they must have rights to do just
+about anything on the system. (There are certain exceptions - for
+example, even root can't overwrite an immutable file without
+explicitly clearing the immutable flag first.)
+
+*However*, svgalib only needs root permissions for long enough to sort
+a few things out :-), and ensure it has access to certain memory, I/O
+ports, that sort of thing. It then uses setuid(getuid()) to
+irretrievably drop root permissions. (svgalib 1.2.10 and earlier did
+this incorrectly, but this has long since been fixed.) From the setuid
+man page:
+
+>        Under  Linux, setuid is implemented like the POSIX version
+>        with the _POSIX_SAVED_IDS feature.  This allows  a  setuid
+>        (other  than  root) program to drop all of its user privi-
+>        leges, do some un-privileged work, and then re-engage  the
+>        original effective user ID in a secure manner.
+
+This sounds scary - a cracker (one with shell access, that is - and if
+they're that far in you have problems already ;-)) could potentially
+take advantage of a bug in zgv to get a root shell, right? Couldn't
+they? Well, note the "other than root" above, and read on:
+
+>        If the user is root or the program is setuid root, special
+>        care must be taken. The setuid function checks the  effec-
+>        tive  uid  of  the  caller and if it is the superuser, all
+>        process related user ID's are set to uid.  After this  has
+>        occurred,  it is impossible for the program to regain root
+>        privileges.
+
+Note the word "impossible" there. :-) This is not the seteuid()
+scheme, where you can restore the root privileges; this is a
+`trapdoor' approach. This limits greatly the amount of trouble a
+cracker can cause with zgv - at most they can cause a
+denial-of-service by leaving the console in graphics mode.
+
+However, zgv has an additional early check (before doing anything
+svgalib-related) to try and limit trouble further. It checks (for
+users other than root) that the user running zgv owns the
+currently-active console, i.e. *that they are logged in on it*. If
+not, they don't get to run zgv at all, no matter what. So not only do
+we have the `only runs as root very briefly' thing, but you can't even
+run zgv in the first place unless you're *logged in at the console*!
+And if you have a cracker logged in at the console, you *really* have
+problems already! ;-)
+
+I do recognise that you could have `untrusted' people logged in at the
+console in certain circumstances - universities spring instantly to
+mind. :-) And being able to leave the console in graphics mode would
+be bad (m'kay). So zgv does take a certain amount of care to avoid at
+least the obvious problems, like buffer overruns. (I think these are
+all nailed now, but it's always possible I've missed one.)
+
+So, no, zgv probably isn't the most secure program in the world. But
+please let's not claim J. Random Cracker can walk all over it without
+bothering to look at the code, eh? :^)
+
+If you still don't feel like trusting zgv, you may want to try xzgv,
+which lets you worry about trusting X instead. ;-)
+
+Comments on/criticisms of/bugfixes for this file welcome.
+
+-Rus.

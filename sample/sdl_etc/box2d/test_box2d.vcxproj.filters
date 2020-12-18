@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="PolygonShape.cpp" />
+    <ClCompile Include="box.cpp" />
+    <ClCompile Include="clock.cpp" />
+    <ClCompile Include="game.cpp" />
+    <ClCompile Include="object.cpp" />
+    <ClCompile Include="texture.cpp" />
+    <ClCompile Include="tile.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PolygonShape.h" />
+    <ClInclude Include="box.h" />
+    <ClInclude Include="clock.h" />
+    <ClInclude Include="game.h" />
+    <ClInclude Include="object.h" />
+    <ClInclude Include="texture.h" />
+    <ClInclude Include="tile.h" />
+  </ItemGroup>
+</Project>

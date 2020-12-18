@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{754D1308-9DFA-4DA1-B81E-65A34A524A2B}</ProjectGuid>
+    <RootNamespace>Wolf4SDL</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>16.0.29511.113</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\Intermediate\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>./src;./;../include;../../../ShareDll/include;../../../RunTimeLib/include;../../../UserLib/include;../../../UserLib/STL/SGI;../../../UserDll/include;../../../ThirdParty/SDL/SDL1CL/SDLCL;../../../ThirdParty/SDL/SDL1CL/SDL_image;../../../ThirdParty/SDL/SDL1CL/SDL_ttf;../../../ThirdParty/SDL/SDL1CL/SDL/INCLUDE;../../../ThirdParty/SDL/SDL1CL/SDL_mixer</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>PC_VERSION;SKYOS32;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <SDLCheck>false</SDLCheck>
+      <OmitFramePointers>true</OmitFramePointers>
+      <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
+      <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
+      <ExceptionHandling>false</ExceptionHandling>
+      <StructMemberAlignment>1Byte</StructMemberAlignment>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <DisableSpecificWarnings>4838;4244;4819;4005</DisableSpecificWarnings>
+      <AdditionalOptions>/Oy /arch:SSE %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>systemcall.lib;SDL_mixer.lib;SDL_image.lib;sdlcl.lib;math.lib;libcrt.lib;libwin32.lib;exestub.lib;userapi.lib;filemanager.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../../$(Configuration)/lib;../../../ShareDll/debug;../../../UserLib/debug;../../../UserDll/debug;../../../RunTimeLib/debug;../../../ThirdParty/SDL/SDL2/debug;../../../ThirdParty/debug;../../../Debug;../../../ThirdParty/SDL/SDL1CL/Debug</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <BaseAddress>0x08000000</BaseAddress>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <AdditionalOptions>/safeseh:no /ALIGN:1024 %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>F:\SDL-1.2.12\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>SDL.lib;SDL_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>F:\SDL-1.2.12\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <EntryPointSymbol />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="audiosod.h" />
+    <ClInclude Include="audiowl6.h" />
+    <ClInclude Include="dc_vmu.h" />
+    <ClInclude Include="fmopl.h" />
+    <ClInclude Include="foreign.h" />
+    <ClInclude Include="f_spear.h" />
+    <ClInclude Include="gfxv_apo.h" />
+    <ClInclude Include="gfxv_sod.h" />
+    <ClInclude Include="gfxv_wl6.h" />
+    <ClInclude Include="gp2x.h" />
+    <ClInclude Include="id_ca.h" />
+    <ClInclude Include="id_in.h" />
+    <ClInclude Include="id_pm.h" />
+    <ClInclude Include="id_sd.h" />
+    <ClInclude Include="id_us.h" />
+    <ClInclude Include="id_vh.h" />
+    <ClInclude Include="id_vl.h" />
+    <ClInclude Include="version.h" />
+    <ClInclude Include="wl_atmos.h" />
+    <ClInclude Include="wl_cloudsky.h" />
+    <ClInclude Include="wl_def.h" />
+    <ClInclude Include="wl_menu.h" />
+    <ClInclude Include="wl_shade.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Changes.txt" />
+    <Text Include="README.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\actions.c" />
+    <ClCompile Include="src\ball.c" />
+    <ClCompile Include="src\bonus.c" />
+    <ClCompile Include="src\collisions.c" />
+    <ClCompile Include="src\DCSoundEngine.c" />
+    <ClCompile Include="src\ladder.c" />
+    <ClCompile Include="src\levels.c" />
+    <ClCompile Include="src\main.c" />
+    <ClCompile Include="src\objets.c" />
+    <ClCompile Include="src\PCGfxEngine.c" />
+    <ClCompile Include="src\PCSoundEngine.c" />
+    <ClCompile Include="src\plateforme.c" />
+    <ClCompile Include="src\player.c" />
+    <ClCompile Include="src\SDL_collide.c" />
+    <ClCompile Include="src\shoot.c" />
+    <ClCompile Include="src\structures.c" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

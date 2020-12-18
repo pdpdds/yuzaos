@@ -1,0 +1,40 @@
+README.bin - Information about binaries
+---------------------------------------
+
+The zgv binary here is linked against these shared libraries:
+
+- libc.so.6 and libm.so.6	(glibc 2.2.5)
+- libvga and libvgagl.so.1	(svgalib 1.4.3)
+- libjpeg.so.62			(libjpeg 6b)
+- libpng.so.2			(libpng 1.0.12)
+- libz.so.1			(zlib 1.1.4)
+- libtiff.so.3			(libtiff 3.5.5)
+
+You need all these libraries (though not necessarily these exact
+versions) installed to use this binary - your distribution should come
+with most of them, though you may need a newer version of svgalib (if
+so, look on http://www.svgalib.org/ for that).
+
+You need to install the zgv binaries as root. The easiest way is to
+(as root) type `make'.
+
+While the info files and man page generated from zgv's texinfo manual
+are included in the binary distribution, the texinfo file itself
+isn't, to save space. If you want that (to make a printed manual, for
+example), you'll need to get hold of the source distribution.
+
+If zgv is distributed as binaries only - although the source is
+available, it's quite possible you will have downloaded only the
+binaries - then this message is required:
+
+This program is based in part on the work of the Independent JPEG
+Group.
+
+...which is perfectly reasonable, because it is. (Actually, I'm not so
+sure this is required now it's using a shared library version, but
+what the heck. :-))
+
+
+Have fun!
+
+-Rus.

@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\3deffects.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\copymove.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\font.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gnuhelp.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\helppage.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\magic.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modesel.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mousecur.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rbmenu.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rcfile.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\readbmp.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\readgif.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\readjpeg.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\readmrf.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\readnbkey.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\readpcd.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\readpcx.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\readpng.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\readpnm.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\readprf.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\readtga.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\readtiff.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\readxbm.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\readxpm.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\readxvpic.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resizepic.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scrollbar.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\vgadisp.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\zgv_io.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\zgv.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\getopt.c">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{0b29b2c8-19c2-4407-8f6d-953fa001bae4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\3deffects.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\copymove.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\font.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gnuhelp.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\helppage.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\magic.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\modesel.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mousecur.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rbmenu.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rc_config.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rcfile.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\readbmp.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\readgif.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\readjpeg.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\readmrf.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\readnbkey.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\readpcd.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\readpcx.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\readpng.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\readpnm.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\readprf.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\readtga.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\readtiff.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\readxbm.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\readxpm.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\readxvpic.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resizepic.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scrollbar.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\vgadisp.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\zgv.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\zgv_io.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\getopt.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\Makefile">
+      <Filter>src</Filter>
+    </None>
+    <None Include="src\options.src">
+      <Filter>src</Filter>
+    </None>
+  </ItemGroup>
+</Project>

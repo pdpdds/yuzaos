@@ -1,0 +1,122 @@
+This is zgv, produced by makeinfo version 4.1 from zgv.texi.
+
+INFO-DIR-SECTION Graphics Utilities
+START-INFO-DIR-ENTRY
+* zgv: (zgv).   A picture viewer for Linux/FreeBSD systems with VGA/SVGA.
+END-INFO-DIR-ENTRY
+
+   The zgv manual, for version 5.9, last updated 28th January 2005.
+
+   Copyright 1998-2004 Russell Marks.
+
+   Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+   Permission is granted to copy and distribute modified versions of
+this manual under the conditions for verbatim copying, provided that the
+entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+
+   Permission is granted to copy and distribute translations of this
+manual into another language, under the above conditions for modified
+versions, except that this permission notice may be stated in a
+translation approved by the Free Software Foundation.
+
+
+Indirect:
+zgv-1: 995
+zgv-2: 50884
+zgv-3: 98748
+zgv-4: 145319
+
+Tag Table:
+(Indirect)
+Node: Top995
+Node: Overview2949
+Node: Acknowledgements4689
+Node: Invoking zgv6554
+Node: Online help22464
+Node: The File Selector22896
+Node: Exiting zgv24826
+Node: Thumbnails25406
+Node: Updating Thumbnails26346
+Node: Thumbnail Storage28984
+Node: Thumbnail Issues30297
+Node: Screen Layout31148
+Node: Moving Around The List32087
+Node: Viewing a File34175
+Node: Dialog Boxes34795
+Node: Tagging36584
+Node: Tag and Untag Commands37262
+Node: Slideshows38355
+Node: Copying/Moving/Deleting Files39517
+Node: Renaming a File40743
+Node: Changing Directory41365
+Node: Changing the Sorting Order42366
+Node: File Selector Toggles43079
+Node: Other File Sel Commands44754
+Node: Showing More Files46226
+Node: 16-colour File Selector47640
+Node: The Viewer49199
+Node: Exiting the Viewer50884
+Node: Big Pictures51356
+Node: Scrolling52081
+Node: Zoom Mode53125
+Node: Auto-mode-fit54640
+Node: Scaling56459
+Node: Mirror and Rotate58924
+Node: Brightness and Contrast60345
+Node: Gamma Adjustment61467
+Node: Increased Greyscales64974
+Node: Changing Picture66597
+Node: File Details68446
+Node: Pausing Slideshows69237
+Node: Multiple-image GIF Animation70180
+Node: Video Modes71673
+Node: What a Video Mode is73001
+Node: Video Mode Issues74823
+Node: Default Video Mode77308
+Node: Selecting a Video Mode77855
+Node: Special Modes81070
+Node: Virtual Modes81724
+Node: The Viewer 640x480x4 Mode83206
+Node: Drawbacks of 15/16-bit Modes84501
+Node: 32-bit Video Modes86157
+Node: Disabling Video Modes87565
+Node: xzgv Compatibility88495
+Node: File Formats92496
+Node: File Type Identification93028
+Node: Supported File Formats94019
+Node: File Format Depths95700
+Ref: File Format Depths-Footnote-197432
+Node: Consoles97520
+Node: Running In The Background98028
+Node: Running From Non-consoles98748
+Node: Using a Mouse101008
+Node: Enabling The Mouse101833
+Node: Mouse Menus102488
+Node: Mouse Funcs in the File Selector103511
+Node: Mouse Funcs in the Viewer105400
+Node: Mouse Deficiencies107661
+Node: Configuring zgv108175
+Node: Config Files108806
+Node: Config Variable Types110397
+Node: Config Variables111960
+Node: Config File Backward Compatibility114211
+Node: Rationale116924
+Node: Why Yet Another Viewer?117393
+Node: Why a Texinfo Manual?119246
+Node: Why One-space Sentence Ends?120427
+Node: Bugs and Restrictions123037
+Node: Known Bugs124026
+Node: Suboptimal Features125376
+Node: Restrictions126521
+Node: Reporting Bugs127075
+Node: Reporting Documentation Bugs129435
+Node: Future Changes130297
+Node: Keyboard Commands Index131704
+Node: Configuration Variables Index145319
+Node: Concept Index149100
+
+End Tag Table

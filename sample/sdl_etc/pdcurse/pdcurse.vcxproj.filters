@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Command.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Path.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="tui.c" />
+    <ClCompile Include="main2.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="main3.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Command.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Errors.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Path.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Terminal.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="tui.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="header">
+      <UniqueIdentifier>{29fa8534-f02d-4a5f-9789-95ea7737209c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{f60e69e6-ca77-47a9-abbc-776ec1b045f6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

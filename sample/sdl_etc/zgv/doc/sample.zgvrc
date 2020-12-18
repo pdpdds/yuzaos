@@ -1,0 +1,99 @@
+# zgv sample system default startup file
+#
+# This should be either /usr/local/etc/zgv.conf, or ~/.zgvrc
+# (you don't have to have either, though).
+#
+# Only a few settings are set here, and all are commented or are the
+# default values.
+#
+# For a full list of bells and whistles, see the `Invoking zgv' (or
+# `OPTIONS') and `Configuring zgv' sections in the info file or man
+# page.
+
+# Anything after a `#' is ignored (i.e. is a comment).
+
+
+# `visual' determines whether to use the visual file selector, added in
+# v2.2, or the old-style text selector. I find the visual selector a lot
+# better for picking pictures, but the text is good for navigating
+# directories, etc.  `visual on', as below, is the default - you can use
+# `v' to switch between the modes when in zgv.
+#
+visual on
+
+# The colours on file selection screen and help screens;
+# these simply map the normal black, dark grey, medium grey and light grey
+# to new RGB colours. (note the range is 0 to 63)
+# uncomment them to get a nice sickly pink screen. :-)
+# note that there is also a `col-tagged' setting for the colour to
+# show tagged files with.
+#
+#col-black	20 10 10
+#col-dark	25 20 18
+#col-medium	38 30 25
+#col-light	50 42 33
+
+# Contrast and brightness values to start with. Typing a `*' will still
+# reset to contrast=1.0 and brightness=0 though.
+# These are just examples - I quite like normality.
+# Currently no colour alterations when in 15/16/24-bit mode.
+#
+#contrast	2
+#brightness	50
+
+# `mode-all-good' - labels all screen modes as usable (only if you've
+# got them, of course). `mode-all-bad' labels all as unusable.
+# If you do `bad' and don't have any as `good' afterwards, zgv will fall back
+# on "320 200 8" (320x200x256). Let's face it, you've got to have at least
+# *one* mode that always works!
+# zgv defaults to acting as if you'd specified `mode-all-good',
+# and not specified any `mode-bad's afterwards.
+#
+mode-all-good
+
+# normally you wouldn't bother with any specific `good' or `bad'
+# thingies. But as an example, here's one I used to use:
+#
+#mode-bad 800 600 8
+
+# This is the mode to start the viewer in (this is the default one).
+# (Note that the bit-depth (8 below) is largely irrelevant here, as zgv
+# will automatically switch to the most suitable depth.)
+#
+viewer-start-mode 640 480 8
+
+# The mode to start the file selector in (again, this is the default).
+# (Only 8-bit modes are valid for use in the selector.)
+#
+fs-start-mode 640 480 8
+
+# no zoom (use `zoom on' to turn on by default)
+#
+zoom off
+
+# whether or not to centre pictures on the screen.
+# you can use either `centre' or `center' for this entry.
+# this is the default:
+#
+centre on
+
+# Defines whether to use 24 or 8-bit internal mode for JPEGs and other
+# 24-bit files. Only an issue if you have any 15, 16 or 24-bit video
+# modes.
+# This is the default (i.e., use `high' or `true'-colour modes if
+# possible). Change to `force-viewer-8bit on' to force 8-bit at all
+# times. This doesn't affect GIFs and other 8-bit images, which always
+# display in 8-bit.
+#
+force-viewer-8bit off
+
+# PGM files can contain up to 256 different grey levels. (So can some
+# other kinds of files, but that's ignored at the moment in this
+# context...) zgv can optionally grind these to 24-bit internally if
+# you have a 15/16/24-bit mode (and haven't enabled
+# force-viewer-8bit), so that all 256 (rather than 64) can be seen.
+# (This will only really be the case if you have a 24-bit video mode.)
+# With the current suboptimal kludge however this needs 3*width*height
+# bytes. The setting below is the default.
+#
+pgm-truecol off

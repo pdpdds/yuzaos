@@ -1,0 +1,54 @@
+INSTALL - information about source, compilation etc.
+----------------------------------------------------
+
+zgv requires these libraries to be installed:
+
+- svgalib (or SDL, depending on the backend chosen in config.mk)
+- libjpeg
+- libpng
+- zlib
+- libtiff
+
+(If you decide to enable PCD_SUPPORT, you'll also need libpcd, from
+the xpcd package.)
+
+At least for Linux users these should all (except possibly libpcd?)
+come with your distribution, and are probably already installed if you
+use anything remotely `graphicsy'. :-) Do be sure to install any
+accompanying `development' packages too, as these usually contain
+header files necessary for compilation.
+
+Any reasonably recent versions will do for all of these libraries, I
+imagine. As ever though, I should note that you shouldn't use svgalib
+version 1.2.10 or earlier due to a potential security risk.
+
+So, once you're sure those libraries are installed, you should have an
+overall check through `config.mk', to see if it all looks ok. Most
+people should find it ok as-is, but you may want to change PREFIX
+and/or uncomment SHARE_INFIX if you want the files to go somewhere
+other than /usr/local/bin, /usr/local/info, and /usr/local/man/man1.
+
+(As already mentioned, there's also an option to use an SDL backend;
+I'd recommend only using this if you have to, as if nothing else it
+tends to be slower due to the way zgv works. Note that if you do
+enable this, the zgv executable will be installed as `zgv-sdl'.)
+
+Then do `make', and (as root) `make install'. This compiles zgv, then
+installs it and its documentation (both info files and man page).
+
+FreeBSD users should note that zgv apparently requires GNU make -
+obviously not a problem on Linux, but on FreeBSD you'll need to allow
+for that.
+
+Another note for (only) FreeBSD users - at the time of writing, the
+svgalib 1.4.3 port for FreeBSD seems to always allocate a new console
+even when it's currently running on one. This is harmless enough, but
+does mean that anything zgv puts on stdout (such as the output for
+`-h', `-s', and `-T') will end up on that console rather than on zgv's
+original stdout, even if you redirect it. Hopefully this problem will
+be fixed before long. One possible workaround in the meantime is to
+use the SDL backend instead.
+
+Good luck!
+
+-Rus.

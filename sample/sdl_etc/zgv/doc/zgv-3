@@ -1,0 +1,1126 @@
+This is zgv, produced by makeinfo version 4.1 from zgv.texi.
+
+INFO-DIR-SECTION Graphics Utilities
+START-INFO-DIR-ENTRY
+* zgv: (zgv).   A picture viewer for Linux/FreeBSD systems with VGA/SVGA.
+END-INFO-DIR-ENTRY
+
+   The zgv manual, for version 5.9, last updated 28th January 2005.
+
+   Copyright 1998-2004 Russell Marks.
+
+   Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+   Permission is granted to copy and distribute modified versions of
+this manual under the conditions for verbatim copying, provided that the
+entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+
+   Permission is granted to copy and distribute translations of this
+manual into another language, under the above conditions for modified
+versions, except that this permission notice may be stated in a
+translation approved by the Free Software Foundation.
+
+
+File: zgv,  Node: Running From Non-consoles,  Prev: Running In The Background,  Up: Consoles
+
+Running From Non-consoles
+=========================
+
+   If it's not run from a console tty (and if you are the owner of the
+currently-selected console), zgv will attempt to run on the first
+available console -- if there are none free, it will exit with an error
+message. When it has to switch consoles like this, exiting zgv will
+cause an automatic return to whichever console was current when the
+program was started. This means you can run zgv reasonably transparently
+from X, Emacs, etc.
+
+   One problem with this is that, since zgv uses `fork()', `zgv -h' and
+other things which give output on stdout will give confusing results;
+the original zgv process will have exited before the new (replacement)
+zgv process exits. Redirect stdout if you want things to make a bit
+more sense -- for example, `zgv -h | less' will do what you'd expect.
+For more `normal' uses where zgv doesn't give any output, there's no
+problem.
+
+   However, there's a problem running zgv from X, when it's invoked
+from a window manager's menu. (It works ok from an xterm.) The problem
+is that the window manager runs the program with its stderr attached to
+the tty that the X server was started from. So zgv will run on the
+console you started X from, but won't switch there. As luck would have
+it, there's an easy workaround; when invoking zgv from the menu, just
+redirect stderr to a non-console, such as `/dev/null'. The details of
+how to arrange this vary depending on the window manager you're using,
+but generally you'd want a line ending in something like `Exec zgv
+2>/dev/null &' to do this.
+
+   It may seem a bit odd running zgv from X, but it can be useful if you
+have a 15/16/24/32-bit card and normally run X in monochrome or 8-bit
+colour. Or if you just happen to like zgv. :-)
+
+   Running zgv from an xterm with a filename as an argument is probably
+how you'd usually do this, though -- e.g. `zgv wibble.jpg'. zgv then
+runs on a free console and switches back when you exit. If you want to
+switch back to X before exiting zgv, it's just a matter of switching
+consoles, as usual. X will be running on what was the first free console
+when it started; often this is number 7.
+
+
+File: zgv,  Node: Using a Mouse,  Next: Configuring zgv,  Prev: Consoles,  Up: Top
+
+Using a Mouse
+*************
+
+   When mouse support is enabled in zgv, you can do almost everything
+with it that you would ordinarily do with the keyboard.
+
+* Menu:
+
+* Enabling The Mouse::          How to turn on zgv's mouse support.
+* Mouse Menus::                 Clicking the right mouse button brings
+                                  up a menu.
+* Mouse Funcs in the File Selector::  The file selector takes a conventional
+                                  approach to mouse support.
+* Mouse Funcs in the Viewer::   The viewer uses the mouse primarily for
+                                  moving around the picture.
+* Mouse Deficiencies::          There are a few things you can't do with
+                                  the mouse.
+
+
+File: zgv,  Node: Enabling The Mouse,  Next: Mouse Menus,  Prev: Using a Mouse,  Up: Using a Mouse
+
+Enabling The Mouse
+==================
+
+   To use the mouse support for just one zgv session, start zgv with
+something like `zgv -M'. To enable it by default, add `mouse on' to a
+config file (*note Config Files::).
+
+   zgv uses svgalib's mouse configuration; if you have not set that up,
+you will probably need to do so before zgv's mouse support will work.
+See the `libvga.config(5)' man page for details.
+
+   If you find that the mouse pointer moves too quickly or too slowly,
+you should change zgv's `mouse-scale' setting (*note Config
+Variables::).
+
+
+File: zgv,  Node: Mouse Menus,  Next: Mouse Funcs in the File Selector,  Prev: Enabling The Mouse,  Up: Using a Mouse
+
+Mouse Menus
+===========
+
+   The file selector and viewer use the mouse differently for the most
+part, but they do have one feature in common -- clicking the right
+mouse button brings up a menu. (This is called, not unreasonably, the
+`right-button menu'.)
+
+   All the menu items correspond directly to commands available from the
+keyboard. So if you are not very familiar with zgv, it may be best to
+read all about those before making extensive use of the menu. *Note The
+File Selector::, for file selector commands. *Note The Viewer::, for
+viewer commands.
+
+   Some commands are `greyed out' on the menu if they are unavailable.
+For example, if you are viewing an 8-bit picture in the viewer, the
+15/16/24-bit modes listed on the menu will be greyed out.
+
+   To remove the menu from the screen without selecting a command,
+either click somewhere on the screen not covered by the menu, or press
+`Esc'.
+
+
+File: zgv,  Node: Mouse Funcs in the File Selector,  Next: Mouse Funcs in the Viewer,  Prev: Mouse Menus,  Up: Using a Mouse
+
+Mouse Funcs in the File Selector
+================================
+
+   In the file selector, the mouse controls a conventional mouse
+pointer.  In addition to the right button calling up a menu, there are
+these actions you can take with the mouse:
+
+   * Clicking on a file views it.
+
+   * Clicking on the area which shows the current directory prompts you
+     for a directory to change to (*note Dialog Boxes::).
+
+   * The scrollbar can be used to move along the file list, in a few
+     different ways:
+
+        - Clicking on the scrollbar's arrows moves along the file list
+          a column at a time.
+
+        - Clicking on either side of the scrollbar's `slider' (only
+          possible if the slider does not fill the scrollbar, i.e. only
+          possible if there are more files than are shown onscreen)
+          moves along the dir a page at a time.
+
+        - Clicking on the slider and dragging it moves the file cursor
+          along the directory. It works in a slightly unusual way -- if
+          you bear in mind that the slider represents the screen
+          `sliding' along the directory listing, and remember that
+          you're moving the _cursor_ not the screen itself (at least
+          not directly), the way it works may make a bit more sense.
+
+   Once you've got used to this, and got used to the menu, you may
+wonder how exactly you're meant to (say) delete a file with the mouse.
+After all, while clicking on it does select it, it also views it! Well,
+there is a way, described below.
+
+   Click on the file you want to select, but hold down the mouse button.
+While holding the button, click the right button. The menu should
+appear, and you can let both buttons go. You can then select whatever
+you want to do from the menu.
+
+
+File: zgv,  Node: Mouse Funcs in the Viewer,  Next: Mouse Deficiencies,  Prev: Mouse Funcs in the File Selector,  Up: Using a Mouse
+
+Mouse Funcs in the Viewer
+=========================
+
+   In the viewer, the mouse is mainly used for moving around the
+picture.  To use it for this, you should hold down the left button and
+drag the mouse around. It's a little difficult to explain, but the
+basic idea is that you drag the screen around the picture -- experiment
+with it and you should get the idea. No mouse pointer appears while
+doing this, which is a feature not a bug. :-)
+
+   (If redisplay of the picture takes a long time, zgv can lag behind
+your mouse movements somewhat. Hopefully this shouldn't be too much of a
+problem.)
+
+   There is also a right-button menu much like the file selector's one,
+and a mouse pointer does appear when using that. Some notes on the menu:
+
+   * Only a fixed selection of possible video modes are given as
+     options on the menu, to keep things manageable. The others are
+     only available using the relevant keys. (*Note Selecting a Video
+     Mode::.)
+
+   * The `...smooth on/off' entries on the menu refer to the `vkludge'
+     and `interpolation in scaling mode' settings respectively, as
+     should hopefully be clear from the context.
+
+   * When using an 8-bit mode for the viewer, the right-button menu has
+     to allocate some colours for its display from those normally used
+     to show the picture. This means that the picture might look a
+     little odd when the menu is onscreen in 8-bit modes. (zgv does try
+     to minimise the disturbance by using the closest available
+     colours, though.)
+
+   * The viewer's menu is disabled in modes which are less than 480
+     pixels high, since that's the minimum screen height required to
+     display it.  (This explains a number of the modes omitted from the
+     menu. If (say) 320x200x8 was on there, you'd then be able to
+     switch to the mode using the mouse (of course), but once there you
+     wouldn't be able to use the mouse for anything other than moving
+     around the picture!)
+
+   Finally, while viewing an animated GIF file (*note Multiple-image
+GIF Animation::), you can right-click to exit the animation, or
+left-click to pause/unpause.
+
+
+File: zgv,  Node: Mouse Deficiencies,  Prev: Mouse Funcs in the Viewer,  Up: Using a Mouse
+
+Mouse Deficiencies
+==================
+
+   You can do most things in zgv with the mouse, but you can't do
+everything. The main problem is that there are still a few things which
+effectively ignore the mouse:
+
+   * When thumbnails are being updated, or a picture being read,
+     there's no mouse equivalent of `Esc'.
+
+   * When you're prompted for a directory name, there's no mouse
+     equivalent of `Esc' or `Enter'.
+
+
+File: zgv,  Node: Configuring zgv,  Next: Rationale,  Prev: Using a Mouse,  Up: Top
+
+Configuring zgv
+***************
+
+   Many aspects of the way zgv works can be modified by using a
+configuration file.
+
+* Menu:
+
+* Config Files::                There are two possible config files.
+* Config Variable Types::       Most settings are on/off, but not all.
+* Config Variables::            Most match the command-line long
+                                options; exceptions are covered here.
+* Config File Backward Compatibility::  Many settings were renamed in
+                                zgv 5.5, but the old names still work.
+
+
+File: zgv,  Node: Config Files,  Next: Config Variable Types,  Prev: Configuring zgv,  Up: Configuring zgv
+
+Config Files
+============
+
+   A configuration file lets you alter aspects of zgv's behaviour. zgv
+supports two possible config files -- a system-wide one,
+`/usr/local/etc/zgv.conf'; and one for each user in their home
+directory, `$HOME/.zgvrc'. Both are optional. If `$HOME/.zgvrc' exists,
+it is used _instead of_ `/usr/local/etc/zgv.conf'.
+
+   Before describing the format of config files, it may help to give an
+example file:
+
+     # Sample zgv config file
+     # Comment lines begin with `#' and are ignored,
+     #  as are blank lines.
+     
+     slideshow-randomise on
+     # do faster jpeg thumbnails
+     jpeg-index-style 1
+     # make tagged files' filenames blue
+     col-tagged 0 0 63
+
+   It is a line-based format. Each line (or rather, each line which is
+not a comment line and is not blank) assigns a value to a single
+predefined `variable'. zgv has many such variables it lets you modify
+in this way.  For example, the `slideshow-randomise' option above
+controls whether or not zgv shuffles the file order in slideshows. If
+it is given the value `on', `yes', or `1' it does; if `off', `no', or
+`0' it doesn't.
+
+   Most variables are of this yes-or-no `boolean' type. Some others like
+`jpeg-index-style' are integers (whole numbers). And there are other
+types, too.
+
+   Since the variables set in a config file have a direct effect on how
+zgv works, it can be easier to simply call them `settings'. Indeed, such
+terminology is used on occasion in this documentation.
+
+
+File: zgv,  Node: Config Variable Types,  Next: Config Variables,  Prev: Config Files,  Up: Configuring zgv
+
+Config Variable Types
+=====================
+
+   There are various types of variable:
+
+   - Boolean. These are on-or-off, yes-or-no variables. Most of zgv's
+     config file variables are of this type. Use `on', `yes', or `1' to
+     enable the setting, and `off', `no', or `0' to disable.
+
+   - Integer. These are whole numbers. The meaning of the number
+     depends on what the variable is used for.
+
+   - Real (floating-point). This can be a whole number or a decimal
+     fraction.  Only the `contrast' and `gamma' variables are of this
+     type.
+
+   - RGB. This is a special type used for specifying colours. It
+     consists of three numbers given one after the other, in the order
+     red, green, blue.  Each must be in the range 0 to 63 inclusive.
+     Together these specify the colour -- for example, `63 63 63' is
+     white, `32 32 32' a medium grey, and `63 63 0' is yellow.
+
+   - Video mode (also called just `mode'). This is also a special type,
+     used for specifying a mode. It uses the WIDTHxHEIGHTxDEPTH
+     notation mentioned elsewhere (*note What a Video Mode is::), but
+     with spaces and/or tabs as separators, so you're actually giving
+     three separate numbers. For example, `640 480 8' specifies a
+     640x480x8 (256-colour) mode.
+
+   - The `no args' type. Settings of this form aren't variables as
+     such, but commands. *Note Config Variables::, for details of these
+     (`mode-all-bad' and `mode-all-good').
+
+
+
+File: zgv,  Node: Config Variables,  Next: Config File Backward Compatibility,  Prev: Config Variable Types,  Up: Configuring zgv
+
+Config Variables
+================
+
+   Most configuration variables are directly equivalent to the long
+option names, and documented elsewhere (*note Invoking zgv::). For
+example, where you'd do `--zoom' on the command-line, you'd do `zoom
+on' in a config file. Be careful to avoid quoting arguments; if you do
+this in a config file, you'll get an error. So `--viewer-start-mode
+"800 600 8"' on the command-line becomes `viewer-start-mode 800 600 8'
+in a config file.
+
+   Now, let's go back to that "most". The options which can _only_ be
+specified on the command-line are the following, `one-off' options:
+
+   * `--help'
+
+   * `--version'
+
+   * `--reload-delay'
+
+   * `--show-tagged'
+
+   * `--show-dimensions'
+
+   * `--write-ppm'
+
+   Equally, there are some configuration variables which can only be
+modified in a config file. Here they are:
+
+`mode-all-bad'
+     (No args; this is a command, not a variable as such.) Stops zgv
+     from allowing _any_ video modes. This is usually followed by some
+     `mode-good' assignments. If it isn't, zgv simply assumes the
+     320x200x8 mode can be used.
+
+`mode-all-good'
+     (No args; this is a command, not a variable as such.) This
+     instructs zgv to assume that all modes can be used, providing your
+     video card has them. This is how zgv usually acts.
+
+`mode-bad MODESPEC'
+     Mark the specified mode as `bad', so zgv will not allow it. The
+     `modespec' should be the width, height, and depth separated by
+     spaces, e.g. `640 480 8'.
+
+`mode-good MODESPEC'
+     Mark the specified mode as `good', so zgv will allow it.
+
+`mouse-kludge'
+     (Enabled by default.) If enabled, throws away any byte which
+     appears from the mouse device in the first 50ms. This is to work
+     around a problem with my `mouse' (a Logitech trackball) which
+     sends a bogus `M' byte on initialisation for no obvious reason --
+     yet input is meant to be in packets of 3 bytes! Anyway, this fixes
+     it, and shouldn't break any other mice, but if you have
+     inexplicable mouse problems you may want to try disabling this
+     just to make _sure_ it's not the problem.
+
+
+File: zgv,  Node: Config File Backward Compatibility,  Prev: Config Variables,  Up: Configuring zgv
+
+Config File Backward Compatibility
+==================================
+
+   Many of the config variable names were changed (in an attempt to
+rationalise them to some extent, and behave a bit more like xzgv) in zgv
+5.5, when GNU-style long command-line options were added. However, being
+fully aware of the number of complaints I would get if I made a clean
+break with the past ;-), almost all the old config file variable names
+are still supported (though not on the command-line).
+
+   Rather than document the options again, here's a simple list of which
+old options map to which current ones. (*Note Invoking zgv::, for
+documentation on most. *Note Config Variables::, for a few others.)
+
+`allmodesbad'
+     = `mode-all-bad'
+
+`allmodesgood'
+     = `mode-all-good'
+
+`automodefit'
+     = `auto-mode-fit'
+
+`badmode'
+     = `mode-bad'
+
+`bc_order_rev'
+     = `reverse-bc-order'
+
+`betterpgm'
+     = `pgm-truecol'
+
+`black'
+     = `col-black'
+
+`blockcursor'
+     = `block-cursor'
+
+`cleartext'
+     = `clear-screen-on-exit'
+
+`dark'
+     = `col-dark'
+
+`fakecols'
+     = `fake-cols'
+
+`fastdither16col'
+     = `dither-16col-fast'
+
+`force16fs'
+     = `force-fs-16col'
+
+`forgetoldpos'
+     = `fs-ignore-old-pos'
+
+`fs16col'
+     = `fs-16col-colour-thumbnails'
+
+`fs_startmode'
+     = `fs-start-mode'
+
+`fsmagic'
+     = `fs-magic'
+
+`goodmode'
+     = `mode-good'
+
+`gnulitically_correct'
+     = `gnulitically-correct'
+
+`jpeg24bit'
+     = `force-viewer-8bit' (sense inverted)
+
+`jpegindexstyle'
+     = `jpeg-index-style'
+
+`jpegspeed'
+     = `jpeg-speed'
+
+`light'
+     = `col-light'
+
+`linetext'
+     = `line-text'
+
+`medium'
+     = `col-medium'
+
+`mousekludge'
+     = `mouse-kludge'
+
+`mousescale'
+     = `mouse-scale'
+
+`nodelprompt'
+     = `delete-single-prompt' (sense inverted)
+
+`onefile_progress'
+     = `avoid-single-progress' (sense inverted)
+
+`pcdres'
+     = `pcd-res'
+
+`perfectindex'
+     = `fs-perfect-cols'
+
+`revert'
+     = `revert-scale'
+
+`revert_orient'
+     = `revert-orient'
+
+`showxvpicdir'
+     = `show-xvpics-dir'
+
+`shuffleslideshow'
+     = `slideshow-randomise'
+
+`slowupdate'
+     = `fs-slow-thumbnail-update'
+
+`smallfstext'
+     = `fs-small-text'
+
+`startmode'
+     = `viewer-start-mode'
+
+`tagged'
+     = `col-tagged'
+
+`tagtimeout'
+     = `slideshow-delay'
+
+`thicktext'
+     = `fs-thick-text'
+
+`viewer16col'
+     = `viewer-16col-colour'
+
+`xzgvkeys'
+     = `xzgv-keys'
+
+`zoom_reduce_only'
+     = `zoom-reduce-only'
+
+   The old `fullsel', `hicolmodes', and `hicontrol' options are no
+longer supported (i.e. zgv's previously-default behaviour for those is
+now permanent), and have no effect other than to give a warning.
+
+
+File: zgv,  Node: Rationale,  Next: Bugs and Restrictions,  Prev: Configuring zgv,  Up: Top
+
+Rationale
+*********
+
+   Here I (RJM) attempt to explain why I did things the way I did. This
+is presented in a question-and-answer format of sorts.
+
+* Menu:
+
+* Why Yet Another Viewer?::     svgalib vs. X is not really the main issue.
+* Why a Texinfo Manual?::       Large man pages are hard to deal with.
+* Why One-space Sentence Ends?::  Not everyone uses two-space ones.
+
+
+File: zgv,  Node: Why Yet Another Viewer?,  Next: Why a Texinfo Manual?,  Prev: Rationale,  Up: Rationale
+
+Why Yet Another Viewer?
+=======================
+
+   Often the simple answer to this is "Actually, zgv was here first --
+ask the other guy." This is true of any viewer written since 1993,
+anyway.
+
+   Most of the time though, this is phrased as "Why not just use xv?".
+That's a fair point; xv is quite a good program, and it has some nice
+features. But briefly, here are my problems with it, the areas where I
+personally feel zgv is (at least arguably) better than xv:
+
+   * xv is shareware. Personally, I don't think selling picture viewers
+     is all that sensible when things like the Gimp are free.
+
+   * I find the interface really, really weird. In particular, the
+     visual schnauzer feels rather `bolted on'.
+
+   * xv tries to be a Swiss-Army knife of graphics, rather than
+     concentrating on what it really is, a picture viewer. zgv has some
+     problems in this area too, but it's much closer to the `do one
+     thing well' software tools philosophy (*note Opening the software
+     toolbox: (textutils)Opening the software toolbox.).
+
+
+   I'm not saying zgv is great and xv is terrible, and it's clear that
+many people prefer using (or have to use) an X picture viewer -- an area
+where xv has no obvious zgv-like competition (er, not any more; see
+below). But I don't think xv is even remotely close to being the
+category-killer for picture viewing that some people seem to think it
+is.
+
+   (Update: Since I originally wrote the "no obvious zgv-like
+competition" line above, I've written xzgv, which is a GTK+/Imlib-based
+port/rewrite of zgv for X. What can I say, I liked it so much I wrote
+the code. :^)
+
+   `Electric Eyes' is another alternative to xv, but personally I find
+that much too xv-like (hence my work on xzgv).)
+
+
+File: zgv,  Node: Why a Texinfo Manual?,  Next: Why One-space Sentence Ends?,  Prev: Why Yet Another Viewer?,  Up: Rationale
+
+Why a Texinfo Manual?
+=====================
+
+   For years, I maintained a conventional `man page' for zgv. But over
+time, I realised just how impossibly confusing the zgv man page had
+become.
+
+   So I wanted to rewrite zgv's documentation in a more sensible way, in
+some other format than a man page. I wanted an established,
+well-supported format with structure and cross-referencing. I felt this
+made it a choice between HTML and texinfo. HTML seemed to me to be a
+moving target like no other, and not as well supported on text-only
+terminals as Info (and thus texinfo). When I noticed that a converter
+existed to convert texinfo to HTML in any case, the case was closed.
+
+   Don't get me wrong -- I like man pages. And even with the excellent
+Texinfo documentation and Emacs' very helpful Texinfo mode, writing
+texinfo is hardly easy. (Without Texinfo mode's node- and menu-update
+commands, I personally would find it near-impossible!) But big man pages
+just aren't that good for reference, and this is made worse by the
+relative lack of structure.
+
+
+File: zgv,  Node: Why One-space Sentence Ends?,  Prev: Why a Texinfo Manual?,  Up: Rationale
+
+Why One-space Sentence Ends?
+============================
+
+   The conventional way to write texinfo is to follow each sentence with
+two spaces after the dot (or whatever ends the sentence). Many people
+normally write this way in a non-texinfo context too. But a sizeable
+proportion of people normally write text with only one space after the
+dot -- and I'm one of them.
+
+   The Texinfo documentation gives the impression that two-space _must_
+be used; it says "it is important to put two spaces at the end of
+sentences in Texinfo documents." But the only circumstance in which
+spacing from the texinfo file is preserved at all (in any sense other
+than `there is a space here') is when the texinfo is converted to Info
+format. So, in fact, the decision to use two-space depends on how the
+author wants Info output to appear -- this is a subjective decision
+which should be _entirely down to the preference of the author_,
+despite the Texinfo documentation's attempt to make two-space sound like
+an objective you-must-do-this kind of thing.
+
+   You might wonder what the problem with using one-space is, then.
+Well, `makeinfo' has to reformat paragraphs, and whenever it needs to
+insert space at (what appears to it to be) the end of a sentence, it
+inserts two spaces. This behaviour cannot be altered, unlike in Emacs
+(`sentence-end-double-space'; *note Fill Commands: (emacs)Fill
+Commands.) and GNU fmt (`-u'; *note fmt invocation: (textutils)fmt
+invocation.). Also, attempting to `fix' the output Info with sed
+doesn't work properly because the `tags' used to find nodes quickly are
+then incorrect. These could of course also be fixed, but this would
+involve a lot more work than a simple sed invocation.
+
+   So realistically, anyone who writes texinfo with one-space has to
+put up with the occasional two-space sentence end being inserted into
+their text -- worse still, the current `makeinfo' formatting algorithm
+seems to insert two spaces even after abbreviations (such as `e.g.' and
+`etc.'), which breaks even two-space texinfo. (This is particularly
+ironic, by the way, since two-space partisans' main argument in favour
+of the practice is the way it makes it possible to tell the difference
+between abbreviations and the end of a sentence.)
+
+   One last point may be worth noting; I am not the first person to
+write texinfo files using one-space. At the time of writing, it is used
+in the texinfo documentation for BFD, gdbm, GTK, IPC, ld.so, and viper,
+and I expect there are instances I'm not aware of.
+
+
+File: zgv,  Node: Bugs and Restrictions,  Next: Future Changes,  Prev: Rationale,  Up: Top
+
+Bugs and Restrictions
+*********************
+
+   All (non-trivial) programs have bugs. Anyone who denies this...
+
+   - clearly hasn't written too many programs.
+
+   - is wrong. ;-)
+
+   It follows that zgv, like everything else, always has some bugs.
+Usually these are not serious, or I'd have fixed them before releasing
+zgv.  Either way, bugs and other problems with zgv are noted here.
+
+* Menu:
+
+* Known Bugs::                  Known bugs in zgv which have yet to be
+                                  fixed.
+* Suboptimal Features::         Aspects of zgv which aren't exactly
+                                  ideal, but are at least intentional.
+* Restrictions::                Limits and similar shortcomings.
+* Reporting Bugs::              What to do if you spot a problem.
+* Reporting Documentation Bugs::  Documentation errors are also worth
+                                  reporting.
+
+
+File: zgv,  Node: Known Bugs,  Next: Suboptimal Features,  Prev: Bugs and Restrictions,  Up: Bugs and Restrictions
+
+Known Bugs
+==========
+
+   - If an XPM file using a chars-per-pixel setting of two or less uses
+     an undefined colour code in the image, this is not reported, and
+     such pixels are shown as the background colour. (But then, reading
+     XPMs in the three-chars-or-more manner, which _does_ detect
+     undefined colours, would make it (at best) half as fast.)
+
+   - If you have both slideshow looping and shuffling enabled,
+     sometimes you can get the same picture twice in a row. This is due
+     to the last picture chosen for one loop round the pictures being
+     the same as the first of the next loop.
+
+   - If a GIF file is corrupted in such a way that the decompressed
+     image has a larger number of pixels in it, the extra pixels will
+     be ignored and no error or warning will be generated.
+
+   - Renaming a file renames the thumbnail too, but currently it
+     ignores any `~/.xvpics/_foo_bar/baz' thumbnail.
+
+   - If you use the old line-based text, or use the `fs-thick-text'
+     option, some of the text in the right-button menus slightly
+     overruns the `buttons' they're on, which is harmless but doesn't
+     look very nice.
+
+   - If you look up `joe code' in a dictionary, it says "see zgv". :-)
+
+
+
+File: zgv,  Node: Suboptimal Features,  Next: Restrictions,  Prev: Known Bugs,  Up: Bugs and Restrictions
+
+Suboptimal Features
+===================
+
+   - You don't currently get a progress report when TIFFs are being
+     read.
+
+   - Some of the things the change-picture viewer keys do when viewing a
+     slideshow are pretty stupid (`^P' and `^N' suck, for example).
+
+   - For multiple-image GIFs, the progress indicator only indicates how
+     much of the current image has been read, rather than how much of
+     the file as a whole has been. There's some precedent for this
+     approach (e.g. the Gimp), but it's not terribly elegant.
+
+   - Corrupt JPEG or PNG data warnings are not reported by zgv.
+
+   - In the 640x480x4 mode in the viewer, when scaling a picture where
+     the scaled picture remains narrower than the screen's width, the
+     background to the left and right of the picture is filled in with
+     the picture's background colour (though you'll only be able to see
+     this if the picture's background colour isn't black). This is
+     harmless but looks strange.
+
+   - The help pages only list a few of the keys.
+
+
+
+File: zgv,  Node: Restrictions,  Next: Reporting Bugs,  Prev: Suboptimal Features,  Up: Bugs and Restrictions
+
+Restrictions
+============
+
+   - Most GIF89a extension blocks are ignored. (The exception is the
+     Graphics Control Block, used for delay times and transparency in
+     animated GIFs.)
+
+   - XPM files with more than 256 colours are shown with a black
+     background (not the grey background usually used for XPMs), and
+     those with exactly 256 colours are shown with the background being
+     the first colour specified in the file.
+
+
+
+File: zgv,  Node: Reporting Bugs,  Next: Reporting Documentation Bugs,  Prev: Restrictions,  Up: Bugs and Restrictions
+
+Reporting Bugs
+==============
+
+   If you find zgv does something wrong, which you suspect might be a
+fault of some sort (a bug) in the program, it is best to report it as I
+may not be aware of the problem. (But first, check it is not a `known
+bug'.  *Note Known Bugs::. It is not usually helpful to report a bug I
+already know about.)
+
+   zgv uses various libraries; if you find a problem, it _could_ be a
+bug in one of them. This is not an attempt at buck-passing :-), rather
+concern that bugs should be reported to the people best able to fix
+them.
+
+   Most bugs will turn out to be in zgv itself, but in the past, _some_
+display bugs have turned out to be bugs in svgalib. If it is a display
+bug, try zgv on other machines if you can, and try other svgalib
+programs which use the same video mode(s). (Svgalib's example program
+`vgatest' can be useful for this; see its man page for details.)  This
+should help you determine whether it is an svgalib bug or not. (If you
+really can't figure out whether it's a bug in zgv or in svgalib, it may
+be best to report it as a possible bug in both.)
+
+   It is important to include as much detail in a bug report as you can.
+Here are some details you should include:
+
+   * The version of zgv you are running (`zgv --version' reports this).
+
+   * The version of svgalib (try `ls /usr/lib/libvga.*' for this).
+
+   * What your machine's (S)VGA card is described as, and (generally
+     more useful) what svgalib reports it to be. zgv suppresses this
+     report, but most other svgalib programs (`vgatest' which comes
+     with svgalib being a simple example) will report it when they
+     start up.
+
+   * A description of the bug -- what effects it has, the circumstances
+     it occurs in, and so on. Does it only happen for certain types of
+     file?  Only when in 8-bit modes? Only when `avoid-single-progress'
+     is enabled? Even `irrelevant' details can sometimes be useful.
+
+   * Finally, if you are a programmer and believe you have managed to
+     fix the bug yourself, patches are gratefully accepted. :-) You
+     should generate the patch using `diff -c' or (preferably) `diff
+     -u'.
+
+
+   So, if you think you've found a bug in zgv, report it by emailing me
+at <rus@svgalib.org>.
+
+
+File: zgv,  Node: Reporting Documentation Bugs,  Prev: Reporting Bugs,  Up: Bugs and Restrictions
+
+Reporting Documentation Bugs
+============================
+
+   Bugs in the documentation can sometimes cause as much trouble as
+bugs in the program; if you notice a problem in the documentation, it's
+a good idea to report it.
+
+   For reports of documentation bugs, you should include these details:
+
+   * The version of zgv the documentation is for.
+
+   * If it is a problem in one specific section of the documentation,
+     specify which part it is (by this I mean the heading it comes
+     under; texinfophiles should read this as `the node name' :-)).
+
+   * The format of the documentation you saw the problem in (e.g. info,
+     man page, HTML).
+
+   * A description of the problem.
+
+
+   *Note Reporting Bugs::, for details of where to send the bug report.
+
+
+File: zgv,  Node: Future Changes,  Next: Keyboard Commands Index,  Prev: Bugs and Restrictions,  Up: Top
+
+Future Changes
+**************
+
+   I have given up on the apparently naive notion that zgv will ever be
+`finished'. Every time I think that, some other idea for a new feature
+pops into my head (or is forced there by someone else).
+
+   If you want to suggest a feature you'd like in zgv, or a change to an
+existing feature, contact me at <rus@svgalib.org>.
+
+   Here is a list of features and/or changes which may hopefully be
+implemented in future, in approximate priority order. (This is updated
+less often than zgv's `TODO' file, so you should check that too if
+you're interested in this stuff.)
+
+   * Fix the progress indicator problem with multiple-image GIFs.
+
+   * Mouse support isn't really finished -- the goto-dir dialog should
+     have ok/cancel buttons, and currently you can't interrupt file
+     loading and thumbnail updates. The latter two would need a custom
+     mouse event handler temporarily installed, so that we could avoid
+     losing any clicks.  Actually it might not be too bad an idea to
+     always use a custom handler; that would be easier. After all, on a
+     slow machine you can already lose clicks during a file-selector
+     screen redraw!
+
+   * File move should probably delete any existing thumbnail for the
+     file if the file itself is moved successfully.
+
+
+
+File: zgv,  Node: Keyboard Commands Index,  Next: Configuration Variables Index,  Prev: Future Changes,  Up: Top
+
+Keyboard Commands Index
+***********************
+
+* Menu:
+
+* ! (Viewer):                            Scaling.
+* ' (Selector):                          Moving Around The List.
+* * (Viewer):                            Brightness and Contrast.
+* , (Viewer):                            Brightness and Contrast.
+* - (Selector in xzgv-keys mode):        xzgv Compatibility.
+* - (Viewer):                            Scrolling.
+* . (Viewer):                            Brightness and Contrast.
+* / (Viewer):                            Selecting a Video Mode.
+* 0 (Viewer):                            Selecting a Video Mode.
+* 1 (Viewer):                            Gamma Adjustment.
+* 2 (Viewer):                            Gamma Adjustment.
+* 3 (Viewer):                            Gamma Adjustment.
+* 4 (Viewer):                            Gamma Adjustment.
+* 5 (Viewer):                            Selecting a Video Mode.
+* 6 (Viewer):                            Selecting a Video Mode.
+* 7 (Viewer):                            Selecting a Video Mode.
+* 8 (Viewer):                            Selecting a Video Mode.
+* ; (Selector):                          Other File Sel Commands.
+* ; (Viewer):                            Brightness and Contrast.
+* < (Viewer):                            Brightness and Contrast.
+* = (Selector in xzgv-keys mode):        xzgv Compatibility.
+* = (Viewer):                            Scrolling.
+* > (Viewer):                            Brightness and Contrast.
+* ?:                                     Online help.
+* [ (Viewer):                            Selecting a Video Mode.
+* ] (Viewer):                            Selecting a Video Mode.
+* ^ (Viewer):                            Selecting a Video Mode.
+* ^A (Dir dialog):                       Dialog Boxes.
+* ^A (Selector):                         Moving Around The List.
+* ^A (Viewer):                           Scrolling.
+* ^B (Dir dialog):                       Dialog Boxes.
+* ^B (Selector):                         Moving Around The List.
+* ^C:                                    Exiting zgv.
+* ^D (Dir dialog):                       Dialog Boxes.
+* ^E (Dir dialog):                       Dialog Boxes.
+* ^E (Selector):                         Moving Around The List.
+* ^E (Viewer):                           Scrolling.
+* ^F (Dir dialog):                       Dialog Boxes.
+* ^F (Selector):                         Moving Around The List.
+* ^H (Dir dialog):                       Dialog Boxes.
+* ^I (Dir dialog):                       Dialog Boxes.
+* ^L (Selector):                         Other File Sel Commands.
+* ^N (Selector):                         Moving Around The List.
+* ^N (Viewer):                           Changing Picture.
+* ^P (Selector):                         Moving Around The List.
+* ^P (Viewer):                           Changing Picture.
+* ^Q (Viewer):                           Pausing Slideshows.
+* ^R (Selector):                         Other File Sel Commands.
+* ^S (Viewer):                           Pausing Slideshows.
+* ^U (Selector):                         Moving Around The List.
+* ^U (Viewer):                           Scrolling.
+* ^V (Selector):                         Moving Around The List.
+* ^V (Viewer):                           Scrolling.
+* a (Selector):                          Moving Around The List.
+* a (Viewer):                            Scrolling.
+* A (Viewer):                            Scrolling.
+* Alt - (Selector in xzgv-keys mode):    xzgv Compatibility.
+* Alt = (Selector in xzgv-keys mode):    xzgv Compatibility.
+* Alt-, (Viewer):                        Gamma Adjustment.
+* Alt-. (Viewer):                        Gamma Adjustment.
+* Alt-c (Viewer):                        The Viewer 640x480x4 Mode.
+* Alt-d (Selector):                      Changing the Sorting Order.
+* Alt-e (Selector):                      Changing the Sorting Order.
+* Alt-f (Selector):                      Other File Sel Commands.
+* Alt-m (Selector):                      File Selector Toggles.
+* Alt-n (Selector):                      Changing the Sorting Order.
+* Alt-n (Viewer):                        Mirror and Rotate.
+* Alt-o (Viewer):                        Mirror and Rotate.
+* Alt-r (Selector):                      Renaming a File.
+* Alt-r (Viewer):                        Zoom Mode.
+* Alt-s (Selector):                      Changing the Sorting Order.
+* Alt-s (Viewer):                        Mirror and Rotate.
+* Alt-t (Selector):                      Changing the Sorting Order.
+* Alt-u (Selector):                      Updating Thumbnails.
+* b (Viewer Animation in xzgv-keys mode): xzgv Compatibility.
+* b (Viewer in xzgv-keys mode):          xzgv Compatibility.
+* B (Viewer):                            Brightness and Contrast.
+* Backspace (Dir dialog):                Dialog Boxes.
+* Backspace (Viewer Animation):          Multiple-image GIF Animation.
+* Backspace (Viewer):                    Changing Picture.
+* c (Selector):                          File Selector Toggles.
+* C (Selector):                          Copying/Moving/Deleting Files.
+* c (Viewer):                            The Viewer 640x480x4 Mode.
+* colon (Selector):                      Other File Sel Commands.
+* colon (Viewer):                        File Details.
+* Ctrl-d (Selector in xzgv-keys mode):   xzgv Compatibility.
+* Ctrl-n (Selector in xzgv-keys mode):   xzgv Compatibility.
+* Ctrl-q (Selector in xzgv-keys mode):   xzgv Compatibility.
+* Ctrl-Space (Viewer Animation in xzgv-keys mode): xzgv Compatibility.
+* Ctrl-Space (Viewer in xzgv-keys mode): xzgv Compatibility.
+* Ctrl-w (Viewer in xzgv-keys mode):     xzgv Compatibility.
+* Cursor Down (Selector):                Moving Around The List.
+* Cursor Down (Viewer):                  Scrolling.
+* Cursor Left (Dir dialog):              Dialog Boxes.
+* Cursor Left (Selector):                Moving Around The List.
+* Cursor Left (Viewer):                  Scrolling.
+* Cursor Right (Dir dialog):             Dialog Boxes.
+* Cursor Right (Selector):               Moving Around The List.
+* Cursor Right (Viewer):                 Scrolling.
+* Cursor Up (Selector):                  Moving Around The List.
+* Cursor Up (Viewer):                    Scrolling.
+* D (Selector):                          Copying/Moving/Deleting Files.
+* d (Selector):                          Updating Thumbnails.
+* D (Viewer):                            Scaling.
+* d (Viewer):                            Scaling.
+* Delete (Dir dialog):                   Dialog Boxes.
+* Delete (Selector):                     Other File Sel Commands.
+* e (Viewer):                            Multiple-image GIF Animation.
+* End (Dir dialog):                      Dialog Boxes.
+* End (Selector):                        Moving Around The List.
+* End (Viewer):                          Scrolling.
+* Enter (Selector):                      Viewing a File.
+* Enter (Viewer Animation):              Multiple-image GIF Animation.
+* Enter (Viewer):                        Changing Picture.
+* Esc (Selector):                        Exiting zgv.
+* Esc (Viewer Animation):                Multiple-image GIF Animation.
+* Esc (Viewer):                          Exiting the Viewer.
+* F (Viewer):                            Drawbacks of 15/16-bit Modes.
+* f (Viewer):                            Mirror and Rotate.
+* F1 (Selector):                         Showing More Files.
+* F1 (Viewer):                           Selecting a Video Mode.
+* F10 (Viewer):                          Selecting a Video Mode.
+* F11 (Viewer):                          Selecting a Video Mode.
+* F12 (Viewer):                          Selecting a Video Mode.
+* F2 (Selector):                         Showing More Files.
+* F2 (Viewer):                           Selecting a Video Mode.
+* F3 (Selector):                         Showing More Files.
+* F3 (Viewer):                           Selecting a Video Mode.
+* F4 (Selector):                         Showing More Files.
+* F4 (Viewer):                           Selecting a Video Mode.
+* F5 (Viewer):                           Selecting a Video Mode.
+* F6 (Viewer):                           Selecting a Video Mode.
+* F7 (Viewer):                           Selecting a Video Mode.
+* F8 (Viewer):                           Selecting a Video Mode.
+* F9 (Viewer):                           Selecting a Video Mode.
+* G (Selector):                          Changing Directory.
+* g (Selector):                          Moving Around The List.
+* G (Viewer):                            Increased Greyscales.
+* h (Selector):                          Moving Around The List.
+* h (Viewer):                            Scrolling.
+* H (Viewer):                            Scrolling.
+* Home (Dir dialog):                     Dialog Boxes.
+* Home (Selector):                       Moving Around The List.
+* Home (Viewer):                         Scrolling.
+* i (Viewer):                            Scaling.
+* Insert (Dir dialog):                   Dialog Boxes.
+* j (Selector):                          Moving Around The List.
+* j (Viewer):                            Scrolling.
+* J (Viewer):                            Scrolling.
+* K (Selector):                          Other File Sel Commands.
+* k (Selector):                          Moving Around The List.
+* k (Viewer):                            Scrolling.
+* K (Viewer):                            Scrolling.
+* L (Selector):                          File Selector Toggles.
+* l (Selector):                          Moving Around The List.
+* l (Viewer):                            Scrolling.
+* L (Viewer):                            Scrolling.
+* M (Selector):                          Copying/Moving/Deleting Files.
+* m (Viewer):                            Mirror and Rotate.
+* N (Selector):                          Tag and Untag Commands.
+* n (Selector):                          Tag and Untag Commands.
+* n (Viewer Animation):                  Multiple-image GIF Animation.
+* N (Viewer in xzgv-keys mode):          xzgv Compatibility.
+* n (Viewer):                            Zoom Mode.
+* o (Selector):                          Moving Around The List.
+* o (Viewer):                            Scrolling.
+* O (Viewer):                            Scrolling.
+* p (Selector):                          Moving Around The List.
+* p (Viewer Animation):                  Multiple-image GIF Animation.
+* p (Viewer):                            Scrolling.
+* P (Viewer):                            Scrolling.
+* Page Down (Selector):                  Moving Around The List.
+* Page Down (Viewer):                    Scrolling.
+* Page Up (Selector):                    Moving Around The List.
+* Page Up (Viewer):                      Scrolling.
+* q (Selector in xzgv-keys mode):        xzgv Compatibility.
+* q (Selector):                          Moving Around The List.
+* q (Viewer):                            Scrolling.
+* Q (Viewer):                            Scrolling.
+* R (Selector):                          Renaming a File.
+* R (Viewer):                            Mirror and Rotate.
+* r (Viewer):                            Mirror and Rotate.
+* S (Selector):                          File Selector Toggles.
+* s (Selector):                          File Selector Toggles.
+* S (Viewer):                            Scaling.
+* s (Viewer):                            Scaling.
+* SF1 (Viewer):                          Selecting a Video Mode.
+* SF2 (Viewer):                          Selecting a Video Mode.
+* SF3 (Viewer):                          Selecting a Video Mode.
+* SF4 (Viewer):                          Selecting a Video Mode.
+* SF5 (Viewer):                          Selecting a Video Mode.
+* SF6 (Viewer):                          Selecting a Video Mode.
+* SF7 (Viewer):                          Selecting a Video Mode.
+* SF8 (Viewer):                          Selecting a Video Mode.
+* Space (Selector in xzgv-keys mode):    xzgv Compatibility.
+* Space (Selector):                      Tag and Untag Commands.
+* Space (Viewer Animation in xzgv-keys mode): xzgv Compatibility.
+* Space (Viewer Animation):              Multiple-image GIF Animation.
+* Space (Viewer in xzgv-keys mode):      xzgv Compatibility.
+* Space (Viewer):                        Changing Picture.
+* T (Selector):                          Tag and Untag Commands.
+* t (Selector):                          Tag and Untag Commands.
+* Tab (Selector):                        Slideshows.
+* Tab-F1 (Viewer):                       Selecting a Video Mode.
+* Tab-F2 (Viewer):                       Selecting a Video Mode.
+* Tab-F3 (Viewer):                       Selecting a Video Mode.
+* Tab-F4 (Viewer):                       Selecting a Video Mode.
+* Tab-F5 (Viewer):                       Selecting a Video Mode.
+* Tab-F6 (Viewer):                       Selecting a Video Mode.
+* Tab-F7 (Viewer):                       Selecting a Video Mode.
+* Tab-F8 (Viewer):                       Selecting a Video Mode.
+* Tab-F9 (Viewer):                       Selecting a Video Mode.
+* u (Selector):                          Updating Thumbnails.
+* v (Selector):                          File Selector Toggles.
+* v (Viewer):                            Zoom Mode.
+* x (Selector):                          Exiting zgv.
+* x (Viewer Animation):                  Multiple-image GIF Animation.
+* x (Viewer):                            Exiting the Viewer.
+* Z (Viewer):                            Auto-mode-fit.
+* z (Viewer):                            Zoom Mode.
+

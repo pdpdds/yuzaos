@@ -1,0 +1,1364 @@
+This is zgv, produced by makeinfo version 4.1 from zgv.texi.
+
+INFO-DIR-SECTION Graphics Utilities
+START-INFO-DIR-ENTRY
+* zgv: (zgv).   A picture viewer for Linux/FreeBSD systems with VGA/SVGA.
+END-INFO-DIR-ENTRY
+
+   The zgv manual, for version 5.9, last updated 28th January 2005.
+
+   Copyright 1998-2004 Russell Marks.
+
+   Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+   Permission is granted to copy and distribute modified versions of
+this manual under the conditions for verbatim copying, provided that the
+entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+
+   Permission is granted to copy and distribute translations of this
+manual into another language, under the above conditions for modified
+versions, except that this permission notice may be stated in a
+translation approved by the Free Software Foundation.
+
+
+File: zgv,  Node: Exiting the Viewer,  Next: Big Pictures,  Prev: The Viewer,  Up: The Viewer
+
+Exiting the Viewer
+==================
+
+   Exiting the viewer is simple:
+
+`Esc'
+`x'
+     Exit the viewer.
+
+     If you got to the viewer from the file selector, you're returned
+     there; if you bypassed the file selector (by running zgv with a
+     file (or files) to view specified on the command-line -- *note
+     Invoking zgv::) then exiting the viewer also exits zgv.
+
+
+File: zgv,  Node: Big Pictures,  Next: Scaling,  Prev: Exiting the Viewer,  Up: The Viewer
+
+Big Pictures
+============
+
+   A picture may well be too large to fit entirely on the screen. There
+are two general ways to see the whole of the picture, and in addition to
+those, you may be able to fit more on by choosing a different video mode
+(*note Video Modes::), either manually or by using auto-mode-fit.
+
+   (For multi-resolution Photo-CD files, there is yet another
+alternative approach (*note Supported File Formats::).)
+
+* Menu:
+
+* Scrolling::                   Moving around the picture.
+* Zoom Mode::                   Fitting the picture to the screen.
+* Auto-mode-fit::               Automated video mode switching.
+
+
+File: zgv,  Node: Scrolling,  Next: Zoom Mode,  Prev: Big Pictures,  Up: Big Pictures
+
+Scrolling
+---------
+
+   Scrolling is the default approach to handling big pictures in zgv.
+When the viewer is started up, the top-left of the picture is shown --
+you can use the cursor keys (and many others) to move around the rest
+of the picture.
+
+`Cursor Up'
+`K'
+`Q'
+     Move up 100 pixels. `k' and `q' move up 10 pixels.
+
+`Cursor Down'
+`J'
+`A'
+     Move down 100 pixels. `j' and `a' move down 10 pixels.
+
+`Cursor Left'
+`H'
+`O'
+     Move left 100 pixels. `h' and `o' move left 10 pixels.
+
+`Cursor Right'
+`L'
+`P'
+     Move right 100 pixels. `l' and `p' move right 10 pixels.
+
+`Page Up'
+`^U'
+     Move up (nearly) a screenful. (It moves 90% of the screen height.)
+
+`Page Down'
+`^V'
+     Move down (nearly) a screenful.
+
+`-'
+     Move left (nearly) a screenful. (It moves 90% of the screen width.)
+
+`='
+     Move right (nearly) a screenful.
+
+`Home'
+`^A'
+     Move to the top-left of the picture.
+
+`End'
+`^E'
+     Move to the bottom-right of the picture.
+
+
+File: zgv,  Node: Zoom Mode,  Next: Auto-mode-fit,  Prev: Scrolling,  Up: Big Pictures
+
+Zoom Mode
+---------
+
+   An alternative way of viewing the whole picture, one which lets you
+see the picture onscreen all at once no matter how big (or small) it
+is, is zoom mode.
+
+   Zoom mode's name derives from the idea of `zooming' a small file up
+to fit the screen. But in reality, it is more often used to reduce a
+large file to fit the screen.
+
+   Zoom mode is not the default, and has to be enabled. Once enabled, it
+stays on until you turn it off again.
+
+   By default, the way zoom mode reduces a file to fit the screen is
+(relatively) quick but harsh, and may make the picture look ugly.
+Enabling `vkludge' smoothes the picture, giving a better and more
+accurate result, but takes longer. It too is not the default, but stays
+on until turned off again.
+
+`z'
+     Toggle zoom mode.
+
+`Alt-r'
+     When in zoom mode, only _reduce_ pictures to fit. This can be
+     useful when going through a lot of unpredictably-sized pictures,
+     as it means that you can see all of a big picture easily without
+     also meaning that tiny little icons assume a scale of Biblical
+     proportions. :-)
+
+`v'
+     Toggle `vkludge', which enables appropriate smoothing when zoom
+     mode is reducing a picture to fit the screen. It also enables
+     similar smoothing for non-zoomed pictures in 320x400x8 and
+     360x480x8 modes.  *Note Virtual Modes::.
+
+`n'
+     Resume `normal' display -- disables zoom mode (and scaling mode).
+
+
+File: zgv,  Node: Auto-mode-fit,  Prev: Zoom Mode,  Up: Big Pictures
+
+Auto-mode-fit
+-------------
+
+   If it seems strange to you to use scrolling or zoom mode to see the
+whole picture when you could just use a different video mode (to change
+the size of the pixels displayed onscreen), you may find auto-mode-fit
+useful.
+
+   If enabled, and when a picture is loaded, the current mode is
+automatically switched to the `smallest' mode which is both wider and
+taller than the picture is (or of equal width/height). In other words,
+the (theoretically) most appropriate mode. If no mode can fit the
+picture onscreen, the `largest' mode is chosen.
+
+   Auto-mode-fit is not the default, so you have to enable it if you
+want to use it.
+
+`Z'
+     Toggle auto-mode-fit mode. Usually this only takes effect when a
+     picture is loaded (so that manual mode switching still works), but
+     when you enable it zgv does a one-off auto-mode-fit on the current
+     picture. (Note also that disabling it leaves you in the current
+     mode, so that has no obvious effect; for this reason, the picture
+     is redrawn (as a visual cue that you haven't just been ignored
+     :-)).)
+
+   I should point out that all the mode-switching can be a bit hard on
+your monitor, so even if you really like this option you might not want
+to enable it all the time (e.g. in a config file), but instead only
+turn it on when you `need' it. Still, it's up to you.
+
+   Certain modes are excluded from those chosen by auto-mode-fit. In
+particular, no 320x200 mode is ever chosen, nor is 320x400x8. These
+exceptions are made due to the unusual aspect ratio. 640x480x4 is
+excluded due to the slightly odd way it works, which makes it ill-suited
+to automatic selection. 360x480x8 _is_ considered, despite the aspect
+ratio, if no 640x480x8 mode exists.
+
+
+File: zgv,  Node: Scaling,  Next: Mirror and Rotate,  Prev: Big Pictures,  Up: The Viewer
+
+Scaling
+=======
+
+   You can scale a picture -- this makes it appear larger onscreen. zgv
+acts exactly as if the scaled-up picture were the real picture; for
+example, the cursors scroll around in steps of 100 scaled-up pixels,
+even if this means moving a fraction of a pixel in the original picture.
+
+   The main limitation of scaling is that you can only scale up by
+integer values, so you can only make each pixel in the image twice as
+wide/high, or three times as wide/high, or four times, and so on.
+
+   (It may seem odd saying e.g. `twice as wide/high' rather than `twice
+the size', but technically `twice the size' would be referring to
+scaling up the width (and height) by about 1.414...)
+
+   Normally, zgv does no scaling, which could be considered a ratio of
+1:1.  Scaling up increases that ratio. How it is increased depends on
+which key you use:
+
+`s'
+     Increase the ratio by adding one -- this leads to ratios of 2:1,
+     3:1, 4:1...
+
+`d'
+     Increase the ratio by doubling it -- leads to ratios of 2:1, 4:1,
+     8:1...
+
+   Usually `d' is more useful.
+
+   There are similar commands to decrease the ratio (when it reaches 1:1
+scaling is disabled):
+
+`S'
+     Decrease the ratio by subtracting one.
+
+`D'
+     Decrease the ratio by halving it.
+
+   The scaling ratio is never decreased below 1:1. It is also never
+increased beyond 512:1, where zgv stops so that pixels may be conserved
+for future generations. :-)
+
+   You can undo the effect of scaling at any time by using `n' (which
+also disables zoom mode).
+
+   Normally, scaling works by simply making the pixels into larger and
+larger squares (in effect), which remain the same colour. However, if
+you are using a 15/16/24/32-bit mode (*note Video Modes::), you can
+enable a feature called `interpolation' which smoothly graduates the
+colour change between the top-left corners of each pixel. This is
+_very_ slow, but looks nice.
+
+`i'
+     Toggle interpolation in scaling mode.
+
+`!'
+     Toggle off-by-one interpolation (disabled by default). Using this
+     off-by-one method gives incorrect results, but this can
+     occasionally be useful at ratios of 2:1 and 3:1 for relatively
+     low-quality JPEGs.
+
+   (If you like the appearance of scaling with interpolation, you may
+also be interested in a program I wrote called `pnminterp', which can
+scale up a PGM or PPM file while applying this effect.)
+
+
+File: zgv,  Node: Mirror and Rotate,  Next: Brightness and Contrast,  Prev: Scaling,  Up: The Viewer
+
+Mirror and Rotate
+=================
+
+   Sometimes when viewing a picture you will want to flip it
+horizontally or vertically, or rotate it:
+
+`m'
+     `Mirror' the picture (flip it horizontally).
+
+`f'
+     `Flip' the picture (flip it vertically).
+
+`r'
+     Rotate the picture 90 degrees clockwise.
+
+`R'
+     Rotate the picture 90 degrees anti-clockwise. (This is a little
+     slower as it works by effectively doing `r' then `f' then `m'.)
+
+`Alt-n'
+     Restore the picture orientation to normal. This undoes the effect
+     of any mirrors, flips, and/or rotations.
+
+   zgv normally reverts the picture orientation (the way the picture has
+been transformed by mirror/flip/rotate) back to normal when you view a
+new picture. However, there are various ways you can retain the
+orientation between pictures, so that the new picture is mirrored,
+flipped, and/or rotated in the same way. Here are two of the ways:
+
+`Alt-o'
+     Re-use the previous picture's orientation for this picture.
+
+`Alt-s'
+     Save the current picture orientation, making all pictures viewed
+     until you press `Esc' use it. (The orientation reverts to normal
+     after that, though.)
+
+   Finally, you can choose to have the orientation preserved the whole
+time. To do this, put `revert-orient off' in a config file (*note
+Configuring zgv::).
+
+
+File: zgv,  Node: Brightness and Contrast,  Next: Gamma Adjustment,  Prev: Mirror and Rotate,  Up: The Viewer
+
+Brightness and Contrast
+=======================
+
+   zgv provides support for changing brightness and contrast in all
+modes, though it does slow things down a little in 15/16/24/32-bit modes
+(*note Video Modes::).
+
+`,'
+     Decrease contrast.
+
+`.'
+     Increase contrast.
+
+`<'
+     Decrease brightness.
+
+`>'
+     Increase brightness.
+
+`;'
+     Reset contrast and brightness to normal. (`*' is also supported,
+     for hysterical raisins.)
+
+   Any contrast change is applied before any brightness change by
+default.  However, you can reverse the order easily enough:
+
+`B'
+     Reverse the order in which brightness and contrast are applied.
+
+   The order they're applied in does make a difference -- assuming
+you've modified both brightness and contrast, of course. :-) The normal
+order simply means you have a increased-contrast image which you change
+the brightness of. Obviously then, the reverse order reverses this, but
+it has the additional effect of changing the point around which
+contrast is applied.
+
+
+File: zgv,  Node: Gamma Adjustment,  Next: Increased Greyscales,  Prev: Brightness and Contrast,  Up: The Viewer
+
+Gamma Adjustment
+================
+
+   Ah yes, gamma. What fun. The basic problem is this -- differing
+displays have differing intensity response curves. "This has made a lot
+of people very angry and been widely regarded as a bad move." :-)
+
+   It means that you need some way of adjusting how brightly you display
+the picture to compensate. But since we're dealing with response curves,
+this isn't just a matter of changing the brightness in a linear fashion.
+
+   That doesn't seem so hard to deal with, right? All you need is to get
+the gamma (a number which specifies how much the curve bends) for the
+image, and for the screen, divide one by the other and adjust as
+appropriate. Joy.
+
+   But, given that the problem has existed since we started displaying
+more than eight colours, you won't be surprised to find that it's
+already been fixed. And the fixes all tend to clash, and everybody has a
+different notion of how to fix it. The usual `fix' is to assume that
+whoever made the image made it with a gamma matching the gamma of your
+display, so you can just stuff the bits right on the screen. Since this
+is easy, it's the most widespread approach. But it's a bit stupid, so
+not everyone does it. Combine that with the lack of gamma specification
+in most image formats, and the often-bogus values specified by people in
+those that do, and hey presto -- the image gamma could be just about
+anything. And the screen's gamma also tends not to be easily determined.
+
+   So how on earth do you deal with something like _that_ in a remotely
+sane fashion?
+
+   The answer chosen in zgv is to just live with the fact that the
+probability of automatically obtaining correct values for both the
+screen and image gamma is basically zero. Once you accept that, the
+sensible thing to do is to make it _very_ easy and fast to change gamma
+adjustment to commonly-required values. So here's how to do it:
+
+`1'
+     Set gamma adjustment to 1.0, i.e. no adjustment. This is the
+     default setting.
+
+`2'
+     Set gamma adjustment to 2.2. This is useful for viewing
+     linear-gamma files (one classic example being raytracer output) on
+     an average PC monitor.
+
+`3'
+     Set gamma adjustment to 1 divided by 2.2, i.e. roughly 0.45. This
+     is useful for the reverse -- viewing average-PC-monitor-gamma
+     files on a linear-gamma display. Historically I believe the
+     classic example would have been viewing PC files on a Mac, but I
+     don't know how true that is these days.
+
+`4'
+     Set gamma adjustment to its initial value, as specified by a `-G'
+     command-line option (*note Invoking zgv::) or `gamma' config file
+     setting (*note Configuring zgv::). The default value used if none
+     was specified is 1.0.
+
+   A brief clarification is probably in order. The gamma adjustment
+value which you set in zgv is actually inverted from (i.e. one divided
+by) the true adjustment value used. This is (believe it or not :-))
+intended to avoid confusion by reflecting the fact that _screen_ gamma
+is the one most widely considered/well known.
+
+   You can also tweak the adjustment more precisely, in a similar way to
+brightness/contrast:
+
+`Alt-,'
+     Decrease gamma adjustment (divide it by 1.05).
+
+`Alt-.'
+     Increase gamma adjustment (multiply it by 1.05).
+
+   Note that `;', and the other keys which reset the
+brightness/contrast, deliberately avoid resetting the gamma adjustment.
+
+
+File: zgv,  Node: Increased Greyscales,  Next: Changing Picture,  Prev: Gamma Adjustment,  Up: The Viewer
+
+Increased Greyscales
+====================
+
+   zgv normally displays greyscale pictures in 8-bit modes (*note Video
+Modes::). Due to a limitation of the original VGA cards, these can have
+a maximum of 64 greyscales. This can give noticeable `edges' in some
+pictures.
+
+   So when using 8-bit video modes, zgv uses some trickery to try and
+increase the apparent colour depth a little. The trick zgv uses is to
+increase one or two of the red/green/blue channels by one, giving a
+coloured `pseudo-grey'. Since the eye is more sensitive to brightness
+than colour, this is reasonably convincing under normal conditions. (It
+can get less convincing if you scale up the picture, but it usually
+looks reasonable even then.)
+
+   A slightly more unusual use of this technique in zgv, though, is that
+it carries on using it for colour 8-bit images. I'm not certain how
+valid this is; the `sub-depth' value is calculated as a greyscale, and
+the channels altered are the same, with no consideration given to how
+this might affect the colour balance.
+
+   However, the difference this feature makes is very slight. The image
+will probably be very, very slightly brighter than it would be
+otherwise, and possibly a little `warmer' because of the minor use of
+colour and the eye's green/red bias (I think).
+
+   You can toggle this feature in the viewer:
+
+`G'
+     Toggle whether to fake some extra greyscales/colours in 8-bit
+     modes.
+
+   To disable it by default, put `fake-cols off' in a config file
+(*note Configuring zgv::).
+
+
+File: zgv,  Node: Changing Picture,  Next: File Details,  Prev: Increased Greyscales,  Up: The Viewer
+
+Changing Picture
+================
+
+   While in the viewer, it's possible to go directly to the previous or
+next file in the directory without having to exit to the file selector
+and pick the relevant file by hand.
+
+   There are two ways to do this; one way leaves the old picture
+onscreen until the new one is read in, the other (on `^P' and `^N')
+temporarily returns to the file selector and shows the usual progress
+indicator while it's being read.
+
+   In addition, one of the next-file-in-dir commands lets you tag the
+file currently being viewed first, without having to return to the file
+selector to do it.
+
+   Note that the meanings of the commands change when you are viewing a
+slideshow; the details are covered below.
+
+   (*Note Dialog Boxes::, to see what `Backspace' is being used to mean
+here.)
+
+`Backspace'
+     View previous file in dir, without progress indicator. (In
+     slideshow, move to next file without waiting.)
+
+`Enter'
+     View next file in dir, without progress indicator. (In slideshow,
+     move to next file without waiting.)
+
+`Space'
+     Tag current file, then view next file in dir, without progress
+     indicator. (In slideshow, move to next file without waiting; it
+     has no tagging effect during a slideshow.)
+
+`^P'
+     View previous file in dir, with progress indicator. (In slideshow,
+     acts like `Esc'.)
+
+`^N'
+     View next file in dir, with progress indicator. (In slideshow, acts
+     like `Esc'.)
+
+   Note that `Space' tags the file, rather than toggling the tag status
+as it does in the file selector. This mismatch is unfortunate, but in
+the viewer context the always-tag function is more likely to be what
+you'd want, since you can't see the file selector to see which files are
+tagged.
+
+
+File: zgv,  Node: File Details,  Next: Pausing Slideshows,  Prev: Changing Picture,  Up: The Viewer
+
+File Details
+============
+
+   While you can get file details when in the file selector, you can't
+always get to the selector -- for example, you might be running zgv on
+a single image from the command-line, or using it in that way from
+another program (such as lynx). So zgv can also report file details when
+in the viewer:
+
+`:'
+     Show file details, including such things as the filename, size, and
+     width/height. This is almost identical to the equivalent command
+     in the selector (*note Other File Sel Commands::); the only
+     difference is that you can't use `;' to get this in the viewer,
+     and the viewer doesn't depend on thumbnails for the width/height
+     info.
+
+
+File: zgv,  Node: Pausing Slideshows,  Next: Multiple-image GIF Animation,  Prev: File Details,  Up: The Viewer
+
+Pausing Slideshows
+==================
+
+   Sometimes you may want to temporarily stop a slideshow, when you get
+to an interesting image. You can do this the same way you would
+temporarily stop terminal output:
+
+`^S'
+     Pause slideshow, leaving you on the current image until you
+     resume. You can still abort early with `Esc', go to the next image
+     with `Enter', or in fact use any viewer commands at all.
+
+`^Q'
+     Resume slideshow. If the timer has already run out (it keeps
+     running while paused), this will go straight to the next image
+     without any further delay, other than that needed to read the new
+     picture.
+
+   The analogy with XON/XOFF isn't really that close -- for example,
+it's worth noting that when the slideshow is `paused', you can actually
+do anything you normally might in the viewer.
+
+
+File: zgv,  Node: Multiple-image GIF Animation,  Next: Video Modes,  Prev: Pausing Slideshows,  Up: The Viewer
+
+Multiple-image GIF Animation
+============================
+
+   While zgv is for the most part a straightforward viewer, it has
+special support for multiple-image animated GIF files. These are loaded
+as a `column' of images, one on top of the other -- this column is the
+single image which is then displayed, enabling you to see all the
+`frames' of the GIF. (Though not in an image thumbnail; in those, only
+the first image is shown.)
+
+   You can also switch to an `animation' mode in the viewer, where each
+`frame' is shown one after the other, with (roughly) the delay specified
+in the GIF between updates.
+
+   (This animation mode is automatically enabled if you start zgv with
+the `-A' or `--auto-animate' command-line option. *Note Invoking zgv::.)
+
+`e'
+     Enter animation mode. (I don't know what the `e' stands for either.
+     :-)) In this mode the normal viewer keys have no effect, and
+     instead, a more limited set of keys are supported:
+
+`Esc'
+`x'
+     Stop the animation and return to the viewer. If auto-animation
+     mode is enabled, it exits the viewer too.
+
+`p'
+     Pause (or unpause) the animation.
+
+`n'
+     Skip to the next frame. Generally only useful when paused.
+
+   If auto-animation is enabled, the `Backspace', `Enter', and `Space'
+keys do the same as they do in the normal viewer (*note Changing
+Picture::). Otherwise they act the same as `Esc'.
+
+
+File: zgv,  Node: Video Modes,  Prev: Multiple-image GIF Animation,  Up: The Viewer
+
+Video Modes
+===========
+
+   zgv can display pictures in a wide variety of different video modes.
+While you can kind of get by in zgv without knowing anything about video
+modes, they have a very direct impact on how the picture appears, and
+it's important to know why to understand just how zgv works and how best
+to use zgv.
+
+* Menu:
+
+* What a Video Mode is::        A definition, and zgv's mode notation.
+* Video Mode Issues::           Pixel size, and number of colours.
+* Default Video Mode::          zgv tries for 640x480x8 if possible.
+* Selecting a Video Mode::      How to select different modes.
+* Special Modes::               The 320x400x8, 360x480x8, and 640x480x4
+                                  modes are treated specially to make
+                                  them more useful.
+* Drawbacks of 15/16-bit Modes::  15/16-bit modes are not always better
+                                  than 8-bit ones.
+* 32-bit Video Modes::          zgv uses these as substitute 24-bit
+                                  modes when a real 24-bit mode isn't
+                                  available.
+* Disabling Video Modes::       In some situations, you may want to stop
+                                  zgv allowing certain modes.
+
+
+File: zgv,  Node: What a Video Mode is,  Next: Video Mode Issues,  Prev: Video Modes,  Up: Video Modes
+
+What a Video Mode is
+--------------------
+
+   A video mode is essentially a certain way of displaying dots on the
+screen. The important aspects of a video mode in zgv are the number of
+dots (or `pixels') that can be shown horizontally and vertically in the
+mode, and the number of colours that the mode can handle simultaneously
+(also called the `depth' of the mode).
+
+   In fact, this is how a video mode is usually referred to. One might
+talk of a 640x480 256-colour mode, for example; This would have 640
+pixels from left to right, and 480 from top to bottom, with no more
+than 256 colours on the screen at once.
+
+   A variant notation WIDTHxHEIGHTxDEPTH is often used by zgv and this
+documentation. But here the `depth' is given in bits. This usage, while
+compact, probably makes more sense to programmers than to anyone else.
+Here's a list showing which `bit depths' match which number of colours:
+
+   (These are the only bit depths relevant to zgv.)
+
+   - 4-bit means 16 colours.
+
+   - 8-bit means 256 colours.
+
+   - 15-bit means 32768 colours.
+
+   - 16-bit means 65536 colours.
+
+   - 24-bit means 16777216 colours (over 16 million).
+
+   - 32-bit means 16777216 colours too (!), since only 24 of the 32
+     bits are used for display purposes.
+
+   From the number of colours available in the latter modes, you can see
+why a bit depth notation is so useful!
+
+   So, in the WIDTHxHEIGHTxDEPTH notation, our 640x480 256-colour mode
+would be 640x480x8, a 16-colour mode of the same size would be
+640x480x4, and an equivalent `true-colour' (24-bit) mode would be
+640x480x24.
+
+   Whenever you see a mode referred to as XxYxZ in zgv or in this
+documentation, it is *always* specifying a video mode in this notation.
+
+
+File: zgv,  Node: Video Mode Issues,  Next: Default Video Mode,  Prev: What a Video Mode is,  Up: Video Modes
+
+Video Mode Issues
+-----------------
+
+   The obvious implication of differing video modes is that modes with
+more pixels horizontally and vertically will have smaller pixels, and
+so be able to show more of large pictures. The reverse (bigger pixels,
+making small pictures appear large) is not as important a
+consideration, as zgv can achieve much the same effect with scaling
+(*note Scaling::). Using video modes to do it is faster, but usually
+less convenient.
+
+   A more subtle, but much more important, implication of differing
+modes is related to the colour depth. More precisely, it's due to the
+differing ways the actual colours shown onscreen are obtained. In 15,
+16, and 24/32-bit modes, the colour is specified `directly'; in 8-bit
+modes, a pixel's `colour' is really a number which selects one of 256
+different colours to show. The overhead of translating from 8-bit to
+15/16/24/32-bit is relatively minor, but in the 15/16/24/32-bit to 8-bit
+direction, it's considerable.
+
+   For this reason, and since converting from 24-bit to 15/16/32-bit is
+very easy, when zgv reads a picture it stores it in memory in one of two
+internal formats -- either as 8-bit, or as 24-bit. *Note File Format
+Depths::, for discussion on which format zgv uses for which files.
+
+   But what difference does all this make when you're using zgv? Well,
+here's the bottom line:
+
+   * A file loaded as 8-bit can only ever display in 8-bit modes.
+     Trying to choose a 15/16/24/32-bit mode will have no effect.
+
+   * A file loaded as 24-bit will only display in 15/16/24/32-bit modes,
+     unless you have _no_ 15/16/24/32-bit modes, in which case it will
+     be dithered when it is read in. (But the config file setting
+     `force-viewer-8bit' can be enabled to force the dithering
+     behaviour. *Note Configuring zgv::.)
+
+   * zgv normally remembers the last mode you switched to (the initial
+     mode is usually 640x480x8), and keeps using that until you specify
+     another to use. However, it will automatically choose the most
+     similar 15/16/24/32-bit mode for a 24-bit file if the last mode
+     was 8-bit, and vice versa.
+
+   Confused? Head hurting? Don't worry, it happens to the best of us.
+Especially where zgv is concerned. :-) Just play around with zgv for a
+while, and come back to this later on. It may make more sense after
+you've got a feel for what's going on.
+
+
+File: zgv,  Node: Default Video Mode,  Next: Selecting a Video Mode,  Prev: Video Mode Issues,  Up: Video Modes
+
+Default Video Mode
+------------------
+
+   zgv using the last mode you selected is all very well, but that
+doesn't explain what happens if you've not chosen one. What happens is
+that it uses the default video mode.
+
+   The default mode is (unless you change it) the 640x480x8 mode. If
+this is not available or has been disabled, zgv defaults to 360x480x8
+-- if this in turn is not available or has been disabled, it uses
+320x200x8.
+
+
+File: zgv,  Node: Selecting a Video Mode,  Next: Special Modes,  Prev: Default Video Mode,  Up: Video Modes
+
+Selecting a Video Mode
+----------------------
+
+   There are many different video modes supported by svgalib, and zgv
+lets you use most of them. To do so, it reserves many different keys for
+selecting video modes. These largely fall into four groups:
+
+   - The original VGA modes. These are on the number keys for historical
+     reasons. (The reason being, the number keys exactly matched the
+     mode numbers used by the old VGAlib.)
+
+   - The first group of SVGA modes. These are on the function keys `F1'
+     to `F10'. These are generally the first modes to try, if you have
+     them.
+
+   - The second group of SVGA modes. These are on the shifted function
+     keys, here represented as `SF1', `SF2', and so on. (The first two
+     of these are also available on `F11' and `F12'.) Not all of the
+     shifted function keys are currently used by zgv.
+
+   - The third group of SVGA modes. These are again on unshifted
+     function keys, but you must press `Tab' before pressing the
+     function key -- i.e. press `Tab', let go, then press the function
+     key. These are shown below as `Tab-F1', `Tab-F2', etc.
+
+
+   There are also the `[' and `]' keys, which select the next
+smaller/bigger mode. These are especially useful if you don't happen to
+have a spare lifetime in which to learn the `normal' mode-selecting
+keys. :-)
+
+   So, here's the list of mode-related commands:
+
+`/'
+     List which key combination selects which video mode.
+
+`['
+     Select the next smaller (lower-res) mode.
+
+`]'
+     Select the next bigger (higher-res) mode. Both these mode-changing
+     keys have the limits on modes selected that auto-mode-fit has
+     (*note Auto-mode-fit::).
+
+`0'
+     Select 640x480x4 mode. This emulates an 8-bit mode. *Note The
+     Viewer 640x480x4 Mode::.
+
+`5'
+     Select 320x200x8 mode.
+
+`6'
+     Select 320x240x8 mode.
+
+`^'
+     Select 320x240x24 mode. (`^' is often on shift-6.)
+
+`7'
+     Select 320x400x8 mode. This emulates a 640x400 mode. *Note Virtual
+     Modes::.
+
+`8'
+     Select 360x480x8 mode. This emulates a 720x480 mode. *Note Virtual
+     Modes::.
+
+`F1'
+     Select 640x480x8 mode.
+
+`F2'
+     Select 800x600x8 mode.
+
+`F3'
+     Select 1024x768x8 mode.
+
+`F4'
+     Select 1280x1024x8 mode.
+
+`F5'
+     Select 320x200x15 mode.
+
+`F6'
+     Select 320x200x16 mode.
+
+`F7'
+     Select 320x200x24 mode.
+
+`F8'
+     Select 640x480x15 mode.
+
+`F9'
+     Select 640x480x16 mode.
+
+`F10'
+     Select 640x480x24 mode.
+
+`SF1'
+`F11'
+     Select 800x600x15 mode.
+
+`SF2'
+`F12'
+     Select 800x600x16 mode.
+
+`SF3'
+     Select 800x600x24 mode.
+
+`SF4'
+     Select 1024x768x15 mode.
+
+`SF5'
+     Select 1024x768x16 mode.
+
+`SF6'
+     Select 1024x768x24 mode.
+
+`SF7'
+     Select 1280x1024x15 mode.
+
+`SF8'
+     Select 1280x1024x16 mode.
+
+`Tab-F1'
+     Select 1280x1024x24 mode.
+
+`Tab-F2'
+     Select 1152x864x8 mode.
+
+`Tab-F3'
+     Select 1152x864x15 mode.
+
+`Tab-F4'
+     Select 1152x864x16 mode.
+
+`Tab-F5'
+     Select 1152x864x24 mode.
+
+`Tab-F6'
+     Select 1600x1200x8 mode.
+
+`Tab-F7'
+     Select 1600x1200x15 mode.
+
+`Tab-F8'
+     Select 1600x1200x16 mode.
+
+`Tab-F9'
+     Select 1600x1200x24 mode.
+
+
+File: zgv,  Node: Special Modes,  Next: Drawbacks of 15/16-bit Modes,  Prev: Selecting a Video Mode,  Up: Video Modes
+
+Special Modes
+-------------
+
+   Normally, each pixel in the image is written more-or-less directly to
+the screen from zgv's internal copy of the picture (unless zoom mode
+and/or scaling have been enabled). However, there are three modes where
+zgv does things differently to make the modes more useful.
+
+   (These are mainly intended for users with only the original VGA modes
+available.)
+
+* Menu:
+
+* Virtual Modes::               How the 320x400x8/360x480x8 modes work.
+* The Viewer 640x480x4 Mode::   How the 640x480x4 mode works.
+
+
+File: zgv,  Node: Virtual Modes,  Next: The Viewer 640x480x4 Mode,  Prev: Special Modes,  Up: Special Modes
+
+Virtual Modes
+.............
+
+   The original VGA hardware only had one `official' 256-colour mode,
+the 320x200 one. But it could be reprogrammed to allow other useful
+modes (known as `mode-X' modes) -- the ones svgalib provides are
+320x240, 320x400, and 360x480.
+
+   These modes are available on all VGA cards. However, it's possible
+(perhaps even likely?) that some non-CRT displays may not be able to
+cope with them. All monitors should, though, even ordinary VGA monitors.
+
+   Now, while 320x240 is a nice sensible mode and can be used directly,
+320x400 and 360x480 have very wide pixels. To deal with this, in these
+latter modes zgv maps every two pixels horizontally to one pixel
+onscreen. (Hence `virtual modes' -- physically they are 320x400 and
+360x480, but in zgv they are virtual 640x400 and 720x480 modes.) This
+means that you still get a reasonable aspect ratio, one similar to
+(though not quite the same as) most other modes.
+
+   This raises the question of how this mapping is done. The normal
+approach is the quickest, but is very crude -- zgv simply uses the
+leftmost pixel of the two, and completely ignores the rightmost one. But
+if `vkludge' mode is enabled (*note Zoom Mode::), zgv will average the
+pixels' colours together and use the closest match available in the
+picture's palette. This usually gives a better result, but is
+considerably slower.
+
+
+File: zgv,  Node: The Viewer 640x480x4 Mode,  Prev: Virtual Modes,  Up: Special Modes
+
+The Viewer 640x480x4 Mode
+.........................
+
+   As well as the non-standard VGA modes, zgv allows you to use the
+640x480x4 (16-colour) VGA mode as if it were an 8-bit mode. (Pressing
+`0' selects this mode.) As with the file selector's 16-colour mode, it
+can work either in greyscale (the default) or in colour.
+
+`c'
+     If in 640x480x4 mode, toggle between greyscale and colour.
+
+   In greyscale mode, the picture is displayed using 16 greyscale levels
+dithered to give the appearance of 61. In colour mode, the picture is
+dithered to eight colours. (It's difficult to use all 16 colours
+effectively for a colour dither without slowing things down.)
+
+   The greyscale uses an ordered (pattern-based) dither. The colour uses
+ordered dithering by default too, which is fast but pretty rough. If
+you'd prefer to sacrifice speed for better dithering, you can switch to
+error-diffused dithering by putting `dither-16col-fast' in a config file
+(*note Config Files::), or you can toggle the setting interactively:
+
+`Alt-c'
+     If in 640x480x4 mode and using colour dithering, toggle between
+     ordered and error-diffused dither.
+
+   All the features which work in 8-bit modes work in the 4-bit mode.
+
+
+File: zgv,  Node: Drawbacks of 15/16-bit Modes,  Next: 32-bit Video Modes,  Prev: Special Modes,  Up: Video Modes
+
+Drawbacks of 15/16-bit Modes
+----------------------------
+
+   Since 15 and 16-bit video modes do not have quite the same
+representation (and depth) that a file loaded as 24-bit does, there are
+some drawbacks to using them. Firstly, the image is converted to the
+2-byte-per-pixel format as it is drawn (see *Note Video Mode Issues::,
+for the reason why zgv works this way); and secondly, the modes actually
+have less colour depth than 256-colour modes.
+
+   In explanation of that last point; although 15 and 16-bit video modes
+show many colours onscreen at once, there are fewer colours to choose
+from.
+
+   A good way to illustrate this point is by considering the number of
+greyscales each mode can display. In a 256-colour video mode, only 64
+greys can be shown, since an 18-bit palette is used -- 2^(18/3) = 64.
+But with a 15-bit video mode, even fewer can be shown -- 2^(15/3) = 32.
+Because of the way that 16-bit video modes work, which is by providing
+the green channel with twice as much colour depth (i.e. an extra bit),
+they too can only show 32 greys. Put another way, 2^int(16/3) = 32. (Of
+course, 24/32-bit modes will show all 256 greyscales.)
+
+   One way to gain some illusion of extra colours in these modes is to
+use dithering, based on the colour detail "below" the level which can
+be shown directly:
+
+`F'
+     Toggle whether to use dithering in 15/16-bit modes. This makes
+     picture display considerably slower when used.
+
+   To enable this by default, put `dither-hicol on' in a config file
+(*note Configuring zgv::).
+
+
+File: zgv,  Node: 32-bit Video Modes,  Next: Disabling Video Modes,  Prev: Drawbacks of 15/16-bit Modes,  Up: Video Modes
+
+32-bit Video Modes
+------------------
+
+   One oddity in mode-land is the 32-bit mode. Like 24-bit modes, 32-bit
+modes can display over 16 million colours. But there are no obvious
+advantages to using 32-bit modes, at least as far as zgv is concerned.
+So why does it support them?
+
+   Simply put, some SVGA hardware provides 32-bit modes without
+providing equivalent 24-bit ones. Hence zgv's support for them.
+
+   That should also explain why zgv treats them the way it does. Here's
+how it all works:
+
+   * When using zgv, you don't select a 32-bit mode directly. Instead,
+     you select a 24-bit mode -- and if no matching 24-bit mode exists,
+     but a matching 32-bit one _does_, zgv sneakily uses the 32-bit one
+     behind your back. :-)
+
+   * zgv's `choose most similar mode' code prefers 24-bit modes to
+     32-bit ones, but similarly, if it has the 32-bit mode without the
+     24-bit one, it'll take the smoke-and-mirrors route.
+
+   * As an exception to the overall rule, when specifying modes on the
+     command-line or in the config file, you _do_ need to explicitly
+     specify a 32-bit mode in order to get one.
+
+   For the most part you needn't worry about 32-bit modes, though; you
+can just ignore them and think in terms of 8/15/16/24-bit modes and
+you'll be ok.
+
+
+File: zgv,  Node: Disabling Video Modes,  Prev: 32-bit Video Modes,  Up: Video Modes
+
+Disabling Video Modes
+---------------------
+
+   In some situations you might want to disable certain video modes. For
+example, perhaps your video card supports modes which your monitor
+cannot display; clearly you would want to disable these, as zgv only
+knows about your video card.
+
+   (To be fair though, if you have svgalib configured correctly for your
+monitor, this should never be a problem. See the `libvga.config(5)' man
+page for details.)
+
+   To disable video modes, you should give appropriate `mode-bad'
+entries in a config file (preferably `/usr/local/etc/zgv.conf' for such
+system-wide configuration). *Note Config Variables::, for details.
+
+   You could also do `mode-all-bad' then enable a few modes with
+`mode-good' entries -- but most cards support so many video modes that
+the `mode-bad' approach is usually the right one.
+
+
+File: zgv,  Node: xzgv Compatibility,  Next: File Formats,  Prev: The Viewer,  Up: Top
+
+xzgv Compatibility
+******************
+
+   You may well want to skip this section if you don't use xzgv.
+
+   Some time after first writing zgv, I decided to do a port/rewrite
+for X, called `xzgv'. Since I started this about six years after
+originally writing zgv, it's understandable that I chose to do some
+things slightly differently. :-)
+
+   The main difference, other than the obvious difference in
+appearance, is that a few of the keys used differ. This can be a pain
+if you primarily use xzgv, but use zgv every so often (or vice versa).
+To avoid this problem, zgv supports an `xzgv-keys' mode, enabled by
+putting `xzgv-keys on' in a config file (*note Config Files::). This
+enables an overriding routine which interprets xzgv-like keys to
+`native' zgv ones -- in practice, the effect is of some xzgv keys being
+added, overriding any conflicting zgv ones.
+
+   So, if you enable xzgv-keys, there are these differences
+in/additions to the selector:
+
+`Space'
+     View a picture file, or if the cursor is on a subdirectory, make
+     that the current directory. (Like the native `Enter', which still
+     works.)
+
+`-'
+     Untag file.
+
+`='
+     Tag file.
+
+`Alt -'
+     (i.e. Alt-minus) Untag all files.
+
+`Alt ='
+     (i.e. Alt-equals) Tag all files.
+
+`Ctrl-n'
+     Rename file.
+
+`Ctrl-d'
+     Delete file.
+
+`q'
+`Ctrl-q'
+     Exit zgv.
+
+   Note that there is no replacement for the usual zgv meaning of
+`Space'; that is, in xzgv-keys mode, there is (currently) no key which
+lets you toggle a file's tag state. (This will change if/when I add
+such a key to xzgv. :-))
+
+   In the viewer, there are these changes:
+
+`b'
+     View previous file in dir.
+
+`Space'
+     View next file in dir.
+
+`Ctrl-Space'
+     Tag current file, then view next file in dir.
+
+     (In short, `b'/`Space'/`Ctrl-Space' act like the native
+     `Backspace'/`Enter'/`Space'. The same mappings also apply when
+     animating a multiple-image GIF file (*note Multiple-image GIF
+     Animation::).)
+
+`Ctrl-w'
+     Exit viewer (i.e. `close file').
+
+`N'
+     Restore the picture orientation to normal. This undoes the effect
+     of any mirrors, flips, and/or rotations. (Like the native `Alt-n'.)
+
+   There are some omissions in the viewer's xzgv-ish keys:
+
+   - The `Ctrl' + cursor-key alternatives to `h'/`j'/`k'/`l' don't
+     exist, as these can't be distinguished from `normal' cursors given
+     the way zgv reads keys.
+
+   - The alternative `Shift' + cursor-key means of paging
+     up/down/left/right is similarly missing.
+
+   - Supporting `Ctrl-q' would have got in the way of slideshow pausing,
+     so I decided against it, and omitted `q' from the viewer for some
+     sort of consistency.
+
+   - Supporting `Tab' would break selecting some video modes, and
+     probably would have seemed a bit surreal in zgv anyway. :-)
+
+   That about wraps it up for the keys... but, of course, there _are_
+other interface differences.
+
+   One is the way zgv has `flat' mouse menus for the selector/viewer,
+while xzgv has hierarchical ones. That would be nice to replicate, but
+I don't think I'm likely to.
+
+   A more dramatic difference (IMHO) is the way moving around the
+picture with the mouse works. In zgv, you move the screen around `over'
+the picture, with a fixed amount of mouse movement needed to cover any
+picture size. In xzgv, you move the picture around `under' the window,
+with the mouse movement needed being proportional to the picture size
+(this follows from the picture directly mimicking the mouse pointer's
+movement). The most obvious problem here is that moving the mouse right
+on zgv is like pressing cursor-right, while doing the same in xzgv is
+like pressing cursor-left. Now, I _may_ eventually add an option to
+reverse zgv's reaction to mouse movement, but `fixing' the
+non-proportionality without a pointer onscreen might seem awfully
+strange.
+
+   Hmm. An interesting problem to tackle at some point, I suppose. :-)
+
+
+File: zgv,  Node: File Formats,  Next: Consoles,  Prev: xzgv Compatibility,  Up: Top
+
+File Formats
+************
+
+   Picture files are stored in a variety of different forms. These forms
+are usually called `file formats'. zgv supports several.
+
+* Menu:
+
+* File Type Identification::    How zgv identifies the type of a file.
+* Supported File Formats::      The file formats that zgv supports.
+* File Format Depths::          Pictures are held in memory by zgv with
+                                  either 8 or 24 bits per pixel.
+
+
+File: zgv,  Node: File Type Identification,  Next: Supported File Formats,  Prev: File Formats,  Up: File Formats
+
+File Type Identification
+========================
+
+   The format a file is in is identified in two different ways. The file
+selector (by default) picks filenames to display based on the
+`extension' -- for instance, if a filename ends in `.jpg' or `.jpeg',
+zgv assumes it is a JPEG. This way of working is not always right, but
+it's much faster than the alternative (reading part of every single
+file) and is usually sufficient. (If it's not, you can enable slower
+`magic number'-based identification with `Alt-m' (*note File Selector
+Toggles::).)
+
+   The file-reading code uses the format's `magic number' to determine
+file type -- e.g. a JPEG/JFIF file starts with the (hex) bytes `FF D8'.
+So if you start zgv with `zgv foo', and foo is in a format supported by
+zgv (such as JPEG), the format will be figured out and the file loaded
+even though the `extension' is absent.
+
+
+File: zgv,  Node: Supported File Formats,  Next: File Format Depths,  Prev: File Type Identification,  Up: File Formats
+
+Supported File Formats
+======================
+
+   zgv supports the following file formats:
+
+   * GIF. Multiple-image GIFs are treated specially (*note
+     Multiple-image GIF Animation::).
+
+   * JPEG.
+
+   * PNG.
+
+   * PBM/PGM/PPM, collectively known as `PNM'. This is a nice simple
+     format used by pbmplus and netpbm.
+
+   * BMP.
+
+   * TGA (Targa).
+
+   * PCX.
+
+   * mrf. Mrf files can be converted to/from PBM with
+     mrftopbm/pbmtomrf, and the format is documented in the `mrf(5)'
+     man page.
+
+   * PRF. PRF is an extension of mrf, similarly converted with
+     prftopnm/pnmtoprf, and documented in the `prf(5)' man page.
+
+   * XBM (X bitmap files).
+
+   * XPM. zgv reads the file `/usr/X11R6/lib/X11/rgb.txt' to look up X
+     colour names. (The location of the file is a compile-time option;
+     you can edit `config.mk' to change it.)
+
+   * TIFF.
+
+   * Photo-CD. This is only supported if `PCD_SUPPORT' was defined at
+     compile-time; by default, PCD support is omitted. PCD files contain
+     multiple image resolutions -- to choose which to view, use `Alt-1'
+     (lowest) to `Alt-5' (highest) in the viewer.
+
+   * Xv format thumbnail files. Normally you won't want to view these
+     other than in the file selector, but zgv lets you view them as
+     normal picture files if you want. Note that in the file selector,
+     thumbnail files are indistinguishable from the files they
+     represent (other than the `.xvpics' in the directory's filename)
+     -- they have the same filenames, and thumbnails are their own
+     thumbnails. :-)
+
+
+
+File: zgv,  Node: File Format Depths,  Prev: Supported File Formats,  Up: File Formats
+
+File Format Depths
+==================
+
+   No matter what bit depth a file format uses, zgv reads files in as
+one of two internal formats -- 8-bit (with a palette), or 24-bit.
+(*Note Video Mode Issues::, for why zgv works this way. *Note What a
+Video Mode is::, for more on bit depth.) Usually, zgv works internally
+with the lowest bit depth which doesn't lose data. So a 1-bit-per-pixel
+(mono) file is loaded as 8-bit, as are 4-bit and 8-bit ones, but a
+24-bit file is loaded as 24-bit.
+
+   For the most part, it's obvious which depth zgv reads a file as, if
+you know how the files are stored. But if you don't happen to know that,
+then it can seem like some bizarre black art dependent on the phase of
+the moon. So here's how the differing file formats are read:
+
+Always 8-bit:
+     GIF, PBM, PGM(1), mrf, XBM.
+
+Always 24-bit:
+     PPM, TIFF.
+
+24-bit if file is, else 8-bit:
+     JPEG, PNG, BMP, TGA, PCX, XPM, PRF.
+
+   XPM is really a special case, being a palette-based format which can
+handle an arbitrary number of colours. (This means XPMs don't have any
+inherent `depth' as such, unlike most other files -- you couldn't
+legitimately talk of a `24-bit XPM file'.) XPMs are loaded as 8-bit if
+they have 256 colours or less, otherwise they're loaded as 24-bit.
+
+   Another special feature of XPM is that, since XPM files are primarily
+used as icons, they are often partly transparent, and usually not
+designed to be viewed on a black background. For this reason,
+transparent pixels are shown as grey, and if the XPM contains less than
+256 colours, the screen's background colour is made grey as well.
+
+   ---------- Footnotes ----------
+
+   (1) PGMs are loaded as 24-bit if `pgm-truecol' is enabled. *Note
+Configuring zgv::.
+
+
+File: zgv,  Node: Consoles,  Next: Using a Mouse,  Prev: File Formats,  Up: Top
+
+Consoles
+********
+
+   zgv tries to deal sensibly with Linux and FreeBSD's provision for
+multiple `virtual consoles'. This section covers the details of this.
+
+* Menu:
+
+* Running In The Background::   Sometimes, zgv keeps running when you
+                                  switch consoles.
+* Running From Non-consoles::   If it isn't run from a console tty, zgv
+                                  tries to find one to run on.
+
+
+File: zgv,  Node: Running In The Background,  Next: Running From Non-consoles,  Prev: Consoles,  Up: Consoles
+
+Running In The Background
+=========================
+
+   Normally when you do a console switch away from zgv, it is suspended
+-- nothing at all happens in that zgv process (and it takes no CPU)
+until you switch back to it.
+
+   However, there are two circumstances (both in the file selector)
+when it makes sense for zgv to keep running `in the background', and in
+these cases it does keep running:
+
+   - When updating thumbnails. *Note Updating Thumbnails::, for what
+     happens in this case.
+
+   - When reading a picture file. If it finishes reading it before you
+     return, zgv is suspended as usual.
+

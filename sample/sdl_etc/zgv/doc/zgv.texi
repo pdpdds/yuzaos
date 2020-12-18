@@ -1,0 +1,4586 @@
+\input texinfo   @c -*-texinfo-*-
+@c %**start of header
+@setfilename zgv
+@settitle The zgv manual
+@setchapternewpage odd
+@c %**end of header
+
+@c To make an Info file from this, do `make info'.
+@c To make a DVI file from this (usually for printing), do `make dvi'.
+
+@set VERSION 5.9
+@set UPDATED 28th January 2005
+
+@c Most categories seem to suffer from being too specific, making them
+@c effectively useless; hopefully this one is at least nicely generic.
+@c This is `ifinfo' to stop texi2{html,roff} seeing it, as they don't
+@c handle it.
+@ifinfo
+@dircategory Graphics Utilities
+@direntry
+* zgv: (zgv).   A picture viewer for Linux/FreeBSD systems with VGA/SVGA.
+@end direntry
+@end ifinfo
+
+@c Some notes on the use of indexes here:
+@c - The keystroke index is used for keys, but called the `keyboard
+@c   commands index'.
+@c - The variable index is used for config file entries, as that's
+@c   pretty much what they are.
+
+
+@c Texinfo's way of handling copyright messages is, to say the least,
+@c bloody awful. You have to have the whole lot twice. (I'm not sure I can
+@c think of a better way, but that's not the point. :-))
+
+@ifinfo
+The zgv manual, for version @value{VERSION}, last updated
+@value{UPDATED}.
+
+Copyright 1998-2004 Russell Marks.
+
+Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+@ignore
+Permission is granted to process this file through TeX and print the
+results, provided the printed document carries a copying permission
+notice identical to this one except for the removal of this paragraph
+(this paragraph not being relevant to the printed manual).
+
+@end ignore
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the
+entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the above conditions for modified versions,
+except that this permission notice may be stated in a translation
+approved by the Free Software Foundation.
+@end ifinfo
+
+@titlepage
+@title zgv
+@subtitle A picture viewer for Linux/FreeBSD systems with VGA displays
+@subtitle version @value{VERSION}
+@author Russell Marks
+
+@c The following two commands start the copyright page.
+@page
+@vskip 0pt plus 1filll
+Copyright @copyright{} 1998-2004 Russell Marks.
+
+Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the
+entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the above conditions for modified versions,
+except that this permission notice may be stated in a translation
+approved by the Free Software Foundation.
+
+@end titlepage
+
+@ifinfo
+@node    Top, Overview, (dir), (dir)
+@top The zgv manual
+
+zgv is a full-featured picture viewer, with a reasonably nice file
+selector, for Linux and FreeBSD systems with VGA/SVGA (it uses
+svgalib). It can read most common file formats (and, it might be
+suggested, a few others besides).
+
+By default zgv only takes input from the keyboard. @xref{Using a Mouse},
+for how to enable extensive mouse support.
+
+This documentation is for zgv version @value{VERSION}, last updated
+@value{UPDATED}.
+
+@menu
+* Overview::                    A simple look at how to use zgv.
+* Acknowledgements::            Who did what.
+
+* Invoking zgv::                Command-line options.
+
+* Online help::                 Getting help on what keys to press.
+* The File Selector::           How to pick files to view, and more.
+* The Viewer::                  What you can do when a picture is onscreen.
+
+* xzgv Compatibility::          xzgv is similar to zgv, but not
+                                identical; you can make zgv behave a bit
+                                more like xzgv, helpful if you use both.
+
+* File Formats::                Issues related to the way picture files
+                                  are stored.
+* Consoles::                    How zgv deals with virtual consoles, and
+                                  console switching.
+
+* Using a Mouse::               How to enable a mouse and use it in zgv.
+
+* Configuring zgv::             You can change aspects of zgv's behaviour.
+
+* Rationale::                   The thinking behind certain things.
+* Bugs and Restrictions::       Problems with zgv, and how to report bugs.
+* Future Changes::              Pending ideas for zgv features etc.
+
+ --- Indexes ---
+
+* Keyboard Commands Index::     What various keys do in zgv.
+* Configuration Variables Index::  Settings in zgv's config file(s).
+* Concept Index::               General index of topics covered.
+@end menu
+
+@end ifinfo
+
+
+@node  Overview, Acknowledgements, Top, Top
+@comment  node-name,  next,  previous,  up
+@chapter Overview
+
+@cindex introduction to zgv
+@cindex overview
+
+zgv lets you view pictures on Linux or FreeBSD boxes with VGA/SVGA
+displays. The kinds of pictures it supports are raster-format pictures
+(sometimes called `bitmaps' and/or `pixmaps'); things like GIF files,
+JPEG files, PNG files, and so on. (The full list of file formats
+supported is listed elsewhere. @xref{Supported File Formats}.)
+
+Most of the time, you will probably want to use zgv's file selector
+(@pxref{The File Selector}) to pick which file(s) to view. This is what
+appears when you start zgv as just @code{zgv} (@pxref{Invoking zgv}). It
+displays a list of subdirectories and picture files in the current
+directory, along with small `thumbnail' versions of the pictures if they
+exist. (If no thumbnails appear for a given directory, or if they are
+missing for some files, you can create/update them by pressing @kbd{u}.
+@xref{Updating Thumbnails}.)
+
+When you've picked a file to view, you can view it by pressing
+@kbd{Enter}. This puts you into the viewer, where the whole screen is
+used to display the picture (@pxref{The Viewer}). You can then move
+around the picture (if it is larger than the screen) using the cursor
+keys. Pressing @kbd{Esc} returns you to the file selector, where you can
+pick another file to view, or you can quit zgv by pressing @kbd{Esc}
+again.
+
+While zgv is by default controlled entirely from the keyboard, it does
+have quite good mouse support you can enable if you like that sort of
+thing. @xref{Using a Mouse}.
+
+This overview is, as you might expect, only the very simplest of
+introductions to what zgv can do, and describes only a very basic use of
+zgv. zgv can do a lot more; read on to find out what.
+
+
+@node  Acknowledgements, Invoking zgv, Overview, Top
+@comment  node-name,  next,  previous,  up
+@chapter Acknowledgements
+
+@cindex acknowledgements
+@cindex credits
+
+@c first, direct (or direct-ish :-)) zgv contributions:
+
+zgv was primarily written by Russell Marks, who also wrote this manual.
+
+@c The rest are (mostly) alphabetically ordered by surname; my precedent for
+@c this was the Emacs info file, but I've seen it used in other places
+@c too, and it seems a sensible approach anyway.
+@c 
+@c I couldn't help thinking this was terribly unfair on Matan
+@c though - what with him contributing more than anyone else (well,
+@c except me of course) - so I've deliberately broken the order to put
+@c his name first. :-)
+
+Matan Ziv-Av added multiple-image animated GIF support, Photo-CD
+support, brightness/contrast support in high-colour modes, the original
+file-rename code, and some of the support for 32-bit modes, as well as
+inspiring a few other changes like high-res file selector support.
+
+Carsten Engelmann wrote the BMP support.
+
+Edwin Fong added support for command-line slideshows, and a few other
+features including the original mouse support.
+
+Radim Kolar added support for FreeBSD.
+
+Costa Sapuntzakis contributed code for much faster JPEG thumbnail
+generation.
+
+Dimitar Zhekov added SDL mouse support.
+
+@c this isn't really `direct', but I think it belongs here.
+@code{install-info} is a (very) slightly modified version of the
+original (which is part of the @code{texinfo} package). This program is
+used during installation. I think it was mostly written by Karl Berry,
+but it's not terribly clear.
+
+@c now libraries etc.:
+
+The authors of the special-purpose libraries zgv uses deserve credit ---
+JPEG and PNG might not have been supported in zgv without the JPEG
+library, libpng and zlib. Most of all though, zgv would certainly not
+have been written without VGAlib and later svgalib, and thanks are due
+to Tommy Frandsen, Harm Hanemaayer, Michael Weller, Matan Ziv-Av and
+many others for that.
+
+Thanks also to the zgv users who've contributed bug reports,
+suggestions, ideas for features, and even@dots{} dare I say@dots{}
+compliments. zgv would be even worse without their input, so count your
+lucky stars. :-)
+
+This program is based in part on the work of the Independent JPEG
+Group.
+
+``The Graphics Interchange Format(c) is the Copyright property of
+CompuServe Incorporated. GIF(sm) is a Service Mark property of
+CompuServe Incorporated.''
+
+
+@node  Invoking zgv, Online help, Acknowledgements, Top
+@comment  node-name,  next,  previous,  up
+@chapter Invoking zgv
+
+@cindex invoking zgv
+@cindex starting zgv
+@cindex running zgv
+@cindex command-line options
+@cindex options, command-line
+@cindex arguments, command-line
+@c NB: no `command-line args' since you'll see `command-line options' if
+@c you look for that.
+
+@c some for `zgv file', `zgv dir'
+@cindex starting on given directory
+@cindex directory, starting on given
+@cindex viewing only one file
+@cindex file, viewing only one
+@cindex picture, viewing only one
+
+@c for -m
+@cindex mode, specifying the initial video
+@cindex video mode, specifying the initial
+@cindex changing the initial video mode
+
+@c XXX probably want others...
+
+Normally you'd invoke zgv as plain @code{zgv}. However, you can directly
+specify files to view or a start directory on the command-line. In
+addition, there are various options.
+
+(If you're new to zgv, you should probably skip the rest of this section
+for now and come back to it later.)
+
+The general format of the zgv command-line goes roughly like this:
+
+@example
+zgv [@var{options}] [@var{start-dir} | @var{file} [@var{file2} ...]]
+@end example
+
+Two types of options are supported --- the traditional Unix
+single-letter options, and GNU-style long options. Both forms are listed
+in the table below, but not all long options have single-letter
+equivalents.
+
+Note that all options are processed after any configuration file(s).
+Config file settings are just like the long-option names below minus the
+@code{--} (@pxref{Configuring zgv}), though a few command-line options
+are not permitted as config file settings (e.g. @code{help}), and vice
+versa.
+
+Here's what the options do:
+
+@table @code
+@item -A
+@vindex auto-animate
+@itemx --auto-animate
+Automatically animate multiple-image GIF files (@pxref{Multiple-image
+GIF Animation}). This limits your viewing options greatly, but can be
+handy for slideshows and the like.
+
+@vindex auto-mode-fit
+@item --auto-mode-fit
+Automatically switch modes to suit image size.
+
+@vindex auto-mode-fit-diff
+@item --auto-mode-fit-diff @var{diff}
+When choosing an auto-mode-fit mode, add @var{diff} to each mode's
+width and height. For example, with a value of 20 any picture up to
+820x620 will be displayed in an 800x600 mode if possible. If
+@var{diff} is negative, for example -20, the effect is reversed; any
+picture above 780x580 will be displayed in a mode with a resolution
+higher than 800x600 if possible.
+
+@item -p
+@vindex avoid-single-progress
+@itemx --avoid-single-progress
+Don't show progress indicator when loading a single file from the
+command-line.
+
+@vindex black-background
+@item --black-background
+Try to use a black (or nearest-to-black) background when in 8-bit modes.
+This can be quite nice for consistency's sake when viewing (say) a
+mixture of GIFs and JPEGs, but the extra pass over the loaded image
+slows things down slightly.
+
+@item -b
+@vindex block-cursor
+@itemx --block-cursor
+Use a blocky outline cursor in the selector, which is rather unsubtle
+but more obvious.
+
+@vindex brightness
+@item --brightness @var{adjust_val}
+Specify how much to add to colour values to change brightness (default
+0). Values less than zero decrease brightness, values greater than zero
+increase it. Brightness is applied after contrast by default.
+
+@vindex centre
+@vindex center
+@item --centre
+@itemx --center
+(Normally enabled, use e.g. @code{--centre=off} to disable.) By default
+zgv centres pictures smaller than the screen, in whichever dimensions
+they are smaller. This setting gives you a way to disable this, so that
+pictures always start in the top-left.
+			
+@vindex clear-screen-on-exit
+@item --clear-screen-on-exit
+Clear the screen on exit. (Normally, zgv leaves the original screen
+contents intact.)
+
+@vindex col-black
+@item --col-black @var{r g b}
+Set colour used for `black' (text) in selector; RGB values should be in
+the range 0-63 for this and the other colour settings below, and the
+three numbers should be quoted, e.g. @code{--col-black "10 20 30"}.
+
+@vindex col-dark
+@item --col-dark @var{r g b}
+Set colour used for lowlights in selector.
+
+@vindex col-light
+@item --col-light @var{r g b}
+Set colour used for highlights in selector.
+
+@vindex col-medium
+@item --col-medium @var{r g b}
+Set colour used for background in selector.
+
+@vindex col-tagged
+@item --col-tagged @var{r g b}
+Set colour used for tagged files in selector.
+
+@vindex contrast
+@item --contrast @var{multiplier}
+Specify how much to multiply colour values by to change contrast
+(default 1.0). zgv multiplies each colour's difference from grey by this
+number; values less than one decrease contrast, values greater than one
+increase it. Negative values are also allowed, and act in a similar way,
+but with the picture's colours inverted. Contrast is applied before
+brightness by default.
+
+@vindex delete-single-prompt
+@item --delete-single-prompt
+(Normally enabled, use @code{--delete-single-prompt=off} to disable.) If
+disabled, don't prompt for confirmation when deleting a single file.
+
+@vindex delete-tagged-prompt
+@item --delete-tagged-prompt
+(Normally enabled, use @code{--delete-tagged-prompt=off} to disable.)
+If disabled, don't prompt for confirmation when deleting all tagged
+files.
+
+@vindex dither-16col-fast
+@item --dither-16col-fast
+(Normally enabled, use @code{--dither-16col-fast=off} to disable.) By
+default, zgv uses a (reasonably fast) ordered dither when displaying a
+dithered colour image in 640x480x4 mode. But if you disable this
+setting, it uses error-diffused dithering (which looks better but is
+rather noticeably slower).
+
+@vindex dither-hicol
+@item --dither-hicol
+If enabled, use dithering in `high-colour' modes, i.e. 15/16-bit
+modes. This makes colour gradients smoother, but slows things down
+quite a bit.
+
+@vindex fake-cols
+@item --fake-cols
+(Normally enabled, use @code{--fake-cols=off} to disable.) If disabled,
+don't fake extra greyscales and colour depth in 8-bit modes.
+@xref{Increased Greyscales}, for details.
+
+@vindex force-fs-16col
+@item --force-fs-16col
+Force the use of the 640x480 16-colour mode for the selector.
+
+@item -j
+@vindex force-viewer-8bit
+@itemx --force-viewer-8bit
+Force all images to be loaded as 8-bit. Normally zgv will load 24-bit
+images (e.g. colour JPEGs) as 24-bit if you have any modes capable of
+displaying the image in 15, 16, 24, or 32-bit colour.
+
+@vindex fs-16col-colour-thumbnails
+@vindex fs-16col-color-thumbnails
+@item --fs-16col-colour-thumbnails
+@itemx --fs-16col-color-thumbnails
+Use low-quality colour thumbnail pictures when the file selector is
+using 640x480 16-colour mode. Normally zgv uses higher-quality
+monochrome thumbnails in this situation.
+
+@vindex fs-ignore-old-pos
+@item --fs-ignore-old-pos
+Don't recall previous cursor position in a directory when returning to
+it later. (This mechanism only applies when changing directory
+`normally'; jumping directly to another dir with @kbd{G} never does such
+a save/restore (@pxref{Changing Directory}).)
+
+@vindex fs-magic
+@item --fs-magic
+Use `magic number'-type identification to determine which files should
+be listed in the file selector. This is more accurate, but very much
+slower. @xref{File Type Identification}, for a discussion of the
+tradeoffs involved.
+
+@vindex fs-perfect-cols
+@item --fs-perfect-cols
+Don't change thumbnail colours when using the file selector to make the
+rest of the selector look right. @xref{Thumbnail Issues}.
+
+@vindex fs-slow-thumbnail-update
+@item --fs-slow-thumbnail-update
+`Walk' through the directory when updating thumbnails, moving the cursor
+over every single picture whether it needs updating or not. Normally,
+zgv completely skips any pictures which don't need updating, which makes
+it considerably faster on large directories and/or slow machines.
+
+@vindex fs-small-text
+@item --fs-small-text
+Reduce the size of the filename text in the selector. You may find this
+useful if you think the text is too big, or if you'd like to see more of
+the filename without having to press @code{:}.
+
+@vindex fs-start-mode
+@item --fs-start-mode @var{modespec}
+Specify the video mode zgv should start off using for the file
+selector. (The default is 640x480x8 if possible, otherwise 640x480x4.)
+The `modespec' should be the width, height, and depth in quotes, e.g.
+@code{"640 480 8"}. @xref{Video Modes}, for details of precisely what
+this means. The specified depth is actually ignored in this case, as
+you can only choose 8-bit modes for the selector.
+
+@item -t
+@vindex fs-thick-text
+@itemx --fs-thick-text
+Thicken the text (filenames etc.) in the file selector (and elsewhere).
+(Note that if @samp{line-text} has been enabled, then
+@samp{fs-thick-text} only has an effect if @samp{block-cursor} is on as
+well.)
+
+@item --fullscreen
+@vindex fullscreen
+(Normally enabled, use @code{--fullscreen=off} to disable.) This
+option only applies when using the SDL backend. By default, zgv
+generally uses the entire screen for its display. But if you disable
+this option, it tries to run in a window when possible (e.g. when
+running under X). Note that zgv won't be able to fill the screen in
+modes it doesn't natively support, in either case.
+
+@item -G @var{val}
+@vindex gamma
+@itemx --gamma @var{val}
+Set the gamma adjustment used (@pxref{Gamma Adjustment}). This also sets
+the `initial value' used when resetting the gamma adjustment. The
+default is 1.0, i.e. no adjustment.
+
+@vindex gnulitically-correct
+@item --gnulitically-correct
+GNU has @samp{POSIXLY_CORRECT} for compatibility with silly POSIX
+misfeatures, and zgv has@dots{}
+
+@item -h
+@c not config var
+@itemx --help
+Display a list of options and a terse description of what the options
+do.
+
+@item -i
+@vindex ignore-errors
+@itemx --ignore-errors
+When loading a single file from the command-line, ignore (some) errors.
+Only meaningful for PNG currently.
+
+@vindex jpeg-index-style
+@item --jpeg-index-style @var{style}
+Specify how to read JPEGs when creating thumbnails. Style @code{1} is
+the quickest, but sometimes generates rather fuzzy/blocky thumbnails;
+@code{2} is fairly cautious (and the default), but still quite fast;
+@code{3} is an extremely cautious and slow method.
+
+@item -J @var{type}
+@vindex jpeg-speed
+@itemx --jpeg-speed @var{type}
+Set JPEG speed/quality tradeoff. Type @code{1} is slow but accurate;
+@code{2} is faster but not as accurate (and the default); @code{3} is
+the fastest but the least accurate.
+
+@vindex line-text
+@item --line-text
+Draw text by drawing lines rather than using bitmap fonts. This looks
+worse but is faster.
+
+@item -M
+@vindex mouse
+@itemx --mouse
+Enable mouse support in zgv. @file{/dev/mouse} must be (usually a
+symlink to) the mouse device. The actual configuration of the mouse
+should be done via svgalib's config file @file{libvga.config}; see the
+man page for that for details.
+
+@vindex mouse-scale
+@item --mouse-scale @var{scale}
+Set the ratio of `mouse pixels' to onscreen pixels. The larger the
+number, the slower the mouse moves, and vice versa. (However, the number
+must be greater than zero.) If the mouse pointer moves at the wrong
+speed for your tastes, play about with this setting and you should be
+able to fix it.
+
+@vindex pcd-res
+@item --pcd-res @var{resnum}
+Selects the resolution used for Photo-CD files; 1=192x128, 2=384x256,
+3=768x512 (default), 4=1536x1024, 5=3072x2048. (This setting only has an
+effect if Photo-CD support was enabled at compile-time.)
+
+@item -g
+@vindex pgm-truecol
+@itemx --pgm-truecol
+This one needs some background to fully explain --- greyscale files are
+normally displayed in 8-bit modes, which due to VGA's limited palette
+means that only 64 greyscales can be shown (zgv normally fakes extra
+ones, though; @pxref{Increased Greyscales}). But for people who work
+with greyscale files and have 24/32-bit video modes available this can
+be frustrating, as 24/32-bit modes display 256 greyscales. For this
+reason, using the @code{--pgm-truecol} option enables a special-case
+hack to read (only) PGM files as if they were 24-bit. Using a 24/32-bit
+mode then gives you 256 greyscales. (Be careful to avoid 15/16-bit modes
+as these will only give 32! @xref{Drawbacks of 15/16-bit Modes}.)
+
+@item -r @var{seconds}
+@c not config var
+@itemx --reload-delay @var{seconds}
+If @var{seconds} is positive, then any picture displayed is re-read
+and redisplayed (without clearing the screen first) every
+@var{seconds} seconds. If it's @code{0} (zero), or negative, the
+picture is only read once --- the default. Unless this option has
+suddenly inspired you to write an interesting little shell script,
+you're unlikely ever to have a use for it. :-)
+
+@vindex reverse-bc-order
+@item --reverse-bc-order
+Normally, any brightness modification is applied after applying any
+contrast. Enabling this reverses the order.
+
+@vindex revert-orient
+@item --revert-orient
+(Normally enabled, use @code{--revert-orient=off} to disable.) If
+disabled, orientation (flip/mirror/rotate) state is retained between
+pictures.
+
+@vindex revert-scale
+@item --revert-scale
+(Normally enabled, use @code{--revert-scale=off} to disable.) If
+disabled, scaling is retained between pictures.
+
+@vindex scrollbar
+@item --scrollbar
+(Normally enabled, use @code{--scrollbar=off} to disable.) If disabled,
+don't show a scrollbar below the selector.
+
+@item -s
+@c not config var
+@itemx --show-dimensions
+Cause zgv to output the x and y offsets, and width and height of the
+section of the image being displayed when you exit zgv. Can be useful
+for things like @code{pnmcut `zgv -s input.ppm` input.ppm > output.ppm}.
+
+@item -T
+@c not config var
+@itemx --show-tagged
+Print names of tagged files on exit. This can be useful in constructions
+something like @code{mv `zgv -T` /tmp}, which moves to @file{/tmp} only
+the files you select.
+
+@vindex show-xvpics-dir
+@item --show-xvpics-dir
+Show any @file{.xvpics} directories so that the thumbnails can be viewed
+even if the files they referred to no longer exist. (However, it's
+usually easier to simply start zgv in the @file{.xvpics} dir.)
+
+@item -S @var{delay}
+@vindex slideshow-delay
+@itemx --slideshow-delay @var{delay}
+Set time to wait in seconds before loading the next picture in a
+slideshow. The default is 4.
+
+@item -l
+@vindex slideshow-loop
+@itemx --slideshow-loop
+Loop in slideshows `forever' (or rather, until you exit).
+
+@item -R
+@vindex slideshow-randomise
+@vindex slideshow-randomize
+@itemx --slideshow-randomise
+@itemx --slideshow-randomize
+Randomise picture order in slideshows. Due to the shuffling approach
+taken, there will be no repeats or omissions.
+
+@vindex viewer-16col-colour
+@vindex viewer-16col-color
+@item --viewer-16col-colour
+@itemx --viewer-16col-color
+Give a dithered colour image in 640x480x4 mode when in the viewer
+(@pxref{The Viewer 640x480x4 Mode}), rather than greyscale.
+
+@item -m @var{modespec}
+@vindex viewer-start-mode
+@itemx --viewer-start-mode @var{modespec}
+Specify the video mode zgv should start off using for the viewer. The
+default is generally 640x480x8, but it's actually a bit more complicated
+than that (@pxref{Default Video Mode}). The `modespec' should be the
+width, height, and depth in quotes, e.g. @code{"640 480 8"}. @xref{Video
+Modes}, for details of precisely what this means.
+
+@vindex visual
+@item --visual
+(Normally enabled, use @code{--visual=off} to disable.) If disabled, no
+thumbnails are shown.
+
+@item -k
+@vindex vkludge
+@itemx --vkludge
+enables vkludge, which smoothes slightly when `zooming' a big picture
+down to screen size, and also when in 320x400 and 360x480 modes.
+
+@c not config var
+@item --version
+Show version number.
+
+@item -w
+@c not config var
+@itemx --write-ppm
+Write the file as a PPM to stdout rather than viewing it. (This only
+works if you run zgv on a single file, specified on the command-line.)
+You're usually better off using a dedicated image-converting program,
+though.
+
+@vindex xzgv-keys
+@item --xzgv-keys
+Makes zgv acts a bit more like xzgv, at least in terms of the keypresses
+it supports (@pxref{xzgv Compatibility}).
+
+@item -z
+@vindex zoom
+@itemx --zoom
+Enable zoom mode, which resizes the picture to fit the screen.
+@xref{Zoom Mode}.
+
+@vindex zoom-reduce-only
+@item --zoom-reduce-only
+When in zoom mode, only @emph{reduce} pictures to fit; i.e. make big
+pictures viewable all-at-once while leaving small picures intact.
+@end table
+
+If zgv is started with @code{zgv @var{file}}, zgv auto-loads the file
+(bypassing the file selector), and exits when you exit from viewing the
+picture. (By the way, this also makes it possible to view single files
+without the usual extensions such as @file{.gif}, etc. @xref{File Type
+Identification}.)
+
+If started with @code{zgv @var{file file2 ...}} --- i.e. with more than
+one filename --- zgv works in a similar way, except the multiple files
+are shown as a slideshow, one after the other. You may want to specify
+@code{-l} so that zgv will loop around these pictures until @kbd{Esc} is
+pressed, and the @code{-R} option to shuffle (randomise) the picture
+order may also be of interest.
+
+If started with @code{zgv @var{start-dir}}, zgv starts up with the usual
+file selector, but with the current directory being the one specified.
+
+Settings which are either on or off (boolean) are, as you might expect,
+enabled by using e.g. @code{-z} or @code{--zoom}. However, there's an
+alternative long-option form for setting these, resembling how they're
+set in config files --- the syntax is @code{--option=@var{state}}, where
+@var{state} is @code{on}/@code{y}/@code{yes}/@code{1} to enable the
+option, or @code{off}/@code{n}/@code{no}/@code{0} to disable it. The
+most useful thing about this is that it allows you to disable options
+which were previously enabled, by using e.g. @code{--zoom=off}.
+
+(Readers used to the way GNU-style long options work should note that,
+since this @code{on}/@code{off}/etc. arg is optional, you can't use the
+@code{--option arg} form in this case; it must be @code{--option=arg}
+for it to work.)
+
+
+@node  Online help, The File Selector, Invoking zgv, Top
+@comment  node-name,  next,  previous,  up
+@chapter Online help
+
+@cindex online help
+@cindex help, online
+
+Online help (of a sort) is available in both the file selector and
+viewer:
+
+@table @kbd
+@kindex ?
+@item ?
+Gives online help. This lists some of the most commonly-used keypresses
+in the current context.
+@end table
+
+In the viewer, you can also get a list of which key combinations select
+which video modes. @xref{Selecting a Video Mode}.
+
+
+@node  The File Selector, The Viewer, Online help, Top
+@comment  node-name,  next,  previous,  up
+@chapter The File Selector
+
+@c XXX could do with synonyms for `selector' here...
+@cindex file selector
+@cindex the file selector
+@cindex selector
+
+Usually, on starting up zgv, you will enter the file selector, which
+lets you pick files to view (among other things). This lists the
+subdirectories and picture files in the current directory, along with
+small `thumbnail' versions of the pictures if they exist.
+
+@menu
+* Exiting zgv::                 Why would you want to? :-)
+* Thumbnails::                  How to create thumbnails, and how they
+                                  work.
+* Screen Layout::               The file selector lists dirs/files.
+* Moving Around The List::      How to move the cursor.
+* Viewing a File::              How to view a single file.
+* Dialog Boxes::                How zgv reports errors and asks you things.
+* Tagging::                     You can tag (mark) multiple files, then
+                                  view/copy/move/delete them.
+* Renaming a File::             Renaming a single file or directory.
+* Changing Directory::          As well as the normal dir-by-dir way,
+                                  you can jump directly to a directory.
+* Changing the Sorting Order::  Files can be sorted by name,
+                                  `extension', size, and date/time.
+* File Selector Toggles::       Some options can be changed while zgv is
+                                  running.
+* Other File Sel Commands::     Miscellaneous operations.
+* Showing More Files::          You can use different video modes for the
+                                  file selector, showing more files at
+                                  once.
+* 16-colour File Selector::     If 640x480 256-colour mode is absent
+                                  thumbnails don't look as good, but you
+                                  can choose between monochrome and
+                                  colour approximations.
+@end menu
+
+
+@node  Exiting zgv, Thumbnails, The File Selector, The File Selector
+@comment  node-name,  next,  previous,  up
+@section Exiting zgv
+
+@cindex exiting zgv
+@cindex quitting zgv
+@cindex leaving zgv
+
+Exiting zgv can be achieved two ways:
+
+@table @kbd
+@kindex Esc (Selector)
+@item Esc
+@kindex x (Selector)
+@itemx x
+Quit zgv normally.
+
+@kindex ^C
+@item ^C
+Quit zgv in a rather immediate and nasty way, by sending @samp{SIGINT}.
+(This is actually dealt with by svgalib.) You should only use ^C to quit
+if zgv appears to lock up or takes an unbearably long time to do
+something.
+
+(Technically it may not be @kbd{^C} which sends @samp{SIGINT}, but you
+would have to have a strange setup for this to be the case.)
+@end table
+
+
+@node  Thumbnails, Screen Layout, Exiting zgv, The File Selector
+@comment  node-name,  next,  previous,  up
+@section Thumbnails
+
+@cindex thumbnails
+@cindex picture thumbnails
+@cindex file thumbnails
+@cindex xv-compatible thumbnails
+
+(This section is deliberately early on in the manual, as thumbnails are
+probably the most important feature of the file selector, so it's best
+that you know how to create/update them sooner rather than later.)
+
+Thumbnails are small versions of the pictures they represent, and are
+displayed by the file selector if they exist. zgv uses xv-compatible
+thumbnails --- if you create thumbnails with xv they will work with zgv,
+and vice versa. zgv's thumbnails are also compatible with the Gimp, and
+xzgv.
+
+If no thumbnail exists for a file or directory, a small `document' or
+`folder' graphic appears instead.
+
+@menu
+* Updating Thumbnails::         How to create or update thumbnails.
+* Thumbnail Storage::           Where thumbnails are stored.
+* Thumbnail Issues::            Thumbnails need all 256 colours.
+@end menu
+
+@node  Updating Thumbnails, Thumbnail Storage, Thumbnails, Thumbnails
+@comment  node-name,  next,  previous,  up
+@subsection Updating Thumbnails
+
+@cindex updating thumbnails
+@cindex creating thumbnails
+@cindex making thumbnails
+@cindex thumbnails, creating
+@cindex thumbnails, updating
+@cindex directory, updating thumbnails in a
+@cindex recursively, updating thumbnails
+@cindex tree, updating all thumbnails in a directory
+
+While thumbnails can be made relatively quickly, it's by no means an
+instant process. For this reason, thumbnails have to be created in
+advance, and are stored as files in their own right in (usually) a
+subdirectory @file{.xvpics}.
+
+zgv never creates/updates thumbnails without you telling it to. So, if
+you enter a directory where the picture files don't have any thumbnails,
+or where the thumbnails seem to be out of date, you should press
+@kbd{u}.
+
+Alternatively, you can create/update thumbnails for the current
+directory and all subdirectories by using @kbd{Alt-u}. But be warned
+that a recursive update can take some time!
+
+@table @kbd
+@kindex u (Selector)
+@item u
+Create thumbnails for any files which don't have them, and update
+thumbnails which are older than than the corresponding file. While this
+is going on, the text @samp{updating index of} prefixes the usual
+display of the current directory's name.
+
+You can press @kbd{Esc} while the update is in progress to abort it; zgv
+will stop once it has finished the thumbnail it is currently working on
+(if any).
+
+If you switch consoles while the update is in progress, it will continue
+to run `in the background'. When you switch back, if the update is still
+in progress, it may look as though zgv is doing nothing (or the screen
+may look a bit confusing) for some time. The reason is that the screen
+is not updated unless zgv is running on the currently displayed console
+(this is unfortunately necessary). The screen is redrawn when the
+current thumbnail has been dealt with.
+
+@kindex Alt-u (Selector)
+@item Alt-u
+Create/update thumbnails for all files in the current directory and all
+subdirectories --- in other words, do a recursive update. This can take
+some time, so you are prompted to confirm that you really want to do
+this (@pxref{Dialog Boxes}). As above, it will continue running `in the
+background' if you switch consoles, and you can press @kbd{Esc} to
+abort.
+
+@kindex d (Selector)
+@item d
+Create thumbnails for subdirectories. Don't confuse this with the
+recursive update; this generates thumbnails for the directories
+@emph{themselves}, not the files within them. (Most people probably
+won't want to bother with these, as they're not as helpful as you might
+think.) These consist of the first four files in the subdir, squeezed
+together into a single thumbnail. There is (currently) no `update'
+mechanism for subdir thumbnails --- all of them are newly created each
+time you press @kbd{d}.
+@end table
+
+
+@node Thumbnail Storage, Thumbnail Issues, Updating Thumbnails, Thumbnails
+@comment  node-name,  next,  previous,  up
+@subsection Thumbnail Storage
+
+@cindex thumbnails, storage
+@cindex thumbnails, location
+@cindex storage of thumbnails
+@cindex location of thumbnails
+
+Normally, thumbnails are stored in the subdirectory @file{.xvpics}
+(creating the dir first if needed), with the same name as the filename
+they represent. However, there are times when using @file{.xvpics} isn't
+possible --- for example, the filesystem may be read-only (such as on a
+CD), or may not support the @file{.xvpics} name (such as on an
+@samp{msdos} filesystem), or you may not have permission to write to the
+directory.
+
+In these situations, zgv stores the thumbnails elsewhere. They go in
+directories under the @file{.xvpics} dir in your home directory. The
+name for the directory they go in there is the directory name they were
+found in, but with slashes (@code{/}) converted to underscores
+(@code{_}).
+
+An example should make things clearer. Say zgv needs to create a
+thumbnail for @file{wibble.jpg}, in the directory @file{/foo/bar/baz},
+but can't use @file{.xvpics}. It will put the thumbnail in
+@file{$HOME/.xvpics/_foo_bar_baz/wibble.jpg}, creating directories as
+necessary.
+
+Where a thumbnail is stored makes virtually no difference to how zgv
+works; the main difference is that the latter, more indirect way of
+storing thumbnails means that thumbnails will take slighter longer to
+display.
+
+
+@node  Thumbnail Issues,  , Thumbnail Storage, Thumbnails
+@comment  node-name,  next,  previous,  up
+@subsection Thumbnail Issues
+
+@c XXX could do with one here which doesn't start "thumbnails" :-)
+@cindex thumbnails, issues relating to
+@cindex thumbnails, problems with displaying
+
+The thumbnails used in zgv require 256 colours to display.
+Unfortunately, the rest of zgv's file selector needs an additional five
+colours. Normally this is dealt with by finding the `closest' thumbnail
+colours, and (this is the important part) changing them to the file
+selector colours. The disturbance to the thumbnails should be barely
+noticeable.
+
+(All the same, you can disable this using the config file setting
+@samp{fs-perfect-cols} (@pxref{Configuring zgv}). But bear in mind
+that the selector will then look rather strange!)
+
+In 16-colour mode (@pxref{16-colour File Selector}), the way it works
+means fewer colours are needed, and the file selector's five colours can
+be (and are) separate from the thumbnail colours.
+
+
+@node  Screen Layout, Moving Around The List, Thumbnails, The File Selector
+@comment  node-name,  next,  previous,  up
+@section Screen Layout
+
+@cindex screen layout
+@cindex layout, screen
+@cindex file selector, layout of
+
+@c I avoid saying "dirs are shown in brackets" here because that might
+@c be gratuitously confusing for American English speakers, especially
+@c since [square brackets] (the US meaning of brackets, IIRC) *are*
+@c used for showing dirs in some other programs.
+@c
+@c Yes, I know I could instead say they're in parentheses. Shut up. :-)
+
+The file selector is simply a list of subdirectories and filenames,
+along with any thumbnails that exist for them. The list is in
+asciibetical order (but you can change this; @pxref{Changing the Sorting
+Order}). Names of directories are shown (like this), and they are shown
+in order at the beginning of the list, before all the picture files.
+Long filenames are truncated to fit; three dots indicate where this has
+happened. (@xref{Other File Sel Commands}, for how to display the full
+filename.)
+
+The list is often larger than can fit on the screen at once. If this is
+the case, only part is shown at a time, but you can move around the list
+with the cursor keys and the like.
+
+The colours used for the file selector can be changed, if you dislike
+the defaults (@pxref{Configuring zgv}).
+
+
+@node  Moving Around The List, Viewing a File, Screen Layout, The File Selector
+@comment  node-name,  next,  previous,  up
+@section Moving Around The List
+
+@cindex moving around the file list
+@cindex file selector, moving around
+@cindex file selector, cursor movement in
+@cindex cursor
+@cindex choosing a file
+@cindex selecting a file
+@cindex picture, selecting
+
+The cursor in zgv is (normally) shown as a `raised' entry in the list.
+The cursor has two main functions:
+
+@itemize @minus
+@item
+It selects a file for `view', `tag' etc. commands to operate on.
+
+@item
+It determines which part of the list is shown, as the part of the list
+shown onscreen always contains the cursor.
+@end itemize
+
+There are many commands for moving the cursor. In summary, most
+`special' keys like the cursors do what you'd imagine they do --- also,
+a few Emacs-like keys, a few vi-like keys, and the Sinclair
+Spectrum-style (!) QAOP keys are supported.
+
+@c This para should really go at the root file-sel node, but it
+@c just doesn't fit there. It's probably tolerable to have it here I
+@c guess; it's a good bet that people would read this before reading any
+@c later stuff, and/or that they'd guess the "Using a Mouse" section
+@c might be relevant. ;-)
+
+Using a mouse in the file selector is not covered here. @xref{Mouse
+Funcs in the File Selector}, for details of what you can do with a
+mouse. (Experienced users may wish to consult the @cite{Tom & Jerry} and
+@cite{Pinky and the Brain} cartoons for further enlightenment on this
+subject.)
+
+@table @kbd
+@kindex Cursor Up (Selector)
+@item Cursor Up
+@kindex ^P (Selector)
+@itemx ^P
+@kindex k (Selector)
+@itemx k
+@kindex q (Selector)
+@itemx q
+Move up. Moving up from a topmost entry moves to the bottom of the
+previous column.
+
+@kindex Cursor Down (Selector)
+@item Cursor Down
+@kindex ^N (Selector)
+@itemx ^N
+@kindex j (Selector)
+@itemx j
+@kindex a (Selector)
+@itemx a
+Move down. Moving down from a bottommost entry moves to the top of the
+next column.
+
+@kindex Cursor Left (Selector)
+@item Cursor Left
+@kindex ^B (Selector)
+@itemx ^B
+@kindex h (Selector)
+@itemx h
+@kindex o (Selector)
+@itemx o
+Move left one column.
+
+@kindex Cursor Right (Selector)
+@item Cursor Right
+@kindex ^F (Selector)
+@itemx ^F
+@kindex l (Selector)
+@itemx l
+@kindex p (Selector)
+@itemx p
+Move right one column.
+
+@kindex Page Up (Selector)
+@item Page Up
+@kindex ^U (Selector)
+@itemx ^U
+Move the cursor back (nearly) a page.
+
+@kindex Page Down (Selector)
+@item Page Down
+@kindex ^V (Selector)
+@itemx ^V
+Move the cursor forward (nearly) a page.
+
+@kindex Home (Selector)
+@item Home
+@kindex ^A (Selector)
+@itemx ^A
+Move the cursor to the start of the list.
+
+@kindex End (Selector)
+@item End
+@kindex ^E (Selector)
+@itemx ^E
+Move the cursor to the end of the list.
+
+@kindex g (Selector)
+@item g
+@kindex ' (Selector)
+@itemx '
+Move the cursor to the first filename starting with the next key
+pressed, which would generally be a letter or number. Case is
+significant; @kbd{a} and @kbd{A} are different.
+
+If no files start with the specified character, it moves to the first
+file which starts with a later char (in asciibetical order). If there
+are none for which this is the case, it moves to the last file ---
+unless there are no files (just directories), in which case it has no
+effect.
+
+@end table
+
+
+@node  Viewing a File, Dialog Boxes, Moving Around The List, The File Selector
+@comment  node-name,  next,  previous,  up
+@section Viewing a File
+
+@cindex viewing a file
+@cindex file selector, viewing a file from the
+@cindex picture, viewing a
+
+There are two ways to view files from the file selector. The usual way
+is to press @kbd{Enter} when you've moved the cursor to the file to
+view. However, you can also view tagged files as a `slideshow', which is
+described later (@pxref{Tagging}).
+
+@table @kbd
+@kindex Enter (Selector)
+@item Enter
+View a picture file, or if the cursor is on a subdirectory, make that
+the current directory. A progress indicator is shown when reading in a
+file --- while this is onscreen, you can use @kbd{Esc} to abort.
+@end table
+
+
+@node  Dialog Boxes, Tagging, Viewing a File, The File Selector
+@comment  node-name,  next,  previous,  up
+@section Dialog Boxes
+
+@cindex dialog boxes
+@cindex messages
+@cindex errors
+@cindex directory dialog
+
+If zgv has a serious problem reading a file, it will give an error.
+Errors are shown in boxes which appear in the middle of the screen ---
+they stay there until you press @kbd{Enter} or @kbd{Esc} (if using a
+mouse, clicking @samp{OK} has the same effect).
+
+zgv also uses similar dialog boxes for other things:
+
+@itemize @minus
+@item
+Getting a yes or no answer. @kbd{Enter} or @kbd{y} picks `yes';
+@kbd{Esc} or @kbd{n} picks no. (Again, you can click on the relevant
+button with the mouse to do the same.)
+
+@item
+Reading a directory name. Here you should type the directory name then
+@kbd{Enter}, or press @kbd{Esc} to abort. In fact, this line-input
+dialog allows a certain amount of editing, and so supports these
+additional keys:
+
+@table @kbd
+@kindex Cursor Left (Dir dialog)
+@item Cursor Left
+@kindex ^B (Dir dialog)
+@itemx ^B
+Move the cursor left. (An underline character shows the cursor
+position.)
+
+@kindex Cursor Right (Dir dialog)
+@item Cursor Right
+@kindex ^F (Dir dialog)
+@itemx ^F
+Move the cursor right.
+
+@kindex Home (Dir dialog)
+@item Home
+@kindex ^A (Dir dialog)
+@itemx ^A
+Move the cursor to the start of the line.
+
+@kindex End (Dir dialog)
+@item End
+@kindex ^E (Dir dialog)
+@itemx ^E
+Move the cursor to the end of the line.
+
+@kindex Insert (Dir dialog)
+@item Insert
+@kindex ^I (Dir dialog)
+@itemx ^I
+Toggle insert/overwrite mode. (Insert mode is the default.) In insert
+mode, characters you type are inserted at the cursor position. In
+overwrite mode, they replace the existing chars.
+
+@kindex Backspace (Dir dialog)
+@item Backspace
+@kindex ^H (Dir dialog)
+@itemx ^H
+Delete char to the left of the cursor. (This assumes @kbd{Backspace}
+really generates a @kbd{DEL}, which is the usual setup on Linux. Note
+that @kbd{Backspace} is (usually) the key above the main @kbd{Enter}
+key; it is often labelled simply as an arrow.)
+
+@kindex Delete (Dir dialog)
+@item Delete
+@kindex ^D (Dir dialog)
+@itemx ^D
+Delete the char the cursor is on.
+@end table
+@end itemize
+
+
+@node  Tagging, Renaming a File, Dialog Boxes, The File Selector
+@comment  node-name,  next,  previous,  up
+@section Tagging
+
+@cindex tagging
+@cindex marking files
+@cindex selecting multiple files
+
+The file selector is not restricted to working on one file at a time.
+You can `tag' as many (or as few) files as you wish, and certain
+commands described in this section will act on them.
+
+Initially, all files are untagged, and the filenames appear in black.
+Tagged files appear in red. (@xref{Configuring zgv}, if you'd prefer zgv
+to use different colours.)
+
+@menu
+* Tag and Untag Commands::      Selecting multiple files.
+* Slideshows::                  How to view them all in turn.
+* Copying/Moving/Deleting Files::  Or, do simple file management.
+@end menu
+
+@node  Tag and Untag Commands, Slideshows, Tagging, Tagging
+@comment  node-name,  next,  previous,  up
+@subsection Tag and Untag Commands
+
+@cindex tag and untag commands
+@cindex tagging, how to use
+
+There are several ways to tag or untag files. The ones which work on
+individual files also move the cursor forward one place afterwards, to
+make tagging or untagging multiple files easier.
+
+As elsewhere in zgv, the case of the keys is significant --- the @kbd{t}
+(unshifted @kbd{t}) command has quite a different effect to that of
+@kbd{T} (shifted @kbd{t}).
+
+There is also a command available in the viewer to tag the
+currently-viewed file. @xref{Changing Picture}, for details.
+
+@table @kbd
+@kindex t (Selector)
+@item t
+Tag file.
+
+@kindex n (Selector)
+@item n
+Untag file. Note that this is @kbd{n} (for `no tag', er, or something
+like that); @kbd{u} would be more logical, but that is used for updating
+thumbnails.
+
+@kindex T (Selector)
+@item T
+Tag all files.
+
+@kindex N (Selector)
+@item N
+Untag all files. This is on @kbd{N} rather than @kbd{U} for consistency.
+
+@kindex Space (Selector)
+@item Space
+Toggle the tag status of the file --- if it's tagged, untag it; if it's
+untagged, tag it.
+@end table
+
+To see how many files are tagged, use @kbd{Alt-f} (@pxref{Other File Sel
+Commands}).
+
+
+@node  Slideshows, Copying/Moving/Deleting Files, Tag and Untag Commands, Tagging
+@comment  node-name,  next,  previous,  up
+@subsection Slideshows
+
+@cindex slideshows
+@cindex pictures, slideshow of
+@cindex files, slideshow of
+@cindex viewing multiple files
+
+A `slideshow' lets you view all the tagged files in the current
+directory one after the other, or in a randomised order if `shuffling'
+is enabled (@pxref{File Selector Toggles}):
+
+@table @kbd
+@kindex Tab (Selector)
+@item Tab
+View the tagged files as a slideshow. (@kbd{Tab} is usually the key
+above @kbd{Caps Lock}, which is often labelled with two arrows.)
+@end table
+
+Each file is shown for a certain amount of time, normally 4 seconds.
+(@xref{Invoking zgv}, if you find this too short or long.) After the
+time runs out, the next file is shown. You can cut this delay short by
+hand using one of the viewer's change-picture commands such as
+@kbd{Space} (@pxref{Changing Picture}), or abort the slideshow
+prematurely by pressing @kbd{Esc}. You can also pause a slideshow so
+that you remain on the current file until you unpause it (@pxref{Pausing
+Slideshows}).
+
+Normally, once each file has been shown the slideshow ends, and you are
+returned to the file selector. But if looping is enabled, the slideshow
+repeats until you press @kbd{Esc} (@pxref{File Selector Toggles}).
+
+
+@node  Copying/Moving/Deleting Files,  , Slideshows, Tagging
+@comment  node-name,  next,  previous,  up
+@subsection Copying/Moving/Deleting Files
+
+@cindex copying files
+@cindex moving files
+@cindex files, copying
+@cindex files, moving
+@cindex pictures, copying
+@c one for us Rush fans...
+@cindex pictures, moving
+@c :-)
+@cindex deleting files
+@cindex tagged files, deleting
+@cindex marked files, deleting
+
+You can copy or move tagged files to a directory you specify, or
+delete all tagged files. If no files are tagged, zgv
+copies/moves/deletes the file the cursor is currently on --- unless
+the cursor is on a subdirectory, in which case it gives an error.
+
+Note that the commands given here are uppercase --- lowercase @kbd{c},
+@kbd{m}, and @kbd{d} do not do the same thing.
+
+@table @kbd
+@kindex C (Selector)
+@item C
+Copy tagged files (or the current file) to a given directory. zgv asks
+for the destination directory using a dialog (@pxref{Dialog Boxes}) and
+copies the files there. If it comes to copy a file but there is an
+existing file in the dir with the same name, the file is not copied and
+nor are any of the remaining files.
+
+@kindex M (Selector)
+@item M
+Move tagged files (or the current file) similarly.
+
+@kindex D (Selector)
+@item D
+Delete tagged files (or the current file) similarly. In this case,
+there's obviously no need to specify any directory :-) but you're
+prompted before deletion starts (unless this is disabled,
+@pxref{Configuring zgv}). It also deletes thumbnails, for those files
+which have them.
+@end table
+
+
+@node  Renaming a File, Changing Directory, Tagging, The File Selector
+@comment  node-name,  next,  previous,  up
+@section Renaming a File
+
+@cindex renaming a file
+@cindex file, renaming a
+@cindex changing a file's name
+
+As well as copying/moving files, you can rename them:
+
+@table @kbd
+@kindex R (Selector)
+@item R
+@kindex Alt-r (Selector)
+@itemx Alt-r
+Rename the current file or directory --- zgv will refuse to overwrite
+any existing files/directories. The new name must remain in the
+current directory. (@xref{Copying/Moving/Deleting Files}, for how to
+move a file to a different directory (albeit keeping the same name).)
+@end table
+
+It's better to use @kbd{R} than @kbd{Alt-r}; the latter never made much
+sense, and is likely to be removed before long.
+
+
+@node  Changing Directory, Changing the Sorting Order, Renaming a File, The File Selector
+@comment  node-name,  next,  previous,  up
+@section Changing Directory
+
+@cindex changing directory
+@cindex directory, changing
+@cindex selecting directory
+@cindex current directory
+@cindex moving directory
+@cindex jumping to a directory
+
+The easiest way to change the current directory in zgv is usually to
+select a directory entry in the file list and press @kbd{Enter}.
+(Selecting @code{(..)} moves to the parent directory of the current
+one.)
+
+There is an alternative though:
+
+(Note that this command is shift-@kbd{g}, not @kbd{g}.)
+
+@table @kbd
+@kindex G (Selector)
+@item G
+Go to a specified directory. zgv asks for the destination directory
+using a dialog box which you should type the dir's name into
+(@pxref{Dialog Boxes}), and moves to that directory if it exists.
+
+If the directory turns out to be unreadable --- i.e. you do not have
+permission to read it --- zgv resorts to going to your home directory.
+(This is actually a general mechanism in zgv, but this command is the
+most likely trigger of it.) If that in turn is unreadable, zgv gives up
+in disgust and exits. :-)
+@end table
+
+
+@node  Changing the Sorting Order, File Selector Toggles, Changing Directory, The File Selector
+@comment  node-name,  next,  previous,  up
+@section Changing the Sorting Order
+
+@cindex file selector, sorting order of the
+@cindex changing the file selector sorting order
+@cindex sorting order, changing the file selector's
+@cindex size, showing files in order of
+@cindex extension, showing files in order of
+@cindex date order, showing files in
+
+Normally, the files are listed in asciibetical order by name. However,
+you can instead have the file list sorted by size, last-modified
+date/time, or by `extension' (the file type).
+
+(Only the order of files can be altered; directories are always listed
+first, and always in name order.)
+
+@table @kbd
+@kindex Alt-n (Selector)
+@item Alt-n
+Sort by name. This is the default.
+
+@kindex Alt-s (Selector)
+@item Alt-s
+Sort by size. The biggest files are listed last.
+
+@kindex Alt-d (Selector)
+@item Alt-d
+@kindex Alt-t (Selector)
+@itemx Alt-t
+Sort by last-modified date/time. The newest files are listed last.
+
+@kindex Alt-e (Selector)
+@item Alt-e
+Sort by extension.
+@end table
+
+
+@node  File Selector Toggles, Other File Sel Commands, Changing the Sorting Order, The File Selector
+@comment  node-name,  next,  previous,  up
+@section File Selector Toggles
+
+@cindex file selector toggles
+@cindex file selector, run-time configuration of
+@cindex file selector, options in
+@cindex options in file selector
+@cindex thumbnails, toggling display of
+@cindex scrollbar, toggling
+@cindex slideshows, toggling randomised
+@cindex slideshows, toggling looping
+@cindex listing files without extensions
+@cindex extensions, listing files without
+@cindex magic number, listing files based on
+
+Various aspects of the file selector's behaviour can be configured while
+zgv is running, by using these toggle commands (which enable the feature
+if it was previously disabled, and vice versa).
+
+These settings can also be altered using command-line options
+(@pxref{Invoking zgv}) and/or config file settings (@pxref{Configuring
+zgv}).
+
+@table @kbd
+@kindex v (Selector)
+@item v
+Toggle display of thumbnails (default is on). The without-thumbnails
+display can sometimes be useful for navigating around large directories
+(many filenames are shown onscreen at once), and it is of course faster.
+
+@kindex s (Selector)
+@item s
+Toggle scrollbar on/off (default is on). The scrollbar shows which part
+and which proportion of the list is currently being shown onscreen, and
+when mouse support is enabled can be used to move around the list.
+
+@kindex S (Selector)
+@itemx S
+Toggle shuffling (randomising) of slideshows. @xref{Slideshows}.
+
+@kindex L (Selector)
+@item L
+Toggle looping in slideshows. @xref{Slideshows}.
+
+@kindex Alt-m (Selector)
+@item Alt-m
+Toggle use of `magic numbers' (identifiers at the start of a file) to
+pick which files in a directory to list in the selector. The usual
+method of doing this is based on the file's extension (@pxref{File Type
+Identification}, which is much faster but won't catch e.g. files without
+extensions.
+
+@kindex c (Selector)
+@item c
+If the file selector is running in 16-colour mode (it usually doesn't
+unless zgv has no choice --- @pxref{16-colour File Selector}), toggle
+between greyscale (default) and colour thumbnails.
+@end table
+
+
+@node  Other File Sel Commands, Showing More Files, File Selector Toggles, The File Selector
+@comment  node-name,  next,  previous,  up
+@section Other File Sel Commands
+
+@c since this section is a vague compendium of stuff, we have index
+@c entries for each bit.
+@c delete
+@cindex deleting a file
+@cindex file, deleting a
+@c colon
+@cindex file, showing full filename of
+@cindex showing a full filename
+@cindex complete filename, showing a
+@cindex entire filename, showing an
+@cindex file, showing size of
+@cindex showing the size of a file
+@cindex size, showing a file's
+@cindex file, showing date/time of
+@cindex date, showing a file's
+@cindex time, showing a file's
+@cindex mtime, showing a file's
+@cindex last-modified date/time, showing a file's
+@cindex permissions, showing a file's
+@cindex owner, showing a file's
+@c ^L
+@cindex directory, rereading
+@cindex rereading a directory
+@cindex scanning a directory again
+@c K
+@cindex disabling mouse
+@cindex turning off the mouse
+@cindex pointer, removing the mouse
+@cindex killing mouse
+@cindex mouse, disabling
+@c Alt-f
+@cindex file count
+@cindex showing the number of files
+@cindex displaying the number of files
+@cindex number of files, showing the
+@cindex tagged files, showing number of
+
+@c XXX this intro bit is clunky as hell!
+
+There are some other commands in the file selector which don't easily
+fit anywhere else. Here they are:
+
+@table @kbd
+@kindex Delete (Selector)
+@item Delete
+Delete (only) the file the cursor is on. Asks for confirmation (unless
+this is disabled, @pxref{Configuring zgv}). It also deletes the file's
+thumbnail, if it has one. @xref{Copying/Moving/Deleting Files}, for a
+more general command which deletes all tagged files.
+
+@c Since colons aren't allowed in index entries, saying `Colon' is
+@c pretty much the best I can do. :-/
+@c NB: the listing of `;' in body text rather than as an itemx is
+@c *deliberate* - I'd rather not encourage using that, as it's not
+@c consistent across the selector and viewer (while `:' is).
+@c
+@kindex colon (Selector)
+@item :
+@kindex ; (Selector)
+Show various details about the file the cursor is on; the (full)
+filename, the size in kilobytes, width/height if recorded in any
+thumbnail, last-modified date, etc. You can also use the @kbd{;} key to
+get this.
+
+@kindex Alt-f (Selector)
+@item Alt-f
+Show the number of (picture) files in the current directory, and the
+number of tagged files (@pxref{Tagging}).
+
+@kindex ^L (Selector)
+@item ^L
+@kindex ^R (Selector)
+@itemx ^R
+Rescan the directory contents, and redraw the screen.
+
+@kindex K (Selector)
+@item K
+Kill mouse --- disable mouse for the rest of this zgv session. (It
+prompts to check if you really want to do so.) This can be useful if you
+have the mouse enabled in a config file, so that zgv always starts up
+with the mouse on, but you're currently using just the keyboard. In such
+a situation the mouse pointer can be a bit annoying. This command lets
+you disable the mouse completely for the current zgv process.
+@end table
+
+
+@node  Showing More Files, 16-colour File Selector, Other File Sel Commands, The File Selector
+@comment  node-name,  next,  previous,  up
+@section Showing More Files
+
+@c This is a tough concept to get a firm hold of, so we cover an absurd
+@c number of bases here. :-)
+@c
+@c these go for a `more files' approach:
+@cindex file selector, showing more files in the
+@cindex file selector, video modes in the
+@cindex showing more files in the selector
+@cindex more files in the selector, showing
+@c these talk about video modes:
+@cindex selector video modes
+@cindex video modes in the selector
+@cindex modes in selector, video
+@cindex screen, resolution of selector
+@cindex display, resolution of selector
+
+The file selector normally runs at a relatively low resolution
+(640x480), meaning it can only show 20 thumbnails at once. This keeps
+the selector running at a reasonable speed even on slow machines.
+
+If you have a faster machine, however, and your video card has
+256-colour modes with higher resolutions than 640x480 (@pxref{Video
+Modes}), you may want to see more thumbnails onscreen at once.
+
+(zgv tends not to look as `right' in such modes as it does in the usual
+640x480, but apart from that it's much the same.)
+
+@table @kbd
+@kindex F1 (Selector)
+@item F1
+Select 640x480 mode. This is the default.
+
+@kindex F2 (Selector)
+@item F2
+Select 800x600 mode.
+
+@kindex F3 (Selector)
+@item F3
+Select 1024x768 mode.
+
+@kindex F4 (Selector)
+@item F4
+Select 1280x1024 mode.
+@end table
+
+If you want to change the default mode used in the file selector, use
+the @samp{fs-start-mode} config file setting (@pxref{Configuring zgv}).
+For example, to use 800x600 by default, you'd use @samp{fs-start-mode
+800 600 8}.
+
+Note these modes are subject to the same checks as in the viewer --- in
+particular, this means that the file selector obeys the viewer's
+@samp{mode-good}, @samp{mode-bad}, etc. settings. @xref{Config
+Variables}.
+
+Finally, if you have no 640x480 256-colour mode, or if
+@samp{force-fs-16col} has been set, the 640x480 16-colour mode is all
+that is available.
+
+
+@node  16-colour File Selector,  , Showing More Files, The File Selector
+@comment  node-name,  next,  previous,  up
+@section 16-colour File Selector
+
+@c the most obvious thing people will notice about a 16-col selector is
+@c that it's (by default) grey, so most of these concentrate on that.
+@cindex file selector, generic VGA
+@cindex file selector, 16-colour
+@cindex file selector, monochrome
+@cindex file selector, grey
+@cindex 16-colour file selector
+@cindex file selector, monochrome
+@cindex monochrome file selector
+@cindex black-and-white file selector
+@cindex grey file selector
+
+The file selector normally operates in a 256-colour mode (by default,
+the 640x480 one). However, the original VGA cards didn't have this mode,
+and SVGA cards not supported by svgalib won't have it as far as zgv is
+concerned either.
+
+For such cards, zgv supports a more limited and slower file selector
+which works in 640x480 16-colour mode. It should be easy to tell which
+zgv is using --- if thumbnails appear in monochrome rather than colour
+(and the files are colour pictures ;-)) then it's running in 16-colour
+mode. (Another hint is that 16-colour mode has an extra border around
+the edge of the screen which 256-colour mode probably won't have.)
+
+As you might imagine, having 240 fewer colours makes things difficult.
+The default way of coping with this is the greyscale thumbnails (eleven
+grey levels are used), which are reasonably fast and quite faithful to
+the originals. If you'd prefer less accurate --- but colour ---
+thumbnails (eight colours are used, with dithering and increased
+contrast), you can press @kbd{c} to toggle between the two, or set zgv
+up to default to using colour thumbnails instead with
+@samp{fs-16col-colour-thumbnails on} in a config file
+(@pxref{Configuring zgv}).
+
+(For those of you out there who have a 640x480 256-colour mode, but feel
+you're missing out by not seeing this 16-colour file selector :-), you
+can force zgv to use it by using the @samp{--force-fs-16col} option.)
+
+
+@node  The Viewer, xzgv Compatibility, The File Selector, Top
+@comment  node-name,  next,  previous,  up
+@chapter The Viewer
+
+@cindex the viewer
+@cindex using the viewer
+@cindex viewer, using the
+
+When a picture is being shown onscreen, you're in the viewer. This
+section describes what you can do while viewing the picture.
+
+@menu
+* Exiting the Viewer::          Usually returns you to the file selector.
+* Big Pictures::                Scrolling, zoom mode, and auto-mode-fit.
+* Scaling::                     Making the picture appear larger.
+* Mirror and Rotate::           Distorting your sense of reality on a budget.
+* Brightness and Contrast::     You can have zgv alter the picture
+                                  to change the brightness or contrast.
+* Gamma Adjustment::            If a picture looks unexpectedly dark or
+                                  bright, chances are you need to tweak this.
+* Increased Greyscales::        Normally, zgv tries to fake some extra
+                                  greyscales.
+* Changing Picture::            You can change the currently-viewed
+                                  picture without returning to the file
+                                  selector.
+* File Details::                Seeing the file's name, size, etc.
+* Pausing Slideshows::          You can temporarily stop a slideshow.
+* Multiple-image GIF Animation::  Now you too can have digitised flip
+                                  books in your very own home.
+* Video Modes::                 The pixels that make up the displayed
+                                  picture can have different physical
+                                  sizes and `depths'; change video mode
+                                  to change these attributes.
+@end menu
+
+
+@node  Exiting the Viewer, Big Pictures, The Viewer, The Viewer
+@comment  node-name,  next,  previous,  up
+@section Exiting the Viewer
+
+@cindex exiting the viewer
+@cindex quitting the viewer
+@cindex leaving the viewer
+@cindex returning to file selector
+@cindex file selector, returning to
+
+Exiting the viewer is simple:
+
+@table @kbd
+@kindex Esc (Viewer)
+@item Esc
+@kindex x (Viewer)
+@itemx x
+Exit the viewer.
+
+If you got to the viewer from the file selector, you're returned there;
+if you bypassed the file selector (by running zgv with a file (or files)
+to view specified on the command-line --- @pxref{Invoking zgv}) then
+exiting the viewer also exits zgv.
+@end table
+
+
+@node  Big Pictures, Scaling, Exiting the Viewer, The Viewer
+@comment  node-name,  next,  previous,  up
+@section Big Pictures
+
+@cindex dealing with big pictures
+@cindex pictures, big
+@cindex large pictures
+@cindex big pictures
+@cindex small screen, coping with a
+
+A picture may well be too large to fit entirely on the screen. There are
+two general ways to see the whole of the picture, and in addition to
+those, you may be able to fit more on by choosing a different video mode
+(@pxref{Video Modes}), either manually or by using auto-mode-fit.
+
+(For multi-resolution Photo-CD files, there is yet another alternative
+approach (@pxref{Supported File Formats}).)
+
+@menu
+* Scrolling::                   Moving around the picture.
+* Zoom Mode::                   Fitting the picture to the screen.
+* Auto-mode-fit::               Automated video mode switching.
+@end menu
+
+@node  Scrolling, Zoom Mode, Big Pictures, Big Pictures
+@comment  node-name,  next,  previous,  up
+@subsection Scrolling
+
+@cindex scrolling
+@cindex panning
+@cindex viewer, scrolling in the
+@cindex picture, moving around a
+@cindex viewer, moving around in the
+@cindex moving around the picture
+
+Scrolling is the default approach to handling big pictures in zgv. When
+the viewer is started up, the top-left of the picture is shown --- you
+can use the cursor keys (and many others) to move around the rest of the
+picture.
+
+@table @kbd
+@kindex Cursor Up (Viewer)
+@item Cursor Up
+@kindex K (Viewer)
+@itemx K
+@kindex Q (Viewer)
+@itemx Q
+@kindex k (Viewer)
+@kindex q (Viewer)
+Move up 100 pixels. @kbd{k} and @kbd{q} move up 10 pixels.
+
+@kindex Cursor Down (Viewer)
+@item Cursor Down
+@kindex J (Viewer)
+@itemx J
+@kindex A (Viewer)
+@itemx A
+@kindex j (Viewer)
+@kindex a (Viewer)
+Move down 100 pixels. @kbd{j} and @kbd{a} move down 10 pixels.
+
+@kindex Cursor Left (Viewer)
+@item Cursor Left
+@kindex H (Viewer)
+@itemx H
+@kindex O (Viewer)
+@itemx O
+@kindex h (Viewer)
+@kindex o (Viewer)
+Move left 100 pixels. @kbd{h} and @kbd{o} move left 10 pixels.
+
+@kindex Cursor Right (Viewer)
+@item Cursor Right
+@kindex L (Viewer)
+@itemx L
+@kindex P (Viewer)
+@itemx P
+@kindex l (Viewer)
+@kindex p (Viewer)
+Move right 100 pixels. @kbd{l} and @kbd{p} move right 10 pixels.
+
+@kindex Page Up (Viewer)
+@item Page Up
+@kindex ^U (Viewer)
+@itemx ^U
+Move up (nearly) a screenful. (It moves 90% of the screen height.)
+
+@kindex Page Down (Viewer)
+@item Page Down
+@kindex ^V (Viewer)
+@itemx ^V
+Move down (nearly) a screenful.
+
+@kindex - (Viewer)
+@item -
+Move left (nearly) a screenful. (It moves 90% of the screen width.)
+
+@kindex = (Viewer)
+@item =
+Move right (nearly) a screenful.
+
+@kindex Home (Viewer)
+@item Home
+@kindex ^A (Viewer)
+@itemx ^A
+Move to the top-left of the picture.
+
+@kindex End (Viewer)
+@item End
+@kindex ^E (Viewer)
+@itemx ^E
+Move to the bottom-right of the picture.
+@end table
+
+
+@node  Zoom Mode, Auto-mode-fit, Scrolling, Big Pictures
+@comment  node-name,  next,  previous,  up
+@subsection Zoom Mode
+
+@cindex zoom mode
+@cindex fitting picture to screen
+@cindex small screen, making picture fit a
+@cindex small picture, making screen fit a
+@cindex normal, returning display to
+@cindex zooming big but not small pictures
+@cindex zoom mode, reduce-only in
+@cindex reduce-only in zoom mode
+
+An alternative way of viewing the whole picture, one which lets you see
+the picture onscreen all at once no matter how big (or small) it is, is
+zoom mode.
+
+Zoom mode's name derives from the idea of `zooming' a small file up to
+fit the screen. But in reality, it is more often used to reduce a large
+file to fit the screen.
+
+Zoom mode is not the default, and has to be enabled. Once enabled, it
+stays on until you turn it off again.
+
+By default, the way zoom mode reduces a file to fit the screen is
+(relatively) quick but harsh, and may make the picture look ugly.
+Enabling @samp{vkludge} smoothes the picture, giving a better and more
+accurate result, but takes longer. It too is not the default, but stays
+on until turned off again.
+
+@table @kbd
+@kindex z (Viewer)
+@item z
+Toggle zoom mode.
+
+@kindex Alt-r (Viewer)
+@item Alt-r
+When in zoom mode, only @emph{reduce} pictures to fit. This can be
+useful when going through a lot of unpredictably-sized pictures, as it
+means that you can see all of a big picture easily without also meaning
+that tiny little icons assume a scale of Biblical proportions. :-)
+
+@kindex v (Viewer)
+@item v
+Toggle @samp{vkludge}, which enables appropriate smoothing when zoom
+mode is reducing a picture to fit the screen. It also enables similar
+smoothing for non-zoomed pictures in 320x400x8 and 360x480x8 modes.
+@xref{Virtual Modes}.
+
+@kindex n (Viewer)
+@item n
+Resume `normal' display --- disables zoom mode (and scaling mode).
+@end table
+
+
+@node Auto-mode-fit,  , Zoom Mode, Big Pictures
+@comment  node-name,  next,  previous,  up
+@subsection Auto-mode-fit
+
+@cindex auto-mode-fit
+@cindex mode, automatically choosing video
+@cindex video mode, automatically choosing
+@cindex zoom, automatic mode-switching for effective
+
+If it seems strange to you to use scrolling or zoom mode to see the
+whole picture when you could just use a different video mode (to change
+the size of the pixels displayed onscreen), you may find auto-mode-fit
+useful.
+
+If enabled, and when a picture is loaded, the current mode is
+automatically switched to the `smallest' mode which is both wider and
+taller than the picture is (or of equal width/height). In other words,
+the (theoretically) most appropriate mode. If no mode can fit the
+picture onscreen, the `largest' mode is chosen.
+
+Auto-mode-fit is not the default, so you have to enable it if you want
+to use it.
+
+@table @kbd
+@kindex Z (Viewer)
+@item Z
+Toggle auto-mode-fit mode. Usually this only takes effect when a picture
+is loaded (so that manual mode switching still works), but when you
+enable it zgv does a one-off auto-mode-fit on the current picture. (Note
+also that disabling it leaves you in the current mode, so that has no
+obvious effect; for this reason, the picture is redrawn (as a visual cue
+that you haven't just been ignored :-)).)
+@end table
+
+I should point out that all the mode-switching can be a bit hard on your
+monitor, so even if you really like this option you might not want to
+enable it all the time (e.g. in a config file), but instead only turn it
+on when you `need' it. Still, it's up to you.
+
+Certain modes are excluded from those chosen by auto-mode-fit. In
+particular, no 320x200 mode is ever chosen, nor is 320x400x8. These
+exceptions are made due to the unusual aspect ratio. 640x480x4 is
+excluded due to the slightly odd way it works, which makes it ill-suited
+to automatic selection. 360x480x8 @emph{is} considered, despite the
+aspect ratio, if no 640x480x8 mode exists.
+
+
+@node  Scaling, Mirror and Rotate, Big Pictures, The Viewer
+@comment  node-name,  next,  previous,  up
+@section Scaling
+
+@cindex scaling up a picture
+@cindex enlarging a picture
+@cindex picture, enlarging
+@cindex zooming into a picture
+@cindex making a picture bigger
+@cindex small picture, enlarging a
+
+You can scale a picture --- this makes it appear larger onscreen. zgv
+acts exactly as if the scaled-up picture were the real picture; for
+example, the cursors scroll around in steps of 100 scaled-up pixels,
+even if this means moving a fraction of a pixel in the original picture.
+
+The main limitation of scaling is that you can only scale up by integer
+values, so you can only make each pixel in the image twice as wide/high, or
+three times as wide/high, or four times, and so on.
+
+(It may seem odd saying e.g. `twice as wide/high' rather than `twice the
+size', but technically `twice the size' would be referring to scaling up
+the width (and height) by about 1.414@dots{})
+
+Normally, zgv does no scaling, which could be considered a ratio of 1:1.
+Scaling up increases that ratio. How it is increased depends on which
+key you use:
+
+@table @kbd
+@kindex s (Viewer)
+@item s
+Increase the ratio by adding one --- this leads to ratios of 2:1, 3:1,
+4:1@dots{}
+
+@kindex d (Viewer)
+@item d
+Increase the ratio by doubling it --- leads to ratios of 2:1, 4:1,
+8:1@dots{}
+@end table
+
+Usually @kbd{d} is more useful.
+
+There are similar commands to decrease the ratio (when it reaches 1:1
+scaling is disabled):
+
+@table @kbd
+@kindex S (Viewer)
+@item S
+Decrease the ratio by subtracting one.
+
+@kindex D (Viewer)
+@item D
+Decrease the ratio by halving it.
+@end table
+
+The scaling ratio is never decreased below 1:1. It is also never
+increased beyond 512:1, where zgv stops so that pixels may be conserved
+for future generations. :-)
+
+You can undo the effect of scaling at any time by using @kbd{n} (which
+also disables zoom mode).
+
+Normally, scaling works by simply making the pixels into larger and
+larger squares (in effect), which remain the same colour. However, if
+you are using a 15/16/24/32-bit mode (@pxref{Video Modes}), you can
+enable a feature called `interpolation' which smoothly graduates the
+colour change between the top-left corners of each pixel. This is
+@emph{very} slow, but looks nice.
+
+@table @kbd
+@kindex i (Viewer)
+@item i
+Toggle interpolation in scaling mode.
+
+@kindex ! (Viewer)
+@item !
+Toggle off-by-one interpolation (disabled by default). Using this
+off-by-one method gives incorrect results, but this can occasionally be
+useful at ratios of 2:1 and 3:1 for relatively low-quality JPEGs.
+@end table
+
+(If you like the appearance of scaling with interpolation, you may also
+be interested in a program I wrote called @cite{pnminterp}, which can
+scale up a PGM or PPM file while applying this effect.)
+
+
+@node  Mirror and Rotate, Brightness and Contrast, Scaling, The Viewer
+@comment  node-name,  next,  previous,  up
+@section Mirror and Rotate
+
+@cindex mirroring a picture
+@cindex flipping a picture
+@cindex rotating a picture
+@cindex picture, mirroring a
+@cindex picture, flipping a
+@cindex picture, rotating a
+@cindex picture orientation
+@cindex orientation, picture
+@cindex restoring picture orientation
+
+Sometimes when viewing a picture you will want to flip it horizontally
+or vertically, or rotate it:
+
+@table @kbd
+@kindex m (Viewer)
+@item m
+`Mirror' the picture (flip it horizontally).
+
+@kindex f (Viewer)
+@item f
+`Flip' the picture (flip it vertically).
+
+@kindex r (Viewer)
+@item r
+Rotate the picture 90 degrees clockwise.
+
+@kindex R (Viewer)
+@item R
+Rotate the picture 90 degrees anti-clockwise. (This is a little slower
+as it works by effectively doing @kbd{r} then @kbd{f} then @kbd{m}.)
+
+@kindex Alt-n (Viewer)
+@item Alt-n
+Restore the picture orientation to normal. This undoes the effect of any
+mirrors, flips, and/or rotations.
+@end table
+
+zgv normally reverts the picture orientation (the way the picture has
+been transformed by mirror/flip/rotate) back to normal when you view a
+new picture. However, there are various ways you can retain the
+orientation between pictures, so that the new picture is mirrored,
+flipped, and/or rotated in the same way. Here are two of the ways:
+
+@table @kbd
+@kindex Alt-o (Viewer)
+@item Alt-o
+Re-use the previous picture's orientation for this picture.
+
+@kindex Alt-s (Viewer)
+@item Alt-s
+Save the current picture orientation, making all pictures viewed until
+you press @kbd{Esc} use it. (The orientation reverts to normal after
+that, though.)
+@end table
+
+Finally, you can choose to have the orientation preserved the whole
+time. To do this, put @samp{revert-orient off} in a config file
+(@pxref{Configuring zgv}).
+
+
+@node  Brightness and Contrast, Gamma Adjustment, Mirror and Rotate, The Viewer
+@comment  node-name,  next,  previous,  up
+@section Brightness and Contrast
+
+@cindex brightness and contrast
+@cindex contrast and brightness
+@cindex normal, setting brightness/contrast to
+@cindex order, brightness/contrast
+
+zgv provides support for changing brightness and contrast in all modes,
+though it does slow things down a little in 15/16/24/32-bit modes
+(@pxref{Video Modes}).
+
+@table @kbd
+@kindex , (Viewer)
+@item ,
+Decrease contrast.
+
+@kindex . (Viewer)
+@item .
+Increase contrast.
+
+@kindex < (Viewer)
+@item <
+Decrease brightness.
+
+@kindex > (Viewer)
+@item >
+Increase brightness.
+
+@kindex ; (Viewer)
+@kindex * (Viewer)
+@item ;
+Reset contrast and brightness to normal. (@kbd{*} is also supported, for
+hysterical raisins.)
+@end table
+
+Any contrast change is applied before any brightness change by default.
+However, you can reverse the order easily enough:
+
+@table @kbd
+@kindex B (Viewer)
+@item B
+Reverse the order in which brightness and contrast are applied.
+@end table
+
+The order they're applied in does make a difference --- assuming you've
+modified both brightness and contrast, of course. :-) The normal order
+simply means you have a increased-contrast image which you change the
+brightness of. Obviously then, the reverse order reverses this, but it
+has the additional effect of changing the point around which contrast is
+applied.
+
+
+@node  Gamma Adjustment, Increased Greyscales, Brightness and Contrast, The Viewer
+@comment  node-name,  next,  previous,  up
+@section Gamma Adjustment
+
+@cindex gamma adjustment
+@cindex adjustment, gamma
+@cindex response curve
+@c the usual cause of these problems is borken gamma...
+@cindex dark images, fixing overly
+@cindex fixing overly dark/bright images
+@cindex bright images, fixing overly
+@cindex having fun, how to avoid
+
+Ah yes, gamma. What fun. The basic problem is this --- differing
+displays have differing intensity response curves. ``This has made a lot
+of people very angry and been widely regarded as a bad move.'' :-)
+
+It means that you need some way of adjusting how brightly you display
+the picture to compensate. But since we're dealing with response curves,
+this isn't just a matter of changing the brightness in a linear fashion.
+
+That doesn't seem so hard to deal with, right? All you need is to get
+the gamma (a number which specifies how much the curve bends) for the
+image, and for the screen, divide one by the other and adjust as
+appropriate. Joy.
+
+But, given that the problem has existed since we started displaying more
+than eight colours, you won't be surprised to find that it's already
+been fixed. And the fixes all tend to clash, and everybody has a
+different notion of how to fix it. The usual `fix' is to assume that
+whoever made the image made it with a gamma matching the gamma of your
+display, so you can just stuff the bits right on the screen. Since this
+is easy, it's the most widespread approach. But it's a bit stupid, so
+not everyone does it. Combine that with the lack of gamma specification
+in most image formats, and the often-bogus values specified by people in
+those that do, and hey presto --- the image gamma could be just about
+anything. And the screen's gamma also tends not to be easily determined.
+
+So how on earth do you deal with something like @emph{that} in a
+remotely sane fashion?
+
+The answer chosen in zgv is to just live with the fact that the
+probability of automatically obtaining correct values for both the
+screen and image gamma is basically zero. Once you accept that, the
+sensible thing to do is to make it @emph{very} easy and fast to change
+gamma adjustment to commonly-required values. So here's how to do it:
+
+@table @kbd
+@kindex 1 (Viewer)
+@item 1
+Set gamma adjustment to 1.0, i.e. no adjustment. This is the default
+setting.
+
+@kindex 2 (Viewer)
+@item 2
+Set gamma adjustment to 2.2. This is useful for viewing linear-gamma
+files (one classic example being raytracer output) on an average PC
+monitor.
+
+@kindex 3 (Viewer)
+@item 3
+Set gamma adjustment to 1 divided by 2.2, i.e. roughly 0.45. This is
+useful for the reverse --- viewing average-PC-monitor-gamma files on a
+linear-gamma display. Historically I believe the classic example would
+have been viewing PC files on a Mac, but I don't know how true that is
+these days.
+
+@kindex 4 (Viewer)
+@item 4
+Set gamma adjustment to its initial value, as specified by a @code{-G}
+command-line option (@pxref{Invoking zgv}) or @samp{gamma} config file
+setting (@pxref{Configuring zgv}). The default value used if none was
+specified is 1.0.
+@end table
+
+A brief clarification is probably in order. The gamma adjustment value
+which you set in zgv is actually inverted from (i.e. one divided by) the
+true adjustment value used. This is (believe it or not :-)) intended to
+avoid confusion by reflecting the fact that @emph{screen} gamma is the
+one most widely considered/well known.
+
+You can also tweak the adjustment more precisely, in a similar way to
+brightness/contrast:
+
+@table @kbd
+@kindex Alt-, (Viewer)
+@item Alt-,
+Decrease gamma adjustment (divide it by 1.05).
+
+@kindex Alt-. (Viewer)
+@item Alt-.
+Increase gamma adjustment (multiply it by 1.05).
+@end table
+
+Note that @kbd{;}, and the other keys which reset the
+brightness/contrast, deliberately avoid resetting the gamma adjustment.
+
+
+@node  Increased Greyscales, Changing Picture, Gamma Adjustment, The Viewer
+@comment  node-name,  next,  previous,  up
+@section Increased Greyscales
+
+@cindex greyscales, faking extra
+@cindex colours, faking extra
+
+zgv normally displays greyscale pictures in 8-bit modes (@pxref{Video
+Modes}). Due to a limitation of the original VGA cards, these can have a
+maximum of 64 greyscales. This can give noticeable `edges' in some
+pictures.
+
+So when using 8-bit video modes, zgv uses some trickery to try and
+increase the apparent colour depth a little. The trick zgv uses is to
+increase one or two of the red/green/blue channels by one, giving a
+coloured `pseudo-grey'. Since the eye is more sensitive to brightness
+than colour, this is reasonably convincing under normal conditions. (It
+can get less convincing if you scale up the picture, but it usually
+looks reasonable even then.)
+
+A slightly more unusual use of this technique in zgv, though, is that
+it carries on using it for colour 8-bit images. I'm not certain how
+valid this is; the `sub-depth' value is calculated as a greyscale, and
+the channels altered are the same, with no consideration given to how
+this might affect the colour balance.
+
+However, the difference this feature makes is very slight. The image
+will probably be very, very slightly brighter than it would be
+otherwise, and possibly a little `warmer' because of the minor use of
+colour and the eye's green/red bias (I think).
+
+You can toggle this feature in the viewer:
+
+@table @kbd
+@kindex G (Viewer)
+@item G
+Toggle whether to fake some extra greyscales/colours in 8-bit modes.
+@end table
+
+To disable it by default, put @samp{fake-cols off} in a config file
+(@pxref{Configuring zgv}).
+
+
+@node  Changing Picture, File Details, Increased Greyscales, The Viewer
+@comment  node-name,  next,  previous,  up
+@section Changing Picture
+
+@cindex pictures, changing
+@cindex picture, tagging current
+@cindex viewer, changing pictures from the
+@cindex viewer, tagging picture from the
+@cindex slideshows, changing picture in
+@c this one is a bit contrived so that it can start with "tagging"
+@cindex tagging, using viewer for
+
+While in the viewer, it's possible to go directly to the previous or
+next file in the directory without having to exit to the file selector
+and pick the relevant file by hand.
+
+There are two ways to do this; one way leaves the old picture onscreen
+until the new one is read in, the other (on @kbd{^P} and @kbd{^N})
+temporarily returns to the file selector and shows the usual progress
+indicator while it's being read.
+
+In addition, one of the next-file-in-dir commands lets you tag the file
+currently being viewed first, without having to return to the file
+selector to do it.
+
+Note that the meanings of the commands change when you are viewing a
+slideshow; the details are covered below.
+
+(@xref{Dialog Boxes}, to see what @kbd{Backspace} is being used to mean
+here.)
+
+@table @kbd
+@kindex Backspace (Viewer)
+@item Backspace
+View previous file in dir, without progress indicator. (In slideshow,
+move to next file without waiting.)
+
+@kindex Enter (Viewer)
+@item Enter
+View next file in dir, without progress indicator. (In slideshow, move
+to next file without waiting.)
+
+@kindex Space (Viewer)
+@item Space
+Tag current file, then view next file in dir, without progress
+indicator. (In slideshow, move to next file without waiting; it has no
+tagging effect during a slideshow.)
+
+@c I say `acts like Esc' here as it's not as simple as "returns to file
+@c selector" - what if it's a command-line slideshow?
+
+@kindex ^P (Viewer)
+@item ^P
+View previous file in dir, with progress indicator. (In slideshow, acts
+like @kbd{Esc}.)
+
+@kindex ^N (Viewer)
+@item ^N
+View next file in dir, with progress indicator. (In slideshow, acts
+like @kbd{Esc}.)
+
+@end table
+
+Note that @kbd{Space} tags the file, rather than toggling the tag status
+as it does in the file selector. This mismatch is unfortunate, but in
+the viewer context the always-tag function is more likely to be what
+you'd want, since you can't see the file selector to see which files are
+tagged.
+
+
+@node  File Details, Pausing Slideshows, Changing Picture, The Viewer
+@comment  node-name,  next,  previous,  up
+@section File Details
+
+While you can get file details when in the file selector, you can't
+always get to the selector --- for example, you might be running zgv on
+a single image from the command-line, or using it in that way from
+another program (such as lynx). So zgv can also report file details when
+in the viewer:
+
+@table @kbd
+@c Again, colons aren't allowed in index entries, so...
+@kindex colon (Viewer)
+@item :
+Show file details, including such things as the filename, size, and
+width/height. This is almost identical to the equivalent command in the
+selector (@pxref{Other File Sel Commands}); the only difference is that
+you can't use @kbd{;} to get this in the viewer, and the viewer doesn't
+depend on thumbnails for the width/height info.
+@end table
+
+
+@node  Pausing Slideshows, Multiple-image GIF Animation, File Details, The Viewer
+@comment  node-name,  next,  previous,  up
+@section Pausing Slideshows
+
+@cindex pausing slideshows
+@cindex slideshows, pausing in
+
+Sometimes you may want to temporarily stop a slideshow, when you get to
+an interesting image. You can do this the same way you would temporarily
+stop terminal output:
+
+@table @kbd
+@kindex ^S (Viewer)
+@item ^S
+Pause slideshow, leaving you on the current image until you resume. You
+can still abort early with @kbd{Esc}, go to the next image with
+@kbd{Enter}, or in fact use any viewer commands at all.
+
+@kindex ^Q (Viewer)
+@item ^Q
+Resume slideshow. If the timer has already run out (it keeps running
+while paused), this will go straight to the next image without any
+further delay, other than that needed to read the new picture.
+@end table
+
+The analogy with XON/XOFF isn't really that close --- for example, it's
+worth noting that when the slideshow is `paused', you can actually do
+anything you normally might in the viewer.
+
+
+@node  Multiple-image GIF Animation, Video Modes, Pausing Slideshows, The Viewer
+@comment  node-name,  next,  previous,  up
+@section Multiple-image GIF Animation
+
+@cindex Animated GIF files
+@cindex GIF file animation
+@cindex Multiple-image GIF files
+@cindex Unfeasibly tall pictures
+@c :-)
+
+While zgv is for the most part a straightforward viewer, it has special
+support for multiple-image animated GIF files. These are loaded as a
+`column' of images, one on top of the other --- this column is the
+single image which is then displayed, enabling you to see all the
+`frames' of the GIF. (Though not in an image thumbnail; in those, only
+the first image is shown.)
+
+You can also switch to an `animation' mode in the viewer, where each
+`frame' is shown one after the other, with (roughly) the delay specified
+in the GIF between updates.
+
+(This animation mode is automatically enabled if you start zgv with the
+@code{-A} or @code{--auto-animate} command-line option. @xref{Invoking
+zgv}.)
+
+@table @kbd
+@kindex e (Viewer)
+@item e
+Enter animation mode. (I don't know what the @kbd{e} stands for either.
+:-)) In this mode the normal viewer keys have no effect, and instead, a
+more limited set of keys are supported:
+
+@kindex Esc (Viewer Animation)
+@item Esc
+@kindex x (Viewer Animation)
+@itemx x
+Stop the animation and return to the viewer. If auto-animation mode is
+enabled, it exits the viewer too.
+
+@kindex p (Viewer Animation)
+@item p
+Pause (or unpause) the animation.
+
+@kindex n (Viewer Animation)
+@item n
+Skip to the next frame. Generally only useful when paused.
+@end table
+
+@kindex Backspace (Viewer Animation)
+@kindex Enter (Viewer Animation)
+@kindex Space (Viewer Animation)
+If auto-animation is enabled, the @kbd{Backspace}, @kbd{Enter}, and
+@kbd{Space} keys do the same as they do in the normal viewer
+(@pxref{Changing Picture}). Otherwise they act the same as @kbd{Esc}.
+
+
+@node  Video Modes,  , Multiple-image GIF Animation, The Viewer
+@comment  node-name,  next,  previous,  up
+@section Video Modes
+
+@cindex video modes
+@cindex modes, video
+@cindex screen, resolution of
+@cindex display, resolution of
+
+zgv can display pictures in a wide variety of different video modes.
+While you can kind of get by in zgv without knowing anything about video
+modes, they have a very direct impact on how the picture appears, and
+it's important to know why to understand just how zgv works and how best
+to use zgv.
+
+@menu
+* What a Video Mode is::        A definition, and zgv's mode notation.
+* Video Mode Issues::           Pixel size, and number of colours.
+* Default Video Mode::          zgv tries for 640x480x8 if possible.
+* Selecting a Video Mode::      How to select different modes.
+* Special Modes::               The 320x400x8, 360x480x8, and 640x480x4
+                                  modes are treated specially to make
+                                  them more useful.
+* Drawbacks of 15/16-bit Modes::  15/16-bit modes are not always better
+                                  than 8-bit ones.
+* 32-bit Video Modes::          zgv uses these as substitute 24-bit
+                                  modes when a real 24-bit mode isn't
+                                  available.
+* Disabling Video Modes::       In some situations, you may want to stop
+                                  zgv allowing certain modes.
+@end menu
+
+
+@node  What a Video Mode is, Video Mode Issues, Video Modes, Video Modes
+@comment  node-name,  next,  previous,  up
+@subsection What a Video Mode is
+
+@cindex video mode, definition of a
+@cindex bit depth
+@cindex colour depth
+@cindex depth, bit
+@cindex depth, colour
+
+A video mode is essentially a certain way of displaying dots on the
+screen. The important aspects of a video mode in zgv are the number of
+dots (or `pixels') that can be shown horizontally and vertically in the
+mode, and the number of colours that the mode can handle simultaneously
+(also called the `depth' of the mode).
+
+In fact, this is how a video mode is usually referred to. One might talk
+of a 640x480 256-colour mode, for example; This would have 640 pixels
+from left to right, and 480 from top to bottom, with no more than 256
+colours on the screen at once.
+
+A variant notation @var{width}x@var{height}x@var{depth} is often used by
+zgv and this documentation. But here the `depth' is given in bits. This
+usage, while compact, probably makes more sense to programmers than to
+anyone else. Here's a list showing which `bit depths' match which number
+of colours:
+
+(These are the only bit depths relevant to zgv.)
+
+@itemize @minus
+@item
+4-bit means 16 colours.
+@item
+8-bit means 256 colours.
+@item
+15-bit means 32768 colours.
+@item
+16-bit means 65536 colours.
+@item
+24-bit means 16777216 colours (over 16 million).
+@item
+32-bit means 16777216 colours too (!), since only 24 of the 32 bits are
+used for display purposes.
+@end itemize
+
+From the number of colours available in the latter modes, you can see
+why a bit depth notation is so useful!
+
+So, in the @var{width}x@var{height}x@var{depth} notation, our 640x480
+256-colour mode would be 640x480x8, a 16-colour mode of the same size
+would be 640x480x4, and an equivalent `true-colour' (24-bit) mode would
+be 640x480x24.
+
+Whenever you see a mode referred to as @var{x}x@var{y}x@var{z} in zgv or
+in this documentation, it is @strong{always} specifying a video mode in
+this notation.
+
+
+@node  Video Mode Issues, Default Video Mode, What a Video Mode is, Video Modes
+@comment  node-name,  next,  previous,  up
+@subsection Video Mode Issues
+
+@cindex video modes, issues relating to
+@cindex pictures, effect of video modes on
+@cindex files, effect of video modes on displaying
+
+The obvious implication of differing video modes is that modes with more
+pixels horizontally and vertically will have smaller pixels, and so be
+able to show more of large pictures. The reverse (bigger pixels, making
+small pictures appear large) is not as important a consideration, as zgv
+can achieve much the same effect with scaling (@pxref{Scaling}). Using
+video modes to do it is faster, but usually less convenient.
+
+A more subtle, but much more important, implication of differing modes
+is related to the colour depth. More precisely, it's due to the
+differing ways the actual colours shown onscreen are obtained. In 15,
+16, and 24/32-bit modes, the colour is specified `directly'; in 8-bit
+modes, a pixel's `colour' is really a number which selects one of 256
+different colours to show. The overhead of translating from 8-bit to
+15/16/24/32-bit is relatively minor, but in the 15/16/24/32-bit to 8-bit
+direction, it's considerable.
+
+For this reason, and since converting from 24-bit to 15/16/32-bit is
+very easy, when zgv reads a picture it stores it in memory in one of two
+internal formats --- either as 8-bit, or as 24-bit. @xref{File Format
+Depths}, for discussion on which format zgv uses for which files.
+
+But what difference does all this make when you're using zgv? Well,
+here's the bottom line:
+
+@itemize @bullet
+@item
+A file loaded as 8-bit can only ever display in 8-bit modes. Trying to
+choose a 15/16/24/32-bit mode will have no effect.
+
+@item
+A file loaded as 24-bit will only display in 15/16/24/32-bit modes,
+unless you have @emph{no} 15/16/24/32-bit modes, in which case it will
+be dithered when it is read in. (But the config file setting
+@samp{force-viewer-8bit} can be enabled to force the dithering
+behaviour. @xref{Configuring zgv}.)
+
+@item
+zgv normally remembers the last mode you switched to (the initial mode
+is usually 640x480x8), and keeps using that until you specify another to
+use. However, it will automatically choose the most similar
+15/16/24/32-bit mode for a 24-bit file if the last mode was 8-bit, and
+vice versa.
+@end itemize
+
+Confused? Head hurting? Don't worry, it happens to the best of us.
+Especially where zgv is concerned. :-) Just play around with zgv for a
+while, and come back to this later on. It may make more sense after
+you've got a feel for what's going on.
+
+
+@node  Default Video Mode, Selecting a Video Mode, Video Mode Issues, Video Modes
+@comment  node-name,  next,  previous,  up
+@subsection Default Video Mode
+
+@cindex video mode, default
+@cindex default video mode
+@cindex initial video mode
+
+zgv using the last mode you selected is all very well, but that doesn't
+explain what happens if you've not chosen one. What happens is that it
+uses the default video mode.
+
+The default mode is (unless you change it) the 640x480x8 mode. If this
+is not available or has been disabled, zgv defaults to 360x480x8 --- if
+this in turn is not available or has been disabled, it uses 320x200x8.
+
+
+@node  Selecting a Video Mode, Special Modes, Default Video Mode, Video Modes
+@comment  node-name,  next,  previous,  up
+@subsection Selecting a Video Mode
+
+@cindex selecting a video mode
+@cindex mode, selecting a video
+@cindex video mode, selecting a
+@cindex screen, changing resolution of
+@cindex display, changing resolution of
+@cindex function keys, using the
+@c this one's for `/'. It's badly contrived so it can start with "help". :-/
+@cindex help, mode-select key
+
+There are many different video modes supported by svgalib, and zgv lets
+you use most of them. To do so, it reserves many different keys for
+selecting video modes. These largely fall into four groups:
+
+@itemize @minus
+@item
+The original VGA modes. These are on the number keys for historical
+reasons. (The reason being, the number keys exactly matched the mode
+numbers used by the old VGAlib.)
+
+@item
+The first group of SVGA modes. These are on the function keys @kbd{F1}
+to @kbd{F10}. These are generally the first modes to try, if you have
+them.
+
+@item
+The second group of SVGA modes. These are on the shifted function keys,
+here represented as @kbd{SF1}, @kbd{SF2}, and so on. (The first two of
+these are also available on @kbd{F11} and @kbd{F12}.) Not all of the
+shifted function keys are currently used by zgv.
+
+@item
+The third group of SVGA modes. These are again on unshifted function
+keys, but you must press @kbd{Tab} before pressing the function key ---
+i.e. press @kbd{Tab}, let go, then press the function key. These are
+shown below as @kbd{Tab-F1}, @kbd{Tab-F2}, etc.
+
+@end itemize
+
+There are also the @kbd{[} and @kbd{]} keys, which select the next
+smaller/bigger mode. These are especially useful if you don't happen to
+have a spare lifetime in which to learn the `normal' mode-selecting
+keys. :-)
+
+So, here's the list of mode-related commands:
+
+@table @kbd
+@kindex / (Viewer)
+@item /
+List which key combination selects which video mode.
+
+@kindex [ (Viewer)
+@item [
+Select the next smaller (lower-res) mode.
+
+@kindex ] (Viewer)
+@item ]
+Select the next bigger (higher-res) mode. Both these mode-changing keys
+have the limits on modes selected that auto-mode-fit has
+(@pxref{Auto-mode-fit}).
+
+@kindex 0 (Viewer)
+@item 0
+Select 640x480x4 mode. This emulates an 8-bit mode. @xref{The Viewer
+640x480x4 Mode}.
+
+@kindex 5 (Viewer)
+@item 5
+Select 320x200x8 mode.
+
+@kindex 6 (Viewer)
+@item 6
+Select 320x240x8 mode.
+
+@kindex ^ (Viewer)
+@item ^
+Select 320x240x24 mode. (@kbd{^} is often on shift-6.)
+
+@kindex 7 (Viewer)
+@item 7
+Select 320x400x8 mode. This emulates a 640x400 mode. @xref{Virtual
+Modes}.
+
+@kindex 8 (Viewer)
+@item 8
+Select 360x480x8 mode. This emulates a 720x480 mode. @xref{Virtual
+Modes}.
+
+@kindex F1 (Viewer)
+@item F1
+Select 640x480x8 mode.
+
+@kindex F2 (Viewer)
+@item F2
+Select 800x600x8 mode.
+
+@kindex F3 (Viewer)
+@item F3
+Select 1024x768x8 mode.
+
+@kindex F4 (Viewer)
+@item F4
+Select 1280x1024x8 mode.
+
+@kindex F5 (Viewer)
+@item F5
+Select 320x200x15 mode.
+
+@kindex F6 (Viewer)
+@item F6
+Select 320x200x16 mode.
+
+@kindex F7 (Viewer)
+@item F7
+Select 320x200x24 mode.
+
+@kindex F8 (Viewer)
+@item F8
+Select 640x480x15 mode.
+
+@kindex F9 (Viewer)
+@item F9
+Select 640x480x16 mode.
+
+@kindex F10 (Viewer)
+@item F10
+Select 640x480x24 mode.
+
+@kindex SF1 (Viewer)
+@item SF1
+@kindex F11 (Viewer)
+@itemx F11
+Select 800x600x15 mode.
+
+@kindex SF2 (Viewer)
+@item SF2
+@kindex F12 (Viewer)
+@itemx F12
+Select 800x600x16 mode.
+
+@kindex SF3 (Viewer)
+@item SF3
+Select 800x600x24 mode.
+
+@kindex SF4 (Viewer)
+@item SF4
+Select 1024x768x15 mode.
+
+@kindex SF5 (Viewer)
+@item SF5
+Select 1024x768x16 mode.
+
+@kindex SF6 (Viewer)
+@item SF6
+Select 1024x768x24 mode.
+
+@kindex SF7 (Viewer)
+@item SF7
+Select 1280x1024x15 mode.
+
+@kindex SF8 (Viewer)
+@item SF8
+Select 1280x1024x16 mode.
+
+@kindex Tab-F1 (Viewer)
+@item Tab-F1
+Select 1280x1024x24 mode.
+
+@kindex Tab-F2 (Viewer)
+@item Tab-F2
+Select 1152x864x8 mode.
+
+@kindex Tab-F3 (Viewer)
+@item Tab-F3
+Select 1152x864x15 mode.
+
+@kindex Tab-F4 (Viewer)
+@item Tab-F4
+Select 1152x864x16 mode.
+
+@kindex Tab-F5 (Viewer)
+@item Tab-F5
+Select 1152x864x24 mode.
+
+@kindex Tab-F6 (Viewer)
+@item Tab-F6
+Select 1600x1200x8 mode.
+
+@kindex Tab-F7 (Viewer)
+@item Tab-F7
+Select 1600x1200x15 mode.
+
+@kindex Tab-F8 (Viewer)
+@item Tab-F8
+Select 1600x1200x16 mode.
+
+@kindex Tab-F9 (Viewer)
+@item Tab-F9
+Select 1600x1200x24 mode.
+
+@end table
+
+
+@node  Special Modes, Drawbacks of 15/16-bit Modes, Selecting a Video Mode, Video Modes
+@comment  node-name,  next,  previous,  up
+@subsection Special Modes
+
+@c this node isn't too interesting as far as the concept index is
+@c concerned, so it's only minimally indexed.
+@cindex special video modes
+@cindex video modes, special
+@cindex VGA cards, useful modes for generic
+
+Normally, each pixel in the image is written more-or-less directly to
+the screen from zgv's internal copy of the picture (unless zoom mode
+and/or scaling have been enabled). However, there are three modes where
+zgv does things differently to make the modes more useful.
+
+(These are mainly intended for users with only the original VGA modes
+available.)
+
+@menu
+* Virtual Modes::               How the 320x400x8/360x480x8 modes work.
+* The Viewer 640x480x4 Mode::   How the 640x480x4 mode works.
+@end menu
+
+@node  Virtual Modes, The Viewer 640x480x4 Mode, Special Modes, Special Modes
+@comment  node-name,  next,  previous,  up
+@subsubsection Virtual Modes
+
+@cindex video modes, virtual
+@cindex virtual modes
+@cindex pixels, modes with wide
+@cindex wide-pixel modes
+
+The original VGA hardware only had one `official' 256-colour mode, the
+320x200 one. But it could be reprogrammed to allow other useful modes
+(known as `mode-X' modes) --- the ones svgalib provides are 320x240,
+320x400, and 360x480.
+
+These modes are available on all VGA cards. However, it's possible
+(perhaps even likely?) that some non-CRT displays may not be able to
+cope with them. All monitors should, though, even ordinary VGA monitors.
+
+Now, while 320x240 is a nice sensible mode and can be used directly,
+320x400 and 360x480 have very wide pixels. To deal with this, in these
+latter modes zgv maps every two pixels horizontally to one pixel
+onscreen. (Hence `virtual modes' --- physically they are 320x400 and
+360x480, but in zgv they are virtual 640x400 and 720x480 modes.) This
+means that you still get a reasonable aspect ratio, one similar to
+(though not quite the same as) most other modes.
+
+This raises the question of how this mapping is done. The normal
+approach is the quickest, but is very crude --- zgv simply uses the
+leftmost pixel of the two, and completely ignores the rightmost one. But
+if @samp{vkludge} mode is enabled (@pxref{Zoom Mode}), zgv will average
+the pixels' colours together and use the closest match available in the
+picture's palette. This usually gives a better result, but is
+considerably slower.
+
+
+@node  The Viewer 640x480x4 Mode,  , Virtual Modes, Special Modes
+@comment  node-name,  next,  previous,  up
+@subsubsection The Viewer 640x480x4 Mode
+
+@c difficult one to sensibly index :-/
+@cindex viewer, 640x480 16-colour mode in the
+@cindex 16-colour 640x480 mode
+@cindex video mode, the viewer's 640x480 16-colour
+
+As well as the non-standard VGA modes, zgv allows you to use the
+640x480x4 (16-colour) VGA mode as if it were an 8-bit mode. (Pressing
+@kbd{0} selects this mode.) As with the file selector's 16-colour mode,
+it can work either in greyscale (the default) or in colour.
+
+@table @kbd
+@kindex c (Viewer)
+@item c
+If in 640x480x4 mode, toggle between greyscale and colour.
+@end table
+
+In greyscale mode, the picture is displayed using 16 greyscale levels
+dithered to give the appearance of 61. In colour mode, the picture is
+dithered to eight colours. (It's difficult to use all 16 colours
+effectively for a colour dither without slowing things down.)
+
+The greyscale uses an ordered (pattern-based) dither. The colour uses
+ordered dithering by default too, which is fast but pretty rough. If
+you'd prefer to sacrifice speed for better dithering, you can switch to
+error-diffused dithering by putting `dither-16col-fast' in a config file
+(@pxref{Config Files}), or you can toggle the setting interactively:
+
+@table @kbd
+@kindex Alt-c (Viewer)
+@item Alt-c
+If in 640x480x4 mode and using colour dithering, toggle between ordered
+and error-diffused dither.
+@end table
+
+All the features which work in 8-bit modes work in the 4-bit mode.
+
+
+@node  Drawbacks of 15/16-bit Modes, 32-bit Video Modes, Special Modes, Video Modes
+@comment  node-name,  next,  previous,  up
+@subsection Drawbacks of 15/16-bit Modes
+
+@cindex 15/16-bit modes, problems with
+@cindex video modes, problems with 15/16-bit
+@cindex high-colour video modes, problems with
+@cindex dithering in 15/16-bit modes
+@cindex 15/16-bit modes, dithering in
+
+Since 15 and 16-bit video modes do not have quite the same
+representation (and depth) that a file loaded as 24-bit does, there are
+some drawbacks to using them. Firstly, the image is converted to the
+2-byte-per-pixel format as it is drawn (see @ref{Video Mode Issues}, for
+the reason why zgv works this way); and secondly, the modes actually
+have less colour depth than 256-colour modes.
+
+In explanation of that last point; although 15 and 16-bit video modes
+show many colours onscreen at once, there are fewer colours to choose
+from.
+
+@c I tried using @math for this, but it didn't look very good. Also,
+@c texi2html leaves the @math in unmodified, which isn't so great. :-(
+
+A good way to illustrate this point is by considering the number of
+greyscales each mode can display. In a 256-colour video mode, only 64
+greys can be shown, since an 18-bit palette is used --- 2^(18/3) = 64.
+But with a 15-bit video mode, even fewer can be shown --- 2^(15/3) = 32.
+Because of the way that 16-bit video modes work, which is by providing
+the green channel with twice as much colour depth (i.e. an extra bit),
+they too can only show 32 greys. Put another way, 2^int(16/3) = 32. (Of
+course, 24/32-bit modes will show all 256 greyscales.)
+
+One way to gain some illusion of extra colours in these modes is to
+use dithering, based on the colour detail ``below'' the level which
+can be shown directly:
+
+@table @kbd
+@kindex F (Viewer)
+@item F
+Toggle whether to use dithering in 15/16-bit modes. This makes picture
+display considerably slower when used.
+@end table
+
+To enable this by default, put @samp{dither-hicol on} in a config file
+(@pxref{Configuring zgv}).
+
+
+@node  32-bit Video Modes, Disabling Video Modes, Drawbacks of 15/16-bit Modes, Video Modes
+@comment  node-name,  next,  previous,  up
+@subsection 32-bit Video Modes
+
+@c tough to index usefully...
+@cindex video modes, 32-bit
+@cindex 32-bit video modes, about
+
+One oddity in mode-land is the 32-bit mode. Like 24-bit modes, 32-bit
+modes can display over 16 million colours. But there are no obvious
+advantages to using 32-bit modes, at least as far as zgv is concerned.
+So why does it support them?
+
+Simply put, some SVGA hardware provides 32-bit modes without providing
+equivalent 24-bit ones. Hence zgv's support for them.
+
+That should also explain why zgv treats them the way it does. Here's how
+it all works:
+
+@itemize @bullet
+@item
+When using zgv, you don't select a 32-bit mode directly. Instead, you
+select a 24-bit mode --- and if no matching 24-bit mode exists, but a
+matching 32-bit one @emph{does}, zgv sneakily uses the 32-bit one behind
+your back. :-)
+
+@item
+zgv's `choose most similar mode' code prefers 24-bit modes to 32-bit
+ones, but similarly, if it has the 32-bit mode without the 24-bit one,
+it'll take the smoke-and-mirrors route.
+
+@item
+As an exception to the overall rule, when specifying modes on the
+command-line or in the config file, you @emph{do} need to explicitly
+specify a 32-bit mode in order to get one.
+@end itemize
+
+For the most part you needn't worry about 32-bit modes, though; you can
+just ignore them and think in terms of 8/15/16/24-bit modes and you'll
+be ok.
+
+
+@node  Disabling Video Modes,  , 32-bit Video Modes, Video Modes
+@comment  node-name,  next,  previous,  up
+@subsection Disabling Video Modes
+
+@c In theory I should leave this entirely to the configuring zgv
+@c section; however, this section is such an extensive discussion of
+@c video modes that it doesn't seem right omitting this.
+
+@cindex disabling video modes
+@cindex video modes, disabling
+
+In some situations you might want to disable certain video modes. For
+example, perhaps your video card supports modes which your monitor
+cannot display; clearly you would want to disable these, as zgv only
+knows about your video card.
+
+(To be fair though, if you have svgalib configured correctly for your
+monitor, this should never be a problem. See the @cite{libvga.config(5)}
+man page for details.)
+
+To disable video modes, you should give appropriate @samp{mode-bad}
+entries in a config file (preferably @samp{/usr/local/etc/zgv.conf}
+for such system-wide configuration). @xref{Config Variables}, for
+details.
+
+You could also do @samp{mode-all-bad} then enable a few modes with
+@samp{mode-good} entries --- but most cards support so many video modes
+that the @samp{mode-bad} approach is usually the right one.
+
+
+@node  xzgv Compatibility, File Formats, The Viewer, Top
+@comment  node-name,  next,  previous,  up
+@chapter xzgv Compatibility
+
+@cindex xzgv-like keys, about the
+@cindex xzgv, differences from
+@cindex compatibility with xzgv
+@cindex differences from xzgv
+
+You may well want to skip this section if you don't use xzgv.
+
+Some time after first writing zgv, I decided to do a port/rewrite for X,
+called `xzgv'. Since I started this about six years after originally
+writing zgv, it's understandable that I chose to do some things slightly
+differently. :-)
+
+The main difference, other than the obvious difference in appearance, is
+that a few of the keys used differ. This can be a pain if you primarily
+use xzgv, but use zgv every so often (or vice versa). To avoid this
+problem, zgv supports an `xzgv-keys' mode, enabled by putting
+@samp{xzgv-keys on} in a config file (@pxref{Config Files}). This enables
+an overriding routine which interprets xzgv-like keys to `native' zgv
+ones --- in practice, the effect is of some xzgv keys being added,
+overriding any conflicting zgv ones.
+
+So, if you enable xzgv-keys, there are these differences in/additions to
+the selector:
+
+@table @kbd
+@kindex Space (Selector in xzgv-keys mode)
+@item Space
+View a picture file, or if the cursor is on a subdirectory, make that
+the current directory. (Like the native @kbd{Enter}, which still works.)
+
+@kindex - (Selector in xzgv-keys mode)
+@item -
+Untag file.
+
+@kindex = (Selector in xzgv-keys mode)
+@item =
+Tag file.
+
+@kindex Alt - (Selector in xzgv-keys mode)
+@item Alt -
+(i.e. Alt-minus) Untag all files.
+
+@kindex Alt = (Selector in xzgv-keys mode)
+@item Alt =
+(i.e. Alt-equals) Tag all files.
+
+@kindex Ctrl-n (Selector in xzgv-keys mode)
+@item Ctrl-n
+Rename file.
+
+@kindex Ctrl-d (Selector in xzgv-keys mode)
+@item Ctrl-d
+Delete file.
+
+@kindex q (Selector in xzgv-keys mode)
+@item q
+@kindex Ctrl-q (Selector in xzgv-keys mode)
+@itemx Ctrl-q
+Exit zgv.
+@end table
+
+Note that there is no replacement for the usual zgv meaning of
+@kbd{Space}; that is, in xzgv-keys mode, there is (currently) no key
+which lets you toggle a file's tag state. (This will change if/when I
+add such a key to xzgv. :-))
+
+In the viewer, there are these changes:
+
+@table @kbd
+@kindex b (Viewer in xzgv-keys mode)
+@item b
+View previous file in dir.
+
+@kindex Space (Viewer in xzgv-keys mode)
+@item Space
+View next file in dir.
+
+@kindex Ctrl-Space (Viewer in xzgv-keys mode)
+@item Ctrl-Space
+Tag current file, then view next file in dir.
+
+@kindex b (Viewer Animation in xzgv-keys mode)
+@kindex Space (Viewer Animation in xzgv-keys mode)
+@kindex Ctrl-Space (Viewer Animation in xzgv-keys mode)
+(In short, @kbd{b}/@kbd{Space}/@kbd{Ctrl-Space} act like the native
+@kbd{Backspace}/@kbd{Enter}/@kbd{Space}. The same mappings also apply
+when animating a multiple-image GIF file (@pxref{Multiple-image GIF
+Animation}).)
+
+@kindex Ctrl-w (Viewer in xzgv-keys mode)
+@item Ctrl-w
+Exit viewer (i.e. `close file').
+
+@kindex N (Viewer in xzgv-keys mode)
+@item N
+Restore the picture orientation to normal. This undoes the effect of any
+mirrors, flips, and/or rotations. (Like the native @kbd{Alt-n}.)
+@end table
+
+There are some omissions in the viewer's xzgv-ish keys:
+
+@itemize @minus
+@item
+The @kbd{Ctrl} + cursor-key alternatives to
+@kbd{h}/@kbd{j}/@kbd{k}/@kbd{l} don't exist, as these can't be
+distinguished from `normal' cursors given the way zgv reads keys.
+
+@item
+The alternative @kbd{Shift} + cursor-key means of paging
+up/down/left/right is similarly missing.
+
+@item
+Supporting @kbd{Ctrl-q} would have got in the way of slideshow pausing,
+so I decided against it, and omitted @kbd{q} from the viewer for some
+sort of consistency.
+
+@item
+Supporting @kbd{Tab} would break selecting some video modes, and
+probably would have seemed a bit surreal in zgv anyway. :-)
+@end itemize
+
+That about wraps it up for the keys@dots{} but, of course, there
+@emph{are} other interface differences.
+
+One is the way zgv has `flat' mouse menus for the selector/viewer, while
+xzgv has hierarchical ones. That would be nice to replicate, but I don't
+think I'm likely to.
+
+A more dramatic difference (IMHO) is the way moving around the picture
+with the mouse works. In zgv, you move the screen around `over' the
+picture, with a fixed amount of mouse movement needed to cover any
+picture size. In xzgv, you move the picture around `under' the window,
+with the mouse movement needed being proportional to the picture size
+(this follows from the picture directly mimicking the mouse pointer's
+movement). The most obvious problem here is that moving the mouse right
+on zgv is like pressing cursor-right, while doing the same in xzgv is
+like pressing cursor-left. Now, I @emph{may} eventually add an option to
+reverse zgv's reaction to mouse movement, but `fixing' the
+non-proportionality without a pointer onscreen might seem awfully
+strange.
+
+Hmm. An interesting problem to tackle at some point, I suppose. :-)
+
+
+@node  File Formats, Consoles, xzgv Compatibility, Top
+@comment  node-name,  next,  previous,  up
+@chapter File Formats
+
+@cindex file formats
+@cindex pictures, file formats used by
+
+Picture files are stored in a variety of different forms. These forms
+are usually called `file formats'. zgv supports several.
+
+@menu
+* File Type Identification::    How zgv identifies the type of a file.
+* Supported File Formats::      The file formats that zgv supports.
+* File Format Depths::          Pictures are held in memory by zgv with
+                                  either 8 or 24 bits per pixel.
+@end menu
+
+@node  File Type Identification, Supported File Formats, File Formats, File Formats
+@comment  node-name,  next,  previous,  up
+@section File Type Identification
+
+@cindex identifying files
+@cindex files, identification of
+@cindex picture format, identification of 
+@cindex file format, identification of
+
+The format a file is in is identified in two different ways. The file
+selector (by default) picks filenames to display based on the
+`extension' --- for instance, if a filename ends in @file{.jpg} or
+@file{.jpeg}, zgv assumes it is a JPEG. This way of working is not
+always right, but it's much faster than the alternative (reading part of
+every single file) and is usually sufficient. (If it's not, you can
+enable slower `magic number'-based identification with @kbd{Alt-m}
+(@pxref{File Selector Toggles}).)
+
+The file-reading code uses the format's `magic number' to determine file
+type --- e.g. a JPEG/JFIF file starts with the (hex) bytes @code{FF D8}.
+So if you start zgv with @samp{zgv foo}, and foo is in a format
+supported by zgv (such as JPEG), the format will be figured out and the
+file loaded even though the `extension' is absent.
+
+
+@node  Supported File Formats, File Format Depths, File Type Identification, File Formats
+@comment  node-name,  next,  previous,  up
+@section Supported File Formats
+
+@cindex supported file formats
+@cindex file formats, supported
+@cindex types of picture supported
+@cindex GIF
+@cindex JPEG
+@cindex PNG
+@cindex PBM
+@cindex PGM
+@cindex PPM
+@cindex PNM
+@cindex TGA
+@cindex Targa
+@cindex PCX
+@cindex mrf
+@cindex PRF
+@cindex XBM
+@cindex bitmaps, X
+@cindex XPM
+@cindex pixmaps, X
+@cindex TIFF
+@cindex Photo-CD (optional)
+
+zgv supports the following file formats:
+
+@itemize @bullet
+@item
+GIF. Multiple-image GIFs are treated specially (@pxref{Multiple-image
+GIF Animation}).
+
+@item
+JPEG.
+
+@item
+PNG.
+
+@item
+PBM/PGM/PPM, collectively known as `PNM'. This is a nice simple format
+used by pbmplus and netpbm.
+
+@item
+BMP.
+
+@item
+TGA (Targa).
+
+@item
+PCX.
+
+@item
+mrf. Mrf files can be converted to/from PBM with mrftopbm/pbmtomrf, and
+the format is documented in the @cite{mrf(5)} man page.
+
+@item
+PRF. PRF is an extension of mrf, similarly converted with
+prftopnm/pnmtoprf, and documented in the @cite{prf(5)} man page.
+
+@item
+XBM (X bitmap files).
+
+@item
+XPM. zgv reads the file @file{/usr/X11R6/lib/X11/rgb.txt} to look up X
+colour names. (The location of the file is a compile-time option; you
+can edit @file{config.mk} to change it.)
+
+@item
+TIFF.
+
+@item
+Photo-CD. This is only supported if @code{PCD_SUPPORT} was defined at
+compile-time; by default, PCD support is omitted. PCD files contain
+multiple image resolutions --- to choose which to view, use @kbd{Alt-1}
+(lowest) to @kbd{Alt-5} (highest) in the viewer.
+
+@item
+Xv format thumbnail files. Normally you won't want to view these other
+than in the file selector, but zgv lets you view them as normal picture
+files if you want. Note that in the file selector, thumbnail files are
+indistinguishable from the files they represent (other than the
+@file{.xvpics} in the directory's filename) --- they have the same
+filenames, and thumbnails are their own thumbnails. :-)
+
+@end itemize
+
+
+@node  File Format Depths,  , Supported File Formats, File Formats
+@comment  node-name,  next,  previous,  up
+@section File Format Depths
+
+@cindex depth, file format
+@cindex file format depths
+@cindex XPM files, special treatment of
+
+No matter what bit depth a file format uses, zgv reads files in as one
+of two internal formats --- 8-bit (with a palette), or 24-bit.
+(@xref{Video Mode Issues}, for why zgv works this way. @xref{What a
+Video Mode is}, for more on bit depth.) Usually, zgv works internally
+with the lowest bit depth which doesn't lose data. So a 1-bit-per-pixel
+(mono) file is loaded as 8-bit, as are 4-bit and 8-bit ones, but a
+24-bit file is loaded as 24-bit.
+
+For the most part, it's obvious which depth zgv reads a file as, if you
+know how the files are stored. But if you don't happen to know that,
+then it can seem like some bizarre black art dependent on the phase of
+the moon. So here's how the differing file formats are read:
+
+@c I tried using a multitable, but while makeinfo worked ok, TeX wasn't
+@c at all happy with it. I suppose at least this table format works
+@c better for longer lines...
+
+@table @asis
+@item Always 8-bit:
+GIF, PBM, PGM@footnote{PGMs are loaded as 24-bit if @samp{pgm-truecol}
+is enabled. @xref{Configuring zgv}.}, mrf, XBM.
+
+@item Always 24-bit:
+PPM, TIFF.
+
+@item 24-bit if file is, else 8-bit:
+JPEG, PNG, BMP, TGA, PCX, XPM, PRF.
+
+@end table
+
+XPM is really a special case, being a palette-based format which can
+handle an arbitrary number of colours. (This means XPMs don't have any
+inherent `depth' as such, unlike most other files --- you couldn't
+legitimately talk of a `24-bit XPM file'.) XPMs are loaded as 8-bit if
+they have 256 colours or less, otherwise they're loaded as 24-bit.
+
+Another special feature of XPM is that, since XPM files are primarily
+used as icons, they are often partly transparent, and usually not
+designed to be viewed on a black background. For this reason,
+transparent pixels are shown as grey, and if the XPM contains less
+than 256 colours, the screen's background colour is made grey as well.
+
+@c Yes, that really should say `less than', not `less than or equal
+@c to'; for files with 256 colours, there is no `spare' colour index,
+@c and the background colour is the first colour specified in the
+@c file.
+
+
+@node  Consoles, Using a Mouse, File Formats, Top
+@comment  node-name,  next,  previous,  up
+@chapter Consoles
+
+@cindex consoles
+
+zgv tries to deal sensibly with Linux and FreeBSD's provision for
+multiple `virtual consoles'. This section covers the details of this.
+
+@menu
+* Running In The Background::   Sometimes, zgv keeps running when you
+                                  switch consoles.
+* Running From Non-consoles::   If it isn't run from a console tty, zgv
+                                  tries to find one to run on.
+@end menu
+
+@node  Running In The Background, Running From Non-consoles, Consoles, Consoles
+@comment  node-name,  next,  previous,  up
+@section Running In The Background
+
+@cindex consoles, switching
+@cindex background, running in the
+@cindex running in the background
+
+Normally when you do a console switch away from zgv, it is suspended ---
+nothing at all happens in that zgv process (and it takes no CPU) until
+you switch back to it.
+
+However, there are two circumstances (both in the file selector) when it
+makes sense for zgv to keep running `in the background', and in these
+cases it does keep running:
+
+@itemize @minus
+@item
+When updating thumbnails. @xref{Updating Thumbnails}, for what happens
+in this case.
+
+@item
+When reading a picture file. If it finishes reading it before you
+return, zgv is suspended as usual.
+@end itemize
+
+
+@node  Running From Non-consoles,  , Running In The Background, Consoles
+@comment  node-name,  next,  previous,  up
+@section Running From Non-consoles
+
+@cindex running from non-consoles
+@cindex consoles, not running from
+@cindex Emacs, running from
+@cindex X, running from
+@cindex xterm, running from an
+
+If it's not run from a console tty (and if you are the owner of the
+currently-selected console), zgv will attempt to run on the first
+available console --- if there are none free, it will exit with an error
+message. When it has to switch consoles like this, exiting zgv will
+cause an automatic return to whichever console was current when the
+program was started. This means you can run zgv reasonably transparently
+from X, Emacs, etc.
+
+One problem with this is that, since zgv uses @code{fork()}, @code{zgv
+-h} and other things which give output on stdout will give confusing
+results; the original zgv process will have exited before the new
+(replacement) zgv process exits. Redirect stdout if you want things to
+make a bit more sense --- for example, @code{zgv -h | less} will do what
+you'd expect. For more `normal' uses where zgv doesn't give any output,
+there's no problem.
+
+However, there's a problem running zgv from X, when it's invoked from a
+window manager's menu. (It works ok from an xterm.) The problem is that
+the window manager runs the program with its stderr attached to the tty
+that the X server was started from. So zgv will run on the console you
+started X from, but won't switch there. As luck would have it, there's
+an easy workaround; when invoking zgv from the menu, just redirect
+stderr to a non-console, such as @file{/dev/null}. The details of how to
+arrange this vary depending on the window manager you're using, but
+generally you'd want a line ending in something like @code{Exec zgv
+2>/dev/null &} to do this.
+
+It may seem a bit odd running zgv from X, but it can be useful if you
+have a 15/16/24/32-bit card and normally run X in monochrome or 8-bit
+colour. Or if you just happen to like zgv. :-)
+
+Running zgv from an xterm with a filename as an argument is probably how
+you'd usually do this, though --- e.g. @code{zgv wibble.jpg}. zgv then
+runs on a free console and switches back when you exit. If you want to
+switch back to X before exiting zgv, it's just a matter of switching
+consoles, as usual. X will be running on what was the first free console
+when it started; often this is number 7.
+
+
+@node  Using a Mouse, Configuring zgv, Consoles, Top
+@comment  node-name,  next,  previous,  up
+@chapter Using a Mouse
+
+@cindex mouse support
+
+When mouse support is enabled in zgv, you can do almost everything with
+it that you would ordinarily do with the keyboard.
+
+@menu
+* Enabling The Mouse::          How to turn on zgv's mouse support.
+* Mouse Menus::                 Clicking the right mouse button brings
+                                  up a menu.
+* Mouse Funcs in the File Selector::  The file selector takes a conventional
+                                  approach to mouse support.
+* Mouse Funcs in the Viewer::   The viewer uses the mouse primarily for
+                                  moving around the picture.
+* Mouse Deficiencies::          There are a few things you can't do with
+                                  the mouse.
+@end menu
+
+
+@node  Enabling The Mouse, Mouse Menus, Using a Mouse, Using a Mouse
+@comment  node-name,  next,  previous,  up
+@section Enabling The Mouse
+
+@cindex mouse, enabling the
+@cindex enabling mouse support
+@cindex turning on the mouse
+@cindex switching on mouse support
+@cindex activating the mouse
+
+To use the mouse support for just one zgv session, start zgv with
+something like @code{zgv -M}. To enable it by default, add @samp{mouse
+on} to a config file (@pxref{Config Files}).
+
+zgv uses svgalib's mouse configuration; if you have not set that up, you
+will probably need to do so before zgv's mouse support will work. See
+the @samp{libvga.config(5)} man page for details.
+
+If you find that the mouse pointer moves too quickly or too slowly, you
+should change zgv's @samp{mouse-scale} setting (@pxref{Config
+Variables}).
+
+
+@node  Mouse Menus, Mouse Funcs in the File Selector, Enabling The Mouse, Using a Mouse
+@comment  node-name,  next,  previous,  up
+@section Mouse Menus
+
+@cindex mouse, menus used with the
+@cindex menus, mouse
+@cindex right-button menus
+
+The file selector and viewer use the mouse differently for the most
+part, but they do have one feature in common --- clicking the right
+mouse button brings up a menu. (This is called, not unreasonably, the
+`right-button menu'.)
+
+All the menu items correspond directly to commands available from the
+keyboard. So if you are not very familiar with zgv, it may be best to
+read all about those before making extensive use of the menu. @xref{The
+File Selector}, for file selector commands. @xref{The Viewer}, for
+viewer commands.
+
+Some commands are `greyed out' on the menu if they are unavailable. For
+example, if you are viewing an 8-bit picture in the viewer, the
+15/16/24-bit modes listed on the menu will be greyed out.
+
+To remove the menu from the screen without selecting a command, either
+click somewhere on the screen not covered by the menu, or press
+@kbd{Esc}.
+
+
+@node  Mouse Funcs in the File Selector, Mouse Funcs in the Viewer, Mouse Menus, Using a Mouse
+@comment  node-name,  next,  previous,  up
+@section Mouse Funcs in the File Selector
+
+@cindex file selector, using a mouse in the
+@cindex mouse, file selector use of the
+@cindex mouse, selecting a file with the
+@cindex mouse, moving around with the
+@cindex picture, using mouse to select a
+@cindex scrollbar, using mouse with the
+
+In the file selector, the mouse controls a conventional mouse pointer.
+In addition to the right button calling up a menu, there are these
+actions you can take with the mouse:
+
+@itemize @bullet
+@item
+Clicking on a file views it.
+ 
+@item
+Clicking on the area which shows the current directory prompts you for a
+directory to change to (@pxref{Dialog Boxes}).
+
+@item
+The scrollbar can be used to move along the file list, in a few
+different ways:
+
+@itemize @minus
+@item
+Clicking on the scrollbar's arrows moves along the file list a column at
+a time.
+
+@item
+Clicking on either side of the scrollbar's `slider' (only possible if
+the slider does not fill the scrollbar, i.e. only possible if there are
+more files than are shown onscreen) moves along the dir a page at a
+time.
+
+@item
+Clicking on the slider and dragging it moves the file cursor along the
+directory. It works in a slightly unusual way --- if you bear in mind
+that the slider represents the screen `sliding' along the directory
+listing, and remember that you're moving the @emph{cursor} not the
+screen itself (at least not directly), the way it works may make a bit
+more sense.
+@end itemize
+@end itemize
+
+Once you've got used to this, and got used to the menu, you may wonder
+how exactly you're meant to (say) delete a file with the mouse. After
+all, while clicking on it does select it, it also views it! Well, there
+is a way, described below.
+
+Click on the file you want to select, but hold down the mouse button.
+While holding the button, click the right button. The menu should
+appear, and you can let both buttons go. You can then select whatever
+you want to do from the menu.
+
+
+@node  Mouse Funcs in the Viewer, Mouse Deficiencies, Mouse Funcs in the File Selector, Using a Mouse
+@comment  node-name,  next,  previous,  up
+@section Mouse Funcs in the Viewer
+
+@cindex viewer, using mouse with the
+@cindex viewer, mouse menu for
+@cindex scrolling, using mouse for
+@cindex panning, using mouse for
+@cindex picture, using mouse to move around
+@cindex mouse, changing modes with the
+
+In the viewer, the mouse is mainly used for moving around the picture.
+To use it for this, you should hold down the left button and drag the
+mouse around. It's a little difficult to explain, but the basic idea is
+that you drag the screen around the picture --- experiment with it and
+you should get the idea. No mouse pointer appears while doing this,
+which is a feature not a bug. :-)
+
+(If redisplay of the picture takes a long time, zgv can lag behind your
+mouse movements somewhat. Hopefully this shouldn't be too much of a
+problem.)
+
+There is also a right-button menu much like the file selector's one, and
+a mouse pointer does appear when using that. Some notes on the menu:
+
+@itemize @bullet
+@item
+Only a fixed selection of possible video modes are given as options on
+the menu, to keep things manageable. The others are only available using
+the relevant keys. (@xref{Selecting a Video Mode}.)
+
+@item
+The @samp{...smooth on/off} entries on the menu refer to the
+@samp{vkludge} and `interpolation in scaling mode' settings
+respectively, as should hopefully be clear from the context.
+
+@item
+When using an 8-bit mode for the viewer, the right-button menu has to
+allocate some colours for its display from those normally used to show
+the picture. This means that the picture might look a little odd when
+the menu is onscreen in 8-bit modes. (zgv does try to minimise the
+disturbance by using the closest available colours, though.)
+
+@item
+The viewer's menu is disabled in modes which are less than 480 pixels
+high, since that's the minimum screen height required to display it.
+(This explains a number of the modes omitted from the menu. If (say)
+320x200x8 was on there, you'd then be able to switch to the mode using
+the mouse (of course), but once there you wouldn't be able to use the
+mouse for anything other than moving around the picture!)
+@end itemize
+
+Finally, while viewing an animated GIF file (@pxref{Multiple-image GIF
+Animation}), you can right-click to exit the animation, or left-click to
+pause/unpause.
+
+
+@node  Mouse Deficiencies,  , Mouse Funcs in the Viewer, Using a Mouse
+@comment  node-name,  next,  previous,  up
+@section Mouse Deficiencies
+
+@cindex mouse, problems with the
+
+You can do most things in zgv with the mouse, but you can't do
+everything. The main problem is that there are still a few things which
+effectively ignore the mouse:
+
+@itemize @bullet
+@item
+When thumbnails are being updated, or a picture being read, there's no
+mouse equivalent of @kbd{Esc}.
+
+@item
+When you're prompted for a directory name, there's no mouse equivalent
+of @kbd{Esc} or @kbd{Enter}.
+@end itemize
+
+
+@node  Configuring zgv, Rationale, Using a Mouse, Top
+@comment  node-name,  next,  previous,  up
+@chapter Configuring zgv
+
+@cindex configuration
+@cindex customising
+@cindex changing zgv's behaviour
+@cindex defaults, changing
+@cindex options, setting
+@cindex settings, changing
+
+Many aspects of the way zgv works can be modified by using a
+configuration file.
+
+@menu
+* Config Files::                There are two possible config files.
+* Config Variable Types::       Most settings are on/off, but not all.
+* Config Variables::            Most match the command-line long
+                                options; exceptions are covered here.
+* Config File Backward Compatibility::  Many settings were renamed in
+                                zgv 5.5, but the old names still work.
+@end menu
+
+@node  Config Files, Config Variable Types, Configuring zgv, Configuring zgv
+@comment  node-name,  next,  previous,  up
+@section Config Files
+
+@cindex files, config
+@cindex config files
+@cindex @file{zgvrc}
+@cindex @file{zgv.conf}
+@cindex format of config files
+
+A configuration file lets you alter aspects of zgv's behaviour. zgv
+supports two possible config files --- a system-wide one,
+@file{/usr/local/etc/zgv.conf}; and one for each user in their home
+directory, @file{$HOME/.zgvrc}. Both are optional. If
+@file{$HOME/.zgvrc} exists, it is used @emph{instead of}
+@file{/usr/local/etc/zgv.conf}.
+
+Before describing the format of config files, it may help to give an
+example file:
+
+@example
+# Sample zgv config file
+# Comment lines begin with `#' and are ignored,
+#  as are blank lines.
+
+slideshow-randomise on
+# do faster jpeg thumbnails
+jpeg-index-style 1
+# make tagged files' filenames blue
+col-tagged 0 0 63
+@end example
+
+It is a line-based format. Each line (or rather, each line which is not
+a comment line and is not blank) assigns a value to a single predefined
+`variable'. zgv has many such variables it lets you modify in this way.
+For example, the @samp{slideshow-randomise} option above controls
+whether or not zgv shuffles the file order in slideshows. If it is given
+the value `on', `yes', or `1' it does; if `off', `no', or `0' it
+doesn't.
+
+Most variables are of this yes-or-no `boolean' type. Some others like
+@samp{jpeg-index-style} are integers (whole numbers). And there are
+other types, too.
+
+Since the variables set in a config file have a direct effect on how zgv
+works, it can be easier to simply call them `settings'. Indeed, such
+terminology is used on occasion in this documentation.
+
+
+@node  Config Variable Types, Config Variables, Config Files, Configuring zgv
+@comment  node-name,  next,  previous,  up
+@section Config Variable Types
+
+@cindex types, config variable
+@cindex variable, types of config
+@cindex config variables types
+@cindex config files, types in
+@cindex video modes in config files
+@cindex colours in config files
+
+There are various types of variable:
+
+@itemize @minus
+@item
+Boolean. These are on-or-off, yes-or-no variables. Most of zgv's config
+file variables are of this type. Use `on', `yes', or `1' to enable the
+setting, and `off', `no', or `0' to disable.
+
+@item
+Integer. These are whole numbers. The meaning of the number depends on
+what the variable is used for.
+
+@item
+Real (floating-point). This can be a whole number or a decimal fraction.
+Only the @samp{contrast} and @samp{gamma} variables are of this type.
+
+@item
+RGB. This is a special type used for specifying colours. It consists of
+three numbers given one after the other, in the order red, green, blue.
+Each must be in the range 0 to 63 inclusive. Together these specify the
+colour --- for example, @samp{63 63 63} is white, @samp{32 32 32} a
+medium grey, and @samp{63 63 0} is yellow.
+
+@item
+Video mode (also called just `mode'). This is also a special type, used
+for specifying a mode. It uses the @var{width}x@var{height}x@var{depth}
+notation mentioned elsewhere (@pxref{What a Video Mode is}), but with
+spaces and/or tabs as separators, so you're actually giving three
+separate numbers. For example, @samp{640 480 8} specifies a 640x480x8
+(256-colour) mode.
+
+@item
+The `no args' type. Settings of this form aren't variables as such, but
+commands. @xref{Config Variables}, for details of these
+(@samp{mode-all-bad} and @samp{mode-all-good}).
+
+@end itemize
+
+
+@node  Config Variables, Config File Backward Compatibility, Config Variable Types, Configuring zgv
+@comment  node-name,  next,  previous,  up
+@section Config Variables
+
+@cindex config variables
+
+Most configuration variables are directly equivalent to the long option
+names, and documented elsewhere (@pxref{Invoking zgv}). For example,
+where you'd do @samp{--zoom} on the command-line, you'd do @samp{zoom
+on} in a config file. Be careful to avoid quoting arguments; if you do
+this in a config file, you'll get an error. So @samp{--viewer-start-mode
+"800 600 8"} on the command-line becomes @samp{viewer-start-mode 800 600
+8} in a config file.
+
+Now, let's go back to that "most". The options which can @emph{only} be
+specified on the command-line are the following, `one-off' options:
+
+@itemize @bullet
+@item
+@samp{--help}
+
+@item
+@samp{--version}
+
+@item
+@samp{--reload-delay}
+
+@item
+@samp{--show-tagged}
+
+@item
+@samp{--show-dimensions}
+
+@item
+@samp{--write-ppm}
+@end itemize
+
+Equally, there are some configuration variables which can only be
+modified in a config file. Here they are:
+
+@vtable @samp
+@item mode-all-bad
+(No args; this is a command, not a variable as such.) Stops zgv
+from allowing @emph{any} video modes. This is usually followed by some
+@samp{mode-good} assignments. If it isn't, zgv simply assumes the
+320x200x8 mode can be used.
+
+@item mode-all-good
+(No args; this is a command, not a variable as such.) This instructs zgv
+to assume that all modes can be used, providing your video card has
+them. This is how zgv usually acts.
+
+@item mode-bad @var{modespec}
+Mark the specified mode as `bad', so zgv will not allow it. The
+`modespec' should be the width, height, and depth separated by spaces,
+e.g. @code{640 480 8}.
+
+@item mode-good @var{modespec}
+Mark the specified mode as `good', so zgv will allow it.
+
+@item mouse-kludge
+(Enabled by default.) If enabled, throws away any byte which appears
+from the mouse device in the first 50ms. This is to work around a
+problem with my `mouse' (a Logitech trackball) which sends a bogus
+@code{M} byte on initialisation for no obvious reason --- yet input is
+meant to be in packets of 3 bytes! Anyway, this fixes it, and shouldn't
+break any other mice, but if you have inexplicable mouse problems you
+may want to try disabling this just to make @emph{sure} it's not the
+problem.
+
+@end vtable
+
+
+@node  Config File Backward Compatibility,  , Config Variables, Configuring zgv
+@comment  node-name,  next,  previous,  up
+@section Config File Backward Compatibility
+
+@cindex backward compatibility of config names
+@cindex config variable names, old
+@cindex old config variable names
+
+Many of the config variable names were changed (in an attempt to
+rationalise them to some extent, and behave a bit more like xzgv) in zgv
+5.5, when GNU-style long command-line options were added. However, being
+fully aware of the number of complaints I would get if I made a clean
+break with the past ;-), almost all the old config file variable names
+are still supported (though not on the command-line).
+
+Rather than document the options again, here's a simple list of which
+old options map to which current ones. (@xref{Invoking zgv}, for
+documentation on most. @xref{Config Variables}, for a few others.)
+
+@table @samp
+@item allmodesbad
+= @samp{mode-all-bad}
+
+@item allmodesgood
+= @samp{mode-all-good}
+
+@item automodefit
+= @samp{auto-mode-fit}
+
+@item badmode
+= @samp{mode-bad}
+
+@item bc_order_rev
+= @samp{reverse-bc-order}
+
+@item betterpgm
+= @samp{pgm-truecol}
+
+@item black
+= @samp{col-black}
+
+@item blockcursor
+= @samp{block-cursor}
+
+@item cleartext
+= @samp{clear-screen-on-exit}
+
+@item dark
+= @samp{col-dark}
+
+@item fakecols
+= @samp{fake-cols}
+
+@item fastdither16col
+= @samp{dither-16col-fast}
+
+@item force16fs
+= @samp{force-fs-16col}
+
+@item forgetoldpos
+= @samp{fs-ignore-old-pos}
+
+@item fs16col
+= @samp{fs-16col-colour-thumbnails}
+
+@item fs_startmode
+= @samp{fs-start-mode}
+
+@item fsmagic
+= @samp{fs-magic}
+
+@item goodmode
+= @samp{mode-good}
+
+@item gnulitically_correct
+= @samp{gnulitically-correct}
+
+@item jpeg24bit
+= @samp{force-viewer-8bit} (sense inverted)
+
+@item jpegindexstyle
+= @samp{jpeg-index-style}
+
+@item jpegspeed
+= @samp{jpeg-speed}
+
+@item light
+= @samp{col-light}
+
+@item linetext
+= @samp{line-text}
+
+@item medium
+= @samp{col-medium}
+
+@item mousekludge
+= @samp{mouse-kludge}
+
+@item mousescale
+= @samp{mouse-scale}
+
+@item nodelprompt
+= @samp{delete-single-prompt} (sense inverted)
+
+@item onefile_progress
+= @samp{avoid-single-progress} (sense inverted)
+
+@item pcdres
+= @samp{pcd-res}
+
+@item perfectindex
+= @samp{fs-perfect-cols}
+
+@item revert
+= @samp{revert-scale}
+
+@item revert_orient
+= @samp{revert-orient}
+
+@item showxvpicdir
+= @samp{show-xvpics-dir}
+
+@item shuffleslideshow
+= @samp{slideshow-randomise}
+
+@item slowupdate
+= @samp{fs-slow-thumbnail-update}
+
+@item smallfstext
+= @samp{fs-small-text}
+
+@item startmode
+= @samp{viewer-start-mode}
+
+@item tagged
+= @samp{col-tagged}
+
+@item tagtimeout
+= @samp{slideshow-delay}
+
+@item thicktext
+= @samp{fs-thick-text}
+
+@item viewer16col
+= @samp{viewer-16col-colour}
+
+@item xzgvkeys
+= @samp{xzgv-keys}
+
+@item zoom_reduce_only
+= @samp{zoom-reduce-only}
+
+@end table
+
+The old @samp{fullsel}, @samp{hicolmodes}, and @samp{hicontrol} options
+are no longer supported (i.e. zgv's previously-default behaviour for
+those is now permanent), and have no effect other than to give a
+warning.
+
+
+@node  Rationale, Bugs and Restrictions, Configuring zgv, Top
+@comment  node-name,  next,  previous,  up
+@chapter Rationale
+
+@cindex rationale
+@cindex moaning for fun and profit
+@c many a true word... :-)
+
+Here I (RJM) attempt to explain why I did things the way I did. This is
+presented in a question-and-answer format of sorts.
+
+@menu
+* Why Yet Another Viewer?::     svgalib vs. X is not really the main issue.
+* Why a Texinfo Manual?::       Large man pages are hard to deal with.
+* Why One-space Sentence Ends?::  Not everyone uses two-space ones.
+@end menu
+
+@node  Why Yet Another Viewer?, Why a Texinfo Manual?, Rationale, Rationale
+@comment  node-name,  next,  previous,  up
+@section Why Yet Another Viewer?
+
+@cindex why another viewer?
+@cindex xv, comparison with
+
+Often the simple answer to this is ``Actually, zgv was here first ---
+ask the other guy.'' This is true of any viewer written since 1993,
+anyway.
+
+Most of the time though, this is phrased as ``Why not just use xv?''.
+That's a fair point; xv is quite a good program, and it has some nice
+features. But briefly, here are my problems with it, the areas where I
+personally feel zgv is (at least arguably) better than xv:
+
+@itemize @bullet
+@item
+xv is shareware. Personally, I don't think selling picture viewers is
+all that sensible when things like the Gimp are free.
+
+@item
+I find the interface really, really weird. In particular, the visual
+schnauzer feels rather `bolted on'.
+
+@item
+xv tries to be a Swiss-Army knife of graphics, rather than concentrating
+on what it really is, a picture viewer. zgv has some problems in this
+area too, but it's much closer to the `do one thing well' software tools
+philosophy (@pxref{Opening the software toolbox,,,textutils,GNU Text
+Utilities}).
+
+@end itemize
+
+I'm not saying zgv is great and xv is terrible, and it's clear that many
+people prefer using (or have to use) an X picture viewer --- an area
+where xv has no obvious zgv-like competition (er, not any more; see
+below). But I don't think xv is even remotely close to being the
+category-killer for picture viewing that some people seem to think it
+is.
+
+(Update: Since I originally wrote the ``no obvious zgv-like
+competition'' line above, I've written xzgv, which is a GTK+/Imlib-based
+port/rewrite of zgv for X. What can I say, I liked it so much I wrote
+the code. :^)
+
+`Electric Eyes' is another alternative to xv, but personally I find that
+much too xv-like (hence my work on xzgv).)
+
+
+@node  Why a Texinfo Manual?, Why One-space Sentence Ends?, Why Yet Another Viewer?, Rationale
+@comment  node-name,  next,  previous,  up
+@section Why a Texinfo Manual?
+
+@cindex why a texinfo manual?
+@cindex Texinfo, why zgv doc. is in
+@cindex man page, why not just have a
+
+For years, I maintained a conventional `man page' for zgv. But over
+time, I realised just how impossibly confusing the zgv man page had
+become.
+
+So I wanted to rewrite zgv's documentation in a more sensible way, in
+some other format than a man page. I wanted an established,
+well-supported format with structure and cross-referencing. I felt this
+made it a choice between HTML and texinfo. HTML seemed to me to be a
+moving target like no other, and not as well supported on text-only
+terminals as Info (and thus texinfo). When I noticed that a converter
+existed to convert texinfo to HTML in any case, the case was closed.
+
+Don't get me wrong --- I like man pages. And even with the excellent
+Texinfo documentation and Emacs' very helpful Texinfo mode, writing
+texinfo is hardly easy. (Without Texinfo mode's node- and menu-update
+commands, I personally would find it near-impossible!) But big man pages
+just aren't that good for reference, and this is made worse by the
+relative lack of structure.
+
+
+@node  Why One-space Sentence Ends?,  , Why a Texinfo Manual?, Rationale
+@comment  node-name,  next,  previous,  up
+@section Why One-space Sentence Ends?
+
+@cindex why one-space sentence ends?
+@cindex Texinfo, problems with
+
+@c XXX when printed, is emacs texinfo file's title really "The Emacs
+@c Editor"? Should check this for the relevant @pxref here.
+
+The conventional way to write texinfo is to follow each sentence with
+two spaces after the dot (or whatever ends the sentence). Many people
+normally write this way in a non-texinfo context too. But a sizeable
+proportion of people normally write text with only one space after the
+dot --- and I'm one of them.
+
+The Texinfo documentation gives the impression that two-space
+@emph{must} be used; it says ``it is important to put two spaces at the
+end of sentences in Texinfo documents.'' But the only circumstance in
+which spacing from the texinfo file is preserved at all (in any sense
+other than `there is a space here') is when the texinfo is converted to
+Info format. So, in fact, the decision to use two-space depends on how
+the author wants Info output to appear --- this is a subjective decision
+which should be @emph{entirely down to the preference of the author},
+despite the Texinfo documentation's attempt to make two-space sound like
+an objective you-must-do-this kind of thing.
+
+You might wonder what the problem with using one-space is, then. Well,
+`makeinfo' has to reformat paragraphs, and whenever it needs to insert
+space at (what appears to it to be) the end of a sentence, it inserts
+two spaces. This behaviour cannot be altered, unlike in Emacs
+(@samp{sentence-end-double-space}; @pxref{Fill Commands,,,emacs,The
+Emacs Editor}) and GNU fmt (@samp{-u}; @pxref{fmt
+invocation,,,textutils,GNU Text Utilities}). Also, attempting to `fix'
+the output Info with sed doesn't work properly because the `tags' used
+to find nodes quickly are then incorrect. These could of course also be
+fixed, but this would involve a lot more work than a simple sed
+invocation.
+
+So realistically, anyone who writes texinfo with one-space has to put up
+with the occasional two-space sentence end being inserted into their
+text --- worse still, the current `makeinfo' formatting algorithm seems
+to insert two spaces even after abbreviations (such as `e.g.' and
+`etc.'), which breaks even two-space texinfo. (This is particularly
+ironic, by the way, since two-space partisans' main argument in favour
+of the practice is the way it makes it possible to tell the difference
+between abbreviations and the end of a sentence.)
+
+One last point may be worth noting; I am not the first person to write
+texinfo files using one-space. At the time of writing, it is used in the
+texinfo documentation for BFD, gdbm, GTK, IPC, ld.so, and viper, and I
+expect there are instances I'm not aware of.
+
+
+@node  Bugs and Restrictions, Future Changes, Rationale, Top
+@comment  node-name,  next,  previous,  up
+@chapter Bugs and Restrictions
+
+@cindex bugs and restrictions
+
+All (non-trivial) programs have bugs. Anyone who denies this@dots{}
+
+@itemize @minus
+@item
+clearly hasn't written too many programs.
+@item
+is wrong. ;-)
+@end itemize
+
+It follows that zgv, like everything else, always has some bugs. Usually
+these are not serious, or I'd have fixed them before releasing zgv.
+Either way, bugs and other problems with zgv are noted here.
+
+@menu
+* Known Bugs::                  Known bugs in zgv which have yet to be
+                                  fixed.
+* Suboptimal Features::         Aspects of zgv which aren't exactly
+                                  ideal, but are at least intentional.
+* Restrictions::                Limits and similar shortcomings.
+* Reporting Bugs::              What to do if you spot a problem.
+* Reporting Documentation Bugs::  Documentation errors are also worth
+                                  reporting.
+@end menu
+
+
+@node  Known Bugs, Suboptimal Features, Bugs and Restrictions, Bugs and Restrictions
+@comment  node-name,  next,  previous,  up
+@section Known Bugs
+
+@cindex known bugs
+@cindex bugs, known
+
+@itemize @minus
+@item
+If an XPM file using a chars-per-pixel setting of two or less uses an
+undefined colour code in the image, this is not reported, and such
+pixels are shown as the background colour. (But then, reading XPMs in
+the three-chars-or-more manner, which @emph{does} detect undefined
+colours, would make it (at best) half as fast.)
+
+@item
+If you have both slideshow looping and shuffling enabled, sometimes you
+can get the same picture twice in a row. This is due to the last picture
+chosen for one loop round the pictures being the same as the first of
+the next loop.
+
+@item
+If a GIF file is corrupted in such a way that the decompressed image
+has a larger number of pixels in it, the extra pixels will be ignored
+and no error or warning will be generated.
+
+@item
+Renaming a file renames the thumbnail too, but currently it ignores any
+@samp{~/.xvpics/_foo_bar/baz} thumbnail.
+
+@item
+If you use the old line-based text, or use the `fs-thick-text' option,
+some of the text in the right-button menus slightly overruns the
+`buttons' they're on, which is harmless but doesn't look very nice.
+
+@item
+If you look up `joe code' in a dictionary, it says ``see zgv''. :-)
+
+@end itemize
+
+
+@node  Suboptimal Features, Restrictions, Known Bugs, Bugs and Restrictions
+@comment  node-name,  next,  previous,  up
+@section Suboptimal Features
+
+@cindex suboptimal features
+@cindex problematic features
+@cindex bug, that's a feature not a
+
+@itemize @minus
+@item
+You don't currently get a progress report when TIFFs are being read.
+
+@item
+Some of the things the change-picture viewer keys do when viewing a
+slideshow are pretty stupid (@kbd{^P} and @kbd{^N} suck, for example).
+
+@item
+For multiple-image GIFs, the progress indicator only indicates how much
+of the current image has been read, rather than how much of the file as
+a whole has been. There's some precedent for this approach (e.g. the
+Gimp), but it's not terribly elegant.
+
+@item
+Corrupt JPEG or PNG data warnings are not reported by zgv.
+
+@item
+In the 640x480x4 mode in the viewer, when scaling a picture where the
+scaled picture remains narrower than the screen's width, the background
+to the left and right of the picture is filled in with the picture's
+background colour (though you'll only be able to see this if the
+picture's background colour isn't black). This is harmless but looks
+strange.
+
+@item
+The help pages only list a few of the keys.
+
+@end itemize
+
+
+@node  Restrictions, Reporting Bugs, Suboptimal Features, Bugs and Restrictions
+@comment  node-name,  next,  previous,  up
+@section Restrictions
+
+@cindex restrictions
+
+@itemize @minus
+@item
+Most GIF89a extension blocks are ignored. (The exception is the Graphics
+Control Block, used for delay times and transparency in animated GIFs.)
+
+@item
+XPM files with more than 256 colours are shown with a black background
+(not the grey background usually used for XPMs), and those with exactly
+256 colours are shown with the background being the first colour
+specified in the file.
+
+@end itemize
+
+
+@node  Reporting Bugs, Reporting Documentation Bugs, Restrictions, Bugs and Restrictions
+@comment  node-name,  next,  previous,  up
+@section Reporting Bugs
+
+@cindex reporting bugs
+@cindex bugs, reporting
+@cindex problems, reporting
+@cindex faults, reporting
+@cindex contacting the author
+@cindex author, contacting the
+
+If you find zgv does something wrong, which you suspect might be a fault
+of some sort (a bug) in the program, it is best to report it as I may
+not be aware of the problem. (But first, check it is not a `known bug'.
+@xref{Known Bugs}. It is not usually helpful to report a bug I already
+know about.)
+
+zgv uses various libraries; if you find a problem, it @emph{could} be a
+bug in one of them. This is not an attempt at buck-passing :-), rather
+concern that bugs should be reported to the people best able to fix
+them.
+
+Most bugs will turn out to be in zgv itself, but in the past,
+@emph{some} display bugs have turned out to be bugs in svgalib. If it is
+a display bug, try zgv on other machines if you can, and try other
+svgalib programs which use the same video mode(s). (Svgalib's example
+program `vgatest' can be useful for this; see its man page for details.)
+This should help you determine whether it is an svgalib bug or not. (If
+you really can't figure out whether it's a bug in zgv or in svgalib, it
+may be best to report it as a possible bug in both.)
+
+It is important to include as much detail in a bug report as you can.
+Here are some details you should include:
+
+@itemize @bullet
+@item
+The version of zgv you are running (@code{zgv --version} reports this).
+
+@item
+The version of svgalib (try @code{ls /usr/lib/libvga.*} for this).
+
+@item
+What your machine's (S)VGA card is described as, and (generally more
+useful) what svgalib reports it to be. zgv suppresses this report, but
+most other svgalib programs (`vgatest' which comes with svgalib being
+a simple example) will report it when they start up.
+
+@item
+A description of the bug --- what effects it has, the circumstances it
+occurs in, and so on. Does it only happen for certain types of file?
+Only when in 8-bit modes? Only when @samp{avoid-single-progress} is
+enabled? Even `irrelevant' details can sometimes be useful.
+
+@item
+Finally, if you are a programmer and believe you have managed to fix the
+bug yourself, patches are gratefully accepted. :-) You should generate
+the patch using @code{diff -c} or (preferably) @code{diff -u}.
+
+@end itemize
+
+So, if you think you've found a bug in zgv, report it by emailing me
+at @email{rus@@svgalib.org}.
+
+
+@node  Reporting Documentation Bugs,  , Reporting Bugs, Bugs and Restrictions
+@comment  node-name,  next,  previous,  up
+@section Reporting Documentation Bugs
+
+@cindex reporting documentation bugs
+@cindex documentation, reporting bugs in the
+@cindex bugs, reporting documentation
+@cindex Texinfo documentation, reporting bugs in the
+@cindex Info file, reporting bugs in the
+@cindex manual, reporting bugs in the
+
+Bugs in the documentation can sometimes cause as much trouble as bugs in
+the program; if you notice a problem in the documentation, it's a good
+idea to report it.
+
+For reports of documentation bugs, you should include these details:
+
+@itemize @bullet
+@item
+The version of zgv the documentation is for.
+
+@item
+If it is a problem in one specific section of the documentation, specify
+which part it is (by this I mean the heading it comes under;
+texinfophiles should read this as `the node name' :-)).
+
+@item
+The format of the documentation you saw the problem in (e.g. info, man
+page, HTML).
+
+@item
+A description of the problem.
+
+@end itemize
+
+@xref{Reporting Bugs}, for details of where to send the bug report.
+
+
+@node  Future Changes, Keyboard Commands Index, Bugs and Restrictions, Top
+@comment  node-name,  next,  previous,  up
+@chapter Future Changes
+
+@cindex TODO list
+@cindex future changes
+@cindex changes, possible future
+@cindex wish-list
+
+I have given up on the apparently naive notion that zgv will ever be
+`finished'. Every time I think that, some other idea for a new feature
+pops into my head (or is forced there by someone else).
+
+@c I don't refer to the reporting bugs node here, because I think that
+@c would be overly confusing.
+
+If you want to suggest a feature you'd like in zgv, or a change to an
+existing feature, contact me at @email{rus@@svgalib.org}.
+
+Here is a list of features and/or changes which may hopefully be
+implemented in future, in approximate priority order. (This is updated
+less often than zgv's @file{TODO} file, so you should check that too if
+you're interested in this stuff.)
+
+@itemize @bullet
+@item
+Fix the progress indicator problem with multiple-image GIFs.
+
+@item
+Mouse support isn't really finished --- the goto-dir dialog should have
+ok/cancel buttons, and currently you can't interrupt file loading and
+thumbnail updates. The latter two would need a custom mouse event
+handler temporarily installed, so that we could avoid losing any clicks.
+Actually it might not be too bad an idea to always use a custom handler;
+that would be easier. After all, on a slow machine you can already lose
+clicks during a file-selector screen redraw!
+
+@item
+File move should probably delete any existing thumbnail for the file
+if the file itself is moved successfully.
+
+@end itemize
+
+
+@node  Keyboard Commands Index, Configuration Variables Index, Future Changes, Top
+@comment  node-name,  next,  previous,  up
+@unnumbered Keyboard Commands Index
+
+@cindex index, keyboard commands
+
+@printindex ky
+
+
+@node  Configuration Variables Index, Concept Index, Keyboard Commands Index, Top
+@comment  node-name,  next,  previous,  up
+@unnumbered Configuration Variables Index
+
+@cindex index, configuration variables
+
+@printindex vr
+
+
+@node    Concept Index,  , Configuration Variables Index, Top
+@comment  node-name,  next,  previous,  up
+@unnumbered Concept Index
+
+@cindex recursion joke, ANSI standard
+
+@printindex cp
+
+
+@contents
+@bye
