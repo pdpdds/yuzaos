@@ -87,7 +87,7 @@
       <AdditionalOptions>/Oy /arch:SSE %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libcrt.lib;dllstub.lib;filemanager.lib;systemcall.lib</AdditionalDependencies>
+      <AdditionalDependencies>libcrt.lib;dllstub.lib;filemanager.lib;systemcall.lib;iconv.lib</AdditionalDependencies>
       <OutputFile>$(SolutionDir)debug/$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>true</GenerateDebugInformation>
