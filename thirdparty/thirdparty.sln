@@ -79,6 +79,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vorbis", "libvorbis137\libvorbis137.vcxproj", "{61F86716-E4E9-4D8B-9172-7A37A30E61CB}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vorbisfile", "libvorbis137\libvorbisfile137.vcxproj", "{0983A724-D6FF-49C1-94F9-8821EBADCB96}"
+	ProjectSection(ProjectDependencies) = postProject
+		{61F86716-E4E9-4D8B-9172-7A37A30E61CB} = {61F86716-E4E9-4D8B-9172-7A37A30E61CB}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "snappy", "snappy\snappy.vcxproj", "{CFB216BE-41E5-41C9-B598-5073B6954628}"
 EndProject
