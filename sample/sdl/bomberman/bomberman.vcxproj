@@ -188,6 +188,9 @@
     <ClCompile Include="Vector2D.cpp" />
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{EFAE5E70-3301-447A-9293-C798C3FC14B6}</ProjectGuid>
     <RootNamespace>Kernel</RootNamespace>

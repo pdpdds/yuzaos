@@ -274,16 +274,10 @@ int __pascal far round_xpos_to_byte(int xpos, int round_direction) {
 }
 
 // seg009:0C7A
-//20181013
 void __pascal far quit(int exit_code) {
 	restore_stuff();
 
-	//20190222
-	//#ifdef _WIN32
-	//	exit(exit_code);
-	//#else
-		//ExitToJava(exit_code);
-	//#endif // _WIN32	
+	Syscall_exit(exit_code);
 }
 
 // seg009:0C90
