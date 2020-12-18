@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29123.88
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileManager", "corelib\FileManager\FileManager.vcxproj", "{BE2344CB-12B8-493A-A4D4-13B7762F559C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{52893DCA-E943-4257-B99D-6C7375FF5883} = {52893DCA-E943-4257-B99D-6C7375FF5883}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SystemCall", "corelib\SystemCall\SystemCall.vcxproj", "{52893DCA-E943-4257-B99D-6C7375FF5883}"
 EndProject
@@ -22,6 +25,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "math", "corelib\math\math.vcxproj", "{07645D9C-AADA-4F7C-AD19-DBB8DE93F9EC}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wstring", "corelib\wstring\wstring.vcxproj", "{329EE3D8-6A04-42ED-8411-CDD83ED17ED4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{52893DCA-E943-4257-B99D-6C7375FF5883} = {52893DCA-E943-4257-B99D-6C7375FF5883}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yuzalib", "corelib\yuzalib\yuzalib.vcxproj", "{7657B2A0-3916-4B3D-AD6E-485C1D229AE4}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -31,6 +37,7 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yuzaapi", "corelib\yuzaapi\yuzaapi.vcxproj", "{ABAE6AF3-C9BB-4BF5-A217-FC688B31959C}"
 	ProjectSection(ProjectDependencies) = postProject
 		{4A199588-13E8-467A-85E7-289E158828CE} = {4A199588-13E8-467A-85E7-289E158828CE}
+		{BE2344CB-12B8-493A-A4D4-13B7762F559C} = {BE2344CB-12B8-493A-A4D4-13B7762F559C}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "eastl", "corelib\STL\EASTL\eastl.vcxproj", "{09B2F8DD-B49C-47E7-BA75-A00A2704D675}"
@@ -38,10 +45,20 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "eastreams", "corelib\eastreams\eastreams.vcxproj", "{E60588A2-D044-4BE2-8E46-1F24BF942172}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "stacktracer", "corelib\stacktracer\stacktracer.vcxproj", "{11360EA7-B919-44E7-9F7E-2AA6985058B5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{52893DCA-E943-4257-B99D-6C7375FF5883} = {52893DCA-E943-4257-B99D-6C7375FF5883}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pthread", "corelib\pthreads\pthread.vcxproj", "{5382DC3A-B458-49A6-AF41-D3F6FF2E4E38}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3CBBA42D-70F8-47EF-A304-35765E8AF6B6} = {3CBBA42D-70F8-47EF-A304-35765E8AF6B6}
+		{52893DCA-E943-4257-B99D-6C7375FF5883} = {52893DCA-E943-4257-B99D-6C7375FF5883}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "iconv", "corelib\iconv\iconv.vcxproj", "{B63C42D8-57C0-4F21-BD34-130705D02090}"
+	ProjectSection(ProjectDependencies) = postProject
+		{52893DCA-E943-4257-B99D-6C7375FF5883} = {52893DCA-E943-4257-B99D-6C7375FF5883}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
