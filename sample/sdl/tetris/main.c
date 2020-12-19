@@ -1,6 +1,9 @@
 #include "main.h"
+
 TTF_Font *gFont;
-int main(int argc, const char *argv[]) {
+
+int main(int argc, const char *argv[]) 
+{
 
     // Start up SDL, and make sure it went ok
     //

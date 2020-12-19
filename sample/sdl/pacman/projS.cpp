@@ -1,6 +1,7 @@
 #include "SDLSingleton.h"
 #include <SDL.h>
 #include <SDL_ttf.h>
+#include <SDL_mixer.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -65,10 +66,10 @@ bool levelup = false;
 TTF_Font * font;
 TTF_Font * font2;
 
-//Mix_Chunk *snd_intro = NULL;
-//Mix_Chunk *snd_chomp = NULL;
-//Mix_Chunk *snd_pacdied = NULL;
-//Mix_Chunk *snd_ghostdied = NULL;
+Mix_Chunk *snd_intro = NULL;
+Mix_Chunk *snd_chomp = NULL;
+Mix_Chunk *snd_pacdied = NULL;
+Mix_Chunk *snd_ghostdied = NULL;
 
 /* Function prototypes */
 void init_clerical();
@@ -197,16 +198,16 @@ void init_clerical()
 	}
 
 	/* SDL Mixer */
-	/*if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0)
+	if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0)
 	{
 		printf("Unable to initialize SDL: %s\n", SDL_GetError());
 		exit(1);
-	}*/
+	}
 	int audio_rate = 22050;
 	Uint16 audio_format = AUDIO_S16SYS;
 	int audio_channels = 2;
 	int audio_buffers = 4096;
-	/*if(Mix_OpenAudio(audio_rate, audio_format, audio_channels, audio_buffers) != 0)
+	if(Mix_OpenAudio(audio_rate, audio_format, audio_channels, audio_buffers) != 0)
 	{
 		fprintf(stderr, "Unable to initialize audio: %s\n", Mix_GetError());
 		exit(1);
@@ -234,7 +235,7 @@ void init_clerical()
 	{
 		fprintf(stderr, "Unable to load WAV file: %s\n", Mix_GetError());
 		exit(1);
-	}*/
+	}
 
 }
 
@@ -762,31 +763,36 @@ void shutdown()
 	SDL_FreeSurface(sur_pinkg);
 	SDL_FreeSurface(sur_vulng);
 	TTF_Quit();
-	//Mix_FreeChunk(snd_intro);
+	Mix_FreeChunk(snd_intro);
+	Mix_FreeChunk(snd_chomp);
+	Mix_FreeChunk(snd_pacdied);
+	Mix_FreeChunk(snd_ghostdied);
+	Mix_CloseAudio();
+	SDL_Quit();
 }
 
 /* Render text to screen */
 void text(char *str, int x, int y, int mode)
 {
 	/* Draw text to surface */
-	//SDL_Color fontcolor = {0xff, 0xff, 0xff, 0};
-	//SDL_Surface *txt;
-	//txt = TTF_RenderText_Solid(font, str, fontcolor);
+	SDL_Color fontcolor = {0xff, 0xff, 0xff, 0};
+	SDL_Surface *txt;
+	txt = TTF_RenderText_Solid(font, str, fontcolor);
 
 	/* Draw surface to screen */
-	//draw(txt, x, y, mode);
+	draw(txt, x, y, mode);
 }
 
 /* Render text to screen */
 void text2(char *str, int x, int y, int mode)
 {
 	/* Draw text to surface */
-	//SDL_Color fontcolor = {0xff, 0xff, 0xff, 0};
-	//SDL_Surface *txt;
-	//txt = TTF_RenderText_Solid(font2, str, fontcolor);
+	SDL_Color fontcolor = {0xff, 0xff, 0xff, 0};
+	SDL_Surface *txt;
+	txt = TTF_RenderText_Solid(font2, str, fontcolor);
 
 	/* Draw surface to screen */
-	//draw(txt, x, y, mode);
+	draw(txt, x, y, mode);
 }
 
 /* Draw function */
@@ -842,7 +848,7 @@ void updatelevel()
 void updatestatus(int clr = 0)
 {
 	clear(sur_screen, 150, 580, 300, 40, 1);
-	char buf[50];
+	char buf[50] = { 0, };
 	if(!clr)
 	if(killed)
 	{
@@ -1007,7 +1013,7 @@ void yummyfix()
 int playsound(int effect, int halt)
 {
 	int channel = -1;
-	/*if(halt)
+	if(halt)
 	{
 		Mix_HaltChannel(-1);
 		return channel;
@@ -1026,7 +1032,7 @@ int playsound(int effect, int halt)
 		case 4:
 			channel = Mix_PlayChannel(-1, snd_ghostdied, 0);
 			break;
-	}*/
+	}
 	return channel;
 }
 

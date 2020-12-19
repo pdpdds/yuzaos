@@ -97,15 +97,7 @@ int fputc(int character, FILE* stream)
 
 int chdir(const char* dirname)
 {
-	int result = g_pFileManager->chdir(dirname);
-
-	if (result == 0)
-	{
-		SetCurrentDirectory(dirname);
-		return 0;
-	}
-
-	return -1;
+	return g_pFileManager->chdir(dirname);
 }
 
 

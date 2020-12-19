@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="projS.cpp" />
     <ClCompile Include="SDLSingleton.cpp" />
   </ItemGroup>
@@ -110,7 +109,7 @@
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>./;../include;../../../corelib/include;../../../runtime/include;../../../corelib/STL/SGI;../../../ThirdParty/SDL/SDL2/SDL/include;../../../corelib/tinygl/include;../../../ThirdParty/SDL/SDL2/SDLttf;../../../ThirdParty/SDL/SDL2/SDLgfx</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;../include;../../../corelib/include;../../../runtime/include;../../../corelib/STL/SGI;../../../ThirdParty/SDL/SDL2/SDL/include;../../../corelib/tinygl/include;../../../ThirdParty/SDL/SDL2/SDLttf;../../../ThirdParty/SDL/SDL2/SDLgfx;../../../ThirdParty/SDL/SDL2/SDLmixer</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SKY_DLL;SKYOS32;_CRT_SECURE_NO_WARNINGS;__i386__;DLL_EXPORT;</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
@@ -138,7 +137,7 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>freetyped.lib;systemcall.lib;sdl.lib;libcrt.lib;libwin32.lib;exestub.lib;math.lib;filemanager.lib;sdl2_ttf.lib</AdditionalDependencies>
+      <AdditionalDependencies>sdlmixer.lib;freetyped.lib;systemcall.lib;sdl.lib;libcrt.lib;libwin32.lib;exestub.lib;math.lib;filemanager.lib;sdl2_ttf.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>../../../Debug;../../../$(Configuration);../../../corelib/debug;../../../runtime/debug;../../../ThirdParty/SDL/SDL2/debug;../../../ThirdParty/debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>

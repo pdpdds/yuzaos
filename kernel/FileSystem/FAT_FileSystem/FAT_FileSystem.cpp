@@ -267,12 +267,6 @@ int FAT_FileSystem::fputc(int character, FILE* stream)
 	return f_putc(character, fp);
 }
 
-int FAT_FileSystem::chdir(const char* dirname)
-{
-	//return -1;
-	return f_chdir(dirname);
-}
-
 
 char* FAT_FileSystem::fgets(char* dst, int max, FILE* stream)
 {
@@ -451,6 +445,8 @@ int GetRelativePathTest(char const* const fileName, struct stat* fno)
 	}
 	else
 	{
+		Syscall_GetCurrentDirectory(MAX_PATH, currentDir);
+		strcat(abolutePath, currentDir);
 		strcat(abolutePath, fileName);
 	}
 
@@ -487,6 +483,32 @@ int FAT_FileSystem::fstat(char const* const fileName, struct stat* fno)
 		return 0;
 
 	return GetRelativePathTest(fileName, fno);
+}
+
+int FAT_FileSystem::chdir(const char* dirname)
+{
+	char currentDir[MAX_PATH];
+	Syscall_GetCurrentDirectory(MAX_PATH, currentDir);
+	strcat(currentDir, dirname);
+
+	rtrimslash((char*)currentDir);
+
+	for (int i = 0; i < strlen(currentDir); i++)
+	{
+		if (currentDir[i] == '/')
+		{
+			currentDir[i] = '\\';
+		}
+	}
+
+	int result = f_chdir(currentDir);
+
+	if (result == 0)
+	{
+		Syscall_SetCurrentDirectory(currentDir);
+	}
+
+	return result;
 }
 
 

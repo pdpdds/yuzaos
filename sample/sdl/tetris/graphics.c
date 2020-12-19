@@ -23,12 +23,11 @@ void init_graphics() {
     // Load font
     gFont = TTF_OpenFont("Inconsolata-Regular.ttf", 30);
 
-    if (gFont == NULL) {
-      //  fprintf(stderr,
-            //    "\nTTF_OpenFont Error:  %s\n",
-               // SDL_GetError());
-        exit(1);
-    }
+	if (gFont == NULL)
+	{
+		fprintf(stderr, "\nTTF_OpenFont Error:  %s\n", SDL_GetError());
+		exit(1);
+	}
 
     //TTF_SetFontHinting(gFont, TTF_HINTING_MONO);
 }

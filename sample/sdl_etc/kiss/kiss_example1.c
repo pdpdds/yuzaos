@@ -11,23 +11,22 @@
   freely, subject to the following restrictions:
 
   1. The origin of this software must not be misrepresented; you must not
-     claim that you wrote the original software. If you use this software
-     in a product, an acknowledgment in the product documentation would
-     be appreciated but is not required.
+	 claim that you wrote the original software. If you use this software
+	 in a product, an acknowledgment in the product documentation would
+	 be appreciated but is not required.
   2. Altered source versions must be plainly marked as such, and must not
-     be misrepresented as being the original software.
+	 be misrepresented as being the original software.
   3. This notice may not be removed or altered from any source
-     distribution.
+	 distribution.
 
   kiss_sdl version 1.2.0
 */
 
 #include "kiss_sdl.h"
-#include <sprintf.h>
 
-static void text_reset(kiss_textbox *textbox, kiss_vscrollbar *vscrollbar)
+static void text_reset(kiss_textbox* textbox, kiss_vscrollbar* vscrollbar)
 {
-	qsort(textbox->array->data, textbox->array->length, sizeof(void *),
+	qsort(textbox->array->data, textbox->array->length, sizeof(void*),
 		kiss_string_compare);
 	vscrollbar->step = 0.;
 	if (textbox->array->length - textbox->maxlines > 0)
@@ -39,9 +38,9 @@ static void text_reset(kiss_textbox *textbox, kiss_vscrollbar *vscrollbar)
 }
 
 /* Read directory entries into the textboxes */
-static void dirent_read(kiss_textbox *textbox1, kiss_vscrollbar *vscrollbar1,
-	kiss_textbox *textbox2,	kiss_vscrollbar *vscrollbar2,
-	kiss_label *label_sel)
+static void dirent_read(kiss_textbox* textbox1, kiss_vscrollbar* vscrollbar1,
+	kiss_textbox* textbox2, kiss_vscrollbar* vscrollbar2,
+	kiss_label* label_sel)
 {
 	kiss_dirent* ent;
 	kiss_stat s;
@@ -58,13 +57,16 @@ static void dirent_read(kiss_textbox *textbox1, kiss_vscrollbar *vscrollbar1,
 	if (!strcmp(buf, "/") || !strcmp(buf, "C:\\")) strcpy(ending, "");
 	kiss_string_copy(label_sel->text, (2 * textbox1->rect.w +
 		2 * kiss_up.w) / kiss_textfont.advance, buf, ending);
+#ifdef _MSC_VER
+	dir = kiss_opendir("*");
+#else
+	dir = kiss_opendir(getcwd(buf, KISS_MAX_LENGTH));
+#endif
 
-	dir = kiss_opendir(".");
-
-	while ((ent = kiss_readdir(dir)) != 0)
-	{
-		if (ent->d_name[0] == 0) break;
-
+	//kiss_array_appendstring(textbox1->array, 0, ".", "/");
+	//kiss_array_appendstring(textbox1->array, 0, "..", "/");
+	while ((ent = kiss_readdir(dir))) {
+		if (!ent->d_name) continue;
 		kiss_getstat(ent->d_name, &s);
 		if (kiss_isdir(s))
 			kiss_array_appendstring(textbox1->array, 0,
@@ -79,18 +81,18 @@ static void dirent_read(kiss_textbox *textbox1, kiss_vscrollbar *vscrollbar1,
 }
 
 /* The widget arguments are widgets that this widget talks with */
-static void textbox1_event(kiss_textbox *textbox, SDL_Event *e,
-	kiss_vscrollbar *vscrollbar1, kiss_textbox *textbox2,
-	kiss_vscrollbar *vscrollbar2, kiss_label *label_sel, int *draw)
+static void textbox1_event(kiss_textbox* textbox, SDL_Event* e,
+	kiss_vscrollbar* vscrollbar1, kiss_textbox* textbox2,
+	kiss_vscrollbar* vscrollbar2, kiss_label* label_sel, int* draw)
 {
 	int index;
 
 	if (kiss_textbox_event(textbox, e, draw)) {
 		index = textbox->firstline + textbox->selectedline;
-		if (strcmp((char *) kiss_array_data(textbox->array, index),
+		if (strcmp((char*)kiss_array_data(textbox->array, index),
 			"")) {
 			textbox->selectedline = -1;
-			kiss_chdir((char *) kiss_array_data(textbox->array,
+			kiss_chdir((char*)kiss_array_data(textbox->array,
 				index));
 			dirent_read(textbox, vscrollbar1, textbox2,
 				vscrollbar2, label_sel);
@@ -99,56 +101,56 @@ static void textbox1_event(kiss_textbox *textbox, SDL_Event *e,
 	}
 }
 
-static void vscrollbar1_event(kiss_vscrollbar *vscrollbar, SDL_Event *e,
-	kiss_textbox *textbox1, int *draw)
+static void vscrollbar1_event(kiss_vscrollbar* vscrollbar, SDL_Event* e,
+	kiss_textbox* textbox1, int* draw)
 {
 	int firstline;
 
 	if (kiss_vscrollbar_event(vscrollbar, e, draw) &&
 		textbox1->array->length - textbox1->maxlines > 0) {
-		firstline = (int) ((textbox1->array->length - 
+		firstline = (int)((textbox1->array->length -
 			textbox1->maxlines) * vscrollbar->fraction + 0.5);
 		if (firstline >= 0) textbox1->firstline = firstline;
 		*draw = 1;
 	}
 }
 
-static void textbox2_event(kiss_textbox *textbox, SDL_Event *e,
-	kiss_vscrollbar *vscrollbar2, kiss_entry *entry, int *draw)
+static void textbox2_event(kiss_textbox* textbox, SDL_Event* e,
+	kiss_vscrollbar* vscrollbar2, kiss_entry* entry, int* draw)
 {
 	int index;
 
 	if (kiss_textbox_event(textbox, e, draw)) {
 		index = textbox->firstline + textbox->selectedline;
-		if (strcmp((char *) kiss_array_data(textbox->array, index),
+		if (strcmp((char*)kiss_array_data(textbox->array, index),
 			"")) {
 			kiss_string_copy(entry->text,
 				entry->textwidth / kiss_textfont.advance,
-				(char *) kiss_array_data(textbox->array,
-				index), NULL);
+				(char*)kiss_array_data(textbox->array,
+					index), NULL);
 			*draw = 1;
 		}
 	}
 }
 
-static void vscrollbar2_event(kiss_vscrollbar *vscrollbar, SDL_Event *e,
-	kiss_textbox *textbox2, int *draw)
+static void vscrollbar2_event(kiss_vscrollbar* vscrollbar, SDL_Event* e,
+	kiss_textbox* textbox2, int* draw)
 {
 	int firstline;
 
 	if (kiss_vscrollbar_event(vscrollbar, e, draw) &&
 		textbox2->array->length) {
-		firstline = (int) ((textbox2->array->length - 
+		firstline = (int)((textbox2->array->length -
 			textbox2->maxlines) * vscrollbar->fraction + 0.5);
 		if (firstline >= 0) textbox2->firstline = firstline;
 		*draw = 1;
 	}
 }
 
-static void button_ok1_event(kiss_button *button, SDL_Event *e,
-	kiss_window *window1, kiss_window *window2, kiss_label *label_sel,
-	kiss_entry *entry, kiss_label *label_res,
-	kiss_progressbar *progressbar, int *draw)
+static void button_ok1_event(kiss_button* button, SDL_Event* e,
+	kiss_window* window1, kiss_window* window2, kiss_label* label_sel,
+	kiss_entry* entry, kiss_label* label_res,
+	kiss_progressbar* progressbar, int* draw)
 {
 	char buf[KISS_MAX_LENGTH];
 
@@ -157,7 +159,7 @@ static void button_ok1_event(kiss_button *button, SDL_Event *e,
 			window2->rect.w - 2 * kiss_vslider.w,
 			label_sel->text, entry->text),
 			label_sel->text, entry->text);
-		kiss_string_copy(label_res->text, KISS_MAX_LABEL, 
+		kiss_string_copy(label_res->text, KISS_MAX_LABEL,
 			"The following path was selected:\n", buf);
 		window2->visible = 1;
 		window2->focus = 1;
@@ -169,15 +171,15 @@ static void button_ok1_event(kiss_button *button, SDL_Event *e,
 	}
 }
 
-static void button_cancel_event(kiss_button *button, SDL_Event *e,
-	int *quit, int *draw)
+static void button_cancel_event(kiss_button* button, SDL_Event* e,
+	int* quit, int* draw)
 {
 	if (kiss_button_event(button, e, draw)) *quit = 1;
 }
 
-static void button_ok2_event(kiss_button *button, SDL_Event *e,
-	kiss_window *window1, kiss_window *window2,
-	kiss_progressbar *progressbar, int *draw)
+static void button_ok2_event(kiss_button* button, SDL_Event* e,
+	kiss_window* window1, kiss_window* window2,
+	kiss_progressbar* progressbar, int* draw)
 {
 	if (kiss_button_event(button, e, draw)) {
 		window2->visible = 0;
@@ -189,19 +191,19 @@ static void button_ok2_event(kiss_button *button, SDL_Event *e,
 	}
 }
 
-int main(int argc, char **argv)
+int main(int argc, char** argv)
 {
-	SDL_Renderer *renderer;
+	SDL_Renderer* renderer;
 	SDL_Event e;
 	kiss_array objects, a1, a2;
 	kiss_window window1, window2;
-	kiss_label label1 = {0}, label2 = {0}, label_sel = {0},
-		label_res = {0};
-	kiss_button button_ok1 = {0}, button_ok2 = {0}, button_cancel = {0};
-	kiss_textbox textbox1 = {0}, textbox2 = {0};
-	kiss_vscrollbar vscrollbar1 = {0}, vscrollbar2 = {0};
-	kiss_progressbar progressbar = {0};
-	kiss_entry entry = {0};
+	kiss_label label1 = { 0 }, label2 = { 0 }, label_sel = { 0 },
+		label_res = { 0 };
+	kiss_button button_ok1 = { 0 }, button_ok2 = { 0 }, button_cancel = { 0 };
+	kiss_textbox textbox1 = { 0 }, textbox2 = { 0 };
+	kiss_vscrollbar vscrollbar1 = { 0 }, vscrollbar2 = { 0 };
+	kiss_progressbar progressbar = { 0 };
+	kiss_entry entry = { 0 };
 	int textbox_width, textbox_height, window2_width, window2_height,
 		draw, quit;
 
@@ -284,7 +286,7 @@ int main(int argc, char **argv)
 				&draw);
 			vscrollbar2_event(&vscrollbar2, &e, &textbox2, &draw);
 			button_ok1_event(&button_ok1, &e, &window1, &window2,
-				&label_sel, &entry, &label_res,	&progressbar,
+				&label_sel, &entry, &label_res, &progressbar,
 				&draw);
 			button_cancel_event(&button_cancel, &e, &quit,
 				&draw);
@@ -301,9 +303,8 @@ int main(int argc, char **argv)
 		SDL_RenderClear(renderer);
 
 		kiss_window_draw(&window1, renderer);
-		kiss_label_draw(&label2, renderer);
 		kiss_label_draw(&label1, renderer);
-		
+		kiss_label_draw(&label2, renderer);
 		kiss_textbox_draw(&textbox1, renderer);
 		kiss_vscrollbar_draw(&vscrollbar1, renderer);
 		kiss_textbox_draw(&textbox2, renderer);
@@ -312,7 +313,6 @@ int main(int argc, char **argv)
 		kiss_entry_draw(&entry, renderer);
 		kiss_button_draw(&button_ok1, renderer);
 		kiss_button_draw(&button_cancel, renderer);
-		
 		kiss_window_draw(&window2, renderer);
 		kiss_label_draw(&label_res, renderer);
 		kiss_progressbar_draw(&progressbar, renderer);

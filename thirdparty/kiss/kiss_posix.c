@@ -64,13 +64,13 @@ int kiss_closedir(kiss_dir *dirp)
 
 int kiss_isdir(kiss_stat s)
 {
-	return S_ISDIR(s.st_mode);
+	return s.st_mode == 0;
 
 }
 
 int kiss_isreg(kiss_stat s)
 {
-	return S_ISREG(s.st_mode);
+	return s.st_mode == 1;
 
 }
  

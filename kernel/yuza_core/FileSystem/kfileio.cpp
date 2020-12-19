@@ -60,7 +60,7 @@ extern "C" BOOL kSetCurrentDriveId(char drive)
 
 extern "C" BOOL kSetCurrentDirectory(const char* lpPathName)
 {
-	if (strlen(lpPathName) >= MAXPATH)
+	if (strlen(lpPathName) >= MAXPATH || strlen(lpPathName) == 0)
 		return false;
 
 	Team* pTeam = Thread::GetRunningThread()->GetTeam();

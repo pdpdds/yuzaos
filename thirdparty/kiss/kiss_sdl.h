@@ -62,28 +62,10 @@
 enum {OTHER_TYPE, WINDOW_TYPE, RENDERER_TYPE, TEXTURE_TYPE, SURFACE_TYPE,
 	FONT_TYPE, STRING_TYPE, ARRAY_TYPE};
 
-#ifdef _MSC_VER
-#ifdef _WIN32
-typedef struct _stat32 kiss_stat;
-#else
-typedef struct _stat64 kiss_stat;
-#endif
 
-typedef struct kiss_dirent {
-	char *d_name;
-} kiss_dirent;
-
-typedef struct kiss_dir {
-	ptrdiff_t fhandle;
-	struct _finddata_t fdata;
-	kiss_dirent ent;
-	char name[KISS_MAX_LENGTH];
-} kiss_dir;
-#else
 typedef struct stat kiss_stat;
 typedef struct dirent kiss_dirent;
 typedef DIR kiss_dir;
-#endif
 
 /* Length is number of elements, size is allocated size */
 typedef struct kiss_array {

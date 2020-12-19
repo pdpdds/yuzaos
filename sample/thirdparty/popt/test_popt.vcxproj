@@ -40,7 +40,7 @@
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>SampleDll</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>popt_test</ProjectName>
+    <ProjectName>test_popt</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -169,7 +169,7 @@
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <AdditionalOptions>/Oy   /arch:SSE %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4819;2440</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>./;../include;../../../corelib/include;../../../runtime/include;../../../ThirdParty/popt</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;../include;../../../corelib/include;../../../runtime/include;../../yuza_core;../../../corelib/stl/sgi;../../../corelib/streams;../../../support/include;../../../thirdparty/popt</AdditionalIncludeDirectories>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
       <OmitFramePointers>true</OmitFramePointers>
@@ -183,7 +183,7 @@
       <EntryPointSymbol>
       </EntryPointSymbol>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>yuzaapi.lib;streams.lib;yuzalib.lib;math.lib;filemanager.lib;systemcall.lib;libcrt.lib;exestub.lib;stub.lib;popt.lib</AdditionalDependencies>
+      <AdditionalDependencies>popt.lib;math.lib;systemcall.lib;filemanager.lib;libcrt.lib;exestub.lib;streams.lib;yuzalib.lib;yuzaapi.lib;getopt.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>../../../$(Configuration);../../../corelib/debug;../../../runtime/debug;../../../Debug;../../../ThirdParty/Debug</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
