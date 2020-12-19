@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{f98dc337-a470-4470-a783-e891e867a4c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{f99c3037-857b-499c-b96a-5c577633dc5b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\gflags.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gflags_completions.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gflags_reporting.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\windows_port.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\mutex.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\windows_port.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

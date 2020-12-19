@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{f98dc337-a470-4470-a783-e891e867a4c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{f99c3037-857b-499c-b96a-5c577633dc5b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="base64.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="BigNum.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="BitSet.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="ConcurrentQueue.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="crc.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="CStdString.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="fast_mutex.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="GPGLockFreeQueue.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Macro.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Markup.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="SFBitArray.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="SFCompressor.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="SFCompressZLib.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="SFConsumer.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="SFDispatch.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="SFEncryption.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="SFEncryptionXOR.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="SFFastCRC.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="SFFString.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="SFIOCPQueue.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="SFList.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="SFLock.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="SFLockDeque.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="SFLockQueue.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="SFMath.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="SFObjectPool.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="SFQueue.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="SFScheduler.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="SFString.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="SFTimer.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="SFTree.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="SFTSSyncQueue.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="VMemPool.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="base64.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="BitSet.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="crc.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Markup.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="SFBitArray.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="SFCompressZLib.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="SFEncryptionXOR.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="SFFastCRC.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="SFFString.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="SFList.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
