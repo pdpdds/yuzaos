@@ -68,12 +68,12 @@ void AppSettings::save(const char* pFilename)
 {
 	TiXmlDocument doc;
 	TiXmlElement* msg;
-	TiXmlComment * comment;
+	TiXmlComment* comment;
 	string s;
 	TiXmlDeclaration* decl = new TiXmlDeclaration("1.0", "", "");
 	doc.LinkEndChild(decl);
 
-	TiXmlElement * root = new TiXmlElement(m_name.c_str());
+	TiXmlElement* root = new TiXmlElement(m_name.c_str());
 	doc.LinkEndChild(root);
 
 	comment = new TiXmlComment();
@@ -85,13 +85,13 @@ void AppSettings::save(const char* pFilename)
 	{
 		MessageMap::iterator iter;
 
-		TiXmlElement * msgs = new TiXmlElement("Messages");
+		TiXmlElement* msgs = new TiXmlElement("Messages");
 		root->LinkEndChild(msgs);
 
 		for (iter = m_messages.begin(); iter != m_messages.end(); iter++)
 		{
-			const string & key = (*iter).first;
-			const string & value = (*iter).second;
+			const string& key = (*iter).first;
+			const string& value = (*iter).second;
 			msg = new TiXmlElement(key.c_str());
 			msg->LinkEndChild(new TiXmlText(value.c_str()));
 			msgs->LinkEndChild(msg);
@@ -100,7 +100,7 @@ void AppSettings::save(const char* pFilename)
 
 	// block: windows
 	{
-		TiXmlElement * windowsNode = new TiXmlElement("Windows");
+		TiXmlElement* windowsNode = new TiXmlElement("Windows");
 		root->LinkEndChild(windowsNode);
 
 		list<WindowSettings>::iterator iter;
@@ -109,7 +109,7 @@ void AppSettings::save(const char* pFilename)
 		{
 			const WindowSettings& w = *iter;
 
-			TiXmlElement * window;
+			TiXmlElement* window;
 			window = new TiXmlElement("Window");
 			windowsNode->LinkEndChild(window);
 			window->SetAttribute("name", w.name.c_str());
@@ -122,7 +122,7 @@ void AppSettings::save(const char* pFilename)
 
 	// block: connection
 	{
-		TiXmlElement * cxn = new TiXmlElement("Connection");
+		TiXmlElement* cxn = new TiXmlElement("Connection");
 		root->LinkEndChild(cxn);
 		cxn->SetAttribute("ip", m_connection.ip.c_str());
 		cxn->SetDoubleAttribute("timeout", m_connection.timeout);
@@ -158,8 +158,8 @@ void AppSettings::load(const char* pFilename)
 		pElem = hRoot.FirstChild("Messages").FirstChild().Element();
 		for (pElem; pElem; pElem = pElem->NextSiblingElement())
 		{
-			const char *pKey = pElem->Value();
-			const char *pText = pElem->GetText();
+			const char* pKey = pElem->Value();
+			const char* pText = pElem->GetText();
 			if (pKey && pText)
 			{
 				m_messages[pKey] = pText;
@@ -175,7 +175,7 @@ void AppSettings::load(const char* pFilename)
 		for (pWindowNode; pWindowNode; pWindowNode = pWindowNode->NextSiblingElement())
 		{
 			WindowSettings w;
-			const char *pName = pWindowNode->Attribute("name");
+			const char* pName = pWindowNode->Attribute("name");
 			if (pName) w.name = pName;
 
 			pWindowNode->QueryIntAttribute("x", &w.x); // If this fails, original value is left as-is
@@ -216,14 +216,14 @@ int main(void)
 
 	// block: load settings
 	{
-	AppSettings settings;
-	settings.load("appsettings2.xml");
-	printf("%s: %s\n", settings.m_name.c_str(),
-		settings.m_messages["Welcome"].c_str());
-	WindowSettings & w = settings.m_windows.front();
-	printf("%s: Show window '%s' at %d,%d (%d x %d)\n",
-		settings.m_name.c_str(), w.name.c_str(), w.x, w.y, w.w, w.h);
-	printf("%s: %s\n", settings.m_name.c_str(), settings.m_messages["Farewell"].c_str());
-}
+		AppSettings settings;
+		settings.load("appsettings2.xml");
+		printf("%s: %s\n", settings.m_name.c_str(),
+			settings.m_messages["Welcome"].c_str());
+		WindowSettings& w = settings.m_windows.front();
+		printf("%s: Show window '%s' at %d,%d (%d x %d)\n",
+			settings.m_name.c_str(), w.name.c_str(), w.x, w.y, w.w, w.h);
+		printf("%s: %s\n", settings.m_name.c_str(), settings.m_messages["Farewell"].c_str());
+	}
 	return 0;
 }
