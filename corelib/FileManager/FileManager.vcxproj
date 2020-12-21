@@ -70,7 +70,7 @@
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>../include;../../runtime/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../include;../../runtime/include;../../thirdparty/debug;../../thirdparty/cwalk/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MSC_VER;__STDC__;i386;DLL_EXPORT;SKYOS32;</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
@@ -98,9 +98,9 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>libcrt.lib;dllstub.lib;systemcall.lib</AdditionalDependencies>
+      <AdditionalDependencies>libcrt.lib;dllstub.lib;systemcall.lib;cwalk_static.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration);../../runtime/debug;../Debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration);../../runtime/debug;../Debug;../../thirdparty/debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(OutDir)$(TargetName).map</MapFileName>

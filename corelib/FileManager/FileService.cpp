@@ -4,6 +4,7 @@
 #include <systemcall_impl.h>
 #include <FileManager.h>
 #include  <stat_def.h>
+#include <cwalk.h>
 
 extern I_FileManager* g_pFileManager;
 
@@ -97,7 +98,15 @@ int fputc(int character, FILE* stream)
 
 int chdir(const char* dirname)
 {
-	return g_pFileManager->chdir(dirname);
+	char szResult[FILENAME_MAX];
+	cwk_path_normalize(dirname, szResult, sizeof(szResult));
+
+	int result = g_pFileManager->chdir(szResult);
+
+	if(result == 0)
+		Syscall_SetCurrentDirectory(szResult);
+
+	return result;
 }
 
 

@@ -19,26 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Command.c" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="main2.c" />
-    <ClCompile Include="main3.c" />
-    <ClCompile Include="Path.c" />
-    <ClCompile Include="tui.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Command.h" />
-    <ClInclude Include="Errors.h" />
-    <ClInclude Include="Path.h" />
-    <ClInclude Include="Shared.h" />
-    <ClInclude Include="Terminal.h" />
-    <ClInclude Include="tui.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{41F61AFD-43CA-450E-B627-EE8CDB52170A}</ProjectGuid>
+    <ProjectGuid>{8478FC4B-D9F0-4EF8-B43F-3CB2AFBF065C}</ProjectGuid>
     <RootNamespace>Kernel</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>pdcurse</ProjectName>
+    <ProjectName>test_libuuid</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -87,7 +74,7 @@
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
     <TargetName>$(ProjectName)</TargetName>
-    <TargetExt>.dll</TargetExt>
+    <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DEBUG_WIN32|Win32'">
     <OutDir>$(SolutionDir)Debug\</OutDir>
@@ -112,19 +99,19 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalOptions>/Oy %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Oy  /arch:SSE %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>./;../include;../../../corelib/include;../../../runtime/include;../../../corelib/STL/SGI;../../../ThirdParty/SDL/SDL2/SDL/include;../../../ThirdParty/SDL/SDL2/SDLimage;../../../ThirdParty/pdcurse</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_MSC_VER=1920;SKYOS32</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>./;../include;../../../corelib/include;../../../runtime/include;../../yuza_core;../../../runtime/libcrt/input;../../../thirdparty/libuuid;../../../corelib/stl/sgi;../../../corelib/streams</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>SKYOS32;_MSC_VER;HAVE_SRANDOM</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>
       <ExceptionHandling>false</ExceptionHandling>
-      <StructMemberAlignment>Default</StructMemberAlignment>
+      <StructMemberAlignment>1Byte</StructMemberAlignment>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <AssemblerOutput>NoListing</AssemblerOutput>
@@ -146,9 +133,9 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>freetyped.lib;sdl2_ttf.lib;pdcurse.lib;streams.lib;systemcall.lib;sdl.lib;libcrt.lib;libwin32.lib;exestub.lib;math.lib;filemanager.lib;eastl.lib;sdl2_gfx.lib</AdditionalDependencies>
+      <AdditionalDependencies>libuuid.lib;systemcall.lib;filemanager.lib;libcrt.lib;exestub.lib;math.lib;libhangul.lib;libintl.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>../../../Debug;../../../$(Configuration);../../../corelib/debug;../../../runtime/debug;../../../ThirdParty/SDL/SDL2/debug;../../../ThirdParty/debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../../$(Configuration);../../../corelib/debug;../../../support\Debug;../../../runtime/debug;../../../thirdparty/debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(OutDir)$(TargetName).map</MapFileName>
@@ -174,7 +161,7 @@
       </AddModuleNamesToAssembly>
       <ForceSymbolReferences>
       </ForceSymbolReferences>
-      <AdditionalOptions>/safeseh:no /FILEALIGN:1024
+      <AdditionalOptions>/safeseh:no /ALIGN:1024
  %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
@@ -191,7 +178,7 @@
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <AdditionalIncludeDirectories>../../include;../Include;../../librt/include;../kernelcore</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>SKY_EMULATOR;SKY_EMULATOR_DLL;_WIN32;_MSC_VER;_X86_32;__i386__;_KRNL_DLL;DLL_EXPORT;SKYOS32;SKY_DLL;HAVE_FLOOR;HAVE_STDIO_H</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SKY_EMULATOR;_MSC_VER;__STDC__;i386;DLL_EXPORT</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>
@@ -260,14 +247,14 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DEBUG_WIN32_DLL|Win32'">
     <ClCompile>
-      <AdditionalOptions>/Oy /d2noftol3 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Oy %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>./;../../module/include;../../librt/dllstub;../../include;../Include;../../librt/include;../../kernelcore;../../librt/libstring;../../librt;./portable;../../userlib\pdcurse;../../thirdparty/skysdl/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>SKY_DLL;SKYOS32;_CRT_SECURE_NO_WARNINGS;PDC_FORCE_UTF8</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../kernelcore/include;../../userlib/protobuf;../../librt/dllstub;../../include;../Include;../../librt/include;../../kernelcore;../../librt/libstring;../../module/include;../../userlib/libmpeg;../../librt/sgi_stl;../../userlib/libmpeg/include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>PCRE2_CODE_UNIT_WIDTH=8;SKY_DLL;SKYOS32;_CRT_SECURE_NO_WARNINGS;__i386__;DLL_EXPORT;_MSC_VER</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>
@@ -279,7 +266,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <CallingConvention>Cdecl</CallingConvention>
-      <DisableSpecificWarnings>4457;4189;4100;4702;4102;4244;4239;4333;4127;4554;4200;4101;4090</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4819</DisableSpecificWarnings>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -294,9 +281,9 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>pdcurse.lib;libc.lib;libcrt.lib;exestub.lib;libds.lib;libstring.lib;libmath.lib;skysdl.lib;sdl2_ttf.lib;freetyped.lib</AdditionalDependencies>
+      <AdditionalDependencies>libcrt.lib;libstring.lib;exestub.lib;libc.lib;libds.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>../../debug;../../librt/debug;../../userlib/debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../debug;../../librt/debug;../../userlib/debug;</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(OutDir)$(TargetName).map</MapFileName>

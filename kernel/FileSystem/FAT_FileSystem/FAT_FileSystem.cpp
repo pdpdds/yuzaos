@@ -487,28 +487,7 @@ int FAT_FileSystem::fstat(char const* const fileName, struct stat* fno)
 
 int FAT_FileSystem::chdir(const char* dirname)
 {
-	char currentDir[MAX_PATH];
-	Syscall_GetCurrentDirectory(MAX_PATH, currentDir);
-	strcat(currentDir, dirname);
-
-	rtrimslash((char*)currentDir);
-
-	for (int i = 0; i < strlen(currentDir); i++)
-	{
-		if (currentDir[i] == '/')
-		{
-			currentDir[i] = '\\';
-		}
-	}
-
-	int result = f_chdir(currentDir);
-
-	if (result == 0)
-	{
-		Syscall_SetCurrentDirectory(currentDir);
-	}
-
-	return result;
+	return f_chdir(dirname);
 }
 
 

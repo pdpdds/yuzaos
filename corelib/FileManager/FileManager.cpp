@@ -7,6 +7,7 @@
 #include <errno.h>
 #include "TerminalSystem.h"
 
+
 typedef I_FileSystem* (*PFileSystem)();
 I_FileManager* g_pFileManager;
 int errno = 0;
