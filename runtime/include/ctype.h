@@ -91,7 +91,7 @@ extern "C" {
 #define islower(c)     (_pctype[(unsigned char)(c)] & _LOWER)
 #define isdigit(c)     (_pctype[(unsigned char)(c)] & _DIGIT)
 #define isxdigit(c)    (_pctype[(unsigned char)(c)] & _HEX)
-#define isspace(c)     (_pctype[(unsigned char)(c)] & _SPACE)
+//#define isspace(c)     (_pctype[(unsigned char)(c)] & _SPACE)
 #define ispunct(c)     (_pctype[(unsigned char)(c)] & _PUNCT)
 #define isalnum(c)     (_pctype[(unsigned char)(c)] & (_UPPER | _LOWER | _DIGIT))
 #define isprint(c)     (_pctype[(unsigned char)(c)] & (_BLANK | _PUNCT | _UPPER | _LOWER | _DIGIT))

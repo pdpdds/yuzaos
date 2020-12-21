@@ -150,15 +150,29 @@ int main(int argc, char** argv)
 	editor.SetErrorMarkers(markers);
 
 	// "breakpoint" markers
-	//TextEditor::Breakpoints bpts;
-	//bpts.insert(24);
-	//bpts.insert(47);
-	//editor.SetBreakpoints(bpts);
+	TextEditor::Breakpoints bpts;
+	bpts.insert(24);
+	bpts.insert(47);
+	editor.SetBreakpoints(bpts);
 	static bool openFileDialog = false;
-	static const char* fileToEdit = "ImGuiColorTextEdit/TextEditor.cpp";
-	editor.SetText("Yuza OS Test!!");
-	//	static const char* fileToEdit = "test.cpp";
+	static const char* fileToEdit = "ImGuiColorTextEdit/InitCPU.cpp";
+	
+	FILE* fp;
+	char temp[256];
+	char* filename = "InitCPU.cpp";
+	eastl::string str;
 
+	fp = fopen(filename, "r");
+	if (fp == NULL) {
+		printf("Could not open file %s", filename);
+		return 1;
+	}
+	while (fgets(temp, 256, fp) != NULL)
+		str += temp;
+	fclose(fp);
+	editor.SetText(str);
+	
+	//static const char* fileToEdit = "ImGuiColorTextEdit/TextEditor.cpp";
 	/*{
 		eastl::ifstream t(fileToEdit);
 		if (t.good())

@@ -1,148 +1,216 @@
+// pdcurse1.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
+//
+
+#include "curses.h"
+#include <time.h>
+#pragma comment(lib, "pdcurses.lib")
+
+#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <locale.h>
+#include "tui.h"
+#define FNAME "tui.c"
+#include <sprintf.h>
 
-#include <curses.h>
-#include <math.h>
-#include <dirent.h>
-//#include <sys/types.h>
-//#include <sys/stat.h>
-//#include <sys/statvfs.h>
-//#include <sys/utsname.h>
-//#include <unistd.h>
-#include <errno.h>
-#include "Errors.h"
-#include "Shared.h"
-#include "Terminal.h"
-#include "commands/cmd.c"
-//#include "commands/dir.c"
-#include "commands/echo.c"
-//#include "commands/exit.c"
-#include "commands/cd.c"
-#include "commands/cls.c"
-#include "commands/pause.c"
-//#include "commands/mkdir.c"
-#include "commands/rmdir.c"
-int errno = 0;
-static int next_j(int j)
+/**************************** strings entry box ***************************/
+
+void address(void)
 {
-	if (j == 0)
-		j = 4;
-	else
-		--j;
-
-	if (has_colors())
+	const char* fieldname[6] =
 	{
-		int z = rand() % 3;
-		chtype color = COLOR_PAIR(z);
+		"Name", "Street", "City", "State", "Country", (char *)0
+	};
 
-		if (z)
-			color |= A_BOLD;
+	char *fieldbuf[5];
+	WINDOW *wbody = bodywin();
+	int i, field = 50;
 
-		attrset(color);
+	for (i = 0; i < 5; i++)
+		fieldbuf[i] = (char*)malloc(1 * field + 1);
+
+	if (getstrings((char**)fieldname, fieldbuf, field) != KEY_ESC)
+	{
+		for (i = 0; fieldname[i]; i++)
+			wprintw(wbody, "%10s : %s\n",
+				fieldname[i], fieldbuf[i]);
+
+		wrefresh(wbody);
 	}
 
-	return j;
+	for (i = 0; i < 5; i++)
+		free(fieldbuf[i]);
 }
 
-int main(int argc, char *argv[])
+/**************************** string entry box ****************************/
+
+char *getfname(char *desc, char *fname, int field)
 {
-	time_t seed;
-	int x, y, j, r, c;
-	static int xpos[5], ypos[5];
+	char *fieldname[2];
+	char *fieldbuf[1];
 
-#ifdef XCURSES
-	Xinitscr(argc, argv);
-#else
-	initscr();
-#endif
-	seed = time((time_t *)0);
-	srand(seed);
+	fieldname[0] = desc;
+	fieldname[1] = 0;
+	fieldbuf[0] = fname;
 
-	if (has_colors())
+	return (getstrings(fieldname, fieldbuf, field) == KEY_ESC) ? NULL : fname;
+}
+
+/**************************** a very simple file browser ******************/
+
+void showfile(char *fname)
+{
+	int i, bh = bodylen();
+	FILE *fp;
+	char buf[MAXSTRLEN];
+	bool ateof = FALSE;
+
+	statusmsg((char*)"FileBrowser: Hit key to continue, Q to quit");
+
+	if ((fp = fopen(fname, "r")) != NULL)   /* file available? */
 	{
-		short bg = COLOR_BLACK;
-
-		start_color();
-
-#if defined(NCURSES_VERSION) || (defined(PDC_BUILD) && PDC_BUILD > 3000)
-		if (use_default_colors() == OK)
-			bg = -1;
-#endif
-		init_pair(1, COLOR_BLUE, bg);
-		init_pair(2, COLOR_CYAN, bg);
-	}
-
-	nl();
-	noecho();
-	curs_set(0);
-	timeout(0);
-	keypad(stdscr, TRUE);
-
-	r = LINES - 4;
-	c = COLS - 4;
-
-	for (j = 5; --j >= 0;)
-	{
-		xpos[j] = rand() % c + 2;
-		ypos[j] = rand() % r + 2;
-	}
-
-	for (j = 0;;)
-	{
-		x = rand() % c + 2;
-		y = rand() % r + 2;
-
-		mvaddch(y, x, '.');
-
-		mvaddch(ypos[j], xpos[j], 'o');
-
-		j = next_j(j);
-		mvaddch(ypos[j], xpos[j], 'O');
-
-		j = next_j(j);
-		mvaddch(ypos[j] - 1, xpos[j], '-');
-		mvaddstr(ypos[j], xpos[j] - 1, "|.|");
-		mvaddch(ypos[j] + 1, xpos[j], '-');
-
-		j = next_j(j);
-		mvaddch(ypos[j] - 2, xpos[j], '-');
-		mvaddstr(ypos[j] - 1, xpos[j] - 1, "/ \\");
-		mvaddstr(ypos[j], xpos[j] - 2, "| O |");
-		mvaddstr(ypos[j] + 1, xpos[j] - 1, "\\ /");
-		mvaddch(ypos[j] + 2, xpos[j], '-');
-
-		j = next_j(j);
-		mvaddch(ypos[j] - 2, xpos[j], ' ');
-		mvaddstr(ypos[j] - 1, xpos[j] - 1, "   ");
-		mvaddstr(ypos[j], xpos[j] - 2, "     ");
-		mvaddstr(ypos[j] + 1, xpos[j] - 1, "   ");
-		mvaddch(ypos[j] + 2, xpos[j], ' ');
-
-		xpos[j] = x;
-		ypos[j] = y;
-
-		switch (getch())
+		while (!ateof)
 		{
-		case 'q':
-		case 'Q':
-			curs_set(1);
-			endwin();
-			return EXIT_SUCCESS;
-		case 's':
-			nodelay(stdscr, FALSE);
-			break;
-		case ' ':
-			nodelay(stdscr, TRUE);
-#ifdef KEY_RESIZE
-			break;
-		case KEY_RESIZE:
-# ifdef PDCURSES
-			resize_term(0, 0);
-			erase();
-# endif
-			r = LINES - 4;
-			c = COLS - 4;
-#endif
+			clsbody();
+
+			for (i = 0; i < bh - 1 && !ateof; i++)
+			{
+				if (fgets(buf, MAXSTRLEN, fp))
+					bodymsg(buf);
+				else
+					ateof = TRUE;
+			}
+
+			switch (waitforkey())
+			{
+			case 'Q':
+			case 'q':
+			case 0x1b:
+				ateof = TRUE;
+			}
 		}
-		napms(50);
+
+		fclose(fp);
 	}
+	else
+	{
+		sprintf(buf, "ERROR: file '%s' not found", fname);
+		errormsg(buf);
+	}
+}
+
+/***************************** forward declarations ***********************/
+
+void sub0(void), sub1(void), sub2(void), sub3(void);
+void func1(void), func2(void);
+void subfunc1(void), subfunc2(void);
+void subsub(void);
+
+/***************************** menus initialization ***********************/
+
+menu MainMenu[] =
+{
+	{ (char*)"Asub", sub0, (char*)"Go inside first submenu" },
+{ (char*)"Bsub", sub1, (char*)"Go inside second submenu" },
+{ (char*)"Csub", sub2, (char*)"Go inside third submenu" },
+{ (char*)"Dsub", sub3, (char*)"Go inside fourth submenu" },
+{ (char*)"", (FUNC)0, (char*)"" }   /* always add this as the last item! */
+};
+
+menu SubMenu0[] =
+{
+	{ (char*)"Exit", DoExit, (char*)"Terminate program" },
+{ (char*)"", (FUNC)0, (char*)"" }
+};
+
+menu SubMenu1[] =
+{
+	{ (char*)"OneBeep", func1, (char*)"Sound one beep" },
+{ (char*)"TwoBeeps", func2, (char*)"Sound two beeps" },
+{ (char*)"", (FUNC)0, (char*)"" }
+};
+
+menu SubMenu2[] =
+{
+	{ (char*)"Browse", subfunc1, (char*)"Source file lister" },
+{ (char*)"Input", subfunc2, (char*)"Interactive file lister" },
+{ (char*)"Address", address, (char*)"Get address data" },
+{ (char*)"", (FUNC)0, (char*)"" }
+};
+
+menu SubMenu3[] =
+{
+	{ (char*)"SubSub", subsub, (char*)"Go inside sub-submenu" },
+{ (char*)"", (FUNC)0, (char*)"" }
+};
+
+/***************************** main menu functions ************************/
+
+void sub0(void)
+{
+	domenu(SubMenu0);
+}
+
+void sub1(void)
+{
+	domenu(SubMenu1);
+}
+
+void sub2(void)
+{
+	domenu(SubMenu2);
+}
+
+void sub3(void)
+{
+	domenu(SubMenu3);
+}
+
+/***************************** submenu1 functions *************************/
+
+void func1(void)
+{
+	beep();
+	bodymsg((char*)"One beep! ");
+}
+
+void func2(void)
+{
+	beep();
+	bodymsg((char*)"Two beeps! ");
+	beep();
+}
+
+/***************************** submenu2 functions *************************/
+
+void subfunc1(void)
+{
+	showfile((char*)FNAME);
+}
+
+void subfunc2(void)
+{
+	char fname[MAXSTRLEN];
+
+	strcpy(fname, FNAME);
+	if (getfname((char*)"File to browse:", fname, 50))
+		showfile(fname);
+}
+
+/***************************** submenu3 functions *************************/
+
+void subsub(void)
+{
+	domenu(SubMenu2);
+}
+
+/***************************** start main menu  ***************************/
+
+int main(int argc, char **argv)
+{
+	//setlocale(LC_ALL, "");
+
+	startmenu(MainMenu, (char*)"TUI - 'textual user interface' demonstration program");
+
+	return 0;
 }

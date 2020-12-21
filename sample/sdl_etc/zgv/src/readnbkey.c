@@ -23,7 +23,7 @@
 
 
 #ifdef BACKEND_SDL
-
+#include <wchar.h>
 #include <SDL.h>
 
 #define BACKEND_SDL_OR_SVGALIB

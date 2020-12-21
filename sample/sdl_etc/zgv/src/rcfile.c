@@ -15,6 +15,7 @@
 #include "zgv.h"	/* for ZGV_VER */
 #include "rcfile.h"
 #include <getenv.h>
+#include <systemcall_impl.h>
 
 #ifndef GLASTMODE
 /* not sure if this is possible, but just in case...
@@ -194,9 +195,9 @@ void defaultcfg(void)
 	/* it'll use 360x480x8 if you haven't got 640x480x8,
 	 * and 320x200x8 if you've locked that out.
 	 */
-	cfg.videomode = G640x480x256;
+	cfg.videomode = G640x480x32K;
 	/* for selector, it's 640x480x8 if possible, otherwise 640x480x4. */
-	cfg.fs_startmode = G640x480x256;
+	cfg.fs_startmode = G640x480x32K;
 	cfg.zoom = 0;
 	cfg.zoom_reduce_only = 0;
 	cfg.vkludge = 0;
@@ -631,7 +632,7 @@ void print_version(char* arg, void* dataptr)
 	exit(0);
 }
 
-#include <include/systemcall_impl.h>
+
 void usage_help(char* arg, void* dataptr)
 {
 	printf("zgv " ZGV_VER

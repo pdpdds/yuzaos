@@ -124,13 +124,13 @@
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>./;../include;../../../corelib/include;../../../runtime/include;../../../ThirdParty/SDL/SDL2/SDL/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_MSC_VER=1920;SKY_DLL;SKYOS32;_CRT_SECURE_NO_WARNINGS;__i386__;DLL_EXPORT</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>./;../include;../../../corelib/include;../../../runtime/include;../../../ThirdParty/SDL/SDL2/SDL/include;../../../ThirdParty/SDL/SDL2/sdlimage;../../../ThirdParty/SDL/SDL2/sdlmixer;../../../ThirdParty/SDL/SDL2/sdlgfx;../../../ThirdParty/box2d/include;../../../corelib/stl/sgi;../../../corelib/streams</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_MSC_VER=1920;SKYOS32;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>
       <ExceptionHandling>false</ExceptionHandling>
-      <StructMemberAlignment>1Byte</StructMemberAlignment>
+      <StructMemberAlignment>Default</StructMemberAlignment>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <AssemblerOutput>NoListing</AssemblerOutput>
@@ -146,15 +146,16 @@
       <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <SDLCheck>false</SDLCheck>
+      <UndefinePreprocessorDefinitions>4305</UndefinePreprocessorDefinitions>
     </ClCompile>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>SDL2_gfx.lib;box2d.lib;streams.lib;systemcall.lib;sdl.lib;libcrt.lib;libwin32.lib;exestub.lib;userapi.lib;math.lib;filemanager.lib</AdditionalDependencies>
+      <AdditionalDependencies>sdl2_gfx.lib;box2d.lib;freetyped.lib;sdl2_ttf.lib;pdcurse.lib;streams.lib;systemcall.lib;sdl.lib;libcrt.lib;libwin32.lib;exestub.lib;math.lib;filemanager.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>../../../Debug;../../../$(Configuration)/lib;../../../ShareDll/debug;../../../UserLib/debug;../../../UserDll/debug;../../../RunTimeLib/debug;../../../ThirdParty/SDL/SDL2/debug;../../../ThirdParty/Debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../../Debug;../../../$(Configuration);../../../corelib/debug;../../../runtime/debug;../../../ThirdParty/SDL/SDL2/debug;../../../ThirdParty/debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(OutDir)$(TargetName).map</MapFileName>
@@ -180,9 +181,7 @@
       </AddModuleNamesToAssembly>
       <ForceSymbolReferences>
       </ForceSymbolReferences>
-      <AdditionalOptions>/safeseh:no /ALIGN:1024
- /SUBSYSTEM:CONSOLE
-/NODEFAULTLIB:LIBC %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/safeseh:no /ALIGN:1024 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>

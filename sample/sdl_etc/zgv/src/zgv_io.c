@@ -23,7 +23,7 @@ static volatile int timer_in_use = 0;
 
 #include <stdio.h>
 #include <stdlib.h>
-//#include <unistd.h>
+#include <unistd.h>
 #include "readnbkey.h"
 
 
@@ -152,7 +152,7 @@ static int zmouse_state = 0, zmouse_xpos = 0, zmouse_ypos = 0;
 int zmouse_getbutton(void) { return zmouse_state; }
 int zmouse_getx(void) { return zmouse_xpos; }
 int zmouse_gety(void) { return zmouse_ypos; }
-void zmouse_setposition(int x, int y) { }//if (current_mode) SDL_WarpMouse(x, y); }
+void zmouse_setposition(int x, int y) { if (current_mode) SDL_WarpMouse(x, y); }
 int zvga_getmousetype(void) { return cfg.svgalib_mouse; }
 
 int zmouse_init_return_fd(char* dev, int type, int samplerate)
@@ -167,7 +167,7 @@ static SDL_Color sdl_pal[256];
 static int palchanged = 0;
 static int scrnchange_line_min = (1 << 30), scrnchange_line_max = -1;
 
-SDL_Surface* surface = NULL;
+static SDL_Surface* surface = NULL;
 
 #define SCRNMODE_FLAGS	(cfg.fullscreen?SDL_FULLSCREEN:0)
 
@@ -177,8 +177,7 @@ static void pal_update(void)
 	if (palchanged)
 	{
 		palchanged = 0;
-		//SDL_SetColors(surface, sdl_pal, 0, 256);
-		SDL_SetPaletteColors(surface->format->palette, sdl_pal, 0, 256);
+		SDL_SetColors(surface, sdl_pal, 0, 256);
 	}
 }
 
@@ -193,13 +192,13 @@ static Uint32 native_col_to_sdl(int c, int gl_func)
 	case 32768:
 		if (gl_func)
 			return(SDL_MapRGB(surface->format,
-			((c >> 10) & 31) * 255 / 31, ((c >> 5) & 31) * 255 / 31, (c & 31) * 255 / 31));
+				((c >> 10) & 31) * 255 / 31, ((c >> 5) & 31) * 255 / 31, (c & 31) * 255 / 31));
 		/* else, falls through */
 
 	case 65536:
 		if (gl_func)
 			return(SDL_MapRGB(surface->format,
-			((c >> 11) & 31) * 255 / 31, ((c >> 5) & 63) * 255 / 63, (c & 31) * 255 / 31));
+				((c >> 11) & 31) * 255 / 31, ((c >> 5) & 63) * 255 / 63, (c & 31) * 255 / 31));
 		/* else, falls through */
 
 	default:	/* 24/32-bit */
@@ -234,7 +233,7 @@ void zgl_getbox(int x, int y, int w, int h, void* dp)
 		return;
 
 	dst = dp;
-	for (yy = y; yy < y + h; yy++, (DWORD)dp += wm)
+	for (yy = y; yy < y + h; yy++, (int*)dp += wm)
 	{
 		/* memcpy is a library call, and thus disallowed :-( */
 		src = (char*)surface->pixels + yy * surface->pitch + xm;
@@ -260,7 +259,7 @@ void zgl_putbox(int x, int y, int w, int h, void* dp)
 		return;
 
 	src = dp;
-	for (yy = y; yy < y + h; yy++, (DWORD)dp += wm)
+	for (yy = y; yy < y + h; yy++, (int*)dp += wm)
 	{
 		/* memcpy is a library call, and thus disallowed :-( */
 		dst = (char*)surface->pixels + yy * surface->pitch + xm;
@@ -452,7 +451,7 @@ int zvga_init(void)
 
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER) < 0)
 	{
-		printf("zgv: SDL init failed - %s\n", SDL_GetError());
+		fprintf(stderr, "zgv: SDL init failed - %s\n", SDL_GetError());
 		exit(1);
 	}
 
@@ -460,11 +459,11 @@ int zvga_init(void)
 	//setgid(getgid());
 	//setuid(getuid());
 
-	//atexit(sdl_exit);
+	atexit(sdl_exit);
 
-	//SDL_WM_SetCaption("zgv-sdl", "zgv-sdl");
+	SDL_WM_SetCaption("zgv-sdl", "zgv-sdl");
 
-	/*for (f = 1; f <= GLASTMODE; f++)
+	for (f = 1; f <= GLASTMODE; f++)
 	{
 		ret = SDL_VideoModeOK(modes[f].width, modes[f].height,
 			modes[f].bitsperpixel,
@@ -474,10 +473,10 @@ int zvga_init(void)
 			modes[f].has_mode = ret;
 		else
 			modes[f].has_mode = (modes[f].bitsperpixel == ret);
-	}*/
+	}
 
-	//SDL_EnableKeyRepeat(250, 50);
-	//SDL_EnableUNICODE(1);
+	SDL_EnableKeyRepeat(250, 50);
+	SDL_EnableUNICODE(1);
 	SDL_ShowCursor(SDL_DISABLE);
 
 	return 0;
@@ -491,32 +490,20 @@ int zvga_setcolor(int col)
 	return 0;
 }
 
-SDL_Window* window;
-SDL_Renderer* renderer;
-SDL_Texture* texture;
 
 int zvga_setmode(int mode)
 {
 	if (mode == TEXT)
 		return -1;
 
-	/*if (!zvga_hasmode(mode))
+	if (!zvga_hasmode(mode))
 	{
-		printf("zgv: error: bad vga_setmode(%d) call, this is probably a bug.\n", mode);
+		fprintf(stderr, "zgv: error: bad vga_setmode(%d) call, this is probably a bug.\n", mode);
 		exit(1);
 	}
-	else*/
+	else
 	{
-		int width = 640;
-		int height = 480;
-		window = SDL_CreateWindow("ImGui SDL2+SW rasterizer example", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_RESIZABLE);
-		renderer = SDL_CreateRenderer(window, -1, 0);
-		surface = SDL_CreateRGBSurface(0, width, height, 32, 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
-		texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, width, height);
-
-		zvga_clear();
-		return 0;
-		/*SDL_Surface* ret;
+		SDL_Surface* ret;
 
 		if (cfg.svgalib_mouse)
 			save_mouse_pos();
@@ -532,11 +519,12 @@ int zvga_setmode(int mode)
 			if (cfg.svgalib_mouse)
 				restore_mouse_pos();
 
+			/* not sure if it's guaranteed to be blank, so play it safe.
+			 * This also updates scrnchange vars, which is important.
+			 */
 			zvga_clear();
 			return 0;
-		}*/
-
-
+		}
 	}
 
 	return -1;
@@ -586,12 +574,8 @@ void zgv_io_screen_update(void)
 
 	if (scrnchange_line_min <= scrnchange_line_max)
 	{
-		//20200102
-		SDL_UpdateTexture(texture, NULL, surface->pixels, surface->pitch);
-		SDL_RenderCopy(renderer, texture, NULL, NULL);
-		SDL_RenderPresent(renderer);
-		//SDL_UpdateRect(surface, 0, scrnchange_line_min, modes[current_mode].width,
-			//scrnchange_line_max - scrnchange_line_min + 1);
+		SDL_UpdateRect(surface, 0, scrnchange_line_min, modes[current_mode].width,
+			scrnchange_line_max - scrnchange_line_min + 1);
 	}
 
 	scrnchange_line_min = (1 << 30);
@@ -670,10 +654,9 @@ int zgv_io_readnbkey(void)
 				return(RK_CTRLSPACE);
 
 			/* the rest can be dealt with the Unicode mapping + alt stuff */
-			//20200102
-			/*key = (event.key.keysym.unicode & 0x7f);
+			key = (event.key.keysym.unicode & 0x7f);
 			if (event.key.keysym.mod & (KMOD_ALT | KMOD_META))
-				key += 128;*/
+				key += 128;
 
 			return(key);
 
@@ -795,7 +778,7 @@ void zgv_io_fixfsmode(int* mode)
 	TRY_MODE(G1024x768x256);
 	TRY_MODE(G1280x1024x256);
 
-	printf("zgv: a 640x480, 800x600, 1024x768, or 1280x1024 mode is required.\n");
+	fprintf(stderr, "zgv: a 640x480, 800x600, 1024x768, or 1280x1024 mode is required.\n");
 	exit(1);
 }
 

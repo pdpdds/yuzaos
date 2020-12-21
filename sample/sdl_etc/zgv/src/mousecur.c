@@ -11,9 +11,11 @@
 
 #ifdef BACKEND_SDL
 
-#include <stdlib.h>
+#include <wchar.h>
 #include <SDL.h>
+#include <stdlib.h>
 #include "zgv.h"
+#include <stdio.h>
 
 static int usenarrow = 0;
 
@@ -55,10 +57,9 @@ static Uint8 mouse_data_hidden[1] = { 0 }, mouse_mask_hidden[1] = { 0 };
 static SDL_Cursor* mouse_cursor = NULL, * mouse_cursor_narrow, * mouse_cursor_hidden;
 
 
-extern SDL_Surface* surface;
 void mousecur_init(int blackcol, int whitecol)
 {
-	//SDL_Surface* surface = SDL_GetVideoSurface();
+	SDL_Surface* surface = SDL_GetVideoSurface();
 
 	if (!has_mouse || !surface) return;
 

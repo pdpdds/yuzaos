@@ -19,81 +19,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\3deffects.c" />
-    <ClCompile Include="src\copymove.c" />
-    <ClCompile Include="src\font.c" />
-    <ClCompile Include="src\getopt.c" />
-    <ClCompile Include="src\gnuhelp.c" />
-    <ClCompile Include="src\helppage.c" />
-    <ClCompile Include="src\magic.c" />
-    <ClCompile Include="src\modesel.c" />
-    <ClCompile Include="src\mousecur.c" />
-    <ClCompile Include="src\rbmenu.c" />
-    <ClCompile Include="src\rcfile.c" />
-    <ClCompile Include="src\readbmp.c" />
-    <ClCompile Include="src\readgif.c" />
-    <ClCompile Include="src\readjpeg.c" />
-    <ClCompile Include="src\readmrf.c" />
-    <ClCompile Include="src\readnbkey.c" />
-    <ClCompile Include="src\readpcd.c" />
-    <ClCompile Include="src\readpcx.c" />
-    <ClCompile Include="src\readpng.c" />
-    <ClCompile Include="src\readpnm.c" />
-    <ClCompile Include="src\readprf.c" />
-    <ClCompile Include="src\readtga.c" />
-    <ClCompile Include="src\readtiff.c" />
-    <ClCompile Include="src\readxbm.c" />
-    <ClCompile Include="src\readxpm.c" />
-    <ClCompile Include="src\readxvpic.c" />
-    <ClCompile Include="src\resizepic.c" />
-    <ClCompile Include="src\scrollbar.c" />
-    <ClCompile Include="src\vgadisp.c" />
-    <ClCompile Include="src\zgv.c" />
-    <ClCompile Include="src\zgv_io.c" />
+    <ClCompile Include="sample.cpp" />
+    <ClCompile Include="main.c" />
+    <ClCompile Include="tui.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\3deffects.h" />
-    <ClInclude Include="src\copymove.h" />
-    <ClInclude Include="src\font.h" />
-    <ClInclude Include="src\getopt.h" />
-    <ClInclude Include="src\gnuhelp.h" />
-    <ClInclude Include="src\helppage.h" />
-    <ClInclude Include="src\magic.h" />
-    <ClInclude Include="src\modesel.h" />
-    <ClInclude Include="src\mousecur.h" />
-    <ClInclude Include="src\rbmenu.h" />
-    <ClInclude Include="src\rcfile.h" />
-    <ClInclude Include="src\rc_config.h" />
-    <ClInclude Include="src\readbmp.h" />
-    <ClInclude Include="src\readgif.h" />
-    <ClInclude Include="src\readjpeg.h" />
-    <ClInclude Include="src\readmrf.h" />
-    <ClInclude Include="src\readnbkey.h" />
-    <ClInclude Include="src\readpcd.h" />
-    <ClInclude Include="src\readpcx.h" />
-    <ClInclude Include="src\readpng.h" />
-    <ClInclude Include="src\readpnm.h" />
-    <ClInclude Include="src\readprf.h" />
-    <ClInclude Include="src\readtga.h" />
-    <ClInclude Include="src\readtiff.h" />
-    <ClInclude Include="src\readxbm.h" />
-    <ClInclude Include="src\readxpm.h" />
-    <ClInclude Include="src\readxvpic.h" />
-    <ClInclude Include="src\resizepic.h" />
-    <ClInclude Include="src\scrollbar.h" />
-    <ClInclude Include="src\vgadisp.h" />
-    <ClInclude Include="src\zgv.h" />
-    <ClInclude Include="src\zgv_io.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="src\Makefile" />
-    <None Include="src\options.src" />
+    <ClInclude Include="tui.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{BA729667-4B28-41E3-9037-963AB31C224F}</ProjectGuid>
+    <ProjectGuid>{41F61AFD-43CA-450E-B627-EE8CDB52170A}</ProjectGuid>
     <RootNamespace>Kernel</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>zgv</ProjectName>
+    <ProjectName>test_pdcurse</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -167,14 +104,14 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalOptions>/Oy  /arch:SSE /Zc:threadSafeInit- %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Oy %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>./;../include;../../../corelib/include;../../../runtime/include;../../../ThirdParty/SDL/SDL1CL\SDL\include;../../../corelib/stl/sgi;../../../corelib/streams;../../../thirdparty\libjpeg\jpeg;../../../thirdparty\libpng/libpng;../../../thirdparty/libtiff</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>BACKEND_SDL;SKYOS32;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>./;../include;../../../corelib/include;../../../runtime/include;../../../corelib/STL/SGI;../../../ThirdParty/SDL/SDL2/SDL/include;../../../ThirdParty/SDL/SDL2/SDLimage;../../../ThirdParty/pdcurse</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_MSC_VER=1920;SKYOS32</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>
@@ -186,7 +123,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <CallingConvention>Cdecl</CallingConvention>
-      <DisableSpecificWarnings>4146;4244;4018</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4146;4244</DisableSpecificWarnings>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -201,7 +138,7 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>libjpeg.lib;libtiff.lib;libpng.lib;streams.lib;systemcall.lib;sdlcl.lib;libcrt.lib;libwin32.lib;exestub.lib;math.lib;filemanager.lib</AdditionalDependencies>
+      <AdditionalDependencies>freetyped.lib;sdl2_ttf.lib;pdcurse.lib;streams.lib;systemcall.lib;sdl.lib;libcrt.lib;libwin32.lib;exestub.lib;math.lib;filemanager.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>../../../Debug;../../../$(Configuration);../../../corelib/debug;../../../runtime/debug;../../../ThirdParty/SDL/SDL2/debug;../../../ThirdParty/debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
@@ -229,7 +166,8 @@
       </AddModuleNamesToAssembly>
       <ForceSymbolReferences>
       </ForceSymbolReferences>
-      <AdditionalOptions>/safeseh:no /ALIGN:1024 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/safeseh:no /FILEALIGN:1024
+ %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -245,7 +183,7 @@
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <AdditionalIncludeDirectories>../../include;../Include;../../librt/include;../kernelcore</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>SKY_EMULATOR;_MSC_VER;__STDC__;i386;DLL_EXPORT</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SKY_EMULATOR;SKY_EMULATOR_DLL;_WIN32;_MSC_VER;_X86_32;__i386__;_KRNL_DLL;DLL_EXPORT;SKYOS32;SKY_DLL;HAVE_FLOOR;HAVE_STDIO_H</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>
@@ -314,14 +252,14 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DEBUG_WIN32_DLL|Win32'">
     <ClCompile>
-      <AdditionalOptions>/Oy /arch:SSE %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Oy /d2noftol3 %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>../../gui/imgui;../../librt/dllstub;../../include;../Include;../../librt/include;../../kernelcore;../../thirdparty/skysdl/include;../../librt/libstring;../../module/include;../../librt/libc;../../userdll\libpng\libpng;../../userlib2/libtiff;../../userlib\libjpeg/jpeg</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>SKY_DLL;SKYOS32;_CRT_SECURE_NO_WARNINGS;__i386__;BACKEND_SDL</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>./;../../module/include;../../librt/dllstub;../../include;../Include;../../librt/include;../../kernelcore;../../librt/libstring;../../librt;./portable;../../userlib\pdcurse;../../thirdparty/skysdl/include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>SKY_DLL;SKYOS32;_CRT_SECURE_NO_WARNINGS;PDC_FORCE_UTF8</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>
@@ -333,7 +271,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <CallingConvention>Cdecl</CallingConvention>
-      <DisableSpecificWarnings>4457;4189;4100;4702;4102;4244;4239;4333;4127;4554;4018;4090</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4457;4189;4100;4702;4102;4244;4239;4333;4127;4554;4200;4101;4090</DisableSpecificWarnings>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -348,9 +286,9 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>iconv.lib;libwin32.lib;libmath.lib;libcrt.lib;exestub.lib;libds.lib;libstring.lib;skysdl.lib;libc.lib;libjpeg.lib;libpng.lib;libtiff.lib</AdditionalDependencies>
+      <AdditionalDependencies>pdcurse.lib;libc.lib;libcrt.lib;exestub.lib;libds.lib;libstring.lib;libmath.lib;skysdl.lib;sdl2_ttf.lib;freetyped.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>../../debug;../../librt/debug;../../userlib/debug;../../userlib2/debug;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../debug;../../librt/debug;../../userlib/debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(OutDir)$(TargetName).map</MapFileName>

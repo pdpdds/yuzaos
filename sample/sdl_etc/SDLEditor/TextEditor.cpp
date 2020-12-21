@@ -766,16 +766,18 @@ void TextEditor::HandleKeyboardInputs()
 			EnterCharacter('\t', shift);
 
 		//20201206
-		/*if (!IsReadOnly() && !io.InputQueueCharacters.empty())
+		if (!IsReadOnly())
 		{
-			for (int i = 0; i < io.InputQueueCharacters.Size; i++)
+			for (int n = 0; n < IM_ARRAYSIZE(io.InputCharacters) && io.InputCharacters[n]; n++)
 			{
-				auto c = io.InputQueueCharacters[i];
+				// Insert character if they pass filtering
+				auto c = io.InputCharacters[n];
 				if (c != 0 && (c == '\n' || c >= 32))
 					EnterCharacter(c, shift);
 			}
-			io.InputQueueCharacters.resize(0);
-		}*/
+			io.InputCharacters[0] = 0;
+			
+		}
 	}
 }
 
@@ -986,7 +988,7 @@ void TextEditor::Render()
 				{
 					auto timeEnd = eastl::chrono::duration_cast<eastl::chrono::milliseconds>(eastl::chrono::system_clock::now().time_since_epoch()).count();
 					auto elapsed = timeEnd - mStartTime;
-					if (elapsed > 400)
+					if (elapsed > 40)
 					{
 						float width = 1.0f;
 						auto cindex = GetCharacterIndex(mState.mCursorPosition);
@@ -1011,7 +1013,7 @@ void TextEditor::Render()
 						ImVec2 cstart(textScreenPos.x + cx, lineStartScreenPos.y);
 						ImVec2 cend(textScreenPos.x + cx + width, lineStartScreenPos.y + mCharAdvance.y);
 						drawList->AddRectFilled(cstart, cend, mPalette[(int)PaletteIndex::Cursor]);
-						if (elapsed > 800)
+						if (elapsed > 80)
 							mStartTime = timeEnd;
 					}
 				}

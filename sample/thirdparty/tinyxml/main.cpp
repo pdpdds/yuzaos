@@ -201,7 +201,7 @@ void AppSettings::load(const char* pFilename)
 
 int main(void)
 {
-	// block: customise and save settings
+	//AppSettings 객체에 데이터를 저장하고 파일로 저장한다.
 	{
 		AppSettings settings;
 		settings.m_name = "HitchHikerApp";
@@ -214,7 +214,7 @@ int main(void)
 		settings.save("appsettings2.xml");
 	}
 
-	// block: load settings
+	//xml 파일에 저장한 데이터를 복원해서 AppSettings 객체를 생성한다.
 	{
 		AppSettings settings;
 		settings.load("appsettings2.xml");

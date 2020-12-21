@@ -6,8 +6,6 @@
 #include <systemcall_impl.h>
 #include "PolygonShape.h"
 
-using namespace ppcStreams;
-
 #include <SDL.h>
 #include <SDL2_gfxPrimitives.h>
 #include <Box2D/Box2D.h>

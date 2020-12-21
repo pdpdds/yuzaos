@@ -4,7 +4,6 @@
 int main(void)
 {
     int i;
-    char buf[16];
     char input[] = { 'g', 'k', 's', 'r', 'm', 'f', '\0' }; /* ÇÑ±Û */
     HangulInputContext* hic;
 

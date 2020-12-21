@@ -28,7 +28,7 @@ static int cm_isdir(char* filename)
 {
 	struct stat sbuf;
 
-	return(stat(filename, &sbuf) != -1 && S_ISDIR(sbuf.st_mode));
+	return(fstat(filename, &sbuf) == 0 && S_ISDIR(sbuf.st_mode));
 }
 
 
@@ -113,7 +113,7 @@ int movefile(char* src, char* dstdir)
 	strcat(dst, src);
 
 	/* fail if dest file already exists */
-	if (stat(dst, &sbuf) == 0)
+	if (fstat(dst, &sbuf) != 0)
 	{
 		free(dst);
 		return(0);
