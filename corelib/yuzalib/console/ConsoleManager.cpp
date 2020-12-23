@@ -138,6 +138,7 @@ long processCommandLine(const char *a_szCommand)
 
 ConsoleManager::ConsoleManager()
 {
+	MakePathName();
 }
 
 ConsoleManager::~ConsoleManager()

@@ -6,5 +6,6 @@ public:
 	virtual ~ConsoleManager();
 
 	bool RunCommand(const char* buf);
+
 	static char* MakePathName();
 };

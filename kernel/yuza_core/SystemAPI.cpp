@@ -1460,6 +1460,7 @@ char kGetChar()
 	else
 	{
 		c = g_platformAPI._printInterface.sky_getchar();
+		return c;
 	}
 #else
 	c = KeyboardController::GetInput();
