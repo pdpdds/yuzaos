@@ -18,6 +18,7 @@ extern "C" {
 	CRT_API int memcmp(const void *s1, const void *s2, size_t n);
 	CRT_API void* memmove(void *dest, void *src, size_t n);
 	CRT_API void* memchr(const void *s, int c, size_t n);
+	CRT_API void* memrchr(const void* s, int c, size_t n);
 	CRT_API void* malloc(size_t size);
 	CRT_API void* malloc_aligned(size_t size, size_t alignment);
 	CRT_API void* realloc(void * ptr, size_t size);

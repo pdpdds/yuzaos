@@ -111,6 +111,7 @@
     <ClCompile Include="libc\unistd.c" />
     <ClCompile Include="libc\vfscanf.c" />
     <ClCompile Include="memoryservice.cpp" />
+    <ClCompile Include="memrchr.cpp" />
     <ClCompile Include="string\atob.c" />
     <ClCompile Include="string\ctype.cpp" />
     <ClCompile Include="string\ffmt.c" />

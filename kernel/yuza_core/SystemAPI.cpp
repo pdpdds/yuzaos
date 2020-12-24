@@ -255,7 +255,7 @@ main_args* MakeArgument(const char* path, void* param)
 		int index = 1;
 		while (true)
 		{
-			if (pCurrentToken != nullptr)
+			if (strlen(pCurrentToken) != 0)
 			{
 				args->argv[index] = (char*)kcalloc(256, 1);
 				strcpy(args->argv[index], (char*)pCurrentToken);

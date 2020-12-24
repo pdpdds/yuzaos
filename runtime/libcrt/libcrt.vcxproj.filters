@@ -348,6 +348,9 @@
     <ClCompile Include="libc\cwtype\wctype_l.c">
       <Filter>libc\cwtype</Filter>
     </ClCompile>
+    <ClCompile Include="memrchr.cpp">
+      <Filter>string</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">
