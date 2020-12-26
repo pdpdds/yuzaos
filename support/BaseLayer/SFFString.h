@@ -1,5 +1,5 @@
 #pragma once
-#include <windef.h>
+#include <minwindef.h>
 #include <vector>
 
 class SFFString;

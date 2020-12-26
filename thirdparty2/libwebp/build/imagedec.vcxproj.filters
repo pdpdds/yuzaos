@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Dev\OS\OrangeOS\userlib2\libwebp\imageio\image_dec.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Dev\OS\OrangeOS\userlib2\libwebp\imageio\jpegdec.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Dev\OS\OrangeOS\userlib2\libwebp\imageio\metadata.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Dev\OS\OrangeOS\userlib2\libwebp\imageio\pngdec.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Dev\OS\OrangeOS\userlib2\libwebp\imageio\pnmdec.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Dev\OS\OrangeOS\userlib2\libwebp\imageio\tiffdec.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Dev\OS\OrangeOS\userlib2\libwebp\imageio\webpdec.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Dev\OS\OrangeOS\userlib2\libwebp\imageio\wicdec.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Dev\OS\OrangeOS\userlib2\libwebp\imageio\image_dec.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\OS\OrangeOS\userlib2\libwebp\imageio\jpegdec.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\OS\OrangeOS\userlib2\libwebp\imageio\metadata.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\OS\OrangeOS\userlib2\libwebp\imageio\pngdec.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\OS\OrangeOS\userlib2\libwebp\imageio\pnmdec.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\OS\OrangeOS\userlib2\libwebp\imageio\tiffdec.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\OS\OrangeOS\userlib2\libwebp\imageio\webpdec.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev\OS\OrangeOS\userlib2\libwebp\imageio\wicdec.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{7E8770AE-9ECC-3B76-9895-EC42700AE8AE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{F9379508-EF6F-3983-AAD5-3BB6D95E0F64}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

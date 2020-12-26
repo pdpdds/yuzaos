@@ -90,7 +90,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>SKYOS32;SKY_DLL;MUSIC_WAV;MUSIC_MOD_MODPLUG;MODPLUG_DYNAMIC="libmodplug-1.dll";MUSIC_OGG;MUSIC_OPUS;OPUS_DYNAMIC="libopusfile-0.dll";MUSIC_FLAC;FLAC_DYNAMIC="libFLAC-8.dll";MUSIC_MP3_MPG123;MPG123_DYNAMIC="libmpg123-0.dll";MUSIC_MID_TIMIDITY;MUSIC_MID_NATIVE</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SKY_DLL;SKYOS32;MUSIC_WAV;MUSIC_MOD_MODPLUG;MODPLUG_DYNAMIC="libmodplug-1.dll";MUSIC_OGG;MUSIC_OPUS;OPUS_DYNAMIC="libopusfile-0.dll";MUSIC_FLAC;FLAC_DYNAMIC="libFLAC-8.dll";MUSIC_MP3_MPG123;MPG123_DYNAMIC="libmpg123-0.dll";MUSIC_MID_TIMIDITY;MUSIC_MID_NATIVE;MP3_MAD_MUSIC</PreprocessorDefinitions>
       <SDLCheck>false</SDLCheck>
       <MinimalRebuild>false</MinimalRebuild>
       <ExceptionHandling>false</ExceptionHandling>
@@ -124,6 +124,7 @@
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <OptimizeReferences>false</OptimizeReferences>
       <EnableCOMDATFolding>false</EnableCOMDATFolding>
+      <AdditionalOptions>/SAFESEH:no  /ALIGN:1024 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <ProjectReference>
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>

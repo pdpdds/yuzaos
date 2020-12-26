@@ -107,7 +107,7 @@
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>../iconv;./include;../../include;../include;../../kernelcore/include;../../librt/libstring;../../librt/include;../../module/include;../../librt/sgi_stl;../../userdll/zlib128</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../include;../../runtime/include;../../corelib/include;../../corelib/streams;../../runtime\include\ansic;../../corelib/stl/sgi;../../corelib/iconv;../../thirdparty/zlib128/</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SKYOS32;_MSC_VER;_X86_32;__i386__</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
@@ -177,7 +177,7 @@
     <Lib>
       <AdditionalLibraryDirectories>
       </AdditionalLibraryDirectories>
-      <OutputFile>../debug/$(TargetName)$(TargetExt)</OutputFile>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

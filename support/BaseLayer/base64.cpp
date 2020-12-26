@@ -26,7 +26,7 @@
 */
 
 #include "base64.h"
-#include <iostream.h>
+#include <iostream>
 
 #pragma warning (disable : 4267)
 

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{f98dc337-a470-4470-a783-e891e867a4c5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="clear.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="compare.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="copy.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="gen_uuid.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="isnull.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="pack.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="parse.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="randutils.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="unpack.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="unparse.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="uuid_time.c">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
