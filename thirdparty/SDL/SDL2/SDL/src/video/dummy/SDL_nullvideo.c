@@ -73,7 +73,7 @@ DUMMY_Available(void)
 	//return (0);
 }
 
-int YUZA_ShowMessageBox(const SDL_MessageBoxData* messageboxdata, int* buttonid);
+int YUZA_ShowMessageBox(_THIS, const SDL_MessageBoxData* messageboxdata, int* buttonid);
 
 static void
 DUMMY_DeleteDevice(SDL_VideoDevice* device)

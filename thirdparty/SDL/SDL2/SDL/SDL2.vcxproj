@@ -89,7 +89,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>HAVE_STDIO_H;SKYOS32;SKY_DLL;_CRT_SECURE_NO_WARNINGS;_X86_;HAVE_STRUCT_TIMESPEC</PreprocessorDefinitions>
+      <PreprocessorDefinitions>HAVE_STDIO_H;SKYOS32;_CRT_SECURE_NO_WARNINGS;HAVE_STRUCT_TIMESPEC</PreprocessorDefinitions>
       <SDLCheck>false</SDLCheck>
       <MinimalRebuild>false</MinimalRebuild>
       <ExceptionHandling>false</ExceptionHandling>
