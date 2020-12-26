@@ -351,6 +351,7 @@
     <ClCompile Include="memrchr.cpp">
       <Filter>string</Filter>
     </ClCompile>
+    <ClCompile Include="scandir.c" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">
@@ -460,6 +461,7 @@
     <ClInclude Include="libc\cwtype\utf8print.h">
       <Filter>libc\cwtype</Filter>
     </ClInclude>
+    <ClInclude Include="scandir.h" />
   </ItemGroup>
   <ItemGroup>
     <MASM Include="asm\aulldvrm.asm">

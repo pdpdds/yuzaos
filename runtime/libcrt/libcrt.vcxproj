@@ -112,6 +112,7 @@
     <ClCompile Include="libc\vfscanf.c" />
     <ClCompile Include="memoryservice.cpp" />
     <ClCompile Include="memrchr.cpp" />
+    <ClCompile Include="scandir.c" />
     <ClCompile Include="string\atob.c" />
     <ClCompile Include="string\ctype.cpp" />
     <ClCompile Include="string\ffmt.c" />
@@ -147,6 +148,7 @@
     <ClInclude Include="libc\time\local.h" />
     <ClInclude Include="libc\time\_time.h" />
     <ClInclude Include="libc\unistd.h" />
+    <ClInclude Include="scandir.h" />
     <ClInclude Include="string\CharType.h" />
     <ClInclude Include="string\ctype.h" />
     <ClInclude Include="string\ffmt.h" />
