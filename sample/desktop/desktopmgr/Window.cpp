@@ -2367,7 +2367,7 @@ bool kDrawText( QWORD qwWindowID, int iX, int iY, COLOR stTextColor,
  *      X, Y 좌표는 윈도우 내부 버퍼 기준
  */
 bool kBitBlt( QWORD qwWindowID, int iX, int iY, COLOR* pstBuffer, int iWidth,
-        int iHeight )
+        int iHeight, bool bTitleBar)
 {
     WINDOW* pstWindow;
     RECT stWindowArea;
@@ -2408,37 +2408,23 @@ bool kBitBlt( QWORD qwWindowID, int iX, int iY, COLOR* pstBuffer, int iWidth,
     iOverlappedWidth = kGetRectangleWidth( &stOverlappedArea );
     iOverlappedHeight = kGetRectangleHeight( &stOverlappedArea );
     
-    // 이미지 출력을 시작할 위치를 결정
-    // 윈도우의 시작 좌표를 (0, 0)으로 설정했으므로 출력을 시작하는 좌표가 음수이면 
-    // 버퍼의 이미지가 그만큼 잘려서 출력됨
-    if( iX < 0 )
-    {
-        iStartX = iX;
-    }
-    else
-    {
-        iStartX = 0;
-    }
-    
-    if( iY < 0 )
-    {
-        iStartY = iY;
-    }
-    else
-    {
-        iStartY = 0;
-    }
+    iStartX = iX;
+    iStartY = iY;
     
     // 너비와 높이 계산
     for(int j = 0 ; j < iOverlappedHeight ; j++ )
     {
         // 화면 버퍼와 전송할 버퍼의 시작 오프셋을 계산
-        iWindowPosition = (iWindowWidth * ( stOverlappedArea.top + j ) ) +
-                            stOverlappedArea.left;        
-        iBufferPosition = ( iWidth * j + iStartY ) + iStartX;
+        if(bTitleBar)
+        iWindowPosition = (iWindowWidth * (WINDOW_TITLEBAR_HEIGHT + stOverlappedArea.top + j ) ) +
+                            stOverlappedArea.left;      
+        else
+            iWindowPosition = (iWindowWidth * (stOverlappedArea.top + j)) +
+            stOverlappedArea.left;
+        iBufferPosition = ((pstWindow->stArea.right - pstWindow->stArea.left - 3) * (j + iStartY) ) + iStartX;
 
         // 한 라인씩 복사
-		memcpy( pstWindow->pstWindowBuffer + iWindowPosition,
+		memcpy( pstWindow->pstWindowBuffer + iWindowPosition + 2,
                 pstBuffer + iBufferPosition, iOverlappedWidth * sizeof( COLOR ) );
     }    
     
@@ -2586,7 +2572,7 @@ void kDrawBackgroundImage( void )
 	kMemSetDWord(pstOutputBuffer, 0x608189, pstJpeg->width * pstJpeg->height);
     // 메모리에서 메모리로 한꺼번에 복사
     kBitBlt( pstWindowManager->qwBackgroundWindowID, iMiddleX, iMiddleY, 
-            pstOutputBuffer, pstJpeg->width, pstJpeg->height );    
+            pstOutputBuffer, pstJpeg->width, pstJpeg->height, false);    
     
     // 할당받았던 버퍼를 모두 반환
 	delete ( pstOutputBuffer );

@@ -184,7 +184,7 @@ static void kDrawCursor( int iX, int iY );
 void kMoveCursor( int iX, int iY );
 void kGetCursorPosition( int* piX, int* piY );
 bool kBitBlt( QWORD qwWindowID, int iX, int iY, COLOR* pstBuffer, int iWidth,
-        int iHeight );
+        int iHeight , bool bTitleBar = true);
 bool kBitBltWithRect(QWORD qwWindowID, RECT* rect, COLOR* pstBuffer, int width, int height);
 void kDrawBackgroundImage( void );
 

@@ -104,8 +104,8 @@ bool GUIEngine::DrawWindow(QWORD* windowId, char* buffer, RECT* rect)
 	if (windowId != 0)
 		windowIdentifer = *windowId;
 	else windowIdentifer = m_windowList[Syscall_GetCurrentThreadId()];
-
-	bool result = kBitBlt(windowIdentifer, rect->left + 2, WINDOW_TITLEBAR_HEIGHT, (COLOR*)buffer,
+	
+	bool result = kBitBlt(windowIdentifer, rect->left, rect->top, (COLOR*)buffer,
 		rect->right - rect->left, rect->bottom - rect->top);
 	kShowWindow(windowIdentifer, true);
 	return result;

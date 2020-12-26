@@ -28,10 +28,10 @@
 #include "memory.h"
 #include "math.h"
 #include <winapi.h>
-#ifdef SKY_DLL
+
 #include "wchar.h"
 #include <stdio.h>
-#endif
+
 
 /**
  *  \file SDL_config.h
