@@ -9,7 +9,7 @@
 #define _LOG4CPP_SIMPLECONFIGURATOR_HH
 
 #include <log4cpp/Portability.hh>
-#include <iostream.h>
+#include <iostream>
 #include <string>
 #include <log4cpp/Configurator.hh>
 

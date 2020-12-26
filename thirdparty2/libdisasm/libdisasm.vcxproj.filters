@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="ia32_implicit.c" />
+    <ClCompile Include="ia32_insn.c" />
+    <ClCompile Include="ia32_invariant.c" />
+    <ClCompile Include="ia32_modrm.c" />
+    <ClCompile Include="ia32_opcode_tables.c" />
+    <ClCompile Include="ia32_operand.c" />
+    <ClCompile Include="ia32_reg.c" />
+    <ClCompile Include="ia32_settings.c" />
+    <ClCompile Include="x86_disasm.c" />
+    <ClCompile Include="x86_format.c" />
+    <ClCompile Include="x86_imm.c" />
+    <ClCompile Include="x86_insn.c" />
+    <ClCompile Include="x86_misc.c" />
+    <ClCompile Include="x86_operand_list.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ia32_implicit.h" />
+    <ClInclude Include="ia32_insn.h" />
+    <ClInclude Include="ia32_invariant.h" />
+    <ClInclude Include="ia32_modrm.h" />
+    <ClInclude Include="ia32_opcode_tables.h" />
+    <ClInclude Include="ia32_operand.h" />
+    <ClInclude Include="ia32_reg.h" />
+    <ClInclude Include="ia32_settings.h" />
+    <ClInclude Include="libdis.h" />
+    <ClInclude Include="qword.h" />
+    <ClInclude Include="x86_imm.h" />
+    <ClInclude Include="x86_operand_list.h" />
+  </ItemGroup>
+</Project>

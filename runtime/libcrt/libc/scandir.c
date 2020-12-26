@@ -50,7 +50,7 @@ int alphasort(const struct dirent** a, const struct dirent** b)
 	return strcoll((*a)->d_name, (*b)->d_name);
 }
 
-int scandir(const char* dirname, struct dirent*** namelist, int (*sdfilter)(struct dirent*), int (*dcomp)(const void*, const void*))
+int scandir(const char* dirname, struct dirent*** namelist, int (*sdfilter)(struct dirent*), int (*dcomp)(const struct dirent**, const struct dirent**))
 {
 	struct dirent* p = NULL, ** names = NULL;
 	struct dirent* info;

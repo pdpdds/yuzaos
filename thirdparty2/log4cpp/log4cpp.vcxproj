@@ -170,13 +170,13 @@
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>./include;./;../../include;../include;../../kernelcore/include;../../librt/libstring;../../librt/include;../../module/include;../../librt/libc;../../librt/sgi_stl</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>SKYOS32;_MSC_VER=1920;_X86_32;__i386__</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../include;../../runtime/include;../../corelib/include;../../corelib/stl/sgi;../../corelib/streams;./include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>SKYOS32;_MSC_VER=1920;LOG4CPP_HAVE_SSTREAM</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>
       <ExceptionHandling>false</ExceptionHandling>
-      <StructMemberAlignment>1Byte</StructMemberAlignment>
+      <StructMemberAlignment>Default</StructMemberAlignment>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <AssemblerOutput>NoListing</AssemblerOutput>

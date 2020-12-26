@@ -10,6 +10,7 @@ namespace std
 	};
 	class setw : public iomanip
 	{
+	public:
 		setw(int width = 0)
 		{
 			_width = width;
@@ -17,8 +18,8 @@ namespace std
 		friend ostream& operator<<(ostream& stream, const setw& value);
 		friend istream& operator>>(istream& stream, setw& value);
 
-		private:
-			int _width;
+	private:
+		int _width;
 
 	};
 	class setprecision : public iomanip
@@ -30,8 +31,8 @@ namespace std
 		friend ostream& operator<<(ostream& stream, const setprecision& value);
 		friend istream& operator>>(istream& stream, setprecision& value);
 
-		private:
-			int _precision;
+	private:
+		int _precision;
 
 	};
 

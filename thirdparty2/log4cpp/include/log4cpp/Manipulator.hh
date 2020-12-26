@@ -9,7 +9,7 @@
 #ifndef _LOG4CPP_MANIPULATOR_HH
 #define _LOG4CPP_MANIPULATOR_HH
 
-#include <iostream.h>
+#include <iostream>
 #include <log4cpp/Portability.hh>
 namespace log4cpp {
 	class LOG4CPP_EXPORT width {

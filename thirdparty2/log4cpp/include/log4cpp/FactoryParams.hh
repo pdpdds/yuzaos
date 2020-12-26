@@ -10,7 +10,7 @@
 
 #include <map>
 #include <string>
-#include <iostream.h>
+#include <ostringstream>
 #include <stdexcept>
 #include "Portability.hh"
 #include <systemcall_impl.h>
@@ -50,10 +50,10 @@ namespace log4cpp
 
             void throw_error(const char* param_name) const
             {
-               std::ostream s;
+               std::ostringstream s;
                s << "Property '" << param_name << "' required to configure " << tag_;
                //20201010
-			   Syscall_Panic(s.str());
+			   Syscall_Panic(s.str().c_str());
 			   //throw std::runtime_error(s.str());
             }
       };

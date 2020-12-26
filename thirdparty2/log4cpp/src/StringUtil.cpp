@@ -10,7 +10,7 @@
 #include <stdio.h>
 
 #if defined(_MSC_VER)
-    #define VSNPRINTF _vsnprintf
+    #define VSNPRINTF vsnprintf
 #else
 #ifdef LOG4CPP_HAVE_SNPRINTF
     #define VSNPRINTF vsnprintf

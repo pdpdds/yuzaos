@@ -84,7 +84,7 @@ namespace log4cpp {
     }
 
     bool FileAppender::reopen() {
-        if (_fileName != "") {
+        if (_fileName.compare("") != 0) {
             int fd = ::open(_fileName.c_str(), _flags, _mode);
             if (fd < 0)
                 return false;

@@ -13,7 +13,7 @@
 #endif
 
 #include <sys/types.h>
-//#include <sys/stat.h>
+#include <stat_def.h>
 #include <fcntl.h>
 #include <log4cpp/DailyRollingFileAppender.hh>
 #include <log4cpp/Category.hh>
@@ -22,7 +22,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <iostream.h>
+#include <iostream>
+#include <unistd.h>
+#include <scandir.h>
 
 #ifdef LOG4CPP_HAVE_SSTREAM
 #include <sstream>
@@ -49,8 +51,8 @@ namespace log4cpp {
 		time_t t;
 
 		// obtain last modification time
-		res = ::stat(fileName.c_str(), &statBuf);
-		if (res < 0) {
+		res = fstat(fileName.c_str(), &statBuf);
+		if (res != 0) {
 			t = time(NULL);
 		} else {
 			t = statBuf.st_mtime;
@@ -75,20 +77,20 @@ namespace log4cpp {
 		std::ostringstream filename_s;
 		int res_close = ::close(_fd);
 		if (res_close != 0) {
-			std::cerr << "Error closing file " << _fileName << std::endl;
+			std::cout << "Error closing file " << _fileName.c_str() << std::endl;
 		}
-		filename_s << _fileName << "." << _logsTime.tm_year + 1900 << "-"
+		filename_s << _fileName.c_str() << "." << _logsTime.tm_year + 1900 << "-"
 						<< std::setfill('0') << std::setw(2) << _logsTime.tm_mon + 1 << "-"
-						<< std::setw(2) << _logsTime.tm_mday << std::ends;
+						<< std::setw(2) << _logsTime.tm_mday << std::endl;
 		const std::string lastFn = filename_s.str();
 		int res_rename = ::rename(_fileName.c_str(), lastFn.c_str());
 		if (res_rename != 0) {
-			std::cerr << "Error renaming file " << _fileName << " to " << lastFn << std::endl;
+			std::cout << "Error renaming file " << _fileName.c_str() << " to " << lastFn.c_str() << std::endl;
 		}
 
 		_fd = ::open(_fileName.c_str(), _flags, _mode);
 		if (_fd == -1) {
-			std::cerr << "Error opening file " << _fileName << std::endl;
+			std::cout << "Error opening file " << _fileName.c_str() << std::endl;
 		}
 
 		const time_t oldest = time(NULL) - _maxDaysToKeep * 60 * 60 * 24;
@@ -110,8 +112,8 @@ namespace log4cpp {
 		for (int i = 0; i < nentries; i++) {
 			struct stat statBuf;
 			const std::string fullfilename = dirname + PATHDELIMITER + entries[i]->d_name;
-			int res = ::stat(fullfilename.c_str(), &statBuf);
-			if ((res == -1) || (!S_ISREG(statBuf.st_mode))) {
+			int res = ::fstat(fullfilename.c_str(), &statBuf);
+			if ((res != 0) || (!S_ISREG(statBuf.st_mode))) {
 				free(entries[i]);
 				continue;
 			}

@@ -22,7 +22,7 @@
  *************************************************************************/
 
 #include <stdio.h>
- //#include <stdlib.h>
+#include <scandir.h>
 #include "string.h"
 #include "windef.h"
 #include "local.h"
@@ -147,7 +147,6 @@ static int select_files(dirent* info)
 		return info->dwAttribute == 1;
 }
 
-extern int scandir(const char* dirname, dirent*** namelist, int (*sdfilter)(dirent*), int (*dcomp)(const void*, const void*));
 
 static int select_dirs(dirent* info)
 {
@@ -156,7 +155,7 @@ static int select_dirs(dirent* info)
 	return info->dwAttribute == 0;
 }
 #endif
-int alphasort(const void* d1, const void* d2);
+
 GuiObject** create_directory_list(char* dirname, int files, GuiObject* List)
 {
 	GuiObject** Items;

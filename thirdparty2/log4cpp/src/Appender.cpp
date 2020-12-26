@@ -9,7 +9,7 @@
 
 #include "PortabilityImpl.hh"
 #include <log4cpp/Appender.hh>
-#include <iostream.h>
+#include <iostream>
 
 namespace log4cpp {
 	static int appenders_nifty_counter; // zero initialized at load time

@@ -14,7 +14,7 @@
 #include "PortabilityImpl.hh"
 
 #ifndef LOG4CPP_HAVE_SSTREAM
-#include <IOStream.h>
+#include <IOStream>
 namespace std {
     std::string ostringstream::str() { 
         (*this) << '\0'; 

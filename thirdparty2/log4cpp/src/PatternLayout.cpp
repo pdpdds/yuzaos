@@ -21,7 +21,7 @@
 #else
 //#include <strstream>
 #endif
-#include <IOStream.h>
+#include <IOStream>
 #include <math.h>
 //#include <iomanip>
 #include <time.h>
@@ -158,22 +158,22 @@ namespace log4cpp {
         }
 
         virtual void append(std::ostringstream& out, const LoggingEvent& event) {
-            struct std::tm currentTime;
-            std::time_t t = event.timeStamp.getSeconds();
+            struct tm currentTime;
+            time_t t = event.timeStamp.getSeconds();
             localtime(&t, &currentTime);
             char formatted[100];
             std::string timeFormat;
             if (_printMillis) {
                 std::ostringstream formatStream;
-                formatStream << _timeFormat1 
+                formatStream << _timeFormat1.c_str()
                              << std::setw(3) << std::setfill('0')
                              << event.timeStamp.getMilliSeconds()
-                             << _timeFormat2;
+                             << _timeFormat2.c_str();
                 timeFormat = formatStream.str();
             } else {
                 timeFormat = _timeFormat1;
             }
-            std::strftime(formatted, sizeof(formatted), timeFormat.c_str(), &currentTime);
+            strftime(formatted, sizeof(formatted), timeFormat.c_str(), &currentTime);
             out << formatted;
         }
 

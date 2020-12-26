@@ -9,7 +9,7 @@
 extern "C"
 {
 #endif
-	int scandir(const char* dirname, struct dirent*** namelist, int (*sdfilter)(struct dirent*), int (*dcomp)(const void*, const void*));
+	int scandir(const char* dirname, struct dirent*** namelist, int (*sdfilter)(struct dirent*), int (*dcomp)(const struct dirent**, const struct dirent**));
 	int alphasort(const struct dirent** a, const struct dirent** b);
 
 #ifdef __cplusplus

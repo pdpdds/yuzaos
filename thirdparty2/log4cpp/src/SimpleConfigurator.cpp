@@ -15,9 +15,9 @@
 #endif
 
 #include <stdio.h>
-#include <iostream.h>
+#include <iostream>
 #include <string>
-//#include <fstream>
+#include <fstream>
 #include <stdio.h>
 
 #include <log4cpp/Category.hh>

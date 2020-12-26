@@ -7,8 +7,9 @@
 #include "PortabilityImpl.hh"
 #include <log4cpp/BufferingAppender.hh>
 #include <algorithm>
-#include <iostream.h>
+#include <iostream>
 #include <memory.h>
+#include <ostringstream>
 
 namespace log4cpp
 {

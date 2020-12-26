@@ -13,10 +13,10 @@
 #ifdef LOG4CPP_HAVE_IO_H
 #    include <io.h>
 #endif
-#include <iostream.h>
+#include <iostream>
 
 #include <string>
-//#include <fstream>
+#include <fstream>
 
 #include <log4cpp/Category.hh>
 
@@ -214,7 +214,7 @@ namespace log4cpp {
                 appender = new OstreamAppender(appenderName, &std::cout);
             }
             else if(target.compare("stderr") == 0) {
-                appender = new OstreamAppender(appenderName, &std::cerr);
+                appender = new OstreamAppender(appenderName, &std::cout);
             }
             else{
                 throw ConfigureFailure(appenderName + "' has invalid target '" + target + "'");

@@ -28,11 +28,11 @@ namespace log4cpp {
 
     std::string SimpleLayout::format(const LoggingEvent& event) {
         std::ostringstream message;
-		//20200110
-        /*const std::string& priorityName = Priority::getPriorityName(event.priority);
+		
+        const std::string& priorityName = Priority::getPriorityName(event.priority);
 		message.width(Priority::MESSAGE_SIZE);message.setf(std::ios::left);
-		message << priorityName << ": " << event.message << std::endl;
-        return message.str();*/
+		message << priorityName.c_str() << ": " << event.message.c_str() << std::endl;
+        return message.str();
     }
 
    std::auto_ptr<Layout> create_simple_layout(const FactoryParams& params)

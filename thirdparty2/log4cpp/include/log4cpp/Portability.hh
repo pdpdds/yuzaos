@@ -56,7 +56,7 @@
 #else
 #  ifndef LOG4CPP_HAVE_SSTREAM
 #include <string>
-#include <IOStream.h>
+#include <IOStream>
      namespace std {
        class LOG4CPP_EXPORT ostringstream : public ostream {
        public:

@@ -28,7 +28,8 @@ namespace log4cpp {
     }
 
     void AbortAppender::_append(const LoggingEvent& event) {
-        std::abort();
+        //20201226
+        //std::abort();
     }
 
     bool AbortAppender::reopen() {

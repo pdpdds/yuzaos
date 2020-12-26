@@ -14,7 +14,7 @@
 #include <log4cpp/Appender.hh>
 #include <log4cpp/Category.hh>
 #include <string>
-#include <iostream.h>
+#include <iostream>
 #include <map>
 #include <vector>
 

@@ -12,15 +12,8 @@
 namespace log4cpp         
 {
 
-#if defined(_MSC_VER) && defined(LOG4CPP_HAVE_LOCALTIME_R)
-   void localtime(const ::time_t* time, ::tm* t)
-   {
-	   //20200110
-      localtime_s(t, time);  
-   }
-#endif
 
-#if !defined(_MSC_VER) && defined(LOG4CPP_HAVE_LOCALTIME_R)
+#if defined(_MSC_VER) && defined(LOG4CPP_HAVE_LOCALTIME_R)
    void localtime(const ::time_t* time, ::tm* t)
    {
       localtime_r(time, t);

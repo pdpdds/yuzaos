@@ -11,7 +11,7 @@
 
 #include "PortabilityImpl.hh"
 #include <string>
-#include <iostream.h>
+#include <iostream>
 #include <map>
 
 namespace log4cpp {

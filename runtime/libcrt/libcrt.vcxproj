@@ -86,6 +86,7 @@
     <ClCompile Include="libc\locale\newlocale.c" />
     <ClCompile Include="libc\locale\timelocal.c" />
     <ClCompile Include="libc\locale\uselocale.c" />
+    <ClCompile Include="libc\scandir.c" />
     <ClCompile Include="libc\strsep.c" />
     <ClCompile Include="libc\strtof.c" />
     <ClCompile Include="libc\strtoi64.c" />
@@ -112,7 +113,6 @@
     <ClCompile Include="libc\vfscanf.c" />
     <ClCompile Include="memoryservice.cpp" />
     <ClCompile Include="memrchr.cpp" />
-    <ClCompile Include="scandir.c" />
     <ClCompile Include="string\atob.c" />
     <ClCompile Include="string\ctype.cpp" />
     <ClCompile Include="string\ffmt.c" />
@@ -133,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\atomic.h" />
+    <ClInclude Include="..\include\scandir.h" />
     <ClInclude Include="..\include\stdio.h" />
     <ClInclude Include="input\InputList.h" />
     <ClInclude Include="input\InputQueue.h" />
@@ -148,7 +149,6 @@
     <ClInclude Include="libc\time\local.h" />
     <ClInclude Include="libc\time\_time.h" />
     <ClInclude Include="libc\unistd.h" />
-    <ClInclude Include="scandir.h" />
     <ClInclude Include="string\CharType.h" />
     <ClInclude Include="string\ctype.h" />
     <ClInclude Include="string\ffmt.h" />

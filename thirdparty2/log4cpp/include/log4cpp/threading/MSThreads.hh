@@ -9,7 +9,9 @@
 
 #ifndef _LOG4CPP_THREADING_MSTHREADS_HH
 #define _LOG4CPP_THREADING_MSTHREADS_HH
-
+#include <windef.h>
+#include <minwindef.h>
+#include <minwinbase.h>
 #include <string>
 #include <systemcall_impl.h>
 
@@ -27,7 +29,6 @@
 #    define LOG4CPP_UNDEFINE_WIN32_LEAN_AND_MEAN
 #  endif
 
-#  include <windef.h>
 
 #  ifdef LOG4CPP_UNDEFINE_NOGDI
 #    undef NOGDI
@@ -36,24 +37,7 @@
 #  ifdef LOG4CPP_UNDEFINE_WIN32_LEAN_AND_MEAN
 #    undef WIN32_LEAN_AND_MEAN
 #  endif
-
 #endif // done dealing with ERROR #define
-
-#pragma pack(push, 8)
-
-typedef struct _RTL_CRITICAL_SECTION 
-{
-	LONG LockCount;
-	LONG RecursionCount;
-	HANDLE OwningThread;        // from the thread's ClientId->UniqueThread
-	HANDLE LockSemaphore;
-	ULONG_PTR SpinCount;        // force size on 64-bit systems when packed
-} RTL_CRITICAL_SECTION, * PRTL_CRITICAL_SECTION;
-
-#pragma pack(pop)
-
-typedef PRTL_CRITICAL_SECTION LPCRITICAL_SECTION;
-typedef RTL_CRITICAL_SECTION CRITICAL_SECTION;
 namespace log4cpp {
     namespace threading {
         /**

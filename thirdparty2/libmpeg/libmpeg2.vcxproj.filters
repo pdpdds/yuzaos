@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{f98dc337-a470-4470-a783-e891e867a4c5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="libmpeg2\alloc.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="libmpeg2\decode.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="libmpeg2\header.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="libmpeg2\idct.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="libmpeg2\motion_comp.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="libmpeg2\slice.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="libmpeg2\convert\rgb.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="libmpeg2\convert\uyvy.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="libmpeg2\convert\rgb_vis.c">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="libmpeg2\mpeg2_internal.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="libmpeg2\cpu_accel.obj">
+      <Filter>src</Filter>
+    </Object>
+    <Object Include="libmpeg2\cpu_state.obj">
+      <Filter>src</Filter>
+    </Object>
+    <Object Include="libmpeg2\idct_mmx.obj">
+      <Filter>src</Filter>
+    </Object>
+    <Object Include="libmpeg2\motion_comp_mmx.obj">
+      <Filter>src</Filter>
+    </Object>
+    <Object Include="libmpeg2\rgb_mmx.obj" />
+  </ItemGroup>
+</Project>

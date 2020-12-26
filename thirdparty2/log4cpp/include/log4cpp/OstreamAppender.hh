@@ -12,7 +12,7 @@
 
 #include <log4cpp/Portability.hh>
 #include <string>
-#include <iostream.h>
+#include <iostream>
 #include <log4cpp/LayoutAppender.hh>
 
 namespace log4cpp {

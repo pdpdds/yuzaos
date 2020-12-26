@@ -22,7 +22,7 @@
  *************************************************************************/
 
 #include <stdio.h>
- //#include <stdlib.h>
+#include <scandir.h>
 #include "string.h"
 #include "windef.h"
 #include "local.h"
@@ -156,7 +156,7 @@ static int select_dirs(dirent* info)
 	return info->dwAttribute == 0;
 }
 #endif
-int alphasort(const void* d1, const void* d2);
+
 GuiObject** create_directory_list(char* dirname, int files, GuiObject* List)
 {
 	GuiObject** Items;

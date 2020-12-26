@@ -234,19 +234,19 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalOptions>/Oy %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Oy /arch:SSE %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>./;../../include;../include;../../kernelcore/include;../../librt/libstring;../../librt/include;../../module/include;../../librt/libc;./include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../include;../../runtime/include;../../corelib/include;../../corelib/stl/sgi;../../corelib/streams;./include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SKYOS32;_MSC_VER;_X86_32;__i386__</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>
       <ExceptionHandling>false</ExceptionHandling>
-      <StructMemberAlignment>1Byte</StructMemberAlignment>
+      <StructMemberAlignment>Default</StructMemberAlignment>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <AssemblerOutput>NoListing</AssemblerOutput>
