@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{f98dc337-a470-4470-a783-e891e867a4c5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\audio.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\audio_aiff.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\audio_cdda.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\audio_hex.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\audio_null.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\audio_raw.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\audio_snd.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\audio_wave.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\crc.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\filter.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\madplay.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\player.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resample.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rgain.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\strcasecmp.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\strncasecmp.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tag.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\version.c">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
