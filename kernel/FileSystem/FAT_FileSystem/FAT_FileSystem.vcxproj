@@ -88,7 +88,7 @@
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <AdditionalIncludeDirectories>./;../;../include;../../../runtime/include;../../../corelib/include;../../../corelib/libfatfs/source</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_MSC_VER;__STDC__;i386;DLL_EXPORT;SKYOS32</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MSC_VER=1920;DLL_EXPORT;SKYOS32</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>

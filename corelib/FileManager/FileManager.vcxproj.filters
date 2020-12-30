@@ -4,10 +4,39 @@
     <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="FileService.cpp" />
     <ClCompile Include="TerminalSystem.cpp" />
+    <ClCompile Include="creat.cpp">
+      <Filter>unistd</Filter>
+    </ClCompile>
+    <ClCompile Include="open.cpp">
+      <Filter>unistd</Filter>
+    </ClCompile>
+    <ClCompile Include="write.cpp">
+      <Filter>unistd</Filter>
+    </ClCompile>
+    <ClCompile Include="close.cpp">
+      <Filter>unistd</Filter>
+    </ClCompile>
+    <ClCompile Include="dup.cpp">
+      <Filter>unistd</Filter>
+    </ClCompile>
+    <ClCompile Include="read.cpp">
+      <Filter>unistd</Filter>
+    </ClCompile>
+    <ClCompile Include="lseek.cpp">
+      <Filter>unistd</Filter>
+    </ClCompile>
+    <ClCompile Include="fileno.cpp">
+      <Filter>unistd</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\FileService.h" />
     <ClInclude Include="..\include\FileManager.h" />
     <ClInclude Include="TerminalSystem.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="unistd">
+      <UniqueIdentifier>{89a47381-5120-41de-a1a3-ba26cba85a6d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

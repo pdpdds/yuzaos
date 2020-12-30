@@ -1,11 +1,7 @@
 #include "TimeFunction.h"
-#include <time.h>
 #include <intrinsic.h>
-#include <osdefs.h>
-#include <crtdefs.h>
 #include <stdint.h>
 #include <stdio.h>
-#include <platformapi.h>
 #include <Semaphore.h>
 #include <SystemAPI.h>
 
@@ -16,22 +12,10 @@ Semaphore gSleepSemaphore("sleep_sem", 0);
 
 extern "C" void kSleep(DWORD dwMilliseconds)
 {
-//#if SKY_EMULATOR
+
 	Semaphore sleepSemaphore("sleep_sem", 0);
 	sleepSemaphore.Wait(dwMilliseconds); 
-	//g_platformAPI._processInterface.sky_Sleep(dwMilliseconds);
-//#else
-	//gSleepSemaphore.Wait(dwMilliseconds);
-//#endif
 }
-
-union int32to64
-{
-	__int64 i64;
-	int i32[2];
-};
-
-void read_tsc(int* cl_Low, int* cl_High);
 
 
 extern "C" DWORD kGetTickCount()

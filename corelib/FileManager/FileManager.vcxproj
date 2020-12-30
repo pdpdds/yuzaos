@@ -11,9 +11,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="close.cpp" />
+    <ClCompile Include="creat.cpp" />
+    <ClCompile Include="dup.cpp" />
     <ClCompile Include="FileManager.cpp" />
+    <ClCompile Include="fileno.cpp" />
     <ClCompile Include="FileService.cpp" />
+    <ClCompile Include="lseek.cpp" />
+    <ClCompile Include="open.cpp" />
+    <ClCompile Include="read.cpp" />
     <ClCompile Include="TerminalSystem.cpp" />
+    <ClCompile Include="write.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\FileManager.h" />
@@ -70,8 +78,8 @@
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>../include;../../runtime/include;../../thirdparty/debug;../../thirdparty/cwalk/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_MSC_VER;__STDC__;i386;DLL_EXPORT;SKYOS32;</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../include;../../runtime/include;../../thirdparty/debug;../../thirdparty/cwalk/include;../../corelib/stl/sgi;../../corelib/streams</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_MSC_VER=1920;DLL_EXPORT;SKYOS32;</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>
@@ -98,7 +106,7 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>libcrt.lib;dllstub.lib;systemcall.lib;cwalk_static.lib</AdditionalDependencies>
+      <AdditionalDependencies>libcrt.lib;dllstub.lib;systemcall.lib;cwalk_static.lib;streams.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration);../../runtime/debug;../Debug;../../thirdparty/debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>

@@ -39,8 +39,11 @@ static int cmd_dir(int argc, char** argv)
 	{
 		tinydir_file file;
 		tinydir_readfile(&dir, &file);
+		struct stat info;
 
-		printf("[%s] %s", file.is_dir ? "DIR" : "FILE", file.name);
+		fstat(file.name, &info);
+		
+		printf("[%s] %s  [%d]", file.is_dir ? "DIR" : "FILE", file.name, info.st_size);
 		if (file.is_dir)
 		{
 			printf("/");
@@ -163,7 +166,7 @@ const cli_cmd_list_t cmdlist = {
 int main_impl(int argc, char** argv)
 {
 	printf("%s\nConsole Mode Start!!\n", (char*)argv[0]);
-	
+
 	CLI_Init(&cmdlist);
 	CLI_Utf8(1);
 

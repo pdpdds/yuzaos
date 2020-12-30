@@ -28,7 +28,7 @@
 #include <stdarg.h>
 #include <dirent.h>
 
-#ifdef ENABLE_LIBXML2
+#if ENABLE_LIBXML2
 
 #include <libxml/parser.h>
 
@@ -3300,7 +3300,7 @@ FcConfigParseAndLoadFromMemoryInternal (FcConfig       *config,
     FcMatchKind	    k;
     FcPtrListIter   liter;
 
-#ifdef ENABLE_LIBXML2
+#if ENABLE_LIBXML2
     xmlSAXHandler   sax;
 #else
     void            *buf;
@@ -3314,7 +3314,7 @@ FcConfigParseAndLoadFromMemoryInternal (FcConfig       *config,
     if (FcDebug () & FC_DBG_CONFIG)
 	printf ("\t%s config file from %s\n", load ? "Loading" : "Scanning", filename);
 
-#ifdef ENABLE_LIBXML2
+#if ENABLE_LIBXML2
     memset(&sax, 0, sizeof(sax));
 
     sax.internalSubset = FcInternalSubsetDecl;
@@ -3367,7 +3367,7 @@ FcConfigParseAndLoadFromMemoryInternal (FcConfig       *config,
 	s = s + buflen;
 #endif
 
-#ifdef ENABLE_LIBXML2
+#if ENABLE_LIBXML2
 	if (xmlParseChunk (p, (const char *)buffer, len, len == 0))
 #else
 	if (!XML_ParseBuffer (p, buflen, buflen == 0))

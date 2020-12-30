@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="CGameCore.cpp" />
+    <ClCompile Include="SDLSingleton.cpp" />
+    <ClCompile Include="HistoryStack.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Search.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CGameCore.h" />
+    <ClInclude Include="SDLSingleton.h" />
+    <ClInclude Include="rc4.hpp">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="HistoryStack.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Search.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{6014a5a5-f177-4847-9945-6b93df747409}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="State">
+      <UniqueIdentifier>{f603ad33-0236-429a-b007-b1b98282fb28}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

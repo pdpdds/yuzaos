@@ -25,6 +25,7 @@
 #include "fcint.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <getenv.h>
 
 static void
 _FcValuePrintFile (FILE *f, const FcValue v)

@@ -21,7 +21,7 @@
  */
 #include "fcint.h"
 #ifndef _WIN32
-#include <uuid/uuid.h>
+#include <uuid.h>
 #endif
 
 #define FC_HASH_SIZE 227

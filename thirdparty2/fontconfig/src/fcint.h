@@ -28,7 +28,11 @@
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
-
+#include <stdbool.h>
+#include <windef.h>
+#  include <winapi.h>
+#include <getenv.h>
+#include <wchar.h>
 #include "fcstdint.h"
 
 #include <stdlib.h>
@@ -43,7 +47,7 @@
 #include <unistd.h>
 #include <stddef.h>
 #include <sys/types.h>
-#include <sys/stat.h>
+#include <stat_def.h>
 #include <time.h>
 #include <fontconfig/fontconfig.h>
 #include <fontconfig/fcprivate.h>

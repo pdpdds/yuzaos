@@ -9,7 +9,7 @@
 #ifndef _INC_FCNTL // include guard for 3rd party interop
 #define _INC_FCNTL
 
-
+#define O_ACCESS 7
 
 #define _O_RDONLY      0x0000  // open for reading only
 #define _O_WRONLY      0x0001  // open for writing only
@@ -57,5 +57,13 @@
     #define O_SEQUENTIAL _O_SEQUENTIAL
     #define O_RANDOM     _O_RANDOM
 #endif
+
+#define O_RWMASK		3	/* Mask to get open mode */
+#define O_CLOEXEC		0x0040	/* close fd on exec */
+#define	O_NONBLOCK		0x0080	/* non blocking io */
+#define O_NOCTTY    	0x1000  /* currently unsupported */
+#define	O_NOTRAVERSE	0x2000	/* do not traverse leaf link */
+#define O_ACCMODE   	0x0003  /* currently unsupported */
+
 
 #endif // _INC_FCNTL

@@ -27,6 +27,8 @@
 #include "fcint.h"
 #include <dirent.h>
 #include <sys/types.h>
+#include <getenv.h>
+#include <wchar.h>
 
 #if defined (_WIN32) && !defined (R_OK)
 #define R_OK 4
@@ -1885,7 +1887,7 @@ FcConfigSubstitute (FcConfig	*config,
     return FcConfigSubstituteWithPat (config, p, 0, kind);
 }
 
-#if defined (_WIN32)
+#if defined (SKYOS32)
 
 static FcChar8 fontconfig_path[1000] = ""; /* MT-dontcare */
 FcChar8 fontconfig_instprefix[1000] = ""; /* MT-dontcare */
@@ -2040,7 +2042,7 @@ FcConfigGetPath (void)
 	}
     }
 
-#ifdef _WIN32
+/*#ifdef _WIN32
 	if (fontconfig_path[0] == '\0')
 	{
         WCHAR wide_fontconfig_path[1000];
@@ -2053,7 +2055,7 @@ FcConfigGetPath (void)
             goto bail1;
 		strcat ((char *) fontconfig_path, "\\fonts");
 	}
-#endif
+#endif*/
     dir = (FcChar8 *) FONTCONFIG_PATH;
     path[i] = malloc (strlen ((char *) dir) + 1);
     if (!path[i])

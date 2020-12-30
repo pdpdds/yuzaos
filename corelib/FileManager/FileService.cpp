@@ -133,9 +133,41 @@ FILE* freopen(const char* filename, const char* mode, FILE* stream)
 /////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-int ftruncate(FILE* fp)
+int ftruncate(int fildes, int length)
 {
-	return g_pFileManager->ftruncate(fp);
+	FILE* fp = g_pFileManager->GetFile(fildes);
+	
+	if (fp == 0)
+		return -1;
+
+	int curPos = g_pFileManager->ftell(fp);
+	g_pFileManager->fseek(fp, 0, SEEK_END);
+
+	int size = g_pFileManager->ftell(fp);
+	g_pFileManager->fseek(fp, curPos, SEEK_SET);
+
+	if (length == size)
+		return 0;
+
+	int res = 0;
+	if (length < size)
+	{
+		g_pFileManager->fseek(fp, length, SEEK_SET);
+		res = g_pFileManager->ftruncate(fp);
+	}
+	else
+	{
+		for (int i = 0; i < length - size; i++)
+		{
+			res = g_pFileManager->WriteFile(fp, (unsigned char*)"\0", 1, 1);
+
+			if (res != 1)
+				assert(0);
+		}
+	}
+	
+
+	return (res == 0) ? 0 : -1;
 }
 
 void rewind(FILE* stream)
@@ -148,7 +180,7 @@ int rmdir(const char* pathname)
 	return g_pFileManager->rmdir(pathname);
 }
 
-int mkdir(const char* pathname)
+int mkdir(const char* pathname, int mode)
 {
 	return g_pFileManager->mkdir(pathname);
 }

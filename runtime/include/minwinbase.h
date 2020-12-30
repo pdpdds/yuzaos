@@ -227,6 +227,21 @@ VOID
     LPOVERLAPPED lpOverlapped
     );*/
 
+typedef union _LARGE_INTEGER {
+    struct {
+        DWORD LowPart;
+        LONG HighPart;
+    } DUMMYSTRUCTNAME;
+    struct {
+        DWORD LowPart;
+        LONG HighPart;
+    } u;
+    LONGLONG QuadPart;
+} LARGE_INTEGER;
+
+typedef LARGE_INTEGER* PLARGE_INTEGER;
+
+
 #define LOCKFILE_FAIL_IMMEDIATELY   0x00000001
 #define LOCKFILE_EXCLUSIVE_LOCK     0x00000002
 

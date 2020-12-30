@@ -227,14 +227,19 @@ union int32to64
 	int i32[2];
 };
 
-
+extern "C" unsigned __int64 __rdtsc();
+#pragma intrinsic(__rdtsc)
+#define ReadTimeStampCounter() __rdtsc()
 
 inline int64 rdtsc()
 {
-	int32to64 a;
-	read_tsc(&a.i32[0], &a.i32[1]);
+	unsigned __int64 i;
+	i = __rdtsc();
 
-	return a.i64;
+	//int32to64 a;
+	//read_tsc(&a.i32[0], &a.i32[1]);
+
+	return i;
 }
 
 inline bool cmpxchg32(volatile int *var, int oldValue, int newValue)

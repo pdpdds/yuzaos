@@ -29,17 +29,19 @@
 #include <string.h>
 #include <limits.h>
 #include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/time.h>
+#include <stat_def.h>
+#include <time.h>
 #include <assert.h>
+#include <getenv.h>
 #if defined(HAVE_MMAP) || defined(__CYGWIN__)
 #  include <unistd.h>
 #  include <sys/mman.h>
 #endif
-#if defined(_WIN32)
+#if defined(SKYOS32)
 #include <sys/locking.h>
+#include <uuid.h>
 #else
-#include <uuid/uuid.h>
+#include <uuid.h>
 #endif
 
 #ifndef O_BINARY
@@ -54,7 +56,7 @@ FcDirCacheCreateUUID (FcChar8  *dir,
     const FcChar8 *sysroot = FcConfigGetSysRoot (config);
     FcChar8 *target;
     FcBool ret = FcTrue;
-#ifndef _WIN32
+#ifndef SKYOS32
     FcChar8 *uuidname;
 
     if (sysroot)
@@ -170,7 +172,7 @@ FcDirCacheDeleteUUID (const FcChar8  *dir,
     return ret;
 }
 
-#ifndef _WIN32
+#ifndef SKYOS32
 static void
 FcDirCacheReadUUID (FcChar8  *dir,
 		    FcConfig *config)
@@ -372,7 +374,7 @@ FcDirCacheOpenFile (const FcChar8 *cache_file, struct stat *file_stat)
     fd = FcOpen((char *) cache_file, O_RDONLY | O_BINARY);
     if (fd < 0)
 	return fd;
-#ifndef _WIN32
+#ifndef SKYOS32
     if (fstat (fd, file_stat) < 0)
     {
 	close (fd);
@@ -954,7 +956,7 @@ FcDirCacheMapFd (FcConfig *config, int fd, struct stat *fd_stat, struct stat *di
 	if (cache == MAP_FAILED)
 	    cache = NULL;
 #elif defined(_WIN32)
-	{
+	/*{
 	    HANDLE hFileMap;
 
 	    cache = NULL;
@@ -966,7 +968,7 @@ FcDirCacheMapFd (FcConfig *config, int fd, struct stat *fd_stat, struct stat *di
 				       fd_stat->st_size);
 		CloseHandle (hFileMap);
 	    }
-	}
+	}*/
 #endif
     }
     if (!cache)
@@ -1041,7 +1043,7 @@ FcDirCacheLoad (const FcChar8 *dir, FcConfig *config, FcChar8 **cache_file)
     FcCache *cache = NULL;
 
 #ifndef _WIN32
-    FcDirCacheReadUUID ((FcChar8 *) dir, config);
+    //FcDirCacheReadUUID ((FcChar8 *) dir, config);
 #endif
     if (!FcDirCacheProcess (config, dir,
 			    FcDirCacheMapHelper,
@@ -1079,7 +1081,7 @@ FcDirChecksum (struct stat *statb)
     source_date_epoch = getenv("SOURCE_DATE_EPOCH");
     if (source_date_epoch)
     {
-	epoch = strtoull(source_date_epoch, &endptr, 10);
+	epoch = _strtoui64(source_date_epoch, &endptr, 10);
 
 	if (endptr == source_date_epoch)
 	    fprintf (stderr,
@@ -1507,7 +1509,7 @@ FcDirCacheClean (const FcChar8 *cache_dir, FcBool verbose)
 		s = FcStrBuildFilename (sysroot, target_dir, NULL);
 	    else
 		s = FcStrdup (target_dir);
-	    if (stat ((char *) s, &target_stat) < 0)
+	    if (fstat ((char *) s, &target_stat) != 0)
 	    {
 		if (verbose || FcDebug () & FC_DBG_CACHE)
 		    printf ("%s: %s: missing directory: %s \n",
@@ -1567,7 +1569,7 @@ FcDirCacheLock (const FcChar8 *dir,
 	/* No caches in that directory. simply retry with another one */
 	if (fd != -1)
 	{
-#if defined(_WIN32)
+#if defined(SKYOS32)
 	    if (_locking (fd, _LK_LOCK, 1) == -1)
 		goto bail;
 #else
@@ -1598,7 +1600,7 @@ FcDirCacheUnlock (int fd)
 {
     if (fd != -1)
     {
-#if defined(_WIN32)
+#if defined(SKYOS32)
 	_locking (fd, _LK_UNLCK, 1);
 #else
 	struct flock fl;

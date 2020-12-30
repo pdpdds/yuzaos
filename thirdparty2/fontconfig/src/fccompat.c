@@ -32,7 +32,7 @@
 #include <sys/types.h>
 #endif
 #if HAVE_SYS_STAT_H
-#include <sys/stat.h>
+#include <stat_def.h>
 #endif
 #if HAVE_FCNTL_H
 #include <fcntl.h>
@@ -108,68 +108,6 @@ mkstemp (char *template)
 #define HAVE_MKSTEMP 1
 #endif
 
-#ifdef _WIN32
-#include <direct.h>
-int fcopen (const char *filename, int oflag, ...)
-{
-    int fd = -1;
-    WCHAR wide_buffer[MAX_PATH];
-    if (MultiByteToWideChar (CP_UTF8, 0, filename, -1, wide_buffer, MAX_PATH) == 0)
-        return fd;
-
-    if (oflag & O_CREAT)
-    {
-        va_list ap;
-        mode_t mode;
-
-        va_start(ap, oflag);
-        mode = (mode_t)va_arg(ap, int);
-        va_end(ap);
-
-        fd = _wopen(wide_buffer, oflag, mode);
-    }
-    else
-    {
-        fd = _wopen(wide_buffer, oflag);
-    }
-    return fd;
-}
-#define open(filename,oflag,...) fcopen(filename,oflag,__VA_ARGS__)
-int fcmkdir (const char *dirname, mode_t mode)
-{
-    WCHAR wide_buffer[MAX_PATH];
-    if (MultiByteToWideChar (CP_UTF8, 0, dirname, -1, wide_buffer, MAX_PATH) == 0)
-        return -1;
-    return _wmkdir (wide_buffer);
-}
-#define mkdir(path,mode) fcmkdir(path,mode)
-errno_t fc_mktemp_s (char *template, size_t size)
-{
-    WCHAR wide_buffer[MAX_PATH];
-    int len;
-    if ((len = MultiByteToWideChar (CP_UTF8, 0, template, -1, wide_buffer, MAX_PATH)) == 0)
-        return -1;
-    return _wmktemp_s (wide_buffer, len);
-}
-#define _mktemp_s(template,sizeInChars) fc_mktemp_s(template,sizeInChars)
-int fcaccess (const char *path, int mode)
-{
-    WCHAR wide_buffer[MAX_PATH];
-    if (MultiByteToWideChar (CP_UTF8, 0, path, -1, wide_buffer, MAX_PATH) == 0)
-        return -1;
-    return _waccess (wide_buffer, mode);
-}
-#define access(path,mode) fcaccess(path,mode)
-int fcchmod (const char *filename, int pmode)
-{
-    WCHAR wide_buffer[MAX_PATH];
-    if (MultiByteToWideChar (CP_UTF8, 0, filename, -1, wide_buffer, MAX_PATH) == 0)
-        return -1;
-    return _wchmod (wide_buffer, pmode);
-}
-#define chmod(filename,pmode) fcchmod(filename,pmode)
-#endif
-
 int
 FcOpen(const char *pathname, int flags, ...)
 {
@@ -188,7 +126,7 @@ FcOpen(const char *pathname, int flags, ...)
     }
     else
     {
-	fd = open(pathname, flags | FC_O_CLOEXEC | FC_O_LARGEFILE);
+	fd = open(pathname, flags | FC_O_CLOEXEC | FC_O_LARGEFILE, 0);
     }
 
     return fd;

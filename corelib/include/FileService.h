@@ -1,5 +1,6 @@
 #pragma once
 #include <va_list.h>
+#include <size_t.h>
 //#include <stat_def.h>
 
 #ifdef DLL_EXPORT
@@ -47,7 +48,6 @@ extern "C" {
 	DLL_API size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream);
 	DLL_API size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream);
 	DLL_API int fclose(FILE *stream);
-	DLL_API FILE* fdopen(int fd, const char* mode);
 
 	DLL_API long int ftell(FILE* stream);
 	DLL_API int fseek(FILE* stream, long int offset, int whence);
@@ -66,11 +66,11 @@ extern "C" {
 
 	DLL_API int fscanf(FILE* fp, const char* fmt, ...);
 
-	DLL_API int ftruncate(FILE* fp);
+	DLL_API int ftruncate(int fildes, int length);
 	
     DLL_API void rewind(FILE *stream); 
 	DLL_API int rmdir(const char *pathname);
-	DLL_API int mkdir(const char *pathname);
+	DLL_API int mkdir(const char *pathname, int mode);
 	DLL_API int unlink(const char *pathname);
 	DLL_API int rename(const char* path_old, const char* path_new);
 	DLL_API int chdir(const char* dirname);
@@ -88,6 +88,16 @@ extern "C" {
 	DLL_API char* strerr(int errnum);
 	DLL_API char* strerror(int errnum);
 	DLL_API int remove(const char* pathname);
+
+	DLL_API int open(const char* filename, int flags, ...);
+	DLL_API int creat(const char* filename, int mode);
+	DLL_API FILE* fdopen(int fd, const char* mode);
+	DLL_API ssize_t write(int fd, const void* buf, size_t count);
+	DLL_API int dup(int fd);
+	DLL_API int close(int fd);
+	DLL_API size_t read(int fd, void* buf, size_t count);
+	DLL_API int lseek(int fd, int offset, int whence);
+	DLL_API int fileno(FILE* fp);
 
 	DLL_API  unsigned int GetCurrentDirectory(unsigned int nBufferLength, char* lpBuffer);
 	DLL_API  bool SetCurrentDriveId(char drive);

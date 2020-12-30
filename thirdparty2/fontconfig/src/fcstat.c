@@ -25,7 +25,7 @@
 #include <dirent.h>
 #include <limits.h>
 #include <sys/types.h>
-#include <sys/stat.h>
+#include <stat_def.h>
 #include <fcntl.h>
 #ifdef HAVE_SYS_VFS_H
 #include <sys/vfs.h>
@@ -132,7 +132,7 @@ FcStat (const FcChar8 *file, struct stat *statb)
 int
 FcStat (const FcChar8 *file, struct stat *statb)
 {
-  return stat ((char *) file, statb);
+  return fstat ((char *) file, statb);
 }
 
 /* Adler-32 checksum implementation */

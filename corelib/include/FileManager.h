@@ -2,6 +2,7 @@
 #include <minwindef.h>
 #include "dirent.h"
 #include "FileSysAdaptor.h"
+#include <map>
 
 //저장장치는 최대 26개
 #define STORAGE_DEVICE_MAX 26
@@ -51,6 +52,12 @@ public:
 	virtual bool AddFileSystem(FileSysAdaptor* pAdaptor, I_FileSystem* pFileSystem, char drive, void* arg = nullptr) = 0;
 	virtual bool AddFileSystem(FileSysAdaptor* pAdaptor, char* fileSystemName, char drive, void* arg = nullptr) = 0;
 	virtual bool DriveExist(char drive) = 0;
+
+	virtual int AddFile(FILE* file) = 0;
+	virtual FILE* GetFile(int fd) = 0;
+	virtual bool RemoveFile(int fd) = 0;
+	virtual int GetFd(FILE* fp) = 0;
+	virtual int AddFile(int fd, FILE* file)= 0;
 };
 
 class FileManager : public I_FileManager
@@ -98,6 +105,11 @@ public:
 	bool AddFileSystem(FileSysAdaptor* pAdaptor, char* fileSystemName, char drive, void* arg = nullptr);
 	bool AddFileSystem(FileSysAdaptor* pAdaptor, I_FileSystem* pFileSystem, char drive, void* arg = nullptr);
 	bool DriveExist(char drive);
+	int AddFile(FILE* file);
+	int AddFile(int fd, FILE* file);
+	FILE* GetFile(int fd);
+	bool RemoveFile(int fd);
+	int GetFd(FILE* fp);
 
 protected:
 	FileSysAdaptor* GetAdaptorFromDrive(int id)
@@ -121,5 +133,9 @@ protected:
 private:
 	FileSysAdaptor* m_fileSystems[STORAGE_DEVICE_MAX];
 	int m_stroageCount;
+	int m_fdIndex;
 	I_FileSystem* m_pTerminalSystem;
+	std::map<int, FILE*> m_mapFileDescriptor;
 };
+
+extern I_FileManager* g_pFileManager;

@@ -149,6 +149,8 @@ extern "C" {
 	DWORD GetEnvironmentVariable(LPCTSTR lpName, LPTSTR  lpBuffer, DWORD  nSize);
 	BOOL SetEnvironmentVariable(LPCTSTR lpName, LPCTSTR lpValue);
 
+	BOOL QueryPerformanceCounter(LARGE_INTEGER* lpPerformanceCount);
+	BOOL QueryPerformanceFrequency(LARGE_INTEGER* lpFrequency);
 	///////////////////////////////////////////////////////////////////////////
 	//not implemented
 	/*LONG64 __cdecl InterlockedCompare64Exchange128(LONG64 volatile* Destination, LONG64 ExchangeHigh, LONG64 ExchangeLow, LONG64 Comparand);

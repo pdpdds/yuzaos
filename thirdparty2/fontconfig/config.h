@@ -12,7 +12,7 @@
 #define ALIGNOF_VOID_P sizeof(void *)
 
 /* Use libxml2 instead of Expat */
-#define ENABLE_LIBXML2 1
+#define ENABLE_LIBXML2 0
 
 /* Define to 1 if translation of program messages to the user's native
    language is requested. */
@@ -241,7 +241,7 @@
 /* #undef HAVE_XML_SETDOCTYPEDECLHANDLER */
 
 /* Define to 1 if you have the `_mktemp_s' function. */
-#define HAVE__MKTEMP_S 1
+#define HAVE__MKTEMP_S 0
 
 /* Define to necessary symbol if this constant uses a non-standard name on
    your system. */
@@ -275,7 +275,3 @@
 /* Use iconv. */
 #define USE_ICONV 1
 
-#include <crtversion.h>
-#if _VC_CRT_MAJOR_VERSION < 14
-#    define snprintf _snprintf
-#endif

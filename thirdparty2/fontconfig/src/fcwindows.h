@@ -45,7 +45,9 @@
 #  define WIN32_LEAN_AND_MEAN
 #  define WIN32_EXTRA_LEAN
 #  define STRICT
-#  include <windows.h>
+#include <minwindef.h>
+#include <minwinbase.h>
+#  include <winapi.h>
 #endif
 
 #endif /* _FCWINDOWS_H_ */

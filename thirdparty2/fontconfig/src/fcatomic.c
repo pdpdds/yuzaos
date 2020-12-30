@@ -49,7 +49,7 @@
 
 #include "fcint.h"
 #include <sys/types.h>
-#include <sys/stat.h>
+#include <stat_def.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <time.h>

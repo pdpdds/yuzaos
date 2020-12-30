@@ -47,7 +47,7 @@ extern "C" {
 	int access(const char* pathname, int mode);
 	int lstat(const char* filename, struct stat* buf);
 	int chmod(const char* filename, int pmode);
-	int open(const char* pathname, int flags, mode_t mode);
+	
 	void* bsearch(const void* key, const void* base0,
 		size_t nmemb, size_t size,
 		int (*compar)(const void*, const void*));

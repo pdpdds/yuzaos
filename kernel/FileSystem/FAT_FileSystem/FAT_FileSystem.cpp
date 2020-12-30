@@ -299,6 +299,7 @@ char* FAT_FileSystem::strerror(int errnum)
 int FAT_FileSystem::ftruncate(FILE* stream)
 {
 	FIL* fp = (FIL*)stream->_handle;
+
 	return f_truncate(fp);
 }
 
@@ -474,7 +475,7 @@ int GetRelativePathTest(char const* const fileName, struct stat* fno)
 			fno->st_mode = 1;
 	}
 
-	return res;
+	return (res == 0) ? 0 : -1;
 }
 
 int FAT_FileSystem::fstat(char const* const fileName, struct stat* fno)

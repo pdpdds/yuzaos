@@ -22,6 +22,7 @@ FileManager::FileManager()
 {
 	memset(m_fileSystems, 0, sizeof(FileSysAdaptor*) * STORAGE_DEVICE_MAX);
 	m_stroageCount = 0;
+	m_fdIndex = 3;
 
 	m_pTerminalSystem = new TerminalSystem("terminal");
 }
@@ -528,6 +529,50 @@ bool FileManager::DriveExist(char drive)
 		return false;
 
 	return true;
+}
+
+int FileManager::AddFile(FILE* file)
+{
+	m_mapFileDescriptor[m_fdIndex] = file;
+	
+	int new_fd = m_fdIndex;
+	m_fdIndex++;
+	return new_fd;
+}
+
+int FileManager::AddFile(int fd, FILE* file)
+{
+	m_mapFileDescriptor[fd] = file;
+	return fd;
+}
+
+FILE* FileManager::GetFile(int fd)
+{
+	auto iter = m_mapFileDescriptor.find(fd);
+
+	if (iter != m_mapFileDescriptor.end())
+		return iter->second;
+
+	return nullptr;
+}
+
+bool FileManager::RemoveFile(int fd)
+{
+	m_mapFileDescriptor.erase(fd);
+	return false;
+}
+
+int FileManager::GetFd(FILE* fp)
+{
+	auto iter = m_mapFileDescriptor.begin();
+
+	for (; iter != m_mapFileDescriptor.end(); iter++)
+	{
+		if (iter->second == fp)
+			return iter->first;
+	}
+
+	return -1;
 }
 
 bool FileManager::RegisterFileSystem(FileSysAdaptor* fsys, char drive)

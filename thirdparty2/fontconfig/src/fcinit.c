@@ -24,6 +24,7 @@
 
 #include "fcint.h"
 #include <stdlib.h>
+#include <getenv.h>
 
 #if defined(FC_ATOMIC_INT_NIL)
 #pragma message("Could not find any system to define atomic_int macros, library may NOT be thread-safe.")

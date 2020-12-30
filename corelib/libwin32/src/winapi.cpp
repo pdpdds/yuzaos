@@ -972,3 +972,16 @@ BOOL SetEnvironmentVariable(LPCTSTR lpName, LPCTSTR lpValue)
 	return Syscall_SetEnvironmentVariable(lpName, lpValue);
 }
 
+BOOL QueryPerformanceCounter(LARGE_INTEGER* lpPerformanceCount)
+{
+	return 0;
+	//return Syscall_QueryPerformanceCounter(lpPerformanceCount);
+}
+
+BOOL QueryPerformanceFrequency(LARGE_INTEGER* lpFrequency)
+{
+	return 0;
+	//return Syscall_QueryPerformanceFrequency(lpFrequency);
+}
+
+
