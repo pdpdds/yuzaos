@@ -25,8 +25,6 @@
 
 #define ARRAYSIZE(a) (sizeof(a) / sizeof((a)[0]))
 
-int errno = 0;
-
 /* Table of image detection and loading functions */
 static struct {
     const char *type;

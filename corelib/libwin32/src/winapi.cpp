@@ -25,6 +25,8 @@ HANDLE CreateFile(LPCSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, /
 		strcpy(mode, "rb");
 	else if (dwDesiredAccess == GENERIC_WRITE && dwCreationDisposition == CREATE_ALWAYS)
 		strcpy(mode, "wb");
+	else if (dwDesiredAccess == GENERIC_WRITE && dwCreationDisposition == OPEN_ALWAYS)
+		strcpy(mode, "wb");
 	else if ((dwDesiredAccess == (GENERIC_WRITE | GENERIC_READ)) && (dwCreationDisposition == CREATE_ALWAYS))
 		strcpy(mode, "wb+");
 	else if ((dwDesiredAccess == (GENERIC_WRITE | GENERIC_READ)) && (dwCreationDisposition == OPEN_EXISTING))

@@ -1,0 +1,41 @@
+#ifdef __MINGW32__
+#include <winver.h>
+#else
+#include <verrsrc.h>
+#endif
+
+1 VERSIONINFO
+FILEVERSION     2,8,0,0
+PRODUCTVERSION  2,8,0,0
+FILEFLAGSMASK   VS_FF_DEBUG
+#ifdef _DEBUG
+FILEFLAGS       VS_FF_DEBUG
+#else
+FILEFLAGS       0
+#endif
+FILEOS          VOS_NT_WINDOWS32
+FILETYPE        VFT_APP
+FILESUBTYPE     VFT2_UNKNOWN
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904E4"
+    BEGIN
+      VALUE "CompanyName", "The GrafX2 Team"
+      VALUE "FileDescription", "The ultimate 256-color painting programm"
+      VALUE "FileVersion", "2.8wip.unknown"
+      VALUE "InternalName", "grafx2"
+      VALUE "LegalCopyright", "(c) 2007-2020 The GrafX2 Team, (c) 1996-2001 Sunset Design"
+      VALUE "OriginalFilename", "grafx2.exe"
+      VALUE "ProductName", "GrafX2"
+      VALUE "ProductVersion", "2.8wip.unknown"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    /* English language (0x409), Windows ANSI codepage (1252) */
+    VALUE "Translation", 0x409, 1252
+  END
+END
+
+100 ICON "gfx2.ico"

@@ -8,16 +8,6 @@
 	return 0;
 }*/
 
-char *getcwd(char *buffer, size_t size)
-{
-	int len = Syscall_GetCurrentDirectory(size, buffer);
-
-	if (len != 0)
-		return buffer;
-
-	return 0;
-}
-
 int access(const char *pathname, int mode)
 {
 	struct stat info;

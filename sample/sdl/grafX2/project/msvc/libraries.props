@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0"
+   xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <SDLIncDir>..\..\..\..\SDL-1.2.15\include</SDLIncDir>
+    <SDLLibDir>..\..\..\..\SDL-1.2.15\lib\x86</SDLLibDir>
+    <SDLImageIncDir>..\..\..\..\SDL_image-1.2.12\include</SDLImageIncDir>
+    <SDLImageLibDir>..\..\..\..\SDL_image-1.2.12\lib\x86</SDLImageLibDir>
+    <SDL2IncDir>..\..\..\..\SDL2-2.0.9\include</SDL2IncDir>
+    <SDL2LibDir>..\..\..\..\SDL2-2.0.9\lib\x86</SDL2LibDir>
+    <SDL2ImageIncDir>..\..\..\..\SDL2_image-2.0.4\include</SDL2ImageIncDir>
+    <SDL2ImageLibDir>..\..\..\..\SDL2_image-2.0.4\lib\x86</SDL2ImageLibDir>
+    <LuaIncDir>..\..\..\..\lua\include</LuaIncDir>
+    <LuaLibDir>..\..\..\..\lua</LuaLibDir>
+    <PNGIncDir>..\..\..\..\lpng1634</PNGIncDir>
+    <PNGLibDirDebug>..\..\..\..\lpng1634\projects\vstudio\Debug Library</PNGLibDirDebug>
+    <PNGLibDirRelease>..\..\..\..\lpng1634\projects\vstudio\Release Library</PNGLibDirRelease>
+    <TIFFIncDir>..\..\..\..\tiff-4.0.10\libtiff</TIFFIncDir>
+    <TIFFLibDir>..\..\..\..\tiff-4.0.10\libtiff</TIFFLibDir>
+    <ZLibIncDir>..\..\..\..\zlib-1.2.11</ZLibIncDir>
+    <ZLibLibDir>..\..\..\..\zlib-1.2.11</ZLibLibDir>
+  </PropertyGroup>
+</Project>

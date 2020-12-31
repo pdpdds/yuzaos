@@ -268,7 +268,7 @@ bool save_opentyrian_config( void )
 //#ifndef TARGET_WIN32
 //	mkdir(get_user_directory(), 0700);
 //#else
-	mkdir(get_user_directory());
+	mkdir(get_user_directory(), 0700);
 //#endif
 	
 	FILE *file = fopen("opentyrian.cfg", "w");
@@ -956,7 +956,7 @@ void JE_saveConfiguration( void )
 //#ifndef TARGET_WIN32
 	//mkdir(get_user_directory(), 0700);
 //#else
-	mkdir(get_user_directory());
+	mkdir(get_user_directory(), 0700);
 //#endif
 	
 	f = dir_fopen_warn(get_user_directory(), "tyrian.sav", "wb");

@@ -43,7 +43,6 @@ extern "C" {
 #endif
 
 	//int stat(const char* path, struct stat* buf);
-	char* getcwd(char* buf, size_t size);
 	int access(const char* pathname, int mode);
 	int lstat(const char* filename, struct stat* buf);
 	int chmod(const char* filename, int pmode);

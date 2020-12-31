@@ -111,7 +111,7 @@ void Cross::CreatePlatformConfigDir(std::string& in) {
 	in = "~/.dosbox";
 	ResolveHomedir(in);
 	//mkdir(in.c_str(),0700);
-	mkdir(in.c_str());
+	mkdir(in.c_str(), 0700);
 #endif
 	in += CROSS_FILESPLIT;
 }
@@ -137,7 +137,7 @@ void Cross::CreateDir(std::string const& in) {
 #ifdef WIN32
 	mkdir(in.c_str());
 #elif SKYOS32
-	mkdir(in.c_str());
+	mkdir(in.c_str(), 0700);
 #else
 	mkdir(in.c_str(),0700);
 #endif

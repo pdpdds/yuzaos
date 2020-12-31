@@ -98,7 +98,7 @@ extern "C" {
 	DLL_API size_t read(int fd, void* buf, size_t count);
 	DLL_API int lseek(int fd, int offset, int whence);
 	DLL_API int fileno(FILE* fp);
-
+	DLL_API char* getcwd(char* buf, size_t size);
 	DLL_API  unsigned int GetCurrentDirectory(unsigned int nBufferLength, char* lpBuffer);
 	DLL_API  bool SetCurrentDriveId(char drive);
 	DLL_API  bool SetCurrentDirectory(const char* lpPathName);

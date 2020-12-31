@@ -40,6 +40,31 @@ extern "C" bool SetCurrentDirectory(const char* lpPathName)
 	return false;
 }
 
+char* getcwd(char* buffer, size_t size)
+{
+	
+	int len = 0;
+	if (buffer == 0)
+	{
+		char* buf = (char*)malloc(256);
+
+		len = Syscall_GetCurrentDirectory(256, buf);
+		if (len != 0)
+			return buf;
+
+		free(buf);
+		return 0;
+	}
+	else
+	{
+		len = Syscall_GetCurrentDirectory(size, buffer);
+		if (len != 0)
+			return buffer;
+	}
+
+	return 0;
+}
+
 //File Service Call Routine
 FILE* fopen(const char* filename, const char* mode)
 {
