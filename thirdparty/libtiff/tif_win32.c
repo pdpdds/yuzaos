@@ -59,7 +59,7 @@
 #include <winapi.h>
 #include <systemcall_impl.h>
 
-typedef union _LARGE_INTEGER {
+/*typedef union _LARGE_INTEGER {
 	struct {
 		DWORD LowPart;
 		LONG HighPart;
@@ -69,7 +69,7 @@ typedef union _LARGE_INTEGER {
 		LONG HighPart;
 	} u;
 	LONGLONG QuadPart;
-} LARGE_INTEGER;
+} LARGE_INTEGER;*/
 
 typedef union _ULARGE_INTEGER {
 	struct {

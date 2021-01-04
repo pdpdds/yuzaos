@@ -48,6 +48,11 @@
 #define O_BINARY 0
 #endif
 
+void perror(char* szerror)
+{
+    printf("%s", szerror);
+}
+
 FcBool
 FcDirCacheCreateUUID (FcChar8  *dir,
 		      FcBool    force,
@@ -1509,7 +1514,7 @@ FcDirCacheClean (const FcChar8 *cache_dir, FcBool verbose)
 		s = FcStrBuildFilename (sysroot, target_dir, NULL);
 	    else
 		s = FcStrdup (target_dir);
-	    if (fstat ((char *) s, &target_stat) != 0)
+	    if (stat ((char *) s, &target_stat) != 0)
 	    {
 		if (verbose || FcDebug () & FC_DBG_CACHE)
 		    printf ("%s: %s: missing directory: %s \n",
@@ -1570,7 +1575,7 @@ FcDirCacheLock (const FcChar8 *dir,
 	if (fd != -1)
 	{
 #if defined(SKYOS32)
-	    if (_locking (fd, _LK_LOCK, 1) == -1)
+	    //if (_locking (fd, _LK_LOCK, 1) == -1)
 		goto bail;
 #else
 	    struct flock fl;
@@ -1601,7 +1606,7 @@ FcDirCacheUnlock (int fd)
     if (fd != -1)
     {
 #if defined(SKYOS32)
-	_locking (fd, _LK_UNLCK, 1);
+	//_locking (fd, _LK_UNLCK, 1);
 #else
 	struct flock fl;
 

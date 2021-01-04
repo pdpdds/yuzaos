@@ -9,6 +9,7 @@
 #include <atomic.h>
 #include <dirent.h>
 #include <string.h>
+#include <winapi2.h>
 
 HANDLE CreateFile(LPCSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, /*LPSECURITY_ATTRIBUTES*/void* lpSecurityAttributes,
 	DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile)
@@ -606,12 +607,12 @@ __declspec(dllexport) HMODULE LoadLibrary(LPCSTR lpLibFileName)
 	return (HMODULE)Syscall_LoadLibrary(lpLibFileName);
 }
 
-HANDLE GetCurrentThread(VOID)
+HANDLE GetCurrentThread(void)
 {
 	return (HANDLE)Syscall_GetCurrentThread();
 }
 
-DWORD _stdcall GetCurrentThreadId(VOID)
+DWORD _stdcall GetCurrentThreadId(void)
 {
 	return (DWORD)Syscall_GetCurrentThreadId();
 }
@@ -629,6 +630,19 @@ DWORD ResumeThread(HANDLE hThread)
 BOOL TerminateThread(HANDLE hThread, DWORD dwExitCode)
 {
 	return (DWORD)Syscall_TerminateThread(hThread, &dwExitCode);
+}
+
+WINBASEAPI BOOL TerminateProcess(HANDLE hProcess, UINT   uExitCode)
+{
+	return FALSE;
+}
+
+//not implemented
+void GetSystemInfo(LPSYSTEM_INFO lpSystemInfo)
+{
+	memset(lpSystemInfo, 0, sizeof(SYSTEM_INFO));
+	lpSystemInfo->dwPageSize = 4096;
+	lpSystemInfo->dwNumberOfProcessors = 1;
 }
 
 HANDLE CreateEvent(LPSECURITY_ATTRIBUTES lpEventAttributes, BOOL bManualReset, BOOL bInitialState, LPCSTR lpName)
@@ -720,22 +734,22 @@ DWORD GetCurrentProcessId()
 //-----------------------------------------------------------------------------------
 BOOL TlsSetValue(DWORD  dwTlsIndex, LPVOID lpTlsValue)
 {
-	return false;
+	return Syscall_TlsSetValue(dwTlsIndex, lpTlsValue);
 }
 
 LPVOID TlsGetValue(DWORD dwTlsIndex)
 {
-	return 0;
+	return Syscall_TlsGetValue(dwTlsIndex);
 }
 
 DWORD TlsAlloc()
 {
-	return 0;
+	return Syscall_TlsAlloc();
 }
 
 BOOL TlsFree(DWORD dwTlsIndex)
 {
-	return false;
+	return Syscall_TlsFree(dwTlsIndex);
 }
 
 
@@ -899,7 +913,7 @@ BOOL ReleaseMutex(HANDLE hMutex)
 	return CloseHandle(hMutex);
 }
 
-VOID WINAPI RaiseException(DWORD dwExceptionCode, DWORD dwExceptionFlags, DWORD nNumberOfArguments, CONST ULONG_PTR* lpArguments)
+void WINAPI RaiseException(DWORD dwExceptionCode, DWORD dwExceptionFlags, DWORD nNumberOfArguments, CONST ULONG_PTR* lpArguments)
 {
 	Syscall_RaiseException(dwExceptionCode, dwExceptionFlags, nNumberOfArguments, lpArguments);
 }
@@ -938,7 +952,7 @@ bool WINAPI ExitThread(int errorcode)
 DWORD WINAPI GetFileAttributes(LPCSTR lpFileName)
 {
 	struct stat status;
-	if (fstat(lpFileName, &status) == 0)
+	if (stat(lpFileName, &status) == 0)
 	{
 		if (status.st_mode == 0)
 			return FILE_ATTRIBUTE_DIRECTORY;
@@ -984,6 +998,29 @@ BOOL QueryPerformanceFrequency(LARGE_INTEGER* lpFrequency)
 {
 	return 0;
 	//return Syscall_QueryPerformanceFrequency(lpFrequency);
+}
+
+DWORD GetModuleFileNameA(HMODULE hModule, LPSTR lpFilename, DWORD nSize)
+{
+	return 0;
+}
+
+HMODULE GetModuleHandle(LPCSTR lpModuleName)
+{
+	return (HMODULE)Syscall_GetModuleHandle(lpModuleName);
+}
+
+DWORD GetTempPath(DWORD nBufferLength, LPSTR lpBuffer)
+{
+	strcpy(lpBuffer, "/temp");
+	return strlen(lpBuffer);
+}
+
+//<path>\<pre><uuuu>.TMP
+UINT GetTempFileName(LPCSTR lpPathName, LPCSTR lpPrefixString, UINT uUnique, LPSTR lpTempFileName)
+{
+	tmpnam(lpTempFileName);
+	return strlen(lpTempFileName);
 }
 
 

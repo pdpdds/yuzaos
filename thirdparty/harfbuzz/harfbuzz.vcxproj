@@ -234,8 +234,8 @@
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>../include;../../runtime/include;../../corelib/include;../../thirdparty/freetype/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>HAVE_FREETYPE;SKYOS32;_CRT_NONSTDC_NO_WARNINGS;HAVE_ROUNDF;HAVE_ISATTY;HAVE_ATEXIT;HB_NO_MT;HB_NO_SETLOCALE</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../include;../../runtime/include;../../corelib/include;../../thirdparty/freetype/include;../../verify\glib\glib;../../verify\glib</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>HAVE_GLIB;HAVE_FREETYPE;SKYOS32;_MSC_VER=1920;_CRT_NONSTDC_NO_WARNINGS;HAVE_ROUNDF;HAVE_ISATTY;HAVE_ATEXIT;HB_NO_MT;HB_NO_SETLOCALE</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>
@@ -245,7 +245,7 @@
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CallingConvention>Cdecl</CallingConvention>
       <DisableSpecificWarnings>4244;4267;4819;4068</DisableSpecificWarnings>
       <FunctionLevelLinking>true</FunctionLevelLinking>

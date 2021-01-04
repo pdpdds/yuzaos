@@ -42,6 +42,9 @@ typedef	quad_t *	qaddr_t;
 
 typedef unsigned short                wint_t;
 
+typedef long clock_t;
+
+
 //20180124	
 #define offsetof(st, m) ((size_t)&(((st *)0)->m))  
 
@@ -69,7 +72,6 @@ typedef int64 bigtime_t;
 typedef unsigned long sem_id;
 typedef int thread_id;
 typedef int thrd_t;
-typedef int errno_t;
 typedef int proc_id;
 typedef int area_id;
 typedef int region_id;      // vm region id

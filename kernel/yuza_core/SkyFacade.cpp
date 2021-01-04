@@ -622,20 +622,27 @@ bool AddSymbol(config_t& cfg, char* element)
 			if (!(config_setting_lookup_string(env, "name", &name)))
 				continue;
 
-			std::string dllName = name;
+			/*std::string dllName = name;
 			std::string mapName = name;
 			dllName += ".dll";
-			mapName += ".map";
+			mapName += ".map";*/
 
-			LOAD_DLL_INFO* pInfo = ModuleManager::GetInstance()->GetSystemPE(dllName.c_str());
+			char dllName[256];
+			char mapName[256];
+			strcpy(dllName, name);
+			strcpy(mapName, name);
+			strcat(dllName, ".dll");
+			strcat(mapName, ".map");
+
+			LOAD_DLL_INFO* pInfo = ModuleManager::GetInstance()->GetSystemPE(dllName);
 
 			if (pInfo == nullptr)
 			{
-				StackTracer::GetInstance()->AddSymbol(mapName.c_str());
+				StackTracer::GetInstance()->AddSymbol(mapName);
 			}
 			else
 			{
-				StackTracer::GetInstance()->AddSymbol(mapName.c_str(), pInfo->image_base);
+				StackTracer::GetInstance()->AddSymbol(mapName, pInfo->image_base);
 			}
 		}
 	}

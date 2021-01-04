@@ -656,7 +656,7 @@ int config_read_file(config_t *config, const char *filename)
   {
 	  struct stat info;
 
-      int res = fstat(filename, &info);
+      int res = stat(filename, &info);
 	  if (res == 0)
 	  {
 		  // Only proceed if this is not a directory.

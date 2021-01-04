@@ -428,7 +428,7 @@ ULONG PPBITBUFFER::GetBits(UINT n)
 }
 
 
-static VOID PP20_DoUnpack(const BYTE *pSrc, UINT nSrcLen, BYTE *pDst, UINT nDstLen)
+static void PP20_DoUnpack(const BYTE *pSrc, UINT nSrcLen, BYTE *pDst, UINT nDstLen)
 {
 	PPBITBUFFER BitBuffer;
 	ULONG nBytesLeft;

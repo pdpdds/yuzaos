@@ -571,10 +571,10 @@ CzWINDOWEDFIR sfir;
 //////////////////////////////////////////////////////////
 // Interfaces
 
-typedef VOID (MPPASMCALL * LPMIXINTERFACE)(MODCHANNEL *, int *, int *);
+typedef void (MPPASMCALL * LPMIXINTERFACE)(MODCHANNEL *, int *, int *);
 
 #define BEGIN_MIX_INTERFACE(func)\
-	VOID MPPASMCALL func(MODCHANNEL *pChannel, int *pbuffer, int *pbufmax)\
+	void MPPASMCALL func(MODCHANNEL *pChannel, int *pbuffer, int *pbufmax)\
 	{\
 		LONG nPos;
 
@@ -2080,7 +2080,7 @@ void MPPASMCALL X86_InterleaveFrontRear(int *pFrontBuf, int *pRearBuf, DWORD nSa
 
 
 #ifdef MSC_VER
-VOID MPPASMCALL X86_MonoFromStereo(int *pMixBuf, UINT nSamples)
+void MPPASMCALL X86_MonoFromStereo(int *pMixBuf, UINT nSamples)
 //-------------------------------------------------------------
 {
 	_asm {
@@ -2101,7 +2101,7 @@ stloop:
 }
 #else
 //---GCCFIX: Asm replaced with C function
-VOID MPPASMCALL X86_MonoFromStereo(int *pMixBuf, UINT nSamples)
+void MPPASMCALL X86_MonoFromStereo(int *pMixBuf, UINT nSamples)
 {
 	UINT j;
 	for(UINT i = 0; i < nSamples; i++)

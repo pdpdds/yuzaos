@@ -48,10 +48,10 @@ extern DWORD MPPASMCALL X86_Convert32To16(LPVOID lpBuffer, int *, DWORD nSamples
 extern DWORD MPPASMCALL X86_Convert32To24(LPVOID lpBuffer, int *, DWORD nSamples, LPLONG, LPLONG);
 extern DWORD MPPASMCALL X86_Convert32To32(LPVOID lpBuffer, int *, DWORD nSamples, LPLONG, LPLONG);
 extern UINT MPPASMCALL X86_AGC(int *pBuffer, UINT nSamples, UINT nAGC);
-extern VOID MPPASMCALL X86_Dither(int *pBuffer, UINT nSamples, UINT nBits);
-extern VOID MPPASMCALL X86_InterleaveFrontRear(int *pFrontBuf, int *pRearBuf, DWORD nSamples);
-extern VOID MPPASMCALL X86_StereoFill(int *pBuffer, UINT nSamples, LPLONG lpROfs, LPLONG lpLOfs);
-extern VOID MPPASMCALL X86_MonoFromStereo(int *pMixBuf, UINT nSamples);
+extern void MPPASMCALL X86_Dither(int *pBuffer, UINT nSamples, UINT nBits);
+extern void MPPASMCALL X86_InterleaveFrontRear(int *pFrontBuf, int *pRearBuf, DWORD nSamples);
+extern void MPPASMCALL X86_StereoFill(int *pBuffer, UINT nSamples, LPLONG lpROfs, LPLONG lpLOfs);
+extern void MPPASMCALL X86_MonoFromStereo(int *pMixBuf, UINT nSamples);
 
 extern int MixSoundBuffer[MIXBUFFERSIZE*4];
 extern int MixRearBuffer[MIXBUFFERSIZE*2];

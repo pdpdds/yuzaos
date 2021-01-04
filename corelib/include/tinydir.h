@@ -428,7 +428,7 @@ int tinydir_readfile(const tinydir_dir *dir, tinydir_file *file)
 	_tinydir_strcpy(file->name, filename);
 	_tinydir_strcat(file->path, filename);
 
-	if (fstat(
+	if (stat(
 
 		file->path, &file->_s) != 0)
 	{

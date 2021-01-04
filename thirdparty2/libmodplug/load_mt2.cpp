@@ -124,7 +124,7 @@ typedef struct _MT2GROUP
 #pragma pack()
 
 
-static VOID ConvertMT2Command(CSoundFile *that, MODCOMMAND *m, const MT2COMMAND *p)
+static void ConvertMT2Command(CSoundFile *that, MODCOMMAND *m, const MT2COMMAND *p)
 //---------------------------------------------------------------------------
 {
 	// Note

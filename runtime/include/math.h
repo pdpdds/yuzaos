@@ -117,6 +117,7 @@ extern "C" {
 
 	MATH_API float roundf(float value);
 	MATH_API float fmaxf(float a, float y);
+	MATH_API double fmax(double x, double y);
 
 	MATH_API int isnan(double);
 	MATH_API int isinf(double);

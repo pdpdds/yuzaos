@@ -65,7 +65,7 @@
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -116,7 +116,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <CallingConvention>Cdecl</CallingConvention>
-      <DisableSpecificWarnings>4457;4189;4100;4702;4102;4244;4239;4333;4127;4554;4819;4305</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4457;4189;4100;4702;4102;4244;4239;4333;4127;4554;4819;4305;4018</DisableSpecificWarnings>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -133,7 +133,7 @@
     <Link>
       <AdditionalDependencies>iconv.lib;freetyped.lib;libwin32.lib;expat.lib;libuuid.lib;libcrt.lib;dllstub.lib;systemcall.lib;math.lib;filemanager.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>../../$(Configuration);../../corelib/debug;../../runtime/debug;../../thirdparty/debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../$(Configuration);../../corelib/debug;../../runtime/debug;../../thirdparty/debug;../../thirdparty2\Debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(OutDir)$(TargetName).map</MapFileName>
@@ -143,12 +143,14 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <FunctionOrder>
       </FunctionOrder>
-      <EntryPointSymbol>kmain</EntryPointSymbol>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
       <NoEntryPoint>false</NoEntryPoint>
-      <BaseAddress>0x01600000</BaseAddress>
+      <BaseAddress>
+      </BaseAddress>
       <FixedBaseAddress>
       </FixedBaseAddress>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <FullProgramDatabaseFile>true</FullProgramDatabaseFile>
       <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
@@ -159,8 +161,7 @@
       <ForceSymbolReferences>
       </ForceSymbolReferences>
       <AdditionalOptions>/safeseh:no /ALIGN:1024
- /SUBSYSTEM:CONSOLE
-/NODEFAULTLIB:LIBC %(AdditionalOptions)</AdditionalOptions>
+ %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>

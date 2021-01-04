@@ -22,7 +22,7 @@ namespace SkyGUIConsole
 	int m_yPos;
 	int m_xPos;
 
-	VOID GetNewLine()
+	void GetNewLine()
 	{
 		int x, y;
 		ULONG* buf = m_pVideoRamPtr;

@@ -2,7 +2,6 @@
 #include <minwindef.h>
 #include "minwinbase.h"
 #include <stdint.h>
-#include <skyoswindow.h>
 
 #ifdef DLL_WIN32API_EXPORT
 #define WINBASEAPI __declspec(dllexport) 
@@ -42,8 +41,8 @@ extern "C" {
 	WINBASEAPI WINAPI FARPROC GetProcAddress(HMODULE hModule, LPCSTR lpProcName);
 	WINBASEAPI WINAPI HMODULE  LoadLibrary(LPCSTR lpLibFileName);
 
-	WINBASEAPI HANDLE WINAPI GetCurrentThread(VOID);
-	WINBASEAPI DWORD _stdcall GetCurrentThreadId(VOID);
+	WINBASEAPI HANDLE WINAPI GetCurrentThread(void);
+	WINBASEAPI DWORD _stdcall GetCurrentThreadId(void);
 	WINBASEAPI DWORD WINAPI WaitForSingleObject(HANDLE hHandle, DWORD  dwMilliseconds);
 
 	WINBASEAPI DWORD WINAPI SuspendThread(HANDLE hThread);
@@ -51,6 +50,10 @@ extern "C" {
 
 	WINBASEAPI BOOL WINAPI TerminateThread(HANDLE hThread, DWORD dwExitCode);
 	
+	WINBASEAPI BOOL TerminateProcess(HANDLE hProcess, UINT   uExitCode);
+
+	WINBASEAPI void GetSystemInfo(LPSYSTEM_INFO lpSystemInfo);
+
 	WINBASEAPI void WINAPI Sleep(DWORD dwMilliseconds);
 	WINBASEAPI void WINAPI SetLastError(DWORD dwErrCode);
 	WINBASEAPI DWORD WINAPI GetLastError(void);
@@ -126,14 +129,11 @@ extern "C" {
 	WINBASEAPI HANDLE WINAPI CreateMutex(LPSECURITY_ATTRIBUTES lpMutexAttributes, BOOL bInitialOwner, LPCSTR lpName);
 	WINBASEAPI BOOL WINAPI ReleaseMutex(HANDLE hMutex);
 
-	WINBASEAPI VOID WINAPI RaiseException(DWORD dwExceptionCode, DWORD dwExceptionFlags, DWORD nNumberOfArguments, CONST ULONG_PTR* lpArguments);
+	WINBASEAPI void WINAPI RaiseException(DWORD dwExceptionCode, DWORD dwExceptionFlags, DWORD nNumberOfArguments, CONST ULONG_PTR* lpArguments);
 
 	WINBASEAPI DWORD WINAPI GetTickCount();
 
-	WINBASEAPI bool WINAPI CreateWindow(RECT* rect, const char* title, DWORD flags, QWORD* windowId);
-	WINBASEAPI bool WINAPI DrawWindow(QWORD* windowId, char* buffer, RECT* rect);
-	WINBASEAPI bool WINAPI DeleteWindow(QWORD* windowId);
-	WINBASEAPI bool WINAPI ReceiveEventFromWindowQueue(QWORD* windowId, EVENT* pstEvent);
+	
 
 	WINBASEAPI HANDLE WINAPI CreateFileMapping(HANDLE hFile, PSECURITY_ATTRIBUTES psa, DWORD fdwProtect, DWORD dwMaximumSizeHigh, DWORD dwMaximumSizeLow, LPCSTR pszName);
 	WINBASEAPI PVOID WINAPI MapViewOfFile(HANDLE hFileMappingObject, DWORD dwDesiredAccess, DWORD dwFileOffsetHigh, DWORD dwFileOffsetLow, DWORD dwNumberOfBytesToMap);
@@ -146,11 +146,23 @@ extern "C" {
 	WINBASEAPI DWORD WINAPI GetFileAttributes(LPCSTR lpFileName);
 	
 
-	DWORD GetEnvironmentVariable(LPCTSTR lpName, LPTSTR  lpBuffer, DWORD  nSize);
-	BOOL SetEnvironmentVariable(LPCTSTR lpName, LPCTSTR lpValue);
+	WINBASEAPI DWORD GetEnvironmentVariable(LPCTSTR lpName, LPTSTR  lpBuffer, DWORD  nSize);
+	WINBASEAPI BOOL SetEnvironmentVariable(LPCTSTR lpName, LPCTSTR lpValue);
 
-	BOOL QueryPerformanceCounter(LARGE_INTEGER* lpPerformanceCount);
-	BOOL QueryPerformanceFrequency(LARGE_INTEGER* lpFrequency);
+	WINBASEAPI BOOL QueryPerformanceCounter(LARGE_INTEGER* lpPerformanceCount);
+	WINBASEAPI BOOL QueryPerformanceFrequency(LARGE_INTEGER* lpFrequency);
+	
+	
+	WINBASEAPI DWORD GetModuleFileNameA(
+		HMODULE hModule,
+		LPSTR   lpFilename,
+		DWORD   nSize
+	);
+
+	WINBASEAPI HMODULE GetModuleHandle(LPCSTR lpModuleName);
+
+	WINBASEAPI DWORD GetTempPath(DWORD nBufferLength, LPSTR lpBuffer);
+	WINBASEAPI UINT GetTempFileName(LPCSTR lpPathName, LPCSTR lpPrefixString, UINT   uUnique, LPSTR  lpTempFileName);
 	///////////////////////////////////////////////////////////////////////////
 	//not implemented
 	/*LONG64 __cdecl InterlockedCompare64Exchange128(LONG64 volatile* Destination, LONG64 ExchangeHigh, LONG64 ExchangeLow, LONG64 Comparand);

@@ -546,6 +546,7 @@ BOOL kSetThreadPriority(HANDLE hThread, int nPriority)
 
 int kGetThreadPriority(HANDLE hThread)
 {
+	printf("kGetThreadPriority not implemented\n");
 	return 0;
 }
 
@@ -1709,6 +1710,40 @@ BOOL kSetEnvironmentVariable(LPCTSTR lpName, LPCTSTR lpValue)
 	int result = setenv(lpName, lpValue, 1);
 
 	return result == 0;
+}
+
+HMODULE kGetModuleHandle(LPCSTR lpModuleName)
+{
+	return 0;
+}
+
+BOOL kTlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue)
+{
+	return g_platformAPI._processInterface.sky_TlsSetValue(dwTlsIndex, lpTlsValue);
+
+	tss_set(dwTlsIndex, lpTlsValue);
+	return true;
+}
+
+LPVOID kTlsGetValue(DWORD dwTlsIndex)
+{
+	return g_platformAPI._processInterface.sky_TlsGetValue(dwTlsIndex);
+
+	return tss_get(dwTlsIndex);
+	
+}
+
+DWORD kTlsAlloc()
+{
+	return g_platformAPI._processInterface.sky_TlsAlloc();
+	return 0;
+}
+
+BOOL kTlsFree(DWORD dwTlsIndex)
+{
+	return g_platformAPI._processInterface.sky_TlsFree(dwTlsIndex);
+	//tss_delete(dwTlsIndex);
+	return true;
 }
 
 

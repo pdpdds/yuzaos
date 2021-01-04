@@ -164,6 +164,12 @@ enum
 
 	eGetEnvironmentVariable,
 	eSetEnvironmentVariable,
+
+	eGetModuleHandle,
+	eTlsSetValue,
+	eTlsGetValue,
+	eTlsAlloc,
+	eTlsFree,
 };
 
 /* Communication system calls
@@ -325,5 +331,12 @@ enum
 
 #define Syscall_GetEnvironmentVariable(lpName, lpBuffer, nSize) (DWORD)syscall3(eGetEnvironmentVariable, SCPARAM(lpName), SCPARAM(lpBuffer), SCPARAM(nSize))
 #define Syscall_SetEnvironmentVariable(lpName, lpValue) (DWORD)syscall2(eSetEnvironmentVariable, SCPARAM(lpName), SCPARAM(lpValue))
+
+#define Syscall_GetModuleHandle(lpModuleName) (DWORD)syscall1(eGetModuleHandle, SCPARAM(lpModuleName))
+#define Syscall_TlsSetValue(index, value) (BOOL)syscall2(eTlsSetValue, SCPARAM(index), SCPARAM(value))
+#define Syscall_TlsGetValue(index) (LPVOID)syscall1(eTlsGetValue, SCPARAM(index))
+#define Syscall_TlsAlloc() (DWORD)syscall0(eTlsAlloc)
+#define Syscall_TlsFree(index) (BOOL)syscall1(eTlsFree, SCPARAM(index))
+
 #endif
 

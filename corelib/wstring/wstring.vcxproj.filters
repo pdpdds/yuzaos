@@ -48,6 +48,7 @@
     <ClCompile Include="wcsnrtombs.c" />
     <ClCompile Include="wcstold.c" />
     <ClCompile Include="wcsftime.c" />
+    <ClCompile Include="wctomb.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\runtime\include\wchar.h" />

@@ -1,6 +1,7 @@
 #pragma once
 #include <va_list.h>
 #include <size_t.h>
+#include <errno.h>
 //#include <stat_def.h>
 
 #ifdef DLL_EXPORT
@@ -42,7 +43,6 @@ typedef struct _FILE
 extern "C" {
 #endif
 	typedef struct DIR DIR;
-	typedef struct stat stat;
 
 	DLL_API FILE* fopen(const char* filename, const char* mode);
 	DLL_API size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream);
@@ -82,11 +82,14 @@ extern "C" {
 	DLL_API int  closedir(DIR*);
 	DLL_API struct dirent* readdir(DIR*);
 	DLL_API void  rewinddir(DIR*);
-	DLL_API int fstat(char const* const fileName, struct stat* fno);
+	DLL_API int stat(char const* const fileName, struct stat* fno);
+	DLL_API int fstat(int fd, struct stat* buf);
 
 	DLL_API int ferror(FILE* stream);
 	DLL_API char* strerr(int errnum);
 	DLL_API char* strerror(int errnum);
+	DLL_API errno_t strerror_s(char* buffer, size_t sizeInBytes, int errnum);
+
 	DLL_API int remove(const char* pathname);
 
 	DLL_API int open(const char* filename, int flags, ...);

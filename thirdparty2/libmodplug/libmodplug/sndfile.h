@@ -15,6 +15,7 @@
 
 //#include <Windows.h>
 #include <minwindef.h>
+#include <minwinbase.h>
 #include <stdio.h>
 #include "string.h"
 #ifndef BOOL
@@ -538,7 +539,7 @@ typedef struct MODMIDICFG
 
 #define NOTE_MAX                        120 //Defines maximum notevalue as well as maximum number of notes.
 
-typedef VOID (* LPSNDMIXHOOKPROC)(int *, unsigned long, unsigned long); // buffer, samples, channels
+typedef void (* LPSNDMIXHOOKPROC)(int *, unsigned long, unsigned long); // buffer, samples, channels
 
 
 
@@ -685,14 +686,14 @@ public:
 
 public:
 	// Real-time sound functions
-	VOID ResetChannels();
+	void ResetChannels();
 
 	UINT Read(LPVOID lpBuffer, UINT cbBuffer);
 	UINT CreateStereoMix(int count);
 	BOOL FadeSong(UINT msec);
 	BOOL GlobalFadeSong(UINT msec);
 	UINT GetTotalTickCount() const { return m_nTotalCount; }
-	VOID ResetTotalTickCount() { m_nTotalCount = 0; }
+	void ResetTotalTickCount() { m_nTotalCount = 0; }
 
 public:
 	// Mixer Config

@@ -910,4 +910,9 @@ unsigned long atoul(const char *num)
 	return value;
 }
 
+long int atol(const char* nptr)
+{
+	return strtol(nptr, (char**)NULL, 10);
+}
+
 #endif

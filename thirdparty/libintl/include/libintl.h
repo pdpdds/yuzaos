@@ -303,7 +303,7 @@ extern void libintl_freeres (void);
 
 
 /* Support for the locale chosen by the user.  */
-#if (defined __APPLE__ && defined __MACH__) || defined _WIN32 || defined __WIN32__ || defined __CYGWIN__
+#if (defined __APPLE__ && defined __MACH__) || defined _WIN32 || defined __WIN32__ || defined __CYGWIN__ || defined SKYOS32
 
 #ifndef GNULIB_defined_setlocale /* don't override gnulib */
 #undef setlocale

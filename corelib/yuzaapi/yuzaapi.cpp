@@ -254,7 +254,7 @@ bool read_directory_first(dir_information* dirp, char* entry_name, bool& is_dire
 	strcat(buffer, "\\");
 	strcat(buffer,entry_name);
 	struct stat status;
-	if (fstat(buffer,&status)== 0) 
+	if (stat(buffer,&status)== 0) 
 		is_directory = (status.st_mode == 0);
 	else is_directory = false;
 
@@ -292,7 +292,7 @@ bool read_directory_next(dir_information* dirp, char* entry_name, bool& is_direc
 	strcat(buffer,entry_name);
 	
 	struct stat status;
-	if (fstat(buffer, &status) == 0)
+	if (stat(buffer, &status) == 0)
 		is_directory = (status.st_mode == 0);
 	else is_directory = false;
 

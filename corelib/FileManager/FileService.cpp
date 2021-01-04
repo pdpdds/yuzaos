@@ -215,9 +215,19 @@ int unlink(const char* pathname)
 	return g_pFileManager->unlink(pathname);
 }
 
-int fstat(char const* const fileName, struct stat* fno)
+int stat(char const* const fileName, struct stat* buf)
 {
-	return g_pFileManager->fstat(fileName, fno);
+	return g_pFileManager->fstat(fileName, buf);
+}
+
+int fstat(int fd, struct stat* buf)
+{
+	FILE* fp = g_pFileManager->GetFile(fd);
+
+	if (fp == 0)
+		return -1;
+
+	return g_pFileManager->fstat(fp->_name, buf);
 }
 
 extern "C" int remove(const char* pathname)
@@ -230,6 +240,16 @@ extern "C" char* strerror(int errnum)
 {
 	//not implemented
 	return errorMsg;
+}
+
+errno_t strerror_s(char* buffer, size_t sizeInBytes, int errnum)
+{
+	if (sizeInBytes < strlen(errorMsg) + 1)
+		return errnum;
+	
+	strcpy(buffer, errorMsg);
+
+	return errnum;
 }
 
 

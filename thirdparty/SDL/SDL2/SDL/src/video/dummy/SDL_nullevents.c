@@ -31,7 +31,7 @@
 #include "SDL_nullevents_c.h"
 #include "SDL_skyosmouse.h"
 #include "SDL_skyoskeyboard.h"
-#include "skyoswindow.h"
+#include <winapi2.h>
 
 void
 DUMMY_PumpEvents(_THIS)

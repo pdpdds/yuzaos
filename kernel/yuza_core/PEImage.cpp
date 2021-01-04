@@ -158,7 +158,7 @@ bool FixIAT(void* image)
 	if (!importDir.VirtualAddress || !importDir.Size)
 		return false;
 
-	auto importDescriptor = PIMAGE_IMPORT_DESCRIPTOR(ntHeaders->OptionalHeader.ImageBase + importDir.VirtualAddress);
+	auto importDescriptor = PIMAGE_IMPORT_DESCRIPTOR(ULONG_PTR(image) + importDir.VirtualAddress);
 	auto fixIATCount = 0;
 
 	for (; importDescriptor->Name; importDescriptor++)
@@ -190,9 +190,9 @@ bool FixIAT(void* image)
 		if (!hwnd)
 			hwnd = ModuleManager::GetInstance()->LoadPE(dllName);
 
-		/*pInitializeDll InitializeDll = (pInitializeDll)ModuleManager::GetInstance()->GetModuleFunction(hwnd, "InitializeDll");
+	pInitializeDll InitializeDll = (pInitializeDll)ModuleManager::GetInstance()->GetModuleFunction(hwnd, "InitializeDll");
 		if (InitializeDll != nullptr)
-			InitializeDll();*/
+			InitializeDll();
 
 		auto thunkData = PIMAGE_THUNK_DATA32(ULONG_PTR(image) + importDescriptor->FirstThunk);
 

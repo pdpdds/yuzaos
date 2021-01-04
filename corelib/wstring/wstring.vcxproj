@@ -52,6 +52,7 @@
     <ClCompile Include="wcswidth.c" />
     <ClCompile Include="wcsxfrm.c" />
     <ClCompile Include="wcsxfrm_l.c" />
+    <ClCompile Include="wctomb.c" />
     <ClCompile Include="wcwidth.c" />
     <ClCompile Include="wmemchr.c" />
     <ClCompile Include="wmemcmp.c" />

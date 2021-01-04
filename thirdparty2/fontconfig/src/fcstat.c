@@ -132,7 +132,7 @@ FcStat (const FcChar8 *file, struct stat *statb)
 int
 FcStat (const FcChar8 *file, struct stat *statb)
 {
-  return fstat ((char *) file, statb);
+  return stat ((char *) file, statb);
 }
 
 /* Adler-32 checksum implementation */
@@ -306,7 +306,8 @@ FcDirChecksum (const FcChar8 *dir, time_t *checksum)
 	f[len] = FC_DIR_SEPARATOR;
 	memcpy (&f[len + 1], files[n]->d_name, dlen);
 	f[len + 1 + dlen] = 0;
-	if (lstat (f, &statb) < 0)
+	//if (lstat (f, &statb) < 0)
+    if (stat(f, &statb) < 0)
 	{
 	    ret = -1;
 	    free (f);

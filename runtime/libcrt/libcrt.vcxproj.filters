@@ -154,9 +154,6 @@
     <ClCompile Include="libc\locale\uselocale.c">
       <Filter>libc\locale</Filter>
     </ClCompile>
-    <ClCompile Include="libc\locale\locale.c">
-      <Filter>libc\locale</Filter>
-    </ClCompile>
     <ClCompile Include="libc\ctype_.c">
       <Filter>libc</Filter>
     </ClCompile>
@@ -353,6 +350,9 @@
     </ClCompile>
     <ClCompile Include="libc\scandir.c">
       <Filter>libc</Filter>
+    </ClCompile>
+    <ClCompile Include="libc\locale\locale.c">
+      <Filter>libc\locale</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

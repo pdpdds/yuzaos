@@ -85,7 +85,7 @@
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <AdditionalIncludeDirectories>./;../include;../../../corelib/include;../../../runtime/include;../../yuza_core;../../../corelib/stl/sgi;../../../corelib/streams;../../../support/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_MSC_VER;SKY_DLL;SKYOS32;_CRT_SECURE_NO_WARNINGS;__i386__;DLL_EXPORT</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MSC_VER=1920;SKYOS32;_CRT_SECURE_NO_WARNINGS;</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>

@@ -2,6 +2,9 @@
 #include "windef.h"
 #include <gettimeofday.h>
 
+
+
+
 #ifdef __cplusplus
 extern "C"
 {
@@ -9,11 +12,7 @@ extern "C"
 #include <stdbool.h>
 #endif
 
-#ifndef _CLOCK_T_DEFINED
-#define _CLOCK_T_DEFINED
-//typedef __SIZE_TYPE__ clock_t;
-typedef long clock_t;
-#endif //!_CLOCK_T_DEFINED
+
 
 //RTC Command registers
 #define RTC_INDEX_REG 0x70

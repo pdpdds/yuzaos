@@ -89,7 +89,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level2</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>HAVE_STDINT_H;HAVE_UINT64_T;DLL_EXPORT;SKY_DLL;SKYOS32;_CRT_SECURE_NO_WARNINGS;</PreprocessorDefinitions>
+      <PreprocessorDefinitions>HAVE_STDINT_H;HAVE_UINT64_T;SKYOS32;_MSC_VER=1920;_CRT_SECURE_NO_WARNINGS;DLL_EXPORT</PreprocessorDefinitions>
       <SDLCheck>false</SDLCheck>
       <MinimalRebuild>false</MinimalRebuild>
       <ExceptionHandling>false</ExceptionHandling>
@@ -100,7 +100,7 @@
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <AdditionalOptions>/Oy /arch:SSE %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4819;2440;4146;4244;4047</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>../include;../../runtime/include;../../corelib/include;../../thirdparty/pixman\pixman;../../thirdparty/zlib128/zlib;../../ThirdParty/freetype/include;../../thirdparty/libpng/libpng</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../include;../../runtime/include;../../corelib/include;../../thirdparty/pixman\pixman;../../thirdparty/zlib128/zlib;../../ThirdParty/freetype/include;../../thirdparty/libpng/libpng;../../thirdparty2/fontconfig</AdditionalIncludeDirectories>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
       <OmitFramePointers>true</OmitFramePointers>
@@ -116,15 +116,15 @@
       <EntryPointSymbol>
       </EntryPointSymbol>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>zlib128.lib;expat.lib;iconv.lib;libwin32.lib;systemcall.lib;libcrt.lib;dllstub.lib;math.lib;freetyped.lib;pixman.lib;filemanager.lib;libpng.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../../runtime/Debug;../../ThirdParty/Debug;../../corelib/Debug;../../$(Configuration);</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libuuid.lib;fontconfig.lib;zlib128.lib;expat.lib;iconv.lib;libwin32.lib;systemcall.lib;libcrt.lib;dllstub.lib;math.lib;freetyped.lib;pixman.lib;filemanager.lib;libpng.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../runtime/Debug;../../ThirdParty/Debug;../../corelib/Debug;../../$(Configuration);../../ThirdParty2/Debug</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <AdditionalOptions>/Oy %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/safeseh:no /ALIGN:1024 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <ProjectReference>
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>

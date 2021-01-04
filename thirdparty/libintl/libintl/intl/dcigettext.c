@@ -149,7 +149,7 @@ char *getwd ();
 //#include <direct.h>
 //#      define getcwd _getcwd
 //#    else
-char *getcwd ();
+//char *getcwd ();
 //#  endif
 # endif
 # endif

@@ -41,7 +41,7 @@ static int cmd_dir(int argc, char** argv)
 		tinydir_readfile(&dir, &file);
 		struct stat info;
 
-		fstat(file.name, &info);
+		stat(file.name, &info);
 		
 		printf("[%s] %s  [%d]", file.is_dir ? "DIR" : "FILE", file.name, info.st_size);
 		if (file.is_dir)
@@ -103,7 +103,7 @@ static int cmd_chdir(int argc, char** argv)
 	}
 	
 	struct stat test;
-	if (fstat(szCurrentDir, &test) != 0 || !S_ISDIR(test.st_mode))
+	if (stat(szCurrentDir, &test) != 0 || !S_ISDIR(test.st_mode))
 	{
 		printf("can't change directory [%s]", szCurrentDir);
 		return -1;

@@ -119,7 +119,7 @@
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <AdditionalIncludeDirectories>./;../include;../../runtime/include;../../corelib/include;../../corelib/STL/SGI;../yuza_core;./audio;../../corelib/streams</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>SKYOS32;_MSC_VER;_SKY_DEBUG;_X86_32;_AUDIO_ENABLE_</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SKYOS32;_MSC_VER=1920;_SKY_DEBUG;_X86_32;_AUDIO_ENABLE_</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>
@@ -129,7 +129,7 @@
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CallingConvention>Cdecl</CallingConvention>
       <DisableSpecificWarnings>4457;4189;4100;4702;4102;4244;4239;4333;4127;4554;2124;4702</DisableSpecificWarnings>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -140,14 +140,14 @@
       <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <SDLCheck>false</SDLCheck>
-      <AdditionalOptions>/Oy %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Oy /arch:SSE %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>ddk.lib;kheap_yuza.lib;yuzalib.lib;common.lib;systemcall.lib;yuza_core.lib;filemanager.lib;libconfig.lib;libcrt.lib;win32stub.lib;math.lib;streams.lib</AdditionalDependencies>
+      <AdditionalDependencies>streams.lib;ddk.lib;kheap_pretty.lib;yuzalib.lib;common.lib;systemcall.lib;yuza_core.lib;filemanager.lib;libconfig.lib;libcrt.lib;win32stub.lib;math.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>../../$(Configuration)/lib;../../$(Configuration);../../corelib/debug;../../runtime/debug;../../thirdparty/debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>

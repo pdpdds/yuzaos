@@ -832,7 +832,7 @@ void sdlCheckDirectory(char* dir)
 		*p == '\\')
 		*p = 0;
 
-	if (fstat(dir, &buf) == 0) {
+	if (stat(dir, &buf) == 0) {
 		if (!(buf.st_mode & S_IFDIR)) {
 			fprintf(stderr, "Error: %s is not a directory\n", dir);
 			dir[0] = 0;

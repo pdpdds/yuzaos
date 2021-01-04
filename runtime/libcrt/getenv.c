@@ -4,7 +4,7 @@
 #include "memory.h"
 #include <systemcall_impl.h>
 
-int errno = 0;
+extern int errno = 0;
 /* Get environmental var
 * Returns the settings for a given key */
 char *getenv(const char *name)

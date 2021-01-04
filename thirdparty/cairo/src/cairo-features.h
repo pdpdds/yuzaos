@@ -31,6 +31,6 @@
 #define CAIRO_HAS_FT_FONT 1
 
 /* Require FontConfig */
-#define CAIRO_HAS_FC_FONT 0
+#define CAIRO_HAS_FC_FONT 1
 
 #endif

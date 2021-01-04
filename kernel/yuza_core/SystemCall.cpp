@@ -388,4 +388,10 @@ void RegisterSysCall()
 	AddSyscall(eGetEnvironmentVariable, kGetEnvironmentVariable);
 	AddSyscall(eSetEnvironmentVariable, kSetEnvironmentVariable);
 
+	AddSyscall(eGetModuleHandle, kGetModuleHandle);
+	AddSyscall(eTlsSetValue, kTlsSetValue);
+	AddSyscall(eTlsGetValue, kTlsGetValue);
+	AddSyscall(eTlsAlloc, kTlsAlloc);
+	AddSyscall(eTlsFree, kTlsFree);
+
 }

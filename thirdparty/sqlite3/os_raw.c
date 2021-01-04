@@ -341,7 +341,7 @@ static int rawTruncate(sqlite3_file *id, sqlite3_int64 nByte){
     return SQLITE_IOERR_TRUNCATE;
   }
 
-  rc = ftruncate(pFile->h);
+  rc = ftruncate(fileno(pFile->h), ftell(pFile->h));
   if( rc != 0 ){
     return SQLITE_IOERR_TRUNCATE;
   }
@@ -725,7 +725,7 @@ static int rawAccess(
 
   assert( pResOut );
 
-  rc = fstat((TCHAR *)zFilename, &fi);
+  rc = stat((TCHAR *)zFilename, &fi);
 
   switch( flags ){
     case SQLITE_ACCESS_READ:

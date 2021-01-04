@@ -60,6 +60,9 @@
     <ClInclude Include="..\..\runtime\include\math.h" />
     <ClInclude Include="src\fdlibm.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{07645D9C-AADA-4F7C-AD19-DBB8DE93F9EC}</ProjectGuid>
     <RootNamespace>Kernel</RootNamespace>
@@ -138,7 +141,7 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>libcrt.lib;dllstub.lib;systemcall.lib</AdditionalDependencies>
+      <AdditionalDependencies>libcrt.lib;dllstub.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration);../../runtime/debug;../Debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>

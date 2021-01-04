@@ -32,9 +32,9 @@ extern "C" {
 	CRT_API double strtod(const char* string, char** endPtr);
 	CRT_API size_t strcspn(const char* s1, const char* s2);
 	CRT_API unsigned long strtoul(const char* nptr, char** endptr, int base);
-	CRT_API size_t strftime(char* __restrict s,
-		size_t maxsize, const char* __restrict format,
-		const struct tm* __restrict tim_p);
+	//CRT_API size_t strftime(char* __restrict s,
+		//size_t maxsize, const char* __restrict format,
+		//const struct tm* __restrict tim_p);
 
 	CRT_API void ftoa_fixed(char* buffer, double value);
 	CRT_API void ftoa_sci(char* buffer, double value);

@@ -95,6 +95,24 @@ typedef struct _FILETIME {
 } FILETIME, *PFILETIME, *LPFILETIME;
 #endif
 
+typedef struct _SYSTEM_INFO {
+    union {
+        DWORD dwOemId;          // Obsolete field...do not use
+        struct {
+            WORD wProcessorArchitecture;
+            WORD wReserved;
+        } DUMMYSTRUCTNAME;
+    } DUMMYUNIONNAME;
+    DWORD dwPageSize;
+    LPVOID lpMinimumApplicationAddress;
+    LPVOID lpMaximumApplicationAddress;
+    DWORD_PTR dwActiveProcessorMask;
+    DWORD dwNumberOfProcessors;
+    DWORD dwProcessorType;
+    DWORD dwAllocationGranularity;
+    WORD wProcessorLevel;
+    WORD wProcessorRevision;
+} SYSTEM_INFO, * LPSYSTEM_INFO;
 
 typedef struct _WIN32_FIND_DATAA {
     DWORD dwFileAttributes;
@@ -271,6 +289,10 @@ typedef struct _PROCESS_HEAP_ENTRY {
 #define PROCESS_HEAP_SEG_ALLOC          0x0008
 #define PROCESS_HEAP_ENTRY_MOVEABLE     0x0010
 #define PROCESS_HEAP_ENTRY_DDESHARE     0x0020
+
+#ifndef TLS_OUT_OF_INDEXES
+#define TLS_OUT_OF_INDEXES ((DWORD)0xFFFFFFFF)
+#endif
 
 typedef struct _REASON_CONTEXT {
     ULONG Version;
@@ -541,6 +563,13 @@ typedef struct _FIND_FILE_HANDLE
 #define WAIT_ABANDONED 2
 #define WAIT_FAILED 3
 #define WAIT_TIMEOUT 1
+
+#define MAXIMUM_WAIT_OBJECTS 64     // Maximum number of wait objects
+#define MAXIMUM_SUSPEND_COUNT MAXCHAR // Maximum times thread can be suspended
+
+#define MWMO_WAITALL        0x0001
+#define MWMO_ALERTABLE      0x0002
+#define MWMO_INPUTAVAILABLE 0x0004
 
 #define PROCESS_TERMINATE                  (0x0001)  
 #define PROCESS_CREATE_THREAD              (0x0002)  

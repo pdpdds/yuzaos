@@ -3,6 +3,8 @@
 #include <memory.h>
 #include <FileService.h>
 #include <sprintf.h>
+#include <errno.h>
+#include <getenv.h>
 
 #if  defined(DLL_CRT_EXPORT)
 #define CRT_API __declspec(dllexport) 
@@ -21,6 +23,7 @@ extern "C" {
 	CRT_API long strtol(const char* nptr, char** endptr, int base);
 	CRT_API int atoi(const char * str);
 	CRT_API double atof(char *p);
+	CRT_API long int atol(const char* nptr);
 	CRT_API int atob(int *vp, char *p, int base);
 	CRT_API int      sscanf(const char *, const char *, ...);
 	CRT_API unsigned long atoul(const char *num);
@@ -50,11 +53,12 @@ int __cdecl atexit(_PVFV fn);
 
 #ifdef  __cplusplus
 extern "C" {
+#else
 #endif
 extern FILE* stdin;
-extern  FILE* stdout;
-extern  FILE* stderr;
-extern  int errno;
+extern FILE* stdout;
+extern FILE* stderr;
+extern int errno;
 #ifdef  __cplusplus
 }
 #endif

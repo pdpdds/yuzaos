@@ -17,6 +17,7 @@ void* operator new[](size_t, void* p) { return p; }
 
 int __cdecl _purecall()
 {
+	assert(0);
 	// kprintf("Pure Function Called!!\n");
 	return 0;
 }

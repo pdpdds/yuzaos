@@ -42,11 +42,22 @@ typedef int mode_t;
 extern "C" {
 #endif
 
-	//int stat(const char* path, struct stat* buf);
+	struct utimbuf
+	{
+		time_t actime;   // 접근시간
+		time_t modtime;	 // 변경시간
+	};
+
 	int access(const char* pathname, int mode);
 	int lstat(const char* filename, struct stat* buf);
 	int chmod(const char* filename, int pmode);
-	
+	unsigned int getpid();
+	unsigned int getppid();
+	int gethostname(char* name, size_t len);
+	int sethostname(const char* name, size_t len);
+	int utime(const char* filename, struct utimbuf* buf);
+
+
 	void* bsearch(const void* key, const void* base0,
 		size_t nmemb, size_t size,
 		int (*compar)(const void*, const void*));

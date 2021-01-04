@@ -25,7 +25,7 @@
 #include "../SDL_sysvideo.h"
 #include "SDL_nullvideo.h"
 #include "SDL_nullframebuffer_c.h"
-#include "skyoswindow.h"
+#include <winapi2.h>
 
 #define DUMMY_SURFACE   "_SDL_DummySurface"
 #define SKYOS_DATA   "_SDL_Skyos_Data"

@@ -19,5 +19,8 @@
     <ClInclude Include="..\include\winapi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\winapi2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

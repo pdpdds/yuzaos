@@ -52,12 +52,17 @@ extern "C" {
     typedef ULONG_PTR DWORD_PTR, * PDWORD_PTR;
     typedef __int64 LONG64, * PLONG64;
 
+
 #ifndef _ULONGLONG_
     typedef __int64 LONGLONG;
     typedef unsigned __int64 ULONGLONG;
     typedef LONGLONG* PLONGLONG;
     typedef ULONGLONG* PULONGLONG;
 #endif // _ULONGLONG_
+
+#define _DWORDLONG_
+    typedef ULONGLONG  DWORDLONG;
+    typedef DWORDLONG* PDWORDLONG;
 
 #define DLL_PROCESS_ATTACH   1    
 #define DLL_THREAD_ATTACH    2    
@@ -215,7 +220,7 @@ typedef int                 BOOL;
     typedef LONG* PLONG;
     typedef WCHAR* LPWSTR, * PWSTR;
     typedef const WCHAR* LPCWSTR, * PCWSTR;
-    typedef void VOID;
+    //typedef void VOID;
 
     #define IN
     #define OUT
@@ -223,7 +228,7 @@ typedef int                 BOOL;
     typedef char TCHAR;
 
    #define NTAPI __stdcall
-    typedef VOID(NTAPI* PAPCFUNC)(ULONG_PTR Parameter);
+    typedef void(NTAPI* PAPCFUNC)(ULONG_PTR Parameter);
 
 #define FILE_BEGIN           0
 #define FILE_CURRENT         1

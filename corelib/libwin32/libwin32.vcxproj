@@ -15,6 +15,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\winapi.h" />
+    <ClInclude Include="..\include\winapi2.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <SccProjectName />
@@ -91,7 +92,8 @@
       <OutputFile>$(SolutionDir)debug/$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>.\Debug/dosbox.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>
+      </ProgramDatabaseFile>
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration);../../runtime/debug;../Debug;../../thirdparty/debug</AdditionalLibraryDirectories>

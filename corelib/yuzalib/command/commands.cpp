@@ -212,7 +212,7 @@ long cmdCD(char* dir)
 	{
 		// It has to be a directory !
 		struct stat test;
-		if (fstat(newdir, &test) != 0)
+		if (stat(newdir, &test) != 0)
 		{
 			printf("cant't change directoy\n");
 			return false;

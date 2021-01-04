@@ -162,7 +162,12 @@ extern "C" {
 	DWORD kGetEnvironmentVariable(LPCTSTR lpName, LPTSTR  lpBuffer, DWORD  nSize);
 	BOOL kSetEnvironmentVariable(LPCTSTR lpName, LPCTSTR lpValue);
 
-
+	//-----------------------------------------------------------------------------------
+	HMODULE kGetModuleHandle(LPCSTR lpModuleName);
+	BOOL kTlsSetValue(DWORD  dwTlsIndex, LPVOID lpTlsValue);
+	LPVOID kTlsGetValue(DWORD dwTlsIndex);
+	DWORD kTlsAlloc();
+	BOOL kTlsFree(DWORD dwTlsIndex);
 
 #ifdef __cplusplus
 }

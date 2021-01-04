@@ -91,7 +91,7 @@
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>.\SDLDebug/VisualBoyAdvance-SDL.map</MapFileName>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>../../../../$(Configuration)/lib;../../../../$(Configuration);../../../../corelib/debug;../../../../runtime/debug;../../../../thirdparty/debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../../../$(Configuration)/lib;../../../../$(Configuration);../../../../corelib/debug;../../../../runtime/debug;../../../../thirdparty/debug;../../../../thirdparty\SDL\SDL1CL\Debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <OptimizeReferences>true</OptimizeReferences>
@@ -196,7 +196,7 @@
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\src\i386\2xSaImmx.asm">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"C:\Dev\OS\yuza\Kernel\yuza_core\nasmw.exe" -D__DJGPP__ -f win32 -o $(OutDir)%(Filename).obj %(FullPath)
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(SolutionDir)\Kernel\yuza_core\nasmw.exe" -D__DJGPP__ -f win32 -o $(OutDir)%(Filename).obj %(FullPath)
 </Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)%(Filename).obj;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"c:\Program Files\Nasm\nasmw.exe" -D__DJGPP__ -f win32 -o $(OutDir)%(Filename).obj %(FullPath)

@@ -111,9 +111,9 @@ pthread_win32_process_attach_np ()
   else
     {
       /* Initialise QueueUserAPCEx */
-      BOOL (*queue_user_apc_ex_init) (VOID);
+      BOOL (*queue_user_apc_ex_init) (void);
 
-      queue_user_apc_ex_init = (BOOL (*)(VOID))
+      queue_user_apc_ex_init = (BOOL (*)(void))
 #if defined(NEED_UNICODE_CONSTS)
 	GetProcAddress (ptw32_h_quserex,
 			(const TCHAR *) TEXT ("QueueUserAPCEx_Init"));
@@ -169,7 +169,7 @@ pthread_win32_process_detach_np ()
 	  /* Close QueueUserAPCEx */
 	  BOOL (*queue_user_apc_ex_fini) (VOID);
 
-	  queue_user_apc_ex_fini = (BOOL (*)(VOID))
+	  queue_user_apc_ex_fini = (BOOL (*)(void))
 #if defined(NEED_UNICODE_CONSTS)
 	    GetProcAddress (ptw32_h_quserex,
 			    (const TCHAR *) TEXT ("QueueUserAPCEx_Fini"));

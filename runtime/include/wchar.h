@@ -57,6 +57,7 @@ extern "C"
 	WSTRING_API wchar_t *wmemcpy(wchar_t *__restrict d, const wchar_t *__restrict s, size_t n);
 	WSTRING_API size_t wcslcpy(wchar_t *dst, const wchar_t *src, size_t siz);
 	WSTRING_API wchar_t* wcsncpy(wchar_t* __restrict s1, const wchar_t* __restrict s2, size_t n);
+	WSTRING_API int wctomb(char* s, wchar_t wc);
 	//WSTRING_API size_t wcsrtombs(char* __restrict dst, const wchar_t** __restrict src, size_t len, mbstate_t* __restrict ps);
 	
 

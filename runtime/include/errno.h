@@ -35,8 +35,17 @@
 */
 #include <size_t.h>
 #ifndef KERNEL
-extern int errno;			/* global error number */
+#ifdef __cplusplus
+extern "C" { 
 #endif
+	extern int errno;			/* global error number */
+
+#ifdef __cplusplus
+}
+#endif
+#endif
+
+typedef int errno_t;
 
 #define	EPERM		1		/* Operation not permitted */
 #define	ENOENT		2		/* No such file or directory */
@@ -146,7 +155,7 @@ extern int errno;			/* global error number */
 #define	ENOSYS		78		/* Function not implemented */
 
 #define	EFTYPE		79		/* Inappropriate file type or format */
-//#define	EOVERFLOW   80
+#define	EOVERFLOW   80
 
 #define	EILSEQ      240
 #ifdef KERNEL

@@ -27,7 +27,7 @@
  */
 
 #include "hb.hh"
-
+#define HAVE_GLIB
 #ifdef HAVE_GLIB
 
 #include "hb-glib.h"

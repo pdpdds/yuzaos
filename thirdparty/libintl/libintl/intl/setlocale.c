@@ -46,7 +46,7 @@
 #include <debug.h>
 #endif
 
-#if (defined __APPLE__ && defined __MACH__) || defined _WIN32 || defined __WIN32__ || defined __CYGWIN__
+#if (defined __APPLE__ && defined __MACH__) || defined _WIN32 || defined __WIN32__ || defined __CYGWIN__ || defined SKYOS32
 
 # undef setlocale
 # undef newlocale
