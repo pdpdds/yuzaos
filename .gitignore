@@ -1,5 +1,14 @@
 
 *.pdb
+Debug
+.vs
+Intermediate
 runtime/Debug
 runtime/.vs
 runtime/Intermediate
+corelib/Intermediate
+corelib/.vs
+corelib/Debug
+
+*.idb
+*.obj

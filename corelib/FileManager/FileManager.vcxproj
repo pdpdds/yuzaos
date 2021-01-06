@@ -106,7 +106,7 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>libcrt.lib;dllstub.lib;systemcall.lib;cwalk_static.lib;streams.lib</AdditionalDependencies>
+      <AdditionalDependencies>libcrt.lib;dllstub.lib;systemcall.lib;cwalk.lib;streams.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration);../../runtime/debug;../Debug;../../thirdparty/debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
