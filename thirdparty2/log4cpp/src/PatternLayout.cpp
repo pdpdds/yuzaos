@@ -166,7 +166,7 @@ namespace log4cpp {
             if (_printMillis) {
                 std::ostringstream formatStream;
                 formatStream << _timeFormat1.c_str()
-                             << std::setw(3) << std::setfill('0')
+                       //      << std::setw(3) << std::setfill('0')
                              << event.timeStamp.getMilliSeconds()
                              << _timeFormat2.c_str();
                 timeFormat = formatStream.str();

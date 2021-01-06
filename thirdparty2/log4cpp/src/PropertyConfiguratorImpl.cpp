@@ -156,22 +156,22 @@ namespace log4cpp {
         Priority::Value priority = Priority::NOTSET;
         if (i != iEnd) {
             std::string priorityName = StringUtil::trim(*i++);
-            try {
-                if (priorityName != "") {
+           // try {
+                if (priorityName.compare("") != 0) {
                     priority = Priority::getPriorityValue(priorityName);
                 }
-            } catch(std::invalid_argument& e) {
-                throw ConfigureFailure(std::string(e.what()) + 
-                    " for category '" + categoryName + "'");
-            }
+            //} catch(std::invalid_argument& e) {
+              //  throw ConfigureFailure(std::string(e.what()) + 
+                  //  " for category '" + categoryName + "'");
+           // }
         }
 
-        try {
+       // try {
         	category.setPriority(priority);
-        } catch (std::invalid_argument& e) {
-        	throw ConfigureFailure(std::string(e.what()) +
-                    " for category '" + categoryName + "'");
-        }
+       // } catch (std::invalid_argument& e) {
+        //	throw ConfigureFailure(std::string(e.what()) +
+           //         " for category '" + categoryName + "'");
+       // }
 
         bool additive = _properties.getBool("additivity." + categoryName, true);
         category.setAdditivity(additive);
@@ -290,15 +290,15 @@ namespace log4cpp {
 
         // set threshold
         std::string thresholdName = _properties.getString(appenderPrefix + ".threshold", "");
-        try {
-            if (thresholdName != "") {
+       // try {
+            if (thresholdName.compare("") != 0) {
                 appender->setThreshold(Priority::getPriorityValue(thresholdName));
             }
-        } catch(std::invalid_argument& e) {
+        /*} catch(std::invalid_argument& e) {
 	    delete appender;	// fix for #3109495
             throw ConfigureFailure(std::string(e.what()) + 
                 " for threshold of appender '" + appenderName + "'");
-        }
+        }*/
 
         return appender;
     }

@@ -15,11 +15,11 @@
 #endif
 
 #include <stdio.h>
+
 #include <iostream>
-#include <string>
 #include <fstream>
 #include <stdio.h>
-
+#include <string>
 #include <log4cpp/Category.hh>
 #include <log4cpp/Appender.hh>
 #include <log4cpp/OstreamAppender.hh>
@@ -49,7 +49,8 @@ namespace log4cpp {
         std::ifstream initFile(initFileName.c_str());
         
         if (!initFile) {
-            throw ConfigureFailure(std::string("Config File ") + initFileName + " does not exist or is unreadable");
+            assert(0);
+            //throw ConfigureFailure(std::string("Config File ") + initFileName + " does not exist or is unreadable");
         }
         
         configure(initFile);
@@ -63,7 +64,8 @@ namespace log4cpp {
             /* skip comment lines */
             if (nextCommand[0] == '#') {
                 std::string dummy;
-                std::getline(initFile, dummy);
+                std::getline(initFile, (char*)dummy.c_str(), 256);
+                //std::getline(initFile, dummy);
                 continue;
             }
             /* stop on missing categoryName */
@@ -84,7 +86,8 @@ namespace log4cpp {
                     if (appenderName.compare("file") == 0) {
                         std::string logFileName;
                         if (!(initFile >> logFileName)) {
-                            throw ConfigureFailure("Missing filename for log file logging configuration file for category: " + categoryName);
+                            assert(0);
+                            //throw ConfigureFailure("Missing filename for log file logging configuration file for category: " + categoryName);
                         }
                         appender = new log4cpp::FileAppender(categoryName, logFileName);
                     }
@@ -93,13 +96,16 @@ namespace log4cpp {
                         size_t maxFileSize;
                         unsigned int maxBackupIndex=1;
                         if (!(initFile >> logFileName)) {
-                            throw ConfigureFailure("Missing filename for log file logging configuration file for category: " + categoryName);
+                            assert(0);
+                            //throw ConfigureFailure("Missing filename for log file logging configuration file for category: " + categoryName);
                         }
                         if (!(initFile >> maxFileSize)) {
-                            throw ConfigureFailure("Missing maximum size for log file logging configuration file for category: " + categoryName);
+                            assert(0);
+                            //throw ConfigureFailure("Missing maximum size for log file logging configuration file for category: " + categoryName);
                         }
                         if (!(initFile >> maxBackupIndex)) {
-                            throw ConfigureFailure("Missing maximum backup index for log file logging configuration file for category: " + categoryName);
+                            assert(0);
+                            //throw ConfigureFailure("Missing maximum backup index for log file logging configuration file for category: " + categoryName);
                         }
                         appender = new log4cpp::RollingFileAppender(categoryName, logFileName, maxFileSize, maxBackupIndex);
                     }
@@ -107,10 +113,12 @@ namespace log4cpp {
                         std::string logFileName;
                         unsigned int maxKeepDays=1;
                         if (!(initFile >> logFileName)) {
-                            throw ConfigureFailure("Missing filename for log file logging configuration file for category: " + categoryName);
+                            assert(0);
+                            //throw ConfigureFailure("Missing filename for log file logging configuration file for category: " + categoryName);
                         }
                         if (!(initFile >> maxKeepDays)) {
-                            throw ConfigureFailure("Missing maximum keep days for log file logging configuration file for category: " + categoryName);
+                            assert(0);
+                            //throw ConfigureFailure("Missing maximum keep days for log file logging configuration file for category: " + categoryName);
                         }
                         appender = new log4cpp::DailyRollingFileAppender(categoryName, logFileName, maxKeepDays);
                     }
@@ -160,10 +168,12 @@ namespace log4cpp {
                         int facility;
                         int portNumber;
                         if (!(initFile >> syslogName)) {
-                            throw ConfigureFailure("Missing syslogname for SysLogAppender for category: " + categoryName);
+                            assert(0);
+                            //throw ConfigureFailure("Missing syslogname for SysLogAppender for category: " + categoryName);
                         }
                         if (!(initFile >> relayer)) {
-                            throw ConfigureFailure("Missing syslog host for SysLogAppender for category: " + categoryName);
+                            assert(0);
+                            //throw ConfigureFailure("Missing syslog host for SysLogAppender for category: " + categoryName);
                         }
                         if (!(initFile >> facility)) {
                             facility = LOG_USER;
@@ -176,10 +186,11 @@ namespace log4cpp {
                     }
 #endif // LOG4CPP_DISABLE_REMOTE_SYSLOG
                     else {
-                        throw ConfigureFailure("Invalid appender name (" +
-                                               appenderName +
-                                               ") in logging configuration file for category: " +
-                                               categoryName);
+                    assert(0);
+                        //throw ConfigureFailure("Invalid appender name (" +
+                                               //appenderName +
+                                               //") in logging configuration file for category: " +
+                                              // categoryName);
                     }
                     if (layout.compare("basic") == 0)
                         appender->setLayout(new log4cpp::BasicLayout());
@@ -188,16 +199,19 @@ namespace log4cpp {
                     else if (layout.compare("pattern") == 0) {
                         log4cpp::PatternLayout *layout =
                             new log4cpp::PatternLayout();
-			initFile >> std::ws; // skip whitespace
+			//initFile >> std::ws; // skip whitespace
+             char whitespace;
+             initFile >> whitespace; // skip whitespace
                         char pattern[1000];
                         initFile.getline(pattern, 1000);
                         layout->setConversionPattern(std::string(pattern));
 			appender->setLayout(layout);
                     }
                     else {
-                        throw ConfigureFailure("Invalid layout (" + layout +
-                                               ") in logging configuration file for category: " +
-                                               categoryName);
+                        assert(0);
+                        //throw ConfigureFailure("Invalid layout (" + layout +
+                          //                     ") in logging configuration file for category: " +
+                            //                   categoryName);
                     }
                     category.addAppender(appender);
                 }
@@ -205,14 +219,16 @@ namespace log4cpp {
             else if (nextCommand.compare("priority") == 0) {
                 std::string priority;
                 if (!(initFile >> priority)) {
-                    throw ConfigureFailure("Missing priority in logging configuration file for category: " + categoryName);
+                    assert(0);
+                    //throw ConfigureFailure("Missing priority in logging configuration file for category: " + categoryName);
                 }
                 
-                try {
+               // try {
                     category.setPriority(log4cpp::Priority::getPriorityValue(priority));
-                } catch(std::invalid_argument) {
-                    throw ConfigureFailure("Invalid priority ("+priority+") in logging configuration file for category: "+categoryName);
-                }
+              //  } catch(std::invalid_argument) {
+                    assert(0);
+                    //throw ConfigureFailure("Invalid priority ("+priority+") in logging configuration file for category: "+categoryName);
+               // }
             }
             else if (nextCommand.compare("category") == 0) {
                 /*
@@ -222,7 +238,8 @@ namespace log4cpp {
                 */
             }
             else {
-                throw ConfigureFailure("Invalid format in logging configuration file. Command: " + nextCommand);
+                assert(0);
+                //throw ConfigureFailure("Invalid format in logging configuration file. Command: " + nextCommand);
             }
         }
     }

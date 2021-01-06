@@ -39,7 +39,7 @@ namespace log4cpp
             void assign_impl(const std::string& param_value, T& value) const
             {
                std::stringstream s;
-               s << param_value;
+               s << param_value.c_str();
                s >> value;
             }
 

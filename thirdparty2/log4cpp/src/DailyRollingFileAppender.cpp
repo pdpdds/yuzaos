@@ -51,7 +51,7 @@ namespace log4cpp {
 		time_t t;
 
 		// obtain last modification time
-		res = fstat(fileName.c_str(), &statBuf);
+		res = stat(fileName.c_str(), &statBuf);
 		if (res != 0) {
 			t = time(NULL);
 		} else {
@@ -80,7 +80,8 @@ namespace log4cpp {
 			std::cout << "Error closing file " << _fileName.c_str() << std::endl;
 		}
 		filename_s << _fileName.c_str() << "." << _logsTime.tm_year + 1900 << "-"
-						<< std::setfill('0') << std::setw(2) << _logsTime.tm_mon + 1 << "-"
+						//<< std::setfill('0') << std::setw(2) << _logsTime.tm_mon + 1 << "-"
+			 << _logsTime.tm_mon + 1 << "-"
 						<< std::setw(2) << _logsTime.tm_mday << std::endl;
 		const std::string lastFn = filename_s.str();
 		int res_rename = ::rename(_fileName.c_str(), lastFn.c_str());
@@ -112,7 +113,7 @@ namespace log4cpp {
 		for (int i = 0; i < nentries; i++) {
 			struct stat statBuf;
 			const std::string fullfilename = dirname + PATHDELIMITER + entries[i]->d_name;
-			int res = ::fstat(fullfilename.c_str(), &statBuf);
+			int res = ::stat(fullfilename.c_str(), &statBuf);
 			if ((res != 0) || (!S_ISREG(statBuf.st_mode))) {
 				free(entries[i]);
 				continue;

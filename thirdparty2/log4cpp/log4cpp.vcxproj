@@ -170,7 +170,7 @@
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>../include;../../runtime/include;../../corelib/include;../../corelib/stl/sgi;../../corelib/streams;./include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../corelib/streams;../../corelib/stl/sgi;../include;../../runtime/include;../../corelib/include;./include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SKYOS32;_MSC_VER=1920;LOG4CPP_HAVE_SSTREAM</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>

@@ -2209,7 +2209,7 @@ ostream& operator<<(ostream& __os,
     __os.clear(__os.rdstate() | ios::badbit);
 
   return __os;
-}*/
+}
 
 template <class _CharT, class _Traits, class _Alloc>
 istream& operator>>(istream& __is, basic_string<_CharT,_Traits,_Alloc>& __s)
@@ -2221,11 +2221,7 @@ istream& operator>>(istream& __is, basic_string<_CharT,_Traits,_Alloc>& __s)
   if (__buf) {
 
 #ifdef __USLC__
-/* Jochen Schlick '1999  - operator >> modified. Work-around to get the 
- *                         output buffer flushed (necessary when using 
- *                         "cout" (without endl or flushing) followed by
- *                         "cin >>" ...)
- */
+
     if (__is.flags() & ios::skipws) {
       _CharT __c;
       do 
@@ -2293,7 +2289,7 @@ istream& operator>>(istream& __is, basic_string<_CharT,_Traits,_Alloc>& __s)
     __is.clear(__is.rdstate() | ios::badbit);
 
   return __is;
-}
+}*/
 
 template <class _CharT, class _Traits, class _Alloc>    
 istream& getline(istream& __is,

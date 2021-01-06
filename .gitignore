@@ -14,3 +14,5 @@ corelib/Debug
 /thirdparty/libmcrypt/win32/vc19/Debug
 /thirdparty/libmcrypt/win32/vc19/libmcrypt
 /thirdparty/libintl/libdll
+/thirdparty2/libxml2/win32/VC10/build/libxml2Debug
+/thirdparty2/libxml2/lib
