@@ -100,7 +100,7 @@
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <AdditionalOptions>/Oy /arch:SSE %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4819;2440;4146;4244;4047</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>../include;../../runtime/include;../../corelib/include;../../thirdparty/pixman\pixman;../../thirdparty/zlib128/zlib;../../ThirdParty/freetype/include;../../thirdparty/libpng/libpng;../../thirdparty2/fontconfig</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../include;../../runtime/include;../../corelib/include;../../thirdparty/pixman\pixman;../../thirdparty/zlib128/zlib;../../ThirdParty/freetype/include;../../thirdparty/libpng/libpng;../../thirdparty/fontconfig</AdditionalIncludeDirectories>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
       <OmitFramePointers>true</OmitFramePointers>

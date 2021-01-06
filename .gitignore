@@ -9,6 +9,8 @@ runtime/Intermediate
 corelib/Intermediate
 corelib/.vs
 corelib/Debug
-
 *.idb
 *.obj
+/thirdparty/libmcrypt/win32/vc19/Debug
+/thirdparty/libmcrypt/win32/vc19/libmcrypt
+/thirdparty/libintl/libdll

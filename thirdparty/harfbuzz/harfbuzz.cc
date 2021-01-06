@@ -44,23 +44,10 @@
 #include "hb-static.cc"
 #include "hb-ucd.cc"
 #include "hb-unicode.cc"
-#include "hb-glib.cc"
+//#include "hb-glib.cc"
 #include "hb-ft.cc"
 #include "hb-graphite2.cc"
 #include "hb-uniscribe.cc"
 #include "hb-gdi.cc"
 #include "hb-directwrite.cc"
 #include "hb-coretext.cc"
-
-void __SKY_ASSERT(const char* expr_str, bool expr, const char* file, int line, const char* msg)
-{
-	if (!expr)
-	{
-		//SkyConsole::Print("%s %s, %s %d\n", msg, expr_str, file, line);
-		//for (;;);
-		char buf[256];
-		sprintf(buf, "Assert failed: %s Expected: %s %s %d\n", msg, expr_str, file, line);
-
-		__asm hlt;
-	}
-}

@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{f98dc337-a470-4470-a783-e891e867a4c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{65f3bc71-840e-4355-a8fa-097cd7ff3574}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\fcarch.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fcatomic.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fccache.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fccfg.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fccharset.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fccompat.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fcdbg.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fcdefault.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fcdir.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fcformat.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fcfreetype.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fcfs.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fchash.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fcinit.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fclang.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fclist.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fcmatch.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fcmatrix.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fcname.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fcobjs.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fcpat.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fcptrlist.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fcrange.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fcserialize.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fcstat.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fcstr.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fcweight.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fcxml.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ftglue.c">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\fcarch.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fcatomic.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fcmutex.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fcobjs.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fcobjshash.gperf.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fcwindows.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ftglue.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fcdeprecate.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fcftint.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fcint.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
