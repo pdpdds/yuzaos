@@ -1,2 +1,5 @@
 
 *.pdb
+runtime/Debug
+runtime/.vs
+runtime/Intermediate
