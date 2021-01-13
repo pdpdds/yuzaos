@@ -1,8 +1,9 @@
 
 *.pdb
 Debug
-.vs
 bin
+verify
+.vs
 Intermediate
 runtime/Debug
 runtime/.vs
