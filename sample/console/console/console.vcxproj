@@ -114,7 +114,7 @@
     <Link>
       <AdditionalDependencies>math.lib;systemcall.lib;filemanager.lib;libcrt.lib;exestub.lib;slog.lib;streams.lib;yuzalib.lib;yuzaapi.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>../../../$(Configuration);../../../corelib/debug;../../../runtime/debug;../../../Debug;../../../support/debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../../$(Configuration);../../../corelib/debug;../../../runtime/debug;../../../Debug;../../../support/debug;../../../thirdparty/debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(OutDir)$(TargetName).map</MapFileName>

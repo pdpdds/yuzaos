@@ -111,7 +111,7 @@
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>../../../corelib/include;../../../runtime/include;../../../corelib/eastreams;./;../include;../../../ThirdParty/SDL/SDL2/SDL/include;../../../ThirdParty/SDL/SDL2/SDLgfx;../../../ThirdParty/SDL/SDL2/SDLttf;../../../corelib/stl/eastl/include;../../../corelib/stl/EASTL\test\packages\EAStdC\include;../../../corelib/stl/EASTL\test\source;../../../corelib/stl/EASTL\test\packages/EABase\include\Common;../../../corelib/stl/EASTL\test\packages\EAAssert\include;../../../corelib/stl/EASTL\test\packages\EATest\include;../../../corelib/stl/EASTL\test\packages\EAMain\include;../../../corelib/stl/EASTL\include\EASTL;../../../;../../../corelib/stl/EASTL;../../../thirdparty/pcre2;../../../thirdparty/imgui;../../../corelib/stl/sgi</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../corelib/include;../../../runtime/include;../../../corelib/eastreams;./;../include;../../../ThirdParty/SDL/SDL2/SDL/include;../../../ThirdParty/SDL/SDL2/SDLgfx;../../../ThirdParty/SDL/SDL2/SDLttf;../../../corelib/stl/eastl/include;../../../corelib/stl/EASTL\test\packages\EAStdC\include;../../../corelib/stl/EASTL\test\source;../../../corelib/stl/EASTL\test\packages/EABase\include\Common;../../../corelib/stl/EASTL\test\packages\EAAssert\include;../../../corelib/stl/EASTL\test\packages\EATest\include;../../../corelib/stl/EASTL\test\packages\EAMain\include;../../../corelib/stl/EASTL\include\EASTL;../../../;../../../corelib/stl/EASTL;../../../thirdparty/pcre2;../../../thirdparty2/imgui;../../../corelib/stl/sgi</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>EA_COMPILER_NO_VARIADIC_MACROS;SKYOS32;_CRT_SECURE_NO_WARNINGS;_MSC_VER=1920</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
@@ -140,7 +140,7 @@
     <Link>
       <AdditionalDependencies>pcre2.lib;eastreams.lib;systemcall.lib;sdl.lib;libcrt.lib;libwin32.lib;exestub.lib;math.lib;filemanager.lib;eastl.lib;sdl2_gfx.lib;imgui.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>../../../Debug;../../../$(Configuration);../../../corelib/debug;../../../runtime/debug;../../../ThirdParty/SDL/SDL2/debug;../../../ThirdParty/debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../../Debug;../../../$(Configuration);../../../corelib/debug;../../../runtime/debug;../../../ThirdParty/SDL/SDL2/debug;../../../ThirdParty/debug;../../../ThirdParty2/debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(OutDir)$(TargetName).map</MapFileName>

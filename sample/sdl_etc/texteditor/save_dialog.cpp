@@ -29,7 +29,7 @@ eastl::wstring SaveDialog::preInsert(Coord &cursor, const eastl::wstring &value)
   {
     struct stat buf;
     auto fileName = toUtf8(buffer_[screen_->cursor().y]);
-    fstat(fileName.c_str(), &buf);
+    stat(fileName.c_str(), &buf);
     if (S_ISDIR(buf.st_mode))
     {
       auto folderName = buffer_[0];
