@@ -63,3 +63,8 @@ int utime(const char* filename, struct utimbuf* buf)
 {
 	return -1;
 }
+
+void perror(const char* str)
+{
+	printf("%s", str);
+}

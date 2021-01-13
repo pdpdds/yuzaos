@@ -56,7 +56,7 @@ extern "C" {
 	int gethostname(char* name, size_t len);
 	int sethostname(const char* name, size_t len);
 	int utime(const char* filename, struct utimbuf* buf);
-
+	void perror(const char* str);
 
 	void* bsearch(const void* key, const void* base0,
 		size_t nmemb, size_t size,

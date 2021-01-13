@@ -2,6 +2,7 @@
 *.pdb
 Debug
 .vs
+bin
 Intermediate
 runtime/Debug
 runtime/.vs
