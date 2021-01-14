@@ -234,7 +234,7 @@
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>../include;../../runtime/include;../../corelib/include;../freetype/include;../fontconfig</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../include;../../runtime/include;../../corelib/include;../freetype/include;../fontconfig;../../thirdparty2/glib/glib;../../thirdparty2/glib</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>HAVE_FREETYPE;SKYOS32;_MSC_VER=1920;_CRT_NONSTDC_NO_WARNINGS;HAVE_ROUNDF;HAVE_ISATTY;HAVE_ATEXIT;HB_NO_MT;HB_NO_SETLOCALE</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>

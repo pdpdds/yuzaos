@@ -179,14 +179,9 @@
 #include <stdlib.h>
 #include <stddef.h>
 #include <string.h>
-//#include <assert.h>
+#include <assert.h>
 #include <stdio.h>
 #include <stdarg.h>
-
-#define assert(Expr) \
-__SKY_ASSERT(#Expr, Expr, __FILE__, __LINE__, "error\n")
-
-void __SKY_ASSERT(const char* expr_str, bool expr, const char* file, int line, const char* msg);
 
 #if (defined(_MSC_VER) && _MSC_VER >= 1500) || defined(__MINGW32__)
 #ifdef __MINGW32_VERSION

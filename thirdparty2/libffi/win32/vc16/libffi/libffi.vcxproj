@@ -18,7 +18,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
@@ -47,7 +47,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_M_IX86;_MSC_VER=1920;SKYOS32;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions);FFI_BUILDING</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_M_IX86;_MSC_VER=1920;SKYOS32;WIN32;FFI_BUILDING_DLL</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>../../../../../corelib/include;../../../../../runtime/include;$(ProjectDir)..\;$(ProjectDir);$(SolutionDir)libffi\include;$(SolutionDir)libffi\src\x86;$(SolutionDir)libffi\</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
@@ -61,6 +61,13 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>../../../../../$(Configuration);../../../../../corelib/debug;../../../../../runtime/debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libcrt.lib;dllstub.lib;systemcall.lib;math.lib;filemanager.lib;libwin32.lib</AdditionalDependencies>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <AdditionalOptions>/safeseh:no /ALIGN:1024 %(AdditionalOptions)</AdditionalOptions>
+      <OutputFile>$(SolutionDir)$(Configuration)\$(TargetName)$(TargetExt)</OutputFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

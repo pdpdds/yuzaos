@@ -44,7 +44,7 @@
 #include "hb-static.cc"
 #include "hb-ucd.cc"
 #include "hb-unicode.cc"
-//#include "hb-glib.cc"
+#include "hb-glib.cc"
 #include "hb-ft.cc"
 #include "hb-graphite2.cc"
 #include "hb-uniscribe.cc"

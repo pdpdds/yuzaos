@@ -1,0 +1,1308 @@
+=== ChangeLog discontinued ===
+
+	With the move to git, GLib is switching from a ChangeLog file
+	to relying on commit messages to provide change history. Please
+	see README.commits for guidance on the expected message format.
+
+2009-03-13  Kristian Rietveld  <kris@imendio.com>
+
+	* gsignal.c (signal_lookup_closure): when defaulting to the only
+	item in the array, check if this is indeed the default closure.
+	(patch by Tim Janik).
+
+2009-03-13  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.20.0 ===
+
+2009-03-02  Matthias Clasen <mclasen@redhat.com>
+
+	* === Released 2.19.10 ===
+
+2009-03-02  Matthias Clasen <mclasen@redhat.com>
+
+	* === Released 2.19.9 ===
+
+2009-03-01  Matthias Clasen  <mclasen@redhat.com>
+
+	Bug 556706 每 Inconsistent help arguments -h, -?
+
+	* glib-genmarshal.c:
+	* glib-mkenums.in: Adjust help output, accept -?, capitalize.
+	Patch by Christian Dywan
+
+2009-02-17  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.19.8 ===
+
+2009-02-17  Matthias Clasen  <mclasen@redhat.com>
+
+	* gobject.c: Remove (now) unnecessary cases from g_atomic_int_get 
+	calls.
+
+2009-02-16  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.19.7 ===
+
+2009-02-02  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.19.6 ===
+
+2009-01-19  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.19.5 ===
+
+2009-01-05  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.19.4 ===
+
+2009-01-02  Behdad Esfahbod  <behdad@gnome.org>
+
+	Bug 565136 每 Gobject's "notify" signal parameters are wrong in gtk-doc
+	Patch from  Andrzej Zaborowski
+
+	* gobject.c (g_object_do_class_init): Fix param order in docs.
+
+2008-12-15  Matthias Clasen <mclasen@redhat.com>
+
+	* === Released 2.19.3 ===
+
+2008-12-12  Dan Winship  <danw@gnome.org>
+
+	* pltcheck.sh: make this work on x86_64
+
+2008-12-02  Matthias Clasen  <mclasen@redhat.com>
+
+	Bug 473150 每 g_type_module_use inconsistently increases the use
+	counter in case of error
+
+	* gtypemodule.c (g_type_module_use): Always reset the use count
+	to its previous value before returning FALSE. Pointed out by
+	Johan Billien.
+
+2008-12-01  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.19.2 ===
+
+2008-12-01  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.19.1 ===
+
+2008-11-28  Matthias Clasen  <mclasen@redhat.com>
+
+	Bug 559456 每 GObject Reference Manual (typo)
+
+	* gsignal.c (g_signal_newv): Fix a typo in the docs, pointed out
+	by Andrew Feren
+
+2008-11-03  Matthias Clasen <mclasen@redhat.com>
+
+	Bug 555935 每 Clear the mechanism of overwriting properties
+
+	* gobject.c: Expand the docs of g_object_class_install_property.
+	Proposed by Maciej Piechotka
+
+2008-10-16  Matthias Clasen <mclasen@redhat.com>
+
+	* === Released 2.19.0 ===
+
+2008-09-26  Dan Winship  <danw@gnome.org>
+
+	* gobject.c (g_object_ref, g_object_unref)
+	(g_object_freeze_notify, g_object_notify, g_object_thaw_notify):
+	* gparam.c (g_param_spec_ref, g_param_spec_unref):
+	* gsignal.c (handler_ref, handler_unref_R): add uint* -> int*
+	casts in g_atomic_int calls to avoid gcc warnings
+
+2008-09-17  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.18.1 ===
+
+2008-09-02  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.18.0 ===
+
+2008-08-21  Johan Dahlin  <johan@gnome.org>
+
+	* gobject.h:
+	Mark g_object_get_type function as const, it's
+	a fundamental type and can safely marked as const,
+	as opposed to traditionally *_get_type functions.
+
+2008-08-21  Johan Dahlin  <johan@gnome.org>
+
+	Bug 548800 每 Missing a g_object_get_type function
+
+	* gobject.c (g_object_get_type):
+	* gobject.h:
+	* gobject.symbols:
+	Add g_object_get_type
+
+2008-08-18  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.17.7 ===
+
+2008-08-04  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.17.6 ===
+
+2008-08-04  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.17.5 ===
+
+2008-08-01  Matthias Clasen  <mclasen@redhat.com>
+
+	Bug 545395 每 Language tweak for g_value_set_string* docs
+
+	* gvaluetypes.c: Clarify the docs of some GValue setters.
+	Proposed by Erik Walthinsen
+
+2008-07-27  Tor Lillqvist  <tml@novell.com>
+
+	* gtype.h
+	* gtype.c: Revert my change from 2008-07-24. No G_TYPE_FORMAT is
+	needed. Just use G_GSIZE_FORMAT always when printing GType values.
+
+2008-07-27  Tor Lillqvist  <tml@novell.com>
+
+	* Makefile.am (gobject-2.0.lib): Pass appropriate -machine flag to lib.exe.
+
+2008-07-24  Tor Lillqvist  <tml@novell.com>
+
+	* gtype.h: Define G_TYPE_FORMAT as the printf format for a GType
+	value. Either G_GSIZE_FORMAT or "lu".
+
+	* gtype.c: Use it instead of the C99 zu.
+
+2008-07-23  Matthias Clasen  <mclasen2redhat.com>
+
+	544177 - Fix trivial cut and paste error in documentation
+
+	* gtype.h: Fix a typo. Pointed out by Paul Bolle.
+
+2008-07-21  Matthias Clasen  <mclasen2redhat.com>
+
+	* === Released 2.17.4 ===
+
+2008-07-21  Michael Natterer  <mitch@imendio.com>
+
+	Reviewed by Tim Janik:
+
+	* gsignal.c (g_signal_chain_from_overridden_handler): allocate
+	the temp GValue array with GSLice.
+
+	(g_signal_emit_valist): dito. Remove optimization/obfuscation of
+	allocating up to 16 GValues on the stack and always use GSLice.
+
+2008-07-05  Matthias Clasen  <mclasen@redhat.com>
+
+	Bug 539229 每 gobject-query calls itself query
+
+	* gobject-query.c: Use the right binary name in help output.
+	Patch by Hiroyuki Ikezoe.
+
+2008-07-04  Michael Natterer  <mitch@imendio.com>
+
+	* gobject.c: remove unused #define PREALLOC_CPARAMS.
+
+2008-07-04  Michael Natterer  <mitch@imendio.com>
+
+	Bug 541208 每 Functions to easily install and use signals without
+	class struct slot
+
+	* gobject.symbols
+	* gsignal.[ch] (g_signal_new_class_handler): the same as
+	_gtk_binding_signal_new(), to install signals with a callback
+	instead of a class struct slot as class closure.
+
+	The next two functions are C convenience and much easier to use
+	than the generic overriding and chaining APIs which are intended
+	primarily for language bindings:
+
+	(g_signal_override_class_handler): to override a signal with a
+	callback instead of a class struct slot.
+
+	(g_signal_chain_from_overridden_handler): to chain up from a
+	signal without class struct slot. The API is similar to
+	g_signal_emit().
+
+2008-07-02  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.17.3 ===
+
+2008-07-01  Matthias Clasen  <mclasen@redhat.com>
+
+	* *.c: Fix up section comments far enough to avoid regressions.
+
+2008-06-27  Hans Breuer  <hans@breuer.org>
+
+	* glib-genmarshal.c : move G_OS_WIN32 inclusion of <io.h> down to
+	where G_OS_WIN32 will be defined (#540047, Kazuki IWAMOTO)
+
+2008-06-22  Michael Natterer  <mitch@imendio.com>
+
+	* *.c: remove trailing whitespace from newly added gtk-doc
+	comments and reformatted some where they contained overly long or
+	ill-formatted lines.
+
+2008-06-22  Michael Natterer  <mitch@imendio.com>
+
+	* *.c: moved includes back to the top of the files (before gtk-doc
+	SECTION comments). Add "config.h" in all files and move system
+	included before glib includes. Remove trailing whitespace from
+	SECTION comments and did some reformatting where lines were overly
+	long, no documentation content was changed.
+
+2008-06-22  Stefan Kost  <ensonic@users.sf.net>
+
+	* docs/reference/gobject/tmpl/gobject-unused.sgml:
+	* gobject/gobject.h:
+	* gobject/gtype.c:
+	* gobject/gtype.h:
+	  Move some content for gobject-unused.sgml and cleared empty entries.
+	  The remaining 4 ones should be checked by some else. If they are not
+	  needed. The file can be removed.
+
+2008-06-22  Stefan Kost  <ensonic@users.sf.net>
+
+	* docs/reference/gobject/tmpl/value_collection.sgml:
+	* gobject/gvaluecollector.h:
+	  Migrating docs.
+
+2008-06-22  Stefan Kost  <ensonic@users.sf.net>
+
+	* docs/reference/gobject/tmpl/value_arrays.sgml:
+	* gobject/gvaluearray.c:
+	* gobject/gvaluearray.h:
+	  Migrating docs.
+
+2008-06-22  Stefan Kost  <ensonic@users.sf.net>
+
+	* gobject/gsignal.c:
+	  Fix compiler warning in format string check.
+
+2008-06-22  Stefan Kost  <ensonic@users.sf.net>
+
+	* docs/reference/gobject/tmpl/signals.sgml:
+	* gobject/gclosure.c:
+	* gobject/gobject.c:
+	* gobject/gsignal.c:
+	* gobject/gsignal.h:
+	  Migrating docs.
+
+2008-06-22  Stefan Kost  <ensonic@users.sf.net>
+
+	* docs/reference/gobject/Makefile.am:
+	  Help poor little gtkdoc a bit and tell that it can ignore
+	  G_GNUC_INTERNAL. Also disable including the unit-test header as this
+	  causes warnings and we don't need it here.
+
+2008-06-22  Stefan Kost  <ensonic@users.sf.net>
+
+	* docs/reference/gobject/tmpl/param_value_types.sgml:
+	* gobject/gboxed.c:
+	* gobject/gboxed.h:
+	* gobject/genums.c:
+	* gobject/genums.h:
+	* gobject/gobject.c:
+	* gobject/gobject.h:
+	* gobject/gparam.c:
+	* gobject/gparam.h:
+	* gobject/gparamspecs.c:
+	* gobject/gparamspecs.h:
+	* gobject/gvaluetypes.c:
+	* gobject/gvaluetypes.h:
+	  Migrating docs.
+
+2008-06-21  Stefan Kost  <ensonic@users.sf.net>
+
+	* docs/reference/gobject/tmpl/objects.sgml:
+	* gobject/gobject.c:
+	* gobject/gobject.h:
+	* gobject/gparam.h:
+	  Migrating docs.
+
+2008-06-21  Stefan Kost  <ensonic@users.sf.net>
+
+	* docs/reference/gobject/tmpl/gtypeplugin.sgml:
+	* gobject/gtypeplugin.c:
+	* gobject/gtypeplugin.h:
+	  Migrating docs.
+
+2008-06-21  Stefan Kost  <ensonic@users.sf.net>
+
+	* docs/reference/gobject/Makefile.am:
+	  Add --sgml-mode to allow sgml in doc-fragments (which somehow works
+	  before already).
+
+	* gobject/gboxed.h:
+	* gobject/gclosure.c:
+	* gobject/gparam.c:
+	* gobject/gparam.h:
+	* gobject/gtype.h:
+	  Convert character entities back. Fix some broken sgml.
+
+2008-06-21  Stefan Kost  <ensonic@users.sf.net>
+
+	* docs/reference/gobject/tmpl/gtypemodule.sgml:
+	* gobject/gtypemodule.c:
+	* gobject/gtypemodule.h:
+	  Migrating docs.
+
+2008-06-21  Stefan Kost  <ensonic@users.sf.net>
+
+	* gobject/gboxed.c:
+	* gobject/gclosure.c:
+	* gobject/genums.c:
+	* gobject/gparam.c:
+	* gobject/gvalue.c:
+	  Add titles back from tmpl.
+
+2008-06-21  Stefan Kost  <ensonic@users.sf.net>
+
+	* docs/reference/gobject/tmpl/gtype.sgml:
+	* gobject/gtype.c:
+	* gobject/gtype.h:
+	* gobject/gvaluetypes.h:
+	  Migrating docs.
+
+2008-06-21  Stefan Kost  <ensonic@users.sf.net>
+
+	* gobject/gclosure.h:
+	* gobject/gparam.h:
+	  Add one missing ':' and reformate GParamFlags docs.
+
+2008-06-21  Stefan Kost  <ensonic@users.sf.net>
+
+	* docs/reference/gobject/tmpl/gparamspec.sgml:
+	* gobject/gparam.c:
+	* gobject/gparam.h:
+	  Migrating docs.
+
+2008-06-21  Stefan Kost  <ensonic@users.sf.net>
+
+	* gobject/gboxed.c:
+	* gobject/gclosure.c:
+	* gobject/genums.c:
+	* gobject/gvalue.c:
+	  Use file-names from the section file for SECTION: comments.
+
+2008-06-21  Stefan Kost  <ensonic@users.sf.net>
+
+	* docs/reference/gobject/tmpl/generic_values.sgml:
+	* gobject/gboxed.h:
+	* gobject/gtype.h:
+	* gobject/gvalue.c:
+	* gobject/gvalue.h:
+	* gobject/gvaluetypes.c:
+	  Migrating docs.
+
+2008-06-21  Stefan Kost  <ensonic@users.sf.net>
+
+	* gobject/genums.h:
+	  Fix documentation for return values.
+
+2008-06-21  Stefan Kost  <ensonic@users.sf.net>
+
+	* docs/reference/gobject/tmpl/gclosure.sgml:
+	* gobject/gboxed.h:
+	* gobject/gclosure.c:
+	* gobject/gclosure.h:
+	* gobject/gobject.c:
+	* gobject/gsourceclosure.c:
+	* gobject/gsourceclosure.h:
+	  Migrating docs.
+
+2008-06-21  Tor Lillqvist  <tml@novell.com>
+
+	* glib/gstdio.c: Improve Windows-specific parts of
+	documentation. Mention the different C library issue in more
+	places.
+
+2008-06-21  Stefan Kost  <ensonic@users.sf.net>
+
+	* docs/reference/gobject/gobject-sections.txt:
+	  Remove duplicated entries. They are documented and should be shown.
+
+2008-06-21  Stefan Kost  <ensonic@users.sf.net>
+
+	* docs/reference/gobject/tmpl/enumerations_flags.sgml:
+	* gobject/genums.c:
+	* gobject/genums.h:
+	  Migrating docs.
+
+2008-06-21  Stefan Kost  <ensonic@users.sf.net>
+
+	* docs/reference/gobject/tmpl/gboxed.sgml:
+	* gobject/gboxed.c:
+	* gobject/gboxed.h:
+	* gobject/gvaluetypes.c:
+	  Migrating docs.
+
+2008-06-12  Matthias Clasen  <mclasen@redhat.com>
+	
+	* === Released 2.17.2 ===
+
+2008-06-12  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.17.1 ===
+
+2008-06-10 13:34:01  Tim Janik  <timj@imendio.com>
+
+	* tests/threadtests.c: added race condition tester from Michael Meeks
+	with a couple fixes so it's not triggering development warnings. From:
+	Bug 537555 - GObject instantiation not thread safe ...
+
+2008-06-10 13:15:29  Tim Janik  <timj@imendio.com>
+
+	* gtype.c (g_type_class_ref): fixed race condition where references to
+	partially initialized classes could be handed out.
+
+2008-05-28  Michael Natterer  <mitch@imendio.com>
+
+	* Makefile.am: don't define G_DISABLE_SINGLE_INCLUDES, it's in
+	the global CPPFLAGS now.
+
+2008-05-27  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.17.0 ===
+
+2008-05-05  Michael Natterer  <mitch@imendio.com>
+
+	* Makefile.am. build with G_DISABLE_SINGLE_INCLUDES to prevent
+	code from being checked in that breaks the build of applications
+	which use G_DISABLE_SINGLE_INCLUDES.
+
+2008-03-16  Tor Lillqvist  <tml@novell.com>
+
+	* Makefile.am: Define gobject_def locally here instead of using an
+	Autoconf variable.
+
+2008-03-10  Matthias Clasen  <mclasen@redhat.com>
+	
+	* === Released 2.16.1 ===
+
+2008-03-10  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.16.0 ===
+
+2008-02-25  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.15.6 ===
+
+2008-02-11  Matthias Clasen <mclasen@redhat.com>
+
+	* === Released 2.15.5 ===
+
+2008-02-06  Benjamin Otte  <otte@gnome.org>
+
+	* gparamspecs.c: (param_gtype_set_default), (param_gtype_validate):
+	make GParamGType require the set type during construction instead of
+	using G_TYPE_NONE, which causes issues when setting.
+	Bug 513073 - g_param_spec_gtype breaks with G_PARAM_CONSTRUCT
+
+2008-02-05 18:52:07  Tim Janik  <timj@imendio.com>
+
+	* gtype.c: added recursive mutex to protect class initialization,
+	default interface initialization and per-class interface construction.
+	a lock to this recursive mutex is held during user callback invocations
+	such as initializers or finalizers, effectively allowing only one thread
+	to run class/interface initializers/finalizers at a time.
+	also made misc fixups. this fixes:
+	Bug 64764 - Class initialization isn't thread safe.
+
+2008-02-05 18:41:22  Tim Janik  <timj@imendio.com>
+
+	* Makefile.am: integrate tests/.
+
+	* tests/: new directory for libgobject tests.
+
+	* tests/Makefile.am: build and run threadtests.
+
+	* tests/threadtests.c: test multi-threaded initializers for
+	object classes and interfaces.
+
+2008-01-28  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.15.4 ===
+
+2008-01-21  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.15.3 ===
+
+2008-01-14  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.15.2 ===
+
+008-01-07  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.15.1 ===
+
+2007-12-26  Behdad Esfahbod  <behdad@gnome.org>
+
+	* gclosure.h (G_CCLOSURE_SWAP_DATA): Fix macro argument.
+	(#505674, Areg Beketovski)
+
+2007-12-20  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.15.0 ===
+
+2007-11-11  Mathias Hasselmann  <mathias@openismus.com>
+
+	Always exit with non-zero error code when printing warnings.
+
+	* gobject/glib-genmarshal.c: Add global exit_status variable, and use
+	it in pad() and process_signature() to return with non-zero error code
+	when printing warnings. (#495294)
+
+2007-11-08  Matthias Clasen <mclasen@redhat.com>
+
+	* glib-mkenums.in: Don't shift ARGV[0] to undefined. 
+	(#466557, Aidan Delaney)
+
+2007-11-07  Matthias Clasen <mclasen@redhat.com>
+
+	* === Released 2.14.3 ===
+
+2007-10-16  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.14.2 ===
+
+2007-09-20  Carlos Garnacho  <carlos@imendio.com>
+
+	* gtypemodule.h: make sure we define GType g_define_type_id in
+	G_G_DEFINE_DYNAMIC_TYPE_EXTENDED so it works together with
+	G_IMPLEMENT_INTERFACE. (#478459)
+
+2007-09-19  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.14.1 ===
+
+2007-08-03  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.14.0 ===
+
+2007-07-12  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.13.7 ===
+
+Tue Jul 10 12:31:50 2007  Tim Janik  <timj@imendio.com>
+
+	* gtype.h: use g_once_init_enter/g_once_init_leave to guard critical
+	initialization section of *_get_type implementations in G_DEFINE_TYPE,
+	bug #65041.
+
+Fri Jun 29 2007  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.13.6 ===
+
+Fri Jun 22 11:31:27 2007  Tim Janik  <timj@gtk.org>
+
+	* gtype.h: reintroduce typedef gulong GType; for C++, to avoid
+	C++ specific ABI breakage.
+
+2007-06-18  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.13.5 ===
+
+Thu Jun 14 23:32:00 2007  Tim Janik  <timj@gtk.org>
+
+	* gtype.h: always define GType unconditionally in terms of gsize,
+	there's no need to jump through a glong hoop ever and this fixes
+	the printf modifier to %zu.
+
+Thu Jun 14 22:33:11 2007  Tim Janik  <timj@imendio.com>
+
+	* gparamspecs.c (g_param_spec_types_init): work around SGI IDO cc,
+	fixes #363986.
+
+2007-06-05  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.13.4 ===
+
+2007-06-04  Matthias Clasen  <mclasen@redhat.com>
+	
+	* === Released 2.13.3 ===
+
+2007-05-22  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.13.2 ===
+
+2007-05-17  Matthias Clasen <mclasen@redhat.com>
+
+	* gtype.h: Move G_GNUC_INTERNAL before function
+	declarations to fix compilation with sun studio.  (#438873,
+	Damien Carbery)
+
+2007-05-03  Matthias Clasen <mclasen@redhat.com>
+
+	* === Released 2.13.1 ===
+
+2007-04-25  Michael Natterer  <mitch@imendio.com>
+
+	* gparamspecs.c (param_string_validate): also clear the
+	NOCOPY_CONTENTS flag when replacing NULL with the empty string.
+
+2007-04-24  Michael Natterer  <mitch@imendio.com>
+
+        * gparamspecs.c (param_string_validate): don't free or modify
+	static strings, dup them when needed and clear the
+	G_VALUE_NOCOPY_CONTENTS flag. Fixes bug #432895.
+
+Tue Apr  3 12:34:14 2007  Tim Janik  <timj@gtk.org>
+
+	* gobject.[hc]: invoke GObjectClass.constructed() only for newly
+	constructed objects, and invoke it while the notify queue is
+	still being frozen, after all CONSTRUCT* properties have been
+	set and before random other properties are being set.
+
+	* applied modified patch from Ryan Lortie to implement
+	GObjectClass.constructed() to fix #425324.
+
+2007-04-02  Ryan Lortie  <desrt@desrt.ca>
+
+	* gobject/gobject.h: Add 'constructed' vcall to GObjectClass.
+	* gobject/gobject.c (g_object_newv): call ->constructed() as last
+	step of object construction.
+
+2007-03-16  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.13.0 ===
+
+2007-03-15  Matthias Clasen  <mclasen@redhat.com>
+
+	* gvaluearray.c: Use  g_slice.  (#404430, Chris Wilson)
+
+2007-03-14  Stefan Kost  <ensonic@users.sf.net>
+
+	* gparam.h:
+	  Add G_PARAM_STATIC_STRINGS define (fixes #418021).
+
+Mon Mar 12 13:30:20 2007  Tim Janik  <timj@gtk.org>
+
+	* gtype.h: marked purely functional g_type accessors as PURE or CONST,
+	closes #305100.
+
+2007-01-02  Tor Lillqvist  <tml@novell.com>
+
+	* glib-genmarshal.c (main): Handle "/dev/stdin" by dup()ing fd 0
+	so that it works on Win32 and other systems without
+	/dev/stdin. (#407431)
+
+2006-12-29 Matthias Clasen  <mclasen@redhat.com>
+
+	* gtypemodule.h: Define G_DEFINE_DYNAMIC_TYPE and
+	and _EXTENDED variant.  (#334437)
+
+Fri Dec 15 2006  Matthias Clasen  <mclasen@redhat.com>
+
+	* gtype.c (instance_real_class_get): Dereference the pointer 
+	before dropping the lock.  (#378078, Jonathan Matthew)
+
+Tue Oct 10 12:06:08 2006  Tim Janik  <timj@gtk.org>
+
+	* glib-mkenums.in: 
+	* glib-mkenums.1: applied patch from David Necas which introduces
+	an underscore_name option and fixes #358734.
+
+Mon Oct  2 15:50:16 2006  Tim Janik  <timj@gtk.org>
+
+	* gvalue.c (g_value_peek_pointer): reverted a change to have an
+	assert instead of a g_return_val_if_fail() here. libraries (and
+	programs) should only ever g_assert or g_error if there is no way
+	to carry on with the current program state. that's clearly not 
+	the case here.
+
+	* ChangeLog: added missing changelog entry for 2003-12-30.
+
+Sat Sep 30 2006  Matthias Clasen  <mclasen@redhat.com>
+
+	* pltcheck.sh: Script to check PLT entries.
+
+	* Makefile.am (TESTS): Run pltcheck.sh
+
+	* gtype.c:
+	* gsignal.c:
+	* gobject.c:
+	* gvaluetypes.c: Move all includes before gobjectalias.h.
+	(#3545422, Behdad Esfahbod)
+
+Fri Sep 22 13:41:02 2006  Tim Janik  <timj@imendio.com>
+
+	* gtype.h: applied patch from Behdad with slight optimization, 
+	fixes #356175.
+
+	* gobjectnotifyqueue.c: fixed include-guard macro name.
+
+Mon Sep 11 12:12:45 2006  Tim Janik  <timj@imendio.com>
+
+	* gparam.c (g_param_spec_sink): reimplemented floating flag handling by
+	atomically accessing a reserved GData bit, fixes #330556.
+
+Tue Aug 29 13:27:33 2006  Tim Janik  <timj@gtk.org>
+
+	* glib-mkenums.in: fixed to print usage and version info on STDOUT
+	(#322502).
+
+	* gobject.c (g_initially_unowned_init): restore ; after G_DEFINE_TYPE.
+
+2006-08-26  Matthias Clasen  <mclasen@redhat.com>
+
+	* gobject.c: Remove ; after G_DEFINE_TYPE.  (#351741, Kjartan Maraas)
+
+Wed Aug 23 10:35:32 2006  Tim Janik  <timj@gtk.org>
+
+	* gobject.[hc]: changed return value of g_value_dup_object(), fixes #343292.
+
+2006-08-23  Sven Neumann  <sven@gimp.org>
+
+	* gobject/glib-genmarshal.[c1]: added new command-line option
+	"--internal" that can be used to let glib-genmarshal generate
+	internal functions using the G_GNUC_INTERNAL attribute (bug #346647).
+
+Wed Aug 16 13:55:08 2006  Tim Janik  <timj@imendio.com>
+
+	* gobject.c: conditionally thaw the notify queue after construction,
+	so we don't trigger warnings when trying to thaw an unfrozen singleton.
+
+2006-08-15  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.12.2 ===
+
+2006-08-05  Matthias Clasen  <mclasen@redhat.com>
+
+	* gparamspecs.c (g_param_spec_types_init): Don't initialize
+	struct members with function calls.  (#349952)
+
+2006-07-22  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.12.1 ===
+
+2006-07-21  Matthias Clasen  <mclasen@redhat.com>
+
+	* gtypemodule.c (g_type_module_register_type): Copy the complete
+	value table, not just the first 4 bytes.  (#348136, Coverity)
+
+2006-07-02  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.12.0 ===
+
+2006-06-20  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.11.4 ===
+
+2006-06-15  Federico Mena Quintero  <federico@novell.com>
+
+	* gtype.c (g_type_instance_get_private): Fix the error message so
+	that it mentions the right functions:
+	"g_type_instance_get_private() requires a prior call to
+	g_type_class_add_private()".
+
+2006-06-12  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.11.3 ===
+
+2006-06-05  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.11.2 ===
+
+2006-06-02  Behdad Esfahbod  <behdad@gnome.org>
+
+	* gobject/genum.h: Make value_name and value_nick const in structs
+	_GEnumValue and _GFlagValue.  (#317793)
+
+Tue May 16 14:01:43 2006  Tim Janik  <timj@imendio.com>
+
+	* gtype.h (G_IMPLEMENT_INTERFACE): turn off compiler warnings, #337129.
+
+2006-05-15  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.11.1 ===
+
+2006-05-02  Matthias Clasen  <mclasen@redhat.com>
+	
+	* === Released 2.11.0 ===
+
+Tue May  2 14:51:03 2006  Tim Janik  <timj@gtk.org>
+
+	* gtype.h: split up G_DEFINE_*TYPE macro definitions so C CODE arguments
+	are not passed on to nested macro calls. patch mostly courtesy of Behdad
+	Esfahbod, fixes #337128.
+
+2006-04-23  Matthias Clasen  <mclasen@redhat.com>
+
+	* gobject.symbols: Fix a typo.
+
+	* gtype.c: (g_type_register_static_simple): Add a 
+	missing return.
+
+	* gtype.h: Silence warnings from G_DEFINE_TYPE.
+	
+2006-04-21  Matthias Clasen  <mclasen@redhat.com>
+
+	* gobject.symbols:
+	* gtype.[hc]: Add a g_type_register_static_simple
+	variant of g_type_register_static that does not take 
+	a relocation-causing GTypeInfo struct, and use it 
+	in G_DEFINE_TYPE.
+
+2006-03-07  Matthias Clasen  <mclasen@redhat.com>
+
+	* ===  Released 2.10.1 ===
+
+Tue Mar  7 17:09:07 2006  Tim Janik  <timj@gtk.org>
+
+	* gobject.c (g_object_compat_control): added case3 to hand out the
+	original floating flag handler. required by gtk+ >= 2.10.
+
+2006-02-24  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.10.0 ===
+
+2006-02-10  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.9.6 ===
+
+2006-01-29  Matthias Clasen  <mclasen@redhat.com>
+
+	* gclosure.c: Remove C++ comment.
+
+2006-01-27  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.9.5 ===
+
+2006-01-18  Matthias Clasen  <mclasen@redhat.com>
+	
+	* === Released 2.9.4 ===
+
+2006-01-18  Matthias Clasen  <mclasen@redhat.com>
+
+	* gobject.h: Make g_object_compat_control() visible
+	for GTK+ compilation, to avoid segfaults on 64bit
+	platforms.
+
+2006-01-16  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.9.3 ===
+
+2006-01-05  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.9.2 ===
+
+2006-01-04  Matthias Clasen  <mclasen@redhat.com>
+
+	* gobject.symbols: Add g_initially_unowned_get_type.
+
+2005-12-30  Matthias Clasen  <mclasen@redhat.com>
+	
+	* gsignal.c: Remove the handler trash stack, which
+	is now unused.
+	(g_signal_init): Remove the restriction that HandlerMatch
+	must be the same size as GList, and obsolete comments 
+	referring to mem chunks.
+
+2005-12-24  Matthias Clasen  <mclasen@redhat.com>
+
+	* gobject.symbols: Add new functions.
+
+Thu Dec 22 18:53:14 2005  Tim Janik  <timj@gtk.org>
+
+	* gobject.[hc]: renamed GUnowned to GInitiallyUnowned.
+
+Thu Dec 22 14:59:24 2005  Tim Janik  <timj@imendio.com>
+
+	* gvaluetypes.[hc]: implemented G_TYPE_GTPYE. applied patch
+	from matthias which implements GType accessors for GValue.
+
+	* gparamspecs.[hc]: applied patch from matthias which 
+	implements G_TYPE_PARAM_GTYPE.
+
+	* gobject.[hc]:
+	GUnowned: introduced a new object type that has an initially
+	floating reference.
+	g_object_compat_control(): allow setting of a floating flag handler.
+
+2005-12-09  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.9.1 ===
+
+2005-12-05  Matthias Clasen  <mclasen@redhat.com>
+
+	* genums.h (G_FLAGS_CLASS_TYPE_NAME): Use G_FLAGS_CLASS_TYPE.
+	(#323273, Kalle Vahlman)
+	
+Thu Dec  1 12:53:26 2005  Tim Janik  <timj@imendio.com>
+
+	* gtype.c: use g_slic_* for all object allocations.
+
+2005-11-28  Matthias Clasen  <mclasen@redhat.com>
+
+	* gobjectnotifyqueue.c (g_object_notify_queue_thaw): 
+	* gobject-query.c (main): Silence compiler warnings.
+
+	* glib-genmarshal.c (main): Use G_N_ELEMENTS.
+
+2005-11-27  Matthias Clasen  <mclasen@redhat.com>
+
+	* gboxed.h: Declare g_hash_table_get_type.
+
+Wed Nov 23 18:01:46 2005  Tim Janik  <timj@imendio.com>
+
+	* gobject.[hc]: added floating reference count.
+	g_object_is_floating():
+	g_object_ref_sink(): new functions to deal with floating references.
+	g_object_force_floating(): new funciton for object implementations
+	to set the floating flag.
+
+	* gobject.c (g_object_init): make objects initially floating.
+
+Wed Nov 23 17:58:13 2005  Tim Janik  <timj@gtk.org>
+
+	* gparam.[hc]: added g_param_spec_ref_sink().
+
+Wed Nov 23 13:36:02 2005  Tim Janik  <timj@gtk.org>
+
+	* gboxed.[hc]: minor cleanups, implemented G_TYPE_HASH_TABLE.
+
+2005-11-17  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.9.0 ===
+
+2005-11-17  Matthias Clasen  <mclasen@redhat.com>
+
+	* glib-genmarshal.c: const correctness fixes, found
+	by Arjan van de Ven and gcc.
+	
+Tue Nov  1 17:07:43 2005  Tim Janik  <timj@imendio.com>
+
+	* gsignal.c: allocate signal handlers and handler match structures
+	via the new g_slice_*() API (get's rid of GList allocation hack).
+
+	* gtype.c: got rid of per-type memchunks. if GTypeInfo.n_preallocs
+	is > 0, objects are allocated via g_slice_*() instead of g_malloc().
+
+2005-10-03  Matthias Clasen  <mclasen@redhat.com>
+
+	* glib-mkenums.in: Really fix #314890.
+
+2005-09-28  Michael Natterer  <mitch@gimp.org>
+
+	* gtype.h (G_IMPLEMENT_INTERFACE): revert last change, it breaks
+	all users of G_IMPLEMENT_INTERFACE() inside
+	G_DEFINE_TYPE_WITH_CODE(), since apparently GCC doesn't like
+	commas enclosed in {}, not (), in nested macro calls.
+
+2005-09-26  DindinX  <dindinx@gimp.org>
+
+	* gobject/gtype.h: initialize all the fields of GInterfaceInfo in the
+	G_IMPLEMENT_INTERFACE macro, to shut up a warning when compiling at -W
+
+2005-09-26  Matthias Clasen  <mclasen@redhat.com>
+
+	* glib-mkenums.in: Don't hang on '{' following a trigraph comment
+	in the same line.  (#314890, Mathias Hasselmann)
+
+Thu Sep 22 12:42:12 2005  Tim Janik  <timj@gtk.org>
+
+	* gparam.c (g_param_spec_internal): fix pspec->name assignment which
+	needs to be strdup()ed for non G_PARAM_STATIC_NAME pspecs. this fixes
+	recently introduced crashes during plugin unloading.
+	also, ensure that static pspec names are canonicalized.
+
+	* gsignal.h: reverted last change from matthias, we don't guarantee
+	that type ids aren't mangled with G_SIGNAL_TYPE_STATIC_SCOPE anywhere.
+
+2005-09-20  Matthias Clasen  <mclasen@redhat.com>
+
+	* gsignal.h (struct _GSignalQuery): Remove the misleading comment
+	about G_SIGNAL_TYPE_STATIC_SCOPE, since we don't allow that 
+	on return types.
+
+2005-09-08  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* gclosure.c: (g_closure_set_meta_marshal): Remove some unused
+	code.
+	* gsignal.c: (g_signal_emitv): Same here
+	* gtype.c: (g_type_register_fundamental): And here
+	* testgobject.c: Mark some functions static.
+
+2005-09-05  Matthias Clasen  <mclasen@redhat.com>
+
+	* gsignal.c (struct _SignalNode): Make the name field const.
+	(g_signal_newv): Don't keep an unnecessary extra copy of the 
+	signal name around, and don't forget to free the name if
+	an existing node is reused.	
+
+2005-08-31  Matthias Clasen  <mclasen@redhat.com>
+
+	* gobject.c (g_object_do_class_init): Intern the signal name.
+
+	* gparam.c (g_param_spec_internal): Intern the name here,
+	since we need the quark anyway when sending change notification.
+
+	* gboxed.c: 
+	* gparamspecs.c: 
+	* gtype.c (g_type_init_with_debug_flags): Intern type name
+	before registering the types.
+
+	* gtype.h (G_DEFINE_TYPE_EXTENDED): Intern type name
+	before registering the type.
+
+	* gvaluetypes.c (g_value_types_init): 
+	* gtypeplugin.c (g_type_plugin_get_type): 
+	* gtypemodule.c (g_type_module_get_type): 
+	* gparam.c (g_param_type_init): 
+	* gobject.c (g_object_type_init): 
+	* genums.c (g_enum_types_init): 
+	* gboxed.c (g_boxed_type_init): Intern type names
+	before registering the type to avoid unnecessary
+	copies.
+
+2005-08-23  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.8.1 ===
+
+2005-08-12  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.8.0 ===
+
+2005-08-09  Matthias Clasen  <mclasen@redhat.com>
+
+	* gvaluetransform.c: Access enum and flags
+	values as v_long/v_ulong, not v_int/v_uint,
+	to make value transformation of such types
+	work on bigendian 64bit machines.  (#312485,
+	Michael Lorenz)
+
+2005-08-05  Matthias Clasen  <mclasen@redhat.com>
+	
+	* abicheck.sh: Also check exported variables
+
+	* === Released 2.7.7 ===
+
+2005-08-03  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.7.6 ===
+
+2005-08-02  Matthias Clasen  <mclasen@redhat.com>
+
+	* gclosure.c (union ClosureInt): Mark the vint member as
+	volatile, which seems to be necessary to make atomic operations
+	work on s390.
+
+	* === Released 2.7.5 ===
+
+Mon Aug  1 23:00:42 2005  Tim Janik  <timj@imendio.com>
+
+	* gclosure.c: turned all modifications to the first 32 integer bits in a 
+	closure into atomic accesses. wrapped write accesses into special macros
+	to keep the atomic modification logic in a single place. comment cleanups.
+
+	* gclosure.h: made all atomicly accessed closure fields volatile.
+
+	* gobject.h: made ref_count field volatile.
+
+Sun Jul 31 02:04:23 2005  Tim Janik  <timj@gtk.org>
+
+	* gobject.c: use g_datalist_set_flags() and g_datalist_unset_flags() to
+	allow proper locking around &qdata modifications.
+
+Sat Jul 30 21:10:26 2005  Tim Janik  <timj@gtk.org>
+
+	* gobject.c: reverted notify_mutex introduction, since this prevents
+	parallelized setting of object properties on different objects, and
+	serves no apparent purpose (to me at least).
+	g_object_real_dispose(): removed non-atomic reference count 
+	modifications.
+	g_object_unref(): make sure the closures array is destroyed when
+	destroying signal handlers.
+
+	* gparam.c: cosmetic changes.
+
+	* gsignal.c: comment fixup. allow 16bit blocking count.
+
+	* gsignal.c: reverted GClosure related changes.
+
+	* gclosure.c: reverted premature commit of atomic reference
+	counting attempt.
+
+2005-07-21  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.7.4 ===
+
+2005-07-15  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.7.3 ===
+	
+2005-07-15  Matthias Clasen  <mclasen@redhat.com>
+
+	Make refcounting threadsafe by using atomic 
+	operations.  (#166020, Wim Taymans)
+	
+	* gobject.c: Use a recursive lock to protect the 
+	notify queue.
+	(g_object_unref): Get rid of g_object_last_unref and
+	do the last unref handling in g_object_unref.
+	(g_object_ref, g_object_unref): Use atomic operations.
+
+	* gsignal.c (struct _HandlerMatch): Use a full integer
+	for the ref_count field.
+	(handler_ref, handler_unref_R): Use atomic operations.
+
+	* gparam.c (g_param_spec_ref, g_param_spec_unref): 
+	Use atomic operations instead of a lock to make the
+	refcounting threadsafe.
+
+	* gclosure.c (g_closure_ref, g_closure_unref): Use atomic
+	operations. This is more complicated here, since the
+	refcount is stored in a bitfield, so we also have
+	to access all other bitfield members atomically.
+
+	* gsignal.c (handlers_find): Read the meta_marshal flag
+	of the closure atomically.
+
+2005-07-11  Matthias Clasen  <mclasen@redhat.com>
+
+	* gobject.h: 
+	* gobject.symbols: Remove G_GNUC_NULL_TERMINATED from
+	g_object_new again, since that makes gcc warn on calls of 
+	the form g_object_new (some_type, NULL)
+
+2005-07-09  Tor Lillqvist  <tml@novell.com>
+
+	* Makefile.am: Don't use the scripts in build/win32 to compile
+	gobject.rc into a resource object file. (This means we lose the
+	build number increment magic, but I doubt it was that useful
+	anyway.) Instead use windres directly. To pass the normal .o file
+	produced by windres through libtool, which wants .lo files, pass
+	it directly to the linker using a -Wl option.
+
+	* gobject.rc.in: Thus replace BUILDNUMBER with 0.
+
+2005-07-08  Matthias Clasen  <mclasen@redhat.com>
+	
+	* === Released 2.7.2 ===
+
+2005-06-30  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.7.1 ===
+
+2005-06-26  Tor Lillqvist  <tml@novell.com>
+
+	* Makefile.am: libtool installs/uninstalls the import library, no
+	need to do it ourselves. Do still install/uninstall the .def file,
+	though.
+
+2005-06-24  Tor Lillqvist  <tml@novell.com>
+
+	* Makefile.am (install-libtool-import-lib): Current GNU tools do
+	understand the PRIVATE keyword.
+
+2005-06-19  Matthias Clasen  <mclasen@redhat.com>
+
+	* gparam.h (GParamFlags): Avoid a warning.  (#308295,
+	Murray Cumming).
+
+2005-06-13  Matthias Clasen  <mclasen@redhat.com>
+
+	* gparam.h (GParamFlags): Re-add G_PARAM_PRIVATE as a 
+	deprecated name for bit 5, since some language bindings
+	have it bound.
+
+2005-06-10  Matthias Clasen  <mclasen@redhat.com>
+
+	* === Released 2.7.0 ===
+
+2005-05-20  Matthias Clasen  <mclasen@redhat.com>
+
+	* gvaluetypes.c (g_value_set_string): dup the new value
+	before freeing the old, just in case.  (#172142, Morten
+	Welinder)
+
+2005-05-13  Matthias Clasen  <mclasen@redhat.com>
+
+	* glib-genmarshal.1: Mention 64bit integer types.
+
+2005-05-05  Owen Taylor  <otaylor@redhat.com>
+
+	* gobject.[ch] gobject.symbols: Add
+	g_object_add/remove_toggle_ref() functions to get notification
+	when a reference count is the last remaining reference; this
+	enables better memory management for language bindings.
+	(http://mail.gnome.org/archives/gtk-devel-list/2005-April/msg00095.html)
+
+2005-04-29  Matthias Clasen  <mclasen@redhat.com>
+
+	* gobject.symbols: 
+	* gboxed.h (G_TYPE_DATE): 
+	* gboxed.c: Add a boxed type for GDate. (#301787, Tim-Philipp 
+	M邦ller)
+
+2005-03-25  Matthias Clasen  <mclasen@redhat.com>
+
+	* gparam.c (param_spec_ht_lookup): Don't do the second
+	lookup if the name was already canonical.  (#171502, Morten
+	Welinder)
+
+Tue Mar 22 14:15:23 2005  Manish Singh <yosh@gimp.org>
+
+	* gparam.c (g_param_spec_internal): cast away any constness on
+	assignment.
+
+2005-03-21  Matthias Clasen  <mclasen@redhat.com>
+
+	* glib-mkenums.in: Avoid forcing extra newlines when using
+	template files.  (#171005)
+
+2005-03-20  Matthias Clasen  <mclasen@redhat.com>
+
+	* gparam.c (g_param_spec_internal): Don't copy strings
+	which are marked as static. Don't allow non-canonical static 
+	names.
+
+	* gparam.h (GParamFlags): Add G_PARAM_STATIC_{NAME,NICK,BLURB}
+	flags.  (#160655, Ben Maurer)
+	
+2005-03-18  Hans Breuer  <hans@breuer.org>
+
+	* makefile.msc.in : handle gobjectaliasdef.c
+
+2005-03-14  Matthias Clasen  <mclasen@redhat.com>
+
+	Make PLT-reduction work with gcc4, and don't include
+	everything in gobjectalias.h:
+	
+	* gobject.symbols: Group symbols by header and source 
+	file.
+	* makegobjectalias.pl: Protect definitions by the same 
+	preprocessor symbols used to guard the headers. Move
+	the alias declarations to a separate file which is 
+	produced when calling makegalias.pl -def
+	* Makefile.am (gobjectaliasdef.c): Add a rule to 
+	build this file.
+	* *.c: Include gobjectalias.h after the other i
+	GLib headers, include gobjectaliasdef.c at the bottom.
+
+2005-03-08  Matthias Clasen  <mclasen@redhat.com>
+
+	* gobject.symbols: Add the new attributes here, too.
+
+	* gobject.h: Use G_GNUC_NULL_TERMINATED where
+	appropriate.  (#164706, Marc Meissner)
+
+	* gvaluearray.h: Small cleanup (use G_BEGIN/END_DECLS).
+	(#168474, Fabricio Barros Cabral)
+
+2005-02-24  Tor Lillqvist  <tml@novell.com>
+
+	* Makefile.am (EXTRA_DIST): Don't distribute
+	gobject.def. (#167496, J. Ali Harlow)
+
+Sun Feb  6 22:00:46 2005  Manish Singh  <yosh@gimp.org>
+
+	* abicheck.sh: feed the contents of config.h and glibconfig.h
+	into the preprocessor, since glib.symbols could need #defines
+	from them.
+
+2005-01-12  Matthias Clasen  <mclasen@redhat.com>
+
+	Cosmetic fixes (#163792, Beno
