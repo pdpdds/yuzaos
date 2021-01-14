@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pango\break-arabic.c" />
+    <ClCompile Include="pango\break-indic.c" />
+    <ClCompile Include="pango\break-thai.c" />
+    <ClCompile Include="pango\break.c">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">_MSC_VER=1920;SKYOS32;_CRT_SECURE_NO_WARNINGS;G_GNUC_FALLTHROUGH</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="pango\ellipsize.c" />
+    <ClCompile Include="pango\fonts.c" />
+    <ClCompile Include="pango\glyphstring.c" />
+    <ClCompile Include="pango\modules.c" />
+    <ClCompile Include="pango\pango-attributes.c" />
+    <ClCompile Include="pango\pango-bidi-type.c" />
+    <ClCompile Include="pango\pango-color.c" />
+    <ClCompile Include="pango\pango-context.c" />
+    <ClCompile Include="pango\pango-coverage.c" />
+    <ClCompile Include="pango\pango-emoji.c" />
+    <ClCompile Include="pango\pango-engine.c" />
+    <ClCompile Include="pango\pango-enum-types.c" />
+    <ClCompile Include="pango\pango-fontmap.c" />
+    <ClCompile Include="pango\pango-fontset.c" />
+    <ClCompile Include="pango\pango-glyph-item.c" />
+    <ClCompile Include="pango\pango-gravity.c" />
+    <ClCompile Include="pango\pango-item.c" />
+    <ClCompile Include="pango\pango-language.c" />
+    <ClCompile Include="pango\pango-layout.c" />
+    <ClCompile Include="pango\pango-markup.c" />
+    <ClCompile Include="pango\pango-matrix.c" />
+    <ClCompile Include="pango\pango-ot-buffer.c" />
+    <ClCompile Include="pango\pango-ot-info.c" />
+    <ClCompile Include="pango\pango-ot-ruleset.c" />
+    <ClCompile Include="pango\pango-ot-tag.c" />
+    <ClCompile Include="pango\pango-renderer.c" />
+    <ClCompile Include="pango\pango-script.c" />
+    <ClCompile Include="pango\pango-tabs.c" />
+    <ClCompile Include="pango\pango-utils.c" />
+    <ClCompile Include="pango\pangocairo-context.c" />
+    <ClCompile Include="pango\pangocairo-fcfont.c" />
+    <ClCompile Include="pango\pangocairo-fcfontmap.c" />
+    <ClCompile Include="pango\pangocairo-font.c" />
+    <ClCompile Include="pango\pangocairo-fontmap.c" />
+    <ClCompile Include="pango\pangocairo-render.c" />
+    <ClCompile Include="pango\pangofc-decoder.c" />
+    <ClCompile Include="pango\pangofc-font.c" />
+    <ClCompile Include="pango\pangofc-fontmap.c" />
+    <ClCompile Include="pango\pangofc-shape.c" />
+    <ClCompile Include="pango\pangoft2-fontmap.c" />
+    <ClCompile Include="pango\pangoft2-render.c" />
+    <ClCompile Include="pango\pangoft2.c" />
+    <ClCompile Include="pango\reorder-items.c" />
+    <ClCompile Include="pango\shape.c" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{75D43B24-F55C-41E9-8CFA-5750F856EB3A}</ProjectGuid>
+    <RootNamespace>Kernel</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>pango</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Intermediate\$(ProjectName)\</IntDir>
+    <ExtensionsToDeleteOnClean>*.exp *.obj%3b*.ilk%3b*.tlb%3b*.tli%3b*.tlh%3b*.tmp%3b*.rsp%3b*.pgc%3b*.pgd%3b$(TargetPath)</ExtensionsToDeleteOnClean>
+    <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
+    <TargetName>$(ProjectName)</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IntDir>$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/Oy /arch:SSE %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <AdditionalIncludeDirectories>C:\yuzaos\trunk\verify\glib\gmodule;C:\yuzaos\trunk\verify\fribidi\charset;C:\yuzaos\trunk\verify\fribidi\win32\vc11;C:\yuzaos\trunk\verify\fribidi\lib;C:\yuzaos\trunk\thirdparty2\fontconfig;C:\yuzaos\trunk\thirdparty\freetype\include;C:\yuzaos\trunk\thirdparty\cairo\src;./PANGO;C:\yuzaos\trunk\thirdparty\harfbuzz;C:\yuzaos\trunk\verify\glib\glib;C:\yuzaos\trunk\verify\glib;./;../../runtime/include;../../corelib/include;../../thirdparty/zlib128/zlib</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>HAVE_CAIRO_FREETYPE;_MSC_VER=1920;SKYOS32;_CRT_SECURE_NO_WARNINGS;G_GNUC_FALLTHROUGH</PreprocessorDefinitions>
+      <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
+      <StringPooling>
+      </StringPooling>
+      <ExceptionHandling>false</ExceptionHandling>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <AssemblerOutput>NoListing</AssemblerOutput>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CallingConvention>Cdecl</CallingConvention>
+      <DisableSpecificWarnings>4819;4457;4189;4100;4702;4102;4244;4239;4333;4127;4554;4996;4005;4018</DisableSpecificWarnings>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <LanguageStandard>
+      </LanguageStandard>
+      <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <SDLCheck>false</SDLCheck>
+    </ClCompile>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <Link>
+      <AdditionalDependencies>gio-2.0.lib;libuuid.lib;gmodule-2.0.lib;fribidid.lib;expat.lib;gobject-2.0.lib;math.lib;glib-2.0.lib;libwin32.lib;yuzaapi.lib;freetyped.lib;fontconfig.lib;harfbuzz.lib;libcrt.lib;dllstub.lib;filemanager.lib;systemcall.lib;iconv.lib;cairo.lib</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>C:\yuzaos\trunk\verify\fribidi\win32\vc11\Debug;C:\yuzaos\trunk\verify\glib\win32\vs15\Debug\Win32\bin;C:\yuzaos\trunk\thirdparty2\Debug;$(SolutionDir)$(Configuration);../../runtime/debug;../Debug;../../thirdparty/debug;../../corelib/debug;../../debug</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(OutDir)$(TargetName).map</MapFileName>
+      <SubSystem>Console</SubSystem>
+      <Driver>NotSet</Driver>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <FunctionOrder>
+      </FunctionOrder>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <NoEntryPoint>false</NoEntryPoint>
+      <BaseAddress>
+      </BaseAddress>
+      <FixedBaseAddress>
+      </FixedBaseAddress>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <FullProgramDatabaseFile>true</FullProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <AddModuleNamesToAssembly>
+      </AddModuleNamesToAssembly>
+      <ForceSymbolReferences>
+      </ForceSymbolReferences>
+      <AdditionalOptions>/safeseh:no /ALIGN:1024 %(AdditionalOptions)</AdditionalOptions>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+      <OutputFile>../debug/$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <DisableSpecificWarnings>4457</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>./;../../CommonLib;../../Include;./CPU;./Memory;./Heap;./Test;../../CommonLib/stl;../../CommonLib/jsmn;./FileSystem</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ARCH_X86;</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+  </ImportGroup>
+</Project>
