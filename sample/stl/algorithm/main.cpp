@@ -16,10 +16,8 @@ using namespace eastl;
 
 eastl::string trimLeft(const eastl::string& s) {
     auto temp = s;
-    temp.erase(eastl::begin(temp),
-        eastl::find_if(eastl::begin(temp), eastl::end(temp),
-            [](char c) {return !isspace(c);
-            }));
+    temp.erase(eastl::begin(temp), eastl::find_if(eastl::begin(temp), eastl::end(temp),
+        [](char c) {return !isspace(c);}));
     return temp;
 }
 
