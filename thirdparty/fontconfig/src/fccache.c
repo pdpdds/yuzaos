@@ -48,11 +48,6 @@
 #define O_BINARY 0
 #endif
 
-void perror(char* szerror)
-{
-    printf("%s", szerror);
-}
-
 FcBool
 FcDirCacheCreateUUID (FcChar8  *dir,
 		      FcBool    force,
