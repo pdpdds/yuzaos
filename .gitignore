@@ -4,6 +4,8 @@ Debug
 bin
 verify
 .vs
+kernel/launcher
+kernel/yuza_core/Release
 Intermediate
 runtime/Debug
 runtime/.vs
