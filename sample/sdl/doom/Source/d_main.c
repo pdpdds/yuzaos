@@ -657,7 +657,7 @@ boolean WadFileStatus(char* filename, boolean* isdir)
 	if (!filename || !*filename)    //if path NULL or empty, doesn't exist
 		return false;
 
-	if (!fstat(filename, &sbuf))      //check for existence
+	if (!stat(filename, &sbuf))      //check for existence
 	{
 		*isdir = sbuf.st_mode == 0; //if it does, set whether a dir or not
 		return true;                  //return does exist
@@ -669,7 +669,7 @@ boolean WadFileStatus(char* filename, boolean* isdir)
 			return false;               //if already ends in .wad, not found
 
 	strcat(filename, ".wad");        //try it with .wad added
-	if (!fstat(filename, &sbuf))      //if it exists then
+	if (!stat(filename, &sbuf))      //if it exists then
 	{
 		if (0 == sbuf.st_mode)  //but is a dir, then say we didn't find it
 			return false;
@@ -855,7 +855,7 @@ void IdentifyVersion(void)
 	strcpy(basesavegame, ".");       //jff 3/27/98 default to current dir
 	if ((i = M_CheckParm("-save")) && i < myargc - 1) //jff 3/24/98 if -save present
 	{
-		if (0 == fstat(myargv[i + 1], &sbuf) && 0 == sbuf.st_mode) // and is a dir
+		if (0 == stat(myargv[i + 1], &sbuf) && 0 == sbuf.st_mode) // and is a dir
 			strcpy(basesavegame, myargv[i + 1]);  //jff 3/24/98 use that for savegame
 		else
 			printf("Error: -save path does not exist, using current dir");  // killough 8/8/98
@@ -1271,7 +1271,7 @@ void D_DoomMain(void)
 #ifdef DJGPP
 		mkdir("c:/doomdata", 0);
 #else
-		mkdir("c:/doomdata");
+		mkdir("c:/doomdata", 0);
 #endif
 
 		// killough 10/98:

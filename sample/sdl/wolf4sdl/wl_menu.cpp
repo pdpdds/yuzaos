@@ -4013,9 +4013,9 @@ CheckForEpisodes (void)
     if(configdir[0] != 0)
     {
         // Ensure config directory exists and create if necessary
-        if(fstat(configdir, &statbuf) != 0)
+        if(stat(configdir, &statbuf) != 0)
         {
-            if (mkdir(configdir) != 0)
+            if (mkdir(configdir, 0) != 0)
             {
                 Quit("The configuration directory \"%s\" could not be created.", configdir);
             }
@@ -4050,7 +4050,7 @@ CheckForEpisodes (void)
 // ENGLISH
 //
 #ifdef UPLOAD
-    if(!fstat(DATADIR "vswap.wl1", &statbuf))
+    if(!stat(DATADIR "vswap.wl1", &statbuf))
     {
         strcpy (extension, "wl1");
         numEpisodesMissing = 5;
