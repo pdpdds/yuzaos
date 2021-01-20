@@ -112,7 +112,7 @@
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>../../../corelib/include;../../../runtime/include;../../../corelib/eastreams;./;../include;../../../corelib/stl/eastl/include;../../../corelib/stl/EASTL\test\packages\EAStdC\include;../../../corelib/stl/EASTL\test\source;../../../corelib/stl/EASTL\test\packages/EABase\include\Common;../../../corelib/stl/EASTL\test\packages\EAAssert\include;../../../corelib/stl/EASTL\test\packages\EATest\include;../../../corelib/stl/EASTL\test\packages\EAMain\include;../../../corelib/stl/EASTL\include\EASTL;../../../;../../../corelib/stl/EASTL;../../../thirdparty/pcre2;../../../corelib/stl/eastl\test\packages\EAThread\include;../../yuza_core;../../../support/include;../../../thirdparty\freetype\include;../../../thirdparty/harfbuzz;../../../thirdparty\sdl/sdl2/sdl/include;../../../thirdparty\imgui</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../corelib/include;../../../runtime/include;../../../corelib/eastreams;./;../include;../../../corelib/stl/eastl/include;../../../corelib/stl/EASTL\test\packages\EAStdC\include;../../../corelib/stl/EASTL\test\source;../../../corelib/stl/EASTL\test\packages/EABase\include\Common;../../../corelib/stl/EASTL\test\packages\EAAssert\include;../../../corelib/stl/EASTL\test\packages\EATest\include;../../../corelib/stl/EASTL\test\packages\EAMain\include;../../../corelib/stl/EASTL\include\EASTL;../../../;../../../corelib/stl/EASTL;../../../thirdparty/pcre2;../../../corelib/stl/eastl\test\packages\EAThread\include;../../yuza_core;../../../support/include;../../../thirdparty\freetype\include;../../../thirdparty/harfbuzz;../../../thirdparty\sdl/sdl2/sdl/include;../../../thirdparty2\imgui</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>EA_COMPILER_NO_VARIADIC_MACROS;_MSC_VER=1920;__STDC__;SKYOS32</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
@@ -140,9 +140,9 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>eastl.lib;imgui.lib;freetyped.lib;harfbuzz.lib;sdl.lib;math.lib;systemcall.lib;filemanager.lib;libcrt.lib;exestub.lib;slog.lib;streams.lib;yuzalib.lib;yuzaapi.lib;zlib128.lib</AdditionalDependencies>
+      <AdditionalDependencies>glib-2.0.lib;eastl.lib;imgui.lib;freetyped.lib;harfbuzz.lib;sdl.lib;math.lib;systemcall.lib;filemanager.lib;libcrt.lib;exestub.lib;streams.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>../../../$(Configuration);../../../corelib/debug;../../../runtime/debug;../../../Debug;../../../support/debug;../../../thirdparty/debug;../../../thirdparty/sdl/sdl2/debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../../$(Configuration);../../../corelib/debug;../../../runtime/debug;../../../Debug;../../../support/debug;../../../thirdparty/debug;../../../thirdparty/sdl/sdl2/debug;../../../thirdparty2/debug;../../../thirdparty2\glib\win32\vs15\Debug\Win32\bin</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(OutDir)$(TargetName).map</MapFileName>

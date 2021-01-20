@@ -144,7 +144,7 @@ int scandir(const char* dirname, dirent*** namelist, int (*sdfilter)(dirent*), i
 
 	while ((info = readdir(dirp)) != 0)
 	{
-		
+
 		if (sdfilter != NULL && !(*sdfilter)(info))
 			continue;       /* just selected names */
 

@@ -91,7 +91,7 @@ struct option options[] = {
  {NULL,0,NULL,0}
 };
 
-int errno = 0;
+extern int errno;
 
 void*
 #ifndef MEMRCHR
