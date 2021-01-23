@@ -1,0 +1,25 @@
+LIBRARY LiteZip
+
+EXPORTS
+ZipFormatMessageA
+ZipFormatMessageW
+ZipClose
+ZipCreateHandle
+ZipCreateFileA
+ZipCreateFileW
+ZipCreateBuffer
+ZipGetMemory
+ZipAddFileA
+ZipAddFileW
+ZipAddHandleA
+ZipAddHandleW
+ZipAddPipeA
+ZipAddPipeW
+ZipAddBufferA
+ZipAddBufferW
+ZipAddFolderA
+ZipAddFolderW
+ZipResetMemory
+ZipOptions
+ZipAddDirA
+ZipAddDirW

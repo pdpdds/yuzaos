@@ -1,8 +1,6 @@
 #pragma once
 #include "windef.h"
-#include <gettimeofday.h>
-
-
+//#include <gettimeofday.h>
 
 
 #ifdef __cplusplus
@@ -60,6 +58,11 @@ struct tm
 struct timespec {
 	time_t tv_sec;
 	long tv_nsec;
+};
+
+struct timeval {
+	long tv_sec;
+	long tv_usec;
 };
 
 extern long _timezone;

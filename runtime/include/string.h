@@ -60,6 +60,8 @@ extern "C" {
 	CRT_API long strtol(const char* nptr, char** endptr, int base);
 	//void printf(const char* fmt, ...);
 
+	CRT_API void splitpath(const char* path, char* drv, char* dir, char* name, char* ext);
+
 #ifdef  __cplusplus
 }
 #endif

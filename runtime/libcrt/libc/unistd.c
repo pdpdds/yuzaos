@@ -68,3 +68,8 @@ void perror(const char* str)
 {
 	printf("%s", str);
 }
+
+int futimes(int fd, const struct timeval* times)
+{
+	return -1;
+}

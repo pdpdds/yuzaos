@@ -1,9 +1,5 @@
 #pragma once
-
-struct timeval {
-    long tv_sec;
-    long tv_usec;
-};
+#include <time.h>
 
 #ifdef __cplusplus
 extern "C"

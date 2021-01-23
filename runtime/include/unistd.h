@@ -1,5 +1,6 @@
 #pragma once
 #include <stat_def.h>
+#include <time.h>
 
 #define R_OK 0
 #define W_OK 1
@@ -46,7 +47,7 @@ extern "C" {
 	{
 		time_t actime;   // 접근시간
 		time_t modtime;	 // 변경시간
-	};
+	};	
 
 	int access(const char* pathname, int mode);
 	int lstat(const char* filename, struct stat* buf);
@@ -57,6 +58,7 @@ extern "C" {
 	int sethostname(const char* name, size_t len);
 	int utime(const char* filename, struct utimbuf* buf);
 	void perror(const char* str);
+	int futimes(int fd, const struct timeval* times);
 
 	void* bsearch(const void* key, const void* base0,
 		size_t nmemb, size_t size,

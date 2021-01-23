@@ -183,7 +183,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <DisableSpecificWarnings>4457</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>./;../../CommonLib;../../Include;./CPU;./Memory;./Heap;./Test;../../CommonLib/stl;../../CommonLib/jsmn;./FileSystem</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include;./;../../CommonLib;../../Include;./CPU;./Memory;./Heap;./Test;../../CommonLib/stl;../../CommonLib/jsmn;./FileSystem</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>ARCH_X86;</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>

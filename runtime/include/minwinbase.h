@@ -35,9 +35,9 @@ extern "C" {
 //
 // Constants
 //
-#define MoveMemory RtlMoveMemory
-#define CopyMemory RtlCopyMemory
-#define FillMemory RtlFillMemory
+//#define MoveMemory RtlMoveMemory
+//#define CopyMemory RtlCopyMemory
+//#define FillMemory RtlFillMemory
 #define ZeroMemory(Destination,Length) memset((Destination),0,(Length))
 
 

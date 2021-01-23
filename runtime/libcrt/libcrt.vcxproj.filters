@@ -354,6 +354,9 @@
     <ClCompile Include="libc\locale\locale.c">
       <Filter>libc\locale</Filter>
     </ClCompile>
+    <ClCompile Include="spiltpath.c">
+      <Filter>libc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">
@@ -419,9 +422,6 @@
       <Filter>libc</Filter>
     </ClInclude>
     <ClInclude Include="libc\strtof.h">
-      <Filter>libc</Filter>
-    </ClInclude>
-    <ClInclude Include="libc\unistd.h">
       <Filter>libc</Filter>
     </ClInclude>
     <ClInclude Include="libc\time\_time.h">

@@ -32,7 +32,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <math.h>
-
+#include <gettimeofday.h>
 
   /*
    * Local "replace" implementation of uuid functions.

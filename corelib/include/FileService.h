@@ -76,14 +76,14 @@ extern "C" {
 	DLL_API int chdir(const char* dirname);
 
 	DLL_API int fflush(FILE* stream);
-	DLL_API int fsync(FILE* fp);
+	DLL_API int fsync(FILE* fp);	
 
 	DLL_API DIR* opendir(const char*);
 	DLL_API int  closedir(DIR*);
 	DLL_API struct dirent* readdir(DIR*);
 	DLL_API void  rewinddir(DIR*);
 	DLL_API int stat(char const* const fileName, struct stat* fno);
-	DLL_API int fstat(int fd, struct stat* buf);
+	DLL_API int fstat(int fd, struct stat* buf);	
 
 	DLL_API int ferror(FILE* stream);
 	DLL_API char* strerr(int errnum);
