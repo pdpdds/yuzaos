@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="lib\zip_add.c" />
+    <ClCompile Include="lib\zip_add_dir.c" />
+    <ClCompile Include="lib\zip_add_entry.c" />
+    <ClCompile Include="lib\zip_algorithm_deflate.c" />
+    <ClCompile Include="lib\zip_buffer.c" />
+    <ClCompile Include="lib\zip_close.c" />
+    <ClCompile Include="lib\zip_delete.c" />
+    <ClCompile Include="lib\zip_dirent.c" />
+    <ClCompile Include="lib\zip_dir_add.c" />
+    <ClCompile Include="lib\zip_discard.c" />
+    <ClCompile Include="lib\zip_entry.c" />
+    <ClCompile Include="lib\zip_error.c" />
+    <ClCompile Include="lib\zip_error_clear.c" />
+    <ClCompile Include="lib\zip_error_get.c" />
+    <ClCompile Include="lib\zip_error_get_sys_type.c" />
+    <ClCompile Include="lib\zip_error_strerror.c" />
+    <ClCompile Include="lib\zip_error_to_str.c" />
+    <ClCompile Include="lib\zip_extra_field.c" />
+    <ClCompile Include="lib\zip_extra_field_api.c" />
+    <ClCompile Include="lib\zip_fclose.c" />
+    <ClCompile Include="lib\zip_fdopen.c" />
+    <ClCompile Include="lib\zip_file_add.c" />
+    <ClCompile Include="lib\zip_file_error_clear.c" />
+    <ClCompile Include="lib\zip_file_error_get.c" />
+    <ClCompile Include="lib\zip_file_get_comment.c" />
+    <ClCompile Include="lib\zip_file_get_external_attributes.c" />
+    <ClCompile Include="lib\zip_file_get_offset.c" />
+    <ClCompile Include="lib\zip_file_rename.c" />
+    <ClCompile Include="lib\zip_file_replace.c" />
+    <ClCompile Include="lib\zip_file_set_comment.c" />
+    <ClCompile Include="lib\zip_file_set_encryption.c" />
+    <ClCompile Include="lib\zip_file_set_external_attributes.c" />
+    <ClCompile Include="lib\zip_file_set_mtime.c" />
+    <ClCompile Include="lib\zip_file_strerror.c" />
+    <ClCompile Include="lib\zip_fopen.c" />
+    <ClCompile Include="lib\zip_fopen_encrypted.c" />
+    <ClCompile Include="lib\zip_fopen_index.c" />
+    <ClCompile Include="lib\zip_fopen_index_encrypted.c" />
+    <ClCompile Include="lib\zip_fread.c" />
+    <ClCompile Include="lib\zip_fseek.c" />
+    <ClCompile Include="lib\zip_ftell.c" />
+    <ClCompile Include="lib\zip_get_archive_comment.c" />
+    <ClCompile Include="lib\zip_get_archive_flag.c" />
+    <ClCompile Include="lib\zip_get_encryption_implementation.c" />
+    <ClCompile Include="lib\zip_get_file_comment.c" />
+    <ClCompile Include="lib\zip_get_name.c" />
+    <ClCompile Include="lib\zip_get_num_entries.c" />
+    <ClCompile Include="lib\zip_get_num_files.c" />
+    <ClCompile Include="lib\zip_hash.c" />
+    <ClCompile Include="lib\zip_io_util.c" />
+    <ClCompile Include="lib\zip_libzip_version.c" />
+    <ClCompile Include="lib\zip_memdup.c" />
+    <ClCompile Include="lib\zip_mkstempm.c" />
+    <ClCompile Include="lib\zip_name_locate.c" />
+    <ClCompile Include="lib\zip_new.c" />
+    <ClCompile Include="lib\zip_open.c" />
+    <ClCompile Include="lib\zip_pkware.c" />
+    <ClCompile Include="lib\zip_progress.c" />
+    <ClCompile Include="lib\zip_random_unix.c" />
+    <ClCompile Include="lib\zip_rename.c" />
+    <ClCompile Include="lib\zip_replace.c" />
+    <ClCompile Include="lib\zip_set_archive_comment.c" />
+    <ClCompile Include="lib\zip_set_archive_flag.c" />
+    <ClCompile Include="lib\zip_set_default_password.c" />
+    <ClCompile Include="lib\zip_set_file_comment.c" />
+    <ClCompile Include="lib\zip_set_file_compression.c" />
+    <ClCompile Include="lib\zip_set_name.c" />
+    <ClCompile Include="lib\zip_source_accept_empty.c" />
+    <ClCompile Include="lib\zip_source_begin_write.c" />
+    <ClCompile Include="lib\zip_source_begin_write_cloning.c" />
+    <ClCompile Include="lib\zip_source_buffer.c" />
+    <ClCompile Include="lib\zip_source_call.c" />
+    <ClCompile Include="lib\zip_source_close.c" />
+    <ClCompile Include="lib\zip_source_commit_write.c" />
+    <ClCompile Include="lib\zip_source_compress.c" />
+    <ClCompile Include="lib\zip_source_crc.c" />
+    <ClCompile Include="lib\zip_source_error.c" />
+    <ClCompile Include="lib\zip_source_file_common.c" />
+    <ClCompile Include="lib\zip_source_file_stdio.c" />
+    <ClCompile Include="lib\zip_source_file_stdio_named.c" />
+    <ClCompile Include="lib\zip_source_free.c" />
+    <ClCompile Include="lib\zip_source_function.c" />
+    <ClCompile Include="lib\zip_source_get_file_attributes.c" />
+    <ClCompile Include="lib\zip_source_is_deleted.c" />
+    <ClCompile Include="lib\zip_source_layered.c" />
+    <ClCompile Include="lib\zip_source_open.c" />
+    <ClCompile Include="lib\zip_source_pkware_decode.c" />
+    <ClCompile Include="lib\zip_source_pkware_encode.c" />
+    <ClCompile Include="lib\zip_source_read.c" />
+    <ClCompile Include="lib\zip_source_remove.c" />
+    <ClCompile Include="lib\zip_source_rollback_write.c" />
+    <ClCompile Include="lib\zip_source_seek.c" />
+    <ClCompile Include="lib\zip_source_seek_write.c" />
+    <ClCompile Include="lib\zip_source_stat.c" />
+    <ClCompile Include="lib\zip_source_supports.c" />
+    <ClCompile Include="lib\zip_source_tell.c" />
+    <ClCompile Include="lib\zip_source_tell_write.c" />
+    <ClCompile Include="lib\zip_source_window.c" />
+    <ClCompile Include="lib\zip_source_write.c" />
+    <ClCompile Include="lib\zip_source_zip.c" />
+    <ClCompile Include="lib\zip_source_zip_new.c" />
+    <ClCompile Include="lib\zip_stat.c" />
+    <ClCompile Include="lib\zip_stat_index.c" />
+    <ClCompile Include="lib\zip_stat_init.c" />
+    <ClCompile Include="lib\zip_strerror.c" />
+    <ClCompile Include="lib\zip_string.c" />
+    <ClCompile Include="lib\zip_unchange.c" />
+    <ClCompile Include="lib\zip_unchange_all.c" />
+    <ClCompile Include="lib\zip_unchange_archive.c" />
+    <ClCompile Include="lib\zip_unchange_data.c" />
+    <ClCompile Include="lib\zip_utf-8.c" />
+    <ClCompile Include="zip_err_str.c" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{E8E76EA5-4EA7-4908-97B9-4959AA496B01}</ProjectGuid>
+    <RootNamespace>Kernel</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>libzip</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Intermediate\$(ProjectName)\</IntDir>
+    <ExtensionsToDeleteOnClean>*.exp *.obj%3b*.ilk%3b*.tlb%3b*.tli%3b*.tlh%3b*.tmp%3b*.rsp%3b*.pgc%3b*.pgd%3b$(TargetPath)</ExtensionsToDeleteOnClean>
+    <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
+    <TargetName>$(ProjectName)</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IntDir>$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/Oy  /arch:SSE %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <AdditionalIncludeDirectories>../zlib128/zlib;../include;../../runtime/include;../../corelib/include;./;./lib</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>SKYOS32;_MSC_VER=1920</PreprocessorDefinitions>
+      <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
+      <StringPooling>
+      </StringPooling>
+      <ExceptionHandling>false</ExceptionHandling>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <AssemblerOutput>NoListing</AssemblerOutput>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CallingConvention>Cdecl</CallingConvention>
+      <DisableSpecificWarnings>4457;4189;4100;4702;4102;4244;4239;4333;4127;4554;4819</DisableSpecificWarnings>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <LanguageStandard>
+      </LanguageStandard>
+      <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <SDLCheck>false</SDLCheck>
+    </ClCompile>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <Link>
+      <AdditionalDependencies>filemanager.lib;libcrt.lib;dllstub.lib;math.lib;systemcall.lib;zlib128.lib</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>../../$(Configuration)/lib;../../corelib/debug;../../runtime/debug;../../Debug;../../thirdparty/debug</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(OutDir)$(TargetName).map</MapFileName>
+      <SubSystem>Console</SubSystem>
+      <Driver>NotSet</Driver>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <FunctionOrder>
+      </FunctionOrder>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <NoEntryPoint>false</NoEntryPoint>
+      <BaseAddress>
+      </BaseAddress>
+      <FixedBaseAddress>
+      </FixedBaseAddress>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <FullProgramDatabaseFile>true</FullProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <AddModuleNamesToAssembly>
+      </AddModuleNamesToAssembly>
+      <ForceSymbolReferences>
+      </ForceSymbolReferences>
+      <AdditionalOptions>/safeseh:no /ALIGN:1024
+ /SUBSYSTEM:CONSOLE
+/NODEFAULTLIB:LIBC %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+      <OutputFile>../debug/$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <DisableSpecificWarnings>4457</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>./;../../CommonLib;../../Include;./CPU;./Memory;./Heap;./Test;../../CommonLib/stl;../../CommonLib/jsmn;./FileSystem</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ARCH_X86;</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+  </ImportGroup>
+</Project>

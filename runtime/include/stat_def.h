@@ -10,11 +10,14 @@
 #include <types.h>
 //#include <corecrt.h>
 //#include <sys/types.h>
+
+#define _CRT_PACKING 8
+__pragma(pack(push, _CRT_PACKING))
+
 #ifdef  __cplusplus
 extern "C" {
 #endif
-	#define _CRT_PACKING 8
-	__pragma(pack(push, _CRT_PACKING))
+
 
 	typedef int                           errno_t;
 	typedef unsigned short                wint_t;
@@ -162,11 +165,9 @@ extern "C" {
 #define _wstati64   _wstat64
 #endif
 
-
-#pragma warning(pop)
-
-__pragma(pack(pop))
-
 #ifdef  __cplusplus
 }
 #endif
+
+#pragma warning(pop)
+__pragma(pack(pop))
