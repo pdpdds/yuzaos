@@ -84,3 +84,8 @@ int __cdecl _purecall()
 {
 	return 0;
 }
+
+size_t _msize(void* ptr)
+{
+	return Syscall_Malloc_Size(ptr);
+}

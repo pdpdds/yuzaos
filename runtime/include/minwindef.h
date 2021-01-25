@@ -41,7 +41,7 @@ extern "C" {
     typedef void* PVOID;
     typedef PVOID HANDLE, * PHANDLE, * LPHANDLE;
     typedef HANDLE HWND;
-    typedef USHORT		WCHAR;	/* 16-bit unsigned integer */
+    typedef wchar_t		WCHAR;	/* 16-bit unsigned integer */
     typedef HANDLE HINSTANCE;
     typedef HINSTANCE HMODULE;
     typedef char* LPSTR, * PSTR;
@@ -219,7 +219,7 @@ typedef int                 BOOL;
 
     typedef LONG* PLONG;
     typedef WCHAR* LPWSTR, * PWSTR;
-    typedef const WCHAR* LPCWSTR, * PCWSTR;
+    typedef const wchar_t* LPCWSTR, * PCWSTR;
     //typedef void VOID;
 
     #define IN

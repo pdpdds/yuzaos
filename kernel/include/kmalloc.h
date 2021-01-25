@@ -19,6 +19,8 @@ HEAP_API void  kfree_aligned(void*);
 HEAP_API void* krealloc(void*, size_t);
 HEAP_API void* kcalloc(size_t count, size_t size);
 
+HEAP_API size_t kmalloc_size(void* ptr);
+
 #ifdef  __cplusplus
 }
 #endif

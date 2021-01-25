@@ -1,5 +1,6 @@
 #pragma once
 #include "windef.h"
+#include <winnt.h>
 
 #ifdef  __cplusplus
 extern "C" {

@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{f98dc337-a470-4470-a783-e891e867a4c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logger">
+      <UniqueIdentifier>{d2d92674-1a7d-4e92-b34f-5ede06f86d68}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Bitarray.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="crc.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="mem.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Test.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="MathDefs.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Logger\Log.cpp">
+      <Filter>Logger</Filter>
+    </ClCompile>
+    <ClCompile Include="Logger\LogManager.cpp">
+      <Filter>Logger</Filter>
+    </ClCompile>
+    <ClCompile Include="Logger\ThreadManager.cpp">
+      <Filter>Logger</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BitArray.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="CChecksum.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="crc.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Crypto.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="GPGLockFree.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Key.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="LockFreeQueue.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="LockFreeStack.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="MathDefs.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="md5Capi.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="mem.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="MSLockFreeQ.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="SString.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="StringGenericConversion.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="UTF8Conv.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger\Log.h">
+      <Filter>Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger\LogManager.h">
+      <Filter>Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger\Singleton.h">
+      <Filter>Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger\Sync.h">
+      <Filter>Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger\Thread.h">
+      <Filter>Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger\ThreadManager.h">
+      <Filter>Logger</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

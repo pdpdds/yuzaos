@@ -21,6 +21,7 @@
 
 /* Includes 
  * - Library */
+#include <wchar.h>
 #include <windef.h>
 #include <minwindef.h>
 #include <osdefs.h>

@@ -45,7 +45,6 @@ typedef unsigned short                wint_t;
 typedef long clock_t;
 
 
-//20180124	
 #define offsetof(st, m) ((size_t)&(((st *)0)->m))  
 
 #ifndef NULL

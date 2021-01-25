@@ -63,7 +63,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>../include;../../runtime/include;../../thirdparty/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_MSC_VER = 1920;DLL_WIN32API_EXPORT;SKYOS32;SKY_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MSC_VER=1920;DLL_WIN32API_EXPORT;SKYOS32;</PreprocessorDefinitions>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>

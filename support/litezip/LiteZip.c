@@ -1,5 +1,6 @@
-#include "LiteZip.h"
+#include <wchar.h>
 #include <minwindef.h>
+#include "LiteZip.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>

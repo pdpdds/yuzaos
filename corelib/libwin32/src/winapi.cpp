@@ -10,6 +10,7 @@
 #include <dirent.h>
 #include <string.h>
 #include <winapi2.h>
+#include <winnt.h>
 
 HANDLE CreateFile(LPCSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, /*LPSECURITY_ATTRIBUTES*/void* lpSecurityAttributes,
 	DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile)
@@ -675,6 +676,12 @@ bool ResetEvent(HANDLE hEvent)
 	return Syscall_ResetEvent(hEvent);
 }
 
+bool PulseEvent(HANDLE hEvent)
+{
+	return false;
+	//return Syscall_ResetEvent(hEvent);
+}
+
 DWORD WaitForSingleObject(HANDLE hHandle, DWORD  dwMilliseconds)
 {
 	return (DWORD)Syscall_WaitForSingleObject(hHandle, dwMilliseconds);
@@ -1024,3 +1031,44 @@ UINT GetTempFileName(LPCSTR lpPathName, LPCSTR lpPrefixString, UINT uUnique, LPS
 }
 
 
+PSLIST_ENTRY InterlockedPopEntrySList(PSLIST_HEADER ListHead)
+{
+	static BOOLEAN GLLInit = FALSE;
+	static HANDLE GlobalListLock;
+	PSLIST_ENTRY Result = 0;
+
+	if (!GLLInit)
+	{
+		Syscall_CreateSpinLock(&GlobalListLock);
+		GLLInit = TRUE;
+	}
+
+	Syscall_LockSpinLock(&GlobalListLock);
+	if (ListHead->DUMMYSTRUCTNAME.Next.Next)
+	{
+		Result = ListHead->DUMMYSTRUCTNAME.Next.Next;
+		ListHead->DUMMYSTRUCTNAME.Next.Next = Result->Next;
+	}
+	Syscall_UnlockSpinLock(&GlobalListLock);
+	return Result;
+}
+PSLIST_ENTRY InterlockedPushEntrySList(PSLIST_HEADER ListHead, PSLIST_ENTRY ListEntry)
+{
+	PSLIST_ENTRY PrevValue;
+
+	do
+	{
+		PrevValue = ListHead->DUMMYSTRUCTNAME.Next.Next;
+		ListEntry->Next = PrevValue;
+	} while (InterlockedCompareExchangePointer((volatile PVOID *)&ListHead->DUMMYSTRUCTNAME.Next.Next,
+		ListEntry,
+		PrevValue) != PrevValue);
+
+	return (PSLIST_ENTRY)PrevValue;
+}
+
+void  InitializeSListHead(PSLIST_HEADER ListHead)
+{
+	ListHead->Alignment = 0;
+	
+}

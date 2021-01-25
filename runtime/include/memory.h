@@ -22,6 +22,7 @@ extern "C" {
 	CRT_API void* malloc(size_t size);
 	CRT_API void* malloc_aligned(size_t size, size_t alignment);
 	CRT_API void* realloc(void * ptr, size_t size);
+	CRT_API size_t _msize(void* ptr);
 	CRT_API void* calloc(size_t nmemb, size_t size);
 	CRT_API void free(void *p);
 #ifdef  __cplusplus

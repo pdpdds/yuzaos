@@ -403,7 +403,7 @@ _ACRTIMP void __cdecl _invoke_watson(
 #define __GOT_SECURE_LIB__ __STDC_SECURE_LIB__ // For backwards compatibility
 
 #ifndef __STDC_WANT_SECURE_LIB__
-    #define __STDC_WANT_SECURE_LIB__ 1
+    #define __STDC_WANT_SECURE_LIB__ 0
 #endif
 
 #if !__STDC_WANT_SECURE_LIB__ && !defined _CRT_SECURE_NO_WARNINGS

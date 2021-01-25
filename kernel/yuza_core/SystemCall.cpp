@@ -394,4 +394,6 @@ void RegisterSysCall()
 	AddSyscall(eTlsAlloc, kTlsAlloc);
 	AddSyscall(eTlsFree, kTlsFree);
 
+	AddSyscall(eMallocSize, kmalloc_size);
+
 }

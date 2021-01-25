@@ -2,6 +2,7 @@
 #include <minwindef.h>
 #include "minwinbase.h"
 #include <stdint.h>
+#include <winnt.h>
 
 #ifdef DLL_WIN32API_EXPORT
 #define WINBASEAPI __declspec(dllexport) 
@@ -63,6 +64,8 @@ extern "C" {
 	WINBASEAPI HANDLE WINAPI CreateEvent(LPSECURITY_ATTRIBUTES lpEventAttributes, BOOL bManualReset, BOOL bInitialState, LPCSTR lpName);
 	WINBASEAPI bool WINAPI SetEvent(HANDLE hEvent);
 	WINBASEAPI bool WINAPI ResetEvent(HANDLE hEvent);
+	WINBASEAPI bool WINAPI PulseEvent(HANDLE hEvent);
+
 	WINBASEAPI DWORD WINAPI WaitForSingleObject(HANDLE hHandle, DWORD dwMilliseconds);
 	WINBASEAPI DWORD WINAPI  WaitForMultipleObjects(DWORD nCount, const HANDLE* lpHandles, BOOL bWaitAll, DWORD dwMilliseconds);
 
@@ -170,6 +173,10 @@ extern "C" {
 	LONGLONG __cdecl InterlockedCompareExchangeAcquire64(LONGLONG volatile* Destination, LONGLONG Exchange, LONGLONG Comparand);
 	LONG __cdecl InterlockedDecrementAcquire(LONG volatile* Addend);
 	LONG __cdecl InterlockedDecrementRelease(LONG volatile* Addend);*/
+
+	WINBASEAPI PSLIST_ENTRY InterlockedPopEntrySList(PSLIST_HEADER ListHead);
+	WINBASEAPI PSLIST_ENTRY InterlockedPushEntrySList(PSLIST_HEADER ListHead, PSLIST_ENTRY ListEntry);
+	WINBASEAPI void  WINAPI InitializeSListHead(PSLIST_HEADER ListHead);
 
 #ifdef __cplusplus
 }

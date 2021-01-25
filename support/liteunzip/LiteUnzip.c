@@ -1,6 +1,8 @@
-#include "LiteUnzip.h"
+
+#include <wchar.h>
 #include <minwindef.h>
 #include <minwinbase.h>
+#include "LiteUnzip.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

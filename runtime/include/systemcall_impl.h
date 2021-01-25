@@ -170,6 +170,8 @@ enum
 	eTlsGetValue,
 	eTlsAlloc,
 	eTlsFree,
+
+	eMallocSize,
 };
 
 /* Communication system calls
@@ -337,6 +339,10 @@ enum
 #define Syscall_TlsGetValue(index) (LPVOID)syscall1(eTlsGetValue, SCPARAM(index))
 #define Syscall_TlsAlloc() (DWORD)syscall0(eTlsAlloc)
 #define Syscall_TlsFree(index) (BOOL)syscall1(eTlsFree, SCPARAM(index))
+
+#define Syscall_Malloc_Size(ptr) (DWORD)syscall1(eMallocSize, SCPARAM(ptr))
+
+
 
 #endif
 
