@@ -46,9 +46,7 @@ typedef unsigned __int64 QWORD;
 typedef unsigned int	UINT;	/* int must be 16-bit or 32-bit */
 typedef unsigned char	BYTE;	/* char must be 8-bit */
 typedef uint16_t		WORD;	/* 16-bit unsigned integer */
-#ifndef WIN32STUB
-typedef uint16_t		WCHAR;	/* 16-bit unsigned integer */
-#endif
+
 //typedef uint32_t		DWORD;	/* 32-bit unsigned integer */
 //typedef uint64_t		QWORD;	/* 64-bit unsigned integer */
 #else  	/* Earlier than C99 */

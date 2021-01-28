@@ -172,6 +172,7 @@ enum
 	eTlsFree,
 
 	eMallocSize,
+	ePulseEvent,
 };
 
 /* Communication system calls
@@ -341,7 +342,7 @@ enum
 #define Syscall_TlsFree(index) (BOOL)syscall1(eTlsFree, SCPARAM(index))
 
 #define Syscall_Malloc_Size(ptr) (DWORD)syscall1(eMallocSize, SCPARAM(ptr))
-
+#define Syscall_PulseEvent(handle) (bool)syscall1(ePulseEvent, SCPARAM(handle))
 
 
 #endif

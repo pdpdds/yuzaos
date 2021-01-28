@@ -395,5 +395,6 @@ void RegisterSysCall()
 	AddSyscall(eTlsFree, kTlsFree);
 
 	AddSyscall(eMallocSize, kmalloc_size);
+	AddSyscall(ePulseEvent, kPulseEvent);
 
 }

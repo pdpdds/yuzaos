@@ -72,6 +72,7 @@ extern "C" {
 	BOOL kSetEvent(HANDLE hEvent);
 	HANDLE kCreateEvent(LPSECURITY_ATTRIBUTES lpEventAttributes, bool bManualReset, bool bInitialState, LPCTSTR lpName);
 	BOOL kResetEvent(HANDLE hEvent);
+	BOOL kPulseEvent(HANDLE hEvent);
 	DWORD kWaitForSingleObject(HANDLE hHandle, DWORD dwMilliseconds);
 	int kWaitForMultipleObjects(int dispatcherCount, const HANDLE* lpHandles, BOOL bWaitAll, DWORD dwMilliseconds);
 	int kWaitForChildProcess(int handle);

@@ -845,6 +845,21 @@ BOOL kResetEvent(HANDLE hEvent)
 	return true;
 }
 
+BOOL kPulseEvent(HANDLE hEvent)
+{
+	Semaphore* sem = static_cast<Semaphore*>(GetResource((int)hEvent, OBJ_SEMAPHORE));
+	if (sem == 0)
+	{
+		kPanic("sem is null %x\n", (int)hEvent);
+		return false;
+	}
+
+	sem->Release();
+	sem->ReleaseRef();
+
+	return false;
+}
+
 DWORD kWaitForSingleObject(HANDLE hHandle, DWORD dwMilliseconds)
 {
 	bigtime_t timeOut = dwMilliseconds;
