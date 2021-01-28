@@ -36,11 +36,11 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{A837EE6D-157D-4E58-9FF3-4091CC49AC50}</ProjectGuid>
+    <ProjectGuid>{D0FA4FA8-AA2D-478D-AAB5-A2C084013583}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>SampleDll</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Autolock</ProjectName>
+    <ProjectName>exception_test</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -169,7 +169,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalOptions>/arch:SSE %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4819;2440</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>./exechandler;./;../include;../../../corelib/include;../../../runtime/include;../../yuza_core;../../../corelib/stl/sgi;../../../corelib/streams;../../../support/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../support/yuza_exception;./;../include;../../../corelib/include;../../../runtime/include;../../yuza_core;../../../corelib/stl/sgi;../../../corelib/streams;../../../support/include</AdditionalIncludeDirectories>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
       <OmitFramePointers>false</OmitFramePointers>
@@ -186,7 +186,7 @@
       <EntryPointSymbol>
       </EntryPointSymbol>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>streams.lib;filemanager.lib;exestub.lib;libcrt.lib;systemcall.lib</AdditionalDependencies>
+      <AdditionalDependencies>yuza_exception.lib;streams.lib;filemanager.lib;exestub.lib;libcrt.lib;systemcall.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>../../../$(Configuration);../../../corelib/debug;../../../support\Debug;../../../runtime/debug</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -399,17 +399,6 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="exechandler\excpt_helper.h" />
-    <ClInclude Include="exechandler\install_my_handler.h" />
-    <ClInclude Include="exechandler\sehhelper.h" />
-    <ClInclude Include="typeinfo.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="exechandler\excpt_helper.cpp" />
-    <ClCompile Include="exechandler\find_catch.cpp" />
-    <ClCompile Include="exechandler\install_my_handler.cpp" />
-    <ClCompile Include="exechandler\myexchandler.cpp" />
-    <ClCompile Include="exechandler\unwind.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

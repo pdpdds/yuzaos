@@ -136,7 +136,7 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>pcre2.lib;eastreams.lib;systemcall.lib;sdl.lib;libcrt.lib;libwin32.lib;exestub.lib;math.lib;filemanager.lib;eastl.lib;sdl2_gfx.lib</AdditionalDependencies>
+      <AdditionalDependencies>pcre2.lib;eastreams.lib;systemcall.lib;libcrt.lib;libwin32.lib;exestub.lib;math.lib;filemanager.lib;eastl.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>../../../Debug;../../../$(Configuration);../../../corelib/debug;../../../runtime/debug;../../../ThirdParty/SDL/SDL2/debug;../../../ThirdParty/debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
