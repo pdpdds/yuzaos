@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{74AB4797-6E6C-4CCA-BF99-8167D3A5C978}</ProjectGuid>
+    <RootNamespace>SGL4</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>16.0.30804.86</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\Intermediate\$(ProjectName)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_MSC_VER=1920;SKYOS32</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>./;../include;../../../corelib/include;../../../runtime/include;../../../ThirdParty/SDL/SDL1CL/SDL/include;../../../corelib/STL/SGI;../../../corelib/streams</AdditionalIncludeDirectories>
+      <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
+      <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
+      <DisableSpecificWarnings>4244;4018</DisableSpecificWarnings>
+      <ExceptionHandling>false</ExceptionHandling>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <AdditionalOptions>/Oy  /arch:SSE /Zc:threadSafeInit- %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalLibraryDirectories>../../../Debug;../../../$(Configuration);../../../corelib/debug;../../../runtime/debug;../../../ThirdParty/SDL/SDL1CL/debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>streams.lib;systemcall.lib;sdlcl.lib;libcrt.lib;libwin32.lib;exestub.lib;math.lib;filemanager.lib</AdditionalDependencies>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <AdditionalOptions>/safeseh:no /ALIGN:1024 %(AdditionalOptions)</AdditionalOptions>
+      <BaseAddress>0x08000000</BaseAddress>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4244</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>C:\NAS\SDLProject\thirdparty\sdl1\SDL-1.2.15\include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="ex01.cpp">
+      <RuntimeLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <ClCompile Include="ex02.cpp" />
+    <ClCompile Include="SGLColor.cpp" />
+    <ClCompile Include="SGLDevice.cpp" />
+    <ClCompile Include="SGLFaceSet.cpp" />
+    <ClCompile Include="SGLGraphicsPipeline.cpp" />
+    <ClCompile Include="SGLLight.cpp" />
+    <ClCompile Include="SGLMatrix44.cpp" />
+    <ClCompile Include="SGLMatrixStack.cpp" />
+    <ClCompile Include="SGLMD2Model.cpp" />
+    <ClCompile Include="SGLObject.cpp" />
+    <ClCompile Include="SGLObjectList.cpp" />
+    <ClCompile Include="SGLObjModel.cpp" />
+    <ClCompile Include="SGLPoint2D.cpp" />
+    <ClCompile Include="SGLPoint3D.cpp" />
+    <ClCompile Include="SGLPolygon.cpp" />
+    <ClCompile Include="SGLPolygonList.cpp" />
+    <ClCompile Include="SGLRaster.cpp" />
+    <ClCompile Include="SGLState.cpp" />
+    <ClCompile Include="SGLTexture.cpp" />
+    <ClCompile Include="SGLTextureList.cpp" />
+    <ClCompile Include="SGLVector3D.cpp" />
+    <ClCompile Include="SGLVertex.cpp" />
+    <ClCompile Include="SGLVertexIndexList.cpp" />
+    <ClCompile Include="SGLVertexList.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="sgl.h" />
+    <ClInclude Include="SGLColor.h" />
+    <ClInclude Include="SGLConst.h" />
+    <ClInclude Include="SGLDevice.h" />
+    <ClInclude Include="SGLFaceSet.h" />
+    <ClInclude Include="SGLGraphicsPipeline.h" />
+    <ClInclude Include="SGLLight.h" />
+    <ClInclude Include="SGLMatrix44.h" />
+    <ClInclude Include="SGLMatrixStack.h" />
+    <ClInclude Include="SGLMD2Model.h" />
+    <ClInclude Include="SGLObject.h" />
+    <ClInclude Include="SGLObjectList.h" />
+    <ClInclude Include="SGLObjModel.h" />
+    <ClInclude Include="SGLPoint2D.h" />
+    <ClInclude Include="SGLPoint3D.h" />
+    <ClInclude Include="SGLPolygon.h" />
+    <ClInclude Include="SGLPolygonList.h" />
+    <ClInclude Include="SGLRaster.h" />
+    <ClInclude Include="SGLState.h" />
+    <ClInclude Include="SGLTexture.h" />
+    <ClInclude Include="SGLTextureList.h" />
+    <ClInclude Include="SGLVector3D.h" />
+    <ClInclude Include="SGLVertex.h" />
+    <ClInclude Include="SGLVertexIndexList.h" />
+    <ClInclude Include="SGLVertexList.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -18,6 +18,7 @@
 #define STRICT 1
 #endif
 #endif /* NO_STRICT */
+#include <wchar.h>
 
 #ifdef __cplusplus
 extern "C" {

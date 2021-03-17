@@ -195,7 +195,7 @@ bool GUIConsole::PutMouseQueue(MOUSEDATA* pData)
 }
 
 
-VOID GUIConsole::GetNewLine()
+void GUIConsole::GetNewLine()
 {
 	int x, y;
 	ULONG *buf = m_pVideoRamPtr;	

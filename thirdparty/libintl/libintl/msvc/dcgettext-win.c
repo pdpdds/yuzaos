@@ -3,9 +3,8 @@
  * This file is part of the libintl for msvc.
  * No warranty is given. You can use this at your own risk.
  */
-
-#include <minwindef.h>
 #include <wchar.h>
+#include <minwindef.h>
 #include <winapi.h>
 #include <memory.h>
 #include "config.h"

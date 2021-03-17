@@ -78,7 +78,7 @@
 #include "cairo-type3-glyph-surface-private.h"
 #include "cairo-image-info-private.h"
 #include "cairo-tag-attributes-private.h"
-
+#include <wchar.h>
 #include <minwindef.h>
 #include <stdio.h>
 #include <ctype.h>

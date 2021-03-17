@@ -20,7 +20,8 @@
 
 #include "jconfig.h"		/* auto configuration options */
 #define JCONFIG_INCLUDED	/* so that jpeglib.h doesn't do it again */
-#include "windef.h"
+#include <wchar.h>
+#include <minwindef.h>
 #include "memory.h"
 /*
  * We need the NULL macro and size_t typedef.
