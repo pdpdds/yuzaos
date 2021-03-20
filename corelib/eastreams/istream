@@ -29,7 +29,7 @@ namespace eastl
 			template <typename T> istream& operator>>(T& var);
 
 
-			virtual operator void*();
+			//virtual operator void*();
 
 		protected:
 			virtual int InFunction(const char* format, ...);

@@ -208,9 +208,8 @@ istream& istream::operator >>(eastl::string& s)
 	return (*this);
 }
 
-/**************************************************************/
+/*
 istream::operator void*()
-/**************************************************************/
 {
 	
 	if (!(this->ios::operator void *()))
@@ -221,6 +220,6 @@ istream::operator void*()
 		
 	return (void*)true;
 
-}
+}*/
 
 }; /*end namespace ppcStreams*/
