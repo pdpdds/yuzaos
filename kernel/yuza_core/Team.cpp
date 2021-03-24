@@ -149,7 +149,6 @@ Team::Team(const char* name, AddressSpace *addressSpace, int teamId)
 }
 
 //실기 전용
-
 DWORD Rva2Offset(DWORD rva, PIMAGE_SECTION_HEADER psh, PIMAGE_NT_HEADERS pnt)
 {
 	size_t i = 0;
@@ -229,10 +228,6 @@ bool Team::MapDLL(void* image)
 	
 	SKY_ASSERT((uint32_t)image == ntHeaders->OptionalHeader.ImageBase, "IMAGE BASE");
 
-	/*if (importDescriptor->Name == 0)
-	{
-		for (;;);
-	}*/
 
 	for (; importDescriptor->Name; importDescriptor++)
 	{
@@ -270,9 +265,6 @@ bool Team::MapDLL(void* image)
 			if ((pthunk->u1.Ordinal & IMAGE_ORDINAL_FLAG) == 0)
 			{
 				PIMAGE_IMPORT_BY_NAME pname = (PIMAGE_IMPORT_BY_NAME)((PCHAR)image + Rva2Offset(pthunk->u1.AddressOfData, pSech, ntHeaders));
-
-				//kDebugPrint("  ccccccccccccccc  %x %s\n", pthunk->u1.Function, (char*)pname->Name);
-				//for (;;);
 
 				void* p = ModuleManager::GetInstance()->GetModuleFunction(hwnd, (char*)pname->Name);
 
