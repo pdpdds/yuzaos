@@ -1,7 +1,5 @@
 #include <stdio.h>
-#include <EASTL/array.h>
-#include <EASTL/algorithm.h>
-#include <EASTL/sort.h>
+#include <eastl.h>
 #include <iostream>
 
 void* operator new[](size_t size, const char* name, int flags, unsigned debugFlags, const char* file, int line)

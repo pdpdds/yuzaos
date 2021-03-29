@@ -16,33 +16,37 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\BuildOption.h" />
-    <ClInclude Include="resource.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="SkyInputManager.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="SkyVirtualInput.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>res</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
       <UniqueIdentifier>{e5273472-13f4-4581-98cc-3737daf96539}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="icon1.ico">
-      <Filter>src</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="yuza.rc">
-      <Filter>src</Filter>
-    </ResourceCompile>
+    <Filter Include="res">
+      <UniqueIdentifier>{8afa8fc6-f7df-4ca4-b32b-46b8b5d0b7af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\bin\driver.cfg" />
     <None Include="..\..\bin\yuza.cfg" />
+    <None Include="..\..\bin\panel.cfg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon1.ico">
+      <Filter>res</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="yuza.rc">
+      <Filter>res</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
