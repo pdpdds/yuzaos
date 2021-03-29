@@ -2,7 +2,6 @@
 *.pdb
 Debug
 Release
-bin
 verify
 .vs
 kernel/launcher
@@ -40,3 +39,7 @@ thirdparty2/glib/gobject/libgobject-gdb.py.in
 thirdparty2/glib/glib/glibconfig.h.in
 thirdparty2/glib/glib/glib.rc.in
 thirdparty2/glib/glib/libglib-gdb.py.in
+bin/*.dll
+bin/*.map
+bin/*.exe
+bin/image
