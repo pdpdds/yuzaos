@@ -3,85 +3,38 @@
   <ItemGroup>
     <ClCompile Include="OrangeOSConsole.cpp" />
     <ClCompile Include="OrangeOSGUI.cpp" />
-    <ClCompile Include="SkyInputManager.cpp" />
-    <ClCompile Include="SkyVirtualInput.cpp" />
-    <ClCompile Include="tests\cbuf_tests.cpp">
-      <Filter>test</Filter>
+    <ClCompile Include="SkyInputManager.cpp">
+      <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="tests\avl_tests.cpp">
-      <Filter>test</Filter>
+    <ClCompile Include="SkyVirtualInput.cpp">
+      <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="tests\atomic_tests.cpp">
-      <Filter>test</Filter>
-    </ClCompile>
-    <ClCompile Include="tests\timer_tests.cpp">
-      <Filter>test</Filter>
-    </ClCompile>
-    <ClCompile Include="TestTimer.cpp">
-      <Filter>test</Filter>
-    </ClCompile>
-    <ClCompile Include="audio\_PCI.cpp">
-      <Filter>audio</Filter>
-    </ClCompile>
-    <ClCompile Include="audio\ac97_intel.cpp">
-      <Filter>audio</Filter>
-    </ClCompile>
-    <ClCompile Include="audio\AC97Handler.cpp">
-      <Filter>audio</Filter>
-    </ClCompile>
-    <ClCompile Include="audio\array.cpp">
-      <Filter>audio</Filter>
-    </ClCompile>
-    <ClCompile Include="audio\audio.cpp">
-      <Filter>audio</Filter>
-    </ClCompile>
-    <ClCompile Include="audio\wav.cpp">
-      <Filter>audio</Filter>
-    </ClCompile>
-    <ClCompile Include="audio\_list.cpp">
-      <Filter>audio</Filter>
-    </ClCompile>
-    <ClCompile Include="spinlock_tests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\BuildOption.h" />
-    <ClInclude Include="SkyInputManager.h" />
-    <ClInclude Include="SkyVirtualInput.h" />
-    <ClInclude Include="TestTimer.h">
-      <Filter>test</Filter>
+    <ClInclude Include="resource.h">
+      <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="test.h">
-      <Filter>test</Filter>
+    <ClInclude Include="SkyInputManager.h">
+      <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="audio\_pci.h">
-      <Filter>audio</Filter>
+    <ClInclude Include="SkyVirtualInput.h">
+      <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="audio\ac97_intel.h">
-      <Filter>audio</Filter>
-    </ClInclude>
-    <ClInclude Include="audio\AC97Handler.h">
-      <Filter>audio</Filter>
-    </ClInclude>
-    <ClInclude Include="audio\audio.h">
-      <Filter>audio</Filter>
-    </ClInclude>
-    <ClInclude Include="audio\wav.h">
-      <Filter>audio</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="test">
-      <UniqueIdentifier>{4034fcef-8953-4ed2-949a-ef87f2e80036}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="audio">
-      <UniqueIdentifier>{9c706e4a-d7e8-49ac-870a-54d5b940d88d}</UniqueIdentifier>
+    <Filter Include="src">
+      <UniqueIdentifier>{e5273472-13f4-4581-98cc-3737daf96539}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="yuza.rc" />
+    <Image Include="icon1.ico">
+      <Filter>src</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="icon1.ico" />
+    <ResourceCompile Include="yuza.rc">
+      <Filter>src</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

@@ -144,7 +144,7 @@
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <AssemblerOutput />
       <WarningLevel>Level4</WarningLevel>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CallingConvention>Cdecl</CallingConvention>
       <DisableSpecificWarnings>4457;4189;4100;4702;4102;4244;4819</DisableSpecificWarnings>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -155,9 +155,6 @@
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
     <Link>
-      <AdditionalOptions>/safeseh:no
-/ALIGN:1024
- %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>libcrt.lib;common.lib;systemcall.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>../../runtime/debug;../../debug</AdditionalLibraryDirectories>
@@ -187,6 +184,8 @@
       </ModuleDefinitionFile>
       <AssemblyLinkResource>
       </AssemblyLinkResource>
+      <SectionAlignment>1024</SectionAlignment>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <PostBuildEvent>
       <Command />

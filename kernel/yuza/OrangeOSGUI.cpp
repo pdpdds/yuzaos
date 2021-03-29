@@ -25,11 +25,6 @@ int GUIManagerThread(void* param)
 	return 0;
 }
 
-/*g_startTickCount = kGetTickCount();
-ULONG* bufferAddess = (ULONG*)g_bootParams.framebuffer_addr;
-SampleFillRect(bufferAddess, 1004, 0, 20, 20, 0xFFFFFF00);
-for (;;);*/
-
 void YuzaOSGUI(char* desktopName)
 {	
 #if SKY_EMULATOR
