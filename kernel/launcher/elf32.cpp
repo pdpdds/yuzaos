@@ -81,12 +81,6 @@
 #include "elf.h"
 #include <minwindef.h>
 #include <stringdef.h>
-#include <fileio.h>
-
-int fprintf(FILE * stream, const char * format, ...)
-{
-	return 0;
-}
 
 int
 elf32_checkFile(struct Elf32_Header *file)
@@ -258,14 +252,14 @@ elf32_fprintf(FILE *f, struct Elf32_Header *file, int size, const char *name, in
 	int i, r;
 	// char *str_table;
 
-	fprintf(f, "Found an elf32 file called \"%s\" located "
-		"at address %p\n", name, file);
+	//fprintf(f, "Found an elf32 file called \"%s\" located "
+		//"at address %p\n", name, file);
 
 	if ((r = elf32_checkFile(file)) != 0) {
 		char *magic = (char*) file;
-		fprintf(f, "Invalid elf file (%d)\n", r);
-		fprintf(f, "Magic is: %2.2hhx %2.2hhx %2.2hhx %2.2hhx\n",
-			magic[0], magic[1], magic[2], magic[3]);
+		//fprintf(f, "Invalid elf file (%d)\n", r);
+		//fprintf(f, "Magic is: %2.2hhx %2.2hhx %2.2hhx %2.2hhx\n",
+			//magic[0], magic[1], magic[2], magic[3]);
 		return;
 	}
 
@@ -280,7 +274,7 @@ elf32_fprintf(FILE *f, struct Elf32_Header *file, int size, const char *name, in
 	numSections = elf32_getNumSections(file);
 
 	if ((uintptr_t) sections >  ((uintptr_t) file + size)) {
-		fprintf(f, "Corrupted elfFile..\n");
+		//fprintf(f, "Corrupted elfFile..\n");
 		return;
 	}
 
@@ -292,13 +286,13 @@ elf32_fprintf(FILE *f, struct Elf32_Header *file, int size, const char *name, in
 		/*
 		 * print out info about each program segment 
 		 */
-		fprintf(f, "Program Headers:\n");
-		fprintf(f, "  Type           Offset   VirtAddr   PhysAddr   "
-			"FileSiz MemSiz  Flg Align\n");
-		for (i = 0; i < numSegments; i++) {
+		//fprintf(f, "Program Headers:\n");
+		//fprintf(f, "  Type           Offset   VirtAddr   PhysAddr   "
+			//"FileSiz MemSiz  Flg Align\n");
+		for (i = 0; i < (int)numSegments; i++) {
 			if (segments[i].p_type != 1) {
-				fprintf(f, "segment %d is not loadable, "
-					"skipping\n", i);
+				//fprintf(f, "segment %d is not loadable, "
+					//"skipping\n", i);
 			} else {
 				/*fprintf(f, "  LOAD           0x%06" PRIx32 " 0x%08" PRIx32 " 0x%08" PRIx32  \
 				       " 0x%05" PRIx32" 0x%05" PRIx32 " %c%c%c 0x%04" PRIx32 "\n",

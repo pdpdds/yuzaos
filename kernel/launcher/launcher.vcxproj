@@ -171,7 +171,7 @@
       <BaseAddress>0x00100000</BaseAddress>
       <FixedBaseAddress>
       </FixedBaseAddress>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <FullProgramDatabaseFile>
       </FullProgramDatabaseFile>
@@ -186,6 +186,7 @@
       </AssemblyLinkResource>
       <SectionAlignment>1024</SectionAlignment>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <AdditionalOptions>/DRIVER %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command />

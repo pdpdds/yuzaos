@@ -276,7 +276,7 @@ namespace VirtualMemoryManager
 
 		int endAddress = (uint32_t)startAddress + pageCount * PMM_BLOCK_SIZE;
 
-		for (int i = 0; i < pageCount; i++)
+		for (int i = 0; i < (int)pageCount; i++)
 		{
 			uint32_t virt = (uint32_t)startAddress + i * PAGE_SIZE;
 			uint32_t phys = (uint32_t)pAllocatedMemory + i * PAGE_SIZE;
@@ -290,7 +290,7 @@ namespace VirtualMemoryManager
 	bool UnmapAddress(PageDirectory* pd, DWORD startAddress, DWORD pageCount)
 	{
 	
-		for (int i = 0; i < pageCount; i++)
+		for (int i = 0; i < (int)pageCount; i++)
 		{
 			uint32_t virt = (uint32_t)startAddress + i * PAGE_SIZE;
 			

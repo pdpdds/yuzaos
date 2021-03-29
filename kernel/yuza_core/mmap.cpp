@@ -25,7 +25,7 @@
 
 #define MAP_FILE        0
 #define MAP_SHARED      1
-#define MAP_PRIVATE     2
+//#define MAP_PRIVATE     2
 #define MAP_TYPE        0x0F
 #define MAP_FIXED       0x10
 #define MAP_ANONYMOUS   0x20
@@ -92,7 +92,7 @@ static DWORD _mmap_prot_file(int prot) {
 }
 
 void *mmap(void *addr, size_t len, int prot, int flags, int fildes, unsigned long off) {
-    HANDLE fm, h;
+   // HANDLE fm, h;
     void * map = MAP_FAILED;
 
     DWORD protect = _mmap_prot_page(prot);

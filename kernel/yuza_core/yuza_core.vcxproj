@@ -232,7 +232,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CallingConvention>Cdecl</CallingConvention>
-      <DisableSpecificWarnings>4457;4189;4100;4702;4102;4244;4239;4333;4127;4554;6385;4819;4250</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4146;4309;4200;4457;4189;4100;4702;4102;4244;4239;4333;4127;4554;6385;4819;4250</DisableSpecificWarnings>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>

@@ -338,7 +338,7 @@ int FAT_FileSystem::opendir(DIR* dir)
 	strcat(abolutePath, dir->name);
 	rtrimslash((char*)abolutePath);
 
-	for (int i = 0; i < strlen(abolutePath); i++)
+	for (size_t i = 0; i < strlen(abolutePath); i++)
 	{
 		if (abolutePath[i] == '/')
 		{
@@ -407,7 +407,7 @@ int GetAbsolutePathTest(char const* const fileName, struct stat* fno)
 
 	rtrimslash((char*)abolutePath);
 
-	for (int i = 0; i < strlen(abolutePath); i++)
+	for (size_t i = 0; i < strlen(abolutePath); i++)
 	{
 		if (abolutePath[i] == '/')
 		{
@@ -453,7 +453,7 @@ int GetRelativePathTest(char const* const fileName, struct stat* fno)
 
 	rtrimslash((char*)abolutePath);
 
-	for (int i = 0; i < strlen(abolutePath); i++)
+	for (size_t i = 0; i < strlen(abolutePath); i++)
 	{
 		if (abolutePath[i] == '/')
 		{
