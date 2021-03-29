@@ -10,6 +10,7 @@
 #include "intrinsic.h"
 #include "PlatformAPI.h"
 #include <memory_layout.h>
+#include "SkyConsole.h"
 
 Thread* Thread::fRunningThread = 0;
 
@@ -20,6 +21,30 @@ std::map<DWORD, Thread*>* Thread::fMapThread = nullptr;
 
 _Queue Thread::fReapQueue;
 Semaphore Thread::fThreadsToReap("threads to reap", 0);
+
+// This is the constructor for bootstrap thread.  There is less state to
+// setup since it is already running.
+Thread::Thread(const char name[])
+	: Resource(OBJ_THREAD, name),
+	fBasePriority(16),
+	fCurrentPriority(16),
+	fFaultHandler(0),
+	fLastEvent(SystemTime()),
+	//		fCurrentDir(0),
+	fState(kThreadRunning),
+	fKernelStack(0),
+	fUserStack(0),
+	fSuspendCount(0),
+	fTeam(0),
+	m_resourceHandle(0)
+{
+#if SKY_EMULATOR
+	m_win32Handle = g_platformAPI._processInterface.sky_GetThreadRealHandle();
+	ASSERT(m_win32Handle != 0);
+#endif
+
+	
+}
 
 Thread::Thread(const char name[], Team *team, THREAD_START_ENTRY startAddress, void* param, int priority, DWORD flag)
 	:	Resource(OBJ_THREAD, name),
@@ -242,28 +267,6 @@ void Thread::SetTeam(Team *team)
 	// Threading is ready to go... start the Grim Reaper.
 	// This is kind of a weird side effect, the function should be more explicit.
 	kCreateThread(GrimReaper, "Grim Reaper", team, 30, 0);
-}
-
-// This is the constructor for bootstrap thread.  There is less state to
-// setup since it is already running.
-Thread::Thread(const char name[])
-	:	Resource(OBJ_THREAD, name),
-		fBasePriority(16),
-		fCurrentPriority(16),
-		fFaultHandler(0),
-		fLastEvent(SystemTime()),
-//		fCurrentDir(0),
-		fState(kThreadRunning),
-		fKernelStack(0),
-		fUserStack(0),
-		fSuspendCount(0),
-		fTeam(0),
-	    m_resourceHandle(0)
-{
-#if SKY_EMULATOR
-	m_win32Handle = g_platformAPI._processInterface.sky_GetThreadRealHandle();
-	ASSERT(m_win32Handle != 0);
-#endif
 }
 
 Thread::~Thread()

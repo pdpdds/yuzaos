@@ -448,17 +448,9 @@ HANDLE kCreateProcess(const char* execPath, void* param, int priority)
 
 
 #if SKY_EMULATOR
-	HANDLE moduleHandle = nullptr;
-
 	typedef int(*PMain)(void*);
-	//#if 1
 
-	FILE* fp = fopen(path, "rb");
-	if (fp == 0)
-		return 0;
-	fclose(fp);
-
-	moduleHandle = (void*)ModuleManager::GetInstance()->LoadPE(path);
+	HANDLE moduleHandle = (void*)ModuleManager::GetInstance()->LoadPE(path);
 
 	if (moduleHandle == nullptr)
 		return 0;
@@ -1038,7 +1030,7 @@ BOOL kVirtualFree(LPVOID lpAddress, SIZE_T dwSize, DWORD  dwFreeType)
 	//ASSERT(dwFreeType == MEM_RELEASE);
 	//return Thread::GetRunningThread()->GetTeam()->DeallocateMemory(lpAddress);
 	
-	kfree(lpAddress);
+	kfree_aligned(lpAddress);
 	return true;
 }
 
@@ -1048,7 +1040,7 @@ LPVOID kVirtualAlloc(LPVOID lpAddress, SIZE_T dwSize, DWORD  flAllocationType, D
 	return g_platformAPI._processInterface.sky_VirtualAlloc(lpAddress, dwSize, flAllocationType, flProtect);
 #endif
 
-	return kmalloc(dwSize);
+	return kmalloc_aligned(dwSize, 4);
 	//if (lpAddress)
 		//return lpAddress;
 
@@ -1458,14 +1450,6 @@ int kGetCommandFromKeyboard(char* commandBuffer, int bufSize)
 char kGetChar()
 {
 	char c = 0;
-	bool	BufChar;
-	bool newline = false;
-
-	//버퍼 크기만큼 문자열을 얻어낸다.
-	int i = 0;
-
-	//! buffer the next char
-	BufChar = true;
 
 #if SKY_EMULATOR
 	if (kIsGraphicMode())
@@ -1476,83 +1460,46 @@ char kGetChar()
 	else
 	{
 		c = g_platformAPI._printInterface.sky_getchar();
-		return c;
+		
 	}
-#else
-	c = KeyboardController::GetInput();
-
-#endif
-
-	//return
-	if (c == 0x0d || c == '\n')
-	{
-		kprintf("\n");
-		newline = true;
-		return 0;
-	}
-
-	//backspace
-	if (c == 0x08) 
-	{
-
-		//! dont buffer this char
-		BufChar = false;
-
-		if (i > 0) 
-		{
-
-#if SKY_EMULATOR
-			SkyConsole::Print("%c", c);
-			SkyConsole::Print("%c", ' ');
-			SkyConsole::Print("%c", c);
-#else
-			//! go back one char
-			uint y, x;
-			SkyConsole::GetCursorPos(x, y);
-
-			if (x > 0)
-				SkyConsole::MoveCursor(x, y);
-			else {
-				//! x is already 0, so go back one line
-				y--;
-				x = 80;
-			}
-
-			//! erase the character from display
-			SkyConsole::WriteChar(' ');
-			SkyConsole::MoveCursor(x, y);
-
-			//! go back one char in cmd buf
-
-#endif 
-			i--;
-		}
-
-		return 0;
-	}
-
-	//! only add the char if it is to be buffered
-	if (BufChar) 
-	{
-
-		//! convert key to an ascii char and put it in buffer
-		//char c = KeyBoard::ConvertKeyToAscii(key);
-		//if (c != 0 && KEY_SPACE != c) { //insure its an ascii char
-		if (c != 0) { //insure its an ascii char
-
-#if SKY_EMULATOR
-			SkyConsole::Print("%c", c);
-#else
-			SkyConsole::WriteChar(c);
-#endif
-
-		}
-	}
-
-	//! wait for next key. You may need to adjust this to suite your needs
-	//msleep(10);
 
 	return c;
+#else
+	c = KeyboardController::GetInput();
+	return c;
+#endif
+
+	//backspace
+	/*if (c == 0x08)
+	{
+#if SKY_EMULATOR
+		SkyConsole::Print("%c", c);
+		SkyConsole::Print("%c", ' ');
+		SkyConsole::Print("%c", c);
+#else*/
+		
+		/*uint y, x;
+		SkyConsole::GetCursorPos(x, y);
+		x = x - 1;
+
+		if (x >= 0)
+			SkyConsole::MoveCursor(x, y);
+		else {
+			y--;
+			x = 80;
+		}
+
+		//! erase the character from display
+		SkyConsole::WriteChar(' ');
+		SkyConsole::GetCursorPos(x, y);
+		x = x - 1;
+		SkyConsole::MoveCursor(x, y);*/
+//#endif 
+	//	return c;
+	//}
+
+
+	
 }
 
 void kInitializeCriticalSection(void* lpCriticalSection)

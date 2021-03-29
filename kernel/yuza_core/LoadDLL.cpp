@@ -520,7 +520,7 @@ static ELoadDLLResult LoadDLL_CallDLLEntryPoint(LOAD_DLL_CONTEXT* ctx, int flags
 
 		kDebugPrint("dll main : %x\n", ctx->dll_main);
 		
-		if (!ctx->dll_main(ctx->image_base, DLL_PROCESS_ATTACH, NULL/*(LPVOID)&g_AllocInterface*/))
+		if (!ctx->dll_main((HANDLE)ctx->image_base, DLL_PROCESS_ATTACH, NULL/*(LPVOID)&g_AllocInterface*/))
 		{
 			
 			return ELoadDLLResult_DllMainCallError;
@@ -654,7 +654,7 @@ bool UnloadDLL(LOAD_DLL_INFO* info)
 	if (!(info->flags & ELoadDLLFlag_NoEntryCall) && info->dll_main)
 	{
 
-		res = info->dll_main(info->image_base, DLL_PROCESS_DETACH, NULL);
+		res = info->dll_main((HANDLE)info->image_base, DLL_PROCESS_DETACH, NULL);
 
 	}
 

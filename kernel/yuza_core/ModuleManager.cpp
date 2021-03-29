@@ -110,10 +110,10 @@ void* ModuleManager::LoadPE(const char* fileName, bool fromMemory)
 		dllInfo = (LOAD_DLL_INFO*)LoadPEFromMemory(fileName);
 	else
 		dllInfo = (LOAD_DLL_INFO*)LoadPEFromFile(fileName);
-
+	
 	if (dllInfo == nullptr)
 		kPanic("LoadPE Fail. PEName:  %s\n", fileName);
-	
+
 	PrintPEHierachy(dllInfo);
 
 	pInitializeDll InitializeDll = (pInitializeDll)GetModuleFunction(dllInfo, "InitializeDll");

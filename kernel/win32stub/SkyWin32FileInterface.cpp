@@ -45,7 +45,10 @@ void sky_printf(const char* format, va_list arglist)
 
 int sky_getchar()
 {
-	return _getch();
+	int ch = _getch();
+
+	return ch;
+	
 }
 
 /* Standard error macro for reporting API errors */

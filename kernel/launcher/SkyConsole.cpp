@@ -122,7 +122,7 @@ namespace SkyConsole
 		}
 		// and finally, set the cursor
 
-		MoveCursor(m_xPos + 1, m_yPos);
+		MoveCursor(m_xPos, m_yPos);
 	}
 
 	void WriteString(const char* szString, ConsoleColor textColour, ConsoleColor backColour)
@@ -141,7 +141,7 @@ namespace SkyConsole
 		}
 
 		m_yPos++;
-		MoveCursor(1, m_yPos);
+		MoveCursor(0, m_yPos);
 	}
 
 	void Print(const char* str, ...)

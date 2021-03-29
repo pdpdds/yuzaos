@@ -157,7 +157,7 @@ void KernelThreadProc()
 	InitPCI();
 #endif
 	InitEnvironment(); 
-	InitStorageSystem("driver_config.cfg");
+	InitStorageSystem("driver.cfg");
 	InitDebuggerSystem("yuza.cfg");
 
 	char buf[256];
@@ -426,7 +426,7 @@ bool InitStorageSystem(const char* configName)
 
 	kSetCurrentDriveId('C');
 	
-	//AddStorageModule(cfg, "storage.FLOPPY", true);
+	AddStorageModule(cfg, "storage.FLOPPY", true);
 	//AddStorageModule(cfg, "storage.USB", true);
 	//AddStorageModule(cfg, "storage.RAM", false);
 	//kSetCurrentDriveId('C');

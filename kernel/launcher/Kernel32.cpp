@@ -211,7 +211,7 @@ bool MapStack(BootParams* pBootParams)
 	DWORD bootStackFrameCount = kKernelStackSize / PAGE_SIZE;
 	pBootParams->_memoryInfo._kStackSize = kKernelStackSize;
 	pBootParams->_memoryInfo._kStackBase = (UINT32)PhysicalMemoryManager::AllocBlocks(bootStackFrameCount);
-	SkyConsole::Print("kernel physical boot stack : %x %x\n", pBootParams->_memoryInfo._kStackBase);
+	SkyConsole::Print("kernel physical boot stack : %x\n", pBootParams->_memoryInfo._kStackBase);
 
 	return true;
 }

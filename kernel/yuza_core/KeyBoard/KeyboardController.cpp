@@ -14,6 +14,7 @@ bool ctrl = false;
 bool alt = false;
 bool caps = false;
 bool num = false;
+bool bExtensionKey = false;
 
 unsigned char leds = 0; //LED 마스크
 const unsigned int KEYBUFFSIZE = 129;	//키 버퍼 사이즈
@@ -343,8 +344,28 @@ void KeyboardController::HandleKeyboardInterrupt()
 
 	scanCode = InPortByte(0x60);	//키 스캔코드를 얻는다.
 
-	if (!(SpecialKey(scanCode) | (scanCode >= 0x80))) //아스키코드라면
+	if (bExtensionKey == true)
 	{
+		bExtensionKey = false;
+
+		// 눌러짐 또는 떨어짐 유무 설정
+		if ((scanCode & 0x80) != 0)
+		{
+			return;
+		}
+
+		//키버퍼에 아스키값을 기록한다.
+		if (buffend != (KEYBUFFSIZE - 1))
+		{
+			buffend++;
+		}
+		buffer[buffend] = scanCode & 0x7F;
+
+	}
+
+	if (!(SpecialKey(scanCode) || (scanCode >= 0x80))) //아스키코드라면
+	{
+		scanCode = scanCode & 0x7F;
 		if (shift)		//쉬프트키와 Caps Lock 상태에 따른 적절한 아스키값을 얻어온다.
 		{
 			if (!caps)
@@ -383,5 +404,15 @@ void KeyboardController::HandleKeyboardInterrupt()
 			buffend++;
 		}
 		buffer[buffend] = 0x85;
+	}
+	else if (scanCode == 0xE0)
+	{
+		bExtensionKey = true;
+		//키버퍼에 아스키값을 기록한다.
+		if (buffend != (KEYBUFFSIZE - 1))
+		{
+			buffend++;
+		}
+		buffer[buffend] = scanCode;
 	}
 }

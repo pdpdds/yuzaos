@@ -139,7 +139,7 @@ PFILE FAT_FileSystem::Open(const char* fileName, const char* mode)
 
 	if (res != FR_OK)
 	{
-		printf("File Open Fail : %s %d\n", fileName, res);
+		//printf("File Open Fail : %s %d\n", fileName, res);
 		delete fil;
 		return nullptr;
 	}

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "windef.h"
+#include <windef.h>
 #include <stringdef.h>
 #include <stdio.h>
 
@@ -56,7 +56,7 @@ extern "C" {
 	//   DLL without header but the address of exported functions must be retrieved.
 	*/
 
-	typedef bool (WINAPI *LPDLLMAIN)(DWORD_PTR image_base, DWORD reason, LPVOID reserved);
+	typedef BOOL (__stdcall *LPDLLMAIN)(HANDLE image_base, DWORD reason, LPVOID reserved);
 
 	typedef struct IMPORT_MODULE
 	{

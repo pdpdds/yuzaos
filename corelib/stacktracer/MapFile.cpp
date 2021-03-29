@@ -758,8 +758,7 @@ int MapFileReader::readFile(char	*fileName)
 	fp = fopen(fileName, "r");
 	if (fp != NULL)
 	{
-		
-		
+	
 		r = readDLLName(fp);
 		
 		if (r)
@@ -823,6 +822,8 @@ int MapFileReader::readFile(char	*fileName)
 				printf("Parsing C and C++ decorated names failed\n");
 		}
 		fclose(fp);
+
+		printf("success to open map file %s\n", fileName);
 	}
 	else
 	{
@@ -832,8 +833,7 @@ int MapFileReader::readFile(char	*fileName)
 		r = FALSE;
 	}
 
-	printf("success to open map file %s\n", fileName);
-
+	
 	return r;
 }
 

@@ -147,7 +147,7 @@ namespace SkyConsole
 		}
 		// and finally, set the cursor
 
-		MoveCursor(m_xPos + 1, m_yPos);
+		MoveCursor(m_xPos, m_yPos);
 	}
 
 	void WriteString(const char* szString, ConsoleColor textColour, ConsoleColor backColour)
@@ -166,7 +166,7 @@ namespace SkyConsole
 		}
 
 		m_yPos++;
-		MoveCursor(1, m_yPos);
+		MoveCursor(0, m_yPos);
 	}
 
 	typedef void* (*PrintCallBack)(const char* str);
@@ -420,7 +420,7 @@ namespace SkyConsole
 	{
 		if (X > m_ScreenWidth)
 			X = 0;
-		unsigned short Offset = (unsigned short)((Y * m_ScreenWidth) + (X - 1));
+		unsigned short Offset = (unsigned short)((Y * m_ScreenWidth) + X);
 
 		int flag = DisableInterrupts();
 		OutPortByte(m_VideoCardType, VGA_CRT_CURSOR_H_LOCATION);
@@ -429,12 +429,8 @@ namespace SkyConsole
 		OutPortByte(m_VideoCardType + 1, (Offset << 8) >> 8);
 		RestoreInterrupts(flag);
 
-		if (X > 0)
-			m_xPos = X - 1;
-		else
-			m_xPos = 0;
-
 		m_yPos = Y;
+		m_xPos = X;
 	}
 	/* Sets the Cursor Type
 		0 to 15 is possible value to pass

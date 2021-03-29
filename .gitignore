@@ -1,6 +1,7 @@
 
 *.pdb
 Debug
+Release
 bin
 verify
 .vs
