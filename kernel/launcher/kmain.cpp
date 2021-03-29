@@ -81,8 +81,6 @@ extern "C" void kmain(unsigned long magic, unsigned long addr)
 	
 	int result = sum(5, 4);
 	
-	
-	
 	SkyConsole::Print("Kernel Name : %s, BootLoader : %s\n", mb_info->cmdline, mb_info->boot_loader_name);
 	// 부트로더 이름이 "GNU GRUB 0.95" 이라면 커널이름 앞에 /을 붙인다. 
 	if (0 == strcmp(mb_info->boot_loader_name, GRUB_095))
@@ -90,7 +88,6 @@ extern "C" void kmain(unsigned long magic, unsigned long addr)
 		strcpy(mb_info->cmdline, "/yuza.exe");
 	}
 	 
-	
 	if (IsKernel64(mb_info, mb_info->cmdline))
 		Boot64BitMode(mb_info, mb_info->cmdline);
 	else

@@ -116,7 +116,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LinkIncremental>true</LinkIncremental>
+    <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
     <IntDir>$(SolutionDir)\Intermediate\$(ProjectName)\</IntDir>
   </PropertyGroup>
@@ -159,6 +159,7 @@
       <OmitFramePointers>true</OmitFramePointers>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FunctionLevelLinking>true</FunctionLevelLinking>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

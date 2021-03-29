@@ -47,7 +47,6 @@ int SDL_SemTryWait(SDL_sem * sem)
 #define WAIT_TIMEOUT 1
 #define WAIT_ABANDONED 2
 #define WAIT_FAILED 3
-#define INFINITE 0xffffffff
 
 int SDL_SemWaitTimeout(SDL_sem * sem, Uint32 timeout)
 {

@@ -49,6 +49,7 @@
 #include "SDL_skyoskeyboard.h"
 #include "SDL_skyosmouse.h"
 #include <skyoswindow.h>
+#include <systemcall_impl.h>
 
 #define DUMMYVID_DRIVER_NAME "dummy"
 
@@ -124,7 +125,7 @@ int Dummy_CreateWindow(_THIS, SDL_Window* window)
 	rect.top = window->y;
 	rect.right = rect.left + window->w + 4;
 	rect.bottom = rect.top + window->h + WINDOW_TITLEBAR_HEIGHT + 2;
-	BOOL result = CreateWindow(&rect, "SDL Window", WINDOW_FLAGS_DEFAULT , &windowId);
+	BOOL result = Syscall_CreateWindow(&rect, "SDL Window", WINDOW_FLAGS_DEFAULT , &windowId);
 	if (result == false)
 		return -1;
 

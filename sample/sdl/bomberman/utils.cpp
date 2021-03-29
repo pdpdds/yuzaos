@@ -1,4 +1,5 @@
 #include "utils.h"
+#include <gettimeofday.h>
 
 #ifndef _WIN32
 unsigned int timeGetTime()

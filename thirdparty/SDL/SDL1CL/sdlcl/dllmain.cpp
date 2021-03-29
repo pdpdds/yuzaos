@@ -47,7 +47,7 @@ extern "C" __declspec(dllexport) void InitializeDll()
 	initlib();
 }
 
-extern "C" bool _DllMainCRTStartup2(
+extern "C" BOOL __stdcall _DllMainCRTStartup2(
 	HANDLE  hDllHandle,
 	DWORD   dwReason,
 	LPVOID  lpreserved

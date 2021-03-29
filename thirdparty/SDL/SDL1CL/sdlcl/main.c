@@ -80,7 +80,7 @@ __attribute__ void initlib (void) {
 	void *handle;
 	if (!lib) {
 		//handle = SDL_LoadObject("SDL.dll");
-		handle = Syscall_LoadLibrary("SDL.dll");
+		handle = (void*)Syscall_LoadLibrary("SDL.dll");
 		if (!handle) {
 			return;
 		}

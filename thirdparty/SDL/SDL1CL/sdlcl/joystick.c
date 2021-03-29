@@ -29,7 +29,7 @@ int SDLCALL SDLCL_JoystickInit (void) {
 }
 
 void SDLCALL SDLCL_JoystickQuit (void) {
-	return rSDL_QuitSubSystem(SDL_INIT_JOYSTICK);
+	rSDL_QuitSubSystem(SDL_INIT_JOYSTICK);
 }
 
 typedef struct SDL1_Joystick SDL1_Joystick;
