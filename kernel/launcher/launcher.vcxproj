@@ -25,6 +25,7 @@
     <ClCompile Include="elf32.cpp" />
     <ClCompile Include="elf64.cpp" />
     <ClCompile Include="InitCPU.cpp" />
+    <ClCompile Include="intrin.cpp" />
     <ClCompile Include="Kernel32.cpp" />
     <ClCompile Include="Kernel64.cpp" />
     <ClCompile Include="kmain.cpp" />
@@ -133,7 +134,7 @@
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>false</OmitFramePointers>
-      <AdditionalIncludeDirectories>./;../include;../../runtime/include;../../corelib/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;../../runtime/include;../../corelib/include;../include;</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SKYOS32;_MSC_VER;_SKY_DEBUG;_X86_32;SKY_LAUNCHER</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
@@ -155,7 +156,7 @@
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>libcrt.lib;common.lib;systemcall.lib</AdditionalDependencies>
+      <AdditionalDependencies>libcrt.lib;systemcall.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>../../runtime/debug;../../debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>

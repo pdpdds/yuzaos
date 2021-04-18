@@ -228,13 +228,3 @@ bool MapFrameBuffer(BootParams* pBootParams)
 	}
 	return false;
 }
-
-extern "C" void kLock()
-{
-
-}
-
-extern "C" void kUnlock()
-{
-
-}

@@ -173,6 +173,8 @@ enum
 
 	eMallocSize,
 	ePulseEvent,
+
+	eInPorts,
 };
 
 /* Communication system calls
@@ -276,6 +278,7 @@ enum
 #define Syscall_InPortByte(port) (uchar)syscall1(eInPortByte, SCPARAM(port))
 #define Syscall_InPortWord(port) (ushort)syscall1(eInPortWord, SCPARAM(port))
 #define Syscall_InPortDWord(port) (long)syscall1(eInPortDWord, SCPARAM(port))
+#define Syscall_InPorts(port, buffer, count) (uchar)syscall3(eInPorts, SCPARAM(port), SCPARAM(buffer), SCPARAM(count))
 
 #define Syscall_SetLastError(error) (void)syscall1(eSetLastError, SCPARAM(error))
 #define Syscall_GetLastError() (DWORD)syscall0(eSetLastError)

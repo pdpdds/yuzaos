@@ -41,6 +41,7 @@
     <ClCompile Include="ProcessUtil64.cpp" />
     <ClCompile Include="..\yuza_core\arch\x86arch.cpp" />
     <ClCompile Include="SkyConsole.cpp" />
+    <ClCompile Include="intrin.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CPU\FPU.h">

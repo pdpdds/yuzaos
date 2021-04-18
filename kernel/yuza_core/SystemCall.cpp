@@ -311,6 +311,7 @@ void RegisterSysCall()
 	AddSyscall(eInPortByte, InPortByte);
 	AddSyscall(eInPortWord, InPortWord);
 	AddSyscall(eInPortDWord, InPortDWord);
+	AddSyscall(eInPorts, InPorts);
 	
 	AddSyscall(eSleep, kSleep);
 	AddSyscall(eGetTickCount, kGetTickCount);

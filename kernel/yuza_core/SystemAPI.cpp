@@ -1464,8 +1464,6 @@ BOOL kTryEnterCriticalSection(void* lpCriticalSection)
 
 void kEnterCriticalSection(void* lpCriticalSection)
 {
-	
-
 #if SKY_EMULATOR
 	g_platformAPI._processInterface.sky_EnterCriticalSection((LPCRITICAL_SECTION)lpCriticalSection);
 #else
@@ -1478,8 +1476,6 @@ void kEnterCriticalSection(void* lpCriticalSection)
 
 void kLeaveCriticalSection(void* lpCriticalSection)
 {
-
-
 #if SKY_EMULATOR
 	g_platformAPI._processInterface.sky_LeaveCriticalSection((LPCRITICAL_SECTION)lpCriticalSection);
 #else

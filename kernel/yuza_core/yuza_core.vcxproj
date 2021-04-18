@@ -37,7 +37,10 @@
     <ClCompile Include="HandleTable.cpp" />
     <ClCompile Include="HardwareTimer.cpp" />
     <ClCompile Include="Image.cpp" />
+    <ClCompile Include="InterruptDisabler.cpp" />
     <ClCompile Include="InterruptManager.cpp" />
+    <ClCompile Include="intrinsic.cpp" />
+    <ClCompile Include="kdebug.cpp" />
     <ClCompile Include="KeyBoard\KeyBoard.cpp" />
     <ClCompile Include="KeyBoard\KeyboardController.cpp" />
     <ClCompile Include="LoadDLL.cpp" />

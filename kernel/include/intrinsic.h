@@ -32,6 +32,7 @@ extern "C" {
 	uchar InPortByte(ushort port);
 	ushort InPortWord(ushort port);
 	long InPortDWord(unsigned int port);
+	uchar InPorts(ushort port, ushort* buffer, int count);
 
 	int DisableInterrupts();
 	void RestoreInterrupts(const int flags);

@@ -143,6 +143,9 @@
     <ClCompile Include="Team.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="kdebug.cpp" />
+    <ClCompile Include="InterruptDisabler.cpp" />
+    <ClCompile Include="intrinsic.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AddressSpace.h">
