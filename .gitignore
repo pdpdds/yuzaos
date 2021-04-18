@@ -4,7 +4,6 @@ Debug
 Release
 verify
 .vs
-kernel/launcher
 kernel/yuza_core/Release
 Intermediate
 runtime/Debug
