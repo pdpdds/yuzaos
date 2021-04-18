@@ -40,6 +40,9 @@ protected:
 	
 private:
 	ModuleManager();
+	void* AddSystemModule(const char* fileName);
+	void CreateMemoryResourceDisk(void* handle);
+
 	static ModuleManager* m_pModuleManager;
 	std::list<LOAD_DLL_INFO*> m_systemPEList;
 };

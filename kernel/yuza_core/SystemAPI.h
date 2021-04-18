@@ -146,11 +146,9 @@ extern "C" {
 
 	void dslock(_In_ SafeMemoryLock_t* MemoryLock);
 	void dsunlock(_In_ SafeMemoryLock_t* MemoryLock);
-	BOOL ValidatePEImage(void* image);
 	void PrintCurrentTime();
 
 	void kprintf(const char* fmt, ...);
-	//void kprintMsg(const char* str, ...);
 	
 	int CreateFileArea(const char name[], const char path[], unsigned int va, off_t offset,
 		size_t size, int flags, PageProtection prot, Team& team);

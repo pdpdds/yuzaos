@@ -4,54 +4,14 @@
 #include <WinError.h>
 #include <systemcall_impl.h>
 
-extern "C" int _outp(unsigned short, int);
-extern "C" unsigned long _outpd(unsigned int, int);
-extern "C" unsigned short _outpw(unsigned short, unsigned short);
-extern "C" int _inp(unsigned short);
-extern "C" unsigned short _inpw(unsigned short);
-extern "C" unsigned long _inpd(unsigned int shor);
 
-void OutPortByte(ushort port, uchar value)
-{
-	_outp(port, value);
-}
-
-void OutPortWord(ushort port, ushort value)
-{
-	_outpw(port, value);
-}
-
-void OutPortDWord(ushort port, unsigned int value)
-{
-	_outpd(port, value);
-}
-
-long InPortDWord(unsigned int port)
-{
-	return _inpd(port);
-}
-
-uchar InPortByte(ushort port)
-{
-
-	return (uchar)_inp(port);
-}
-
-ushort InPortWord(ushort port)
-{
-	return _inpw(port);
-}
-
-bool inports(ushort port, ushort* buffer, int count)
-{
-	__asm
-	{
-		mov dx, port
-		mov edi, buffer; Address of buffer
-		mov ecx, count; Repeat count times
-		rep insw
-	}
-}
+extern "C" void OutPortByte(unsigned short port, unsigned char value);
+extern "C" void OutPortWord(unsigned short port, unsigned short value);
+extern "C" void OutPortDWord(unsigned short port, unsigned int value);
+extern "C" long InPortDWord(unsigned int port);
+extern "C" unsigned char InPortByte(unsigned short port);
+extern "C" unsigned char InPortWord(unsigned short port);
+extern "C" unsigned char inports(unsigned short port, unsigned short* buffer, int count);
 
 //발견된 하드디스크 개수를 리턴한다.
 BYTE HardDiskHandler::GetTotalDevices()

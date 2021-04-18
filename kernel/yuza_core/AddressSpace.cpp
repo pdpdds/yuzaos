@@ -220,9 +220,7 @@ int AddressSpace::HandleFault(unsigned int va, bool write, bool user)
 
 	PageProtection protection = area->GetProtection();
 
-#ifdef ADDRESS_SPACE_DEBUG
-	kprintf("handle fault retrived %x %x %d %d %d\n", area, va, user, write, protection);
-#endif 
+	kDebugPrint("handle fault retrived %x %x %d %d %d\n", area, va, user, write, protection);
 
 	if ((user && write && !(protection & USER_WRITE))
 		|| (user && !write && !(protection & USER_READ))

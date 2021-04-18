@@ -733,57 +733,8 @@ extern void memshow(const void* start, size_t count, bool alpha);
 FS_ERROR sectorRead(uint32_t sector, uint8_t* buffer, disk_t* disk)
 {
 	FS_ERROR error = disk->type->readSectors(sector, buffer, 1, disk);
-	//memshow(buffer, disk->sectorSize, false);
-	//for (;;);
+	
 	return error;
-	/*
-  #ifdef _DEVMGR_DIAGNOSIS_
-    //textColor(0x03);
-    printf("\n>>>>> sectorRead: %u <<<<<", sector);
-    //textColor(TEXT);
-  #endif
-
-	Syscall_LockMutex(cacheMutex);
-    for (size_t i = 0; i < numCaches; i++)
-    {
-        if (caches[i].valid && caches[i].sector == sector && caches[i].disk == disk)
-        {
-          #ifdef _DEVMGR_DIAGNOSIS_
-            printf("\nsector: %u <--- read from RAM Cache", caches[i].sector);
-          #endif
-			memshow(caches[i].buffer, disk->sectorSize, false);
-            memcpy(buffer, caches[i].buffer, disk->sectorSize); // Take data from read cache
-			Syscall_UnlockMutex(cacheMutex);
-            disk->accessRemaining--;
-            return (CE_GOOD);
-        }
-    }
-	Syscall_UnlockMutex(cacheMutex);
-
-    uint32_t count;
-    uint32_t firstSector;
-    if (disk->alignedAccess)
-    {
-        count = disk->optAccSecCount;
-        firstSector = sector - (sector % disk->optAccSecCount);
-    }
-    else
-    {
-        count = MIN(disk->optAccSecCount, numCaches / 2); // Fill numCaches/2 at maximum
-        firstSector = sector;
-    }
-
-    // read
-	Syscall_LockMutex(cacheMutex);
-    static array(uint8_t) tempBuf; // Too large for stack
-    array_resize(&tempBuf, count*disk->sectorSize);
-    FS_ERROR error = disk->type->readSectors(firstSector, tempBuf.data, count, disk);
-    if (error == CE_GOOD)
-        deviceManager_fillCache(firstSector, disk, tempBuf.data, count, false);
-
-    memcpy(buffer, tempBuf.data + (sector - firstSector)*disk->sectorSize, disk->sectorSize);
-	Syscall_UnlockMutex(cacheMutex);
-    return (error);*/
 }
 
 FS_ERROR singleSectorRead(uint32_t sector, uint8_t* buffer, disk_t* disk)

@@ -245,7 +245,7 @@ bool usb_getDeviceDescriptor(usb_device_t* device, uint8_t length, bool first)
   #endif
 
     //static usb_deviceDescriptor descriptor;
-    usb_deviceDescriptor* descriptor = (usb_deviceDescriptor *)malloc(sizeof(usb_deviceDescriptor));
+    usb_deviceDescriptor* descriptor = (usb_deviceDescriptor *)malloc_aligned(sizeof(usb_deviceDescriptor), 4096);
 
     bool success = usb_controlIn(device, descriptor, 0x80, GET_DESCRIPTOR, 1, 0, 0, length);
     

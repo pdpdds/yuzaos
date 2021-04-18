@@ -60,7 +60,7 @@
 #include <stdio.h>
 
 #define LINE_LENGTH 1024		// should be more than enough
-#define DEFAULT_VERBOSE TRUE	// set to TRUE for debugging
+#define DEFAULT_VERBOSE FALSE	// set to TRUE for debugging
 
 extern "C" void printf(const char* str, ...);
 

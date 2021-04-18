@@ -40,6 +40,6 @@ int isdir(const char* path)
 {
 	struct stat stats = { 0, };
 
-	return fstat(path, &stats) == 0 && S_ISDIR(stats.st_mode);
-	//return stat (path, &stats) == 0 && S_ISDIR (stats.st_mode);
+	//return fstat(path, &stats) == 0 && S_ISDIR(stats.st_mode);
+	return stat (path, &stats) == 0 && S_ISDIR (stats.st_mode);
 }

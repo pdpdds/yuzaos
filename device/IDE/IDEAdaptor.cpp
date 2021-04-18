@@ -169,7 +169,6 @@ bool IDEAdaptor::Initialize(I_FileSystem* pFileSystem, void* arg)
 	if (result == false)
 		return false;
 
-
 	if (!g_emulation)
 	{
 		printf("HardDisk Count : %d\n", g_pHDDHandler->GetTotalDevices());

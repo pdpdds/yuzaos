@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="USBAdaptor.cpp" />
+    <ClCompile Include="devicemanager.cpp" />
+    <ClCompile Include="ehci.cpp" />
+    <ClCompile Include="ehciQHqTD.cpp" />
+    <ClCompile Include="usb_msd.cpp" />
+    <ClCompile Include="pci.cpp" />
+    <ClCompile Include="EHCIHandler.cpp" />
+    <ClCompile Include="usb.cpp" />
+    <ClCompile Include="usb_hc.cpp" />
+    <ClCompile Include="array.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="list.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="USBAdaptor.h" />
+    <ClInclude Include="devicemanager.h" />
+    <ClInclude Include="ehci.h" />
+    <ClInclude Include="ehciQHqTD.h" />
+    <ClInclude Include="usb.h" />
+    <ClInclude Include="usb_msd.h" />
+    <ClInclude Include="pci.h" />
+    <ClInclude Include="EHCIHandler.h" />
+    <ClInclude Include="usb_hc.h" />
+    <ClInclude Include="array.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="list.h">
+      <Filter>util</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="util">
+      <UniqueIdentifier>{ad93662f-eb1d-4e14-93cb-23b603909749}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

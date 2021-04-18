@@ -32,7 +32,7 @@ uint8_t* tempBuffer = 0;
 
 extern "C" BYTE usb_disk_initialize()
 {
-	tempBuffer = (uint8_t * )malloc(512 * 32);
+	tempBuffer = (uint8_t * )malloc_aligned(512 * 32, 4096);
 	return 0;
 }
 
@@ -111,10 +111,10 @@ bool USBAdaptor::Initialize(I_FileSystem* pFileSystem, void* arg)
 	printf("ScanPCI Complete\n");
 
 	pci_installDevices();
-
+	
 	g_disk = GetMSD();
 	assert(g_disk != 0);
-
+	
 	m_pFileSystem = pFileSystem;
 	printf("g_disk %x %x\n", g_disk, g_disk->sectorSize);
 	return m_pFileSystem->Initialize(&g_io_interface);

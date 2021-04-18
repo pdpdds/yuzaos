@@ -44,7 +44,7 @@ int Image::Open(const char path[])
 
 	if (fFileHandle == 0)
 	{
-		kprintf("exe open fail %s\n", path);
+		kDebugPrint("exe open fail %s\n", path);
 		//assert(0);
 		return -1;
 	}

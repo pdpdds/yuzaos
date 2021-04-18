@@ -14,6 +14,7 @@
     <ClCompile Include="arch\atomic.c" />
     <ClCompile Include="arch\cstd.c" />
     <ClCompile Include="arch\ctrycatch.cpp" />
+    <ClCompile Include="arch\ioctrl.c" />
     <ClCompile Include="arch\setjmp.c" />
     <ClCompile Include="arch\spinlock.c" />
     <ClCompile Include="asm\alldiv.c" />

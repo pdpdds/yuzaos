@@ -29,60 +29,53 @@ ModuleManager::ModuleManager()
 {
 }
 
+void* ModuleManager::AddSystemModule(const char* fileName)
+{
+	void* handle = LoadPE(fileName, true);
+
+	SKY_ASSERT(handle != nullptr, fileName);
+	m_systemPEList.push_back((LOAD_DLL_INFO*)handle);
+
+	kprintf("%s Loaded\n", fileName);
+
+	return handle;
+}
+
+void ModuleManager::CreateMemoryResourceDisk(void* handle)
+{
+	PCreateFileManager pCreateFileManager;
+	pCreateFileManager = (PCreateFileManager)GetModuleFunction(handle, "CreateFileManager");
+
+	SKY_ASSERT(pCreateFileManager != nullptr, "FileManager.dll GetFileManager");
+	g_pFileManager = pCreateFileManager();
+
+	SKY_ASSERT(g_pFileManager != nullptr, "FileManager.dll g_pFileManager");
+	g_pFileManager->AddFileSystem(new MemoryResourceAdaptor("MemoryResourceDisk"), new MemoryResourceFS("MEMORY"), 'Z');
+}
+
 ModuleManager::~ModuleManager()
 {
 }
 
+//SystemCall.dll, FileManager.dll, math.dll, libconfig.dll
 bool ModuleManager::Initialize()
 {
-	//System PE Load
-
-	kprintf("Module Load\n");
+	kprintf("System Module Load\n");
 	
-	//SystemCall.dll
-	void* handle = LoadPE("SystemCall.dll", true);
-	
-	SKY_ASSERT(handle != nullptr, "SystemCall.dll");
-	pSetPlatformAPI SetPlatformAPI = (pSetPlatformAPI)GetModuleFunction(handle, "SetPlatformAPI");
-	SKY_ASSERT(SetPlatformAPI != nullptr, "SystemCall.dll SetPlatformAPI");
-	SetPlatformAPI(g_platformAPI, emulation);
-	m_systemPEList.push_back((LOAD_DLL_INFO*)handle);
-
-	kprintf("SystemCall.dll Load\n");
+	void* handle = AddSystemModule("SystemCall.dll");
+	fSetPlatformAPI pSetPlatformAPI = (fSetPlatformAPI)GetModuleFunction(handle, "SetPlatformAPI");
+	SKY_ASSERT(pSetPlatformAPI != nullptr, "SystemCall.dll");
+	pSetPlatformAPI(g_platformAPI, emulation);
 	
 	//Register System Call
 	RegisterSysCall();
 
-	//FileManager.dll
-	handle = LoadPE("FileManager.dll", true);
-	SKY_ASSERT(handle != nullptr, "FileManager.dll");
-	PCreateFileManager GetFileManager;
-	GetFileManager = (PCreateFileManager)GetModuleFunction(handle, "CreateFileManager");
-	SKY_ASSERT(GetFileManager != nullptr, "FileManager.dll GetFileManager");
-	g_pFileManager = GetFileManager();
-	SKY_ASSERT(g_pFileManager != nullptr, "FileManager.dll g_pFileManager");
-	g_pFileManager->AddFileSystem(new MemoryResourceAdaptor("MemoryResourceDisk"), new MemoryResourceFS("MEMORY"), 'Z');
-	m_systemPEList.push_back((LOAD_DLL_INFO*)handle);
-
-	kprintf("FileManager.dll Load\n");
+	handle = AddSystemModule("FileManager.dll");
+	CreateMemoryResourceDisk(handle);
 	
-	handle = LoadPE("math.dll", true);
-	SKY_ASSERT(handle != nullptr, "math.dll");
-	m_systemPEList.push_back((LOAD_DLL_INFO*)handle);
-
-	kprintf("math.dll Load\n");
+	AddSystemModule("math.dll");
+	AddSystemModule("libconfig.dll");
 	
-	handle = LoadPE("libconfig.dll", true);
-	SKY_ASSERT(handle != nullptr, "libconfig.dll");
-	m_systemPEList.push_back((LOAD_DLL_INFO*)handle);
-
-	kprintf("libconfig.dll Load\n");
-
-	/*handle = LoadPE("libwin32.dll", true);
-	SKY_ASSERT(handle != nullptr, "libwin32.dll");
-	m_systemPEList.push_back((LOAD_DLL_INFO*)handle);
-	*/
-
 	return true;
 }
 
@@ -116,7 +109,7 @@ void* ModuleManager::LoadPE(const char* fileName, bool fromMemory)
 
 	PrintPEHierachy(dllInfo);
 
-	pInitializeDll InitializeDll = (pInitializeDll)GetModuleFunction(dllInfo, "InitializeDll");
+	fInitializeDll InitializeDll = (fInitializeDll)GetModuleFunction(dllInfo, "InitializeDll");
 	if (InitializeDll != nullptr)
 		InitializeDll();
 
@@ -260,7 +253,7 @@ bool ModuleManager::InitPE(void* image)
 
 		HMODULE hwnd = g_platformAPI._processInterface.sky_GetModuleHandle(dllName);
 
-		pInitializeDll InitializeDll = (pInitializeDll)GetModuleFunction(hwnd, "InitializeDll");
+		fInitializeDll InitializeDll = (fInitializeDll)GetModuleFunction(hwnd, "InitializeDll");
 		if (InitializeDll != nullptr)
 			InitializeDll();
 

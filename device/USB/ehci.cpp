@@ -821,6 +821,7 @@ void ehci_waitForTransfer(usb_transfer_t* transfer)
                     iTD++;
                 }
             }
+            
             transfer->success = true;
             uint32_t cntBuf = ehci_iTDchainTransfer->times * ehci_iTDchainTransfer->numChain * 8;
             serial_log(SER_LOG_EHCI_ITD, "\nBytes transferred: %u, iTD buffer with data: %u (%u percent), still active iTD buffer: %u (%u percent)",
@@ -844,7 +845,7 @@ void ehci_waitForTransfer(usb_transfer_t* transfer)
 
 void ehci_destructTransfer(usb_transfer_t* transfer)
 {
-    //printf("abcdef\n");
+    
     ehci_t* e = (ehci_t*)((hc_port_t*)transfer->device->port->data)->hc;
     if (transfer->type == USB_ISOCHRONOUS)
     {
@@ -860,9 +861,9 @@ void ehci_destructTransfer(usb_transfer_t* transfer)
             // Wait until we may release the memory
             WAIT_FOR_CONDITION(!e->USBasyncIntPending, 25, 10);
         }
-        //printf("ppppppppppppp %x\n", transfer->data);
+        
         free(transfer->data);
-        //printf("jjjjjjjjjjjj\n");
+        
         for (dlelement_t* elem = transfer->transactions.head; elem != 0; elem = elem->next)
         {
             ehci_transaction_t* transaction = (ehci_transaction_t * )((usb_transaction_t*)elem->data)->data;
@@ -871,7 +872,7 @@ void ehci_destructTransfer(usb_transfer_t* transfer)
             free(transaction);
         }
     }
-    //printf("wwwwwwwwwwww\n");
+   
     if (transfer->success)
     {
       #ifdef _EHCI_DIAGNOSIS_

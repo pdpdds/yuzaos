@@ -69,14 +69,15 @@ UINT16 DeviceDriverManager::InitPCIDevices()
 					newPCIDev->Bus = Bus;
 					newPCIDev->Device = Device;
 					newPCIDev->Function = Function;
-					kDebugPrint("Address %x\n", PCICfg.PreDefinedHeader.NonBridge.BaseAddress0);
+					kDebugPrint("Device Address %x\n", PCICfg.PreDefinedHeader.NonBridge.BaseAddress0);
+
 					memcpy(&newPCIDev->PCIConfDetails, &PCICfg, sizeof(PCIConfigurationSpace));
 					m_listPCIDevices->push_back(newPCIDev);
 					m_deviceCount++;
 				}
 			}
 
-	kprintf("%d device(s) found\n", m_deviceCount);
+	kDebugPrint("%d device(s) found\n", m_deviceCount);
 
 	return m_deviceCount;
 }

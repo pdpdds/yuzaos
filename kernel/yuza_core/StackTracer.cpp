@@ -266,7 +266,8 @@ bool StackTracer::AddSymbol(const char* symbolName, unsigned int actualLoadedAdd
 
 	if (reader == nullptr)
 	{
-		kPanic("Debug Engine Fail!!");
+		kDebugPrint("Symbol Load Fail : %s\n", symbolName);
+		return false;
 	}
 
 	if (AlreadySymbolLoaded(symbolName))
@@ -275,7 +276,7 @@ bool StackTracer::AddSymbol(const char* symbolName, unsigned int actualLoadedAdd
 	bool result = reader->readFile((char*)symbolName);
 	if (result == false)
 	{
-		printf("Add SymbolFile Fail!!, %s\n", symbolName);
+		//printf("Add SymbolFile Fail!!, %s\n", symbolName);
 		return false;
 	}
 		

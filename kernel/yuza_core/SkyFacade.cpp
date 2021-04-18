@@ -358,7 +358,7 @@ bool SetFrameBufferInfo(WIN32_VIDEO* pVideoInfo)
 #endif	
 
 
-bool AddStorageModule(config_t& cfg, char* driverName, bool fromMemory);
+bool AddStorageModules(config_setting_t* setting);
 bool MountStorageDriver(const char* modulename, const char* moduletype, char preferedDrive, bool fromMemoryconst, const char* pakFile);
 
 
@@ -422,72 +422,78 @@ bool InitStorageSystem(const char* configName)
 	
 	kDebugPrint("file : %s, name: %s\n\n", configName, str);
 
-	AddStorageModule(cfg, "storage.IDE", true);
+	config_setting_t* setting = config_lookup(&cfg, "storage");
+
+	if (!setting)
+	{
+		kPanic("storage info fail.\n");
+	}
+
+	int count = config_setting_length(setting);
+	
+	for (int i = 0; i < count; ++i)
+	{
+		config_setting_t* deviceInfo = config_setting_get_elem(setting, i);
+		AddStorageModules(deviceInfo);
+	}
+	
+	config_destroy(&cfg);
 
 	kSetCurrentDriveId('C');
-	
-	AddStorageModule(cfg, "storage.FLOPPY", true);
-	//AddStorageModule(cfg, "storage.USB", true);
-	//AddStorageModule(cfg, "storage.RAM", false);
-	//kSetCurrentDriveId('C');
-	config_destroy(&cfg);
 	
 	return true;
 }
 
-bool AddStorageModule(config_t& cfg, char* driverName, bool fromMemory)
+bool AddStorageModules(config_setting_t* setting)
 {
-	config_setting_t* setting;
-	/* Output a list of all books in the inventory. */
-	setting = config_lookup(&cfg, driverName);
-	if (setting != NULL)
+	int count = config_setting_length(setting);
+	int i;
+
+	kDebugPrint("%-10s  %-10s  %-10s  %-10s  %-10s %-10s\n", "module", "author", "type", "prefered", "filesystem", "enable");
+	for (i = 0; i < count; ++i)
 	{
-		int count = config_setting_length(setting);
-		int i;
+		config_setting_t* module = config_setting_get_elem(setting, i);
 
-		kDebugPrint("%-10s  %-10s  %-10s  %-10s  %-10s\n", "module", "author", "type", "prefered", "enable");
-		for (i = 0; i < count; ++i)
+		/* Only output the record if all of the expected fields are present. */
+		const char* modulename, * author, * moduleType, * preferedDrive, * filesystem;
+		const char* pakFile = 0;
+		int enable = 0;
+		int fromFile = 0;
+
+		if (!(config_setting_lookup_string(module, "module", &modulename)
+			&& config_setting_lookup_string(module, "author", &author)
+			&& config_setting_lookup_string(module, "type", &moduleType)
+			&& config_setting_lookup_string(module, "filesystem", &filesystem)
+			&& config_setting_lookup_string(module, "preferedDrive", &preferedDrive)
+			&& config_setting_lookup_int(module, "enable", &enable)))
+			continue;
+
+		config_setting_lookup_string(module, "pakFile", &pakFile);
+		config_setting_lookup_int(module, "fromFile", &fromFile);
+
+		kDebugPrint("%-10s  %-10s  %-10s  %-10s  %-10s  %d\n", modulename, author, moduleType, preferedDrive, filesystem, enable);
+
+		if (enable)
 		{
-			config_setting_t* module = config_setting_get_elem(setting, i);
-
-			/* Only output the record if all of the expected fields are present. */
-			const char* modulename, * author, * moduleType, *preferedDrive, *filesystem;
-			const char* pakFile = 0;
-			int enable = 0;
-
-			if (!(config_setting_lookup_string(module, "module", &modulename)
-				&& config_setting_lookup_string(module, "author", &author)
-				&& config_setting_lookup_string(module, "type", &moduleType)
-				&& config_setting_lookup_string(module, "filesystem", &filesystem)
-				&& config_setting_lookup_string(module, "preferedDrive", &preferedDrive)
-				&& config_setting_lookup_int(module, "enable", &enable)))
-				continue;
-
-			config_setting_lookup_string(module, "pakFile", &pakFile);
-			
-			kDebugPrint("%-10s  %-10s  %-10s  %-10s  %-10s  %d\n", modulename, author, moduleType, preferedDrive, filesystem, enable);
-
-			if (enable)
+			if (strcmp(moduleType, "both") == 0)
 			{
-				if (strcmp(moduleType, "both") == 0)
-				{
-					MountStorageDriver(modulename, filesystem, preferedDrive[0], fromMemory, pakFile);
-				}
-				else
-				{
+				MountStorageDriver(modulename, filesystem, preferedDrive[0], fromFile, pakFile);
+			}
+			else
+			{
 #if SKY_EMULATOR
-					if (strcmp(moduleType, "emulation") == 0)
+				if (strcmp(moduleType, "emulation") == 0)
 #else
-					if (strcmp(moduleType, "real") == 0)
+				if (strcmp(moduleType, "real") == 0)
 #endif
-					{
-						MountStorageDriver(modulename, filesystem, preferedDrive[0], fromMemory, pakFile);
-					}
-
+				{
+					MountStorageDriver(modulename, filesystem, preferedDrive[0], fromFile, pakFile);
 				}
+
 			}
 		}
 	}
+	
 	return true;
 }
 
@@ -538,9 +544,8 @@ void JumpToNewKernelEntry(int entryPoint, unsigned int procStack)
 
 int SerialPortServerThread(void* parameter)
 {
-	//char Hello[] = "Hello World!!";
-	//SendSerialData((BYTE*)Hello, strlen(Hello) + 1);
 	kDebugPrint("Starting SerialPortServerThread\n");
+
 	while (1)
 	{
 

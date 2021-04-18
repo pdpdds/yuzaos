@@ -12,55 +12,6 @@
 #include "UHCIHandler.h"
 
 #define PAGE_SIZE 4096 
-/*
-extern "C" int _outp(unsigned short, int);
-extern "C" unsigned long _outpd(unsigned int, int);
-extern "C" unsigned short _outpw(unsigned short, unsigned short);
-extern "C" int _inp(unsigned short);
-extern "C" unsigned short _inpw(unsigned short);
-extern "C" unsigned long _inpd(unsigned int shor);
-
-void OutPortByte(ushort port, uchar value)
-{
-	_outp(port, value);
-}
-
-void OutPortWord(ushort port, ushort value)
-{
-	_outpw(port, value);
-}
-
-void OutPortDWord(ushort port, unsigned int value)
-{
-	_outpd(port, value);
-}
-
-long InPortDWord(unsigned int port)
-{
-	return _inpd(port);
-}
-
-uchar InPortByte(ushort port)
-{
-
-	return (uchar)_inp(port);
-}
-
-ushort InPortWord(ushort port)
-{
-	return _inpw(port);
-}
-
-bool inports(ushort port, ushort* buffer, int count)
-{
-	__asm
-	{
-		mov dx, port
-		mov edi, buffer; Address of buffer
-		mov ecx, count; Repeat count times
-		rep insw
-	}
-}*/
 
 //20191112
 #define WAIT_FOR_CONDITION(condition, runs, wait, message)\
@@ -189,7 +140,7 @@ static void uhci_resetHC(uhci_t* u)
 
 	
     Syscall_OutPortWord(u->bar + UHCI_USBCMD, UHCI_CMD_GRESET);
-	Syscall_Sleep(100);
+	Syscall_Sleep(1);
 	//sleepMilliSeconds(100); // at least 50 msec
     Syscall_OutPortWord(u->bar + UHCI_USBCMD, 0);
 
@@ -278,10 +229,10 @@ static void uhci_resetHC(uhci_t* u)
 
     Syscall_OutPortWord(u->bar + UHCI_USBCMD, UHCI_CMD_RS | UHCI_CMD_CF | UHCI_CMD_MAXP | UHCI_CMD_FGR);
    // sleepMilliSeconds(20);
-	Syscall_Sleep(20);
+	Syscall_Sleep(2);
     Syscall_OutPortWord(u->bar + UHCI_USBCMD, UHCI_CMD_RS | UHCI_CMD_CF | UHCI_CMD_MAXP);
    // sleepMilliSeconds(100);
-	Syscall_Sleep(100);
+	Syscall_Sleep(10);
 
   #ifdef _UHCI_DIAGNOSIS_
     printf("\n\nRoot-Ports   port1: %xh  port2: %xh\n", InPortWord(u->bar + UHCI_PORTSC1), InPortWord(u->bar + UHCI_PORTSC2));
@@ -809,7 +760,7 @@ static void* uhci_allocTDbuffer(uhciTD_t* td, size_t length)
 {
     if (length)
     {
-        td->virtBuffer = malloc(length);
+        td->virtBuffer = malloc_aligned(length, 4096);
 		unsigned int pa = Syscall_GetPAFromVM(td->virtBuffer);
         td->buffer = pa;
     }

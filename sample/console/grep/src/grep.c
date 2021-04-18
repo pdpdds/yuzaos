@@ -1224,7 +1224,7 @@ grepfile(char const* file, struct stats* stats)
 	}
 	else
 	{
-		if (fstat(file, &stats->stat) != 0)
+		if (stat(file, &stats->stat) != 0)
 		{
 			suppressible_error(file, errno);
 			return 1;
@@ -1246,7 +1246,7 @@ grepfile(char const* file, struct stats* stats)
 
 			if (is_EISDIR(e, file) && directories == RECURSE_DIRECTORIES)
 			{
-				if (fstat(file, &stats->stat) != 0)
+				if (stat(file, &stats->stat) != 0)
 				{
 					error(0, errno, "%s", file);
 					return 1;

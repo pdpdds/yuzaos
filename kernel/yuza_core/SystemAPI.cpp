@@ -31,76 +31,6 @@ extern BootParams g_bootParams;
 DWORD g_dwSysLastError = 0;
 extern _Scheduler gScheduler;
 
-//32비트 PE파일 이미지 유효성 검사
-BOOL ValidatePEImage(void* image)
-{
-	IMAGE_DOS_HEADER* dosHeader = 0;
-	IMAGE_NT_HEADERS* ntHeaders = 0;
-
-	dosHeader = (IMAGE_DOS_HEADER*)image;
-	if (dosHeader->e_magic != IMAGE_DOS_SIGNATURE)
-		return false;
-
-	if (dosHeader->e_lfanew == 0)
-		return false;
-
-	//NT Header 체크
-	ntHeaders = (IMAGE_NT_HEADERS*)(dosHeader->e_lfanew + (uint32_t)image);
-	if (ntHeaders->Signature != IMAGE_NT_SIGNATURE)
-		return false;
-
-	/* only supporting for i386 archs */
-	if (ntHeaders->FileHeader.Machine != IMAGE_FILE_MACHINE_I386)
-		return false;
-
-	/* only support 32 bit executable images */
-	if (!(ntHeaders->FileHeader.Characteristics & (IMAGE_FILE_EXECUTABLE_IMAGE | IMAGE_FILE_32BIT_MACHINE)))
-		return false;
-
-	/*
-	Note: 1st 4 MB remains idenitity mapped as kernel pages as it contains
-	kernel stack and page directory. If you want to support loading below 1MB,
-	make sure to move these into kernel land
-	*/
-
-	//로드되는 프로세스의 베이스 주소는 0x00400000다. 
-	//비쥬얼 스튜디오에서 속성=> 링커 => 고급의 기준주소 항목에서 확인 가능하다
-	if ((ntHeaders->OptionalHeader.ImageBase < 0x400000) || (ntHeaders->OptionalHeader.ImageBase > 0x80000000))
-		return false;
-
-	/* only support 32 bit optional header format */
-	if (ntHeaders->OptionalHeader.Magic != IMAGE_NT_OPTIONAL_HDR32_MAGIC)
-		return false;
-
-	//유효한 32비트 PE 파일이다.
-	return true;
-}
-
-/*extern "C" void kprintf(const char *fmt, ...)
-{
-	va_list arglist;
-	va_start(arglist, fmt);
-
-
-#if SKY_EMULATOR
-	g_platformAPI._printInterface.sky_printf(fmt, arglist);
-#else
-
-	if (SkyGUISystem::GetInstance()->GUIEnable())
-	{
-		QWORD windowId = Thread::GetRunningThread()->GetTeam()->GetWindowId();
-
-		//if (taskId > 0)
-			SkyGUISystem::GetInstance()->Print(windowId, buf);
-	}
-	else
-	{
-		SkyConsole::Print(buf);
-	}
-
-#endif
-	
-}*/
 
 
 extern BOOL kGetCurrentConsoleWindowId(QWORD* qwWindowID);
@@ -563,11 +493,7 @@ int kGetCurrentThreadId(void)
 
 int kGetCurrentThread()
 {
-//#if SKY_EMULATOR
-	//return (int)g_platformAPI._processInterface.sky_kGetCurrentThread();
-//#else
 	return (int)Thread::GetRunningThread()->m_resourceHandle;
-//#endif
 }
 
 int kGetCurrentProcessId(void)
@@ -579,10 +505,6 @@ int kGetCurrentProcessId(void)
 //세마포어
 int kAquireSemaphore(HANDLE handle, int timeout)
 {
-/*#if SKY_EMULATOR
-	return g_platformAPI._processInterface.sky_AquireSemaphore(handle, timeout);
-#endif*/
-
 	bigtime_t timeOut = timeout;
 
 	if (timeout == -1)
@@ -599,33 +521,23 @@ int kAquireSemaphore(HANDLE handle, int timeout)
 
 HANDLE kCreateSemaphore(const char* name, int count)
 {
-/*#if SKY_EMULATOR
-	return g_platformAPI._processInterface.sky_CreateSemaphore(NULL, count, -1, name);
-#endif*/
-
 	Semaphore* sem = new Semaphore(name, count);
 
 	if (sem == 0)
 		return 0;
 
-	HANDLE hHandle = (HANDLE)OpenHandle(sem);
-
-	return hHandle;
+	return (HANDLE)OpenHandle(sem);
 }
 
 int kReleaseSemaphore(HANDLE handle, int count)
 {
-/*#if SKY_EMULATOR
-	LONG previousCount;
-	return g_platformAPI._processInterface.sky_ReleaseSemaphore(handle, count, &previousCount);
-#endif*/
-
 	Semaphore* sem = static_cast<Semaphore*>(GetResource((int)handle, OBJ_SEMAPHORE));
 	if (sem == 0)
 		return E_BAD_HANDLE;
 
 	sem->Release(count, false);
 	sem->ReleaseRef();
+
 	return E_NO_ERROR;
 }
 
@@ -1245,7 +1157,7 @@ void kSendSerialLog(char* buffer, int size)
 	return;
 #endif
 
-	SendSerialData((BYTE*)buffer, size);
+	SendSerialData((BYTE*)buffer, strlen(buffer));
 }
 
 extern bool g_serialPortInit;
@@ -1267,8 +1179,8 @@ void kDebugPrint(const char* fmt, ...)
 	return;
 #endif
 
-	if(g_bootParams.bGraphicMode && g_serialPortInit == true)
-		SendSerialData((BYTE*)buf, strlen(buf) + 1);
+	if(g_bootParams.bGraphicMode || g_serialPortInit == true)
+		SendSerialData((BYTE*)buf, strlen(buf));
 	else
 		kprintf(buf);
 }
@@ -1402,7 +1314,7 @@ int kGetCommandFromKeyboard(char* commandBuffer, int bufSize)
 				//! go back one char
 				uint y, x;
 				SkyConsole::GetCursorPos(x, y);
-
+				x--;
 				if (x > 0)
 					SkyConsole::MoveCursor(x, y);
 				else {

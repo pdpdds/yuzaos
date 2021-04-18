@@ -234,7 +234,6 @@ int Synchronization::WaitInternal(int syncObjectCount,
 	if (timeout != INFINITE_TIMEOUT)
 		waitEvent.SetTimeout(SystemTime() + timeout, kOneShotTimer);
 
-
 	if(waitEvent.fThread)
 		waitEvent.fThread->SetState(kThreadWaiting);
 

@@ -87,8 +87,8 @@ typedef struct tag_PlatformAPI
 	SKY_PROCESS_INTERFACE   _processInterface;
 }PlatformAPI;
 
-typedef void(*pSetPlatformAPI)(PlatformAPI, bool);
-typedef void(*pInitializeDll)();
+typedef void(*fSetPlatformAPI)(PlatformAPI, bool);
+typedef void(*fInitializeDll)();
 
  extern PlatformAPI g_platformAPI;
 #ifdef __cplusplus

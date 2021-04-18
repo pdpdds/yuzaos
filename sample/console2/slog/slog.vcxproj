@@ -25,7 +25,7 @@
     <ProjectGuid>{8089E5E3-C910-44D6-A9F8-09ED93E84D04}</ProjectGuid>
     <RootNamespace>Kernel</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>test_slog</ProjectName>
+    <ProjectName>testslog</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -74,7 +74,7 @@
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
     <TargetName>$(ProjectName)</TargetName>
-    <TargetExt>.exe</TargetExt>
+    <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DEBUG_WIN32|Win32'">
     <OutDir>$(SolutionDir)Debug\</OutDir>
@@ -106,7 +106,7 @@
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <AdditionalIncludeDirectories>./;../include;../../../corelib/include;../../../runtime/include;../../yuza_core;../../../runtime/libcrt/input;../../../corelib/stl/sgi;../../../corelib/streams;../../../thirdparty/slog</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_MSC_VER;__STDC__;i386;DLL_EXPORT</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MSC_VER=1920;SKYOS32=100</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>
@@ -116,7 +116,7 @@
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CallingConvention>Cdecl</CallingConvention>
       <DisableSpecificWarnings>4146;4244</DisableSpecificWarnings>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -162,7 +162,8 @@
       <ForceSymbolReferences>
       </ForceSymbolReferences>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalOptions>/ALIGN:1024 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/DRIVER %(AdditionalOptions)</AdditionalOptions>
+      <SectionAlignment>1024</SectionAlignment>
     </Link>
     <PostBuildEvent>
       <Command>

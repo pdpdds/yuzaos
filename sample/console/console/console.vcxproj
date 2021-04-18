@@ -142,7 +142,6 @@
       </ForceSymbolReferences>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <SectionAlignment>1024</SectionAlignment>
-      <AdditionalOptions>/DRIVER %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>

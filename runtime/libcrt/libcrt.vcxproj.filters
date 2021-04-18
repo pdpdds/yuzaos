@@ -357,6 +357,9 @@
     <ClCompile Include="spiltpath.c">
       <Filter>libc</Filter>
     </ClCompile>
+    <ClCompile Include="arch\ioctrl.c">
+      <Filter>arch</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">

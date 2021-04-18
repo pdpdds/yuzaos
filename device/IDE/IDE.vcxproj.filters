@@ -8,5 +8,6 @@
     <ClInclude Include="IDEAdaptor.h" />
     <ClInclude Include="HardDisk.h" />
     <ClInclude Include="HardDiskIO.h" />
+    <ClInclude Include="..\include\ioctl.h" />
   </ItemGroup>
 </Project>

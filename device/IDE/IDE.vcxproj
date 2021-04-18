@@ -19,6 +19,7 @@
     <ClCompile Include="IDEAdaptor.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\include\ioctl.h" />
     <ClInclude Include="HardDisk.h" />
     <ClInclude Include="HardDiskIO.h" />
     <ClInclude Include="IDEAdaptor.h" />
@@ -90,7 +91,7 @@
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>./;../include;../../corelib/include;../../runtime/include;../../corelib/yuzalib/renderer;../../runtime/libcrt/input;../../support/unicodefont;../../support/hangul;../../corelib/stl/sgi;../../corelib/streams;../../kernel/yuza_core</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;../;../../corelib/include;../../runtime/include;../../corelib/stl/sgi;../../corelib/streams;../../kernel/yuza_core</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MSC_VER;__STDC__;i386;DLL_EXPORT;SKYOS32</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
@@ -118,7 +119,7 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>libcrt.lib;systemcall.lib;dllstub.lib;streams.lib</AdditionalDependencies>
+      <AdditionalDependencies>libcrt.lib;systemcall.lib;dllstub.lib;streams.lib;common.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>../../$(Configuration);../../corelib/debug;../../support\Debug;../../runtime/debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
@@ -147,7 +148,9 @@
       </AddModuleNamesToAssembly>
       <ForceSymbolReferences>
       </ForceSymbolReferences>
-      <AdditionalOptions>/safeseh:no /ALIGN:1024 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/DRIVER %(AdditionalOptions)</AdditionalOptions>
+      <SectionAlignment>1024</SectionAlignment>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <PostBuildEvent>
       <Command>

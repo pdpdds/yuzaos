@@ -80,12 +80,13 @@ long processCommandLine(const char *a_szCommand)
 
 					if (pCurrentToken != nullptr)
 					{
-						return g_Commands[i].ProcessingFunc(pCurrentToken);
+						g_Commands[i].ProcessingFunc(pCurrentToken);
+						return true;
 					}
 					else
 					{
 						g_Commands[i].ProcessingFunc(NULL);
-						return false;
+						return true;						
 					}
 
 				}
@@ -133,6 +134,9 @@ long processCommandLine(const char *a_szCommand)
 		}
 	}
 
+	if(result == false)
+		printf("Command not found.\n");
+
 	return result;
 }
 
@@ -158,8 +162,8 @@ bool ConsoleManager::RunCommand(const char* buf)
 		return true;	
 	}
 
-	if(false == processCommandLine(buf))
-		printf("Command not found....\n");
+	processCommandLine(buf);
+		
 
 	return false;
 }

@@ -39,7 +39,7 @@ Team::Team(const char* name, int teamId)
 
 Team::~Team()
 {
-	kprintf("Team %s Deleted\n", GetName());
+	//kprintf("Team %s Deleted\n", GetName());
 
 	int fl = DisableInterrupts();
 
@@ -314,11 +314,13 @@ int Team::StartMainThread(ThreadParam* pParam)
 		return E_ERROR;
 	}
 
-	char* retStr = remove_ext(pParam->name, '.', '/');
+	kDebugPrint("loading image complete : %s\n", pParam->name);
+
+	/*char* retStr = remove_ext(pParam->name, '.', '/');
 	std::string name = retStr;
 	name += ".map";
 	StackTracer::GetInstance()->AddSymbol(name.c_str(), (unsigned int)m_image->fBaseAddress);
-	free(retStr);
+	free(retStr);*/
 
 	dll_start_t dllEntry = reinterpret_cast<dll_start_t>(m_image->GetEntryAddress());
 

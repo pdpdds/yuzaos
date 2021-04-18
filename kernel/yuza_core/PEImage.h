@@ -1030,3 +1030,4 @@ typedef struct _IMAGE_SEPARATE_DEBUG_HEADER {
 
 bool RelocatePE(DWORD peAddress, UINT64 peSize, DWORD relocationBase);
 bool FixIAT(void* image);
+BOOL ValidatePEImage(void* image);

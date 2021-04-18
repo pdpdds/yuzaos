@@ -163,7 +163,7 @@ static ELoadDLLResult LoadDLL_AllocateMemory(LOAD_DLL_CONTEXT* ctx, int flags)
 		ctx->image_base = (DWORD_PTR)ctx->image - rva_low;
 
 		//memset((char*)ctx->image_base, 0, rva_high - rva_low);
-		kDebugPrint("virtual : %x %x %x\n", rva_low, rva_high, (char*)ctx->image_base);
+		kDebugPrint("image base : %x\n", (char*)ctx->image_base);
 	}
 
 	if (!ctx->image)
