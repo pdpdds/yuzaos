@@ -164,8 +164,7 @@
     </Link>
     <PostBuildEvent>
       <Command>copy "$(TargetDir)*$(TargetExt)" "$(SolutionDir)\Bin\"
-copy "$(TargetDir)*.dll" "$(SolutionDir)\Bin\"
-copy "$(TargetDir)*.map" "$(SolutionDir)\Bin\"</Command>
+copy "$(TargetDir)*.dll" "$(SolutionDir)\Bin\"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>revision.exe build msvc</Command>
