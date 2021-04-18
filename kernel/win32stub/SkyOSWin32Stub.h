@@ -44,7 +44,7 @@ extern "C"
 	ORANGEOS_WIN32_DLL WIN32_VIDEO* GetFrameBufferInfo();
 	ORANGEOS_WIN32_DLL void LoopWin32(I_SkyInput* pVirtualIO, unsigned int& tickCount);
 	ORANGEOS_WIN32_DLL bool StartWin32StubTimer(I_SkyInput* pVirtualIO, unsigned int& tickCount);
-	ORANGEOS_WIN32_DLL SKYOS_MODULE_LIST* InitSkyOSModule();
+	ORANGEOS_WIN32_DLL cdecl SKYOS_MODULE_LIST* InitSkyOSModule(char** moduleList, int size);
 	
 	/*ORANGEOS_WIN32_DLL bool SKY_VirtualProtect(void* address, int size, int attribute, unsigned int* dwOld);
 	ORANGEOS_WIN32_DLL bool SKY_VirtualProtect(void* address, int size, int attribute, unsigned int* dwOld);

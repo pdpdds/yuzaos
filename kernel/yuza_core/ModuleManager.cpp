@@ -14,6 +14,20 @@
 #include <StackTracer.h>
 #include <BuildOption.h>
 
+#define MODULE_NAME_SYSTEMCALL 0
+#define MODULE_NAME_FILEMANAGER 1
+#define MODULE_NAME_MATH 2
+#define MODULE_NAME_LIBCONFIG 3
+#define MODULE_NAME_MAX 4
+
+char* g_SystemModuleName[] =
+{
+	"SystemCall.dll",
+	"FileManager.dll",
+	"math.dll",
+	"libconfig.dll",
+};
+
 ModuleManager* ModuleManager::m_pModuleManager = nullptr;
 I_FileManager* g_pFileManager = 0;
 extern void RegisterSysCall();
@@ -62,19 +76,19 @@ bool ModuleManager::Initialize()
 {
 	kprintf("System Module Load\n");
 	
-	void* handle = AddSystemModule("SystemCall.dll");
+	void* handle = AddSystemModule(g_SystemModuleName[MODULE_NAME_SYSTEMCALL]);
 	fSetPlatformAPI pSetPlatformAPI = (fSetPlatformAPI)GetModuleFunction(handle, "SetPlatformAPI");
-	SKY_ASSERT(pSetPlatformAPI != nullptr, "SystemCall.dll");
+	SKY_ASSERT(pSetPlatformAPI != nullptr, g_SystemModuleName[MODULE_NAME_SYSTEMCALL]);
 	pSetPlatformAPI(g_platformAPI, emulation);
 	
 	//Register System Call
 	RegisterSysCall();
 
-	handle = AddSystemModule("FileManager.dll");
+	handle = AddSystemModule(g_SystemModuleName[MODULE_NAME_FILEMANAGER]);
 	CreateMemoryResourceDisk(handle);
 	
-	AddSystemModule("math.dll");
-	AddSystemModule("libconfig.dll");
+	AddSystemModule(g_SystemModuleName[MODULE_NAME_MATH]);
+	AddSystemModule(g_SystemModuleName[MODULE_NAME_LIBCONFIG]);
 	
 	return true;
 }

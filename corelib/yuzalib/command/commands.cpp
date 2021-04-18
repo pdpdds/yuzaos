@@ -317,10 +317,18 @@ long cmdDir(char *szCommand)
 		bool is_directory = false;
 		bool result = read_directory_first(pInfo, entryName, is_directory);
 		
+		int count = 0;
 		while (result)
 		{
 			printf("%s\n", entryName);
 			result = read_directory_next(pInfo, entryName, is_directory);
+			count++;
+
+			if (count > 16)
+			{
+				Syscall_GetChar();
+				count = 0;
+			}
 		}
 		
 		close_directory(pInfo);

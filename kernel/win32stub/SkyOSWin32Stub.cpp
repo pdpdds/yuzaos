@@ -485,69 +485,26 @@ static char * ReadAllBytes(const char * filename, int * read)
 	return pChars;
 }
 
-extern "C" SKYOS_MODULE_LIST* InitSkyOSModule()
+extern "C" SKYOS_MODULE_LIST* InitSkyOSModule(char** moduleList, int size)
 {
 	memset(&g_module_list, 0, sizeof(SKYOS_MODULE_LIST));
 
-	_finddata_t fd;
-	long handle;
-	int result = 1;
-	handle = _findfirst(".\\*.*", &fd);  //현재 폴더 내 모든 파일을 찾는다.
-
-	if (handle == -1)
-	{		
-		return &g_module_list;
-	}
-
-	while (result != -1)
-	{
-		//printf("File: %s\n", fd.name);
-
-		if (fd.size > 0)
-		{			
-			g_module_list._moduleCount++;
-		}
-
-		result = _findnext(handle, &fd);
-	}
-
-	_findclose(handle);
-
-	if(g_module_list._moduleCount == 0)
-		return &g_module_list;
+	g_module_list._moduleCount = size;
 
 	g_module_list._module = new SKYOS_MODULE[g_module_list._moduleCount];
 
-	handle = _findfirst(".\\*.*", &fd);  //현재 폴더 내 모든 파일을 찾는다.
-	result = 1;
+	for (int index = 0; index < g_module_list._moduleCount; index++)
+	{
+		int readCount = 0;
 
-	int index = 0;
-	while (result != -1)
-	{				
-		if(fd.size > 0)
-		{
-			int readCount = 0;
-			string fileName;
-			fileName += fd.name;
+		char* pBuffer = ReadAllBytes(moduleList[index], &readCount);
 
-			if (strstr(fileName.c_str(), ".dll") || strstr(fileName.c_str(), ".cfg"))
-			{
+		_ASSERT(pBuffer != 0);
 
-				char* pBuffer = ReadAllBytes(fileName.c_str(), &readCount);
-
-				strcpy(g_module_list._module[index]._name, fd.name);
-				g_module_list._module[index]._startAddress = (unsigned int)pBuffer;
-				g_module_list._module[index]._endAddress = (unsigned int)pBuffer + readCount;
-				index++;
-
-			}
-			
-		}
-		
-		result = _findnext(handle, &fd);
+		strcpy(g_module_list._module[index]._name, moduleList[index]);
+		g_module_list._module[index]._startAddress = (unsigned int)pBuffer;
+		g_module_list._module[index]._endAddress = (unsigned int)pBuffer + readCount;
 	}
-
-	_findclose(handle);
 
 	return &g_module_list;
 }

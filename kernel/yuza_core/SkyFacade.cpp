@@ -138,18 +138,15 @@ void KernelThreadProc()
 	StartPITCounter(1000, I86_PIT_OCW_COUNTER_0, I86_PIT_OCW_MODE_SQUAREWAVEGEN);
 	
 	ModuleManager::GetInstance()->Initialize();
-	
 	//윈도우 로더가 아니므로 DLL을 링크했다 하더라도 DLL이 로드된 것은 아니므로
 		//임포트 DLL을 분석해서 메모리에 올리고 임포트 함수의 정확한 주소를 임포트 테이블에 연결한다.
 	FixIAT((void*)g_bootParams._memoryInfo._kernelBase);
-	
+
 	//EXE를 재배치시킨다.
-#if !SKY_EMULATOR
 	//RelocatePE(g_bootParams._memoryInfo._kernelBase, g_bootParams._memoryInfo._kernelSize, 0x80000000);
-#endif
+	//SystemProfiler::GetInstance()->Initialize();
 
 	SetCurrentDriveId('Z');
-	SystemProfiler::GetInstance()->Initialize();
 
 	//AcpiInit();
 #if !SKY_EMULATOR
@@ -157,8 +154,10 @@ void KernelThreadProc()
 	InitPCI();
 #endif
 	InitEnvironment(); 
-	InitStorageSystem("driver.cfg");
 	InitDebuggerSystem("yuza.cfg");
+	InitStorageSystem("driver.cfg");
+
+	kSetCurrentDriveId('C');
 
 	char buf[256];
 	if (g_bootParams.bGraphicMode == true)
@@ -180,7 +179,23 @@ void KernelThreadProc()
 
 #if SKY_EMULATOR
 idt_descriptor g_IDT[I86_MAX_INTERRUPTS] = { 0, };
+#define MEMORY_FILE_COUNT 11
+char* g_memoryFileName[] =
+{
+	"SystemCall.dll",
+	"FileManager.dll",
+	"math.dll",
+	"libconfig.dll",
+	"stacktracer.dll",
+	"FAT_FileSystem.dll",
+	"IDE.dll",
+	"floppy.dll",
+	"USBMSD.dll",
+	"yuza.cfg",
+	"driver.cfg",
+};
 #endif
+
 
 bool InitOSSystem(BootParams* pBootParam)
 {
@@ -217,7 +232,7 @@ bool InitOSSystem(BootParams* pBootParam)
 	kmalloc_init(kHeapBase, g_bootParams._memoryInfo._kHeapSize);
 
 #if SKY_EMULATOR	
-
+	
 	
 #if (SKY_CONSOLE_MODE == 0)
 	g_bootParams.bGraphicMode = true;
@@ -225,9 +240,7 @@ bool InitOSSystem(BootParams* pBootParam)
 	g_bootParams.bGraphicMode = false;
 #endif
 
-
-
-	SKYOS_MODULE_LIST* pModule = InitSkyOSModule();
+	SKYOS_MODULE_LIST* pModule = InitSkyOSModule((char**)g_memoryFileName, MEMORY_FILE_COUNT);
 
 	g_bootParams._moduleCount = pModule->_moduleCount;
 	if (g_bootParams._moduleCount > 0)
@@ -438,8 +451,6 @@ bool InitStorageSystem(const char* configName)
 	}
 	
 	config_destroy(&cfg);
-
-	kSetCurrentDriveId('C');
 	
 	return true;
 }
@@ -567,7 +578,7 @@ bool InitSerialPortSystem()
 bool AddSymbol(config_t& cfg, char* element);
 bool InitDebuggerSystem(const char* configName)
 {
-	kprintf("InitDebuggerSystem\n");
+	kprintf("Initialize Debugger System\n");
 	config_t cfg;
 
 	config_init(&cfg);
@@ -575,7 +586,6 @@ bool InitDebuggerSystem(const char* configName)
 	/* Read the file. If there is an error, report it and exit. */
 	if (!config_read_file(&cfg, configName))
 	{
-
 		kDebugPrint("%s:%d - %s\n", configName, config_error_line(&cfg), config_error_text(&cfg));
 		config_destroy(&cfg);
 		kPanic("file load fail : %s", configName);
@@ -594,7 +604,6 @@ bool InitDebuggerSystem(const char* configName)
 		config_setting_lookup_int(env, "enable", &enable);
 	}
 
-//#if !SKY_EMULATOR
 	if (enable)
 	{
 		StackTracer::GetInstance()->Init("stacktracer.dll");
@@ -603,7 +612,6 @@ bool InitDebuggerSystem(const char* configName)
 			AddSymbol(cfg, "debug.MAPFILE");
 	}
 
-//#endif
 	config_destroy(&cfg);
 
 	return true;
