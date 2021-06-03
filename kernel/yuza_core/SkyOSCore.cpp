@@ -18,11 +18,6 @@
 #include <x86arch.h>
 #include <intrinsic.h>
 
-extern void JumpToNewKernelEntry(int entryPoint, unsigned int procStack);
-extern void KernelThreadProc();
-
-
-
 extern bool InitKernelSystem()
 {
 	Debugger::GetInstance()->Bootstrap();

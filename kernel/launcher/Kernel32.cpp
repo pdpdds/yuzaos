@@ -15,9 +15,8 @@
 #include <intrinsic.h>
 #include <ktypes.h>
 
-//i번째 인터럽트 디스크립트를 얻어온다.
+//i번째 인터럽트 디스크립터를 얻어온다.
 extern idt_descriptor* GetInterruptDescriptor(uint32_t i);
-void SampleFillRect(ULONG* lfb0, int x, int y, int w, int h, int col);
 
 bool Boot32BitMode(unsigned long magic, multiboot_info_t* pBootInfo, char* szKernelName)
 {
@@ -46,7 +45,6 @@ bool Boot32BitMode(unsigned long magic, multiboot_info_t* pBootInfo, char* szKer
 	pBootParams->_memoryInfo._kIdentityBase = 0;
 	pBootParams->_memoryInfo._kIdentitySize = 1024 * PAGE_SIZE * 4; //16MB
 
-	//int fl = DisableInterrupts2();
 	EnablePaging(false);
 
 	MapHeap(pBootParams);
@@ -58,7 +56,6 @@ bool Boot32BitMode(unsigned long magic, multiboot_info_t* pBootInfo, char* szKer
 	pBootParams->SetAllocated(pBootParams->_memoryInfo._kHeapBase, pBootParams->_memoryInfo._kHeapSize, MEMORY_REGION_HIBERNATE);
 	pBootParams->SetAllocated(pBootParams->_memoryInfo._kStackBase, pBootParams->_memoryInfo._kStackSize, MEMORY_REGION_HIBERNATE);
 	EnablePaging(true);
-	//RestoreInterrupts(fl);
 	
 	VerifyMemory(pBootParams);
 	SkyConsole::Print(" Kernel Start! Kernel Entry : %s 0x%x\n", szKernelName, info._kernelEntry);
@@ -70,7 +67,8 @@ bool Boot32BitMode(unsigned long magic, multiboot_info_t* pBootInfo, char* szKer
 		call	eax;
 	}
 
-	return true;
+	//not reached
+	return true; 
 }
 
 bool LoadKernel(multiboot_info_t* pBootInfo, const char* szKernelName, KernelInfo* pModuleInfo)
@@ -92,7 +90,7 @@ bool LoadKernel(multiboot_info_t* pBootInfo, const char* szKernelName, KernelInf
 
 	if (GetModuleEnd(pBootInfo) > pModuleInfo->_kernelBase)
 	{
-		SkyConsole::Print("Module space and SKYOS32 image base address was overraped. 0x%x 0x%x\n", GetModuleEnd(pBootInfo), pModuleInfo->_kernelBase);
+		SkyConsole::Print("Module space and YUZAOS32 image base address was overraped. 0x%x 0x%x\n", GetModuleEnd(pBootInfo), pModuleInfo->_kernelBase);
 		SkyConsole::Print("Modify Kernel image base address and check entry point(kmain)\n");
 		return false;
 	}

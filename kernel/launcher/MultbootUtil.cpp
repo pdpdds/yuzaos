@@ -143,3 +143,17 @@ bool IsKernel64(multiboot_info_t* pInfo, const char* szFileName)
 
 	return ValidatePEImage64((void*)pModule->ModuleStart);
 }
+
+void LOG_FATAL(char* fmt, ...)
+{
+	char buf[4096];
+
+	va_list arglist;
+	va_start(arglist, fmt);
+	vsnprintf(buf, 4096, fmt, arglist);
+	va_end(arglist);
+	buf[4095] = 0;
+
+	SkyConsole::Print(buf);
+	for (;;);
+}

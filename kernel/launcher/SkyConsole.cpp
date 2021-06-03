@@ -326,16 +326,4 @@ namespace SkyConsole
 			m_Color = (ConsoleColor)((m_backGroundColor << 4) | m_Text | 128);
 		}
 	}
-
-	char	GetChar()
-	{
-
-		return 0;
-	}
-
-
-	void GetCommand(char* commandBuffer, int bufSize)
-	{
-
-	}
 }

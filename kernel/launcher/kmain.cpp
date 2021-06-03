@@ -12,18 +12,18 @@ extern "C" void InitializeConstructors();
 _declspec(naked) void multiboot_entry(void)
 {
 	__asm {
-		align 4
+		align MULTIBOOT_HEADER_ALIGN
 
 		multiboot_header:
 		//멀티부트 헤더 사이즈 : 0X30
-		dd(MULTIBOOT_HEADER_MAGIC); magic number
+		dd(MULTIBOOT_HEADER_MAGIC); //멀티부트 헤더 매직값
 
 #if SKY_CONSOLE_MODE == 0
-		dd(MULTIBOOT_HEADER_FLAGS_GUI); flags
+		dd(MULTIBOOT_HEADER_FLAGS_GUI); //플래그
 		dd(CHECKSUM_GUI); checksum
 #else
-		dd(MULTIBOOT_HEADER_FLAGS); flags
-		dd(CHECKSUM); checksum
+		dd(MULTIBOOT_HEADER_FLAGS); //플래그
+		dd(CHECKSUM); //체크섬
 #endif		
 		dd(HEADER_ADRESS); //헤더 주소 KERNEL_LOAD_ADDRESS+ALIGN(0x100400)
 		dd(GRUB_KERNEL_LOAD_ADDRESS); //커널이 로드된 가상주소 공간
@@ -44,7 +44,7 @@ _declspec(naked) void multiboot_entry(void)
 
 		//GRUB에 의해 담겨 있는 정보값을 스택에 푸쉬한다.
 		PUSH    EBX; //멀티부트 구조체 포인터
-		PUSH    EAX; //매직 넘버
+		PUSH    EAX; //부트로더 매직값
 
 		//위의 두 파라메터와 함께 kmain 함수를 호출한다.
 		CALL    kmain; //C++ 메인 함수 호출
@@ -74,7 +74,6 @@ extern "C" void kmain(unsigned long magic, unsigned long addr)
 {
 	multiboot_info_t* mb_info = (multiboot_info_t*)addr;
 	
-
 	InitializeConstructors(); 
 	SkyConsole::Initialize();	
 	SkyConsole::Print("32Bit Kernel Loader Entered..\n");
@@ -93,19 +92,10 @@ extern "C" void kmain(unsigned long magic, unsigned long addr)
 	else
 		Boot32BitMode(magic, mb_info, mb_info->cmdline);
 
-	for (;;);
-}
+	//not reached
+	int trickCode = 0;
+	if (trickCode)
+		multiboot_entry();
 
-void LOG_FATAL(char* fmt, ...)
-{
-	char buf[4096];
-
-	va_list arglist;
-	va_start(arglist, fmt);
-	vsnprintf(buf, 4096, fmt, arglist);
-	va_end(arglist);
-	buf[4095] = 0;
-
-	SkyConsole::Print(buf);
 	for (;;);
 }

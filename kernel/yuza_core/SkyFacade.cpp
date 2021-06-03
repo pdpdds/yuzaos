@@ -35,6 +35,8 @@
 
 #include <libconfig.h>
 
+extern "C" void KernelMainEntry();
+extern I_FileManager* g_pFileManager;
 extern unsigned int g_startTickCount;
 #if SKY_EMULATOR
 unsigned int kHeapBase = 0xc0000000;
@@ -104,18 +106,19 @@ extern bool InitKernelSystem();
 extern void StartNativeSystem(void* param);
 
 void SetInterruptVectors();
-void InitInterrupt();
-bool BuildPlatformAPI();
+bool MakePlatformAPI();
 bool InitEnvironment();
 bool AddEnvironment(config_t& cfg, char* element, char* envName);
 bool InitStorageSystem(const char* configName);
 bool InitDebuggerSystem(const char* configName);
-void KernelThreadProc();
-void JumpToNewKernelEntry(int entryPoint, unsigned int procStack);
+void JumpToNewKernelEntry(int entryPoint);
 void InitPCI();
 bool AddEnvironmentForced(config_t& cfg, char* element, char* envName);
 extern void InterrputDefaultHandler();
 bool InitSerialPortSystem();
+bool AddStorageModules(config_setting_t* setting);
+bool AddSymbol(config_t& cfg, char* element);
+bool MountStorageDriver(const char* modulename, const char* moduletype, char preferedDrive, bool fromMemoryconst, const char* pakFile);
 
 void SampleFillRect(ULONG* lfb0, int x, int y, int w, int h, int col)
 {
@@ -127,27 +130,49 @@ void SampleFillRect(ULONG* lfb0, int x, int y, int w, int h, int col)
 		}
 }
 
-void KernelThreadProc()
+void InitStdIO()
+{
+	g_stdOut = new FILE;
+	g_stdIn = new FILE;
+	g_stdErr = new FILE;
+	strcpy(g_stdOut->_name, "STDOUT");
+	strcpy(g_stdIn->_name, "STDIN");
+	strcpy(g_stdErr->_name, "STDERR");
+}
+
+void InitHeap()
+{
+	SkyConsole::Print("%x %x\n", g_bootParams._memoryInfo._kHeapBase, g_bootParams._memoryInfo._kHeapSize);
+	memset((void*)kHeapBase, 0, g_bootParams._memoryInfo._kHeapSize);
+	SkyConsole::Print("%x %x\n", kHeapBase, kHeapBase + g_bootParams._memoryInfo._kHeapSize);
+
+	kmalloc_init(kHeapBase, g_bootParams._memoryInfo._kHeapSize);
+}
+
+extern "C" void KernelMainEntry()
 {	
-	kprintf("KernelThreadProc Entered. base : %x size : %x\n", g_bootParams._memoryInfo._kernelBase, g_bootParams._memoryInfo._kernelSize);
+	kprintf("KernelMainEntry Entered. base : %x size : %x\n", g_bootParams._memoryInfo._kernelBase, g_bootParams._memoryInfo._kernelSize);
 	
 	InitKernelSystem();
-
+	
 	SetInterruptVector(32, (void(__cdecl &)(void))Trap_TimerHandler_32);
 	SetInterruptVector(47, InterrputDefaultHandler, 0);
 	StartPITCounter(1000, I86_PIT_OCW_COUNTER_0, I86_PIT_OCW_MODE_SQUAREWAVEGEN);
 	
 	ModuleManager::GetInstance()->Initialize();
 	//윈도우 로더가 아니므로 DLL을 링크했다 하더라도 DLL이 로드된 것은 아니므로
-		//임포트 DLL을 분석해서 메모리에 올리고 임포트 함수의 정확한 주소를 임포트 테이블에 연결한다.
+	//임포트 DLL을 분석해서 메모리에 올리고 임포트 함수의 정확한 주소를 임포트 테이블에 연결한다.
+	
 	FixIAT((void*)g_bootParams._memoryInfo._kernelBase);
 
+	ModuleManager::GetInstance()->CreateMemoryResourceDisk();
+	
 	//EXE를 재배치시킨다.
 	//RelocatePE(g_bootParams._memoryInfo._kernelBase, g_bootParams._memoryInfo._kernelSize, 0x80000000);
 	//SystemProfiler::GetInstance()->Initialize();
 
 	SetCurrentDriveId('Z');
-
+	
 	//AcpiInit();
 #if !SKY_EMULATOR
 	InitSerialPortSystem();
@@ -196,51 +221,40 @@ char* g_memoryFileName[] =
 };
 #endif
 
-
-bool InitOSSystem(BootParams* pBootParam)
+void MakeBootParam()
 {
-	BuildPlatformAPI();
-#if SKY_EMULATOR
-	kInitializeCriticalSection(&g_interrupt_cs);
-#endif
-	InitializeConstructors();
-
 #if SKY_EMULATOR	
 	unsigned long magic = 0;
 	g_bootParams._memoryInfo._kernelBase = 0x00800000;
 	g_bootParams._memoryInfo._IDT = (DWORD)&g_IDT;
 
-	g_bootParams._memoryInfo._kHeapSize = (g_bootParams._memoryInfo._memorySize/ PAGE_SIZE) * PAGE_SIZE;
+	g_bootParams._memoryInfo._kHeapSize = (g_bootParams._memoryInfo._memorySize / PAGE_SIZE) * PAGE_SIZE;
 	kHeapBase = (DWORD)(g_bootParams.MemoryRegion[0].begin);
 	g_bootParams._memoryInfo._kHeapBase = kHeapBase;
 	//g_bootParams._heapVirtualEndAddr = (uint32_t)g_bootParams._heapVirtualStartAddr + g_bootParams._heapFrameCount * PAGE_SIZE;
-#else
-	memcpy(&g_bootParams, pBootParam, sizeof(BootParams));
 
-#endif
-
-	SkyConsole::Initialize();
-	SkyConsole::Print("*** YUZA OS Console System Init ***\n");
-	SkyConsole::Print("Boot Loader Name : %s\n", g_bootParams._szBootLoaderName);
-
-	InitInterrupt();
-
-	SkyConsole::Print("%x %x\n", g_bootParams._memoryInfo._kHeapBase, g_bootParams._memoryInfo._kHeapSize);
-	memset((void*)kHeapBase, 0, g_bootParams._memoryInfo._kHeapSize);
-	SkyConsole::Print("%x %x\n", kHeapBase, kHeapBase + g_bootParams._memoryInfo._kHeapSize);
-
-	kmalloc_init(kHeapBase, g_bootParams._memoryInfo._kHeapSize);
-
-#if SKY_EMULATOR	
-	
-	
 #if (SKY_CONSOLE_MODE == 0)
 	g_bootParams.bGraphicMode = true;
 #else
 	g_bootParams.bGraphicMode = false;
 #endif
+#else
+	memcpy(&g_bootParams, pBootParam, sizeof(BootParams));
 
-	SKYOS_MODULE_LIST* pModule = InitSkyOSModule((char**)g_memoryFileName, MEMORY_FILE_COUNT);
+	if (g_bootParams.bGraphicMode == true)
+	{
+		g_bootParams.framebuffer_width = SKY_WIDTH;
+		g_bootParams.framebuffer_height = SKY_HEIGHT;
+		g_bootParams.framebuffer_bpp = SKY_BPP;
+
+		SkyGUIConsole::Initialize();
+	}
+#endif
+}
+
+void LoadModules()
+{
+	YUZAOS_MODULE_LIST* pModule = InitYuzaOSModule((char**)g_memoryFileName, MEMORY_FILE_COUNT);
 
 	g_bootParams._moduleCount = pModule->_moduleCount;
 	if (g_bootParams._moduleCount > 0)
@@ -254,39 +268,34 @@ bool InitOSSystem(BootParams* pBootParam)
 			g_bootParams.Modules[i].Name = pModule->_module[i]._name;
 		}
 	}
+}
+
+bool InitOSSystem(BootParams* pBootParam)
+{
+	MakePlatformAPI();
+
+	InitializeConstructors();
+
+	MakeBootParam();
+
+	SkyConsole::Initialize();
+	SkyConsole::Print("*** YUZA OS Console System Init ***\n");
+	SkyConsole::Print("Boot Loader Name : %s\n", g_bootParams._szBootLoaderName);
+
+	SetInterruptVectors();
+
+	InitHeap();
+
+#if SKY_EMULATOR
+	LoadModules();
 #endif
-	if (!SKY_EMULATOR)
-	{
-		if (g_bootParams.bGraphicMode == true)
-		{
-			g_bootParams.framebuffer_width = SKY_WIDTH;
-			g_bootParams.framebuffer_height = SKY_HEIGHT;
-			g_bootParams.framebuffer_bpp = SKY_BPP;
-
-			SkyGUIConsole::Initialize();
-		}
-	}
 	
-	g_stdOut = new FILE;
+	InitStdIO();
 
-	g_stdIn = new FILE;
-	g_stdErr = new FILE;
-	strcpy(g_stdOut->_name, "STDOUT");
-	strcpy(g_stdIn->_name, "STDIN");
-	strcpy(g_stdErr->_name, "STDERR");
-	
-	JumpToNewKernelEntry((int)KernelThreadProc, g_bootParams._memoryInfo._kStackBase + g_bootParams._memoryInfo._kStackSize);
+	JumpToNewKernelEntry((int)KernelMainEntry);
 	
 	return true;
 }
-
-void InitInterrupt()
-{
-	SetInterruptVectors();
-	//InitializeSysCall();
-}
-
-
 
 void SetInterruptVectors()
 {
@@ -328,7 +337,7 @@ void SetInterruptVectors()
 	SetInterruptVector(50, (void(__cdecl &)(void))trap50);
 }
 
-bool BuildPlatformAPI()
+bool MakePlatformAPI()
 {
 #if SKY_EMULATOR	
 	WIN32_STUB* pStub = GetWin32Stub();
@@ -348,12 +357,14 @@ bool BuildPlatformAPI()
 	g_bootParams.SetAllocated(startAddress, endAddress, MEMORY_REGION_AVAILABLE);
 	g_bootParams._memoryInfo._memorySize = endAddress - startAddress;
 	g_bootParams._memoryInfo._kernelSize = pStub->_kernelSize;
+
+	kInitializeCriticalSection(&g_interrupt_cs);
 #else
 	extern SKY_PROCESS_INTERFACE _processInterface;
-	//extern SKY_PRINT_INTERFACE		_printInterface;
+	extern SKY_PRINT_INTERFACE		_printInterface;
 
 	g_platformAPI._processInterface = _processInterface;
-	//g_platformAPI._printInterface = _printInterface;
+	g_platformAPI._printInterface = _printInterface;
 #endif	
 
 	return true;
@@ -369,13 +380,6 @@ bool SetFrameBufferInfo(WIN32_VIDEO* pVideoInfo)
 	return true;
 }
 #endif	
-
-
-bool AddStorageModules(config_setting_t* setting);
-bool MountStorageDriver(const char* modulename, const char* moduletype, char preferedDrive, bool fromMemoryconst, const char* pakFile);
-
-
-extern I_FileManager* g_pFileManager;
 
 bool InitEnvironment()
 {
@@ -528,12 +532,14 @@ void InitPCI()
 	DeviceDriverManager::GetInstance()->InitPCIDevices();
 }
 
-void JumpToNewKernelEntry(int entryPoint, unsigned int procStack)
+void JumpToNewKernelEntry(int entryPoint)
 {
 
 #if SKY_EMULATOR
-	KernelThreadProc();
+	KernelMainEntry();
 #else
+	unsigned int stackPointer = g_bootParams._memoryInfo._kStackBase + g_bootParams._memoryInfo._kStackSize;
+
 	__asm
 	{
 		MOV     AX, 0x10;
@@ -542,7 +548,7 @@ void JumpToNewKernelEntry(int entryPoint, unsigned int procStack)
 		MOV     FS, AX
 		MOV     GS, AX
 
-		MOV     ESP, procStack
+		MOV     ESP, stackPointer
 		PUSH	0; //파라메터
 		PUSH	0; //EBP
 		PUSH    0x200; EFLAGS
@@ -550,6 +556,7 @@ void JumpToNewKernelEntry(int entryPoint, unsigned int procStack)
 		PUSH    entryPoint; EIP
 		IRETD
 	}
+	for (;;);
 #endif
 }
 
@@ -575,7 +582,6 @@ bool InitSerialPortSystem()
 	return true;
 }
 
-bool AddSymbol(config_t& cfg, char* element);
 bool InitDebuggerSystem(const char* configName)
 {
 	kprintf("Initialize Debugger System\n");

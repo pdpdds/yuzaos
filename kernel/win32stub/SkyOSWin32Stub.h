@@ -3,7 +3,6 @@
 
 typedef struct tag_WIN32_STUB
 {
-	void* _allocInterface;
 	void* _printInterface;
 	void* _processInterface;
 	unsigned int _virtualAddress;
@@ -19,18 +18,18 @@ typedef struct tag_WIN32_VIDEO
 	unsigned int _bpp;
 }WIN32_VIDEO;
 
-typedef struct tag_SKYOS_MODULE
+typedef struct tag_YUZAOS_MODULE
 {
 	char _name[256];
 	unsigned int _startAddress;
 	unsigned int _endAddress;	
-}SKYOS_MODULE;
+}YUZAOS_MODULE;
 
 typedef struct tag_SKYOS_MODULE_LIST
 {
 	unsigned int _moduleCount;
-	SKYOS_MODULE* _module;
-}SKYOS_MODULE_LIST;
+	YUZAOS_MODULE* _module;
+}YUZAOS_MODULE_LIST;
 
 #ifdef WIN32STUB
 #define ORANGEOS_WIN32_DLL __declspec(dllexport)
@@ -44,7 +43,7 @@ extern "C"
 	ORANGEOS_WIN32_DLL WIN32_VIDEO* GetFrameBufferInfo();
 	ORANGEOS_WIN32_DLL void LoopWin32(I_SkyInput* pVirtualIO, unsigned int& tickCount);
 	ORANGEOS_WIN32_DLL bool StartWin32StubTimer(I_SkyInput* pVirtualIO, unsigned int& tickCount);
-	ORANGEOS_WIN32_DLL cdecl SKYOS_MODULE_LIST* InitSkyOSModule(char** moduleList, int size);
+	ORANGEOS_WIN32_DLL cdecl YUZAOS_MODULE_LIST* InitYuzaOSModule(char** moduleList, int size);
 	
 	/*ORANGEOS_WIN32_DLL bool SKY_VirtualProtect(void* address, int size, int attribute, unsigned int* dwOld);
 	ORANGEOS_WIN32_DLL bool SKY_VirtualProtect(void* address, int size, int attribute, unsigned int* dwOld);

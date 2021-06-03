@@ -103,7 +103,6 @@ ELF file into memory.
 #ifndef __ELF_ELF_H__
 #define __ELF_ELF_H__
 
-#include <orangeos.h>
 #include "elf32.h"
 #include "elf64.h"
 

@@ -11,7 +11,7 @@
 #include <io.h>
 
 
-SKYOS_MODULE_LIST g_module_list;
+YUZAOS_MODULE_LIST g_module_list;
 
 WIN32_VIDEO g_win32Video;
 CRITICAL_SECTION g_cs;
@@ -53,10 +53,6 @@ WIN32_STUB* GetWin32Stub()
 	pStub->_virtualAddressSize = KERNEL_HEAP_FRAME_COUNT * 4096;
 	pStub->_kernelSize = fileSize;
 
-	time_t tm;
-	time(&tm);
-	//printf("%ld\n\n", tm);
-	char* str = ctime(&tm);
 	return pStub;
 }
 
@@ -485,13 +481,13 @@ static char * ReadAllBytes(const char * filename, int * read)
 	return pChars;
 }
 
-extern "C" SKYOS_MODULE_LIST* InitSkyOSModule(char** moduleList, int size)
+extern "C" YUZAOS_MODULE_LIST* InitYuzaOSModule(char** moduleList, int size)
 {
-	memset(&g_module_list, 0, sizeof(SKYOS_MODULE_LIST));
+	memset(&g_module_list, 0, sizeof(YUZAOS_MODULE_LIST));
 
 	g_module_list._moduleCount = size;
 
-	g_module_list._module = new SKYOS_MODULE[g_module_list._moduleCount];
+	g_module_list._module = new YUZAOS_MODULE[g_module_list._moduleCount];
 
 	for (int index = 0; index < g_module_list._moduleCount; index++)
 	{

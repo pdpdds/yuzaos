@@ -3,9 +3,12 @@
 
 int main(int argc, char* argv[]) 
 {
-	char	buffer[MAXPATH];
+	char buffer[MAXPATH];
 
 	FILE* fp = fopen("test.txt", "rb");
+
+	if (!fp)
+		return 0;
 
 	memset(buffer, 0, MAXPATH);
 	fread(buffer, MAXPATH, 1, fp);

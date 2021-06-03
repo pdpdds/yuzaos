@@ -48,15 +48,18 @@ void* ModuleManager::AddSystemModule(const char* fileName)
 	void* handle = LoadPE(fileName, true);
 
 	SKY_ASSERT(handle != nullptr, fileName);
-	m_systemPEList.push_back((LOAD_DLL_INFO*)handle);
+	std::string szFileName;
+	szFileName = fileName;
+	m_systemPEList[szFileName] = (LOAD_DLL_INFO*)handle;
 
 	kprintf("%s Loaded\n", fileName);
 
 	return handle;
 }
 
-void ModuleManager::CreateMemoryResourceDisk(void* handle)
+void ModuleManager::CreateMemoryResourceDisk()
 {
+	void* handle = (void*)GetSystemPE(g_SystemModuleName[MODULE_NAME_FILEMANAGER]);
 	PCreateFileManager pCreateFileManager;
 	pCreateFileManager = (PCreateFileManager)GetModuleFunction(handle, "CreateFileManager");
 
@@ -84,9 +87,7 @@ bool ModuleManager::Initialize()
 	//Register System Call
 	RegisterSysCall();
 
-	handle = AddSystemModule(g_SystemModuleName[MODULE_NAME_FILEMANAGER]);
-	CreateMemoryResourceDisk(handle);
-	
+	AddSystemModule(g_SystemModuleName[MODULE_NAME_FILEMANAGER]);
 	AddSystemModule(g_SystemModuleName[MODULE_NAME_MATH]);
 	AddSystemModule(g_SystemModuleName[MODULE_NAME_LIBCONFIG]);
 	
@@ -136,7 +137,7 @@ bool ModuleManager::IsSystemPE(const char* moduleName)
 
 	for (; iter != m_systemPEList.end(); iter++)
 	{
-		if (strcmp((*iter)->moduleName, moduleName) == 0)
+		if (strcmp(iter->first.c_str(), moduleName) == 0)
 			return true;
 	}
 
@@ -199,8 +200,8 @@ LOAD_DLL_INFO* ModuleManager::GetSystemPE(const char* moduleName)
 
 	for (; iter != m_systemPEList.end(); iter++)
 	{
-		if (strcmp((*iter)->moduleName, moduleName) == 0)
-			return (*iter);
+		if (strcmp(iter->first.c_str(), moduleName) == 0)
+			return iter->second;
 	}
 
 	return nullptr;

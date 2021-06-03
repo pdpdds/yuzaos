@@ -136,7 +136,7 @@
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>libcrt.lib;systemcall.lib</AdditionalDependencies>
+      <AdditionalDependencies>libcrt.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>../../runtime/debug;../../debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
@@ -147,7 +147,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <FunctionOrder>@order.txt</FunctionOrder>
-      <EntryPointSymbol>multiboot_entry</EntryPointSymbol>
+      <EntryPointSymbol>kmain</EntryPointSymbol>
       <NoEntryPoint>false</NoEntryPoint>
       <BaseAddress>0x00100000</BaseAddress>
       <FixedBaseAddress>

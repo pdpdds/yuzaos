@@ -21,7 +21,6 @@ so ALIGN value must be greater */
 Base adress from advanced linker option
 */
 #define GRUB_KERNEL_LOAD_ADDRESS            0x100000
-#define STACK_SIZE 4096 * 256 //1MB
 
 #define   HEADER_ADRESS         GRUB_KERNEL_LOAD_ADDRESS+ALIGN
 

@@ -2,6 +2,7 @@
 #include "include/BootParams.h"
 #include <kmalloc.h>
 #include <list>
+#include <string>
 #include <FileManager.h>
 
 struct LOAD_DLL_INFO;
@@ -31,6 +32,7 @@ public:
 	LOAD_DLL_INFO* GetSystemPE(const char* moduleName);
 	void PrintPEHierachy(HMODULE hwnd);
 	bool IsSystemPE(const char* moduleName);
+	void CreateMemoryResourceDisk();
 
 protected:
 	MODULE_HANDLE LoadPEFromMemory(const char* moduleName);
@@ -41,8 +43,7 @@ protected:
 private:
 	ModuleManager();
 	void* AddSystemModule(const char* fileName);
-	void CreateMemoryResourceDisk(void* handle);
 
 	static ModuleManager* m_pModuleManager;
-	std::list<LOAD_DLL_INFO*> m_systemPEList;
+	std::map<std::string, LOAD_DLL_INFO*> m_systemPEList;
 };
