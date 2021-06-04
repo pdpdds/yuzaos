@@ -19,6 +19,53 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\guichan\src\actionevent.cpp" />
+    <ClCompile Include="..\guichan\src\basiccontainer.cpp" />
+    <ClCompile Include="..\guichan\src\cliprectangle.cpp" />
+    <ClCompile Include="..\guichan\src\color.cpp" />
+    <ClCompile Include="..\guichan\src\defaultfont.cpp" />
+    <ClCompile Include="..\guichan\src\event.cpp" />
+    <ClCompile Include="..\guichan\src\exception.cpp" />
+    <ClCompile Include="..\guichan\src\focushandler.cpp" />
+    <ClCompile Include="..\guichan\src\font.cpp" />
+    <ClCompile Include="..\guichan\src\genericinput.cpp" />
+    <ClCompile Include="..\guichan\src\graphics.cpp" />
+    <ClCompile Include="..\guichan\src\gui.cpp" />
+    <ClCompile Include="..\guichan\src\guichan.cpp" />
+    <ClCompile Include="..\guichan\src\image.cpp" />
+    <ClCompile Include="..\guichan\src\imagefont.cpp" />
+    <ClCompile Include="..\guichan\src\inputevent.cpp" />
+    <ClCompile Include="..\guichan\src\key.cpp" />
+    <ClCompile Include="..\guichan\src\keyevent.cpp" />
+    <ClCompile Include="..\guichan\src\keyinput.cpp" />
+    <ClCompile Include="..\guichan\src\mouseevent.cpp" />
+    <ClCompile Include="..\guichan\src\mouseinput.cpp" />
+    <ClCompile Include="..\guichan\src\rectangle.cpp" />
+    <ClCompile Include="..\guichan\src\sdl\sdl.cpp" />
+    <ClCompile Include="..\guichan\src\sdl\sdlgraphics.cpp" />
+    <ClCompile Include="..\guichan\src\sdl\sdlimage.cpp" />
+    <ClCompile Include="..\guichan\src\sdl\sdlimageloader.cpp" />
+    <ClCompile Include="..\guichan\src\sdl\sdlinput.cpp" />
+    <ClCompile Include="..\guichan\src\selectionevent.cpp" />
+    <ClCompile Include="..\guichan\src\truetypefont.cpp" />
+    <ClCompile Include="..\guichan\src\widget.cpp" />
+    <ClCompile Include="..\guichan\src\widgets\button.cpp" />
+    <ClCompile Include="..\guichan\src\widgets\checkbox.cpp" />
+    <ClCompile Include="..\guichan\src\widgets\container.cpp" />
+    <ClCompile Include="..\guichan\src\widgets\dropdown.cpp" />
+    <ClCompile Include="..\guichan\src\widgets\icon.cpp" />
+    <ClCompile Include="..\guichan\src\widgets\imagebutton.cpp" />
+    <ClCompile Include="..\guichan\src\widgets\label.cpp" />
+    <ClCompile Include="..\guichan\src\widgets\listbox.cpp" />
+    <ClCompile Include="..\guichan\src\widgets\radiobutton.cpp" />
+    <ClCompile Include="..\guichan\src\widgets\scrollarea.cpp" />
+    <ClCompile Include="..\guichan\src\widgets\slider.cpp" />
+    <ClCompile Include="..\guichan\src\widgets\tab.cpp" />
+    <ClCompile Include="..\guichan\src\widgets\tabbedarea.cpp" />
+    <ClCompile Include="..\guichan\src\widgets\textbox.cpp" />
+    <ClCompile Include="..\guichan\src\widgets\textfield.cpp" />
+    <ClCompile Include="..\guichan\src\widgets\ttflistbox.cpp" />
+    <ClCompile Include="..\guichan\src\widgets\window.cpp" />
     <ClCompile Include="guichanex.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -103,24 +150,24 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalOptions>/Oy  /arch:SSE %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/arch:SSE %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>./;../include;../../../corelib/include;../../../runtime/include;../../../corelib/STL/SGI;../../../ThirdParty/SDL/SDL2/SDL/include;../../../corelib/streams;../../../ThirdParty/SDL/SDL2/SDLTTF;../../../sample\sdl_gui\guichan\include;../../../support\yuza_exception</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;../include;../../../corelib/include;../../../runtime/include;../../../corelib/STL/SGI;../../../ThirdParty/SDL/SDL2/SDL/include;../../../corelib/streams;../../../ThirdParty/SDL/SDL2/SDLTTF;../../../sample\sdl_gui\guichan\include;../../../support\yuza_exception;../../../ThirdParty/SDL/SDL2/SDLIMAGE</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SKYOS32;_MSC_VER=1920</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <StructMemberAlignment>1Byte</StructMemberAlignment>
+      <StructMemberAlignment>Default</StructMemberAlignment>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CallingConvention>Cdecl</CallingConvention>
       <DisableSpecificWarnings>4146;4244;4819</DisableSpecificWarnings>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -137,7 +184,7 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>yuza_exception.lib;streams.lib;freetyped.lib;sdl2_ttf.lib;systemcall.lib;sdl.lib;libcrt.lib;libwin32.lib;exestub.lib;math.lib;filemanager.lib</AdditionalDependencies>
+      <AdditionalDependencies>libpng.lib;sdlimage.lib;yuza_exception.lib;streams.lib;freetyped.lib;sdl2_ttf.lib;systemcall.lib;sdl.lib;libcrt.lib;libwin32.lib;exestub.lib;math.lib;filemanager.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>../../../Debug;../../../$(Configuration);../../../corelib/debug;../../../runtime/debug;../../../ThirdParty/SDL/SDL2/debug;../../../ThirdParty/debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
@@ -165,7 +212,7 @@
       </AddModuleNamesToAssembly>
       <ForceSymbolReferences>
       </ForceSymbolReferences>
-      <AdditionalOptions>/safeseh:no /FILEALIGN:1024 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/safeseh:no /ALIGN:1024 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>

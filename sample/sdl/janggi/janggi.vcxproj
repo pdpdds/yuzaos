@@ -147,7 +147,7 @@
     <Link>
       <AdditionalDependencies>libpng.lib;sdlimage.lib;streams.lib;systemcall.lib;sdl.lib;libcrt.lib;libwin32.lib;exestub.lib;math.lib;filemanager.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>../../../Debug;../../../$(Configuration);../../../corelib/debug;../../../runtime/debug;../../../ThirdParty/SDL/SDL2/debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../../Debug;../../../$(Configuration);../../../corelib/debug;../../../runtime/debug;../../../ThirdParty/SDL/SDL2/debug;../../../ThirdParty/Debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(OutDir)$(TargetName).map</MapFileName>

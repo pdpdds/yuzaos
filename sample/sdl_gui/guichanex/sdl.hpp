@@ -9,7 +9,7 @@
 namespace sdl
 {
     bool running = true;
-    SDL_Surface* screen;
+   
 
     // All back ends contain objects to make Guichan work on a
     // specific target - in this case SDL - and they are a Graphics
@@ -17,10 +17,11 @@ namespace sdl
     // input objec to make Guichan able to get user input using SDL
     // and an ImageLoader object to make Guichan able to load images
     // using SDL.
+    SDL_Renderer* pRenderer;
     gcn::SDLGraphics* graphics;
     gcn::SDLInput* input;
     gcn::SDLImageLoader* imageLoader;
-
+    SDL_Surface* screen;
     /**
      * Initialises the SDL application. This function creates the global
      * Gui object that can be populated by various examples.
@@ -36,7 +37,15 @@ namespace sdl
         SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
         */
         // Now it's time to initialise the Guichan SDL back end.
-        SDL_Renderer* pRenderer;
+        SDL_Window* pWindow;
+        
+        if (SDL_CreateWindowAndRenderer(640, 480, 0, &pWindow, &pRenderer) < 0)
+
+        {
+            printf("SDL_CreateWindowAndRenderer Error: %s\n", SDL_GetError());
+            return;
+        }
+
         imageLoader = new gcn::SDLImageLoader(pRenderer);
         // The ImageLoader Guichan should use needs to be passed to the Image object
         // using a static function.
@@ -44,7 +53,7 @@ namespace sdl
         graphics = new gcn::SDLGraphics();
         // The Graphics object needs a target to draw to, in this case it's the
         // screen surface, but any surface will do, it doesn't have to be the screen.
-        graphics->setTarget(screen);
+        graphics->setTarget(SDL_GetWindowSurface(pWindow));
         input = new gcn::SDLInput();
 
         // Now we create the Gui object to be used with this SDL application.
@@ -107,7 +116,8 @@ namespace sdl
             // Now we let the Gui object draw itself.
             globals::gui->draw();
             // Finally we update the screen.
-            //SDL_Flip(screen);
+            
+            SDL_RenderPresent(pRenderer);
         }
     }
 }
