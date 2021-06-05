@@ -282,9 +282,9 @@ bool InitOSSystem(BootParams* pBootParam)
 	SkyConsole::Print("*** YUZA OS Console System Init ***\n");
 	SkyConsole::Print("Boot Loader Name : %s\n", g_bootParams._szBootLoaderName);
 
-	SetInterruptVectors();
+	SetInterruptVectors(); // 인터럽트 초기화
 
-	InitHeap();
+	InitHeap(); // 힙 초기화
 
 #if SKY_EMULATOR
 	LoadModules();
@@ -292,6 +292,7 @@ bool InitOSSystem(BootParams* pBootParam)
 	
 	InitStdIO();
 
+	// 실제 커널 엔트리로 점프한다
 	JumpToNewKernelEntry((int)KernelMainEntry);
 	
 	return true;
