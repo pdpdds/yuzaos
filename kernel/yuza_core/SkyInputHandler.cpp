@@ -6,7 +6,6 @@
 #include <IDT.h>
 #include "SkyGUISystem.h"
 
-extern void SampleFillRect(ULONG* lfb, int x, int y, int w, int h, int col);
 SkyInputHandler* SkyInputHandler::m_inputHandler = nullptr;
 extern void SendEOI();
 

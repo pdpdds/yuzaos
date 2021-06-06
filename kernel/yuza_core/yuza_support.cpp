@@ -1,9 +1,20 @@
 #include "yuza_support.h"
-#include "SkyFacade.h"
+#include "BootParams.h"
 
 #define TS_WATCHDOG_CLOCK_POS		(0xb8000+(80-1)*2)
 #define TIMEOUT_PER_SECOND		1000
 static bool m_bShowTSWatchdogClock = true;
+extern bool InitOSSystem(BootParams* pBootParam);
+
+void SampleFillRect(ULONG* lfb0, int x, int y, int w, int h, int col)
+{
+	for (int k = 0; k < h; k++)
+		for (int j = 0; j < w; j++)
+		{
+			int index = ((j + x) + (k + y) * 1024);
+			lfb0[index] = col;
+		}
+}
 
 DWORD WINAPI WatchDogProc(LPVOID parameter)
 {
