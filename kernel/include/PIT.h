@@ -59,9 +59,7 @@
 
 #define TimerFrequency 1193180
 
-extern void SendPITCommand(uint8_t cmd);
-extern void SendPITData(uint16_t data, uint8_t counter);
+void SendPITCommand(uint8_t cmd);
+void SendPITData(uint16_t data, uint8_t counter);
 
-void InitPIT();
-
-extern void StartPITCounter(uint32_t freq, uint8_t counter, uint8_t mode);
+void StartPITCounter(uint32_t freq, uint8_t counter, uint8_t mode);

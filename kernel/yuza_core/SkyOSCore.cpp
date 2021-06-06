@@ -18,7 +18,7 @@
 #include <x86arch.h>
 #include <intrinsic.h>
 
-extern bool InitKernelSystem()
+bool InitKernelSystem()
 {
 	Debugger::GetInstance()->Bootstrap();
 

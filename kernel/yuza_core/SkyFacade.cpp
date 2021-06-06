@@ -153,6 +153,9 @@ extern "C" void KernelMainEntry()
 {	
 	kprintf("KernelMainEntry Entered. base : %x size : %x\n", g_bootParams._memoryInfo._kernelBase, g_bootParams._memoryInfo._kernelSize);
 	
+	DWORD kernelBase = g_bootParams._memoryInfo._kernelBase;
+	DWORD kernelSize = g_bootParams._memoryInfo._kernelSize;
+
 	InitKernelSystem();
 	
 	SetInterruptVector(32, (void(__cdecl &)(void))Trap_TimerHandler_32);
@@ -168,7 +171,7 @@ extern "C" void KernelMainEntry()
 	ModuleManager::GetInstance()->CreateMemoryResourceDisk();
 	
 	//EXE를 재배치시킨다.
-	//RelocatePE(g_bootParams._memoryInfo._kernelBase, g_bootParams._memoryInfo._kernelSize, 0x80000000);
+	//RelocatePE(kernelBase, kernelSize, 0x80000000);
 	//SystemProfiler::GetInstance()->Initialize();
 
 	SetCurrentDriveId('Z');
@@ -221,7 +224,7 @@ char* g_memoryFileName[] =
 };
 #endif
 
-void MakeBootParam()
+void MakeBootParam(BootParams* pBootParam)
 {
 #if SKY_EMULATOR	
 	unsigned long magic = 0;
@@ -252,6 +255,7 @@ void MakeBootParam()
 #endif
 }
 
+#if SKY_EMULATOR
 void LoadModules()
 {
 	YUZAOS_MODULE_LIST* pModule = InitYuzaOSModule((char**)g_memoryFileName, MEMORY_FILE_COUNT);
@@ -269,6 +273,7 @@ void LoadModules()
 		}
 	}
 }
+#endif
 
 bool InitOSSystem(BootParams* pBootParam)
 {
@@ -276,7 +281,7 @@ bool InitOSSystem(BootParams* pBootParam)
 
 	InitializeConstructors();
 
-	MakeBootParam();
+	MakeBootParam(pBootParam);
 
 	SkyConsole::Initialize();
 	SkyConsole::Print("*** YUZA OS Console System Init ***\n");
@@ -362,10 +367,7 @@ bool MakePlatformAPI()
 	kInitializeCriticalSection(&g_interrupt_cs);
 #else
 	extern SKY_PROCESS_INTERFACE _processInterface;
-	extern SKY_PRINT_INTERFACE		_printInterface;
-
 	g_platformAPI._processInterface = _processInterface;
-	g_platformAPI._printInterface = _printInterface;
 #endif	
 
 	return true;
@@ -557,7 +559,6 @@ void JumpToNewKernelEntry(int entryPoint)
 		PUSH    entryPoint; EIP
 		IRETD
 	}
-	for (;;);
 #endif
 }
 
