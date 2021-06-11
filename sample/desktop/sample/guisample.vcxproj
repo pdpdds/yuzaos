@@ -138,7 +138,7 @@
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>./;../include;../../../corelib/include;../../../runtime/include;../../yuza_core;../../../corelib/stl/sgi;../../../corelib/streams;../../../runtime/libcrt/input</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;../include;../../../corelib/include;../../../runtime/include;../../yuza_core;../../../corelib/stl/sgi;../../../corelib/streams;../../../corelib/yuzalib/io</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SKY_DLL;SKYOS32;_CRT_SECURE_NO_WARNINGS;__i386__;DLL_EXPORT;_MSC_VER=1920</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
