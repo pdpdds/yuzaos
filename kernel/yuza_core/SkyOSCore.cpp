@@ -36,8 +36,8 @@ bool InitKernelSystem()
 	
 	Processor::Bootstrap();
 
-	kprintf("kernel system init complete.\n");
-
+	kDebugPrint("kernel system init complete.\n");
+	
 	return true;
 }
 

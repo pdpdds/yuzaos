@@ -6,6 +6,7 @@
 static bool m_bShowTSWatchdogClock = true;
 extern bool InitOSSystem(BootParams* pBootParam);
 
+
 void SampleFillRect(ULONG* lfb0, int x, int y, int w, int h, int col)
 {
 	for (int k = 0; k < h; k++)

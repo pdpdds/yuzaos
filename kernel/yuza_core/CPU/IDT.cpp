@@ -16,13 +16,17 @@ __declspec(naked) void InterrputDefaultHandler ()
 		CLI
 	}
 
+	_asm
+	{
+		POPFD
+		POPAD
+	}
+
 	SendEOI();
 
 	// 레지스터를 복원하고 원래 수행하던 곳으로 돌아간다.
 	_asm
 	{
-		POPFD
-		POPAD
 		IRETD
 	}
 }

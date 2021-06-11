@@ -12,15 +12,27 @@ Semaphore gSleepSemaphore("sleep_sem", 0);
 
 extern "C" void kSleep(DWORD dwMilliseconds)
 {
-
+#if SKY_EMULATOR
+	//g_platformAPI._processInterface.sky_Sleep(dwMilliseconds);
+	gSleepSemaphore.Wait(dwMilliseconds);
+	return;
+#else
 	Semaphore sleepSemaphore("sleep_sem", 0);
-	sleepSemaphore.Wait(dwMilliseconds); 
+	sleepSemaphore.Wait(dwMilliseconds);
+	//gSleepSemaphore.Wait(dwMilliseconds);
+#endif
 }
 
 
 extern "C" DWORD kGetTickCount()
 {
 #if SKY_EMULATOR
+	if (g_startTickCount == 0)
+	{
+		g_startTickCount = g_platformAPI._processInterface.sky_GetTickCount();
+		return 0;
+	}
+	
 	return g_platformAPI._processInterface.sky_GetTickCount() - g_startTickCount;
 #endif
 	//kSleep(0);

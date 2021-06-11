@@ -32,7 +32,7 @@ extern "C" void KernelMainEntry()
 	
 	DWORD kernelBase = g_bootParams._memoryInfo._kernelBase;
 	DWORD kernelSize = g_bootParams._memoryInfo._kernelSize;
-
+	
 	InitKernelSystem();
 	
 	SetInterruptVector(32, (void(__cdecl &)(void))Trap_TimerHandler_32);
@@ -138,7 +138,11 @@ void MakeBootParam(BootParams* pBootParam)
 #endif
 #else
 	memcpy(&g_bootParams, pBootParam, sizeof(BootParams));
+#endif
+}
 
+void InitGrahphics()
+{
 	if (g_bootParams.bGraphicMode == true)
 	{
 		g_bootParams.framebuffer_width = SKY_WIDTH;
@@ -147,27 +151,29 @@ void MakeBootParam(BootParams* pBootParam)
 
 		SkyGUIConsole::Initialize();
 	}
-#endif
 }
+
 
 bool InitOSSystem(BootParams* pBootParam)
 {
 	MakePlatformAPI();
-
+	
 	InitializeConstructors();
-
+	
 	MakeBootParam(pBootParam);
 
 	SkyConsole::Initialize();
 	SkyConsole::Print("*** YUZA OS Console System Init ***\n");
 	SkyConsole::Print("Boot Loader Name : %s\n", g_bootParams._szBootLoaderName);
-
+	
 	SetInterruptVectors(); // 인터럽트 초기화
 
 	InitHeap(); // 힙 초기화
 
 #if SKY_EMULATOR
 	LoadModules();
+#else 
+	InitGrahphics();
 #endif
 	
 	InitStdIO();

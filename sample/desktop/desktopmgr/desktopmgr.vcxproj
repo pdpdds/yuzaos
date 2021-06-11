@@ -142,7 +142,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_MSC_VER;_X86_32;SKY_DLL;SKYOS32;_CRT_SECURE_NO_WARNINGS;_DEBUG</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SKYOS32;_MSC_VER=1920;</PreprocessorDefinitions>
       <SDLCheck>false</SDLCheck>
       <MinimalRebuild>false</MinimalRebuild>
       <ExceptionHandling>false</ExceptionHandling>
@@ -151,9 +151,9 @@
       <StructMemberAlignment>Default</StructMemberAlignment>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
-      <AdditionalOptions>/Oy /arch:SSE %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/arch:SSE %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4819</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>./;../include;../../../runtime/include;../../../corelib/include;../../../corelib/STL/SGI;../../../yuza_core;../../../corelib/streams;../../../runtime/libcrt/input</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;../include;../../../runtime/include;../../../corelib/include;../../../corelib/STL/SGI;../../../yuza_core;../../../corelib/streams;../../../corelib/yuzalib/io</AdditionalIncludeDirectories>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
       <OmitFramePointers>true</OmitFramePointers>
@@ -178,7 +178,7 @@
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <AdditionalOptions>/safeseh:no  /ALIGN:1024 %(AdditionalOptions)</AdditionalOptions>
+      <SectionAlignment>1024</SectionAlignment>
     </Link>
     <ProjectReference>
       <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>

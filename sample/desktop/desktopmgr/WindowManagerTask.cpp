@@ -26,7 +26,7 @@ void kStartWindowManager(LinearBufferInfo* bufferInfo)
 
 void kUpdate(bool isDirectBuffer)
 {
-	bool bMouseDataResult;
+	bool bMouseDataResult = false;
 	bool bKeyDataResult;
 	bool bEventQueueResult;
     WINDOWMANAGER* pstWindowManager;
@@ -67,7 +67,7 @@ void kUpdate(bool isDirectBuffer)
 				(bEventQueueResult == FALSE))
 			{
 				//20180628
-				Syscall_Sleep( 1 );
+				Syscall_Sleep(0);
 			}
 		}
 	}

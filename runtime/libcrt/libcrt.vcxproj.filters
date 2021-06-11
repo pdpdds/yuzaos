@@ -157,18 +157,6 @@
     <ClCompile Include="libc\ctype_.c">
       <Filter>libc</Filter>
     </ClCompile>
-    <ClCompile Include="input\InputList.cpp">
-      <Filter>input</Filter>
-    </ClCompile>
-    <ClCompile Include="input\InputQueue.cpp">
-      <Filter>input</Filter>
-    </ClCompile>
-    <ClCompile Include="input\Keyboard.cpp">
-      <Filter>input</Filter>
-    </ClCompile>
-    <ClCompile Include="input\Mouse.cpp">
-      <Filter>input</Filter>
-    </ClCompile>
     <ClCompile Include="string\tmpnam.c">
       <Filter>string</Filter>
     </ClCompile>
@@ -377,9 +365,6 @@
     <Filter Include="libc\locale">
       <UniqueIdentifier>{e0b907b8-4fbd-4e7e-a1d9-fe2fcb4ca912}</UniqueIdentifier>
     </Filter>
-    <Filter Include="input">
-      <UniqueIdentifier>{251f9178-fc29-490b-9678-e89dcaa21e31}</UniqueIdentifier>
-    </Filter>
     <Filter Include="libc\threads">
       <UniqueIdentifier>{4b234fad-bee1-43f8-9787-5f6990d44cb9}</UniqueIdentifier>
     </Filter>
@@ -438,18 +423,6 @@
     </ClInclude>
     <ClInclude Include="..\include\stdio.h">
       <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="input\InputList.h">
-      <Filter>input</Filter>
-    </ClInclude>
-    <ClInclude Include="input\InputQueue.h">
-      <Filter>input</Filter>
-    </ClInclude>
-    <ClInclude Include="input\Keyboard.h">
-      <Filter>input</Filter>
-    </ClInclude>
-    <ClInclude Include="input\Mouse.h">
-      <Filter>input</Filter>
     </ClInclude>
     <ClInclude Include="string\printf.h">
       <Filter>string</Filter>

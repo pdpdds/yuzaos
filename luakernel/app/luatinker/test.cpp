@@ -211,13 +211,13 @@ public:
 
 	int TestFunc(lua_State* L)
 	{
-		printf("# TestClass::TestFunc 실행중\n");
+		printf("# TestClass::TestFunc Call\n");
 		return lua_yield(L, 0);
 	}
 
 	int TestFunc2(lua_State* L, float a)
 	{
-		printf("# TestClass::TestFunc2(L,%f) 실행중\n", a);
+		printf("# TestClass::TestFunc2(L,%f) Call\n", a);
 		return lua_yield(L, 0);
 	}
 };

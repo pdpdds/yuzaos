@@ -124,7 +124,6 @@
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <AdditionalOptions>/DRIVER %(AdditionalOptions)</AdditionalOptions>
       <SectionAlignment>1024</SectionAlignment>
     </Link>
     <ProjectReference>

@@ -31,15 +31,14 @@ __declspec(naked) void kSkyOSMouseHandler()
 	_asm
 	{
 		call SkyOSMouseHandler
+		POPFD
+		POPAD
 	}
 
 	SendEOI();
 
 	_asm
 	{
-
-		POPFD
-		POPAD
 		IRETD
 	}
 }
@@ -56,15 +55,14 @@ __declspec(naked) void kSkyOSKeyboardHandler()
 	_asm
 	{
 		call SkyOSKeyboardHandler
+		POPFD
+		POPAD
 	}
 
 	SendEOI();
 
 	_asm
 	{
-
-		POPFD
-		POPAD
 		IRETD
 	}
 }

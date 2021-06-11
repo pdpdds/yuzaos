@@ -129,15 +129,19 @@ __declspec(naked) void KeyboardHandler()
 	}
 
 	// 스택상태가 변경되는 것을 막기 위해 함수를 호출한다. 
-	_asm call KeyboardController::HandleKeyboardInterrupt
+
+	_asm 
+	{
+		call KeyboardController::HandleKeyboardInterrupt
+		POPFD
+		POPAD
+	}
 
 	SendEOI();
 
 	// 레지스터를 복원하고 원래 수행하던 곳으로 돌아간다.
 	_asm
 	{
-		POPFD
-		POPAD
 		IRETD
 	}
 }

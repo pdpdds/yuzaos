@@ -25,7 +25,7 @@ bool SkyVirtualInput::Print(QWORD taskId, char* str)
 bool SkyVirtualInput::PutMouseQueue(MOUSEDATA* pData)
 {
 	SkyGUISystem::GetInstance()->PutMouseQueue(pData);
-
+	
 	return false;
 }
 

@@ -27,10 +27,6 @@
     <ClCompile Include="ds\SkyList.cpp" />
     <ClCompile Include="ds\SkyQueue.cpp" />
     <ClCompile Include="getenv.c" />
-    <ClCompile Include="input\InputList.cpp" />
-    <ClCompile Include="input\InputQueue.cpp" />
-    <ClCompile Include="input\Keyboard.cpp" />
-    <ClCompile Include="input\Mouse.cpp" />
     <ClCompile Include="libc\bsearch.c" />
     <ClCompile Include="libc\byteswap.c" />
     <ClCompile Include="libc\ctype_.c" />
@@ -137,10 +133,6 @@
     <ClInclude Include="..\include\atomic.h" />
     <ClInclude Include="..\include\scandir.h" />
     <ClInclude Include="..\include\stdio.h" />
-    <ClInclude Include="input\InputList.h" />
-    <ClInclude Include="input\InputQueue.h" />
-    <ClInclude Include="input\Keyboard.h" />
-    <ClInclude Include="input\Mouse.h" />
     <ClInclude Include="libc\byteswap.h" />
     <ClInclude Include="libc\cwtype\jp2uc.h" />
     <ClInclude Include="libc\cwtype\local.h" />
@@ -233,7 +225,7 @@
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <AdditionalIncludeDirectories>../include;./libc/time;../../corelib/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_X86_32;__i386__;_MSC_VER;LIBC_KERNEL;_KRNL_DLL;FLOATINGPT</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SKYOS32;_MSC_VER=1920;LIBC_KERNEL;FLOATINGPT</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>

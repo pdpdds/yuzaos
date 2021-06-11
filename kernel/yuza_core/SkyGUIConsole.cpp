@@ -13,6 +13,7 @@ namespace SkyGUIConsole
 #define CHAR_HEIGHT 16
 #define CHAR_COLOR 0xff
 
+	unsigned char charColor = 0xff;
 	ULONG* m_pVideoRamPtr;
 	int m_width;
 	int m_height;
@@ -75,7 +76,7 @@ namespace SkyGUIConsole
 
 		unsigned char buf[512];
 		sprintf((char*)buf, "XRes : %d", m_width);
-		unsigned char charColor = 0xff;
+		
 		m_renderer->PutFonts_ASC((char*)m_pVideoRamPtr, m_width, m_xPos, m_yPos, (char)charColor, buf);
 		GetNewLine();
 
@@ -89,6 +90,12 @@ namespace SkyGUIConsole
 
 		sprintf((char*)buf, "Ram Virtual Address : %x", (unsigned int)m_pVideoRamPtr);
 		m_renderer->PutFonts_ASC((char*)m_pVideoRamPtr, m_width, m_xPos, m_yPos, (char)charColor, buf);
+		GetNewLine();
+	}
+
+	void Print(char* szString)
+	{
+		m_renderer->PutFonts_ASC((char*)m_pVideoRamPtr, m_width, m_xPos, m_yPos, (char)charColor, (unsigned char*)szString);
 		GetNewLine();
 	}
 }

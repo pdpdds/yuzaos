@@ -133,7 +133,7 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>streams.lib;filemanager.lib;libcrt.lib;exestub.lib;slog.lib;systemcall.lib;yuzalib.lib;yuzaapi.lib</AdditionalDependencies>
+      <AdditionalDependencies>streams.lib;filemanager.lib;libcrt.lib;exestub.lib;systemcall.lib;yuzalib.lib;yuzaapi.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>../../../$(Configuration)/lib;../../../$(Configuration);../../../corelib/debug;../../../runtime/debug;../../../thirdparty/debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
@@ -161,9 +161,8 @@
       </AddModuleNamesToAssembly>
       <ForceSymbolReferences>
       </ForceSymbolReferences>
-      <AdditionalOptions>/safeseh:no /ALIGN:1024
- /SUBSYSTEM:CONSOLE
-/NODEFAULTLIB:LIBC %(AdditionalOptions)</AdditionalOptions>
+      <SectionAlignment>1024</SectionAlignment>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <PostBuildEvent>
       <Command>

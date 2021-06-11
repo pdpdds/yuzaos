@@ -91,7 +91,6 @@
     <ClInclude Include="FileBackingStore.h" />
     <ClInclude Include="FileMappingObject.h" />
     <ClInclude Include="GRUBManupulation.h" />
-    <ClInclude Include="include\IDT.h" />
     <ClInclude Include="Interrupt.h" />
     <ClInclude Include="CPU\Hal.h" />
     <ClInclude Include="CPU\PIT.h" />
@@ -192,7 +191,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalOptions>/Oy /arch:SSE %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/arch:SSE %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>

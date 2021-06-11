@@ -302,7 +302,7 @@ long cmdCallStack(char *szCommand)
 long cmdDir(char *szCommand)
 {
 	DOS_Drive* pCurrentDrive = Drives[g_currentDriveIndex];
-
+	
 	if (pCurrentDrive == 0)
 	{
 		printf("internal error\n");
@@ -324,11 +324,11 @@ long cmdDir(char *szCommand)
 			result = read_directory_next(pInfo, entryName, is_directory);
 			count++;
 
-			if (count > 16)
+			/*if (count > 16)
 			{
 				Syscall_GetChar();
 				count = 0;
-			}
+			}*/
 		}
 		
 		close_directory(pInfo);

@@ -14,7 +14,7 @@ typedef void*                       Handle_t;
 * Especially a constant for invalid */
 #define UUID_INVALID                (UUId_t)-1
 
-#if defined(i386) || defined(__i386__) || defined(_X86_32)
+#if defined(SKYOS32)
 #define __BITS                      32
 #define __MASK                      0xFFFFFFFF
 #endif

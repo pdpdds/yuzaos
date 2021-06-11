@@ -1,5 +1,5 @@
 #pragma once
-#define SKY_CONSOLE_MODE	1
+#define SKY_CONSOLE_MODE	0
 
 #define SKY_WIDTH		1024
 #define SKY_HEIGHT		768
@@ -9,7 +9,7 @@
 #define KERNEL64_NAME		"yuza64.exe"
 #define GRUB_095            "GNU GRUB 0.95"
 
-#define SKY_EMULATOR 1
+#define SKY_EMULATOR 0
 
 #if SKY_EMULATOR
 #define SKY_EMULATOR_DLL 1

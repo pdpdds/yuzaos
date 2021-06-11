@@ -13,6 +13,9 @@
     <Filter Include="command">
       <UniqueIdentifier>{d8e10c22-723a-4292-bdaa-ed63d1911f64}</UniqueIdentifier>
     </Filter>
+    <Filter Include="io">
+      <UniqueIdentifier>{66842f49-c15a-4152-8b8f-5eecb107bb12}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="util\bget.c">
@@ -84,6 +87,18 @@
     <ClCompile Include="console\GUIConsoleFramework.cpp">
       <Filter>console</Filter>
     </ClCompile>
+    <ClCompile Include="io\InputList.cpp">
+      <Filter>io</Filter>
+    </ClCompile>
+    <ClCompile Include="io\InputQueue.cpp">
+      <Filter>io</Filter>
+    </ClCompile>
+    <ClCompile Include="io\Keyboard.cpp">
+      <Filter>io</Filter>
+    </ClCompile>
+    <ClCompile Include="io\Mouse.cpp">
+      <Filter>io</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="util\bget.h">
@@ -130,6 +145,18 @@
     </ClInclude>
     <ClInclude Include="console\GUIConsole.h">
       <Filter>console</Filter>
+    </ClInclude>
+    <ClInclude Include="io\InputList.h">
+      <Filter>io</Filter>
+    </ClInclude>
+    <ClInclude Include="io\InputQueue.h">
+      <Filter>io</Filter>
+    </ClInclude>
+    <ClInclude Include="io\Keyboard.h">
+      <Filter>io</Filter>
+    </ClInclude>
+    <ClInclude Include="io\Mouse.h">
+      <Filter>io</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

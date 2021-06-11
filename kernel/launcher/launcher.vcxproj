@@ -113,9 +113,9 @@
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
-      <OmitFramePointers>false</OmitFramePointers>
+      <OmitFramePointers>true</OmitFramePointers>
       <AdditionalIncludeDirectories>./;../../runtime/include;../../corelib/include;../include;</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>SKYOS32;_MSC_VER;_SKY_DEBUG;_X86_32;SKY_LAUNCHER</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SKYOS32;_MSC_VER=1920</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>

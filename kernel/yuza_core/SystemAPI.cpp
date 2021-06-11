@@ -1161,6 +1161,7 @@ void kSendSerialLog(char* buffer, int size)
 }
 
 extern bool g_serialPortInit;
+#include "SkyGUIConsole.h"
 void kDebugPrint(const char* fmt, ...)
 {
 #ifndef DEBUG_KERNEL
@@ -1179,10 +1180,13 @@ void kDebugPrint(const char* fmt, ...)
 	return;
 #endif
 
-	if(g_bootParams.bGraphicMode || g_serialPortInit == true)
-		SendSerialData((BYTE*)buf, strlen(buf));
+	if (g_bootParams.bGraphicMode)
+		SkyGUIConsole::Print(buf);
 	else
 		kprintf(buf);
+
+	if(g_serialPortInit == true)
+		SendSerialData((BYTE*)buf, strlen(buf));
 }
 
 DWORD kGetLastError()
@@ -1363,23 +1367,19 @@ char kGetChar()
 {
 	char c = 0;
 
-#if SKY_EMULATOR
 	if (kIsGraphicMode())
 	{
 		c = SkyGUISystem::GetInstance()->GetCh();
-
 	}
 	else
 	{
+#if SKY_EMULATOR
 		c = g_platformAPI._printInterface.sky_getchar();
-		
-	}
-
-	return c;
 #else
-	c = KeyboardController::GetInput();
-	return c;
+		c = KeyboardController::GetInput();
 #endif
+	}
+	return c;
 
 	//backspace
 	/*if (c == 0x08)

@@ -104,7 +104,7 @@
       <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <SDLCheck>false</SDLCheck>
-      <AdditionalOptions>/Oy /arch:SSE %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/arch:SSE %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>

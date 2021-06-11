@@ -231,9 +231,6 @@
     <ClInclude Include="physicalmap.h" />
     <ClInclude Include="mmap.h" />
     <ClInclude Include="FileBackingStore.h" />
-    <ClInclude Include="include\IDT.h">
-      <Filter>CPU</Filter>
-    </ClInclude>
     <ClInclude Include="DeviceDriverManager.h" />
     <ClInclude Include="SerialPort.h">
       <Filter>Core</Filter>

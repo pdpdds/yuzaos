@@ -16,6 +16,10 @@
     <ClCompile Include="console\ConsoleShell.cpp" />
     <ClCompile Include="console\GUIConsole.cpp" />
     <ClCompile Include="console\GUIConsoleFramework.cpp" />
+    <ClCompile Include="io\InputList.cpp" />
+    <ClCompile Include="io\InputQueue.cpp" />
+    <ClCompile Include="io\Keyboard.cpp" />
+    <ClCompile Include="io\Mouse.cpp" />
     <ClCompile Include="renderer\SkyRenderer.cpp" />
     <ClCompile Include="renderer\SkyRenderer32.cpp" />
     <ClCompile Include="renderer\SkyRenderer8.cpp" />
@@ -41,6 +45,10 @@
     <ClInclude Include="command\commandTable.h" />
     <ClInclude Include="console\ConsoleShell.h" />
     <ClInclude Include="console\GUIConsole.h" />
+    <ClInclude Include="io\InputList.h" />
+    <ClInclude Include="io\InputQueue.h" />
+    <ClInclude Include="io\Keyboard.h" />
+    <ClInclude Include="io\Mouse.h" />
     <ClInclude Include="renderer\FontData.h" />
     <ClInclude Include="renderer\SkyRenderer8.h" />
     <ClInclude Include="renderer\SkySheet.h" />
@@ -103,7 +111,7 @@
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <AdditionalIncludeDirectories>../include;../../corelib/STL/SGI;../../corelib/include;../../corelib/streams;../../runtime/include;../../thirdparty/libpng/libpng;../yuzaapi;../../thirdparty/zlib128/zlib</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_X86_32;__i386__;_MSC_VER;LIBC_KERNEL;_KRNL_DLL</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SKYOS32;_MSC_VER=1920</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>

@@ -142,14 +142,14 @@ static int lua_setmaskhook(lua_State *l)
 
 static int lua_get_timer_ticks(lua_State *l)
 {
-	Syscall_Sleep(0);
-	lua_pushinteger(l, Syscall_GetTickCount());
+	unsigned int tickCount = Syscall_GetTickCount();
+	lua_pushinteger(l, tickCount);
 	return 1;
 }
 
 static int lua_sleep(lua_State *l)
 {
-	Syscall_Sleep(1);
+	Syscall_Sleep(0);
 	return 0;
 }
 
