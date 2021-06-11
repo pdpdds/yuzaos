@@ -1,8 +1,8 @@
 #pragma once
 #include "windef.h"
 #include "va_list.h"
-#include "../libcrt/input/InputQueue.h"
-#include "../libcrt/input/Keyboard.h"
+#include "InputQueue.h"
+#include "Keyboard.h"
 #include "ConsoleShell.h"
 #include "ConsoleManager.h"
 

@@ -1,6 +1,6 @@
 #include "GUIConsole.h"
 #include "memory.h"
-#include "../libcrt/input/Mouse.h"
+#include "Mouse.h"
 #include <stdio.h>
 #include "stringdef.h"
 #include "ConsoleShell.h"
