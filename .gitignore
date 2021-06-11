@@ -36,4 +36,4 @@ thirdparty2/glib/gobject/libgobject-gdb.py.in
 thirdparty2/glib/glib/glibconfig.h.in
 thirdparty2/glib/glib/glib.rc.in
 thirdparty2/glib/glib/libglib-gdb.py.in
-kernel/yuza/revison.h
+kernel/yuza/revision.h
