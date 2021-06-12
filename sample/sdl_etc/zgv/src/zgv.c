@@ -68,16 +68,6 @@
 
 #define MAXPATHLEN 256
 
-int stat_(char const* const fileName, struct stat* fno)
-{
-    memset(fno, 0, sizeof(struct stat));
-    int result = fstat(fileName, fno);
-
-    if (result == 0)
-        return 0;
-
-    return -1;
-}
 
 void putchar(char c)
 {
@@ -411,7 +401,7 @@ int main(int argc, char* argv[])
         int i, entnum;
         struct stat buf;
         for (i = argc - argsleft, entnum = 0; i <= argc - 1; i++)
-            if (stat_(argv[i], &buf) != -1 && !S_ISDIR(buf.st_mode))
+            if (stat(argv[i], &buf) != -1 && !S_ISDIR(buf.st_mode))
             {
                 entnum++;
                 if (!gifdir_resize_if_needed(entnum))
@@ -503,7 +493,7 @@ void load_one_file(char* filename)
      * much the same result as typing '( cd whatever;zgv )'.
      */
 
-    if (stat_(filename, &sbuf) != -1 && S_ISDIR(sbuf.st_mode))
+    if (stat(filename, &sbuf) != -1 && S_ISDIR(sbuf.st_mode))
     {
         chdir(filename);
         return;
@@ -649,7 +639,7 @@ void file_details(char* filename, int w, int h, int* need_redraw_ptr)
 
     if (need_redraw_ptr) *need_redraw_ptr = 0;
 
-    if (stat_(filename, &sbuf) == -1)
+    if (stat(filename, &sbuf) == -1)
         return;
 
     /* this should be a can't happen, I think... */
@@ -1501,7 +1491,7 @@ int rename_file(int curent, int startfrom)
     }
 
     /* refuse the renaming if it would blast an existing file */
-    if (stat_(dest, &sbuf) != -1)
+    if (stat(dest, &sbuf) != -1)
     {
         msgbox(zgv_ttyfd, "File already exists",
             MSGBOXTYPE_OK, idx_light, idx_dark, idx_black);
@@ -1675,7 +1665,7 @@ void new_pastpos(int curent, int startfrom)
         pastpos[f].startfrom = pastpos[f - 1].startfrom;
     }
 
-    if (stat_(".", &sbuf) == -1) return;
+    if (stat(".", &sbuf) == -1) return;
 
     pastpos[0].dev = sbuf.st_dev;
     pastpos[0].inode = sbuf.st_ino;
@@ -1694,7 +1684,7 @@ void get_pastpos(int* curentp, int* startfromp)
 
     *curentp = *startfromp = 1;
 
-    if (cfg.forgetoldpos || stat_(".", &sbuf) == -1) return;
+    if (cfg.forgetoldpos || stat(".", &sbuf) == -1) return;
 
     for (f = 0; f < MPPOSSIZ; f++)
         if (pastpos[f].inode == sbuf.st_ino && pastpos[f].dev == sbuf.st_dev)
@@ -1863,7 +1853,7 @@ void copymovedel_file_or_tagged_files(int curent, int remove_from_array,
 
         if (dest == NULL || *dest == 0) return;
 
-        if (stat_(dest, &sbuf) == -1)
+        if (stat(dest, &sbuf) == -1)
         {
             /* it would be nicer to say `dir doesn't exist' or something,
              * but this is the only reasonably safe bet :-)
@@ -2219,7 +2209,7 @@ void showgifdir(int startfrom, int unshow, int drawdirmsg, int do_one_only)
         struct stat sbuf;
 
         /* must be either a dir or symlink (symlink could be to a dir...) */
-        if (stat_(".xvpics", &sbuf) != -1 && (S_ISDIR(sbuf.st_mode) ||
+        if (stat(".xvpics", &sbuf) != -1 && (S_ISDIR(sbuf.st_mode) ||
             S_ISLNK(sbuf.st_mode)))
             xvpics_dir_exists = 1;
         else
@@ -2230,7 +2220,7 @@ void showgifdir(int startfrom, int unshow, int drawdirmsg, int do_one_only)
             getcwd(ptr, sizeof(ctmp2) - strlen(ctmp2) - 1);
             /* convert /foo/bar/baz to _foo_bar_baz */
             while ((ptr = strchr(ptr, '/')) != NULL) *ptr++ = '_';
-            if (stat_(ctmp2, &sbuf) != -1 && (S_ISDIR(sbuf.st_mode) ||
+            if (stat(ctmp2, &sbuf) != -1 && (S_ISDIR(sbuf.st_mode) ||
                 S_ISLNK(sbuf.st_mode)))
                 xvpics_dir_exists = 1;
         }
@@ -2442,7 +2432,7 @@ void readgifdir(int graphics_ok)
         if (strcmp(anentry->d_name, ".") != 0 &&
             !(strcmp(cdir, "/") == 0 && strcmp(anentry->d_name, "..") == 0))
         {
-            if ((stat_(anentry->d_name, &buf)) == -1)
+            if ((stat(anentry->d_name, &buf)) == -1)
             {
                 buf.st_mode = 0;
                 buf.st_size = 0;
@@ -3000,7 +2990,7 @@ int makedirxv332(char* filename, char* xvpicfn, unsigned int howfar)
     while ((anentry = readdir(dirfile)) != NULL)
     {
         if (anentry->d_name[0] == '.') continue;		/* skip `dot' files */
-        if ((stat_(anentry->d_name, &buf)) == -1)
+        if ((stat(anentry->d_name, &buf)) == -1)
             buf.st_mode = 0;
         if (S_ISDIR(buf.st_mode)) continue;		/* ...and subdirs */
         if (!ispicture(anentry->d_name)) continue;	/* must be picture file */
@@ -3176,7 +3166,7 @@ int update_xvpics_common(int do_dirs_instead, char** errstring,
     ptr = altdirbuf + strlen(altdirbuf);
     getcwd(ptr, sizeof(altdirbuf) - strlen(altdirbuf) - 1);
     while ((ptr = strchr(ptr, '/')) != NULL) *ptr++ = '_';
-    altdirexists = (stat_(altdirbuf, &tmpsbuf) != -1);
+    altdirexists = (stat(altdirbuf, &tmpsbuf) != -1);
 
 
     for (f = 1; f <= gifdirsiz; f++)
@@ -3186,12 +3176,12 @@ int update_xvpics_common(int do_dirs_instead, char** errstring,
          */
         if (do_dirs_instead && gifdir[f].isdir == 0) break;
 
-        if (gifdir[f].isdir == do_dirs_instead && stat_(gifdir[f].name, &realpic) != -1 &&
+        if (gifdir[f].isdir == do_dirs_instead && stat(gifdir[f].name, &realpic) != -1 &&
             gifdir[f].name[0] != '.')
         {
             /* test for normal .xvpics/wibble */
             snprintf(buf, sizeof(buf), ".xvpics/%s", gifdir[f].name);
-            r1 = stat_(buf, &xvpic);
+            r1 = stat(buf, &xvpic);
 
             /* and for ~/.xvpics/foo_bar_baz/wibble if needed */
             if (!altdirexists)
@@ -3199,7 +3189,7 @@ int update_xvpics_common(int do_dirs_instead, char** errstring,
             else
             {
                 snprintf(buf2, sizeof(buf2), "%s/%s", altdirbuf, gifdir[f].name);
-                r2 = stat_(buf2, &xvpic2);
+                r2 = stat(buf2, &xvpic2);
             }
 
             if ((r1 == -1 && r2 == -1) ||
@@ -3237,7 +3227,7 @@ int update_xvpics_common(int do_dirs_instead, char** errstring,
 
                 /* this is pretty BFI and messy */
 
-                if (mkdir(".xvpics") != -1 || errno == EEXIST || errno == EACCES)
+                if (mkdir(".xvpics", 0) != -1 || errno == EEXIST || errno == EACCES)
                 {
                     /* check if we can write to the file */
                     if ((test = fopen(buf, "wb")) != NULL)
@@ -3251,14 +3241,14 @@ int update_xvpics_common(int do_dirs_instead, char** errstring,
                     /* couldn't create ./.xvpics, try ~/.xvpics */
                     snprintf(buf, sizeof(buf),
                         "%s/.xvpics", getenv("HOME") ? getenv("HOME") : "");
-                    if (mkdir(buf) == -1 && errno != EEXIST && errno != EACCES)
+                    if (mkdir(buf, 0) == -1 && errno != EEXIST && errno != EACCES)
                     {
                         *errstring = "Unable to create either .xvpics directory";
                         return(0);
                     }
 
                     /* also need to create ~/.xvpics/_foo_bar_baz */
-                    if (mkdir(altdirbuf) == -1 && errno != EEXIST && errno != EACCES)
+                    if (mkdir(altdirbuf, 0) == -1 && errno != EEXIST && errno != EACCES)
                     {
                         *errstring = "Unable to create ~/.xvpics/... directory";
                         return(0);
@@ -3438,7 +3428,7 @@ int recursive_update_internal(char* dirname, int* firstp)
     if ((old_cwd = getcwd_allocated()) == NULL)
         return(0);
 
-    if (stat_(dirname, &sbuf) == -1 || chdir(dirname) == -1)
+    if (stat(dirname, &sbuf) == -1 || chdir(dirname) == -1)
     {
         free(old_cwd);
         return(1);	/* it's not great, sure, but keep going */
@@ -3486,7 +3476,7 @@ int recursive_update_internal(char* dirname, int* firstp)
             continue;
 
         /* skip if we can't stat it or it's not a dir */
-        if ((stat_(dent->d_name, &sbuf)) == -1 || !S_ISDIR(sbuf.st_mode))
+        if ((stat(dent->d_name, &sbuf)) == -1 || !S_ISDIR(sbuf.st_mode))
             continue;
 
         /* ok then, recurse. */

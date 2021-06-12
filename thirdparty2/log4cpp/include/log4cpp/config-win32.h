@@ -15,7 +15,7 @@
 
 /* Define if you have the `ftime' function. */
 #ifndef LOG4CPP_HAVE_FTIME 
-#define LOG4CPP_HAVE_FTIME  1 
+//#define LOG4CPP_HAVE_FTIME  1 
 #endif
 
 /* Define if you have the `gettimeofday' function. */

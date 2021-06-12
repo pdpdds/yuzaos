@@ -171,7 +171,7 @@
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <AdditionalIncludeDirectories>../../corelib/streams;../../corelib/stl/sgi;../include;../../runtime/include;../../corelib/include;./include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>SKYOS32;_MSC_VER=1920;LOG4CPP_HAVE_SSTREAM</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SKYOS32;_MSC_VER=1920;LOG4CPP_HAVE_SSTREAM;_CRT_NO_TIME_T</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>
