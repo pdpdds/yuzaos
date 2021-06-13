@@ -2,7 +2,7 @@
 #include <va_list.h>
 #include <size_t.h>
 #include <errno.h>
-#include <stat_def.h>
+//#include <stat_def.h>
 
 #ifdef DLL_EXPORT
 #define DLL_API   __declspec( dllexport ) 

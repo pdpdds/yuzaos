@@ -114,7 +114,7 @@
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <AdditionalIncludeDirectories>../include;../../corelib/include;../../corelib/STL/SGI;./libc/time;../../runtime/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>SKYOS32;DLL_WSTRING_EXPORT</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SKYOS32;DLL_WSTRING_EXPORT;_CRT_NO_TIME_T;_MSC_VER=1920</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>
