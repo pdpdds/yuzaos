@@ -135,7 +135,7 @@
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <AdditionalOptions>/Oy  /arch:SSE %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4819;2440</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>./;../include;../../../corelib/include;../../../runtime/include;../../yuza_core;../../../corelib/yuzalib/renderer;../../../runtime/libcrt/input;../../../support/unicodefont;../../../support/hangul;../../../corelib/stl/sgi;../../../corelib/streams</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;../include;../../../corelib/include;../../../runtime/include;../../yuza_core;../../../corelib/yuzalib/renderer;../../../runtime/libcrt/input;../../../support/unicodefont;../../../support/hangul;../../../corelib/stl/sgi;../../../corelib/streams;../../../corelib/yuzalib/io</AdditionalIncludeDirectories>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
       <OmitFramePointers>true</OmitFramePointers>

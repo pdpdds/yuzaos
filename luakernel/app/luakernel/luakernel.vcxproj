@@ -135,7 +135,7 @@
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <AdditionalOptions>/Oy  /arch:SSE -DLUA_32BITS   %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4819;2440;4244</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>./;../../../runtime/include;../../../corelib/STL/SGI;../../../corelib/include;../../../thirdparty/lua5;../../../thirdparty/luatinker;../../../thirdparty/sqlite3;../../../runtime/libcrt/input;../../extension\lsample</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;../../../runtime/include;../../../corelib/STL/SGI;../../../corelib/include;../../../thirdparty/lua5;../../../thirdparty/luatinker;../../../thirdparty/sqlite3;../../../runtime/libcrt/input;../../extension\lsample;../../../corelib/yuzalib/io</AdditionalIncludeDirectories>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
       <OmitFramePointers>true</OmitFramePointers>
