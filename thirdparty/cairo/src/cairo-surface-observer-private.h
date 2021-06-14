@@ -45,7 +45,7 @@
 #include "cairo-surface-backend-private.h"
 #include "cairo-time-private.h"
 
-struct stat {
+struct __stat {
     double min, max, sum, sum_sq;
     unsigned count;
 };
@@ -57,7 +57,7 @@ struct stat {
 #define NUM_FILL_RULE (CAIRO_FILL_RULE_EVEN_ODD+1)
 
 struct extents {
-    struct stat area;
+    struct __stat area;
     unsigned int bounded, unbounded;
 };
 
