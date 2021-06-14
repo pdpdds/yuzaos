@@ -89,15 +89,6 @@ typedef struct kKeyboardManagerStruct
 
 #pragma pack( pop )
 
-////////////////////////////////////////////////////////////////////////////////
-//
-//  ÇÔ¼ö
-//
-////////////////////////////////////////////////////////////////////////////////
-//bool kActivateKeyboard( void );
-
-//void kEnableA20Gate( void );
-//void kReboot( void );
 
 bool kInitializeKeyboard( void );
 bool kGetKeyFromKeyQueue( KEYDATA* pstData );

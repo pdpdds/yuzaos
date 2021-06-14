@@ -38,3 +38,7 @@ thirdparty2/glib/glib/glib.rc.in
 thirdparty2/glib/glib/libglib-gdb.py.in
 kernel/yuza/revision.h
 /sample/emulator/scummvm
+sample/emulator/VBA/win32/SDLDebug/VisualBoyAdvance-SDL.map
+kernel/yuza/revision.h
+bin/scummvm.lib
+bin/scummvm.exp

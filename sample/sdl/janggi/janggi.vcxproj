@@ -173,9 +173,10 @@
       </AddModuleNamesToAssembly>
       <ForceSymbolReferences>
       </ForceSymbolReferences>
-      <AdditionalOptions>/safeseh:no /ALIGN:1024
- /SUBSYSTEM:CONSOLE
-/NODEFAULTLIB:LIBC %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>
+ %(AdditionalOptions)</AdditionalOptions>
+      <SectionAlignment>1024</SectionAlignment>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <PostBuildEvent>
       <Command>

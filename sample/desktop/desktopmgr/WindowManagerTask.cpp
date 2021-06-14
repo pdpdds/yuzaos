@@ -67,7 +67,7 @@ void kUpdate(bool isDirectBuffer)
 				(bEventQueueResult == FALSE))
 			{
 				//20180628
-				Syscall_Sleep(0);
+				Syscall_Sleep(1);
 			}
 		}
 	}

@@ -39,11 +39,11 @@ _Scheduler::_Scheduler()
 void _Scheduler::Reschedule()
 {
 	int st = DisableInterrupts();
-	Thread *thread = Thread::GetRunningThread();
+	Thread* pThread = Thread::GetRunningThread();
 	
 
 #if SKY_EMULATOR
-	if (thread == 0)
+	if (pThread == 0)
 	{
 		CancelTimeout();
 		//if (fReadyThreadCount > 1)
@@ -61,20 +61,16 @@ void _Scheduler::Reschedule()
 			DWORD result = g_platformAPI._processInterface.sky_kResumeThread(nextThread->m_win32Handle);
 			ASSERT(result != -1);
 		}
-		else
-		{
-			int j = fHighestReadyThread;
-			int q = 1;
-		}
-
+		
 		RestoreInterrupts(st);
 		return;
 	}
 #endif
 
-	if (thread->GetState() == kThreadRunning) 
+	int enqueue = 0;
+	if (pThread->GetState() == kThreadRunning)
 	{
-		if (fHighestReadyThread <= thread->GetCurrentPriority() && thread->GetQuantumUsed() < kQuantum) 
+		if (fHighestReadyThread <= pThread->GetCurrentPriority() && pThread->GetQuantumUsed() < kQuantum)
 		{
 			// This thread hasn't used its entire timeslice, and there
 			// isn't a higher priority thread ready to run.  Don't reschedule.
@@ -84,7 +80,8 @@ void _Scheduler::Reschedule()
 			return;
 		}
 
-		EnqueueReadyThread(thread);
+		EnqueueReadyThread(pThread);
+		enqueue = 1;
 	}
 
 	CancelTimeout();		
@@ -96,27 +93,27 @@ void _Scheduler::Reschedule()
 	Thread* nextThread = PickNextThread();
 
 #if SKY_EMULATOR
-	if (!nextThread)
-	{
-		bigtime_t now = SystemTime();
-		thread->fLastEvent = now;
-		RestoreInterrupts(st);
-		g_platformAPI._processInterface.sky_kSuspendThread(thread->m_win32Handle);
-
-		return;
-	}
-
-	Thread* pThread = Thread::GetRunningThread();
-
 	if (pThread != nextThread)
 	{
-		bigtime_t now = SystemTime();
-		pThread->fLastEvent = now;
-		nextThread->fLastEvent = now;
-		nextThread->SetState(kThreadRunning);
-		DWORD result = g_platformAPI._processInterface.sky_kResumeThread(nextThread->m_win32Handle);
-		ASSERT(result != -1);
+		if (nextThread)
+		{
+			bigtime_t now = SystemTime();
+			pThread->fLastEvent = now;
+			nextThread->fLastEvent = now;
+			nextThread->SetState(kThreadRunning);
+			DWORD result = g_platformAPI._processInterface.sky_kResumeThread(nextThread->m_win32Handle);
+			ASSERT(result != -1);
+		}
+			
+		if (pThread->GetState() == kThreadRunning)
+		{
+			if(enqueue == 0)
+			EnqueueReadyThread(pThread);
+			//ASSERT(enqueue == 1);
+		}
+
 		RestoreInterrupts(st);
+			
 		g_platformAPI._processInterface.sky_kSuspendThread(pThread->m_win32Handle);
 
 		return;
