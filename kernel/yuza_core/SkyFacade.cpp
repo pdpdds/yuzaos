@@ -58,7 +58,7 @@ extern "C" void KernelMainEntry()
 	InitSerialPortSystem();
 	InitPCI();
 #endif
-	InitEnvironment(); 
+	InitEnvironment("yuza.cfg");
 	InitDebuggerSystem("yuza.cfg");
 	InitStorageSystem("driver.cfg");
 
@@ -153,7 +153,6 @@ void InitGrahphics()
 	}
 }
 
-
 bool InitOSSystem(BootParams* pBootParam)
 {
 	MakePlatformAPI();
@@ -232,7 +231,6 @@ bool MakePlatformAPI()
 	g_platformAPI._processInterface = *(SKY_PROCESS_INTERFACE*)pStub->_processInterface;
 	g_platformAPI._printInterface = *(SKY_PRINT_INTERFACE*)pStub->_printInterface;
 
-	
 	g_bootParams._memoryInfo._kStackBase = 0x30000;
 	g_bootParams._memoryInfo._kStackSize = 0x40000;
 
@@ -265,23 +263,20 @@ bool SetFrameBufferInfo(WIN32_VIDEO* pVideoInfo)
 }
 #endif	
 
-bool InitEnvironment()
+bool InitEnvironment(const char* config_file)
 {
 	kprintf("InitEnvironment\n");
 	config_t cfg;
 
 	const char* str;
 	config_init(&cfg);
-	char* config_file = "yuza.cfg";
-	
-	/* Read the file. If there is an error, report it and exit. */
+
 	if (!config_read_file(&cfg, config_file))
 	{
 		
 		kPanic("driver config file load fail : %s", config_file);
 		kDebugPrint("%s:%d - %s\n", config_file, config_error_line(&cfg), config_error_text(&cfg));
-		config_destroy(&cfg);
-		
+		config_destroy(&cfg);	
 	}
 
 	if (!config_lookup_string(&cfg, "name", &str))
@@ -297,7 +292,6 @@ bool InitEnvironment()
 	AddEnvironmentForced(cfg, "environment.BOOT", "BOOT_DRIVE");
 
 	config_destroy(&cfg);
-
 
 	return true;
 }
@@ -449,7 +443,6 @@ int SerialPortServerThread(void* parameter)
 
 	while (1)
 	{
-
 		kSleep(1000);
 	}
 

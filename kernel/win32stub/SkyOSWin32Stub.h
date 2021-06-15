@@ -32,28 +32,28 @@ typedef struct tag_SKYOS_MODULE_LIST
 }YUZAOS_MODULE_LIST;
 
 #ifdef WIN32STUB
-#define ORANGEOS_WIN32_DLL __declspec(dllexport)
+#define YUZAOS_DLL __declspec(dllexport)
 #else
-#define ORANGEOS_WIN32_DLL __declspec(dllimport)
+#define YUZAOS_DLL __declspec(dllimport)
 #endif
 
 extern "C"
 {
-	ORANGEOS_WIN32_DLL WIN32_STUB* GetWin32Stub();
-	ORANGEOS_WIN32_DLL WIN32_VIDEO* GetFrameBufferInfo();
-	ORANGEOS_WIN32_DLL void LoopWin32(I_SkyInput* pVirtualIO, unsigned int& tickCount);
-	ORANGEOS_WIN32_DLL bool StartWin32StubTimer(I_SkyInput* pVirtualIO, unsigned int& tickCount);
-	ORANGEOS_WIN32_DLL cdecl YUZAOS_MODULE_LIST* InitYuzaOSModule(char** moduleList, int size);
+	YUZAOS_DLL WIN32_STUB* GetWin32Stub();
+	YUZAOS_DLL WIN32_VIDEO* GetFrameBufferInfo();
+	YUZAOS_DLL void LoopWin32(I_SkyInput* pVirtualIO, unsigned int& tickCount);
+	YUZAOS_DLL bool StartWin32StubTimer(I_SkyInput* pVirtualIO, unsigned int& tickCount);
+	YUZAOS_DLL cdecl YUZAOS_MODULE_LIST* InitYuzaOSModule(char** moduleList, int size);
 	
-	/*ORANGEOS_WIN32_DLL bool SKY_VirtualProtect(void* address, int size, int attribute, unsigned int* dwOld);
-	ORANGEOS_WIN32_DLL bool SKY_VirtualProtect(void* address, int size, int attribute, unsigned int* dwOld);
-	ORANGEOS_WIN32_DLL bool SKY_VirtualFree(void* lpAddress, unsigned int dwSize, unsigned int  dwFreeType);
-	ORANGEOS_WIN32_DLL void* SKY_VirtualAlloc(void* lpAddress, unsigned int dwSize, unsigned int  flAllocationType, unsigned int  flProtect);
+	/*YUZAOS_DLL bool SKY_VirtualProtect(void* address, int size, int attribute, unsigned int* dwOld);
+	YUZAOS_DLL bool SKY_VirtualProtect(void* address, int size, int attribute, unsigned int* dwOld);
+	YUZAOS_DLL bool SKY_VirtualFree(void* lpAddress, unsigned int dwSize, unsigned int  dwFreeType);
+	YUZAOS_DLL void* SKY_VirtualAlloc(void* lpAddress, unsigned int dwSize, unsigned int  flAllocationType, unsigned int  flProtect);
 	*/
 
-	ORANGEOS_WIN32_DLL size_t sky_fread(void* ptr, size_t size, size_t nmemb, FILE* stream);
-	ORANGEOS_WIN32_DLL FILE * sky_fopen(const char* filename, const char* mode);
-	ORANGEOS_WIN32_DLL size_t sky_fwrite(const void* ptr, size_t size, size_t nmemb, FILE * stream);
-	ORANGEOS_WIN32_DLL int sky_fseek(FILE * stream, long int offset, int whence);
-	ORANGEOS_WIN32_DLL int sky_fclose(FILE * stream);
+	YUZAOS_DLL size_t sky_fread(void* ptr, size_t size, size_t nmemb, FILE* stream);
+	YUZAOS_DLL FILE * sky_fopen(const char* filename, const char* mode);
+	YUZAOS_DLL size_t sky_fwrite(const void* ptr, size_t size, size_t nmemb, FILE * stream);
+	YUZAOS_DLL int sky_fseek(FILE * stream, long int offset, int whence);
+	YUZAOS_DLL int sky_fclose(FILE * stream);
 }

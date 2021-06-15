@@ -1285,8 +1285,7 @@ int kGetCommandFromKeyboard(char* commandBuffer, int bufSize)
 		else
 		{
 #if SKY_EMULATOR
-			c = g_platformAPI._printInterface.sky_getchar();
-			
+			c = g_platformAPI._printInterface.sky_getchar();	
 #else
 			c = KeyboardController::GetInput();
 #endif

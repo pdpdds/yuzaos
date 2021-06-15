@@ -22,7 +22,7 @@
 
 void SetInterruptVectors();
 bool MakePlatformAPI();
-bool InitEnvironment();
+bool InitEnvironment(const char* config_file);
 bool AddEnvironment(config_t& cfg, char* element, char* envName);
 bool InitStorageSystem(const char* configName);
 bool InitDebuggerSystem(const char* configName);

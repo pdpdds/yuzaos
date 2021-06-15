@@ -228,7 +228,7 @@ HANDLE g_hTimer;
 HANDLE g_hTimerQueue;
 I_SkyInput* g_pVirtualIO;
 
-ORANGEOS_WIN32_DLL bool StartWin32StubTimer(I_SkyInput* pVirtualIO, unsigned int& tickCount)
+YUZAOS_DLL bool StartWin32StubTimer(I_SkyInput* pVirtualIO, unsigned int& tickCount)
 {
 	g_pVirtualIO = pVirtualIO;
 	pInputHandler = new SkyInputHandlerWin32();
@@ -461,21 +461,12 @@ static char * ReadAllBytes(const char * filename, int * read)
 	ifstream ifs(filename, ios::binary | ios::ate);
 	ifstream::pos_type pos = ifs.tellg();
 
-	// What happens if the OS supports really big files.
-	// It may be larger than 32 bits?
-	// This will silently truncate the value/
 	int length = pos;
 
-	// Manuall memory management.
-	// Not a good idea use a container/.
 	char *pChars = new char[length];
 	ifs.seekg(0, ios::beg);
 	ifs.read(pChars, length);
 
-	// No need to manually close.
-	// When the stream goes out of scope it will close the file
-	// automatically. Unless you are checking the close for errors
-	// let the destructor do it.
 	ifs.close();
 	*read = length;
 	return pChars;

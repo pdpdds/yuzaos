@@ -173,13 +173,13 @@ void* ModuleManager::GetModuleFunction(void* handle, const char* func_name)
 		strcmp(func_name, "sky_fseek") == 0 || 
 		strcmp(func_name, "sky_fclose") == 0)
 		return (void*)g_platformAPI._processInterface.sky_GetProcAddress(handle, func_name);
+
 #if SKY_EMULATOR_DLL
 	return (void*)g_platformAPI._processInterface.sky_GetProcAddress(handle, func_name);
 #else
 	return (void*)myGetProcAddress_LoadDLLInfo((MODULE_HANDLE)handle, func_name);
 #endif
 }
-
 
 void ModuleManager::PrintPEHierachy(HMODULE hwnd)
 {

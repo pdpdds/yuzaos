@@ -7,7 +7,7 @@ void ExecNativeConsole()
 {
 	ConsoleManager manager;
 
-	char	commandBuffer[MAXPATH];
+	char commandBuffer[MAXPATH];
 
 	while (1)
 	{
