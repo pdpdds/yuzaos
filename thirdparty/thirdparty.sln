@@ -48,6 +48,7 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cairo", "cairo\cairo.vcxproj", "{3425D52A-F7A7-4A15-8A48-4B01B2DAE22D}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A9346D2B-08FF-4E5D-AF3D-CC7BBD70CA8E} = {A9346D2B-08FF-4E5D-AF3D-CC7BBD70CA8E}
+		{D3B0EF61-8726-499C-BF25-33622381E33A} = {D3B0EF61-8726-499C-BF25-33622381E33A}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "expat", "expat\expat.vcxproj", "{50D3833D-4116-4257-9FEA-23A20115DE53}"
@@ -119,6 +120,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fontconfig", "fontconfig\fontconfig.vcxproj", "{7A361B86-A444-46C5-A010-A44AFC1155B6}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libzip", "libzip\libzip.vcxproj", "{E8E76EA5-4EA7-4908-97B9-4959AA496B01}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6981CF47-D08A-4F3F-95BB-0F8C582803F2} = {6981CF47-D08A-4F3F-95BB-0F8C582803F2}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libzippp", "libzippp\libzippp.vcxproj", "{F9F9E04E-2ADC-436A-9275-17A411D09617}"
 	ProjectSection(ProjectDependencies) = postProject
