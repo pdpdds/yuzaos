@@ -115,7 +115,7 @@
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <AdditionalIncludeDirectories>../../../ThirdParty/SDL/SDL2/SDLmixer;../../../ThirdParty/SDL/SDL2/SDL/include;../../../corelib/include;../../../runtime/include;./;../include;../../../ThirdParty/SDL/SDL2/sdlttf;../../../corelib/stl/sgi;../../../corelib/streams;../../../ThirdParty/SDL/SDL2/sdlimage</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>SKY_DLL;SKYOS32;_CRT_SECURE_NO_WARNINGS;DLL_EXPORT;_MSC_VER</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SKYOS32;_MSC_VER=1920</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>
@@ -170,7 +170,8 @@
       </AddModuleNamesToAssembly>
       <ForceSymbolReferences>
       </ForceSymbolReferences>
-      <AdditionalOptions>/safeseh:no  /ALIGN:1024 %(AdditionalOptions)</AdditionalOptions>
+      <SectionAlignment>1024</SectionAlignment>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <PostBuildEvent>
       <Command>

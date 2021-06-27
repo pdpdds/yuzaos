@@ -42,3 +42,6 @@ sample/emulator/VBA/win32/SDLDebug/VisualBoyAdvance-SDL.map
 kernel/yuza/revision.h
 bin/scummvm.lib
 bin/scummvm.exp
+bin/dosbox.bsc
+bin/dosbox.exp
+bin/dosbox.lib

@@ -19,9 +19,9 @@ extern "C" void kSleep(DWORD dwMilliseconds)
 	sleepSemaphore.Wait(dwMilliseconds);
 	return;
 #else
-	Semaphore sleepSemaphore("sleep_sem", 0);
-	sleepSemaphore.Wait(dwMilliseconds);
-	//gSleepSemaphore.Wait(dwMilliseconds);
+	//Semaphore sleepSemaphore("sleep_sem", 0);
+	//sleepSemaphore.Wait(dwMilliseconds);
+	gSleepSemaphore.Wait(dwMilliseconds);
 #endif
 }
 

@@ -344,44 +344,67 @@ BOOL kTerminateThread(HANDLE handle, DWORD* lpRetCode)
 	return true;
 }
 
-char* GetFileNameFromPath(char* path)
+char* GetFileNameFromPath(char* path, char* sep)
 {
 	char* ssc;
 	int l = 0;
-	ssc = strstr(path, "\\");
+	ssc = strstr(path, sep);
 
 	if (ssc == 0)
-		return path;
+		return 0;
 
 	do {
 		l = strlen(ssc) + 1;
 		path = &path[strlen(path) - l + 2];
-		ssc = strstr(path, "\\");
+		ssc = strstr(path, sep);
 	} while (ssc);
 
 	return path;
 }
 
+std::string GetDirFromPath(const std::string& s)
+{
+
+	char sep = '/';
+
+#ifdef _WIN32
+	sep = '\\';
+#endif
+
+	size_t i = s.rfind(sep, s.length());
+	if (i != std::string::npos) {
+		return(s.substr(0, i));
+	}
+
+	return("");
+}
+
 HANDLE kCreateProcess(const char* execPath, void* param, int priority)
 {
 	char filepath[MAXPATH] = { 0, };
-	char* path = 0;
+	char* exeName = 0;
 	if (strlen(execPath) == 0)
 		return 0;
  
 	strcpy(filepath, execPath);
-	path = filepath;
 
-#if SKY_EMULATOR_DLL
-	path = GetFileNameFromPath(filepath);
-#endif
+	exeName = GetFileNameFromPath(filepath, "\\");
 
+	if(!exeName)
+		exeName = GetFileNameFromPath(filepath, "/");
 
+	if (!exeName)
+		exeName = filepath;
+
+	std::string fullpath;
+	fullpath = filepath;
+
+	std::string dir = GetDirFromPath(fullpath);
+	kSetCurrentDirectory(dir.c_str());
 #if SKY_EMULATOR
 	typedef int(*PMain)(void*);
 
-	HANDLE moduleHandle = (void*)ModuleManager::GetInstance()->LoadPE(path);
-
+	HANDLE moduleHandle = (void*)ModuleManager::GetInstance()->LoadPE(exeName);
 	if (moduleHandle == nullptr)
 		return 0;
 
@@ -389,22 +412,22 @@ HANDLE kCreateProcess(const char* execPath, void* param, int priority)
 
 	SKY_ASSERT(mainFunc != nullptr, "main entry null!!");
 
-	main_args* args = MakeArgument(path, param);
+	main_args* args = MakeArgument(exeName, param);
 
-	kDebugPrint("CreateProcess %x %s %d\n", mainFunc, path, priority);
+	kDebugPrint("CreateProcess %x %s %d\n", mainFunc, exeName, priority);
 
-	Team* newTeam = TeamManager::GetInstance()->CreateTeam(path);
+	Team* newTeam = TeamManager::GetInstance()->CreateTeam(exeName);
 	newTeam->m_moduleHandle = moduleHandle;
 
 	ThreadParam* pStartParam = new ThreadParam;
 	pStartParam->entryPoint = mainFunc;
-	strcpy(pStartParam->name, path);
+	strcpy(pStartParam->name, exeName);
 	pStartParam->param = args;
 
-	new Thread(path, newTeam, (THREAD_START_ENTRY)RunMainSkyThread, pStartParam, priority);
+	new Thread(exeName, newTeam, (THREAD_START_ENTRY)RunMainSkyThread, pStartParam, priority);
 	HANDLE handle = (HANDLE)newTeam->GetTeamId();
 #else
-	HANDLE handle = (HANDLE)ExecuteFile(path, (char*)param);
+	HANDLE handle = (HANDLE)ExecuteFile(exeName, (char*)param);
 #endif
 
 	return handle;

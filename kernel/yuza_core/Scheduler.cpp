@@ -120,7 +120,7 @@ void _Scheduler::Reschedule()
 	}
 
 #else
-	nextThread->SwitchTo(thread);
+	nextThread->SwitchTo(pThread);
 #endif
 
 	RestoreInterrupts(st);

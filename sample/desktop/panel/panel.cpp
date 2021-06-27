@@ -286,15 +286,22 @@ bool AddApp(config_t& cfg, char* element)
 
             const char* name = 0;
             const char* desc = 0;
+            const char* exePath = 0;
 
             if (!(config_setting_lookup_string(env, "name", &name)
                 && config_setting_lookup_string(env, "desc", &desc)))
                 continue;
 
+            if (!(config_setting_lookup_string(env, "path", &exePath)))
+            {
+                exePath = name;
+            }
+
             g_applicationTable[appCount] = (APPLICATIONENTRY*)calloc(sizeof(APPLICATIONENTRY), 1);
 
             strcpy(g_applicationTable[appCount]->appName, name);
             strcpy(g_applicationTable[appCount]->appDesc, desc);
+            strcpy(g_applicationTable[appCount]->exePath, exePath);
 
             int iNameLength = strlen(g_applicationTable[appCount]->appName);
             if (g_iMaxNameLength < iNameLength)
@@ -509,7 +516,7 @@ bool ProcessApplicationListWindowEvent( void )
                 break;
             }
 
-			Syscall_CreateProcess(g_applicationTable[iMouseOverIndex]->appName, nullptr, 16);
+			Syscall_CreateProcess(g_applicationTable[iMouseOverIndex]->exePath, nullptr, 16);
 			
 
             // 애플리케이션 패널에 마우스 왼쪽 버튼이 눌렸다는 메시지를 전송하여 처리

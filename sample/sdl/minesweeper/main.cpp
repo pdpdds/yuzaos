@@ -65,6 +65,7 @@ int main( int argc, char* args[] )
 			    //While game is not over yet
 			    while ( !gameOver && !quit && !isWinning)
                 {
+					Sleep(1);
                     //Handle events on queue
                     while( SDL_PollEvent( &e ) != 0 )
                     {
