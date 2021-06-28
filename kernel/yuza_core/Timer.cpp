@@ -119,7 +119,7 @@ InterruptStatus Timer::HardwareTimerInterrupt()
 	if (currentTickCount - lastTickCount >= 1000)
 	{
 
-		kprintf("Timer::HardwareTimerInterrupt %x\n", g_tickCount);
+		//kprintf("Timer::HardwareTimerInterrupt %x\n", g_tickCount);
 		lastTickCount = currentTickCount;
 
 		bigtime_t now = SystemTime();

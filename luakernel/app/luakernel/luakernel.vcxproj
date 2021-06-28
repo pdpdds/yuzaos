@@ -150,8 +150,8 @@
       <EntryPointSymbol>
       </EntryPointSymbol>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>lsample.lib;math.lib;libsqlite3.lib;luatinker.lib;lua5.lib;filemanager.lib;libcrt.lib;dllstub.lib;systemcall.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../../../$(Configuration)/lib;../../../corelib/debug;../../../runtime/debug;../../../Debug;../../../support/debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>lsample.lib;math.lib;libsqlite3.lib;luatinker.lib;lua5.lib;filemanager.lib;libcrt.lib;dllstub.lib;systemcall.lib;yuzalib.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../../$(Configuration)/lib;../../../corelib/debug;../../../runtime/debug;../../../Debug;../../../support/debug;../../../thirdparty/debug</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
