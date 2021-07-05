@@ -1,5 +1,5 @@
 #pragma once
-#define SKY_CONSOLE_MODE	0
+#define SKY_CONSOLE_MODE	1
 
 #define SKY_WIDTH		1024
 #define SKY_HEIGHT		768
