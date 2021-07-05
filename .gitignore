@@ -3,6 +3,7 @@
 *.idb
 *.obj
 bin/*.dll
+bin/*.lib
 bin/*.map
 bin/*.exe
 Debug/
