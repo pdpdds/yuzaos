@@ -11,12 +11,30 @@
 
 namespace std
 {
+	typedef unsigned int size_t;
+
 	class ios : public ios_base
 	{
 		public:
 			virtual ~ios();
 			void setstate(iostate state);
 			void clear(iostate state = goodbit); //clear iostate bitmask
+			iostate exceptions()
+			{
+				return _iostate;
+			}
+
+			bool fail()
+			{
+				return rdstate() & failbit;
+			}
+
+			void exceptions(iostate except)
+			{
+				setstate(except);
+				clear(rdstate());
+			}
+
 			iostate rdstate();
 			virtual operator void*();
 

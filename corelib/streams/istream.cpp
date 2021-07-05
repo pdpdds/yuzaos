@@ -57,6 +57,24 @@ istream& istream::getline(char* s, int streamsize, char delimiter)
 }
 
 /**************************************************************/
+int istream::read(char* s, int streamsize)
+/**************************************************************/
+{
+	int ctr = 0;
+	char current;
+	do
+	{
+		istream& me = *this;
+		me >> current; //get single character off stream
+		s[ctr] = current;
+		ctr++;
+
+	} while ((!(eof())) && ctr < streamsize);
+
+	return ctr;
+}
+
+/**************************************************************/
 //istream& istream::getline(string& s, char delimiter)
 /**************************************************************/
 /*{

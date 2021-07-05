@@ -136,6 +136,23 @@ ostream& ostream::operator <<(unsigned short us)
 	return (*this);
 }
 
+int ostream::write(const char* s, int count)
+{
+	if (count <= 0)
+		return 0;
+
+	int ctr = 0;	
+	do
+	{
+		ostream& me = *this;
+		me << s[ctr];		
+		ctr++;
+
+	} while (ctr < count);
+
+	return ctr;
+}
+
 /**************************************************************/
 //ostream& ostream::operator <<(string s)
 /**************************************************************/

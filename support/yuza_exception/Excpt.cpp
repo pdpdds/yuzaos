@@ -3,6 +3,24 @@
 #include "Excpt.h"
 #include <memory.h>
 
+__declspec(noreturn) extern "C" void _stdcall _CxxThrowException(void* pExceptionObject, _ThrowInfo * pThrowInfo)
+{
+
+}
+
+extern "C"  __declspec(naked)  EXCEPTION_DISPOSITION __cdecl __CxxFrameHandler3(
+
+	EXCEPTION_REGISTRATION_RECORD * pRN,
+	PCONTEXT pContext,
+	PVOID pDC)
+{
+
+	__asm {
+
+		ret     0
+	}
+}
+
 class type_info {
 public:
 	virtual ~type_info();
@@ -824,10 +842,6 @@ EXCEPTION_DISPOSITION __thiscall FrameInfo::Handler(EXCEPTION_RECORD* pExc, ExcR
 	ExcMon::s_bExcAllowed = true;
 	return ExceptionContinueSearch;
 }
-
-extern "C" EXCEPTION_DISPOSITION __cdecl __CxxFrameHandler3(int a, int b, int c, int d);
-extern "C" void __stdcall _CxxThrowException(void* pObj, _s__ThrowInfo const* pType);
-
 
 __declspec (naked)
 EXCEPTION_DISPOSITION __cdecl V__CxxFrameHandler3(int a, int b, int c, int d)

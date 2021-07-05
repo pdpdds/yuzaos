@@ -133,7 +133,7 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>systemcall.lib;libcrt.lib;libwin32.lib;exestub.lib</AdditionalDependencies>
+      <AdditionalDependencies>systemcall.lib;libcrt.lib;libwin32.lib;exestub.lib;sdl.lib;yuzalib.lib;yuzaapi.lib;streams.lib;libwin32.lib;filemanager.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>../../../Debug;../../../$(Configuration);../../../corelib/debug;../../../runtime/debug;../../../ThirdParty/SDL/SDL2/debug;../../../ThirdParty/debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>

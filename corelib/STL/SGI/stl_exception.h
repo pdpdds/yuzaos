@@ -44,6 +44,26 @@ public:
   virtual const char* what() const __STL_NOTHROW { return ""; }
 };
 
+class bad_alloc
+    : public _Exception
+{
+public:
+
+    bad_alloc() noexcept        
+    {
+        //strcpy(szMessage, "bad allocation");
+    }
+
+    virtual const char* what() const __STL_NOTHROW { return ""; }
+
+private:
+    bad_alloc(char const* const _Message) noexcept        
+    {
+        //strcpy(szMessage, _Message);
+    }
+    char szMessage[256];
+};
+
 #define __STL_EXCEPTION_BASE _Exception
 
 __STL_END_NAMESPACE

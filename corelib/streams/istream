@@ -45,6 +45,7 @@ namespace std
 			virtual istream& operator>>(unsigned int& ui);
 			virtual istream& operator>>(unsigned long& ui);
 			virtual istream& operator>>(unsigned short& ui);
+			virtual int read(char* s, int count);
 			//virtual istream& operator>>(string& s);
 			
 			//template <typename T> istream& operator>>(istream& is, T& var);
