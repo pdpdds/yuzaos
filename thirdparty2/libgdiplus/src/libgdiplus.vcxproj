@@ -105,7 +105,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>pango.lib;gobject-2.0.lib;glib-2.0.lib;expat.lib;libuuid.lib;iconv.lib;fontconfig.lib;harfbuzz.lib;pthread.lib;giflib.lib;libjpeg.lib;libwin32.lib;libtiff.lib;libpng.lib;cairo.lib;freetyped.lib;math.lib;systemcall.lib;filemanager.lib;libcrt.lib;dllstub.lib;slog.lib;streams.lib;yuzalib.lib;yuzaapi.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../../../thirdparty2/pango\Debug;../../../$(Configuration);../../../corelib/debug;../../../runtime/debug;../../../Debug;../../../support/debug;../../../thirdparty/debug;../../../thirdparty2/debug;../../../thirdparty2/glib\win32\vs15\Debug\Win32\bin</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../../../thirdparty2/pango\Debug;../../../$(Configuration);../../../corelib/debug;../../../runtime/debug;../../../Debug;../../../support/debug;../../../thirdparty/debug;../../../thirdparty2/debug;../../../thirdparty2/Debug\Win32\bin</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</IgnoreAllDefaultLibraries>
       <GenerateDebugInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateDebugInformation>
       <OptimizeReferences Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</OptimizeReferences>

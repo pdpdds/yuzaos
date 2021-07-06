@@ -72,7 +72,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>../../../../corelib/include;../../../../runtime/include;$(ProjectDir)\..\..\charset;$(ProjectDir)\..\..\lib;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>DLL_EXPORT;_MSC_VER=1920;SKYOS32=100;HAVE_CONFIG_H;BUILDING_FRIBIDI;DONT_HAVE_FRIBIDI_UNICODE_VERSION_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;DLL_EXPORT;_MSC_VER=1920;SKYOS32=100;HAVE_CONFIG_H;BUILDING_FRIBIDI;DONT_HAVE_FRIBIDI_UNICODE_VERSION_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ProgramDataBaseFileName>$(IntDir)fribidi.pdb</ProgramDataBaseFileName>
       <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
