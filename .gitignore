@@ -47,3 +47,4 @@ bin/scummvm.exp
 bin/dosbox.bsc
 bin/dosbox.exp
 bin/dosbox.lib
+kernel/yuza/revision.h
