@@ -142,7 +142,7 @@
     <Link>
       <AdditionalDependencies>glib-2.0.lib;eastl.lib;imgui.lib;freetyped.lib;harfbuzz.lib;sdl.lib;math.lib;systemcall.lib;filemanager.lib;libcrt.lib;exestub.lib;streams.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>../../../$(Configuration);../../../corelib/debug;../../../runtime/debug;../../../Debug;../../../support/debug;../../../thirdparty/debug;../../../thirdparty/sdl/sdl2/debug;../../../thirdparty2/debug;../../../thirdparty2\glib\win32\vs15\Debug\Win32\bin</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../../$(Configuration);../../../corelib/debug;../../../runtime/debug;../../../Debug;../../../support/debug;../../../thirdparty/debug;../../../thirdparty/sdl/sdl2/debug;../../../thirdparty2/debug;../../../thirdparty2\debug\Win32\bin</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(OutDir)$(TargetName).map</MapFileName>
