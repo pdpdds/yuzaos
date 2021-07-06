@@ -147,7 +147,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <FunctionOrder>@order.txt</FunctionOrder>
-      <EntryPointSymbol>kmain</EntryPointSymbol>
+      <EntryPointSymbol>multiboot_entry</EntryPointSymbol>
       <NoEntryPoint>false</NoEntryPoint>
       <BaseAddress>0x00100000</BaseAddress>
       <FixedBaseAddress>

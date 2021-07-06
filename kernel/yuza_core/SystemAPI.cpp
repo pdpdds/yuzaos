@@ -213,18 +213,52 @@ main_args* MakeArgument(const char* path, void* param)
 	return args;
 }
 
-static int ExecuteFile(const char* path, char* arg)
+bool IsExecutable(const char* fileName)
 {
-	FILE* fp = fopen(path, "rb");
-	
+	FILE* fp = fopen(fileName, "rb");
+
 	if (fp == nullptr)
 	{
-		kDebugPrint("ExecuteFile Fail : %s\n", path);
 		return 0;
+	}
+
+	
+	char* buf = new char[4096];
+	fread(buf, 4096, 1, fp);
+
+	if (!ValidatePEImage(buf)) 
+	{
+		free(buf);
+		return false;
 	}
 
 	fclose(fp);
 
+	IMAGE_DOS_HEADER* dosHeader = 0;
+	IMAGE_NT_HEADERS* ntHeaders = 0;
+
+	dosHeader = (IMAGE_DOS_HEADER*)buf;
+	ntHeaders = (IMAGE_NT_HEADERS*)(dosHeader->e_lfanew + (uint32_t)buf);
+
+	if (0x08000000 != ntHeaders->OptionalHeader.ImageBase)
+	{
+		free(buf);
+		return false;
+	}
+
+	free(buf);
+	return true;
+}
+
+static int ExecuteFile(const char* path, char* arg)
+{
+	
+	if (!IsExecutable(path))
+	{
+		printf("Not a Executable : %s\n", path);
+		return 0;
+	}
+		
 	ThreadParam* param = new ThreadParam;
 	memset(param, 0, sizeof(ThreadParam));
 
@@ -382,10 +416,11 @@ std::string GetDirFromPath(const std::string& s)
 HANDLE kCreateProcess(const char* execPath, void* param, int priority)
 {
 	char filepath[MAXPATH] = { 0, };
+	
 	char* exeName = 0;
 	if (strlen(execPath) == 0)
 		return 0;
- 
+
 	strcpy(filepath, execPath);
 
 	exeName = GetFileNameFromPath(filepath, "\\");

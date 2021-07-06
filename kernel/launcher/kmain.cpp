@@ -93,9 +93,9 @@ extern "C" void kmain(unsigned long magic, unsigned long addr)
 		Boot32BitMode(magic, mb_info, mb_info->cmdline);
 
 	//not reached
-	int trickCode = 0;
+	/*int trickCode = 0;
 	if (trickCode)
-		multiboot_entry();
+		multiboot_entry();*/
 
 	for (;;);
 }
