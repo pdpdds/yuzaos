@@ -2,6 +2,7 @@
 *.pdb
 *.idb
 *.obj
+bin/
 bin/*.dll
 bin/*.lib
 bin/*.map
