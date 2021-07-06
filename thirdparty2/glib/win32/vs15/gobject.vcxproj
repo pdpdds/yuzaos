@@ -100,7 +100,7 @@
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalLibraryDirectories>../../../../$(Configuration);../../../../corelib/debug;../../../../runtime/debug;../../../../Debug;../../../../support/debug;../../../../thirdparty/debug;../../win32\vs15\Debug\Win32\bin;../../../../thirdparty2/debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../../../$(Configuration);../../../../corelib/debug;../../../../runtime/debug;../../../../Debug;../../../../support/debug;../../../../thirdparty/debug;../../../Debug\Win32\bin;../../../../thirdparty2/debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <AdditionalOptions>/safeseh:no /ALIGN:1024 %(AdditionalOptions)</AdditionalOptions>

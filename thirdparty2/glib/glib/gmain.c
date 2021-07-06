@@ -33,6 +33,7 @@
 #include "glibconfig.h"
 #include "glib_trace.h"
 #include <winapi.h>
+#include <gettimeofday.h>
 /* Uncomment the next line (and the corresponding line in gpoll.c) to
  * enable debugging printouts if the environment variable
  * G_MAIN_POLL_DEBUG is set to some value.

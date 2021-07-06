@@ -72,7 +72,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>../../../../corelib/include;../../../../runtime/include;$(ProjectDir)\..\..\charset;$(ProjectDir)\..\..\lib;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>SKYOS32;WIN32;DEBUG;HAVE_CONFIG_H;BUILDING_FRIBIDI;DONT_HAVE_FRIBIDI_UNICODE_VERSION_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>DLL_EXPORT;_MSC_VER=1920;SKYOS32=100;HAVE_CONFIG_H;BUILDING_FRIBIDI;DONT_HAVE_FRIBIDI_UNICODE_VERSION_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ProgramDataBaseFileName>$(IntDir)fribidi.pdb</ProgramDataBaseFileName>
       <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
@@ -82,7 +82,7 @@
       <AdditionalOptions>/arch:SSE %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
-      <OutputFile>$(OutDir)$(ProjectName)d.dll</OutputFile>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention />
       <ImportLibrary>$(TargetDir)$(TargetName)d.lib</ImportLibrary>

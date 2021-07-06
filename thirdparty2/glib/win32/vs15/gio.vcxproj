@@ -101,7 +101,7 @@
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalLibraryDirectories>../../../../$(Configuration);../../../../corelib/debug;../../../../runtime/debug;../../../../Debug;../../../../support/debug;../../../../thirdparty/debug;../../win32\vs15\Debug\Win32\bin</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../../../$(Configuration);../../../../corelib/debug;../../../../runtime/debug;../../../../Debug;../../../../support/debug;../../../../thirdparty/debug;../../../Debug\Win32\bin\</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <OptimizeReferences>true</OptimizeReferences>

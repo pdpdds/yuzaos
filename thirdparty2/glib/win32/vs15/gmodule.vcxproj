@@ -82,7 +82,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>CompileAsC</CompileAs>
-      <AdditionalIncludeDirectories>C:\yuzaos\trunk\verify\glib\glib;../../;./;../include;../../../../corelib/include;../../../../runtime/include;../../../../support/include;C:\Users\juhan\Downloads\glib-dev-win32-2.54.3-master\glib-dev-win32-2.54.3-master\vs10\Win32\include;C:\Users\juhan\Downloads\glib-dev-win32-2.54.3-master\glib-dev-win32-2.54.3-master\glib\pcre;../../../../corelib\iconv;../../../../corelib\pthreads;C:\yuzaos\trunk\thirdparty\libintl\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../glib\glib;../../;./;../include;../../../../corelib/include;../../../../runtime/include;../../../../support/include;../../../../corelib\iconv;../../../../corelib\pthreads;../../../../thirdparty/libintl\include</AdditionalIncludeDirectories>
       <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <ExceptionHandling>false</ExceptionHandling>
@@ -98,7 +98,7 @@
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalLibraryDirectories>C:\yuzaos\trunk\verify\glib\win32\vs15\Debug\Win32\bin;C:\yuzaos\trunk\verify\libffi\win32\vs16_x86\Debug;../../../../$(Configuration);../../../../corelib/debug;../../../../runtime/debug;../../../../Debug;../../../../support/debug;../../../../thirdparty/debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../../../$(Configuration);../../../../corelib/debug;../../../../runtime/debug;../../../../Debug;../../../../support/debug;../../../../thirdparty/debug;../../../Debug\Win32\bin\;../../../../thirdparty2/debug</AdditionalLibraryDirectories>
       <AdditionalDependencies>glib-2.0.lib;libffi.lib;wstring.lib;libintl.lib;iconv.lib;pcred.lib;harfbuzz.lib;pthread.lib;giflib.lib;libjpeg.lib;libwin32.lib;libtiff.lib;libpng.lib;cairo.lib;freetyped.lib;math.lib;systemcall.lib;filemanager.lib;libcrt.lib;dllstub.lib;yuzalib.lib;yuzaapi.lib</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <OptimizeReferences>true</OptimizeReferences>
