@@ -342,7 +342,7 @@ typedef float REAL;
 #else
 #define NOGDI
 typedef int INT;
-typedef guint16 WCHAR; /* 16-bits unicode */
+//typedef guint16 WCHAR; /* 16-bits unicode */
 typedef guint32 UINT;
 typedef guint16 UINT16;
 typedef guint32 UINT32;
