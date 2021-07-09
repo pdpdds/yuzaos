@@ -61,6 +61,10 @@ void _Scheduler::Reschedule()
 			DWORD result = g_platformAPI._processInterface.sky_kResumeThread(nextThread->m_win32Handle);
 			ASSERT(result != -1);
 		}
+		else
+		{
+			int j = 1;
+		}
 		
 		RestoreInterrupts(st);
 		return;
@@ -104,13 +108,7 @@ void _Scheduler::Reschedule()
 			DWORD result = g_platformAPI._processInterface.sky_kResumeThread(nextThread->m_win32Handle);
 			ASSERT(result != -1);
 		}
-			
-		if (pThread->GetState() == kThreadRunning)
-		{
-			if(enqueue == 0)
-			EnqueueReadyThread(pThread);
-			//ASSERT(enqueue == 1);
-		}
+				
 
 		RestoreInterrupts(st);
 			

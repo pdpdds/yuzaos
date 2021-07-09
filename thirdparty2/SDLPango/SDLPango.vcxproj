@@ -101,7 +101,7 @@
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <AdditionalOptions>/Oy  /arch:SSE %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4819</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>./;./include;../../corelib/include;../../runtime/include;../../thirdparty\SDL/SDL2/SDL/include;../../thirdparty/freetype/include;../../verify\pango;../../verify/glib\glib;../../verify\glib;../../thirdparty\harfbuzz;../../thirdparty\fontconfig</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./include;../../corelib/include;../../runtime/include;../../thirdparty\SDL/SDL2/SDL/include;../../thirdparty/freetype/include;../../thirdparty2\pango;../../thirdparty2\glib\glib;../../thirdparty2\glib;../../thirdparty\harfbuzz;../../thirdparty\fontconfig</AdditionalIncludeDirectories>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <UndefineAllPreprocessorDefinitions>true</UndefineAllPreprocessorDefinitions>
       <OmitFramePointers>true</OmitFramePointers>

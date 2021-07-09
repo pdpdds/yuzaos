@@ -69,6 +69,9 @@ typedef struct tag_SKY_PROCESS_INTERFACE
 	DWORD(*sky_WaitForMultipleObjects)(DWORD nCount, const HANDLE* lpHandles, BOOL bWaitAll, DWORD dwMilliseconds);
 	HANDLE(*sky_GetThreadRealHandle)();
 
+	HANDLE(*sky_CreateEvent)(LPSECURITY_ATTRIBUTES lpEventAttributes, BOOL bManualReset, BOOL bInitialState, LPCSTR lpName);	
+	BOOL(*sky_SetEvent)(HANDLE hEvent);
+
 } SKY_PROCESS_INTERFACE;
 
 //데이터 입출력관련 인터페이스

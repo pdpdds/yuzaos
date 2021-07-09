@@ -199,6 +199,16 @@ HANDLE sky_GetThreadRealHandle()
 	return OpenThread(THREAD_ALL_ACCESS, FALSE, theadId);
 }
 
+HANDLE sky_CreateEvent(LPSECURITY_ATTRIBUTES lpEventAttributes, BOOL bManualReset, BOOL bInitialState, LPCSTR lpName)
+{	
+	return CreateEventA(lpEventAttributes, bManualReset, bInitialState, lpName);
+}
+
+BOOL sky_SetEvent(HANDLE hEvent)
+{
+	return SetEvent(hEvent);
+}
+
 HANDLE sky_kGetCurrentThread()
 {
 	return GetCurrentThread();
@@ -398,5 +408,7 @@ SKY_PROCESS_INTERFACE g_processInterface =
 	sky_WaitForMultipleObjects,
 
 	sky_GetThreadRealHandle,
+	sky_CreateEvent,
+	sky_SetEvent,
 };
 

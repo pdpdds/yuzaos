@@ -13,10 +13,10 @@ Semaphore gSleepSemaphore("sleep_sem", 0);
 extern "C" void kSleep(DWORD dwMilliseconds)
 {
 #if SKY_EMULATOR
-	//g_platformAPI._processInterface.sky_Sleep(dwMilliseconds);
+	g_platformAPI._processInterface.sky_Sleep(dwMilliseconds);
 	//gSleepSemaphore.Wait(dwMilliseconds);
-	Semaphore sleepSemaphore("sleep_sem", 0);
-	sleepSemaphore.Wait(dwMilliseconds);
+	//Semaphore sleepSemaphore("sleep_sem", 0);
+	//sleepSemaphore.Wait(dwMilliseconds);
 	return;
 #else
 	//Semaphore sleepSemaphore("sleep_sem", 0);

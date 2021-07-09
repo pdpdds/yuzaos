@@ -563,6 +563,10 @@ int kGetCurrentProcessId(void)
 //세마포어
 int kAquireSemaphore(HANDLE handle, int timeout)
 {
+#if SKY_EMULATOR
+	return g_platformAPI._processInterface.sky_AquireSemaphore(handle, timeout);
+#endif
+
 	bigtime_t timeOut = timeout;
 
 	if (timeout == -1)
@@ -579,6 +583,10 @@ int kAquireSemaphore(HANDLE handle, int timeout)
 
 HANDLE kCreateSemaphore(const char* name, int count)
 {
+#if SKY_EMULATOR
+	return g_platformAPI._processInterface.sky_CreateSemaphore(NULL, count, -1, name);
+#endif
+
 	Semaphore* sem = new Semaphore(name, count);
 
 	if (sem == 0)
@@ -589,6 +597,12 @@ HANDLE kCreateSemaphore(const char* name, int count)
 
 int kReleaseSemaphore(HANDLE handle, int count)
 {
+
+#if SKY_EMULATOR
+	LONG previousCount;
+	return g_platformAPI._processInterface.sky_ReleaseSemaphore(handle, count, &previousCount);
+#endif
+
 	Semaphore* sem = static_cast<Semaphore*>(GetResource((int)handle, OBJ_SEMAPHORE));
 	if (sem == 0)
 		return E_BAD_HANDLE;
@@ -823,7 +837,11 @@ BOOL kPulseEvent(HANDLE hEvent)
 }
 
 DWORD kWaitForSingleObject(HANDLE hHandle, DWORD dwMilliseconds)
-{
+{	
+#if SKY_EMULATOR
+	return g_platformAPI._processInterface.sky_WaitForSingleObject(hHandle, dwMilliseconds);	
+#endif
+	
 	bigtime_t timeOut = dwMilliseconds;
 
 	if (dwMilliseconds == 0xffffffff)
@@ -848,10 +866,11 @@ DWORD kWaitForSingleObject(HANDLE hHandle, DWORD dwMilliseconds)
 
 int kWaitForMultipleObjects(int handleCount, const HANDLE* lpHandles, BOOL bWaitAll, DWORD dwMilliseconds)
 {
-/*#if SKY_EMULATOR
+#if SKY_EMULATOR
 	DWORD res = g_platformAPI._processInterface.sky_WaitForMultipleObjects(handleCount, lpHandles, bWaitAll, dwMilliseconds);
 	return res;
-#endif*/
+#endif
+
 	int fl = DisableInterrupts();
 	int result = E_NO_ERROR;
 
