@@ -6,7 +6,7 @@ YUZA OS 서적에서 설명하는 운영체제의 소스코드입니다.
 
 Feature
 
-* 윈도우 10 또는 그 이상 버전에서 비쥬얼 스튜디오로 운영체제 개발
+* 윈도우 10 또는 그 이상 버전에서 비쥬얼 스튜디오 2019로 운영체제 개발
 
 *  WIN32와 실기에서 동시 동작하는 듀얼 시스템
 * 강력한 선행적 디버깅 시스템 탑재
@@ -63,7 +63,7 @@ Port List
 
 응용앱 개발 환경 구축하기
 
-* 환경변수에 YUZA_ROOT를 등록. YUZA OS 루트폴더로 값을 지정
+* 환경변수에 YUZA_ROOT를 등록. YUZA OS 루트 경로로 값을 지정
 
 * [기본 프로젝트 템플릿](https://github.com/pdpdds/YuzaTemplate)
 * [유자 앱](https://github.com/pdpdds/YuzaApp)
