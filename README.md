@@ -55,11 +55,11 @@ WIN32 커널의 실행
 
 Port List
 
-[ThirdParty Port List](https://docs.google.com/spreadsheets/d/1WhGbZbyi8E4f2RWTuU_Y9-RuUu7yq3mHROZEgb20GD4/edit?usp=sharing)
+* [ThirdParty Port List](https://docs.google.com/spreadsheets/d/1WhGbZbyi8E4f2RWTuU_Y9-RuUu7yq3mHROZEgb20GD4/edit?usp=sharing)
 
-[ScummVM For YUZA](https://github.com/pdpdds/scummvm4yuza)
+* [ScummVM For YUZA](https://github.com/pdpdds/scummvm4yuza)
 
-[DosBox For YUZA](https://github.com/pdpdds/dosbox4yuza)
+* [DosBox For YUZA](https://github.com/pdpdds/dosbox4yuza)
 
 응용앱 개발 환경 구축하기
 
