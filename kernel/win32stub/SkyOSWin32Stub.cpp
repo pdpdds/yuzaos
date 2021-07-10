@@ -225,8 +225,19 @@ VOID CALLBACK TimerCallback(PVOID lpParameter, BOOLEAN TimerOrWaitFired) {
 }
 
 HANDLE g_hTimer;
-HANDLE g_hTimerQueue;
+HANDLE g_hTimerQueue = 0;
 I_SkyInput* g_pVirtualIO;
+
+
+void TerminateWin32StubProc(void)
+{
+	if (g_hTimerQueue)
+	{
+		if (!DeleteTimerQueue(g_hTimerQueue))
+			printf("DeleteTimerQueue failed (%d)\n", GetLastError());
+	}
+	
+}
 
 YUZAOS_DLL bool StartWin32StubTimer(I_SkyInput* pVirtualIO, unsigned int& tickCount)
 {
@@ -239,6 +250,8 @@ YUZAOS_DLL bool StartWin32StubTimer(I_SkyInput* pVirtualIO, unsigned int& tickCo
 	
 	// 처음 시작할때 0.5초 지연, 주기 10ms초마다 호출되게
 	CreateTimerQueueTimer(&g_hTimer, g_hTimerQueue, TimerCallback, NULL, 500, 10, 0);
+
+	atexit(TerminateWin32StubProc);
 
 	return true;
 }
@@ -264,17 +277,6 @@ DWORD WINAPI DesktopProc(LPVOID lpParam)
 	g_pVideo = InitWin32System(1024, 768, 32);
 
 	SDL_ShowCursor(0);
-
-	/*SDL_Surface *pHellowBMP = SDL_LoadBMP("gui-chan.bmp");
-	if (pHellowBMP == 0)
-	{
-		SDL_DestroyRenderer(pRenderer);
-		SDL_DestroyWindow(pWindow);
-		std::cout << "SDL_LoadBMP Error: " << SDL_GetError() << std::endl;
-		return;
-	}
-
-	SDL_Texture *pTexture = SDL_CreateTextureFromSurface(pRenderer, pHellowBMP);*/
 
 	//루프를 돌며 화면을 그린다.
 	while (running)
@@ -386,8 +388,6 @@ DWORD WINAPI DesktopProc(LPVOID lpParam)
 					pInputHandler->ConvertScanCodeAndPutQueue(bScancode);
 				}
 
-
-
 				/*unsigned char bASCIICode;
 				unsigned char bFlags;
 				if (bScancode != 0)
@@ -431,12 +431,9 @@ DWORD WINAPI DesktopProc(LPVOID lpParam)
 
 }
 
-
-
 extern "C" void LoopWin32(I_SkyInput* pVirtualIO, unsigned int& tickCount)
 {
 	
-
 	pInputHandler = new SkyInputHandlerWin32();
 	pInputHandler->Initialize(pVirtualIO);
 

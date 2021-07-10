@@ -28,3 +28,22 @@ Build Instruction
 * thirdParty/SDL/SDL1CL 폴더로 이동해서 sdlcl.sln을 실행한 다음 빌드한다.
 * thirdparty2 폴더로 이동해서 ThirdParty2.sln을 실행한 다음 빌드한다.
 * kernel.sln 솔루션을 실행한 다음 빌드한다.
+
+커널의 실행
+
+* 챕터별 솔루션 파일을 열어서 커널을 빌드한다. 각 챕터에 따른 빌드옵션을 설정한다.
+
+* BuildOption.h 파일을 열어서 옵션값을 변경하여 WIN32용 또는 실기용으로 빌드한다.
+  * SKY_EMULATOR 1 : WIN32용 앱으로 커널 빌드
+    * SKY_CONSOLE_MODE 0 : 콘솔 모드
+    * SKY_CONSOLE_MODE 1 : 그래픽 모드
+  * SKY_EMULATOR 0 : 가상머신용으로 커널 빌드
+    * SKY_CONSOLE_MODE 0 : 콘솔 모드
+    * SKY_CONSOLE_MODE 1 : 그래픽 모드			
+
+ThirdParty Port
+
+[YUZA ThirdParty Port]: https://docs.google.com/spreadsheets/d/1WhGbZbyi8E4f2RWTuU_Y9-RuUu7yq3mHROZEgb20GD4/edit?usp=sharing "ThirdParty Port List"
+
+
+
