@@ -31,7 +31,7 @@ Build Instruction
 * thirdparty2 폴더로 이동해서 ThirdParty2.sln을 실행한 다음 빌드한다.
 * kernel.sln 솔루션을 실행한 다음 빌드한다.
 
-커널의 빌드
+예제의 빌드
 
 * 챕터별 솔루션 파일을 열어서 커널을 빌드한다. 각 챕터에 따른 빌드옵션을 설정한다.
 
@@ -60,6 +60,17 @@ Port List
 [ScummVM For YUZA](https://github.com/pdpdds/scummvm4yuza)
 
 [DosBox For YUZA](https://github.com/pdpdds/dosbox4yuza)
+
+응용앱 개발 환경 구축하기
+
+* 환경변수에 YUZA_ROOT를 등록. YUZA OS 루트폴더로 값을 지정
+
+* [기본 프로젝트 템플릿](https://github.com/pdpdds/YuzaTemplate)
+* [유자 앱](https://github.com/pdpdds/YuzaApp)
+* [써드파티](https://github.com/pdpdds/yuza_thirdparty)
+* [테스트 프로젝트](https://github.com/pdpdds/yuza_test)
+
+​			
 
 
 
