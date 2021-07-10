@@ -41,9 +41,11 @@ Build Instruction
     * SKY_CONSOLE_MODE 0 : 콘솔 모드
     * SKY_CONSOLE_MODE 1 : 그래픽 모드			
 
-ThirdParty Port
+ThirdParty Port List
 
-[YUZA]: <https://docs.google.com/spreadsheets/d/1WhGbZbyi8E4f2RWTuU_Y9-RuUu7yq3mHROZEgb20GD4/edit?usp=sharing>
+[Port List](https://docs.google.com/spreadsheets/d/1WhGbZbyi8E4f2RWTuU_Y9-RuUu7yq3mHROZEgb20GD4/edit?usp=sharing)
+
+
 
 
 
