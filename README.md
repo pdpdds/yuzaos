@@ -43,7 +43,7 @@ Build Instruction
 
 ThirdParty Port
 
-[YUZA ThirdParty Port]: https://docs.google.com/spreadsheets/d/1WhGbZbyi8E4f2RWTuU_Y9-RuUu7yq3mHROZEgb20GD4/edit?usp=sharing "ThirdParty Port List"
+[YUZA ThirdParty Port]: (https://docs.google.com/spreadsheets/d/1WhGbZbyi8E4f2RWTuU_Y9-RuUu7yq3mHROZEgb20GD4/edit?usp=sharing "ThirdParty Port List)"
 
 
 
