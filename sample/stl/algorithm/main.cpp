@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <EASTL/algorithm.h>
 #include <EASTL/string.h>
+#include <EASTL/string_view.h>
+#include <iostream>
 
 void* operator new[](size_t size, const char* name, int flags, unsigned debugFlags, const char* file, int line)
 {
@@ -40,6 +42,11 @@ int main(void)
     trim(str);
 
     printf("Trim Result[%s]\n", str.c_str());
+
+    char array[3] = { 'B', 'a', 'r' };
+    eastl::string_view array_v(array, 3);
+    size_t count = eastl::count(array_v.begin(), array_v.end(), '\n') + 1;
+    
 
     return 0;
 }
