@@ -25,7 +25,8 @@ extern "C" {
 	CRT_API double atof(char *p);
 	CRT_API long int atol(const char* nptr);
 	CRT_API int atob(int *vp, char *p, int base);
-	CRT_API int      sscanf(const char *, const char *, ...);
+	CRT_API int sscanf(const char *, const char *, ...);
+	CRT_API int vsscanf(const char* buf, const char* fmt, va_list args);
 	CRT_API unsigned long atoul(const char *num);
 
 	CRT_API unsigned long simple_strtoul(const char *cp, char **endp, unsigned int base);

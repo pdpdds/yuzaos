@@ -99,6 +99,7 @@ extern "C" {
 	DLL_API int dup(int fd);
 	DLL_API int close(int fd);
 	DLL_API size_t read(int fd, void* buf, size_t count);
+	DLL_API long tell(int fd);
 	DLL_API int lseek(int fd, int offset, int whence);
 	DLL_API int fileno(FILE* fp);
 	DLL_API char* getcwd(char* buf, size_t size);
