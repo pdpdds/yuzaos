@@ -268,7 +268,6 @@ WIN32_VIDEO* GetFrameBufferInfo()
 		
 }
 
-
 DWORD WINAPI DesktopProc(LPVOID lpParam)
 {
 	bool running = true;
