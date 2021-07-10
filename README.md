@@ -1,5 +1,7 @@
 # YUZA OS
 
+YUZA OS 서적에서 설명하는 운영체제의 소스코드입니다.
+
 [![YUZA OS Movie](https://img.youtube.com/vi/BM-LlEVNjWU/0.jpg)](https://youtu.be/BM-LlEVNjWU) 
 
 Feature
@@ -29,7 +31,7 @@ Build Instruction
 * thirdparty2 폴더로 이동해서 ThirdParty2.sln을 실행한 다음 빌드한다.
 * kernel.sln 솔루션을 실행한 다음 빌드한다.
 
-커널의 실행
+커널의 빌드
 
 * 챕터별 솔루션 파일을 열어서 커널을 빌드한다. 각 챕터에 따른 빌드옵션을 설정한다.
 
@@ -39,11 +41,25 @@ Build Instruction
     * SKY_CONSOLE_MODE 1 : 그래픽 모드
   * SKY_EMULATOR 0 : 가상머신용으로 커널 빌드
     * SKY_CONSOLE_MODE 0 : 콘솔 모드
-    * SKY_CONSOLE_MODE 1 : 그래픽 모드			
+    * SKY_CONSOLE_MODE 1 : 그래픽 모드
 
-ThirdParty Port List
+WIN32 커널의 실행
 
-[Port List](https://docs.google.com/spreadsheets/d/1WhGbZbyi8E4f2RWTuU_Y9-RuUu7yq3mHROZEgb20GD4/edit?usp=sharing)
+* BIN 폴더에  image 폴더를 만든 다음 가상이미지 파일을 복사한다.
+* [가상 이미지 다운로드](https://drive.google.com/drive/folders/1x2My3JrYN_EAVY4GG5o0gvbdVZLaw9wB)
+* 각 챕터에 따른 가상 이미지 파일을 설정한다.
+  * 예) 07_sdl_02_game.sln을 실행시 
+    * yuza.cfg 파일을 연다 
+    * HARDDISK 항목의 가상 이미지 이름을 07_sdl_02_game.img로 변경
+* ​	로컬 디버거를 실행해서 디버깅을 진행한다. 
+
+Port List
+
+[ThirdParty Port List](https://docs.google.com/spreadsheets/d/1WhGbZbyi8E4f2RWTuU_Y9-RuUu7yq3mHROZEgb20GD4/edit?usp=sharing)
+
+[ScummVM For YUZA](https://github.com/pdpdds/scummvm4yuza)
+
+[DosBox For YUZA](https://github.com/pdpdds/dosbox4yuza)
 
 
 
