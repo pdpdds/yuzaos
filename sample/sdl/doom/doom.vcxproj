@@ -97,7 +97,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalIncludeDirectories>./;../include;../../../corelib/include;../../../runtime/include;../../../corelib/STL/SGI;../../../ThirdParty/SDL/SDL1CL/SDL/include;../../../runtime/libcrt/string;../../../ThirdParty/SDL/SDL1CL/SDL_Mixer;../../../ThirdParty/SDL/SDL1CL/SDL_net</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>SKYOS32;_CRT_SECURE_NO_WARNINGS;_CONSOLE;MY_SDL_VER;DOGS;BETA;RANGECHECK;INSTRUMENTED;_WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SKYOS32;_CRT_SECURE_NO_WARNINGS;_CONSOLE;MY_SDL_VER;DOGS;BETA;RANGECHECK;INSTRUMENTED;_MSC_VER=1920;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\Debug\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\Debug\WinMBF.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\Debug\</ObjectFileName>
@@ -133,13 +133,13 @@
       <AdditionalDependencies>systemcall.lib;SDL_mixer.lib;sdlcl.lib;math.lib;libcrt.lib;libwin32.lib;exestub.lib;filemanager.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>../../../Debug;../../../$(Configuration);../../../corelib/debug;../../../runtime/debug;../../../ThirdParty/SDL/SDL1CL/debug;../../../ThirdParty/debug</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
-      <AdditionalOptions>/safeseh:no /ALIGN:1024 %(AdditionalOptions)</AdditionalOptions>
       <EntryPointSymbol>
       </EntryPointSymbol>
       <BaseAddress>0x08000000</BaseAddress>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <SectionAlignment>1024</SectionAlignment>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

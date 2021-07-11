@@ -65,7 +65,6 @@ int main( int argc, char* args[] )
 			    //While game is not over yet
 			    while ( !gameOver && !quit && !isWinning)
                 {
-					Sleep(1);
                     //Handle events on queue
                     while( SDL_PollEvent( &e ) != 0 )
                     {
@@ -109,11 +108,17 @@ int main( int argc, char* args[] )
 
                     //Update screen
                     SDL_RenderPresent( gRenderer );
+
+					SDL_Delay(50);
                 }
                 //Check play again flag
                 playAgainManager( quit );
+
+				SDL_Delay(50);
 			}
 		}
+
+		
 	}
 
 	//Free resources and close SDL
