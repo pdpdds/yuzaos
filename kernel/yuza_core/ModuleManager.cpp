@@ -120,7 +120,10 @@ void* ModuleManager::LoadPE(const char* fileName, bool fromMemory)
 		dllInfo = (LOAD_DLL_INFO*)LoadPEFromFile(fileName);
 	
 	if (dllInfo == nullptr)
-		kPanic("LoadPE Fail. PEName:  %s\n", fileName);
+	{
+		kDebugPrint("LoadPE Fail. PEName:  %s\n", fileName);
+		return nullptr;
+	}
 
 	PrintPEHierachy(dllInfo);
 
@@ -304,14 +307,19 @@ MODULE_HANDLE ModuleManager::LoadPEFromMemory(const char* moduleName)
 
 MODULE_HANDLE ModuleManager::LoadPEFromFile(const char* moduleName)
 {
-	LOAD_DLL_INFO *p = new LOAD_DLL_INFO;
+	
+	LOAD_DLL_INFO* p = new LOAD_DLL_INFO;
 	strcpy(p->moduleName, moduleName);
 	p->refCount = 1;
 
 	DWORD res = LoadDLLFromFileName(moduleName, 0, p);
 	if (res != ELoadDLLResult_OK)
-		kPanic("LoadPEFromFile Fail. Name : %s, Result : %d\n", moduleName, res);
-	
+	{
+		delete p;
+		kDebugPrint("LoadPEFromFile Fail. Name : %s, Result : %d\n", moduleName, res);
+		return 0;
+	}
+
 	return p;
 }
 

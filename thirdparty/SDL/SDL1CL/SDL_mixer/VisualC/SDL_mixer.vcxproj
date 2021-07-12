@@ -100,7 +100,7 @@
       <AdditionalOptions>/Oy /arch:SSE %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\timidity;..\native_midi;external\include;../../../../../corelib/include;../../../../../runtime/include;../../SDL/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>HAVE_MEMSET;SKYOS32;_CRT_SECURE_NO_WARNINGS;WAV_MUSIC;OGG_MUSIC;OGG_DYNAMIC="vorbisfile.dll";MID_MUSIC;USE_TIMIDITY_MIDI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>HAVE_MEMSET;SKYOS32;_CRT_SECURE_NO_WARNINGS;WAV_MUSIC;OGG_MUSIC;OGG_DYNAMIC="vorbisfile.dll";MID_MUSIC;USE_TIMIDITY_MIDI;_MSC_VER=1920;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeaderOutputFile>.\Debug/SDL_mixer.pch</PrecompiledHeaderOutputFile>

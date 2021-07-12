@@ -86,7 +86,7 @@ extern "C" {
 
 #ifndef _CTYPE_DISABLE_MACROS
 
-#define isalpha(c)     (_pctype[(unsigned char)(c)] & (_UPPER | _LOWER))
+/*#define isalpha(c)     (_pctype[(unsigned char)(c)] & (_UPPER | _LOWER))
 #define isupper(c)     (_pctype[(unsigned char)(c)] & _UPPER)
 #define islower(c)     (_pctype[(unsigned char)(c)] & _LOWER)
 #define isdigit(c)     (_pctype[(unsigned char)(c)] & _DIGIT)
@@ -100,7 +100,7 @@ extern "C" {
 #define isleadbyte(c)  (_pctype[(unsigned char)(c)] & _LEADBYTE)
 
 #define tolower(c)     (isupper(c) ? ((c) - 'A' + 'a') : (c))
-#define toupper(c)     (islower(c) ? ((c) - 'a' + 'A') : (c))
+#define toupper(c)     (islower(c) ? ((c) - 'a' + 'A') : (c))*/
 
 #endif
 
