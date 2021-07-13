@@ -20,6 +20,8 @@ Build Tool
 
 Build Instruction
 
+* 프로젝트를 빌드할 시 솔루션 구성은 DEBUG, 솔루션 플랫폼은 WIN32로 설정한다.
+
 * runtime 폴더로 이동해서 runtime.sln을 실행한 다음 빌드한다.
   정상 빌드가 되지 않는 경우 어셈블리 파일 빌드를 위해 필요한 확장 플러그인인 VSNASM이 설치됐는지 확인한다.
 * corelib.sln을 실행하고 빌드한다.
@@ -32,6 +34,8 @@ Build Instruction
 * kernel.sln 솔루션을 실행한 다음 빌드한다.
 
 예제의 빌드
+
+* 프로젝트를 빌드할 시 솔루션 구성은 DEBUG, 솔루션 플랫폼은 WIN32로 설정한다.
 
 * 챕터별 솔루션 파일을 열어서 커널을 빌드한다. 각 챕터에 따른 빌드옵션을 설정한다.
 
