@@ -116,7 +116,7 @@
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <AdditionalIncludeDirectories>./;../../include;../include;../../corelib/include;../../runtime/include;../../thirdparty/sdl/sdl2/sdlttf;../../thirdparty/sdl/sdl2/sdl/include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>SKYOS32;PDC_FORCE_UTF8;PDC_WIDE</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SKYOS32;PDC_FORCE_UTF8</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>

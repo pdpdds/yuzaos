@@ -9,26 +9,26 @@
 
 Define before inclusion (only those needed):
 
-    XCURSES         True if compiling for X11.
-    PDC_RGB         True if you want to use RGB color definitions
-                    (Red = 1, Green = 2, Blue = 4) instead of BGR.
-    PDC_WIDE        True if building wide-character support.
-    PDC_DLL_BUILD   True if building a Windows DLL.
-    PDC_NCMOUSE     Use the ncurses mouse API instead
-                    of PDCurses' traditional mouse API.
+    XCURSES         if building / built for X11
+    PDC_RGB         if you want to use RGB color definitions
+                    (Red = 1, Green = 2, Blue = 4) instead of BGR
+    PDC_WIDE        if building / built with wide-character support
+    PDC_DLL_BUILD   if building / built as a Windows DLL
+    PDC_NCMOUSE     to use the ncurses mouse API instead
+                    of PDCurses' traditional mouse API
 
 Defined by this header:
 
-    PDCURSES        Enables access to PDCurses-only routines.
-    PDC_BUILD       Defines API build version.
-    PDC_VER_MAJOR   Major version number
-    PDC_VER_MINOR   Minor version number
-    PDC_VERDOT      Version string
+    PDCURSES        PDCurses-only features are available
+    PDC_BUILD       API build version
+    PDC_VER_MAJOR   major version number
+    PDC_VER_MINOR   minor version number
+    PDC_VERDOT      version string
 
 **man-end****************************************************************/
 
 #define PDCURSES        1
-#define PDC_BUILD    3900
+#define PDC_BUILD    3906
 #define PDC_VER_MAJOR   3
 #define PDC_VER_MINOR   9
 #define PDC_VERDOT   "3.9"
@@ -302,6 +302,16 @@ typedef struct _win       /* definition of a window */
     struct _win *_parent; /* subwin's pointer to parent win */
 } WINDOW;
 
+/* Color pair structure */
+
+typedef struct
+{
+    short f;              /* foreground color */
+    short b;              /* background color */
+    int   count;          /* allocation order */
+    bool  set;            /* pair has been set */
+} PDC_PAIR;
+
 /* Avoid using the SCREEN struct directly -- use the corresponding
    functions if possible. This struct may eventually be made private. */
 
@@ -347,15 +357,6 @@ typedef struct
     bool  key_code;                /* TRUE if last key is a special key;
                                       used internally by get_wch() */
     MOUSE_STATUS mouse_status;     /* last returned mouse status */
-#ifdef XCURSES
-    bool  sb_on;
-    int   sb_viewport_y;
-    int   sb_viewport_x;
-    int   sb_total_y;
-    int   sb_total_x;
-    int   sb_cur_y;
-    int   sb_cur_x;
-#endif
     short line_color;     /* color of line attributes - default -1 */
     attr_t termattrs;     /* attribute capabilities */
     WINDOW *lastscr;      /* the last screen image */
@@ -364,6 +365,13 @@ typedef struct
     bool  dirty;          /* redraw on napms() after init_color() */
     int   sel_start;      /* start of selection (y * COLS + x) */
     int   sel_end;        /* end of selection */
+    int  *c_buffer;       /* character buffer */
+    int   c_pindex;       /* putter index */
+    int   c_gindex;       /* getter index */
+    int  *c_ungch;        /* array of ungotten chars */
+    int   c_ungind;       /* ungetch() push index */
+    int   c_ungmax;       /* allocated size of ungetch() buffer */
+    PDC_PAIR *atrtab;     /* table of color pairs */
 } SCREEN;
 
 /*----------------------------------------------------------------------
@@ -1275,8 +1283,11 @@ PDCEX  mmask_t getmouse(void);
 
 /* ncurses */
 
+PDCEX  int     alloc_pair(int, int);
 PDCEX  int     assume_default_colors(int, int);
 PDCEX  const char *curses_version(void);
+PDCEX  int     find_pair(int, int);
+PDCEX  int     free_pair(int);
 PDCEX  bool    has_key(int);
 PDCEX  bool    is_keypad(const WINDOW *);
 PDCEX  bool    is_leaveok(const WINDOW *);
@@ -1331,7 +1342,6 @@ PDCEX  int     PDC_freeclipboard(char *);
 PDCEX  int     PDC_getclipboard(char **, long *);
 PDCEX  int     PDC_setclipboard(const char *, long);
 
-PDCEX  unsigned long PDC_get_input_fd(void);
 PDCEX  unsigned long PDC_get_key_modifiers(void);
 PDCEX  int     PDC_return_key_modifiers(bool);
 
@@ -1381,6 +1391,7 @@ PDCEX  int     wunderscore(WINDOW *);
 /* Deprecated */
 
 #define PDC_save_key_modifiers(x)  (OK)
+//#define PDC_get_input_fd()         0
 
 /* return codes from PDC_getclipboard() and PDC_setclipboard() calls */
 

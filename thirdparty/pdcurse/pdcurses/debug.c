@@ -1,7 +1,7 @@
 /* PDCurses */
 
 #include <curspriv.h>
-#include <getenv.h>
+
 /*man-start**************************************************************
 
 debug
@@ -36,7 +36,7 @@ debug
 
 #include <stdlib.h>
 #include <string.h>
-//#include <sys/types.h>
+#include <sys/types.h>
 #include <time.h>
 
 static bool want_fflush = FALSE;
@@ -52,19 +52,18 @@ void PDC_debug(const char *fmt, ...)
 
     time(&now);
     strftime(hms, 9, "%H:%M:%S", localtime(&now));
-    //fprintf(SP->dbfp, "At: %8.8ld - %s ", (long) clock(), hms);
-	printf("At: %8.8ld - %s ", (long)clock(), hms);
+    fprintf(SP->dbfp, "At: %8.8ld - %s ", (long) clock(), hms);
 
-    /*va_start(args, fmt);
+    va_start(args, fmt);
     vfprintf(SP->dbfp, fmt, args);
-    va_end(args);*/
+    va_end(args);
 
     /* If you are crashing and losing debugging information, enable this
        by setting the environment variable PDC_TRACE_FLUSH. This may
        impact performance. */
 
-    /*if (want_fflush)
-        fflush(SP->dbfp);*/
+    if (want_fflush)
+        fflush(SP->dbfp);
 
     /* If with PDC_TRACE_FLUSH enabled you are still losing logging in
        crashes, you may need to add a platform-dependent mechanism to
@@ -84,7 +83,7 @@ void traceon(void)
     SP->dbfp = fopen("trace", "a");
     if (!SP->dbfp)
     {
-        printf("PDC_debug(): Unable to open debug log file\n");
+        fprintf(stderr, "PDC_debug(): Unable to open debug log file\n");
         return;
     }
 

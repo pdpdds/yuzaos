@@ -248,7 +248,7 @@ WINDOW *newwin(int nlines, int ncols, int begy, int begx)
     if (!ncols)
         ncols  = COLS  - begx;
 
-    if (!SP || ((begy + nlines) > SP->lines) || ((begx + ncols) > SP->cols))
+    if (!SP || begy + nlines > SP->lines || begx + ncols > SP->cols)
         return (WINDOW *)NULL;
 
     win = PDC_makenew(nlines, ncols, begy, begx);
