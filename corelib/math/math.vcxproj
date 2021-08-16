@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="fmodf.c" />
     <ClCompile Include="hypot.c" />
     <ClCompile Include="labs.c" />
     <ClCompile Include="math.c" />

@@ -123,6 +123,7 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="nan.c" />
+    <ClCompile Include="fmodf.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\fdlibm.h">

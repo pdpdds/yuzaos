@@ -553,9 +553,14 @@ double fmod(double a, double b)
 	return (a - b * floor(a / b));
 }
 
-float fmodf(float a, float b)
+/*float fmodf(float a, float b)
 {
 	return fmod(a, b);
+}*/
+
+float sinhf(float x)
+{
+	return sinh(x);
 }
 
 double powerOfTen(int num) {

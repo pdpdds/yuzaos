@@ -35,6 +35,7 @@ extern "C" {
 	MATH_API long double acosl(long double x);
 
 	MATH_API double sinh(double x);
+	MATH_API float sinhf(float x);
 	MATH_API double asin(double x);
 	MATH_API float asinf(float x);
 	MATH_API long double asinl(long double x);
