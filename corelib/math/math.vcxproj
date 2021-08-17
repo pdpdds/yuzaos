@@ -14,6 +14,24 @@
     <ClCompile Include="fmodf.c" />
     <ClCompile Include="hypot.c" />
     <ClCompile Include="labs.c" />
+    <ClCompile Include="libm\exp2f_data.c" />
+    <ClCompile Include="libm\exp_data.c" />
+    <ClCompile Include="libm\pow.c" />
+    <ClCompile Include="libm\powf.c" />
+    <ClCompile Include="libm\powf_data.c" />
+    <ClCompile Include="libm\powl.c" />
+    <ClCompile Include="libm\pow_data.c" />
+    <ClCompile Include="libm\__math_divzero.c" />
+    <ClCompile Include="libm\__math_divzerof.c" />
+    <ClCompile Include="libm\__math_invalid.c" />
+    <ClCompile Include="libm\__math_invalidf.c" />
+    <ClCompile Include="libm\__math_invalidl.c" />
+    <ClCompile Include="libm\__math_oflow.c" />
+    <ClCompile Include="libm\__math_oflowf.c" />
+    <ClCompile Include="libm\__math_uflow.c" />
+    <ClCompile Include="libm\__math_uflowf.c" />
+    <ClCompile Include="libm\__math_xflow.c" />
+    <ClCompile Include="libm\__math_xflowf.c" />
     <ClCompile Include="math.c" />
     <ClCompile Include="modf.c" />
     <ClCompile Include="nan.c" />
@@ -59,6 +77,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\runtime\include\math.h" />
+    <ClInclude Include="libm\libm.h" />
+    <ClInclude Include="libm\powf_data.h" />
+    <ClInclude Include="libm\pow_data.h" />
     <ClInclude Include="src\fdlibm.h" />
   </ItemGroup>
   <ItemGroup>
@@ -114,7 +135,7 @@
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>../include;../../runtime/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../include;../../runtime/include;./libm</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SKYOS32;_MSC_VER;i386;MATH_DLL;__STDC__</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
@@ -127,7 +148,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CallingConvention>Cdecl</CallingConvention>
-      <DisableSpecificWarnings>4146;4244</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4146;4244;4116</DisableSpecificWarnings>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>

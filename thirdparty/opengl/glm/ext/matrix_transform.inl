@@ -18,8 +18,8 @@ namespace glm
 	GLM_FUNC_QUALIFIER mat<4, 4, T, Q> rotate(mat<4, 4, T, Q> const& m, T angle, vec<3, T, Q> const& v)
 	{
 		T const a = angle;
-		T const c = cos(a);
-		T const s = sin(a);
+		T const c = ::cos(a);
+		T const s = ::sin(a);
 
 		vec<3, T, Q> axis(normalize(v));
 		vec<3, T, Q> temp((T(1) - c) * axis);

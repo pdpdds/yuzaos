@@ -17,11 +17,12 @@ typedef struct _ldiv_t
     long rem;
 } ldiv_t;
 
-div_t div(int num, int denom);
+
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+    div_t div(int num, int denom);
 	int exit(int errorCode);
 #ifdef __cplusplus
 }

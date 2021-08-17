@@ -135,7 +135,7 @@ namespace detail
 	template<typename genType>
 	GLM_FUNC_QUALIFIER genType inversesqrt(genType x)
 	{
-		return static_cast<genType>(1) / sqrt(x);
+		return static_cast<genType>(1) / ::sqrt(x);
 	}
 
 	template<length_t L, typename T, qualifier Q>

@@ -12,6 +12,8 @@ typedef int  int32_t;
 typedef unsigned int   uint32_t;
 typedef long long  int64_t;
 typedef unsigned long long   uint64_t;
+typedef double   double_t;
+typedef float float_t;
 typedef int64_t register_t;
 
 

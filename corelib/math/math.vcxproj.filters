@@ -124,16 +124,82 @@
     </ClCompile>
     <ClCompile Include="nan.c" />
     <ClCompile Include="fmodf.c" />
+    <ClCompile Include="libm\pow.c">
+      <Filter>libm</Filter>
+    </ClCompile>
+    <ClCompile Include="libm\pow_data.c">
+      <Filter>libm</Filter>
+    </ClCompile>
+    <ClCompile Include="libm\powf.c">
+      <Filter>libm</Filter>
+    </ClCompile>
+    <ClCompile Include="libm\powf_data.c">
+      <Filter>libm</Filter>
+    </ClCompile>
+    <ClCompile Include="libm\powl.c">
+      <Filter>libm</Filter>
+    </ClCompile>
+    <ClCompile Include="libm\__math_uflow.c">
+      <Filter>libm</Filter>
+    </ClCompile>
+    <ClCompile Include="libm\__math_uflowf.c">
+      <Filter>libm</Filter>
+    </ClCompile>
+    <ClCompile Include="libm\__math_xflow.c">
+      <Filter>libm</Filter>
+    </ClCompile>
+    <ClCompile Include="libm\__math_xflowf.c">
+      <Filter>libm</Filter>
+    </ClCompile>
+    <ClCompile Include="libm\__math_divzero.c">
+      <Filter>libm</Filter>
+    </ClCompile>
+    <ClCompile Include="libm\__math_divzerof.c">
+      <Filter>libm</Filter>
+    </ClCompile>
+    <ClCompile Include="libm\__math_invalid.c">
+      <Filter>libm</Filter>
+    </ClCompile>
+    <ClCompile Include="libm\__math_invalidf.c">
+      <Filter>libm</Filter>
+    </ClCompile>
+    <ClCompile Include="libm\__math_invalidl.c">
+      <Filter>libm</Filter>
+    </ClCompile>
+    <ClCompile Include="libm\__math_oflow.c">
+      <Filter>libm</Filter>
+    </ClCompile>
+    <ClCompile Include="libm\__math_oflowf.c">
+      <Filter>libm</Filter>
+    </ClCompile>
+    <ClCompile Include="libm\exp_data.c">
+      <Filter>libm</Filter>
+    </ClCompile>
+    <ClCompile Include="libm\exp2f_data.c">
+      <Filter>libm</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\fdlibm.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\runtime\include\math.h" />
+    <ClInclude Include="libm\libm.h">
+      <Filter>libm</Filter>
+    </ClInclude>
+    <ClInclude Include="libm\pow_data.h">
+      <Filter>libm</Filter>
+    </ClInclude>
+    <ClInclude Include="libm\powf_data.h">
+      <Filter>libm</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
       <UniqueIdentifier>{fa33e29a-3879-4cae-b9a4-97cfaf14e8dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libm">
+      <UniqueIdentifier>{6823fecf-6159-4012-813d-1de4750ad4d2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

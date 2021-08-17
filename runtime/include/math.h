@@ -79,14 +79,14 @@ extern "C" {
 	MATH_API double log(double x);
 	MATH_API float logf(float x);
 	MATH_API long double logl(double x);
+	
 	MATH_API double log10(double x);
 	MATH_API float log10f(float x);
 	MATH_API long double log10l(double x);
 
-	//MATH_API double pow(double x, double y);
-	MATH_API double pow(float x, int y);
+	MATH_API double pow(double x, double y);
 	MATH_API float powf(float x, float y);
-	//MATH_API long double powl(long double x, long double y);
+	MATH_API long double powl(long double x, long double y);
 
 	MATH_API double tan(double x);
 	MATH_API float tanf(float x);
@@ -108,6 +108,8 @@ extern "C" {
 	MATH_API long labs(long n);
 
 	MATH_API double modf(double value, double* iptr);
+	MATH_API float modff(float value, float* iptr);
+	MATH_API long double modfl(long double value, long double* iptr);
 
 	MATH_API int rand(void);
 	MATH_API void srand(unsigned int seed);

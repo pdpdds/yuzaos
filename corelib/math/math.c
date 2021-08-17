@@ -480,16 +480,13 @@ int power2(int x, unsigned int y)
 		return x * temp * temp;
 }
 
-/* Extended version of power function that can work
-for float x and negative y
-*/
-double pow(float x, int y)
+/*double pow(double x, double y)
 {
-	float temp;
+	double temp;
 	if (y == 0)
 		return 1;
 	temp = pow(x, y / 2);
-	if ((y % 2) == 0) {
+	if (((long long)y % 2) == 0) {
 		return temp * temp;
 	}
 	else {
@@ -515,7 +512,7 @@ float powf(float x, float y)
 		else
 			return (temp * temp) / x;
 	}
-}
+}*/
 
 /* Extended version of power function that can work
 for double x and negative y
@@ -548,9 +545,16 @@ long fact(int n)
 	return result;
 }
 
+double trunc(double d) { return (d > 0) ? floor(d) : ceil(d); }
+
 double fmod(double a, double b)
 {
-	return (a - b * floor(a / b));
+	return a - trunc(a / b) * b;
+}
+
+MATH_API long double fmodl(long double x, long double y)
+{
+	return fmod(x, y);
 }
 
 /*float fmodf(float a, float b)
@@ -744,4 +748,9 @@ static int _finite(double d)
 MATH_API int isinf(double d)
 {
 	return _finite(d);
+}
+
+MATH_API float tanf(float x)
+{
+	return tan(x);
 }

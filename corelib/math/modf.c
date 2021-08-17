@@ -52,3 +52,13 @@ MATH_API double modf(double value, register double *iptr)
 	}
 	return (value - *iptr); /* signed fractional part */
 }
+
+MATH_API float modff(float value, float* iptr)
+{
+	return modf(value, iptr);
+}
+
+MATH_API long double modfl(long double value, long double* iptr)
+{
+	return modf(value, iptr);
+}
