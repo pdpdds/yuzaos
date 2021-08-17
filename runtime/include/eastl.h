@@ -11,4 +11,6 @@
 #include <EASTL/array.h>
 #include <EASTL/algorithm.h>
 #include <EASTL/sort.h>
+#include <EASTL/numeric_limits.h>
+#include <EASTL/hash_map.h>
 
