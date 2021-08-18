@@ -244,7 +244,7 @@ int FAT_FileSystem::fgetc(FILE* stream)
 	if (readCount == 0)
 		return EOF;
 
-	return buf[0];
+	return (unsigned char)buf[0];
 }
 
 int FAT_FileSystem::fputs(char const* buffer, FILE* stream)
