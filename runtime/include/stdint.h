@@ -119,9 +119,12 @@ typedef unsigned long long   uintmax_t;
 
 #define SIZE_MAX UINT32_MAX
 
-#ifndef WCHAR_MIN  /* also in wchar.h */ 
+#ifndef WCHAR_MIN 
 #define WCHAR_MIN 0
-#define WCHAR_MAX ((wchar_t)-1) /* UINT16_MAX */
+#endif
+
+#ifndef WCHAR_MAX 
+#define WCHAR_MAX 65535
 #endif
 
 #if defined(SKYOS32)

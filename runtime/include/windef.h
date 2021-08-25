@@ -51,9 +51,20 @@ typedef long clock_t;
 #define NULL 0
 #endif
 
-typedef int  off_t;
+#ifndef _OFF_T_DEFINED
+#define _OFF_T_DEFINED
+
+typedef long _off_t;
+typedef long long _off64_t;
+
+#if (defined _CRT_DECLARE_NONSTDC_NAMES && _CRT_DECLARE_NONSTDC_NAMES) || (!defined _CRT_DECLARE_NONSTDC_NAMES && !__STDC__)
+typedef _off_t off_t;
+typedef _off64_t off64_t;
+#endif
+#endif
+
 typedef long long int64;
-typedef long long off64_t;
+
 typedef unsigned int   uint32;
 typedef int  int32;
 typedef unsigned long spinlock;
