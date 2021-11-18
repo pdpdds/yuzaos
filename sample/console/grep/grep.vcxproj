@@ -88,7 +88,7 @@
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <AdditionalIncludeDirectories>./lib;./;../include;../../../corelib/include;../../../runtime/include;../../yuza_core;../../../runtime/libcrt/input;../../../corelib/stl/sgi;../../../corelib/streams;../../../thirdparty/pcre/build;../../../corelib\iconv</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_MSC_VER=1920;__STDC__;SKYOS32;HAVE_CONFIG_H;_CRT_NO_TIME_T</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MSC_VER=1920;SKYOS32;HAVE_CONFIG_H;_CRT_NO_TIME_T</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <StringPooling>
       </StringPooling>
