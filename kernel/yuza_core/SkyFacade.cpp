@@ -288,7 +288,8 @@ bool InitEnvironment(const char* config_file)
 #endif
 	AddEnvironment(cfg, "desktop.DESKTOPMGR", "DESKTOPMGR");
 	AddEnvironment(cfg, "console.CONSOLE", "CONSOLEMGR");
-
+	
+	AddEnvironmentForced(cfg, "environment.SHELL", "SHELL_NAME");
 	AddEnvironmentForced(cfg, "environment.BOOT", "BOOT_DRIVE");
 
 	config_destroy(&cfg);

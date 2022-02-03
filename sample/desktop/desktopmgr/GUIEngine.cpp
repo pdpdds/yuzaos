@@ -27,7 +27,15 @@ GUIEngine::~GUIEngine()
 bool GUIEngine::Run()
 {
 	Syscall_CreateProcess("panel.dll", 0, 16);
-	Syscall_CreateProcess("cmd.dll", 0, 16);
+
+	char buf[256];
+	DWORD count = Syscall_GetEnvironmentVariable("SHELL_NAME", buf, 256);
+
+	if(count == 0)
+		Syscall_CreateProcess("cmd.dll", 0, 16);
+	else
+		Syscall_CreateProcess(buf, 0, 16);
+	 
 
 	Update(0);
 
