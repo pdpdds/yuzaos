@@ -136,10 +136,10 @@ extern "C" {
 
 	WINBASEAPI DWORD WINAPI GetTickCount();
 
-	
-
 	WINBASEAPI HANDLE WINAPI CreateFileMapping(HANDLE hFile, PSECURITY_ATTRIBUTES psa, DWORD fdwProtect, DWORD dwMaximumSizeHigh, DWORD dwMaximumSizeLow, LPCSTR pszName);
 	WINBASEAPI PVOID WINAPI MapViewOfFile(HANDLE hFileMappingObject, DWORD dwDesiredAccess, DWORD dwFileOffsetHigh, DWORD dwFileOffsetLow, DWORD dwNumberOfBytesToMap);
+
+	WINBASEAPI void WINAPI ReadWriteBarrier(void);
 	
 	//no winapi
 	WINBASEAPI bool WINAPI ExitThread(int errorcode);

@@ -980,6 +980,11 @@ PVOID MapViewOfFile(HANDLE hFileMappingObject, DWORD dwDesiredAccess, DWORD dwFi
 	return Syscall_MapViewOfFile(hFileMappingObject, dwDesiredAccess, dwFileOffsetHigh, dwFileOffsetLow, dwNumberOfBytesToMap);
 }
 
+void ReadWriteBarrier(void)
+{
+	_ReadWriteBarrier();
+}
+
 bool GetLocalTime(LPSYSTEMTIME lpSystemTime)
 {
 	return Syscall_GetLocalTime(lpSystemTime);

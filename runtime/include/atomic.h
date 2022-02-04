@@ -31,6 +31,8 @@ extern "C" {
 	extern LONG _InterlockedOr(LONG volatile* Destination, LONG Value);
 	extern LONG _InterlockedXor(LONG volatile* Destination, LONG Value);
 
+	extern void _ReadWriteBarrier(void);
+
 	extern unsigned char _BitScanReverse(unsigned long * _Index, unsigned long _Mask);
 	extern unsigned char _BitScanForward(unsigned long * _Index, unsigned long _Mask);
 
