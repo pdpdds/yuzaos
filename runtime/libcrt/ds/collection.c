@@ -32,9 +32,9 @@
  * returns 0 if they are equal, or -1 if not */
 int
 dsmatchkey(
-	_In_ KeyType_t KeyType,
-	_In_ DataKey_t Key1,
-	_In_ DataKey_t Key2)
+	 KeyType_t KeyType,
+	 DataKey_t Key1,
+	 DataKey_t Key2)
 {
 	switch (KeyType) {
 	case KeyId: {
@@ -58,7 +58,7 @@ dsmatchkey(
  * Instantiates a new collection with the specified key-type. */
 Collection_t*
 CollectionCreate(
-    _In_ KeyType_t              KeyType)
+     KeyType_t              KeyType)
 {
     // Allocate a new Collection structure
     Collection_t *Collection = (Collection_t*)malloc(sizeof(Collection_t));
@@ -73,8 +73,8 @@ CollectionCreate(
  * Instantiates a new static Collection with the given attribs and keytype */
 void
 CollectionConstruct(
-    _In_ Collection_t*          Collection,
-    _In_ KeyType_t              KeyType)
+     Collection_t*          Collection,
+     KeyType_t              KeyType)
 {
     memset(Collection, 0, sizeof(Collection_t));
     Collection->KeyType = KeyType;
@@ -84,7 +84,7 @@ CollectionConstruct(
  * Clears the Collection of members, cleans up nodes. */
 int
 CollectionClear(
-    _In_ Collection_t*          Collection)
+     Collection_t*          Collection)
 {
     CollectionItem_t *Node = NULL;
     ASSERT(Collection != NULL);
@@ -104,7 +104,7 @@ CollectionClear(
  * does also free all Collection elements and keys */
 int
 CollectionDestroy(
-    _In_ Collection_t*          Collection)
+     Collection_t*          Collection)
 {
     CollectionItem_t *Node = NULL;
     ASSERT(Collection != NULL);
@@ -124,7 +124,7 @@ CollectionDestroy(
  * Returns the length of the given Collection */
 size_t
 CollectionLength(
-    _In_ Collection_t*          Collection)
+     Collection_t*          Collection)
 {
     ASSERT(Collection != NULL);
 	return Collection->Length; //4바이트이기 때문에 단위 연산임
@@ -135,7 +135,7 @@ CollectionLength(
  * Retrieves the starting element of the Collection */
 CollectionIterator_t*
 CollectionBegin(
-    _In_ Collection_t*          Collection)
+     Collection_t*          Collection)
 {
 	ASSERT(Collection != NULL);
     return Collection->Head;
@@ -146,7 +146,7 @@ CollectionBegin(
  * NULL when the end has been reached */
 CollectionIterator_t*
 CollectionNext(
-    _In_ CollectionIterator_t*  It)
+     CollectionIterator_t*  It)
 {
     return (It == NULL) ? NULL : It->Link;
 }
@@ -156,8 +156,8 @@ CollectionNext(
  * by CollectionAppend. If using an unsorted Collection set the sortkey == key */
 CollectionItem_t*
 CollectionCreateNode(
-    _In_ DataKey_t              Key,
-    _In_ void*                  Data)
+     DataKey_t              Key,
+     void*                  Data)
 {
     // Allocate a new instance of the Collection-node
     CollectionItem_t *Node = (CollectionItem_t*)malloc(sizeof(CollectionItem_t));
@@ -172,8 +172,8 @@ CollectionCreateNode(
  * Cleans up a Collection node and frees all resources it had */
 int
 CollectionDestroyNode(
-    _In_ Collection_t*          Collection,
-    _In_ CollectionItem_t*      Node)
+     Collection_t*          Collection,
+     CollectionItem_t*      Node)
 {
 	ASSERT(Collection != NULL);
 	ASSERT(Node != NULL);
@@ -202,9 +202,9 @@ CollectionDestroyNode(
  * call CollectionInsert instead */
 int
 CollectionInsertAt(
-    _In_ Collection_t*          Collection, 
-    _In_ CollectionItem_t*      Node, 
-    _In_ int                    Position)
+     Collection_t*          Collection, 
+     CollectionItem_t*      Node, 
+     int                    Position)
 {
     // Sanitize parameters
     if (Collection == NULL || Node == NULL) {
@@ -223,8 +223,8 @@ CollectionInsertAt(
  * Collections, but is available for unsorted Collections aswell */
 int
 CollectionInsert(
-    _In_ Collection_t*          Collection, 
-    _In_ CollectionItem_t*      Node)
+     Collection_t*          Collection, 
+     CollectionItem_t*      Node)
 {
 	ASSERT(Collection != NULL);
 	ASSERT(Node != NULL);
@@ -257,8 +257,8 @@ CollectionInsert(
  * available for sorted Collections, it will simply redirect to CollectionInsert */
 int
 CollectionAppend(
-    _In_ Collection_t*          Collection,
-    _In_ CollectionItem_t*      Node)
+     Collection_t*          Collection,
+     CollectionItem_t*      Node)
 {
 	ASSERT(Collection != NULL);
 	ASSERT(Node != NULL);
@@ -288,7 +288,7 @@ CollectionAppend(
  * Removes and returns the first element in the collection. */
 CollectionItem_t*
 CollectionPopFront(
-    _In_ Collection_t*          Collection)
+     Collection_t*          Collection)
 {
     // Variables
     CollectionItem_t *Current = NULL;
@@ -329,7 +329,7 @@ CollectionPopFront(
  * Removes and returns the last element in the collection. */
 CollectionItem_t*
 CollectionPopBack(
-    _In_ Collection_t*          Collection)
+     Collection_t*          Collection)
 {
     _CRT_UNUSED(Collection);
     return NULL;
@@ -340,9 +340,9 @@ CollectionPopBack(
  * they return the Collection-node by either key data or index */
 CollectionItem_t*
 CollectionGetNodeByKey(
-    _In_ Collection_t*          Collection,
-    _In_ DataKey_t              Key, 
-    _In_ int                    n)
+     Collection_t*          Collection,
+     DataKey_t              Key, 
+     int                    n)
 {
     // Variables
     CollectionItem_t *i     = NULL;
@@ -372,9 +372,9 @@ CollectionGetNodeByKey(
  * the associated data with it */
 void*
 CollectionGetDataByKey(
-    _In_ Collection_t*          Collection, 
-    _In_ DataKey_t              Key, 
-    _In_ int                    n)
+     Collection_t*          Collection, 
+     DataKey_t              Key, 
+     int                    n)
 {
     CollectionItem_t *Node = CollectionGetNodeByKey(Collection, Key, n);
     return (Node == NULL) ? NULL : Node->Data;
@@ -384,10 +384,10 @@ CollectionGetDataByKey(
  * These functions execute a given function on all relevant nodes (see names) */
 void
 CollectionExecuteOnKey(
-    _In_ Collection_t*          Collection, 
-    _In_ void                   (*Function)(void*, int, void*), 
-    _In_ DataKey_t              Key, 
-    _In_ void*                  UserData)
+     Collection_t*          Collection, 
+     void                   (*Function)(void*, int, void*), 
+     DataKey_t              Key, 
+     void*                  UserData)
 {
     // Variables
     CollectionItem_t *Node  = NULL;
@@ -406,9 +406,9 @@ CollectionExecuteOnKey(
  * These functions execute a given function on all relevant nodes (see names) */
 void
 CollectionExecuteAll(
-    _In_ Collection_t*          Collection, 
-    _In_ void                   (*Function)(void*, int, void*), 
-    _In_ void*                  UserData)
+     Collection_t*          Collection, 
+     void                   (*Function)(void*, int, void*), 
+     void*                  UserData)
 {
     // Variables
     CollectionItem_t *Node  = NULL;
@@ -425,8 +425,8 @@ CollectionExecuteAll(
  * This functions unlinks a node and returns the next node for usage */
 CollectionItem_t*
 CollectionUnlinkNode(
-    _In_ Collection_t*          Collection, 
-    _In_ CollectionItem_t*      Node)
+     Collection_t*          Collection, 
+     CollectionItem_t*      Node)
 {
 	ASSERT(Collection != NULL);
 	ASSERT(Node != NULL);
@@ -487,8 +487,8 @@ CollectionUnlinkNode(
  * These are the deletion functions and remove based on either node index or key */
 int
 CollectionRemoveByNode(
-    _In_ Collection_t*          Collection,
-    _In_ CollectionItem_t*      Node)
+     Collection_t*          Collection,
+     CollectionItem_t*      Node)
 {
 	ASSERT(Collection != NULL);
 	ASSERT(Node != NULL);
@@ -504,8 +504,8 @@ CollectionRemoveByNode(
  * These are the deletion functions and remove based on either node index or key */
 int
 CollectionRemoveByIndex(
-    _In_ Collection_t*          Collection, 
-    _In_ int                    Index)
+     Collection_t*          Collection, 
+     int                    Index)
 {
     _CRT_UNUSED(Collection);
     _CRT_UNUSED(Index);
@@ -516,8 +516,8 @@ CollectionRemoveByIndex(
  * These are the deletion functions and remove based on either node index or key */
 int
 CollectionRemoveByKey(
-    _In_ Collection_t*          Collection, 
-    _In_ DataKey_t              Key)
+     Collection_t*          Collection, 
+     DataKey_t              Key)
 {
     // Variables    
     CollectionItem_t *Node = NULL;

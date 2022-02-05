@@ -65,22 +65,22 @@ _CODE_BEGIN
 CRTDECL(
 Collection_t*,
 CollectionCreate(
-    _In_ KeyType_t              KeyType));
+    KeyType_t              KeyType));
     
 /* CollectionConstruct
  * Instantiates a new static Collection with the given attribs and keytype */
 CRTDECL(
 void,
 CollectionConstruct(
-    _In_ Collection_t*          Collection,
-    _In_ KeyType_t              KeyType));
+     Collection_t*          Collection,
+     KeyType_t              KeyType));
 
 /* CollectionClear
  * Clears the Collection of members, cleans up nodes. */
 CRTDECL(
 	int,
 CollectionClear(
-    _In_ Collection_t*          Collection));
+     Collection_t*          Collection));
 
 /* CollectionDestroy
  * Destroys the Collection and frees all resources associated
@@ -88,21 +88,21 @@ CollectionClear(
 CRTDECL(
 	int,
 CollectionDestroy(
-    _In_ Collection_t*          Collection));
+     Collection_t*          Collection));
 
 /* CollectionLength
  * Returns the length of the given Collection */
 CRTDECL(
 size_t,
 CollectionLength(
-    _In_ Collection_t*          Collection));
+     Collection_t*          Collection));
 
 /* CollectionBegin
  * Retrieves the starting element of the Collection */
 CRTDECL(
 CollectionIterator_t*,
 CollectionBegin(
-    _In_ Collection_t*          Collection));
+     Collection_t*          Collection));
 
 /* CollectionNext
  * Iterates to the next element in the Collection and returns
@@ -110,7 +110,7 @@ CollectionBegin(
 CRTDECL(
 CollectionIterator_t*,
 CollectionNext(
-    _In_ CollectionIterator_t*  It));
+     CollectionIterator_t*  It));
 
 /* CollectionCreateNode
  * Instantiates a new Collection node that can be appended to the Collection 
@@ -118,16 +118,16 @@ CollectionNext(
 CRTDECL(
 CollectionItem_t*,
 CollectionCreateNode(
-    _In_ DataKey_t              Key,
-    _In_ void*                  Data));
+     DataKey_t              Key,
+     void*                  Data));
 
 /* CollectionDestroyNode
  * Cleans up a Collection node and frees all resources it had */
 CRTDECL(
 	int,
 CollectionDestroyNode(
-    _In_ Collection_t*          Collection,
-    _In_ CollectionItem_t*      Node));
+     Collection_t*          Collection,
+     CollectionItem_t*      Node));
 
 /* CollectionInsertAt
  * Insert the node into a specific position in the Collection, if position is invalid it is
@@ -136,9 +136,9 @@ CollectionDestroyNode(
 CRTDECL(
 	int,
 CollectionInsertAt(
-    _In_ Collection_t*          Collection, 
-    _In_ CollectionItem_t*      Node, 
-    _In_ int                    Position));
+     Collection_t*          Collection, 
+     CollectionItem_t*      Node, 
+     int                    Position));
 
 /* CollectionInsert 
  * Inserts the node into the front of the Collection. This should be used for sorted
@@ -146,8 +146,8 @@ CollectionInsertAt(
 CRTDECL(
 	int,
 CollectionInsert(
-    _In_ Collection_t*          Collection, 
-    _In_ CollectionItem_t*      Node));
+     Collection_t*          Collection, 
+     CollectionItem_t*      Node));
 
 /* CollectionAppend
  * Inserts the node into the the back of the Collection. This function is not
@@ -155,22 +155,22 @@ CollectionInsert(
 CRTDECL(
 	int,
 CollectionAppend(
-    _In_ Collection_t*          Collection,
-    _In_ CollectionItem_t*      Node));
+     Collection_t*          Collection,
+     CollectionItem_t*      Node));
 
 /* CollectionPopFront
  * Removes and returns the first element in the collection. */
 CRTDECL(
 CollectionItem_t*,
 CollectionPopFront(
-    _In_ Collection_t*          Collection));
+     Collection_t*          Collection));
 
 /* CollectionPopBack
  * Removes and returns the last element in the collection. */
 CRTDECL(
 CollectionItem_t*,
 CollectionPopBack(
-    _In_ Collection_t*          Collection));
+     Collection_t*          Collection));
 
 /* CollectionGetNodeByKey
  * These are the node-retriever functions 
@@ -178,9 +178,9 @@ CollectionPopBack(
 CRTDECL(
 CollectionItem_t*,
 CollectionGetNodeByKey(
-    _In_ Collection_t*          Collection,
-    _In_ DataKey_t              Key, 
-    _In_ int                    n));
+     Collection_t*          Collection,
+     DataKey_t              Key, 
+     int                    n));
 
 /* CollectionGetDataByKey
  * Finds the n-occurence of an element with the given key and returns
@@ -188,59 +188,59 @@ CollectionGetNodeByKey(
 CRTDECL(
 void*,
 CollectionGetDataByKey(
-    _In_ Collection_t*          Collection, 
-    _In_ DataKey_t              Key, 
-    _In_ int                    n));
+     Collection_t*          Collection, 
+     DataKey_t              Key, 
+     int                    n));
 
 /* CollectionExecute(s)
  * These functions execute a given function on all relevant nodes (see names) */
 CRTDECL(
 void,
 CollectionExecuteOnKey(
-    _In_ Collection_t*          Collection,
-    _In_ void                   (*Function)(void*, int, void*),
-    _In_ DataKey_t              Key,
-    _In_ void*                  UserData));
+     Collection_t*          Collection,
+     void                   (*Function)(void*, int, void*),
+     DataKey_t              Key,
+     void*                  UserData));
 
 /* CollectionExecute(s)
  * These functions execute a given function on all relevant nodes (see names) */
 CRTDECL(
 void,
 CollectionExecuteAll(
-    _In_ Collection_t*          Collection,
-    _In_ void                   (*Function)(void*, int, void*),
-    _In_ void*                  UserData));
+     Collection_t*          Collection,
+     void                   (*Function)(void*, int, void*),
+     void*                  UserData));
 
 /* CollectionUnlinkNode
  * This functions unlinks a node and returns the next node for usage */
 CRTDECL(
 CollectionItem_t*,
 CollectionUnlinkNode(
-    _In_ Collection_t*          Collection, 
-    _In_ CollectionItem_t*      Node));
+     Collection_t*          Collection, 
+     CollectionItem_t*      Node));
 
 /* CollectionRemove
  * These are the deletion functions and remove based on either node index or key */
 CRTDECL(
 	int,
 CollectionRemoveByNode(
-    _In_ Collection_t*          Collection,
-    _In_ CollectionItem_t*      Node));
+     Collection_t*          Collection,
+     CollectionItem_t*      Node));
 
 /* CollectionRemove
  * These are the deletion functions and remove based on either node index or key */
 CRTDECL(
 	int,
 CollectionRemoveByIndex(
-    _In_ Collection_t*          Collection, 
-    _In_ int                    Index));
+     Collection_t*          Collection, 
+     int                    Index));
 
 /* CollectionRemove
  * These are the deletion functions and remove based on either node index or key */
 CRTDECL(
 	int,
 CollectionRemoveByKey(
-    _In_ Collection_t*          Collection, 
-    _In_ DataKey_t              Key));
+     Collection_t*          Collection, 
+     DataKey_t              Key));
 
 #endif //!_GENERIC_COLLECTION_H_
