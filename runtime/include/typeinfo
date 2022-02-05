@@ -54,7 +54,8 @@ struct __std_type_info_data
 	__std_type_info_data& operator=(__std_type_info_data&&) = delete;
 };
 
-_VCRTIMP int __cdecl __std_type_info_compare(
+//_VCRTIMP int __cdecl __std_type_info_compare(
+int __cdecl __std_type_info_compare(
 	_In_ const __std_type_info_data* _Lhs,
 	_In_ const __std_type_info_data* _Rhs
 );
@@ -120,7 +121,10 @@ public:
 		return _Data._DecoratedName;
 	}
 
-	virtual ~type_info() noexcept;
+	virtual ~type_info() noexcept
+	{
+
+	}
 
 private:
 

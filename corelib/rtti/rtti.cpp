@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "typeinfo"
+#include <typeinfo>
 #include "rtti.h"
 #pragma warning(disable:4297)
 static PVOID __cdecl FindCompleteObject(PVOID*);

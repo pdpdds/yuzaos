@@ -272,7 +272,7 @@ extern "C" char const* __cdecl __std_type_info_name(
 	return node_string;
 }
 
-extern "C" int __cdecl __std_type_info_compare(
+int __cdecl __std_type_info_compare(
 	__std_type_info_data const* const lhs,
 	__std_type_info_data const* const rhs
 )

@@ -1,4 +1,4 @@
-#include "Excpt.h"
+#include <Excpt.h>
 #include <memory.h>
 
 __declspec(noreturn) extern "C" void _stdcall _CxxThrowException(void* pExceptionObject, _ThrowInfo * pThrowInfo)
@@ -19,26 +19,6 @@ extern "C"  __declspec(naked)  EXCEPTION_DISPOSITION __cdecl __CxxFrameHandler3(
 	}
 }
 
-/*class type_info {
-public:
-	virtual ~type_info();
-	const char* name() const { return __name; }
-	bool operator==(const type_info& __arg) const {
-		return __name == __arg.__name;
-	}
-
-	bool operator!=(const type_info& __arg) const {
-		return !operator==(__arg);
-	}
-protected:
-	const char* __name;
-};
-
-
-
-type_info::~type_info()
-{
-}*/
 
 #pragma warning (disable: 4731) // ebp register overwritten
 #pragma warning (disable: 4733) // fs:[0] accessed
