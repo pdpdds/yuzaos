@@ -21,9 +21,7 @@ extern "C" FILE* stderr = 0;
 
 extern "C" int MainCRTStartupDLL(void* args)
 {
-#ifdef _TEST_
 	printf("MainCRTStartup Start!!\n");
-#endif
 
 	stdin = &g_stdin;
 	stdout = &g_stdout;
@@ -35,16 +33,12 @@ extern "C" int MainCRTStartupDLL(void* args)
 	
 	main_args* param = (main_args*)args;
 
-#ifdef _TEST_
 	Exc::SetFrameHandler(true);
 	Exc::SetThrowFunction(true);
-#endif
 
 	int res = main(param->argc, param->argv);
 
-#ifdef _TEST_
 	printf("MainCRTStartup End!!\n");
-#endif
 
 	return res;
 }
