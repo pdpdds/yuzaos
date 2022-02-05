@@ -1,6 +1,7 @@
 #include <string.h>
-#include <typeinfo>
+#include "vcruntime_typeinfo.h"
 #include <winapi.h>
+
 
 extern "C" void* _InterlockedCompareExchangePointer(
 	void* volatile* Destination,
@@ -306,4 +307,32 @@ extern "C" size_t __cdecl __std_type_info_hash(
 #endif
 
 	return value;
+}
+
+/*********************************************************************
+ *  __std_exception_copy (UCRTBASE.@)
+ */
+void CDECL __std_exception_copy(const struct __std_exception_data* src,
+	struct __std_exception_data* dst)
+{
+	if (src->dofree && src->what) {
+		dst->what = strdup(src->what);
+		dst->dofree = 1;
+	}
+	else {
+		dst->what = src->what;
+		dst->dofree = 0;
+	}
+}
+
+/*********************************************************************
+ *  __std_exception_destroy (UCRTBASE.@)
+ */
+void CDECL __std_exception_destroy(struct __std_exception_data* data)
+{
+	
+	if (data->dofree)
+		free((void*)data->what);
+	data->what = NULL;
+	data->dofree = 0;
 }

@@ -39,7 +39,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_VCRT_DEFINED_CRTIMP;SKYOS32;_CRT_SECURE_NO_WARNINGS;MAPFILEDLL_EXPORTS;_X86_;_DEBUG;_MSC_VER</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_VCRT_DEFINED_CRTIMP;SKYOS32;_CRT_SECURE_NO_WARNINGS;MAPFILEDLL_EXPORTS;_X86_;_DEBUG;_MSC_VER;_M_IX86</PreprocessorDefinitions>
       <SDLCheck>false</SDLCheck>
       <MinimalRebuild>false</MinimalRebuild>
       <ExceptionHandling>false</ExceptionHandling>
@@ -87,7 +87,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="decoration.cpp" />
-    <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Excpt.cpp" />
     <ClCompile Include="rtti.cpp" />
     <ClCompile Include="undname.c" />
