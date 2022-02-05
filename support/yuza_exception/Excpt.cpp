@@ -1,5 +1,3 @@
-//#include <windows.h>
-//#include <typeinfo>
 #include "Excpt.h"
 #include <memory.h>
 

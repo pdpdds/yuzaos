@@ -1,5 +1,6 @@
 #pragma once
 #include <minwindef.h>
+#include <typeinfo>
 
 // Exception disposition return values
 typedef enum _EXCEPTION_DISPOSITION
