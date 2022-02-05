@@ -1,6 +1,13 @@
 #include <Excpt.h>
 #include <memory.h>
 
+
+extern "C" void InstallExceptionHandler()
+{
+	Exc::SetFrameHandler(true);
+	Exc::SetThrowFunction(true);
+}
+
 __declspec(noreturn) extern "C" void _stdcall _CxxThrowException(void* pExceptionObject, _ThrowInfo * pThrowInfo)
 {
 
