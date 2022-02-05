@@ -1,7 +1,12 @@
 #include <stdio.h>
-//y#include <typeinfo>
 #include "rtti.h"
-#include <typeinfo>
+#include <Excpt.h>
+
+#ifdef _M_CEE_PURE
+extern System::IntPtr __type_info_root_node;
+#else
+__type_info_node __type_info_root_node;
+#endif
 
 #pragma warning(disable:4297)
 static PVOID __cdecl FindCompleteObject(PVOID*);

@@ -1,12 +1,6 @@
 #include <Excpt.h>
 #include <memory.h>
 
-#ifdef _M_CEE_PURE
-extern System::IntPtr __type_info_root_node;
-#else
-__type_info_node __type_info_root_node;
-#endif
-
 __declspec(noreturn) extern "C" void _stdcall _CxxThrowException(void* pExceptionObject, _ThrowInfo * pThrowInfo)
 {
 
