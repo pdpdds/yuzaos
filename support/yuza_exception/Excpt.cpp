@@ -19,7 +19,7 @@ extern "C"  __declspec(naked)  EXCEPTION_DISPOSITION __cdecl __CxxFrameHandler3(
 	}
 }
 
-class type_info {
+/*class type_info {
 public:
 	virtual ~type_info();
 	const char* name() const { return __name; }
@@ -38,7 +38,7 @@ protected:
 
 type_info::~type_info()
 {
-}
+}*/
 
 #pragma warning (disable: 4731) // ebp register overwritten
 #pragma warning (disable: 4733) // fs:[0] accessed
