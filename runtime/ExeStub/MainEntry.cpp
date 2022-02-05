@@ -3,7 +3,6 @@
 #include <memory.h>
 #include <string.h>
 #include <stdio.h>
-#include <Excpt.h>
 
 extern "C" void _cdecl InitializeConstructors();
 extern "C" void _cdecl Exit();
@@ -31,10 +30,7 @@ extern "C" int MainCRTStartupDLL(void* args)
 	strcpy(stdout->_name, "STDOUT");
 	strcpy(stderr->_name, "STDERR");
 	
-	main_args* param = (main_args*)args;
-
-	Exc::SetFrameHandler(true);
-	Exc::SetThrowFunction(true);
+	main_args* param = (main_args*)args;	
 
 	int res = main(param->argc, param->argv);
 
