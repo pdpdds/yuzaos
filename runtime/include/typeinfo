@@ -25,7 +25,7 @@ struct __type_info_node;
 extern System::IntPtr __type_info_root_node;
 #else
 extern __type_info_node __type_info_root_node;
-#endif
+#endif*/
 
 #ifndef _VCRTIMP
 #if defined _CRTIMP && !defined _VCRT_DEFINED_CRTIMP
@@ -60,18 +60,15 @@ int __cdecl __std_type_info_compare(
 	_In_ const __std_type_info_data* _Rhs
 );
 
-_VCRTIMP size_t __cdecl __std_type_info_hash(
+//_VCRTIMP size_t __cdecl __std_type_info_hash(
+size_t __cdecl __std_type_info_hash(
 	_In_ const __std_type_info_data* _Data
 );
 
-/*_VCRTIMP const char* __cdecl __std_type_info_name(
+//_VCRTIMP const char* __cdecl __std_type_info_name(
+const char* __cdecl __std_type_info_name(
 	_Inout_ __std_type_info_data* _Data,
 	_Inout_ __type_info_node* _RootNode
-);*/
-
-extern "C" char const* __cdecl __std_type_info_name(
-	__std_type_info_data* const data,
-	__type_info_node* const root_node
 );
 
 _CRT_END_C_HEADER

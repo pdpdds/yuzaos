@@ -24,7 +24,7 @@ extern"C" PVOID __cdecl __RTtypeid(PVOID inptr) throw(...)
    // }
 }
 
-extern "C" PVOID __RTDynamicCast(
+PVOID __RTDynamicCast(
     PVOID inptr,
     LONG VfDelta,
     PVOID SrcType,

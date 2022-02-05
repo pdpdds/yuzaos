@@ -31,8 +31,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yuzautil", "support\yuzauti
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gzip", "support\gzip\gzip.vcxproj", "{BC44B7D7-79E8-4F40-A0EB-8AC47826C5DD}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yuza_exception", "support\yuza_exception\yuza_exception.vcxproj", "{515FBED3-5BD7-4428-9220-A1E8EC6D2109}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -66,8 +64,6 @@ Global
 		{89452410-3C48-41D4-9765-2A6CDEAF794C}.Debug|x86.Build.0 = Debug|Win32
 		{BC44B7D7-79E8-4F40-A0EB-8AC47826C5DD}.Debug|x86.ActiveCfg = Debug|Win32
 		{BC44B7D7-79E8-4F40-A0EB-8AC47826C5DD}.Debug|x86.Build.0 = Debug|Win32
-		{515FBED3-5BD7-4428-9220-A1E8EC6D2109}.Debug|x86.ActiveCfg = Debug|Win32
-		{515FBED3-5BD7-4428-9220-A1E8EC6D2109}.Debug|x86.Build.0 = Debug|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

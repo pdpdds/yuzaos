@@ -1,7 +1,7 @@
 #pragma once
-extern"C" {  
 #include <yuzaos.h>
-};  
+
+
 typedef const type_info TypeDescriptor;  
 struct PMD  
 {  
@@ -57,6 +57,7 @@ typedef const struct _s_RTTICompleteObjectLocator
 #define COL_CDOFFSET(col)           ((col).cdOffset)
 #define COL_PTD(col)                ((col).pTypeDescriptor)
 #define COL_PCHD(col)               ((col).pClassDescriptor)
-//extern"C" PVOID __cdecl __RTDynamicCast (PVOID, LONG, PVOID, PVOID, BOOL);  
-//extern"C" PVOID __cdecl __RTtypeid (PVOID);     // ptr to vfptr
+
 #define TYPEIDS_EQ(pID1, pID2)  ((pID1 == pID2) || !strcmp(pID1->name(), pID2->name()))
+
+

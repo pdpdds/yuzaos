@@ -39,9 +39,6 @@ extern "C" void _cdecl InitializeConstructors();
 
 
 
-#include <platformapi.h>
-extern "C" bool g_emulation;
-
 extern "C" __declspec(dllexport) void InitializeDll()
 {
 	initlib();
