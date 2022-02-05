@@ -9,3 +9,7 @@
 #include <time.h>
 #include <osdefs.h>
 #include <common_struct.h>
+#include <stdio.h>
+#include <winapi.h>
+#include <systemcall_impl.h>
+#include "GUIConsoleFramework.h"
