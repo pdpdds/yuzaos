@@ -24,6 +24,8 @@
 
 #include <orangeos.h>
 
+#define _In_
+
 /* Bitmap
  * Contains information about the bitmap and resources. */
 typedef struct _Bitmap {

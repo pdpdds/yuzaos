@@ -144,8 +144,8 @@ extern "C" {
 	int kGetCommandFromKeyboard(char* commandBuffer, int bufSize);
 	char kGetChar();
 
-	void dslock(_In_ SafeMemoryLock_t* MemoryLock);
-	void dsunlock(_In_ SafeMemoryLock_t* MemoryLock);
+	void dslock(SafeMemoryLock_t* MemoryLock);
+	void dsunlock(SafeMemoryLock_t* MemoryLock);
 	void PrintCurrentTime();
 
 	void kprintf(const char* fmt, ...);

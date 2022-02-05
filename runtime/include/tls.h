@@ -137,8 +137,8 @@ CRTDECL(thrd_t, thrd_current(void));
 /* tls_cleanup
  * Destroys the TLS for the specific thread
  * by freeing resources and calling c11 destructors. */
-CRTDECL(void, tls_cleanup(_In_ thrd_t thr, _In_ void* DsoHandle, _In_ int ExitCode));
-CRTDECL(void, tls_cleanup_quick(_In_ thrd_t thr, _In_ void* DsoHandle, _In_ int ExitCode));
+CRTDECL(void, tls_cleanup(thrd_t thr, void* DsoHandle, int ExitCode));
+CRTDECL(void, tls_cleanup_quick(thrd_t thr, void* DsoHandle, int ExitCode));
 
 /* tss_create
  * Creates new thread-specific storage key and stores it in the object pointed to by tss_key.
@@ -147,29 +147,29 @@ CRTDECL(void, tls_cleanup_quick(_In_ thrd_t thr, _In_ void* DsoHandle, _In_ int 
  * basis and persist for the life of the calling thread. */
 CRTDECL(int,
 	tss_create(
-		_In_ tss_t*     tss_key,
-		_In_ tss_dtor_t destructor));
+		tss_t*     tss_key,
+		tss_dtor_t destructor));
 
 /* tss_get
  * Returns the value held in thread-specific storage for the current thread
  * identified by tss_key. Different threads may get different values identified by the same key. */
 CRTDECL(void*,
 	tss_get(
-		_In_ tss_t tss_key));
+		tss_t tss_key));
 
 /* tss_set
  * Sets the value of the thread-specific storage identified by tss_id for the
  * current thread to val. Different threads may set different values to the same key. */
 CRTDECL(int,
 	tss_set(
-		_In_ tss_t tss_id,
-		_In_ void* val));
+		tss_t tss_id,
+		void* val));
 
 /* tss_delete
  * Destroys the thread-specific storage identified by tss_id. */
 CRTDECL(void,
 	tss_delete(
-		_In_ tss_t tss_id));
+		tss_t tss_id));
 _CODE_END
 
 #endif //!__STDC_TLS__

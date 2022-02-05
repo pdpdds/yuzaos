@@ -208,7 +208,7 @@ void Printf(char* buf)
 }
 
 
-void dslock(_In_ SafeMemoryLock_t* MemoryLock)
+void dslock(SafeMemoryLock_t* MemoryLock)
 {
 	bool locked = true;
 
@@ -229,7 +229,7 @@ void dslock(_In_ SafeMemoryLock_t* MemoryLock)
 
 /* dsunlock
 * Releases the lock given and restores any previous flags. */
-void dsunlock(_In_ SafeMemoryLock_t* MemoryLock)
+void dsunlock(SafeMemoryLock_t* MemoryLock)
 {
 	AtomicInterlockedExchange((LPLONG)&MemoryLock->SyncObject, false);
 #ifdef LIBC_KERNEL

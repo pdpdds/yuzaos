@@ -32,18 +32,6 @@
 #endif
 #endif
 
-/** Properties ***************************************************************/
-
-#ifndef _CRT_STRINGIZE
-#define __CRT_STRINGIZE(_Value) #_Value
-#define _CRT_STRINGIZE(_Value) __CRT_STRINGIZE(_Value)
-#endif
-
-#ifndef _CRT_WIDE
-#define __CRT_WIDE(_String) L ## _String
-#define _CRT_WIDE(_String) __CRT_WIDE(_String)
-#endif
-
 #ifdef __cplusplus
 #ifndef restrict
 #define restrict /*restrict*/
@@ -204,24 +192,6 @@
  #endif
 #endif
 
-#ifndef _Check_return_
-#define _Check_return_
-#endif
-
-#ifndef _In_
-#define _In_
-#define _In_Opt_
-#endif
-
-#ifndef _Out_
-#define _Out_
-#define _Out_Opt_
-#endif
-
-#ifndef _InOut_
-#define _InOut_
-#define _InOut_Opt_
-#endif
 
 #ifndef _M_IX86
 #define _M_IX86 600
@@ -299,10 +269,6 @@
 #else
 #define _CRT_ALIGN(x) __attribute__ ((aligned(x)))
 #endif
-#endif
-
-#ifndef __CRTDECL
-#define __CRTDECL __cdecl
 #endif
 
 #ifndef _CRT_UNUSED

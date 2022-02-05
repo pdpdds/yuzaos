@@ -193,10 +193,10 @@ typedef enum _DeviceIoType {
 * Reads a value from the given raw io source. Accepted values in width are 1, 2, 4 or 8. */
 int
 ReadDirectIo(
-	_In_  DeviceIoType_t    Type,
-	_In_  uintptr_t         Address,
-	_In_  size_t            Width,
-	_Out_ size_t* Value)
+	 DeviceIoType_t    Type,
+	uintptr_t         Address,
+	size_t            Width,
+	size_t* Value)
 {
 	switch (Type) {
 	case DeviceIoPortBased: {
@@ -234,10 +234,10 @@ ReadDirectIo(
 * Writes a value to the given raw io source. Accepted values in width are 1, 2, 4 or 8. */
 int
 WriteDirectIo(
-	_In_ DeviceIoType_t     Type,
-	_In_ uintptr_t          Address,
-	_In_ size_t             Width,
-	_In_ size_t             Value)
+	DeviceIoType_t     Type,
+	uintptr_t          Address,
+	size_t             Width,
+	size_t             Value)
 {
 	switch (Type) {
 	case DeviceIoPortBased: {
@@ -271,7 +271,7 @@ WriteDirectIo(
 
 
 uint8_t
-CmosRead(_In_ uint8_t Register)
+CmosRead(uint8_t Register)
 {
 	// Variables
 	size_t Storage = 0;
@@ -293,7 +293,7 @@ CmosRead(_In_ uint8_t Register)
 /* CmosGetTime
 * Retrieves the current time and stores it in
 * the c-library time structure */
-void CmosGetTime(_Out_ struct tm* Time)
+void CmosGetTime(struct tm* Time)
 {
 	// Variables
 	int Sec, Counter;
@@ -399,7 +399,7 @@ void PrintCurrentTime()
 }
 
 
-extern void CmosGetTime(_Out_ struct tm* Time);
+extern void CmosGetTime(struct tm* Time);
 
 int yisleap(int year)
 {

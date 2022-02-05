@@ -46,8 +46,8 @@ _CODE_BEGIN
 CRTDECL(
 DmaBuffer_t*,
 CreateBuffer(
-    _In_ UUId_t                 FromHandle,
-    _In_ size_t                 Length));
+    UUId_t                 FromHandle,
+    size_t                 Length));
 
 /* DestroyBuffer
  * Destroys the given buffer object and release resources
@@ -55,14 +55,14 @@ CreateBuffer(
 CRTDECL( 
 	int,
 DestroyBuffer(
-    _In_ DmaBuffer_t*           BufferObject));
+    DmaBuffer_t*           BufferObject));
 
 /* ZeroBuffer
  * Clears the entire buffer and resets the internal indices */
 CRTDECL( 
 	int,
 ZeroBuffer(
-    _In_ DmaBuffer_t*           BufferObject));
+    DmaBuffer_t*           BufferObject));
 
 /* SeekBuffer
  * Seeks the current write/read marker to a specified point
@@ -70,8 +70,8 @@ ZeroBuffer(
 CRTDECL(
 	int,
 SeekBuffer(
-    _In_ DmaBuffer_t*           BufferObject,
-    _In_ size_t                 Position));
+    DmaBuffer_t*           BufferObject,
+    size_t                 Position));
 
 /* ReadBuffer
  * Reads <BytesToWrite> into the given user-buffer from the given buffer-object. 
@@ -79,10 +79,10 @@ SeekBuffer(
 CRTDECL( 
 int,
 ReadBuffer(
-    _In_      DmaBuffer_t*      BufferObject,
-    _Out_     const void*       Buffer,
-    _In_      size_t            BytesToRead,
-    _Out_Opt_ size_t*           BytesRead));
+    DmaBuffer_t*      BufferObject,
+    const void*       Buffer,
+    size_t            BytesToRead,
+    size_t*           BytesRead));
 
 /* WriteBuffer
  * Writes <BytesToWrite> into the allocated buffer-object from the given user-buffer. 
@@ -90,10 +90,10 @@ ReadBuffer(
 CRTDECL( 
 	int,
 WriteBuffer(
-    _In_      DmaBuffer_t*      BufferObject,
-    _In_      const void*       Buffer,
-    _In_      size_t            BytesToWrite,
-    _Out_Opt_ size_t*           BytesWritten));
+    DmaBuffer_t*      BufferObject,
+    const void*       Buffer,
+    size_t            BytesToWrite,
+    size_t*           BytesWritten));
 
 /* CombineBuffer
  * Writes <BytesToTransfer> into the destination from the given
@@ -102,17 +102,17 @@ WriteBuffer(
 CRTDECL( 
 int,
 CombineBuffer(
-    _In_      DmaBuffer_t*      Destination,
-    _In_      DmaBuffer_t*      Source,
-    _In_      size_t            BytesToTransfer,
-    _Out_Opt_ size_t*           BytesTransferred));
+    DmaBuffer_t*      Destination,
+    DmaBuffer_t*      Source,
+    size_t            BytesToTransfer,
+    size_t*           BytesTransferred));
 
 /* GetBufferHandle
  * Retrieves the handle of the dma buffer for other processes to use. */
 CRTDECL( 
 UUId_t,
 GetBufferHandle(
-    _In_ DmaBuffer_t*           BufferObject));
+    DmaBuffer_t*           BufferObject));
 
 /* GetBufferSize
  * Retrieves the size of the dma buffer. This might vary from the length given in
@@ -120,7 +120,7 @@ GetBufferHandle(
 CRTDECL( 
 size_t,
 GetBufferSize(
-    _In_ DmaBuffer_t*           BufferObject));
+    DmaBuffer_t*           BufferObject));
 
 /* GetBufferDma
  * Retrieves the dma address of the memory buffer. This address cannot be used
@@ -128,7 +128,7 @@ GetBufferSize(
 CRTDECL( 
 uintptr_t,
 GetBufferDma(
-    _In_ DmaBuffer_t*           BufferObject));
+    DmaBuffer_t*           BufferObject));
 
 /* GetBufferDataPointer
  * Retrieves the data pointer to the physical memory. This can be used to access
@@ -136,7 +136,7 @@ GetBufferDma(
 CRTDECL( 
 void*,
 GetBufferDataPointer(
-    _In_ DmaBuffer_t*           BufferObject));
+    DmaBuffer_t*           BufferObject));
 
 _CODE_END
 

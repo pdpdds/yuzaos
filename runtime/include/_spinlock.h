@@ -13,7 +13,7 @@ typedef struct _Spinlock {
 } Spinlock_t;
 #define SPINLOCK_INIT   { 0 }
 
-
+#define _In_
 
 _CODE_BEGIN
 /* SpinlockReset
