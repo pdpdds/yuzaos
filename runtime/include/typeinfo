@@ -1,2 +1,7 @@
 #pragma once
 #include "vcruntime_typeinfo.h"
+
+namespace std
+{
+    typedef unsigned int     size_t;
+}
