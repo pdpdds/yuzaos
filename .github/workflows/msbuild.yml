@@ -51,12 +51,12 @@ jobs:
       # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild thirdparty.sln /t:Build /p:Configuration=Debug /p:Platform=x86
     - name: support
-      working-directory: ${{env.GITHUB_WORKSPACE}}thirdparty
+      working-directory: ${{env.GITHUB_WORKSPACE}}
       # Add additional options to the MSBuild command line here (like platform or verbosity level).
       # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild support.sln /t:Build /p:Configuration=Debug /p:Platform=x86
     - name: device
-      working-directory: ${{env.GITHUB_WORKSPACE}}thirdparty
+      working-directory: ${{env.GITHUB_WORKSPACE}}
       # Add additional options to the MSBuild command line here (like platform or verbosity level).
       # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild device.sln /t:Build /p:Configuration=Debug /p:Platform=x86
@@ -76,7 +76,7 @@ jobs:
       # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild ThirdParty2.sln /t:Build /p:Configuration=Debug /p:Platform=x86  
     - name: kernel
-      working-directory: ${{env.GITHUB_WORKSPACE}}thirdparty
+      working-directory: ${{env.GITHUB_WORKSPACE}}
       # Add additional options to the MSBuild command line here (like platform or verbosity level).
       # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild kernel.sln /t:Build /p:Configuration=Debug /p:Platform=x86  
