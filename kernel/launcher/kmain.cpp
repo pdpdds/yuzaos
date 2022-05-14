@@ -15,7 +15,7 @@ _declspec(naked) void multiboot_entry(void)
 		align MULTIBOOT_HEADER_ALIGN
 
 		multiboot_header:
-		//멀티부트 헤더 사이즈 : 0X30
+		//멀티부트 헤더 사이즈 : 0x30
 		dd(MULTIBOOT_HEADER_MAGIC); //멀티부트 헤더 매직값
 
 #if SKY_CONSOLE_MODE == 0
@@ -26,7 +26,7 @@ _declspec(naked) void multiboot_entry(void)
 		dd(CHECKSUM); //체크섬
 #endif		
 		dd(HEADER_ADRESS); //헤더 주소 KERNEL_LOAD_ADDRESS+ALIGN(0x100400)
-		dd(GRUB_KERNEL_LOAD_ADDRESS); //커널이 로드된 가상주소 공간
+		dd(GRUB_KERNEL_LOAD_ADDRESS); //커널이 로드된 주소
 		dd(00); //사용되지 않음
 		dd(00); //사용되지 않음
 		dd(HEADER_ADRESS + 0x30); //커널 시작 주소 : 멀티부트 헤더 주소 + 0x30, kernel_entry
