@@ -42,43 +42,27 @@ jobs:
       run: msbuild runtime.sln /t:Build /p:Configuration=Debug /p:Platform=x86
     - name: corelib
       working-directory: ${{env.GITHUB_WORKSPACE}}
-      # Add additional options to the MSBuild command line here (like platform or verbosity level).
-      # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild corelib.sln /t:Build /p:Configuration=Debug /p:Platform=x86
     - name: thirdparty
       working-directory: ${{env.GITHUB_WORKSPACE}}thirdparty
-      # Add additional options to the MSBuild command line here (like platform or verbosity level).
-      # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild thirdparty.sln /t:Build /p:Configuration=Debug /p:Platform=x86
     - name: support
       working-directory: ${{env.GITHUB_WORKSPACE}}
-      # Add additional options to the MSBuild command line here (like platform or verbosity level).
-      # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild support.sln /t:Build /p:Configuration=Debug /p:Platform=x86
     - name: device
       working-directory: ${{env.GITHUB_WORKSPACE}}
-      # Add additional options to the MSBuild command line here (like platform or verbosity level).
-      # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild device.sln /t:Build /p:Configuration=Debug /p:Platform=x86
     - name: SDL2
       working-directory: ${{env.GITHUB_WORKSPACE}}thirdParty/SDL/SDL2
-      # Add additional options to the MSBuild command line here (like platform or verbosity level).
-      # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild SDL2.sln /t:Build /p:Configuration=Debug /p:Platform=x86  
     - name: SDL1CL
       working-directory: ${{env.GITHUB_WORKSPACE}}thirdParty/SDL/SDL1CL
-      # Add additional options to the MSBuild command line here (like platform or verbosity level).
-      # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild sdlcl.sln /t:Build /p:Configuration=Debug /p:Platform=x86  
     - name: ThirdParty2
       working-directory: ${{env.GITHUB_WORKSPACE}}thirdParty2
-      # Add additional options to the MSBuild command line here (like platform or verbosity level).
-      # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild ThirdParty2.sln /t:Build /p:Configuration=Debug /p:Platform=x86  
     - name: kernel
       working-directory: ${{env.GITHUB_WORKSPACE}}
-      # Add additional options to the MSBuild command line here (like platform or verbosity level).
-      # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild kernel.sln /t:Build /p:Configuration=Debug /p:Platform=x86  
     - name: Upload a Build Artifact(yuzaos)
       uses: actions/upload-artifact@v2.1.4
