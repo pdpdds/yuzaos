@@ -29,6 +29,7 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.2
       with:
         msbuild-architecture: x86
+        vs-version: '[16.4,16.5)'
     - name: VSNASM
       run: |
         git clone https://github.com/ShiftMediaProject/VSNASM
