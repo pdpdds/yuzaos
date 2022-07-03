@@ -9,8 +9,7 @@ YUZA OS 서적에서 설명하는 운영체제의 소스코드입니다.
 [![YUZA OS Movie](https://img.youtube.com/vi/BM-LlEVNjWU/0.jpg)](https://youtu.be/BM-LlEVNjWU) 
 
 Feature
-
-* 윈도우 10 또는 그 이상 버전에서 비쥬얼 스튜디오 2019로 운영체제 개발
+* 윈도우 운영체제에서 비쥬얼 스튜디오 2019 또는 상위 버전에서 운영체제 개발
 * WIN32와 실기에서 동시 동작하는 듀얼 시스템
 * 강력한 선행적 디버깅 시스템 탑재
   - 커널 및 응용앱, 써드파티 라이브러리 등 모든 소스코드의 선행적 디버깅 가능
@@ -19,7 +18,7 @@ Feature
 
 Build Tool
 
-- Visual Studio 2019
+- Visual Studio 2019 또는 상위 버전
 - 확장 플러그인 [VSNASM] (https://github.com/ShiftMediaProject/VSNASM)
 
 Build Instruction
