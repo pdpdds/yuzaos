@@ -154,23 +154,23 @@
   <ItemGroup>
     <CustomBuild Include="asm\_ftol.s">
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">nasm -f win32 $(SolutionDir)libcrt/asm/_ftol.s</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)libcrt/asm/_ftol.obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">nasm -f win32 $(ProjectDir)/asm/_ftol.s</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)/asm/_ftol.obj</Outputs>
     </CustomBuild>
     <CustomBuild Include="asm\_spinlock.s">
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">nasm -f win32 $(SolutionDir)libcrt/asm/_spinlock.s</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)libcrt/asm/_spinlock.obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">nasm -f win32 $(ProjectDir)/asm/_spinlock.s</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)/asm/_spinlock.obj</Outputs>
     </CustomBuild>
     <CustomBuild Include="asm\_sqrt.s">
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">nasm -f win32 $(SolutionDir)libcrt/asm/_sqrt.s</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)libcrt/asm/_sqrt.obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">nasm -f win32 $(ProjectDir)/asm/_sqrt.s</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)/asm/_sqrt.obj</Outputs>
     </CustomBuild>
     <CustomBuild Include="asm\_syscall.s">
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">nasm -f win32 $(SolutionDir)libcrt/asm/_syscall.s</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)libcrt/asm/_syscall.obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">nasm -f win32 $(ProjectDir)/asm/_syscall.s</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)/asm/_syscall.obj</Outputs>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
