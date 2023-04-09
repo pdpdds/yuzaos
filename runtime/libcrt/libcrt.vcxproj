@@ -152,18 +152,26 @@
     <ClInclude Include="string\str_util.h" />
   </ItemGroup>
   <ItemGroup>
-    <NASM Include="asm\_ftol.s">
+    <CustomBuild Include="asm\_ftol.s">
       <FileType>Document</FileType>
-    </NASM>
-    <NASM Include="asm\_spinlock.s">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">nasm -f win32 $(SolutionDir)libcrt/asm/_ftol.s</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)libcrt/asm/_ftol.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="asm\_spinlock.s">
       <FileType>Document</FileType>
-    </NASM>
-    <NASM Include="asm\_sqrt.s">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">nasm -f win32 $(SolutionDir)libcrt/asm/_spinlock.s</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)libcrt/asm/_spinlock.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="asm\_sqrt.s">
       <FileType>Document</FileType>
-    </NASM>
-    <NASM Include="asm\_syscall.s">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">nasm -f win32 $(SolutionDir)libcrt/asm/_sqrt.s</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)libcrt/asm/_sqrt.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="asm\_syscall.s">
       <FileType>Document</FileType>
-    </NASM>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">nasm -f win32 $(SolutionDir)libcrt/asm/_syscall.s</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)libcrt/asm/_syscall.obj</Outputs>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <MASM Include="asm\aulldvrm.asm" />

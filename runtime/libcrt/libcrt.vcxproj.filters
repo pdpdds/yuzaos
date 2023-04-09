@@ -464,17 +464,17 @@
     </MASM>
   </ItemGroup>
   <ItemGroup>
-    <NASM Include="asm\_syscall.s">
+    <CustomBuild Include="asm\_ftol.s">
       <Filter>asm</Filter>
-    </NASM>
-    <NASM Include="asm\_sqrt.s">
+    </CustomBuild>
+    <CustomBuild Include="asm\_spinlock.s">
       <Filter>asm</Filter>
-    </NASM>
-    <NASM Include="asm\_spinlock.s">
+    </CustomBuild>
+    <CustomBuild Include="asm\_sqrt.s">
       <Filter>asm</Filter>
-    </NASM>
-    <NASM Include="asm\_ftol.s">
+    </CustomBuild>
+    <CustomBuild Include="asm\_syscall.s">
       <Filter>asm</Filter>
-    </NASM>
+    </CustomBuild>
   </ItemGroup>
 </Project>
