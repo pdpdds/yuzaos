@@ -66,6 +66,7 @@ YUZA OS 서적에서 설명하는 운영체제의 소스코드입니다.
 * [기본 프로젝트 템플릿](https://github.com/pdpdds/YuzaTemplate)
 * [유자 앱](https://github.com/pdpdds/YuzaApp)
 * [유자 STL](https://github.com/pdpdds/yuza_stl)
+* [유자 SDL](https://github.com/pdpdds/SDL_YUZA)
 * [유자 써드파티](https://github.com/pdpdds/yuza_thirdparty)
 * [테스트 프로젝트](https://github.com/pdpdds/yuza_test)
 * 환경변수에 YUZA_ROOT를 등록. YUZA OS 루트 경로로 값을 지정
